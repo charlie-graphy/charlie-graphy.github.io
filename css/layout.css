@@ -28,7 +28,7 @@ body {
 	text-decoration-line: none !important;
 }
 
-.header a:hover, .content_menu div.active a{
+.header a:hover, .navigation li:hover a, .content_menu div.active a{
 	color: #ffa205;
 	/* #0589ff; */
 }
