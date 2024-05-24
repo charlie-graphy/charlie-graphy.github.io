@@ -1,10 +1,7 @@
-<!-- <html lang="de-DE" class="flexbox no-touchevents objectfit object-fit no-ios no-ipad no-iphone is-chrome no-instagram-browser phone-size"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
-
+<html lang="de-DE" class="flexbox no-touchevents objectfit object-fit no-ios no-ipad no-iphone is-chrome no-instagram-browser phone-size"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <html lang="ko" dir="ltr">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
 		<meta name="description" content="AHNJEEHWAN" />
 		<meta name="keywords" content="AHNJEEHWAN" />
 		<title>Jeehwany</title>
@@ -174,7 +171,10 @@ $(document).ready(function(){
 			}else{ //show
 				$('.video_content div.text').trigger('click');
 				$('.video_content .screen iframe').remove();
-				$('.video_content .screen').prepend('<iframe style="width:100%; height:100%" src="https://www.youtube.com/embed/'+selectURL+'&autoplay=1&controls=0" frameborder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>');
+				$('.video_content .screen').prepend('<iframe style="width:100%; height:100%" src="https://www.youtube.com/embed/'+selectURL+'&autoplay=1&controls=0&enablejsapi=1" frameborder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>');
+
+				/* $('.video_content iframe')[0].contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');//playVideo
+				$('.video_content iframe').addClass('stop'); */
 			}
 		}
 
@@ -213,8 +213,17 @@ $(document).ready(function(){
 		}else if(key == 50 || key == 98) { // 2
 			$('.video_content div.menu footer span:eq(1)').trigger('click');
 		}
-		
 	}, false);
-});
 
+	$('.video_content .screen').on('click', function() {
+		if($('.video_content iframe').length > 0){
+			if($('.video_content iframe').hasClass('stop')){
+				$('.video_content iframe')[0].contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}','*');			
+			}else{
+				$('.video_content iframe')[0].contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');
+			}
+			$('.video_content iframe').toggleClass('stop'); 
+		}
+	});
+});
 </script>
