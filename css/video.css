@@ -43,9 +43,10 @@ a{
 
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 1366px) {
-
 }
 /* PC 화면에서만 보이는 스타일 */
 @media only screen and ( min-width : 1367px) {
-	
+	.menu{
+		width: 33% !important;
+	}
 }

@@ -155,6 +155,10 @@ $(document).ready(function(){
 		if($(this).text() == 1){//BACK, EXIT
 			if(showMenuIdx < 0){ //EXIT
 				$('.video_content div.text').trigger('click');
+				if($('.video_content iframe').length > 0){
+					$('.video_content iframe')[0].contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}','*')
+					$('.video_content iframe').toggleClass('stop'); 
+				}
 			}else{ //BACK
 				$('.video_content div.menu header').text('Main Menu');
 				$(this).parent('div').find('em').text('Exit');
@@ -223,7 +227,7 @@ $(document).ready(function(){
 				}else{
 					$('.video_content iframe')[0].contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');
 				}
-				$('.video_content iframe').toggleClass('stop'); 
+				$('.video_content iframe').toggleClass('stop');
 			}
 		}
 	});

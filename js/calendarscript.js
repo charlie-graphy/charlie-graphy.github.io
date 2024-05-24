@@ -11,12 +11,14 @@
 			businessHours: false,
 			defaultView: 'month',
 			// event dragging & resizing
-			editable: true,
+			editable: false,
 			// header
 			header: {
-				left: 'title',
-				right: 'today prev,next'
+				left: 'prev',
+				center: 'title',
+				right: 'next'
 			},
+			locale: 'ko',
 			events: [
 				{
 					title: '렛미플라이 - 김해',
@@ -393,7 +395,7 @@
 					title: '쇄골에 천사가 잠들고 있다',
 					description: '토루 役 | 안지환<br>요시오 役 | 도예준<br>유우카 役 | 김보정<br>카즈에 役 | 이아진<br>타쿠지 役 | 정명군<br>마사미 役 | 김보나<br>쿄코 役 | 문경희<br>켄토 役 | 장용철',
 					start: '2024-05-22 20:00',
-					className: 'fc-bg-default',
+					className: 'fc-bg-default2',
 					allDay: false
 				},
 				{
@@ -601,6 +603,5 @@
 					jQuery('#modal-view-event').modal();
 			},
 		})
-	});
-  
+	});  
 })(jQuery);
