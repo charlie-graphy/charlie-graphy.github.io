@@ -1,10 +1,7 @@
 <html lang="de-DE" class="flexbox no-touchevents objectfit object-fit no-ios no-ipad no-iphone is-chrome no-instagram-browser phone-size"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <html lang="ko" dir="ltr">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
 		<meta name="description" content="AHNJEEHWAN" />
 		<meta name="keywords" content="AHNJEEHWAN" />
 		<title>Jeehwany</title>
@@ -13,12 +10,11 @@
 
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
 		<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'>
-		<link rel="stylesheet" href="css/calendarstyle.css">
-		
+		<link rel="stylesheet" href="css/calendarstyle.css">		
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
 	</head>
 	
-	<body class="" style="-scrollbarWidth: 17px;">
+	<body class="">
 		<div class="main_container">
 			<!-- 햄버거 아이콘(모바일) -->
 	        <div class="menu-icon">&#9776;</div>
@@ -38,7 +34,7 @@
 
 		<div class="about_content">
 		
-			<div class="p-5">
+			<div class="p-5" style="padding:1.7em .5em !important;">
 			  <div class="card">
 			    <div class="card-body p-0">
 			      <div id="calendar"></div>
@@ -64,7 +60,7 @@
 			<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
 			<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js'></script>
 			<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js'></script>
-			<script src="js/calendarscript.js"></script>
+   			<script src="js/calendarscript.js"></script>
 		
 		</div>
 	    
@@ -92,13 +88,28 @@ $(document).ready(function(){
 	$('.fa-chevron-left').text('<');
 	$('.fa-chevron-right').text('>');
 	
-	$('.fc-prev-button').on('click', function(){
+	timeFormat();
+	$('.fc-header-toolbar .fc-prev-button, .fc-header-toolbar .fc-next-button').on('click', function(){
 		if($('.fc-toolbar h2').text() == 'December 2023'){
 			$('.fc-next-button .fa-chevron-right').trigger('click');
 			alert('2024년부터 볼 수 있습니다.');
 			return false;
+		}else{
+			timeFormat();	
 		}
 	});
 });
+function timeFormat(){
+	var month = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
+	//월
+	var year = $('.fc-header-toolbar h2').text().split(' ')[1];
+	$('.fc-header-toolbar h2').text(year+" "+(jQuery.inArray($('.fc-header-toolbar h2').text().split(' ')[0].toUpperCase(), month)+1)+"월");
+	
+	//시간
+	for(var i = 0 ; i < $('.fc-time').length ; i++){
+		$('.fc-time:eq('+i+'):contains("p")').text(($('.fc-time:eq('+i+')').text().length > 2) ? (Number($('.fc-time:eq('+i+')').text().split(':')[0])+12+":"+$('.fc-time:eq('+i+')').text().split(':')[1].substring(0,2)): Number($('.fc-time:eq('+i+')').text().split('p')[0])+12+":00");
+		$('.fc-time:eq('+i+'):contains("a")').text(($('.fc-time:eq('+i+')').text().length > 2) ? ($('.fc-time:eq('+i+')').text().split(':')[0]+":"+$('.fc-time:eq('+i+')').text().split(':')[1].substring(0,2)): $('.fc-time:eq('+i+')').text().split('p')[0]+":00");
+	}
+}
 
 </script>

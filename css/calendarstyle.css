@@ -15,7 +15,10 @@ body .fc {
   font-size: 1em; }
 /* 내가 추가*/
 .fc-prev-button{
-	margin-right: 50px !important;
+	/* margin-left: 50px !important; */
+	width:10%;
+	left: 0;
+	text-align: left;
 	background: transparent;
 }
 .fc-prev-button:active, .fc-next-button:active, .fc-today-button:active{
@@ -326,7 +329,7 @@ temporary rendered events).
   background: none;
   /* in case <td>s are globally styled */
   border-color: transparent;
-  padding: .5rem .5rem;
+  padding: .3rem .3rem;
 }
 
 .fc-row .fc-content-skeleton td,
@@ -384,14 +387,23 @@ temporary rendered events).
     bottom: -2px;
     width: 50px;
     height: 100%;
-    border-left: 3px solid #5d5386;
-    border-bottom: 3px solid #5d5386;
+    /*/ border-left: 3px solid #5d5386;
+    border-bottom: 3px solid #5d5386; */
     -webkit-border-radius: 3px 0px 0px 3px;
     -moz-border-radius: 3px 0px 0px 3px;
     border-radius: 3px 0px 0px 3px;
 }
 .fc-event .fc-title {
     font-weight: 500;
+    position: relative;
+    font-size: 0.7rem;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
 }
 .fc-event i{
     font-size: 26px;
@@ -425,7 +437,7 @@ temporary rendered events).
     color: #2c304d;
     position: relative;
     z-index: 2;
-    padding: 8px;
+    padding: 7px 2px;
 }
 
 /* resizer (cursor AND touch devices) */
@@ -578,7 +590,9 @@ tr:first-child > td > .fc-day-grid-event {
 .fc-day-grid-event .fc-content {
   /* force events to be one-line tall */
   white-space: nowrap;
-  overflow: hidden; }
+  overflow: hidden; 
+  font-size:0.7rem;
+  }
 
 .fc-day-grid-event .fc-time {
   font-weight: bold; }
@@ -859,7 +873,9 @@ NOTE: use percentage font sizes or else old IE chokes
   margin-top: 1em; }
 
 .fc-toolbar .fc-left {
-  float: left; }
+  float: left; 
+  width: 50%;
+  }
 
 .fc-toolbar .fc-right {
   float: right; 
