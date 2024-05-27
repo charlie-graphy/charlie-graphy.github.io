@@ -44,9 +44,9 @@ h1 strong sup {
   display: inline-block;
   margin: 1rem;
 }
-.card.y:hover .inner, .card.y:active .inner {
+/* .card.y:hover .inner {
   transform: rotateY(180deg);
-}
+} */
 .card .inner {
   transition: 0.6s;
   transform-style: preserve-3d;
@@ -130,7 +130,7 @@ h1 strong sup {
   padding: 10px 5px;
   text-align: left;
 }
-.back li:hover, .back li:active {
+.back li:hover {
   color: #231f20;
 }
 .back li:not(:last-child) {

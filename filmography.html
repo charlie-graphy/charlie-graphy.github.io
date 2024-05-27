@@ -244,7 +244,7 @@
 							<div class="details">
 				          		<h3 class="pantone-tm">뮤지컬 <여신님이 보고 계셔></h3>
 				          		<p class="year">2022-23</p>
-				          		<p class="color-info">2022.11.08 - 2024.03.01</p>
+				          		<p class="color-info">2022.11.08 - 2023.03.01</p>
 				          		<p class="color-info">신석구 役</p>
 				        	</div>
 				      	</div>
@@ -579,7 +579,7 @@
 							<div class="details">
 				          		<h3 class="pantone-tm">뮤지컬 <차미></h3>
 				          		<p class="year">2020</p>
-				          		<p class="color-info">2020.04.14 - 2020.07.05</p>
+				          		<p class="color-info">2020.04.14 - 07.05</p>
 				          		<p class="color-info">김고대 役</p>
 				        	</div>
 				      	</div>
@@ -1033,7 +1033,6 @@
 	    
 	</body>	
 </html>
-
 <script>
 $(document).ready(function(){
 	// 햄버거 아이콘을 클릭
@@ -1071,10 +1070,19 @@ $(document).ready(function(){
 		}
 	});
 	
-	/* $('.card.y .inner').on('touchstart',function() {
-		$('.card.y .inner').trigger('hover');
-		/// transform: rotateY(180deg);
-	}); */
-	$('.card.y .inner').addEventListener("touchstart", function() {}, true);
-
+	$('.filmography_content .card.y .inner').on('click', function(e){
+		var $target = $(this);
+		$target.css('transform','rotateY(180deg)');
+		
+		setTimeout(function() { 
+			$target.css('transform','');
+		}, 2000);
+	});
+	$('.filmography_content .card.y .inner').on('mouseover', function(e){
+		$(this).css('transform','rotateY(180deg)');
+	});	
+	$('.filmography_content .card.y .inner').on('mouseout', function(e){
+		$(this).css('transform','');
+	});
+});
 </script>

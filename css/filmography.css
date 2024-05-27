@@ -37,8 +37,7 @@
 	.card, .front, .back {
 	  height: 300px !important;
 	  width: 150px !important;
-	}
-	
+	}	
 }
 /* PC 화면에서만 보이는 스타일 */
 @media only screen and ( min-width : 1367px) {
