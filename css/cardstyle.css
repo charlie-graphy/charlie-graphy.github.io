@@ -116,7 +116,7 @@ h1 strong sup {
 .back {
   transform: rotateY(180deg);
   background-color: #fff;
-  padding: 1.5rem 1.5rem 0;
+  /* padding: 1.5rem 1.5rem 0; */
   text-align: center;
 }
 .back ul {
@@ -177,12 +177,16 @@ h1 strong sup {
 }
 .pt-11 .back {
   background-image: url('https://bit.ly/4agShoq');
+  background-size: cover;
+  background-position: center;
 }
 .pt-12 .front {
   background-image: url('https://bit.ly/4bgFuUa');
 }
 .pt-12 .back {
   background-image: url('https://bit.ly/4dFGQJH');
+  background-size: cover;
+  background-position: center;
 }
 .pt-13 .front {
   background-image: url('https://bit.ly/4bfX1Mb');
@@ -219,6 +223,8 @@ h1 strong sup {
 }
 .pt-24 .back {
   background-image: url('https://bit.ly/3ydlWS5');
+  background-size: cover;
+  background-position: -35 0;
 }
 .pt-25 .front {
   background-image: url('https://bit.ly/4bblXVa');
@@ -228,8 +234,8 @@ h1 strong sup {
 }
 .pt-26 .back {
   background-image: url('https://bit.ly/4ahZRyU');
-  background-position: -90px 0px;
-  background-size: 150%;
+  background-size: cover;
+  background-position: -110 0;
 }
 .pt-27 .front {
   background-image: url('https://bit.ly/4b5sDEl');
@@ -239,8 +245,8 @@ h1 strong sup {
 }
 .pt-28 .back {
   background-image: url('https://bit.ly/44BrwKd');
-  background-position: -100px 0px;
-  background-size: 225%;
+  background-size: cover;
+  background-position: -130 0;
 }
 .pt-29 .front {
   background-image: url('https://bit.ly/4bxa4c0');
@@ -250,12 +256,16 @@ h1 strong sup {
 }
 .pt-30 .back {
   background-image: url('https://bit.ly/44GWws3');
+  background-size: cover;
+  background-position: center;
 }
 .pt-31 .front {
   background-image: url('https://bit.ly/3WCUDdW');
 }
 .pt-31 .back {
   background-image: url('https://bit.ly/4bBj2F0');
+  background-size: cover;
+  background-position: -5 0;
 }
 .pt-32 .front {
   background-image: url('https://bit.ly/4bBj7si');
@@ -265,8 +275,8 @@ h1 strong sup {
 }
 .pt-33 .back {
   background-image: url('https://bit.ly/3UEc4sf');
-  background-position: -50px 0px;
-  background-size: 150%;
+  background-size: cover;
+  background-position: center;
 }
 .pt-34 .front {
   background-image: url('https://bit.ly/3UChgN1');
@@ -279,15 +289,17 @@ h1 strong sup {
 }
 .pt-36 .back {
   background-image: url('https://bit.ly/4dNvKme');
+  background-size: cover;
+  background-position: center;
 }
 .pt-37 .front {
   background-image: url('https://bit.ly/3QH2y6o');
-  background-position: -50px 0px;
+  background-position: -50 0;
   background-size: 150%;
 }
 .pt-38 .front {
   background-image: url('../filmography/38profile-c.jpeg');
-  background-position: -19px -9px;
+  background-position: -19 -9;
   background-size: 150%;
 }
 .pt-39 .front {
@@ -307,18 +319,24 @@ h1 strong sup {
 }
 .pt-43 .back {
   background-image: url('https://bit.ly/44GMVl4');
+  background-size: cover;
+  background-position: -35 0;
 }
 .pt-44 .front {
   background-image: url('https://bit.ly/44IWbVT');
 }
 .pt-44 .back {
   background-image: url('https://bit.ly/44I3ywT');
+  background-size: cover;
+  background-position: center;
 }
 .pt-45 .front {
   background-image: url('https://bit.ly/3wxHR64');
 }
 .pt-45 .back {
   background-image: url('https://bit.ly/3UZegvG');
+  background-size: cover;
+  background-position: center;
 }
 .pt-46 .front {
   background-image: url('https://bit.ly/3wGgc2I');
@@ -335,7 +353,132 @@ h1 strong sup {
 .pt-50 .front {
   background-image: url('https://bit.ly/3yizaND');
 }
+/* 수정 */
 .pt-52 .front {
-  background-image: url('https://bit.ly/3yizaND');
+  background-image: url('../filmography/52poster.jpeg');
 }
-
+.pt-52 .back {
+  background-image: url('../filmography/52profile.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-53 .front {
+  background-image: url('../filmography/53poster.jpeg');
+}
+.pt-53 .back {
+  background-image: url('../filmography/53profile.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-54 .front {
+  background-image: url('../filmography/54poster.jpeg');
+}
+.pt-54 .back {
+  background-image: url('../filmography/54profile.png');
+  background-size: cover;
+  background-position: center;
+}
+.pt-55 .front {
+  background-image: url('../filmography/55poster.jpeg');
+}
+.pt-55 .back {
+  background-image: url('../filmography/55profile.png');
+  background-size: cover;
+  background-position: center;
+}
+.pt-56 .front {
+  background-image: url('../filmography/56poster.png');
+}
+.pt-56 .back {
+  background-image: url('../filmography/56profile.jpeg');
+  background-size: cover;
+  background-position: -35 0;
+}
+.pt-57 .front, .pt-62 .front {
+  background-image: url('../filmography/57poster.png');
+}
+.pt-57 .back {
+  background-image: url('../filmography/57profile-1.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-58 .front {
+  background-image: url('../filmography/58poster.jpeg');
+}
+.pt-58 .back {
+  background-image: url('../filmography/58profile.jpeg');
+  background-size: cover;
+  background-position: -25 0;
+}
+.pt-59 .front {
+  background-image: url('../filmography/59poster.jpg');
+}
+.pt-59 .back {
+  background-image: url('../filmography/59profile.jpeg');
+  background-size: cover;
+  background-position: -55 0;
+}
+.pt-60 .front {
+  background-image: url('../filmography/60poster.jpeg');
+}
+.pt-60 .back {
+  background-image: url('../filmography/60profile.jpeg');
+  background-size: cover;
+  background-position: -48 0;
+}
+.pt-61 .front {
+  background-image: url('../filmography/61poster.png');
+  background-position: -5 0;
+  background-size: 120%;
+}
+.pt-61 .back {
+  background-image: url('../filmography/61profile.png');
+  background-size: cover;
+  background-position: center;
+}
+.pt-63 .front, .pt-64 .front {
+  background-image: url('../filmography/63poster.png');
+}
+.pt-63 .back {
+  background-image: url('../filmography/63profile.png');
+  background-size: cover;
+  background-position: center;
+}
+.pt-65 .front {
+  background-image: url('../filmography/65poster.jpeg');
+}
+.pt-65 .back {
+  background-image: url('../filmography/65profile.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-66 .front {
+  background-image: url('../filmography/66poster.jpg');
+}
+.pt-66 .back {
+  background-image: url('../filmography/66profile.jpeg');
+  background-size: cover;
+  background-position: -35 0;
+}
+.pt-67 .front {
+  background-image: url('../filmography/67poster.jpg');
+}
+.pt-68 .front {
+  background-image: url('../filmography/68poster.jpg');
+}
+.pt-69 .front {
+  background-image: url('../filmography/69poster.jpeg');
+}
+.pt-69 .back {
+  background-image: url('../filmography/69profile.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-70 .front {
+  background-image: url('../filmography/70poster.jpeg');
+}
+.pt-70 .back {
+  background-image: url('../filmography/70profile.jpg');
+  background-size: cover;
+  background-position: center;
+}
