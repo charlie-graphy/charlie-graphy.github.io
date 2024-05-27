@@ -169,8 +169,8 @@ body {
 	  	transition: transform 0.3s;
 	}
 	.content {
-		padding-top: 70%;
-		padding-bottom: 100%;
+		padding-top: 60%;
+		padding-bottom: 150%;
 		overflow-x: hidden;
 	}
 	.content_menu div a{

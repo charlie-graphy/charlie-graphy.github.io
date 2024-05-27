@@ -17,6 +17,19 @@ a{
 	height: 2em;
 	
 }
+/* 바탕색  */
+.bg-red{
+	background-color: rgb(255, 160, 160, 0.2) !important;
+}
+.bg-green{
+	background-color: rgb(152, 211, 168, 0.2) !important;
+}
+.bg-blue{
+	background-color: rgb(50, 100, 200, 0.2) !important;
+}
+.bg-gray{
+	background-color: rgb(107, 111, 119, 0.2) !important;
+}
 
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 1366px) {	
