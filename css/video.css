@@ -4,9 +4,6 @@ body{
 	overflow:hidden;
 	background-color: black;
 }
-.main_container {
-	background-color: black;
-}
 .header, .header a, .menu-icon, .navigation li a{
 	color: white;
 }

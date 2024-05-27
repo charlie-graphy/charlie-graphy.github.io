@@ -19,7 +19,7 @@ body {
 	justify-content: space-between;
 	align-items: center;
 	width: 100% !important;
-	background-color: white;
+	background-color: transparent;
 	z-index: 9999;
 }
 
