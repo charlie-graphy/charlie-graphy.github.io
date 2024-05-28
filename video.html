@@ -13,7 +13,7 @@
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
 	</head>
 	
-	<body class="" style="-scrollbarWidth: 17px;">
+	<body style="display:none;">
 		<div class="main_container">
 			<!-- 햄버거 아이콘(모바일) -->
 	        <div class="menu-icon">&#9776;</div>
@@ -123,6 +123,16 @@
 
 <script>
 $(document).ready(function(){
+    $("body").fadeIn(2000);
+    $("a").click(function(event){
+        event.preventDefault();
+        linkLocation = this.href;
+        $("html").fadeOut(1000, redirectPage);
+    });
+    function redirectPage() {
+    	window.location = linkLocation;
+    }
+    
 	var idx = 0;
 	// 햄버거 아이콘을 클릭
 	$('.menu-icon').on('click', function() {
