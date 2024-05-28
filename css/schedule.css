@@ -20,6 +20,19 @@ a{
 .fc-event-container {
 	cursor: pointer !important;
 }
+/* 요일 */
+td.fc-sun, th.fc-sun {
+	background-color: rgb(180, 0, 0, 3%);
+}
+.fc-sun span{
+	color: mediumvioletred !important;
+}
+td.fc-sat, th.fc-sat {
+	background-color: rgb(0, 0, 180, 3%);
+}
+.fc-sat span{
+	color: dodgerblue !important;
+}
 /* 바탕색  */
 .bg-red{
 	background-color: rgb(255, 160, 160, 0.2) !important;
