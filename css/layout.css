@@ -106,7 +106,7 @@ body {
 	box-sizing: border-box;
 	width: 100vw;
 	display: block; /* 세로 정렬 */
-	font-size: 80px;
+	font-size: 2.5em;
 	font-weight: bolder;
 	text-decoration-line: none;
 	color: #000000;
@@ -179,7 +179,7 @@ body {
 		overflow-x: hidden;
 	}
 	.content_menu div a{
-		font-size:54px;
+		font-size: 1.3em;
 		line-height: 60px;
 	}
 
