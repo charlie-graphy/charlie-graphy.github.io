@@ -6,7 +6,7 @@
 	height: 100%;
 	padding-top: 20%;
 }
-.menuTab, .six.tab div:not(.nohover), .bi-house, .bi-search, .six.tab .bi, .four label{
+.menuTab, .six.tab div:not(.nohover), .bi-house, .bi-search, .six.tab .bi, .four label, .bi-arrow-clockwise{
 	cursor: pointer;
 }
 span{

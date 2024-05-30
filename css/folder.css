@@ -151,7 +151,8 @@ body {
 .five {
   grid-area: five;
   display: grid;
-  grid-template-columns: repeat(4, auto) 3fr repeat(2, auto) 0.763fr auto;
+  /* grid-template-columns: repeat(4, auto) 3fr repeat(2, auto) 0.763fr auto; */
+  grid-template-columns: repeat(1, auto) 3fr repeat(1, auto) 2fr auto;
 }
 
 i {

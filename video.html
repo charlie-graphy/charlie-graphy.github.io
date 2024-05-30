@@ -68,8 +68,14 @@
 					        </div>
 				      	</div>
 				    </div>
-				    <div class="five"><i class="bi bi-arrow-left"></i><i class="bi bi-arrow-right"></i><i class="bi bi-arrow-up"></i><label for="tab-1"><i class="bi bi-house"></i></label>
+				    <!-- <div class="five">
+						<i class="bi bi-arrow-left"></i><i class="bi bi-arrow-right"></i><i class="bi bi-arrow-up"></i><label for="tab-1"><i class="bi bi-house"></i></label>
 				    	<input class="nowFolder" type="text" value="Jeewhany Video Archive" disabled/><i class="bi bi-chevron-down"></i><i class="bi bi-arrow-clockwise"></i>
+				      	<input class="searchText" type="text" placeholder="검색"/><i class="bi bi-search"></i>
+				    </div> -->
+					<div class="five">
+						<label for="tab-1"><i class="bi bi-house"></i></label>
+				    	<input class="nowFolder" type="text" value="Jeewhany Video Archive" disabled/><i class="bi bi-arrow-clockwise"></i>
 				      	<input class="searchText" type="text" placeholder="검색"/><i class="bi bi-search"></i>
 				    </div>
 				    <input class="tab-frame" type="radio" name="tab" id="tab-1" checked="checked"/>
@@ -148,8 +154,8 @@
 var chgCnt = 0;
 $(document).ready(function(){
     $("body").fadeIn(2000);
-    $("a").not(".insta, .youtube").click(function(event){
-        event.preventDefault();
+    $("a").not(".insta, .youtube").click(function(e){
+        e.preventDefault();
         linkLocation = this.href;
         $("html").fadeOut(1000, redirectPage);
     });
@@ -185,9 +191,11 @@ $(document).ready(function(){
 			$(this).find('label').trigger('click');
 			chgCnt=0;
 		}
+		$('.searchText').val('');
 	});
 	//넓은 화면 아이콘 클릭
 	$('.six.tab div').not('.folderNm, .noHover').on('click', function(e){
+		if($(this).parent('a').length < 1) $('.searchText').val('');
 		if($(this).find('label').length > 0){
 			$('.four label[for='+$(this).find('label').attr('for')+']').addClass('bold');
 			$('.four label[for='+$(this).find('label').attr('for')+']').trigger('click');
@@ -225,7 +233,7 @@ $(document).ready(function(){
 			}
 			$target.find('div:contains("'+$('.searchText').val()+'")').not('.folderNm').show(); //대소문자 구분 고민
 		}else{
-			$target.find('div').not('.folderNm').show();
+			$('.six.tab div').not('.folderNm').show();
 		}
 	});
 	//홈
@@ -233,6 +241,13 @@ $(document).ready(function(){
 		$('.four label').removeClass('bold');
 		$('.nowFolder').val('Jeewhany Video Archive');
 		$('.one span').text('Jeewhany');
+		$('.searchText').val('');
+		$('.bi-search').trigger('click');
+	});
+	//새로고침
+	$('.bi-arrow-clockwise').on('click',function(e){
+		$('.searchText').val('');
+		$('.bi-search').trigger('click');
 	});
 });
 </script>
