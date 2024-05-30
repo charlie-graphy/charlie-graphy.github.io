@@ -1,0 +1,77 @@
+@charset "UTF-8";
+/* 공통 스타일 */
+.about_content, body {
+	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
+	width: 100%;
+	height: 100%;
+	padding-top: 20%;
+	padding-bottom: 60%;
+	right: 10%;
+	background-color: white !important;
+}
+a{
+	color: #666;
+	text-decoration-line: none;
+}
+.fc-row.fc-week.table-bordered tr{
+	height: 2em;
+	
+}
+.fc-event-container {
+	cursor: pointer !important;
+}
+/* 요일 */
+td.fc-sun, th.fc-sun {
+	background-color: rgb(180, 0, 0, 3%);
+}
+.fc-sun span{
+	color: mediumvioletred !important;
+}
+td.fc-sat, th.fc-sat {
+	background-color: rgb(0, 0, 180, 3%);
+}
+.fc-sat span{
+	color: dodgerblue !important;
+}
+/* 바탕색  */
+.bg-red{
+	background-color: rgb(255, 160, 160, 0.2) !important;
+}
+.bg-green{
+	background-color: rgb(152, 211, 168, 0.2) !important;
+}
+.bg-blue{
+	background-color: rgb(50, 100, 200, 0.2) !important;
+}
+.bg-gray{
+	background-color: rgb(146, 148, 151, 0.2) !important;
+}
+
+/* 모바일 화면에서만 보이는 스타일 */
+@media only screen and ( max-width : 1366px) {	
+	.about_content{
+		padding-top: 10px;
+	}
+	.fc-header-toolbar h2{
+		font-size: 1.3em;
+		height: 20px;
+	}
+	.fc-header-toolbar .fc-today-button{
+		width: 5.5em;
+		height: 6%;
+	}
+}
+/* PC 화면에서만 보이는 스타일 */
+@media only screen and ( min-width : 1367px) {
+	.about_content {
+		padding-top: 10px;
+	}
+	.p-5{
+		margin: auto;
+		width: 70%;
+	}
+	.fc-event .fc-title {
+    	font-size: 0.8rem !important;
+	}
+	
+}
