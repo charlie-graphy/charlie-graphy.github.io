@@ -42,7 +42,7 @@ h1 strong sup {
   perspective: 500;
   cursor: pointer;
   display: inline-block;
-  margin: 1rem;
+  margin: 0.5rem;
 }
 /* .card.y:hover .inner {
   transform: rotateY(180deg);

@@ -36,7 +36,7 @@
 	}
 	.card, .front, .back {
 	  height: 300px !important;
-	  width: 150px !important;
+	  width: 160px !important;
 	}	
 }
 /* PC 화면에서만 보이는 스타일 */

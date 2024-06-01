@@ -22,6 +22,9 @@ span{
 		padding-top: 12%;
 		margin-bottom: 10%;
 	}
+	.window{
+		padding: 0 !important;
+	}
 }
 /* PC 화면에서만 보이는 스타일 */
 @media only screen and ( min-width : 1367px) {
