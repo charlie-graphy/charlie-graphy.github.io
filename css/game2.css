@@ -24,14 +24,16 @@ a{
 .choice1{
     position: fixed; 
     bottom: 41%;
-    height: 4%;
+    height: 5%;
     width: 80%;
-    padding-top: 6px;
+    padding-top: 4px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
     grid-gap: 10px;
     font-size: 1em;
     font-weight: 600;
+    border-top: 1px solid #787878;
+    border-bottom: 1px solid #787878;
 }
 .choice div, .choice1 div{
     cursor: pointer;
@@ -66,7 +68,6 @@ a{
     position: relative;
     max-width: 500px;
     margin: 0 auto;
-    padding: 15px;
   }
   
   .card-img img {
