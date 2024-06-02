@@ -2,6 +2,7 @@
 /* 공통 스타일 */
 body{
 	overflow: hidden;
+  /* background-color: lavender; */
 }
 .about_content {
 	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
@@ -22,13 +23,15 @@ a{
 }
 .choice1{
     position: fixed; 
-    bottom: 40%;
+    bottom: 41%;
     height: 4%;
     width: 80%;
     padding-top: 6px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
     grid-gap: 10px;
+    font-size: 1em;
+    font-weight: 600;
 }
 .choice div, .choice1 div{
     cursor: pointer;
@@ -38,7 +41,6 @@ a{
     bottom: 0; 
     height: 40%;
     width: 80%;
-    border: 2px solid #000;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
     grid-gap: 10px;
@@ -50,10 +52,13 @@ a{
     display: none;
 }
 .choice1 div.act{
-    font-weight: bolder;
+    color: #ffa205;
 }
-.choice1 div:hover, .choice div:hover{
-    background-color: #666;
+.choice1 div:hover{
+    color: #ffa205;
+}
+.choice div:hover{
+  background-color: #f2f2f2;
 }
 /* 파일 대체 */
 .card-img {
@@ -103,13 +108,18 @@ a{
   
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 1366px) {	
-    .about_content, .choice1 {
+  .about_content, .choice1 {
         width: 100% !important;
-    }
+  }
+  .choice1{
+    font-size: 0.8em;
+    bottom: 47%;
+  }
 	.choice{
-        width: 100%;
-        overflow-x: auto;
-    }
+      width: 100%;
+      overflow-x: auto;
+      height: 47%;
+  }
 }
 /* PC 화면에서만 보이는 스타일 */
 @media only screen and ( min-width : 1367px) {
