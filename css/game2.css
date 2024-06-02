@@ -21,42 +21,42 @@ a{
 	font-weight: 600;
 }
 .choice1{
-    position: fixed; 
+    position: fixed;
     bottom: 41%;
     height: 5%;
     width: 80%;
-    padding-top: 4px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
-    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     font-size: 1em;
     font-weight: 600;
-    border-top: 1px solid #787878;
-    border-bottom: 1px solid #787878;
+    border-top: 1px solid #ffa205;
+    border-bottom: 1px solid #ffa205;
 }
 .choice div, .choice1 div{
     cursor: pointer;
 }
 .choice{
-    position: absolute; 
-    bottom: 0; 
+    position: absolute;
+    bottom: 0;
     height: 40%;
     width: 80%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 10px;
 }
 .group{
-    padding: 3px;
+    padding: 7px;
 }
 .choice .under{
     display: none;
 }
 .choice1 div.act{
-    color: #ffa205;
+    color: white;
+    background-color: #ffa205;
 }
 .choice1 div:hover{
-    color: #ffa205;
+    color: white;
+    background-color: #ffa205;
 }
 .choice div:hover{
   background-color: #f2f2f2;
