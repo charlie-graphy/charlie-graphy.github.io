@@ -13,12 +13,11 @@
 	text-decoration-line: none;
 }
 .group a:hover{
-	color: black;
-	font-weight: bold;
+	color: #ffa205;
 	text-decoration-line: none;
 }
 .group a.selected{
-	color: black;
+	color: #ffa205;
 	font-weight: bolder;
 	text-decoration-line: none;
 } 
