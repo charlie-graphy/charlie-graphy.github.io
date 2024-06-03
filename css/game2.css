@@ -172,8 +172,14 @@ a{
 	.imgDiv{
 		margin-top: 5%;
 	}
+  	.choice{
+	  	width: 100%;
+	    overflow-x: auto;
+  	}
   	.choice1{
-	    font-size: 1.3em
+	  	width: 100%;
+	    font-size: 1.3em;
+	    bottom: 40%;
   	}
   	.group {
   		padding: 11px 0;

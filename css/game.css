@@ -52,7 +52,7 @@ a{
     padding: 25px;
     background: #ffffff;
     border-radius: 20px;
-    background: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,1);
 }
 .modal .modal_popup .controls_score-text{
 	font-weight: bolder; 
@@ -67,9 +67,29 @@ a{
     transition: box-shadow 0.2s;
 }
 
-/* 모바일 화면에서만 보이는 스타일 */
-@media only screen and ( max-width : 1366px) {	
-	
+/* 탭 화면에서만 보이는 스타일 */
+@media only screen and (min-width:768px) and (max-width:1366px) {
+	.about_content {
+		padding-top: 22%;
+	}
+	.wrapper{
+		max-width: 750px !important;
+	}
+	.intro_title {
+	    margin: 5px 0 35px !important;
+	    font-size: 1.8em !important;
+	}
+	.controls_game, .controls_score{
+		width: 100% !important;
+		font-size: 1.5em !important;
+	}
+	.controls_game-btn {
+		font-size: .8em !important;
+	}
+	.gameboard {
+    	max-width: 750px !important;
+    	max-height: 750px !important;
+	}
 }
 /* PC 화면에서만 보이는 스타일 */
 @media only screen and ( min-width : 1367px) {
