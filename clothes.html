@@ -149,8 +149,7 @@ $(document).ready(function(){
 	});
 	//사진저장
 	$('.download').on('click', function(){
-		html2canvas($('#capture')[0]).then(function (canvas) {
-			//var imageData = canvas.toDataURL('image/jpeg');
+		html2canvas($('#capture')[0]).then(function (canvas){
 			var link = document.createElement('a');
 			link.href = canvas.toDataURL();
 			link.download = 'Jeehwany.png';
