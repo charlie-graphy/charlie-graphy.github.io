@@ -6,14 +6,10 @@ body{
 .cloth_content {
 	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
 	height: 100%;
-	padding-top: 4.5em;
+	padding-top: 6.5em;
 	text-align: center;
   	margin: auto; 
   	width: 80%;
-  	
-  	display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 a{
 	color: #666;
@@ -63,10 +59,21 @@ a{
 }
 /* 파일 대체 */
 .card-img {
-    position: relative;
-}
+	/* position: relative; */
+	max-width: 500px;
+    margin: 0 auto;
+    height: 100%;
+    /* display: inline-block; */
+}  
 .card-img img {
-   /*  width: 100%; */
+    width: 100%;
+}
+.character__area {
+    width: 42.8%;
+    height: 42.8%;
+    left: 6%;
+    background-color: transparent;
+    position: absolute;
 }
 .character__area img {
     position: absolute;
@@ -88,10 +95,13 @@ a{
 }
 .how{
 	font-size: 0.8em;
-	border-top: 1px solid #ffa205;
+	position: relative;
+    top: -5%;
+	display: inline-block;
+	float: right;
+    border-top: 1px solid #ffa205;
     border-bottom: 1px solid #ffa205;
-    align-self: flex-end;
-    text-align: right;
+    height: 4rem;
 }
 .howto, .download{
 	padding: .5em 1.3em;
@@ -100,36 +110,6 @@ a{
 .howto:hover, .download:hover{
 	background-color: #ffa205;
 	color: white;
-}
-/*수정*/
-.character_area{
-    display: grid;
-	position: relative;
-	width: 100%;
-    max-width: 500px; /* 필요에 따라 조정 */
-    height: auto; 
-}
-.character_area img {
-    grid-area: 1 / 1;
-    top: 0;
-    left: -110;
-    width: 13em;
-    height: auto;
-}  
-.character_area img.chara_eye {
-    z-index: 2;
-}  
-.character_area img.chara_mouth {
-    z-index: 2;
-}  
-.character_area img.chara_hair {
-    z-index: 3;
-}  
-.character_area img.chara_cloth {
-    z-index: 4;
-} 
-.character_area img.chara_accessory {
-    z-index: 4;
 }
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 1366px) {	
@@ -151,7 +131,4 @@ a{
   .choice{
   	overflow-y: auto;
   }
-  .character_area img {
-    width: 15em;
-}  
 }

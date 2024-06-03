@@ -1,0 +1,161 @@
+<html lang="de-DE" class="flexbox no-touchevents objectfit object-fit no-ios no-ipad no-iphone is-chrome no-instagram-browser phone-size"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<html lang="ko" dir="ltr">
+	<head>
+		<meta name="description" content="AHNJEEHWAN" />
+		<meta name="keywords" content="AHNJEEHWAN" />
+		<title>Jeehwany</title>
+		<link rel="icon" href="img/favicon.ico"/>
+		<link rel="apple-touch-icon" href="img/favicon.ico"/>
+		<link rel="stylesheet" type="text/css" href="css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="css/game.css" />
+		<link rel="stylesheet" type="text/css" href="css/game2.css" />
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+	</head>
+	
+	<body style="display:none;">
+		<div class="main_container">
+			<!-- 햄버거 아이콘(모바일) -->
+	        <div class="menu-icon">&#9776;</div>
+	        <!-- 헤더 -->
+	        <div class="header"><a href="https://charlie-graphy.github.io">AHN</a></div>
+	        <!-- 네비게이션 메뉴(PC) -->
+	        <ul class="navigation desktop-only">
+	            <li><a href="https://charlie-graphy.github.io/schedule">SCHEDULE</a></li>
+	            <li><a href="http://instagram.com/jeehwany" target="_blank" class="insta">INSTAGRAM</a></li>
+	        </ul>
+	        <!-- 모바일에서 보이는 네비게이션 메뉴 -->
+	        <ul class="navigation mobile-only">
+	            <li><a href="https://charlie-graphy.github.io/schedule">SCHEDULE</a></li>
+	            <li><a href="http://instagram.com/jeehwany" target="_blank" class="insta">INSTAGRAM</a></li>
+	        </ul>
+	    </div>
+
+		<div class="cloth_content">
+			<div class="how">
+				<div class="howto">게임 방법</div>
+				<div class="download">사진 저장</div>
+			</div>
+			<div class="imgDiv">
+				<div id="capture" class="card-img">
+					<div class="character_area">
+						<img data-value = "Accessory" class="chara_accessory chara-parts" src="img/character/accessory_1.png" alt="액세서리">
+						<img data-value = "Clothes" class="chara_cloth chara-parts" src="img/character/cloth_1.png" alt="머리">
+						<img data-value = "Hair" class="chara_hair chara-parts" src="img/character/hair_1.png" alt="머리">
+						<img data-value = "Mouth" class="chara_mouth chara-parts" src="img/character/mouth_1.png" alt="입">
+						<img data-value = "Eyes" class="chara_eye chara-parts" src="img/character/eyes_1.png" alt="눈">
+						<img class="chara_base"src="img/character/base.png" alt="베이스">
+					</div>
+				</div>
+			</div>
+			<div class="choice1">
+				<div id="Hair" class="group act">머리</div>
+				<div id="Eyes" class="group">눈</div>
+				<div id="Mouth" class="group">입</div>
+				<div id="Clothes" class="group">옷</div>
+				<div id="Accessory" class="group">액세서리</div>
+			</div>
+			<div class="choice"></div>
+			<!-- modal -->
+			<div class="modal">
+			    <div class="modal_popup">
+			        <h3>게임 방법</h3>
+			        <span class="howtoCont">방법내용</span>
+			    </div>
+			</div>
+		</div>
+	    
+	    <footer class="footer">
+	    	<div class="footer-left">AHN<br>JEEHWAN</div>
+	        <div class="footer-center"><br>07.25</div>
+	        <div class="footer-right"><br>GAME</div>
+	    </footer>
+	    
+	</body>	
+</html>
+
+<script>
+$(document).ready(function(){
+	//머리
+	for(var i = 1 ; i <=48 ; i++ ){
+		$("div.choice").append($("<div>",{"class":"under groupHair"}).append($("<img>",{"src":"img/character/hair_"+i+".png","alt":"헤어"})));
+	}
+	//눈
+	for(var i = 1 ; i <=12 ; i++ ){
+		$("div.choice").append($("<div>",{"class":"under groupEyes"}).append($("<img>",{"src":"img/character/eyes_"+i+".png","alt":"눈"})));
+	}
+	//입
+	for(var i = 1 ; i <=10 ; i++ ){
+		$("div.choice").append($("<div>",{"class":"under groupMouth"}).append($("<img>",{"src":"img/character/mouth_"+i+".png","alt":"입"})));
+	}
+	//옷
+	for(var i = 1 ; i <=7 ; i++ ){
+		$("div.choice").append($("<div>",{"class":"under groupClothes"}).append($("<img>",{"src":"img/character/cloth_"+i+".png","alt":"옷"})));
+	}
+	//액세사리
+	for(var i = 1 ; i <=4 ; i++ ){
+		$("div.choice").append($("<div>",{"class":"under groupAccessory"}).append($("<img>",{"src":"img/character/accessory_"+i+".png","alt":"액세사리"})));
+	}
+	$(".under.groupHair").show();
+
+	//분류 선택
+	$(".choice1 div").on("click",function(){
+		$(".choice1 div").removeClass("act");
+		$(this).addClass("act");
+		$(".under").hide();
+		
+		$(".under.group"+$(this).attr('id')).show();
+	});
+	
+	//상세 선택
+	$(".choice div").on("click",function(){
+		const group = $(".choice1 div.act").attr("id");		
+		$(".character_area img[data-value="+group+"]").attr("src",$(this).find("img").attr("src"))
+	});
+
+    $("body").fadeIn(2000);
+    $("a").not(".insta").click(function(event){
+        event.preventDefault();
+        linkLocation = this.href;
+        $("html").fadeOut(1000, redirectPage);
+    });
+    function redirectPage() {
+    	window.location = linkLocation;
+    }
+    
+	// 햄버거 아이콘을 클릭
+	$('.menu-icon').on('click', function() {
+        $('.navigation.mobile-only').toggleClass('show-menu');
+        if($('.navigation.mobile-only').hasClass('show-menu')) {
+            $('.menu-icon').html('&#10006;'); // X 아이콘으로 변경
+        } else {
+            $('.menu-icon').html('&#9776;'); // 햄버거 아이콘으로 변경
+        }
+    });
+	
+	$('.modal .close_btn').on('click', function(){
+		$('.modal').removeClass('on');
+	});
+	
+	//게임방법
+	$('.howto').on('click', function(){
+		$('.modal').toggleClass('on');
+	});
+	$(document).mouseup(function (e){
+		if($(".modal_popup").has(e.target).length === 0){
+			$('.modal').removeClass('on');
+		}
+	});
+	//사진저장
+	$('.download').on('click', function(){
+		html2canvas($('#capture')[0]).then(function (canvas) {
+			//var imageData = canvas.toDataURL('image/jpeg');
+			var link = document.createElement('a');
+			link.href = canvas.toDataURL();
+			link.download = 'Jeehwany.png';
+			link.click();
+		});
+	})
+});
+</script>
