@@ -13,7 +13,11 @@
 
 		<link href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky" rel="stylesheet">
 	 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-	  	<link rel="stylesheet" href="css/puzzle.css">
+		<script>
+			const rnd = Math.floor(Math.random() * 2);
+			$('head').append('<link rel="stylesheet" href="css/rnd/rnd'+rnd+'.css">');
+		</script>
+		 <link rel="stylesheet" type="text/css" href="css/puzzle.css" />
 	</head>
 	
 	<body style="display:none;">
@@ -98,8 +102,5 @@ $(document).ready(function(){
 	$('.modal .close_btn').on('click', function(){
 		$('.modal').removeClass('on');
 	});
-	
-
 });
-
 </script>

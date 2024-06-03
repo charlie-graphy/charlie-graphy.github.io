@@ -1,0 +1,8 @@
+.tile,.answer {
+	height: 0;
+	padding-bottom: 100%;
+	grid-area: var(--area, auto);
+	border: none;
+	background: url('../../img/puzzle1.jpeg');
+	background-size: 300%;
+}

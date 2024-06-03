@@ -48,16 +48,14 @@
 		inset 0 0 2em 0 hsl(360, 98%, 2%);
 }
 
-.tile,
-.answer {
+/* .tile,.answer {
 	height: 0;
 	padding-bottom: 100%;
 	grid-area: var(--area, auto);
 	border: none;
-	/* background: url(https://source.unsplash.com/900x900/?christmas,holiday,festive); */
-	background: url('../img/puzzle1.jpeg');
+	background: url(https://source.unsplash.com/900x900/?christmas,holiday,festive);
 	background-size: 300%;
-}
+} */
 
 .tile {
 	cursor: pointer;
