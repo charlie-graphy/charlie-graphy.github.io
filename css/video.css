@@ -16,11 +16,18 @@ span{
 	color: black;
 	text-decoration-line: none;
 }
+.group.tab label{
+	width:100%;
+	white-space: nowrap;
+  	text-overflow: ellipsis;
+  	overflow: hidden;
+  	letter-spacing: -0.3px;
+}
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 1366px) {	
 	.video_content{
 		padding-top: 12%;
-		margin-bottom: 10%;
+		margin-bottom: 20%;
 	}
 	.window{
 		padding: 0 !important;
