@@ -67,6 +67,12 @@ a{
     transition: box-shadow 0.2s;
 }
 
+/* 모바일 화면에서만 보이는 스타일 */
+@media only screen and ( max-width : 767px) {
+	.puzzleDiv{
+		padding-top: 22%;
+	}
+}
 /* 탭 화면에서만 보이는 스타일 */
 @media only screen and (min-width:768px) and (max-width:1366px) {
 	.about_content {
@@ -93,5 +99,7 @@ a{
 }
 /* PC 화면에서만 보이는 스타일 */
 @media only screen and ( min-width : 1367px) {
-	
+	.gameMain_content{
+		padding-top: 20%;
+	}
 }
