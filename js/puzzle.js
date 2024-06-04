@@ -73,7 +73,7 @@ const isComplete = tiles => {
 
 	// Compare the current tiles with the areaKeys keys
 	if (currentTilesString == Object.keys(areaKeys).toString()) {
-		heading.children[1].innerHTML = "You win!";
+		heading.children[1].innerHTML = "Come On!";
 		heading.style = `
 			animation: popIn .3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 		`;
