@@ -33,9 +33,11 @@
 	    </div>
 
 		<div class="cloth_content">
-			<div class="how">
-				<div class="howto">게임 방법</div>
-				<div class="download">사진 저장</div>
+			<div class="howDiv">				
+				<div class="how">
+					<div class="howto">게임 방법</div>
+					<div class="download">사진 저장</div>
+				</div>
 			</div>
 			<div class="imgDiv">
 				<div id="capture" class="card-img">
@@ -82,7 +84,7 @@ $(document).ready(function(){
 		$("div.choice").append($("<div>",{"class":"under groupHair"}).append($("<img>",{"src":"img/closet/hair_"+i+".png","alt":"헤어"})));
 	}
 	//눈
-	for(var i = 1 ; i <=5 ; i++ ){
+	for(var i = 1 ; i <=6 ; i++ ){
 		$("div.choice").append($("<div>",{"class":"under groupEyes"}).append($("<img>",{"src":"img/closet/eyes_"+i+".png","alt":"눈"})));
 	}
 	//입
@@ -109,9 +111,9 @@ $(document).ready(function(){
 	});
 	
 	//상세 선택
-	$(".choice div").on("click",function(){
+	$(".choice div img").on("click",function(){
 		const group = $(".choice1 div.act").attr("id");		
-		$(".character_area img[data-value="+group+"]").attr("src",$(this).find("img").attr("src"))
+		$(".character_area img[data-value="+group+"]").attr("src",$(this).attr("src"))
 	});
 
     $("body").fadeIn(2000);
