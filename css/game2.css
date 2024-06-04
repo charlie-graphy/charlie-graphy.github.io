@@ -9,9 +9,16 @@ body{
 	padding-top: 4.5em;
 	text-align: center;
   	margin: auto;   	
-  	display: flex;
-    flex-direction: column;
-    align-items: center;
+  	display: grid;
+    grid-template: "how" "imgDiv" "choice1" "choice";
+    grid-template-rows: 10% 1.8fr 0.15fr 1.8fr;
+    place-items: center;
+}
+.howDiv{
+	width: 100%;
+}
+.imgDiv, .choice1, .choice{
+	height: 100%;
 }
 a{
 	color: #666;
@@ -23,31 +30,28 @@ a{
 	font-weight: 600;
 }
 .choice1{
-    position: fixed; 
-    bottom: 41%;
     height: 4%;
     width: 80%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     font-size: 1em;
     font-weight: 600;
+    align-content: center;
+}
+.choice1 div{
     border-top: 1px solid #ffa205;
     border-bottom: 1px solid #ffa205;
+    padding: .5em 0;
 }
-.choice div, .choice1 div{
+.choice div img, .choice1 div{
     cursor: pointer;
 }
 .choice{
-    position: absolute; 
-    bottom: 0; 
-    height: 40%;
     width: 80%;
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr; 
     grid-gap: 10px;
-}
-.group{
-    padding: 9px 0;
 }
 .choice .under{
     display: none;
@@ -56,7 +60,7 @@ a{
     color: white;
     background-color: #ffa205;
 }
-.choice div:hover{
+.choice div img:hover{
 	background-color: #f2f2f2;
 }
 /* 파일 대체 */
@@ -85,11 +89,11 @@ a{
     z-index: 4;
 }
 .how{
+	width: 10em;
 	font-size: 0.8em;
 	border-top: 1px solid #ffa205;
     border-bottom: 1px solid #ffa205;
-    align-self: flex-end;
-    text-align: right;
+    float: right;
 }
 .howto, .download{
 	padding: .5em 1.3em;
@@ -141,7 +145,7 @@ a{
   		width: 100% !important;
   	}
   	.how {
-  		font-size: 0.65em;
+  		font-size: 0.7em;
   	}
   	.howto, .download {
     	padding: .3em 1.3em;
@@ -149,17 +153,12 @@ a{
   	.character_area img {
 	    width: 14em;
 	}
-  	.group {
-  		padding: 4px 0;
-  	}
   	.choice1{
 	    font-size: 0.8em;
-	    bottom: 40%;
   	}
   	.choice{
 	  	width: 100%;
 	    overflow-x: auto;
-	    height: 40%;
   	}
 }
 /* 탭 화면에서만 보이는 스타일 */
@@ -176,10 +175,6 @@ a{
   	}
   	.choice1{
 	  	width: 100%;
-	    bottom: 40%;
-  	}
-  	.group {
-  		padding: 6px 0;
   	}
 }
 @media only screen and ( min-width : 1367px) {
@@ -189,13 +184,7 @@ a{
   	.character_area img {
 	    width: 20em;
 	}
-  	.choice1{
-	    bottom: 30%;
-  	}
-  	.choice{
-	    height: 30%;
-  	}
 	.choice img{
-		width: 70%;
+		width: 50%;
 	}
 }
