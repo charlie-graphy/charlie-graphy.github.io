@@ -43,7 +43,7 @@ a{
     height: 40%;
     width: 80%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
     grid-gap: 10px;
 }
 .group{
@@ -111,7 +111,7 @@ a{
     grid-area: 1 / 1;
     top: 0;
     left: -110;
-    width: 13em;
+    width: 18em;
     height: auto;
 }  
 .character_area img.chara_eye {
@@ -129,48 +129,46 @@ a{
 .character_area img.chara_accessory {
     z-index: 4;
 }
+.choice img{
+	width: 100%;
+}
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width:767px){
 	.cloth_content {
-		padding-top: 3.2em;
+		padding-top: 3.5em;
 	}
   	.cloth_content, .choice1 {
   		width: 100% !important;
   	}
   	.how {
-  		font-size: 0.7em;
+  		font-size: 0.65em;
   	}
-	.imgDiv{
-		margin-top: -5%;
+  	.howto, .download {
+    	padding: .3em 1.3em;
 	}
   	.character_area img {
-	    width: 13em;
+	    width: 14em;
 	}
   	.group {
   		padding: 4px 0;
   	}
   	.choice1{
 	    font-size: 0.8em;
-	    bottom: 47%;
+	    bottom: 40%;
   	}
   	.choice{
 	  	width: 100%;
 	    overflow-x: auto;
-	    height: 47%;
+	    height: 40%;
   	}
 }
+/* 탭 화면에서만 보이는 스타일 */
 @media only screen and (min-width:768px) and (max-width:1366px) {
 	.cloth_content {
-		padding-top: 5.5em;
+		padding-top: 4.5em;
 	}
-  	.how {
-  		font-size: 1.1em;
-  	}
   	.character_area img {
 	    width: 20em;
-	}
-	.imgDiv{
-		margin-top: 5%;
 	}
   	.choice{
 	  	width: 100%;
@@ -178,11 +176,10 @@ a{
   	}
   	.choice1{
 	  	width: 100%;
-	    font-size: 1.3em;
 	    bottom: 40%;
   	}
   	.group {
-  		padding: 11px 0;
+  		padding: 6px 0;
   	}
 }
 @media only screen and ( min-width : 1367px) {
@@ -190,6 +187,15 @@ a{
   		overflow-y: auto;
   	}
   	.character_area img {
-	    width: 15em;
+	    width: 20em;
+	}
+  	.choice1{
+	    bottom: 30%;
+  	}
+  	.choice{
+	    height: 30%;
+  	}
+	.choice img{
+		width: 70%;
 	}
 }

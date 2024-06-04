@@ -40,11 +40,11 @@
 			<div class="imgDiv">
 				<div id="capture" class="card-img">
 					<div class="character_area">
-						<img class="chara_base"src="img/character/base.png" alt="베이스">
-						<img data-value = "Eyes" class="chara_eye chara-parts" src="img/character/eyes_1.png" alt="눈">
-						<img data-value = "Mouth" class="chara_mouth chara-parts" src="img/character/mouth_1.png" alt="입">
-						<img data-value = "Hair" class="chara_hair chara-parts" src="img/character/hair_1.png" alt="머리">
-						<img data-value = "Clothes" class="chara_cloth chara-parts" src="img/character/cloth_1.png" alt="옷">
+						<img class="chara_base"src="img/closet/jeehwany_base_1.png" alt="베이스">
+						<img data-value = "Eyes" class="chara_eye chara-parts" src="img/closet/eyes_1.png" alt="눈">
+						<img data-value = "Mouth" class="chara_mouth chara-parts" src="img/closet/mouth_1.png" alt="입">
+						<img data-value = "Hair" class="chara_hair chara-parts" src="img/closet/hair_1.png" alt="머리">
+						<img data-value = "Clothes" class="chara_cloth chara-parts" src="img/closet/clothes_1.png" alt="옷">
 						<img data-value = "Accessory" class="chara_accessory chara-parts" src="img/character/accessory_1.png" alt="액세서리">
 					</div>
 				</div>
@@ -78,20 +78,20 @@
 <script>
 $(document).ready(function(){
 	//머리
-	for(var i = 1 ; i <=48 ; i++ ){
-		$("div.choice").append($("<div>",{"class":"under groupHair"}).append($("<img>",{"src":"img/character/hair_"+i+".png","alt":"헤어"})));
+	for(var i = 1 ; i <=3 ; i++ ){
+		$("div.choice").append($("<div>",{"class":"under groupHair"}).append($("<img>",{"src":"img/closet/hair_"+i+".png","alt":"헤어"})));
 	}
 	//눈
-	for(var i = 1 ; i <=12 ; i++ ){
-		$("div.choice").append($("<div>",{"class":"under groupEyes"}).append($("<img>",{"src":"img/character/eyes_"+i+".png","alt":"눈"})));
+	for(var i = 1 ; i <=5 ; i++ ){
+		$("div.choice").append($("<div>",{"class":"under groupEyes"}).append($("<img>",{"src":"img/closet/eyes_"+i+".png","alt":"눈"})));
 	}
 	//입
-	for(var i = 1 ; i <=10 ; i++ ){
-		$("div.choice").append($("<div>",{"class":"under groupMouth"}).append($("<img>",{"src":"img/character/mouth_"+i+".png","alt":"입"})));
+	for(var i = 1 ; i <=5 ; i++ ){
+		$("div.choice").append($("<div>",{"class":"under groupMouth"}).append($("<img>",{"src":"img/closet/mouth_"+i+".png","alt":"입"})));
 	}
 	//옷
-	for(var i = 1 ; i <=7 ; i++ ){
-		$("div.choice").append($("<div>",{"class":"under groupClothes"}).append($("<img>",{"src":"img/character/cloth_"+i+".png","alt":"옷"})));
+	for(var i = 1 ; i <=3 ; i++ ){
+		$("div.choice").append($("<div>",{"class":"under groupClothes"}).append($("<img>",{"src":"img/closet/clothes_"+i+".png","alt":"옷"})));
 	}
 	//액세사리
 	for(var i = 1 ; i <=4 ; i++ ){
