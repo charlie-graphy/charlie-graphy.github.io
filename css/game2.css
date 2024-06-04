@@ -67,9 +67,6 @@ a{
 .card-img {
     position: relative;
 }
-.card-img img {
-   /*  width: 100%; */
-}
 .character__area img {
     position: absolute;
 }  
@@ -186,5 +183,14 @@ a{
 	}
 	.choice img{
 		width: 50%;
+	}
+}
+/* 가로모드 */
+@media screen and (orientation: landscape) {
+	body{
+		overflow-y: auto;
+	}
+	.cloth_content{
+		height:200%;
 	}
 }
