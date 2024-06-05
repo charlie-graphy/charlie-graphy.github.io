@@ -4,7 +4,10 @@
 	<head>
 		<meta name="description" content="AHNJEEHWAN" />
 		<meta name="keywords" content="AHNJEEHWAN" />
-		<title>Jeehwany</title>
+		<!-- <meta property="og:image" content="이미지URL"> -->
+		<meta property="og:title" content="JEEHWANY GAME">
+		<meta property="og:description" content=""> 
+		<title>AHNJEEHWANY</title>
 		<link rel="icon" href="img/favicon.ico"/>
 		<link rel="apple-touch-icon" href="img/favicon.ico"/>
 		<link rel="stylesheet" type="text/css" href="css/layout.css" />
@@ -66,6 +69,16 @@ $(document).ready(function(){
             $('.menu-icon').html('&#9776;'); // 햄버거 아이콘으로 변경
         }
     });
-
+});
+$(window).bind("pageshow", function (event) {
+    $("body").fadeIn(2000);
+    $("a").not(".insta").click(function(event){
+        event.preventDefault();
+        linkLocation = this.href;
+        $("html").fadeOut(1000, redirectPage);
+    });
+    function redirectPage() {
+    	window.location = linkLocation;
+    }
 });
 </script>
