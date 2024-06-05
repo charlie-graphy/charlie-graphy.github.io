@@ -70,7 +70,9 @@ $(document).ready(function(){
         }
     });
 });
-window.onpageshow = () => { 
-    $("body").fadeIn(2000);
-}
+$(window).bind("pageshow", function(event) {
+    if (event.originalEvent && event.originalEvent.persisted) {
+        $("body").fadeIn(2000);
+    }
+});
 </script>
