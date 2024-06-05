@@ -72,7 +72,7 @@ $(document).ready(function(){
 });
 $(window).bind("pageshow", function(event) {
     if (event.originalEvent && event.originalEvent.persisted) {
-        $("body").fadeIn(2000);
+    	location.reload();
     }
 });
 </script>
