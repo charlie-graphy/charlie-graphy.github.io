@@ -70,15 +70,7 @@ $(document).ready(function(){
         }
     });
 });
-$(window).bind("pageshow", function (event) {
+window.onpageshow = () => { 
     $("body").fadeIn(2000);
-    $("a").not(".insta").click(function(event){
-        event.preventDefault();
-        linkLocation = this.href;
-        $("html").fadeOut(1000, redirectPage);
-    });
-    function redirectPage() {
-    	window.location = linkLocation;
-    }
-});
+}
 </script>

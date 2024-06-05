@@ -10,7 +10,7 @@ body{
 	text-align: center;
   	margin: auto;   	
   	display: grid;
-    grid-template: "how" "imgDiv" "choice1" "choice";
+    grid-template: "back how" "imgDiv" "choice1" "choice";
     grid-template-rows: 10% 1.8fr 0.15fr 1.8fr;
     place-items: center;
 }
@@ -114,7 +114,7 @@ a{
     left: -110;
     width: 18em;
     height: auto;
-}  
+} 
 .character_area img.chara_eye {
     z-index: 2;
 }  

@@ -148,6 +148,11 @@ h1 strong sup {
 .pt-1 .front {
   background-image: url('https://blog.kakaocdn.net/dn/bHwC5a/btsHofASYpx/LxtUFBPtuYnGh4tbxpQcS1/img.jpg');
 }
+.pt-1 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/GsUM6/btsHOIqqwYd/mFeIYBsuPdTyI0iek0Zqu1/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
 .pt-2 .front {
   background-image: url('https://blog.kakaocdn.net/dn/CMXJe/btsHmAtccL8/LMsJKZCHcsln32oij1GE0k/img.webp');
 }
@@ -168,6 +173,11 @@ h1 strong sup {
 }
 .pt-9 .front {
   background-image: url('https://blog.kakaocdn.net/dn/cBklcg/btsHncx4Nnu/omrbz9KDqmjlUuCqYr1oGK/img.jpg');
+}
+.pt-9 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/F93Uh/btsHOZyFWKY/4JsZu7xLNwq26qsaxsS84k/img.jpg');
+  background-size: cover;
+  background-position: center;
 }
 .pt-10 .front {
   background-image: url('https://blog.kakaocdn.net/dn/dY486i/btsHl6TaGne/8VcNGIKAml6ip3onkN6bUK/img.jpg');
@@ -196,6 +206,11 @@ h1 strong sup {
 }
 .pt-16 .front {
   background-image: url('https://blog.kakaocdn.net/dn/4tLdJ/btsHpsNiIRV/COmqZzzve8NnAl92YTgTVK/img.jpg');
+}
+.pt-16 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/NIj35/btsHPpp8WXP/ae7EEfhpkEm6IQIeqvTsF1/img.jpg');
+  background-size: cover;
+  background-position: center;
 }
 .pt-17 .front {
   background-image: url('https://blog.kakaocdn.net/dn/wTNML/btsHnd5gFJJ/Ea6eszMSnK3irV0CkHPkNk/img.jpg');
