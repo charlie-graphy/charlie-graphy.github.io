@@ -122,4 +122,9 @@ function timeFormat(){
 		$('.fc-time:eq('+i+'):contains("a")').text(($('.fc-time:eq('+i+')').text().length > 2) ? ($('.fc-time:eq('+i+')').text().split(':')[0]+":"+$('.fc-time:eq('+i+')').text().split(':')[1].substring(0,2)): $('.fc-time:eq('+i+')').text().split('p')[0]+":00");
 	}
 }
+$(window).bind("pageshow", function(event) {
+    if (event.originalEvent && event.originalEvent.persisted) {
+    	location.reload();
+    }
+});
 </script>

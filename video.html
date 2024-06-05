@@ -267,4 +267,9 @@ $(document).ready(function(){
 		$('.bi-search').trigger('click');
 	});
 });
+$(window).bind("pageshow", function(event) {
+    if (event.originalEvent && event.originalEvent.persisted) {
+    	location.reload();
+    }
+});
 </script>

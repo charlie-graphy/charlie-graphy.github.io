@@ -104,5 +104,9 @@ $(document).ready(function(){
 		else $('.desc_birth #showBr').hide();
 	});
 });
-
+$(window).bind("pageshow", function(event) {
+    if (event.originalEvent && event.originalEvent.persisted) {
+    	location.reload();
+    }
+});
 </script>

@@ -1099,4 +1099,9 @@ $(document).ready(function(){
 		$(this).css('transform','');
 	});
 });
+$(window).bind("pageshow", function(event) {
+    if (event.originalEvent && event.originalEvent.persisted) {
+    	location.reload();
+    }
+});
 </script>
