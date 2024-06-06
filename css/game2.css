@@ -86,19 +86,33 @@ a{
     z-index: 4;
 }
 .how{
-	width: 10em;
+	width: 100%;
 	font-size: 0.8em;
-	border-top: 1px solid #ffa205;
-    border-bottom: 1px solid #ffa205;
     float: right;
 }
-.howto, .download{
+.howto, .download, .mainGo{
 	padding: .5em 1.3em;
     cursor: pointer;
+	border-top: 1px solid #ffa205;
+    border-bottom: 1px solid #ffa205;
 }
-.howto:hover, .download:hover{
-	background-color: #ffa205;
-	color: white;
+.howto:hover, .download:hover, .mainGo:hover, .mainGo:hover a{
+	background-color: #ffa205 !important;
+	color: white !important;
+	font-weight: normal;
+}
+.howto, .download{
+	float: right;
+}
+.download{
+	border-top: 0;
+	clear: right;
+}
+.mainGo{
+	float: left;
+}
+.mainGo a{
+	color: black;
 }
 /*수정*/
 .character_area{
@@ -133,6 +147,10 @@ a{
 .choice img{
 	width: 100%;
 }
+
+.howtoModal{
+	padding:21px 16px;
+}
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width:767px){
 	.cloth_content {
@@ -144,7 +162,7 @@ a{
   	.how {
   		font-size: 0.7em;
   	}
-  	.howto, .download {
+  	.howto, .download, .mainGo {
     	padding: .3em 1.3em;
 	}
   	.character_area img {
@@ -157,6 +175,9 @@ a{
 	  	width: 100%;
 	    overflow-x: auto;
   	}
+	.howtoModal{
+		width:88%;
+	}
 }
 /* 탭 화면에서만 보이는 스타일 */
 @media only screen and (min-width:768px) and (max-width:1366px) {
@@ -173,8 +194,14 @@ a{
   	.choice1{
 	  	width: 100%;
   	}
+	.howtoModal{
+		width:62%;
+	}
 }
 @media only screen and ( min-width : 1367px) {
+	.howDiv{
+		width: 80%;
+	}
 	.choice{
   		overflow-y: auto;
   	}
@@ -183,6 +210,9 @@ a{
 	}
 	.choice img{
 		width: 50%;
+	}
+	.howtoModal{
+		width:32%;
 	}
 }
 /* 가로모드 */

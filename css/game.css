@@ -26,6 +26,9 @@ a{
 	color: black;
 	font-weight: 600;
 }
+.gameMain_content div{
+	font-size: 1.8em;
+}
 
 /*모달 팝업 영역 스타일링*/
 .modal {
