@@ -1,8 +1,8 @@
 @charset "UTF-8";
 /* 공통 스타일 */
-body{
+/* body{
 	overflow: hidden;
-}
+} */
 .cloth_content {
 	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
 	height: 100%;
