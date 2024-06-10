@@ -31,7 +31,7 @@ a{
 }
 .gameMain{
 	margin: 3% 3%;
-	padding: .5em 1.3em;
+	padding: .5em 0;
     cursor: pointer;
     font-size: .75em;
     position: fixed;
