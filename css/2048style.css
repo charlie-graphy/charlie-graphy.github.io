@@ -55,8 +55,8 @@ h2 {
   }
 }
 .controls_game-btn {
-  margin-top: .5rem;
-  margin-bottom: .5rem;
+  margin-top: .25rem;
+  margin-bottom: .25rem;
   padding: 0.5em 0.75em;
   background: transparent;
   color: black;
@@ -68,6 +68,7 @@ h2 {
   letter-spacing: 0.1em;
   font-weight: bold;
   text-transform: uppercase;
+  font-size: .75em !important;
 }
 .controls_game-btn:hover{
   background-color: #f9d49a;
@@ -75,9 +76,11 @@ h2 {
   box-shadow: inset 0 0 0px 2px white;
 }
 .controls_score {
+  width: 100%;
   font-weight: 600;
   display: inline-block;
   min-width: 3em;
+  margin-top: .85rem;
   margin-bottom: 1rem;
   padding: 0.4em 0.55em;
   text-align: center;
