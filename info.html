@@ -4,9 +4,7 @@
 	<head>
 		<meta name="description" content="AHNJEEHWAN" />
 		<meta name="keywords" content="AHNJEEHWAN" />
-		<meta property="og:title" content="AHNJEEHWANY">
-		<meta property="og:description" content="배우 안지환"> 
-		<title>AHNJEEHWANY</title>
+		<title>Jeehwany</title>
 		<link rel="icon" href="img/favicon.ico"/>
 		<link rel="apple-touch-icon" href="img/favicon.ico"/>
 		<link rel="stylesheet" type="text/css" href="css/layout.css" />
@@ -30,28 +28,21 @@
 	            <li><a href="http://instagram.com/jeehwany" target="_blank" class="insta">INSTAGRAM</a></li>
 	        </ul>
 	    </div>
-		
-		<div class="img_content">
-			<div class="desc">AHN JEEHWAN<br>1992.07.25</div>
-			<div class="desc">AHN JEEHWAN<br>FILMOGRAPHY</div>
-			<div class="desc">AHN JEEHWAN<br>VIDEO</div>
-			<div class="desc">AHN JEEHWAN<br>GAME</div>
-			<div class="desc">AHN JEEHWAN<br>SPECIAL CURTAIN CALL</div>
-			<img src="https://blog.kakaocdn.net/dn/bw8y7q/btsBY4FECay/TlZUPFDbTLA8lHgLt7LBK1/img.gif"/>
-			<img src="https://blog.kakaocdn.net/dn/4mt4z/btsDj0g4lLW/qwInK9vpIJz2m86DCUNnek/img.gif"/>
-			<img src="https://blog.kakaocdn.net/dn/HLewS/btsDfp98Rlz/2KGb5yZewdjbtYVWKKLl8k/img.gif">
-			<img src="img/baby.gif"/>
-		</div>
 
-		<div class="content">
-	        <div class="content_menu">
-	            <div><a href="https://charlie-graphy.github.io/about">ABOUT</a></div>
-	            <div><a href="https://charlie-graphy.github.io/filmography.html">FILMOGRAPHY</a></div>
-	            <div><a href="video.html">VIDEO</a></div>
-	            <div><a href="game.html">GAME</a></div>
-	            <div><a href="https://charlie-graphy.github.io/special">SPECIAL</a></div>
-	        </div>
-	    </div>
+		<div class="info_content">
+			<p>안녕하세요. '안지화니(AHNJEEHWANY)' 웹사이트를 만든 개발 겸 운영자입니다.</p>
+			<p>이 사이트는 안지환 배우의 애정 19920725% 이상과 자급자족으로 만들어진 아카이브 사이트입니다.</p>
+			<p>간단한 정보들로 이뤄져 미흡할 수도 있지만 봐주시면 감사하겠습니다.</p>
+			<p>사이트를 간단히 소개하자면 메인에 메뉴 5개와 사이드 메뉴로 2개가 있습니다.</p>
+			<p><b>ABOUT</b> : 지환 배우님 프로필과 간단한 정보와 인터뷰를 모았습니다.</p>
+			<p><b>FILMOGRAPHY</b> : 지환 배우님의 그동안 활동하신 필모 정보를 모아뒀습니다.<br>몇몇 카드는 클릭 시, 프로필이 보입니다.</p>
+			<p><b>VIDEO</b> : 지환 배우님 필모 공식 영상들을 모았습니다.</p>
+			<p><b>GAME</b> : 간단한 게임을 만들었습니다.<br>현재 2048이 있고, 후에 옷 입히기, 슬라이딩 퍼즐 오픈 예정입니다.</p>
+			<p><b>SPECAIL</b> : 'persona'님의 영상 허락으로 연결한 지환 배우님의 스페셜 커튼콜을 담았습니다. 'persona'님 감사합니다!</p>
+			<p><b>SCHEDULE</b> : 지환 배우님 스케줄 캘린더입니다.<br><font style="font-size:0.73em">(2024년부터 볼 수 있습니다.)</font></p>
+			<p><b>INSTAGRAM</b> : 지환 배우님 인스타그램 바로갈 수 있습니다.</p>
+			<p>문의사항 및 오류가 있으면 X(구 트위터) <a href="https://x.com/jeehwany_com" class="twitter" target="_blank" style="color:darkslategrey; text-decoration:none;">@jeehwany_com</a> 계정으로 디엠주세요.</p>
+		</div>
 	    
 	    <footer class="footer">
 	    	<div class="footer-left">AHN<br>JEEHWAN</div>
@@ -61,11 +52,10 @@
 	    
 	</body>	
 </html>
-
 <script>
 $(document).ready(function(){
     $("body").fadeIn(2000);
-    $("a").not('.insta').click(function(event){
+    $("a").not(".insta, .twitter").click(function(event){
         event.preventDefault();
         linkLocation = this.href;
         $("html").fadeOut(1000, redirectPage);
@@ -84,21 +74,21 @@ $(document).ready(function(){
         }
     });
 
-	$('.content_menu div').on('mouseover', function() {
-		$('.content_menu div, .img_content div, .img_content img').removeClass('active');
-		$('.content_menu div').eq($(this).index()).addClass('active');
-		$('.img_content div').eq($(this).index()).addClass('active');
-		$('.img_content img').eq($(this).index()).addClass('active');
-    });
-
-	$('.content_menu div').on('mouseout', function() {
-		$('.content_menu div, .img_content div, .img_content img').removeClass('active');
+	$('.filmography_content .group a').on('click', function() {
+        const type = $(this).data('value');
+		$('.filmography_content .group a').removeClass('selected');
+		$(this).addClass('selected');
+        if(type == 'total') $('.filmo_content .card').show();
+        else{
+        	$('.filmo_content .card[data-type!='+type+']').hide();
+        	$('.filmo_content .card[data-type='+type+']').show()
+        }
     });
 
 	$(window).on('scroll',function() {
 		var viewportHeight = $(window).height(), // Viewport Height
 			scrolltop = $(window).scrollTop(), // Scroll Top
-			elementHeight = $('.content_menu div').height();
+			elementHeight = $('.content_menu div').height()-40;
 		var diffHeight = elementHeight+viewportHeight/elementHeight;
 		
 		$('.content_menu div, .img_content div, .img_content img').removeClass('active');
@@ -107,6 +97,21 @@ $(document).ready(function(){
 			$('.content_menu div').eq(num).trigger('mouseenter');
 			$('.content_menu div').eq(num).addClass('active');
 		}
+	});
+	
+	$('.filmography_content .card.y .inner').on('click', function(e){
+		var $target = $(this);
+		$target.css('transform','rotateY(180deg)');
+		
+		setTimeout(function() { 
+			$target.css('transform','');
+		}, 2000);
+	});
+	$('.filmography_content .card.y .inner').on('mouseover', function(e){
+		$(this).css('transform','rotateY(180deg)');
+	});	
+	$('.filmography_content .card.y .inner').on('mouseout', function(e){
+		$(this).css('transform','');
 	});
 });
 $(window).bind("pageshow", function(event) {
