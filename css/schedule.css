@@ -47,6 +47,11 @@ td.fc-sat, th.fc-sat {
 	background-color: rgb(146, 148, 151, 0.2) !important;
 }
 
+p.event{
+	font-size: .8em;
+	font-weight: 600;
+	margin-bottom: .5rem !important;	
+}
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 1366px) {	
 	.about_content{
@@ -72,6 +77,5 @@ td.fc-sat, th.fc-sat {
 	}
 	.fc-event .fc-title {
     	font-size: 0.8rem !important;
-	}
-	
+	}	
 }
