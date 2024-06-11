@@ -30,12 +30,12 @@ a{
 	font-size: 1.8em;
 }
 .gameMain{
-	margin: 3% 3%;
-	padding: .5em 0;
+	margin: 0 auto;
+	width: 90vw;
+	padding: .5em 2em;
     cursor: pointer;
-    font-size: .75em;
-    position: fixed;
-    left: 10;
+    font-size: .72em;
+    text-align: left;
 }
 .gameMain a{
 	color: black;
@@ -90,7 +90,7 @@ a{
 		padding-top: 2em;
 	}
 	.puzzleDiv{
-		padding-top: 22%;
+		padding-top: 21%;
 	}
 }
 /* 탭 화면에서만 보이는 스타일 */
