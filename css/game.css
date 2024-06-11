@@ -46,9 +46,6 @@ a{
 	color: black;
 	font-weight: 600;
 }
-.gameMain_content div{
-	font-size: 1.8em;
-}
 .gameMain{
 	margin: 0 auto;
 	width: 90vw;
@@ -112,6 +109,21 @@ a{
 	.puzzleDiv{
 		padding-top: 21%;
 	}
+	.gameMain_content {
+		padding-top: 10em;
+	}
+	.gameMain_content div{
+		margin: 0 auto; /* 수평 가운데 정렬 */
+		display: block; /* 가로 영역 차지 */
+		font-size: 1.5em;
+		margin-bottom: 3em;
+	}
+	.gameMain_content div a{
+		line-height: 50px;
+	}
+	.gameMain_content div.active{
+		font-size: 1.5em;
+	}
 }
 /* 탭 화면에서만 보이는 스타일 */
 @media only screen and (min-width:768px) and (max-width:1089px) {
@@ -121,6 +133,11 @@ a{
 	.wrapper, .gameboard {
     	max-width: 550px !important;
     	max-height: 550px !important;
+	}	
+	.gameMain_content div.active a{
+		font-size: 2em;
+		font-weight: bolder;
+		color: #ffa205;
 	}
 }
 /* 탭 화면에서만 보이는 스타일 */
@@ -144,6 +161,11 @@ a{
 		font-size: 1em !important;
 		margin-top: .5rem !important;
 		margin-bottom: .5rem !important;
+	}	
+	.gameMain_content div.active{
+		font-size: 2em;
+		font-weight: bolder;
+		color: #ffa205;
 	}
 }
 /* PC 화면에서만 보이는 스타일 */
