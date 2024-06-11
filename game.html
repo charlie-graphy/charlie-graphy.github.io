@@ -68,6 +68,15 @@ $(document).ready(function(){
             $('.menu-icon').html('&#9776;'); // 햄버거 아이콘으로 변경
         }
     });
+	
+	$('.gameMain_content div').on('mouseover', function() {
+		$('.gameMain_content div').removeClass('active');
+		$('.gameMain_content div').eq($(this).index()).addClass('active');
+    });
+
+	$('.gameMain_content div').on('mouseout', function() {
+		$('.gameMain_content div').removeClass('active');
+    });
 });
 $(window).bind("pageshow", function(event) {
     if (event.originalEvent && event.originalEvent.persisted) {

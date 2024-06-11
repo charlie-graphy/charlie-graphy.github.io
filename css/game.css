@@ -3,6 +3,7 @@
 /* body{
 	overflow: hidden;
 } */
+
 .about_content, .gameMain_content {
 	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
 	width: 100%;
@@ -12,10 +13,29 @@
 	text-align: center;
 }
 .gameMain_content{
-	padding-top: 35%;
+	margin: 0 auto; /* 수평 가운데 정렬 */
+	display: block; /* 가로 영역 차지 */
+	width: fit-content; /* 컨텐츠 크기에 맞게 설정 */
 }
 .gameMain_content div{
 	margin: 2.5em;
+}
+.gameMain_content div, .gameMain_content div a {
+	font-family: "Helvetica", "Andale Mono", times, serif;
+	box-sizing: border-box;
+	display: block; /* 세로 정렬 */
+	font-size: 2em;
+	font-weight: bolder;
+	text-decoration-line: none;
+	color: #000000;
+	cursor: pointer;
+	position: relative; /* 상대 위치 설정 */
+	line-height: 70px;
+}
+.gameMain_content div.active a{
+	font-size: 2em;
+	font-weight: bolder;
+	color: #ffa205;
 }
 a{
 	color: #666;
