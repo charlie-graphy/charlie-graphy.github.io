@@ -14,11 +14,15 @@
 }
 .gameMain_content{
 	margin: 0 auto; /* 수평 가운데 정렬 */
-	display: block; /* 가로 영역 차지 */
-	width: fit-content; /* 컨텐츠 크기에 맞게 설정 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction :column;
 }
 .gameMain_content div{
 	margin: 2.5em;
+	position: relative;
+  	display: flex;
 }
 .gameMain_content div, .gameMain_content div a {
 	font-family: "Helvetica", "Andale Mono", times, serif;
@@ -109,9 +113,9 @@ a{
 	.puzzleDiv{
 		padding-top: 21%;
 	}
-	.gameMain_content {
+	/* .gameMain_content {
 		padding-top: 10em;
-	}
+	} */
 	.gameMain_content div{
 		margin: 0 auto; /* 수평 가운데 정렬 */
 		display: block; /* 가로 영역 차지 */
@@ -170,7 +174,7 @@ a{
 }
 /* PC 화면에서만 보이는 스타일 */
 @media only screen and ( min-width : 1367px) {
-	.gameMain_content{
+	/* .gameMain_content{
 		padding-top: 20%;
-	}
+	} */
 }
