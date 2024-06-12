@@ -166,6 +166,7 @@ Game.prototype.initEventListeners = function () {
  * Game is WON!
  */
 Game.prototype.gameWon = function () {
+	$('.modal h3').text('YOU WIN');
 	$('.modal').addClass('on');
 };
 /**/
@@ -174,6 +175,7 @@ Game.prototype.gameWon = function () {
  * Game is LOST!
  */
 Game.prototype.gameLost = function () {
+	$('.modal h3').text('GAME OVER');
 	$('.modal').addClass('on');
 };
 /**/
