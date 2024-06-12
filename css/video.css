@@ -38,6 +38,7 @@ span{
 	}
 	.window{
 		padding: 0 !important;
+		margin-bottom: 10%;
 	}
 }
 /* PC 화면에서만 보이는 스타일 */
