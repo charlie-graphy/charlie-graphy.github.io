@@ -35,9 +35,18 @@
 
 		<div class="gameMain_content">			
 			<div><a href="2048.html">JEEHWANY 2048</a></div>
-			<div><a href="clothes.html">JEEHWANY DRESS UP</a></div>
-			<div><a href="puzzle.html">JEEHWANY PUZZLE</a></div>
+			<div><a href="#" class="hbd">JEEHWANY DRESS UP</a></div>
+			<div><a href="#" class="hbd">JEEHWANY PUZZLE</a></div>
 		</div>
+		
+			<!-- modal -->
+			<div class="modal">
+			    <div class="modal_popup" style="text-align:center;">
+			        <span class="howtoCont" style="font-size:.7em;">
+			        	7월 23일 정오<br>오픈 예정입니다.
+			        </span>
+			    </div>
+			</div>
 	    
 	    <footer class="footer">
 	    	<div class="footer-left">AHN<br>JEEHWAN</div>
@@ -51,9 +60,11 @@
 $(document).ready(function(){
     $("body").fadeIn(2000);
     $("a").not(".insta").click(function(event){
-        event.preventDefault();
-        linkLocation = this.href;
-        $("html").fadeOut(1000, redirectPage);
+		if(!$(this).hasClass('hbd')){
+	        event.preventDefault();
+	        linkLocation = this.href;
+	        $("html").fadeOut(1000, redirectPage);
+		}
     });
     function redirectPage() {
     	window.location = linkLocation;
@@ -77,6 +88,28 @@ $(document).ready(function(){
 	$('.gameMain_content div').on('mouseout', function() {
 		$('.gameMain_content div').removeClass('active');
     });
+	
+
+	$('.gameMain_content a.hbd').on('click', function(e) {
+		const event = new Date(2024,6,23,12);
+		if($(this).hasClass('hbd')){
+			if(new Date() <= event){
+				$('.modal').toggleClass('on');
+				setTimeout(function(){$('.modal').removeClass('on')}, 2000);
+			}else{
+				if($(this).parent('div').index() == 1) $(this).attr('href','clothes.html');
+				else $(this).attr('href','puzzle.html');
+				$(this).removeClass('hbd')
+				$(this).trigger('click');
+			}
+		}
+    });
+
+	$(document).mouseup(function (e){
+		if($(".modal_popup").has(e.target).length === 0){
+			$('.modal').removeClass('on');
+		}
+	});
 });
 $(window).bind("pageshow", function(event) {
     if (event.originalEvent && event.originalEvent.persisted) {
