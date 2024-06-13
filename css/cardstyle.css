@@ -1,0 +1,539 @@
+/*** General o> */
+* {
+  box-sizing: border-box;
+}
+
+.filmo_content {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  position: relative;
+}
+
+/*** Header */
+h1 {
+  background-color: #fff;
+  box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.05);
+  color: #231f20;
+  font-size: 2.5rem;
+  font-weight: 200;
+  margin-bottom: 3rem;
+  padding: 3rem 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+h1 strong {
+  font-weight: 700;
+  margin-right: 1rem;
+  position: relative;
+}
+h1 strong sup {
+  font-size: 1rem;
+  position: absolute;
+}
+
+/*** Container */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/*** Card */
+.card {
+  perspective: 500;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0.4rem;
+}
+/* .card.y:hover .inner {
+  transform: rotateY(180deg);
+} */
+.card .inner {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/*** Card common */
+.card,
+.front,
+.back {
+  height: 350px;
+  width: 200px;
+}
+
+.front,
+.back {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.06);
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.pantone-tm {
+  color: #231f20;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  position: relative;
+}
+.pantone-tm sup {
+  font-size: 0.7rem;
+  position: absolute;
+}
+
+.color-info {
+  font-size: 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.card.y{
+  box-shadow: 5px 5px 10px rgb(175 175 175 / 43%);
+} 
+/*** Card front */
+.front {
+  z-index: 2;
+}
+
+.details {
+  background-color: #fff;
+  bottom: 0;
+  height: 98px;
+  padding: 10px;
+  position: absolute;
+  width: 100%;
+  text-align: left;
+}
+
+.year {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  position: absolute;
+  right: 0;
+  top: -28px;
+}
+
+/*** Card back */
+.back {
+  transform: rotateY(180deg);
+  background-color: #fff;
+  /* padding: 1.5rem 1.5rem 0; */
+  text-align: center;
+}
+.back ul {
+  margin-top: 1rem;
+}
+.back li {
+  transition: color 0.3s;
+  color: #888;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 10px 5px;
+  text-align: left;
+}
+.back li:hover {
+  color: #231f20;
+}
+.back li:not(:last-child) {
+  border-bottom: 1px solid #f0f0f0;
+}
+.back li span {
+  font-weight: normal;
+  float: right;
+}
+.front, .back {
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+/*** Card img */
+.pt-1 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/bHwC5a/btsHofASYpx/LxtUFBPtuYnGh4tbxpQcS1/img.jpg');
+}
+.pt-1 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/GsUM6/btsHOIqqwYd/mFeIYBsuPdTyI0iek0Zqu1/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-2 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/CMXJe/btsHmAtccL8/LMsJKZCHcsln32oij1GE0k/img.webp');
+}
+.pt-3 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/b6YsKr/btsHo885Yej/hKFKkvFYzyzulkWZnHNRDk/img.jpg');
+}
+.pt-4 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/c17QBX/btsHl4OzzWN/JysK79Rvz5IkJtHg1Ku110/img.jpg');
+}
+.pt-5 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/cFGW3Y/btsHoJV2mmk/2VxtqszIbDvN9du6icwsrK/img.jpg');
+}
+.pt-6 .front, .pt-7 .front  {
+  background-image: url('https://blog.kakaocdn.net/dn/RRFEP/btsHocxo95X/K8Lk3HNgVfbLBRemuKfUBK/img.jpg');
+}
+.pt-7 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/cchpE8/btsHWT56uGe/srPYFWGKkRqrnE8DKqzhh0/img.jpg');
+  background-size: 250%;
+  background-color: black;
+  background-position: -110 45;
+}
+.pt-8 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/lgOY3/btsHmGzHGtk/PeaKGOlcYs5OJxC9Rsfhqk/img.jpg');
+}
+.pt-9 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/cBklcg/btsHncx4Nnu/omrbz9KDqmjlUuCqYr1oGK/img.jpg');
+}
+.pt-9 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/F93Uh/btsHOZyFWKY/4JsZu7xLNwq26qsaxsS84k/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-10 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/dY486i/btsHl6TaGne/8VcNGIKAml6ip3onkN6bUK/img.jpg');
+}
+.pt-11 .front, .pt-14 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/sz0bc/btsHoGrx73z/dut8wWXthsDkFXnnanH1x0/img.jpg');
+}
+.pt-11 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/b6yqpK/btsHmxJMHF1/siLXlTytuZ2kfAwQWSb1j0/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-12 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/SGKaY/btsHnqwgSXX/QFgjpKATPyaIjztuSgrer0/img.webp');
+}
+.pt-12 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/dBnX00/btsHo98MlZ6/vqes1syVhjTqDWAl9ePyo1/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-13 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/bU2pb5/btsHmXOHj0J/gog2w6OkFXxkFMVG5aeQkk/img.png');
+}
+.pt-15 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/nmPIq/btsHmyWcOgC/qkKSTCq70kulwUo05qSrZk/img.jpg');
+}
+.pt-16 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/4tLdJ/btsHpsNiIRV/COmqZzzve8NnAl92YTgTVK/img.jpg');
+}
+.pt-16 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/NIj35/btsHPpp8WXP/ae7EEfhpkEm6IQIeqvTsF1/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-17 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/wTNML/btsHnd5gFJJ/Ea6eszMSnK3irV0CkHPkNk/img.jpg');
+}
+.pt-18 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/KmPTR/btsHmVjsPkv/1oMAqmZ0rA7EVIGzJbFQd1/img.jpg');
+}
+.pt-19 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/8aqwI/btsHo3HgYqB/HYxqk9BlGK04VU30tmntpK/img.png');
+}
+.pt-20 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/b04DBa/btsHnHSul6Q/yosyQPuWZpUp0pyMLEFRGK/img.jpg');
+}
+.pt-21 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/c6wfg5/btsHpt6wEhV/ZWapGUgP1JLEkdaDVAPSJK/img.jpg');
+}
+.pt-22 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/AJfWy/btsHpyUbgO0/tseAlZ1YI0d8aU83EkZS11/img.jpg');
+}
+.pt-23 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/1BZIr/btsHoHxx7hD/8yT3YATK6jBJSIkMVqA15k/img.jpg');
+}
+.pt-24 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/dHYJJS/btsHnwQ1ev8/ygdNmZvX3tcxvKbLyAOmJ0/img.jpg');
+}
+.pt-24 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/UXF3A/btsHpcjDK4U/3hIcJLdylhkTKjjvocAgJk/img.jpg');
+  background-size: cover;
+  background-position: -35 0;
+}
+.pt-25 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/bsc0uD/btsHo4Gb9jd/c58KHHxlwp6xCEnfkhapJK/img.jpg');
+}
+.pt-26 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/bQ1ovn/btsHoGk7zRB/e0SJqlGK9GCc8PkGAptylk/img.webp');
+}
+.pt-26 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/bx3JDY/btsHmEbcH1V/wObuTuVVNu1kskY1J5uOsK/img.jpg');
+  background-size: cover;
+  background-position: -110 0;
+}
+.pt-27 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/b7xQH8/btsHo3UORpl/0ig2isy2zlkqGVvW1IFlq1/img.webp');
+}
+.pt-27 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/Lzdnx/btsHXEz6F3k/bYviDD0odzTZz4mSYoyNW0/img.jpg');
+  background-size: cover;
+  background-position: -65 0;
+}
+.pt-28 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/bQave6/btsHnxvER5O/dcG1s0TmY1IMsiYDvWarG1/img.jpg');
+}
+.pt-28 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/00kzN/btsHnViJjfV/Jly5Tcwr3PRtRlICKf8zwk/img.jpg');
+  background-size: cover;
+  background-position: -130 0;
+}
+.pt-29 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/qLl6o/btsHnueCBjm/fXV5SJ5aYrRXtT9RbkbKzK/img.png');
+}
+.pt-30 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/sQX9l/btsHpcYfHL1/CtoDG20UZDdWfEYCmnQAJ1/img.jpg');
+}
+.pt-30 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/uHiaE/btsHoIXxeqc/DxHC5GTlGt2cZGjMBwaYo0/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-31 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/YKqep/btsHptyH66w/cexv9xhmIjrSgxp9sFkz81/img.png');
+}
+.pt-31 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/SNUTk/btsHpccUCHY/wjnWBKvmM6NtlI1mDRh6T0/img.jpg');
+  background-size: cover;
+  background-position: -5 0;
+}
+.pt-32 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/w1ckI/btsHoHK8ESg/wMvhYp7nKyEFRdIgyOJHzK/img.jpg');
+}
+.pt-33 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/bnm7Nn/btsHpymmXWf/Ro6iys75sZG5Ri6eJFJ4n0/img.jpg');
+}
+.pt-33 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/bFQREk/btsHoI4k9sw/J63tdZAs8DTKz9PRwUPr3k/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-34 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/bHuA6g/btsHpyzTXB6/Vw21uH3cRwk5cCoFVdmbI1/img.webp');
+}
+.pt-34 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/ttIS0/btsHXvKehIJ/DCzWKThIOkDenwK4WfFes0/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-35 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/tvEjG/btsHnxPYEWc/CLGxPbdVhJBu3SLkLkFRuK/img.jpg');
+}
+.pt-36 .front, .pt-51 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/o6hZf/btsHngVpRiJ/ko3z6BQAVA5Vn9ZdVXjVy1/img.webp');
+}
+.pt-36 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/NdzTj/btsHndRJe2o/yAfhLjCbF0sViMQI6Ku8y0/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-37 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/k3Aor/btsHnIRqAqv/4zzjeet34MlT123jhMtsa1/img.jpg');
+  background-position: -50 0;
+  background-size: 150%;
+}
+.pt-38 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/boNMt2/btsHDdRy0HY/ZWNoV3qHBth6Kiqhcu7Dp0/img.jpg');
+  background-position: -19 -9;
+  background-size: 150%;
+}
+.pt-39 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/Xx1lL/btsHmVX6xWN/45xNQOcoi7aCSY7RIm19fk/img.jpg');
+}
+.pt-40 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/bYBt7z/btsHmX9udTF/u2R86oboHArdXQ5DWWppj0/img.jpg');
+}
+.pt-41 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/oozfZ/btsHm3hFjZ7/xvr1KETLDSWQB5HM47HnPk/img.webp');
+}
+.pt-41 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/oT8wR/btsHW3N0zkH/zkp9kBSGmwMBuc2v0a8wz1/img.jpg');
+  background-size: cover;
+  background-position: -90 0;
+}
+.pt-42 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/cye32s/btsHncZB6WQ/DSVaXRzS6vZZJOvb2E4qmk/img.jpg');
+}
+.pt-43 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/NNC48/btsHp9NNyHo/MviAc9jqlikqukHPTXVLsk/img.png');
+}
+.pt-43 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/cZQEwH/btsHpJIEEkY/B4CPWxbpjTkzEgl2xCjWE1/img.jpg');
+  background-size: cover;
+  background-position: -35 0;
+}
+.pt-44 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/SKcvQ/btsHpNEjbOw/ZKUdj4M2AHQYcPVbfOC3K0/img.png');
+}
+.pt-44 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/bYMevg/btsHpyN2B7g/IUqY2KkrWXpodzrPvANK5K/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-44-1 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/ZSLNB/btsHXgUdvpf/KmAKMAf2r9BXD6kS4KSFWk/img.jpg');
+  background-size: 250%;
+  background-position: -120 15;
+  background-color: black;
+}
+.pt-44-1 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/cvjBH9/btsHWXAqWDj/hsa2msKr8BRxkztZF8bJak/img.jpg');
+  background-size: 180%;
+  background-position: -70 45;
+  background-color: black;
+}
+.pt-45 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/bP8Uc5/btsHnJ4rYHt/f6NQGLLideug0nlPKRU4bK/img.png');
+}
+.pt-45 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/bzAxxW/btsHnpSFzww/DtYKvFD96LAF5vfOKBkjX0/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-46 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/LkEyM/btsHp1CkwL2/0WfdnQENIiV8RHOiDIOfK0/img.jpg');
+}
+.pt-47 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/nmbOv/btsHnqYnvgb/dSTBSntLW6KqhJvLCUD68k/img.jpg');
+}
+.pt-48 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/bMEKGn/btsHqj3Md9m/wDEe1saFSjshwQvzcxIxJK/img.png');
+}
+.pt-49 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/9fa4s/btsHo9nHDpe/5YwAXw5AY2MxjrAdiP0jIk/img.jpg');
+}
+.pt-50 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/MGP5L/btsHnUSlNTx/KU2jKNJnXeCa2fTlQJs0fK/img.webp');
+}
+.pt-50 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/d9nBQk/btsHVTrY1ty/DbM0xElRxaQe39FkeWZtn1/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-52 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/cwXH1h/btsHD8ovrwj/mlWLEwWaZ0k8fy5dcoy8TK/img.jpg');
+}
+.pt-52 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/vnP8h/btsHDGy7BKE/0xIEpVOyxTXlcllw5IQrSk/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-53 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/F80iY/btsHDjKXIkG/qUlB6aDCSKMxZeEQQzTBI1/img.jpg');
+}
+.pt-53 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/sFbfA/btsHCW3wFK9/r2SRS9B0vF3qoIoHHSukO1/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-54 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/EPcg8/btsHDhl7oMS/6FQCWsWQql5hNdgSnSQ44K/img.jpg');
+}
+.pt-54 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/csktWs/btsHEW8ALLG/zHN6kGCQt96EKB4lAaKMK0/img.png');
+  background-size: cover;
+  background-position: center;
+}
+.pt-55 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/EyJKn/btsHEBjqEmH/vzuofocpZ7HXQyxKD0GXQ1/img.jpg');
+}
+.pt-55 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/cLFXMh/btsHEXsUhPz/99L4PZ3Ww18YKFw8BZxETK/img.png');
+  background-size: cover;
+  background-position: center;
+}
+.pt-56 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/wwwAJ/btsHERmaIPP/ZoyF6guHQ6KkXlcFOR1iS1/img.png');
+}
+.pt-56 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/bGs76w/btsHE97Qasz/rvuvSzXUrymKBUCKnn2ZC0/img.jpg');
+  background-size: cover;
+  background-position: -35 0;
+}
+.pt-57 .front, .pt-62 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/bzCjSb/btsHFp3NfIm/S4tUGkLnCO3FB2YltuX7IK/img.png');
+}
+.pt-57 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/etJ3OD/btsHDGTsUEi/gLCe2dd5Cstako2tk9PZ61/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-58 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/3JgtL/btsHDxWAnDR/pY2vPvpLM8ENkfbBJnyv80/img.jpg');
+}
+.pt-58 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/NGker/btsHCTTkZHx/8w7r5o3RVsqDmSxJyLg1lK/img.jpg');
+  background-size: cover;
+  background-position: -25 0;
+}
+.pt-59 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/bB0nfe/btsHDxhZSTy/DIyY8x8vfItrAeSd1MNZ6k/img.webp');
+}
+.pt-59 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/diBbKa/btsHCAzCKBw/PnKwa3QAjfyCGAJHqpm98k/img.jpg');
+  background-size: cover;
+  background-position: -55 0;
+}
+.pt-60 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/DpQyr/btsHD7JXLqP/I82o8VvTO3qtHNHANKWzz0/img.jpg');
+}
+.pt-60 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/mU9PF/btsHDiL2rkl/DA8dLlCYzWbWfftk3DVqck/img.jpg');
+  background-size: cover;
+  background-position: -48 0;
+}
+.pt-61 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/mUqM1/btsHFn5YVhA/YAOAEiZlvwZn23HA0rE64k/img.png');
+  background-position: -5 0;
+  background-size: 120%;
+}
+.pt-61 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/mf8je/btsHEOprzJP/Sl5CBe3AkIfQLBRciRlpYK/img.png');
+  background-size: cover;
+  background-position: center;
+}
+.pt-63 .front, .pt-64 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/yKuvs/btsHCRBicOb/rp7CPgBLZ6PraUXXNMRuu1/img.png');
+}
+.pt-63 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/rCZFe/btsHEQOkiSs/qkWeCrzmdJ7LgSVvtZdMAK/img.png');
+  background-size: cover;
+  background-position: center;
+}
+.pt-65 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/dauhuk/btsHDWodn9Q/D8em83FKcFR3fSINrAEkP0/img.jpg');
+}
+.pt-65 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/cjvYtp/btsHCStoXGl/YuKHUC8VCj0Sn7kt1K55H1/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-66 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/4ojWt/btsHFpiqf0d/4mU2IhHJfk0nej5ImVkKZK/img.jpg');
+}
+.pt-66 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/BwOvz/btsHCRBicIt/HvG1qzB6d3HFGkdiVGJXQ1/img.jpg');
+  background-size: cover;
+  background-position: -35 0;
+}
+.pt-67 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/bhzrH1/btsHCWJdTHr/y1i6kPe8LZQHgGQiBGkbs1/img.jpg');
+}
+.pt-68 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/co2uMx/btsHD8aZIz5/CUMAGX2Cn7PXMkmV1XVjCk/img.jpg');
+}
+.pt-69 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/eHytpk/btsHEQt1qG8/MxOglceeK9TWMD0me8Sy20/img.jpg');
+}
+.pt-69 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/dYQ53a/btsHDW2POYr/MNU8m2G1nIxFdNNLbR7ZA0/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.pt-70 .front {
+  background-image: url('https://blog.kakaocdn.net/dn/cfvzLV/btsHDTZiIdv/BaGbkJdlmfJoNpWBjvqxy0/img.jpg');
+}
+.pt-70 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/4m14X/btsHEpQ7emw/bl9kcbRxiljjNgovvOY9g0/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
