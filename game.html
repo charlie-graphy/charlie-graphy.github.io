@@ -58,6 +58,9 @@
 </html>
 <script>
 $(document).ready(function(){
+	const event = new Date(2024,6,23,12);
+	if(new Date() <= event) $('.gameMain_content a.hbd').css('color','darkgrey');
+	
     $("body").fadeIn(2000);
     $("a").not(".insta").click(function(event){
 		if(!$(this).hasClass('hbd')){
@@ -91,7 +94,6 @@ $(document).ready(function(){
 	
 
 	$('.gameMain_content a.hbd').on('click', function(e) {
-		const event = new Date(2024,6,23,12);
 		if($(this).hasClass('hbd')){
 			if(new Date() <= event){
 				$('.modal').toggleClass('on');
