@@ -441,7 +441,7 @@
 					allDay: false
 				},
 				{
-					title: '혜화로운 공연생활 공부 방송 :<br>쇄골에 천사가 잠들고 있다',
+					title: '혜화로운 공연생활 공부 방송 : 쇄골에 천사가 잠들고 있다',
 					description: '안지환, 유희제, 김보정, 이형훈 배우 & 변영진 연출',
 					start: '2024-06-04 22:30',
 					className: 'bg-gray',
@@ -623,6 +623,20 @@
 					allDay: false
 				},
 				{
+					title: '등등곡',
+					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 박준휘<br>정진명 役 | 김경록<br>이경신 役 | 임태현',
+					start: '2024-07-09 20:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 김경록<br>이경신 役 | 임태현',
+					start: '2024-07-11 20:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
 					title: '쇄골에 천사가 잠들고 있다',
 					description: '토루 役 | 안지환<br>요시오 役 | 김바다<br>유우카 役 | 강연정<br>카즈에 役 | 김계림<br>타쿠지 役 | 이형훈<br>마사미 役 | 김보나<br>쿄코 役 | 문경희<br>켄토 役 | 장용철',
 					start: '2024-07-12 20:00',
@@ -634,6 +648,13 @@
 					description: '토루 役 | 안지환<br>요시오 役 | 도예준<br>유우카 役 | 김보정<br>카즈에 役 | 오현서<br>타쿠지 役 | 정명군<br>마사미 役 | 김보나<br>쿄코 役 | 송희정<br>켄토 役 | 장용철',
 					start: '2024-07-13 19:00',
 					className: 'bg-green',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 유승현<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박선영<br>이경신 役 | 임태현',
+					start: '2024-07-14 14:00',
+					className: 'bg-red',
 					allDay: false
 				},
 				{
@@ -651,10 +672,52 @@
 					allDay: false
 				},
 				{
+					title: '등등곡',
+					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 박준휘<br>정진명 役 | 김경록<br>이경신 役 | 임태현',
+					start: '2024-07-19 20:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 유승현<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
+					start: '2024-07-20 15:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 유승현<br>최윤 役 | 안지환<br>초 役 | 박준휘<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
+					start: '2024-07-20 19:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
 					title: '쇄골에 천사가 잠들고 있다',
 					description: '토루 役 | 안지환<br>요시오 役 | 유희제<br>유우카 役 | 김보정<br>카즈에 役 | 김계림<br>타쿠지 役 | 장태민<br>마사미 役 | 김보나<br>쿄코 役 | 송희정<br>켄토 役 | 장용철',
 					start: '2024-07-21 15:00',
 					className: 'bg-green',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 유승현<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박선영<br>이경신 役 | 임태현',
+					start: '2024-07-23 20:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 김경록<br>이경신 役 | 황두현',
+					start: '2024-07-24 20:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 박준휘<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
+					start: '2024-07-28 18:00',
+					className: 'bg-red',
 					allDay: false
 				}
 			],
