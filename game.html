@@ -16,22 +16,7 @@
 	</head>
 	
 	<body>
-		<div class="main_container">
-			<!-- 햄버거 아이콘(모바일) -->
-	        <div class="menu-icon">&#9776;</div>
-	        <!-- 헤더 -->
-	        <div class="header"><a href="https://charlie-graphy.github.io">AHNJEEHWANY</a></div>
-	        <!-- 네비게이션 메뉴(PC) -->
-	        <ul class="navigation desktop-only">
-	            <li><a href="https://charlie-graphy.github.io/schedule">SCHEDULE</a></li>
-	            <li><a href="http://instagram.com/jeehwany" target="_blank" class="insta">INSTAGRAM</a></li>
-	        </ul>
-	        <!-- 모바일에서 보이는 네비게이션 메뉴 -->
-	        <ul class="navigation mobile-only">
-	            <li><a href="https://charlie-graphy.github.io/schedule">SCHEDULE</a></li>
-	            <li><a href="http://instagram.com/jeehwany" target="_blank" class="insta">INSTAGRAM</a></li>
-	        </ul>
-	    </div>
+		<div class="mainHeader"><a href="https://charlie-graphy.github.io">AHNJEEHWANY</a></div>
 
 		<div class="gameMain_content">			
 			<div><a href="2048.html">JEEHWANY 2048</a></div>
@@ -48,10 +33,10 @@
 			    </div>
 			</div>
 	    
-	    <footer class="footer">
-	    	<div class="footer-left">AHN<br>JEEHWAN</div>
-	        <div class="footer-center"><br>1992.07.25</div>
-	        <div class="footer-right"><br>GAME</div>
+		<footer class="footer">
+	    	<div class="footer-left"><a href="http://instagram.com/jeehwany" target="_blank" class="insta">INSTAGRAM</a></div>
+	        <div class="footer-center"><a href="https://charlie-graphy.github.io/schedule">SCHEDULE</a></div>
+	        <div class="footer-right"><a href="info.html">INFO</a></div>
 	    </footer>
 	    
 	</body>	
@@ -61,15 +46,6 @@ $(document).ready(function(){
 	const event = new Date(2024,6,23,12);
 	if(new Date() <= event) $('.gameMain_content a.hbd').css('color','darkgrey');
     
-	// 햄버거 아이콘을 클릭
-	$('.menu-icon').on('click', function() {
-        $('.navigation.mobile-only').toggleClass('show-menu');
-        if($('.navigation.mobile-only').hasClass('show-menu')) {
-            $('.menu-icon').html('&#10006;'); // X 아이콘으로 변경
-        } else {
-            $('.menu-icon').html('&#9776;'); // 햄버거 아이콘으로 변경
-        }
-    });
 	
 	$('.gameMain_content div').on('mouseover', function() {
 		$('.gameMain_content div').removeClass('active');

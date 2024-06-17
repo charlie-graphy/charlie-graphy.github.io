@@ -17,29 +17,14 @@
 		<link href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky" rel="stylesheet">
 	 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 		<script>
-			const rnd = Math.floor(Math.random() * 2);
+			const rnd = Math.floor(Math.random() * 13);
 			$('head').append('<link rel="stylesheet" href="css/rnd/rnd'+rnd+'.css">');
 		</script>
 		 <link rel="stylesheet" type="text/css" href="css/puzzle.css" />
 	</head>
 	
-	<body style="display:none;">
-		<div class="main_container">
-			<!-- 햄버거 아이콘(모바일) -->
-	        <div class="menu-icon">&#9776;</div>
-	        <!-- 헤더 -->
-	        <div class="header"><a href="https://charlie-graphy.github.io">AHNJEEHWANY</a></div>
-	        <!-- 네비게이션 메뉴(PC) -->
-	        <ul class="navigation desktop-only">
-	            <li><a href="https://charlie-graphy.github.io/schedule">SCHEDULE</a></li>
-	            <li><a href="http://instagram.com/jeehwany" target="_blank" class="insta">INSTAGRAM</a></li>
-	        </ul>
-	        <!-- 모바일에서 보이는 네비게이션 메뉴 -->
-	        <ul class="navigation mobile-only">
-	            <li><a href="https://charlie-graphy.github.io/schedule">SCHEDULE</a></li>
-	            <li><a href="http://instagram.com/jeehwany" target="_blank" class="insta">INSTAGRAM</a></li>
-	        </ul>
-	    </div>
+	<body>
+		<div class="mainHeader"><a href="https://charlie-graphy.github.io">AHNJEEHWANY</a></div>
 
 		<div class="about_content puzzleDiv">
 			<div class="gameMain"><a href="game.html">메인으로</a></div>
@@ -66,39 +51,19 @@
 					<div class="tile tile--empty" style="--area:I"></div>
 				</div>
 			</div>
-			<p style="margin-top: 1.5em; font-size:.7em">사진은 랜덤입니다.<br>다시 하고 싶으면 새로고침하세요.</p>
+			<p style="margin-top: 1.5em; font-size:.5em">사진은 랜덤입니다.<br>다시 하고 싶으면 새로고침하세요.</p>
 			<script type="module" src="js/puzzle.js"></script>
-		</div>
-	    
-	    <footer class="footer">
-	    	<div class="footer-left">AHN<br>JEEHWAN</div>
-	        <div class="footer-center"><br>1992.07.25</div>
-	        <div class="footer-right">SLIDING<br>PUZZLE</div>
-	    </footer>	    
+		</div>	    
+		<footer class="footer">
+	    	<div class="footer-left"><a href="http://instagram.com/jeehwany" target="_blank" class="insta">INSTAGRAM</a></div>
+	        <div class="footer-center"><a href="https://charlie-graphy.github.io/schedule">SCHEDULE</a></div>
+	        <div class="footer-right"><a href="info.html">INFO</a></div>
+	    </footer>
 	</body>	
 </html>
 
 <script>
 $(document).ready(function(){
-    $("body").fadeIn(2000);
-    $("a").not(".insta").click(function(event){
-        event.preventDefault();
-        linkLocation = this.href;
-        $("html").fadeOut(1000, redirectPage);
-    });
-    function redirectPage() {
-    	window.location = linkLocation;
-    }
-    
-	// 햄버거 아이콘을 클릭
-	$('.menu-icon').on('click', function() {
-        $('.navigation.mobile-only').toggleClass('show-menu');
-        if($('.navigation.mobile-only').hasClass('show-menu')) {
-            $('.menu-icon').html('&#10006;'); // X 아이콘으로 변경
-        } else {
-            $('.menu-icon').html('&#9776;'); // 햄버거 아이콘으로 변경
-        }
-    });
 });
 $(window).bind("pageshow", function(event) {
     if (event.originalEvent && event.originalEvent.persisted) {
