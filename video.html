@@ -19,7 +19,7 @@
 		
 	</head>
 	
-	<body style="display:none;">
+	<body>
 		<div class="mainHeader"><a href="https://charlie-graphy.github.io">AHNJEEHWANY</a></div>
 
 		<div class="video_content">
@@ -348,16 +348,6 @@
 <script>
 var chgCnt = 0;
 $(document).ready(function(){
-    $("body").fadeIn(2000);
-    $("a").not('.fc-day-grid-event, .insta').click(function(event){
-        event.preventDefault();
-        linkLocation = this.href;
-        $("html").fadeOut(1000, redirectPage);
-    });
-    function redirectPage() {
-    	window.location = linkLocation;
-    }
-
 	$('.four label').on('click',function(e){
 		const data = $(this).attr('for');
 		

@@ -18,7 +18,7 @@
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
 	</head>
 	
-	<body style="display:none;">
+	<body>
 		<div class="mainHeader"><a href="https://charlie-graphy.github.io" style="color: black;">AHNJEEHWANY</a></div>
 
 		<div class="about_content">
@@ -64,15 +64,6 @@
 
 <script>
 $(document).ready(function(){
-    $("body").fadeIn(2000);
-    $("a").not('.fc-day-grid-event, .insta').click(function(event){
-        event.preventDefault();
-        linkLocation = this.href;
-        $("html").fadeOut(1000, redirectPage);
-    });
-    function redirectPage() {
-    	window.location = linkLocation;
-    }
 	$('.fa-chevron-left').text('<');
 	$('.fa-chevron-right').text('>');
 	

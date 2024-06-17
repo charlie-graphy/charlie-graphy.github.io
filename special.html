@@ -16,7 +16,7 @@
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
 	</head>
 	
-	<body style="display:none;">
+	<body>
 		<div class="mainHeader"><a href="https://charlie-graphy.github.io">AHNJEEHWANY</a></div>
 
 		<div class="video_content">
@@ -110,17 +110,7 @@
 </html>
 
 <script>
-$(document).ready(function(){
-    $("body").fadeIn(2000);
-    $("a").not(".insta, .tab").click(function(event){
-        event.preventDefault();
-        linkLocation = this.href;
-        $("html").fadeOut(1000, redirectPage);
-    });
-    function redirectPage() {
-    	window.location = linkLocation;
-    }
-    
+$(document).ready(function(){    
 	var idx = 0;
 	
 	//비디오 메뉴
