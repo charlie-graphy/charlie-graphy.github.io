@@ -347,7 +347,17 @@
 </html>
 <script>
 var chgCnt = 0;
-$(document).ready(function(){	
+$(document).ready(function(){
+    $("body").fadeIn(2000);
+    $("a").not('.fc-day-grid-event, .insta').click(function(event){
+        event.preventDefault();
+        linkLocation = this.href;
+        $("html").fadeOut(1000, redirectPage);
+    });
+    function redirectPage() {
+    	window.location = linkLocation;
+    }
+
 	$('.four label').on('click',function(e){
 		const data = $(this).attr('for');
 		
