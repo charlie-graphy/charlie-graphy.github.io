@@ -6,7 +6,7 @@
 	height: 100%;
 	right: 10%;
 	background-color: white !important;
-	overflow: auto;
+	overflow-y: auto !important;
 }
 a{
 	color: #666;

@@ -2,6 +2,7 @@
 /* 공통 스타일 */
 body{
 	background-color: white;
+	overflow-y: auto !important;
 }
 .mainHeader {
   font-size: 1.3em;
@@ -12,7 +13,7 @@ body{
 	width: 100%;
 	height: 100%;
 	text-align: center;
-	overflow: auto;
+	overflow-y: auto !important;
 }
 .group{
 	position: absolute;
