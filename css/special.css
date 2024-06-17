@@ -25,6 +25,9 @@ body{
 .video_content .no{
 	display: none;
 }
+.video_content .text{
+	text-align: left;
+}
 a{
 	color: #666;
 	text-decoration-line: none;

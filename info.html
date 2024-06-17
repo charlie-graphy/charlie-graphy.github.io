@@ -15,22 +15,7 @@
 	</head>
 	
 	<body style="display:none;">
-		<div class="main_container">
-			<!-- 햄버거 아이콘(모바일) -->
-	        <div class="menu-icon">&#9776;</div>
-	        <!-- 헤더 -->
-	        <div class="header"><a href="https://charlie-graphy.github.io">AHNJEEHWANY</a></div>
-	        <!-- 네비게이션 메뉴(PC) -->
-	        <ul class="navigation desktop-only">
-	            <li><a href="https://charlie-graphy.github.io/schedule">SCHEDULE</a></li>
-	            <li><a href="http://instagram.com/jeehwany" target="_blank" class="insta">INSTAGRAM</a></li>
-	        </ul>
-	        <!-- 모바일에서 보이는 네비게이션 메뉴 -->
-	        <ul class="navigation mobile-only">
-	            <li><a href="https://charlie-graphy.github.io/schedule">SCHEDULE</a></li>
-	            <li><a href="http://instagram.com/jeehwany" target="_blank" class="insta">INSTAGRAM</a></li>
-	        </ul>
-	    </div>
+		<div class="mainHeader"><a href="https://charlie-graphy.github.io">AHNJEEHWANY</a></div>
 
 		<div class="info_content">
 			<p>안녕하세요. '안지화니(AHNJEEHWANY)' 웹사이트를 만든 개발 겸 운영자입니다.</p>
@@ -41,19 +26,19 @@
 			<p><b>ABOUT</b> : 지환 배우님 프로필과 간단한 정보, 인터뷰.</p>
 			<p><b>FILMOGRAPHY</b> : 지환 배우님의 그동안 활동하신 필모 정보.<br>몇몇 카드는 클릭 시, 프로필이 보입니다.</p>
 			<p><b>VIDEO</b> : 지환 배우님 관련 공식 영상 모음</p>
-			<p><b>GAME</b> : 간단한 게임.<br>현재 2048 오픈. 후에 옷 입히기, 슬라이딩 퍼즐 오픈 예정입니다.</p>
-			<p><b>SPECAIL</b> : 지환 배우님의 스페셜 커튼콜들.<br><a href="https://www.youtube.com/@Rec_Jeehwany" class="twitter" target="_blank" style="color:darkslategrey; text-decoration:none;">'𝙋𝙀𝙍𝙎𝙊𝙉𝘼:安'</a>님 영상 연결 허락해주셔서 감사합니다!</p>
+			<p><b>GAME</b> : 간단한 게임.<br>현재 2048 오픈. 7/23 정오 '옷 입히기', '슬라이딩 퍼즐' 오픈 예정.</p>
+			<p><b>SPECAIL</b> : 지환 배우님의 스페셜 커튼콜들.<br><a href="https://www.youtube.com/@Rec_Jeehwany" class="twitter" target="_blank" style="color:#ffa205; text-decoration:none;">'𝙋𝙀𝙍𝙎𝙊𝙉𝘼:安'</a>님 영상 연결 허락해주셔서 감사합니다!</p>
 			<p><b>SCHEDULE</b> : 지환 배우님 스케줄 캘린더.<br><font style="font-size:0.73em">(2024년부터 볼 수 있습니다.)</font></p>
 			<p><b>INSTAGRAM</b> : 지환 배우님 인스타그램 바로가기.</p>
 			<hr>
-			<p>문의사항 및 이슈가 있으면 X(구 트위터) <a href="https://x.com/jeehwany_com" class="twitter" target="_blank" style="color:darkslategrey; text-decoration:none;">@jeehwany_com</a> 계정으로 디엠주세요.</p>
+			<p>문의사항 및 이슈가 있으면 X(구 트위터) <a href="https://x.com/jeehwany_com" class="twitter" target="_blank" style="color:#ffa205; text-decoration:none;">@jeehwany_com</a> 계정으로 디엠주세요.</p>
 		</div>
 	    
-	    <footer class="footer">
-	    	<div class="footer-left">AHN<br>JEEHWAN</div>
-	        <div class="footer-center"><br>1992.07.25</div>
-	        <div class="footer-right"><br>INFO</div>
-	    </footer>	    
+		<footer class="footer">
+	    	<div class="footer-left"><a href="http://instagram.com/jeehwany" target="_blank" class="insta">INSTAGRAM</a></div>
+	        <div class="footer-center"><a href="https://charlie-graphy.github.io/schedule">SCHEDULE</a></div>
+	        <div class="footer-right" style="color: #ffa205;">INFO</div>
+	    </footer>
 	</body>	
 </html>
 <script>
@@ -67,16 +52,6 @@ $(document).ready(function(){
     function redirectPage() {
     	window.location = linkLocation;
     }
-    
-	// 햄버거 아이콘을 클릭
-	$('.menu-icon').on('click', function() {
-        $('.navigation.mobile-only').toggleClass('show-menu');
-        if($('.navigation.mobile-only').hasClass('show-menu')) {
-            $('.menu-icon').html('&#10006;'); // X 아이콘으로 변경
-        } else {
-            $('.menu-icon').html('&#9776;'); // 햄버거 아이콘으로 변경
-        }
-    });
 });
 $(window).bind("pageshow", function(event) {
     if (event.originalEvent && event.originalEvent.persisted) {

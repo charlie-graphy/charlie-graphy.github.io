@@ -329,7 +329,7 @@ temporary rendered events).
   background: none;
   /* in case <td>s are globally styled */
   border-color: transparent;
-  padding: .2rem .2rem;
+  padding: .12rem .12rem;
 }
 
 .fc-row .fc-content-skeleton td,
@@ -396,7 +396,7 @@ temporary rendered events).
 .fc-event .fc-title {
     font-weight: 500;
     position: relative;
-    font-size: 0.7rem;
+    font-size: 0.63rem;
     overflow: hidden;
     white-space: normal;
     text-overflow: ellipsis;
@@ -867,7 +867,8 @@ NOTE: use percentage font sizes or else old IE chokes
   text-align: center; }
 
 .fc-toolbar.fc-header-toolbar {
-  margin-bottom: 0.5em; }
+  /* margin-bottom: 0.5em;  수정 */
+}
 
 .fc-toolbar.fc-footer-toolbar {
   margin-top: 1em; }
@@ -1451,13 +1452,14 @@ body{
   top: 6px;
 }
 .modal-body{
+  text-align: center;
   background: #F3F5F9;
   border-radius: 10px;
 }
 .modal-body h4{
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 15px;
   letter-spacing: 1px;
   font-family: 'Montserrat', sans-serif;
   color: #002147;

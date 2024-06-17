@@ -4,10 +4,9 @@
 	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
 	width: 100%;
 	height: 100%;
-	padding-top: 20%;
-	padding-bottom: 60%;
 	right: 10%;
 	background-color: white !important;
+	overflow-y: auto;
 }
 a{
 	color: #666;
@@ -52,6 +51,9 @@ p.event{
 	font-weight: 600;
 	margin-bottom: .5rem !important;	
 }
+.event-body{
+	font-size: .7em;
+}
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 1366px) {	
 	.about_content{
@@ -65,17 +67,23 @@ p.event{
 		width: 5.5em;
 		height: 6%;
 	}
+	.fc-toolbar h2{
+		font-size: .8em !important;
+	}
+	.fc-event .fc-title, .fc-time {
+		font-size: .7em !important;
+		-webkit-line-clamp: 1 !important;
+	}
+	.fc .fc-row .fc-content-skeleton table,
+	.fc .fc-row .fc-content-skeleton td,
+	.fc .fc-row .fc-helper-skeleton td {
+		padding: 0 !important;
+	}
 }
 /* PC 화면에서만 보이는 스타일 */
 @media only screen and ( min-width : 1367px) {
-	.about_content {
-		padding-top: 10px;
-	}
 	.p-5{
 		margin: auto;
-		width: 70%;
+		width: 85%;
 	}
-	.fc-event .fc-title {
-    	font-size: 0.8rem !important;
-	}	
 }
