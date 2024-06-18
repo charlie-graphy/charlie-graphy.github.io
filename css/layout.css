@@ -7,13 +7,12 @@ html, body {
   place-content: center;
   min-width: 100vw;
   min-height: 100vh;
-  overflow: hidden;
 }
 
 .mainHeader {
   text-align: center;
-	position: fixed;
-	top: 0px;
+  position: fixed;
+  top: 0px;
 	padding-top: 20px;
 	width: 100% !important;
 	z-index: 999999;
