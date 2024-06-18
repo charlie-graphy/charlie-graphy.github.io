@@ -46,6 +46,9 @@ a{
   box-sizing: border-box;
   overflow: hidden;
 }
+#content div {
+  border: 3px solid skyblue;
+}
 #content > * > a {
   box-sizing: border-box;
   display: grid;
