@@ -12,7 +12,7 @@ html, body{
 }
 .about_content, .gameMain_content {
 	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
-	padding: 2vh;
+	padding: 0 2vh 2vh 2vh;
 	width: 60vh;
 	height: 100%;
 	text-align: center;
@@ -114,6 +114,9 @@ a{
 
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 767px) {
+	.about_content{
+		width: 55vh;
+	}
 	.puzzleDiv{
 		padding-top: 2vh;
 	}
