@@ -120,6 +120,9 @@ a{
 	.puzzleDiv{
 		padding-top: 2vh;
 	}
+	.puzzle{
+		width: 75vw;
+	}
 	.gameMain_content div{
 		margin: 0 auto; /* 수평 가운데 정렬 */
 		display: block; /* 가로 영역 차지 */
