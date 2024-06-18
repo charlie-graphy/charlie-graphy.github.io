@@ -55,7 +55,7 @@ a{
   height: 100%;
   transition: all 0.4s;
   opacity: 1;
-  font-size: 1em;
+  font-size: min(.8em, 1em);
   line-height: 2em;
   text-align: center;
   cursor: pointer;
@@ -165,9 +165,12 @@ a{
   #content {
     width: 90vw;
     height: 100vw;
+  	overflow: hidden;
   }
   #content a {
-    display:block;
+  	height: 100%;
+  	overflow: auto;
+    display: inline-block;
   	border: 3px solid yellow;
     font-size: .7em !important;
     vertical-align: middle;
