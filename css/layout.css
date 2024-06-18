@@ -148,12 +148,11 @@ a{
   text-decoration:none;
 }
 .info_content{
-	padding-top: 10vh;
 	padding-left: 3.5%;
 	padding-right: 3.5%;
 	text-align: center;
 	font-size: 0.75em;
-  color: white;
+  	color: white;
 }
 
 @media (orientation: landscape) {
@@ -171,7 +170,6 @@ a{
     font-size: .8em !important;
   }
   .info_content{
-		padding-top: 2vh;
 		font-size: 0.6em;
 	}
 }
