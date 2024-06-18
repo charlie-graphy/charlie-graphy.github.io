@@ -174,5 +174,6 @@ a{
   }
   #content > * > a {
   	align-items: baseline;
+  	border: 3px solid red;
   }
 }
