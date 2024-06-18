@@ -117,9 +117,6 @@ a{
 	.about_content{
 		width: 55vh;
 	}
-	.puzzleDiv{
-		padding-top: 2vh;
-	}
 	.puzzle{
 		width: 75vw;
 	}
@@ -183,7 +180,4 @@ a{
 }
 /* PC 화면에서만 보이는 스타일 */
 @media only screen and ( min-width : 1367px) {
-	/* .gameMain_content{
-		padding-top: 20%;
-	} */
 }
