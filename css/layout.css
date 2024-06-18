@@ -167,7 +167,7 @@ a{
     height: 100vw;
   }
   #content a {
-    overflow: hidden;
+    display:block;
   	border: 3px solid red;
     font-size: .7em !important;
   }
