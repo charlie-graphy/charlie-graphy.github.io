@@ -164,7 +164,7 @@ a{
 @media (orientation: portrait) {
   #content {
     width: 90vw;
-    height: 100vw;
+    height: 80vh;
   }
   #content a {
     font-size: .7em !important;
@@ -173,7 +173,6 @@ a{
 	font-size: 0.6em;
   }
   #content > * > a {
-  	align-items: baseline;
   	border: 3px solid red;
   }
 }
