@@ -173,6 +173,6 @@ a{
 	font-size: 0.6em;
   }
   #content > * > a {
-  	
+  	align-items: baseline;
   }
 }
