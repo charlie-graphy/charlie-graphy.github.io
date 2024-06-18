@@ -3,6 +3,7 @@
 body{
 	overflow:hidden;
 	background-color: black;
+	text-align: left;
 }
 .header, .header a, .menu-icon, .navigation li a{
 	color: white;
