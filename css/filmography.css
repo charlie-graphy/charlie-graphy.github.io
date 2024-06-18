@@ -14,7 +14,6 @@ body{
 	height: 100%;
 	text-align: center;
 	overflow-y: auto !important;
-	margin-bottom: 5%;
 }
 .group{
 	position: absolute;
