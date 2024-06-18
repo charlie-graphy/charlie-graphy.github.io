@@ -167,12 +167,11 @@ a{
     height: 100vw;
   }
   #content a {
+    overflow: hidden;
+  	border: 3px solid red;
     font-size: .7em !important;
   }
   .info_content{
 	font-size: 0.6em;
-  }
-  #content > * > a {
-  	border: 3px solid red;
   }
 }
