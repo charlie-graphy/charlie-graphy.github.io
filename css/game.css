@@ -12,7 +12,7 @@ html, body{
 }
 .about_content, .gameMain_content {
 	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
-	padding-top: 2vh;
+	padding: 2vh;
 	width: 60vh;
 	height: 100%;
 	text-align: center;
