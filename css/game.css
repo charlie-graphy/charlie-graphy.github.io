@@ -23,7 +23,7 @@ html, body{
 	flex-direction :column;
 }
 .gameMain_content div{
-	margin: 2.5em;
+	margin-top: 2em;
 	position: relative;
   	display: flex;
 }
@@ -34,7 +34,7 @@ html, body{
 	font-size: 2em;
 	font-weight: bolder;
 	text-decoration-line: none;
-	color: white;
+	color: black;
 	cursor: pointer;
 	position: relative; /* 상대 위치 설정 */
 	line-height: 70px;
@@ -131,6 +131,9 @@ a{
 	}
 	.controls_score-text{
 		font-size: 1.5rem !important;
+	}
+	.gameMain_content div:first-child{
+		margin-top: 10vh;
 	}
 }
 /* 탭 화면에서만 보이는 스타일 */
