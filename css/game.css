@@ -1,15 +1,13 @@
 @charset "UTF-8";
-/* 공통 스타일 */
 html, body{
 	background-color: white;
-	overflow: hidden;
 }
 .mainHeader a{
 	color: black !important;
 }
 .about_content, .gameMain_content {
 	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
-	padding: 0 2vh;
+	padding-top: 2vh;
 	width: 60vh;
 	height: 100%;
 	text-align: center;
@@ -36,7 +34,7 @@ html, body{
 	font-size: 2em;
 	font-weight: bolder;
 	text-decoration-line: none;
-	color: black;
+	color: white;
 	cursor: pointer;
 	position: relative; /* 상대 위치 설정 */
 	line-height: 70px;
@@ -111,11 +109,8 @@ a{
 
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 767px) {
-	.about_content{
-		width: 55vh;
-	}
-	.puzzle{
-		width: 75vw;
+	.puzzleDiv{
+		padding-top: 2vh;
 	}
 	.gameMain_content div{
 		margin: 0 auto; /* 수평 가운데 정렬 */
@@ -177,4 +172,7 @@ a{
 }
 /* PC 화면에서만 보이는 스타일 */
 @media only screen and ( min-width : 1367px) {
+	/* .gameMain_content{
+		padding-top: 20%;
+	} */
 }
