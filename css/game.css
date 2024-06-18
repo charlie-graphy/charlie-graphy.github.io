@@ -3,7 +3,7 @@
 /* body{
 	overflow: hidden;
 } */
-body{
+html, body{
 	background-color: white;
 }
 .mainHeader a{
@@ -38,7 +38,7 @@ body{
 	font-size: 2em;
 	font-weight: bolder;
 	text-decoration-line: none;
-	color: white;
+	color: black;
 	cursor: pointer;
 	position: relative; /* 상대 위치 설정 */
 	line-height: 70px;
