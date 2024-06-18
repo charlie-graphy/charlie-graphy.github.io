@@ -179,4 +179,7 @@ a{
   .info_content{
 	font-size: 0.6em;
   }
+  #div_3 {
+  background-position: -20vh;
+  }
 }
