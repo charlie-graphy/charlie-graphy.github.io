@@ -46,6 +46,7 @@ a{
   overflow: hidden;
 }
 #content > * > a {
+  box-sizing: border-box;
   display: grid;
   align-items: center;
   justify-items: center;
@@ -57,13 +58,14 @@ a{
   line-height: 2em;
   text-align: center;
   cursor: pointer;
-  background: rgba(250, 250, 250, 0.6);
+  background: rgba(0, 0, 0, 0.6);
 }
 #content > * > a:hover {
+  box-sizing: border-box;
   opacity: 1;
   font-size: 1em;
   line-height: 1em;
-  background: rgba(250, 250, 250, 0.6);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 #center {
