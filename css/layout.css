@@ -168,8 +168,9 @@ a{
   }
   #content a {
     display:block;
-  	border: 3px solid red;
+  	border: 3px solid yellow;
     font-size: .7em !important;
+    vertical-align: middle;
   }
   .info_content{
 	font-size: 0.6em;
