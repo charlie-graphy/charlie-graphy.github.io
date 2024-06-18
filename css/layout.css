@@ -166,6 +166,7 @@ a{
     width: 90vw;
     height: 100vw;
   	overflow: hidden;
+  	border: 3px solid green;
   }
   #content a {
   	height: 100%;
@@ -174,6 +175,7 @@ a{
   	border: 3px solid yellow;
     font-size: .7em !important;
     vertical-align: middle;
+    background-color: pink;
   }
   .info_content{
 	font-size: 0.6em;
