@@ -1,8 +1,5 @@
 @charset "UTF-8";
 /* 공통 스타일 */
-/* body{
-	overflow: hidden;
-} */
 html, body{
 	background-color: white;
 	overflow: hidden;
