@@ -98,10 +98,10 @@ a{
     float: right;
 }
 .howto, .download, .mainGo{
-	padding: .5em 1.3em;
+	padding: .3em 1.2em;
     cursor: pointer;
-	border-top: 1px solid #ffa205;
-    border-bottom: 1px solid #ffa205;
+	border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 .howto:hover, .download:hover, .mainGo:hover, .mainGo:hover a{
 	background-color: #ffa205 !important;
@@ -130,7 +130,7 @@ a{
 }
 .character_area img {
     grid-area: 1 / 1;
-    width: 15em;
+    width: min(9em,15em);
     height: auto;
 } 
 .character_area img.chara_eye {
@@ -156,7 +156,12 @@ a{
 }
 
 .howtoModal{
-	padding:21px 16px;
+	display: inline-block;
+	vertical-align:middle;
+	padding: 24px 16px;
+	width: 70%;
+	height: 45%;
+	background-color: rgba(255,255,255, 80%) !important;
 }
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width:767px){
@@ -176,11 +181,25 @@ a{
 	.choice1{
 		font-size: .75em;
 	}
+	.howtoModal b{
+		font-size: 1.2em !important;
+	}
+	.howtoModal .howtoCont{
+		font-size: .75em !important;
+	}
+	.mainGo, .download{
+		font-size: .7em;
+	}
 }
 /* 탭 화면에서만 보이는 스타일 */
 @media only screen and (min-width:768px) and (max-width:1366px) {
 
 }
 @media only screen and ( min-width : 1367px) {
-
+	.howtoModal b{
+		font-size: 2em !important;
+	}
+	.howtoModal .howtoCont{
+		font-size: .9em !important;
+	}
 }
