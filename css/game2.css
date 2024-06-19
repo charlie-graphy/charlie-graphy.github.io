@@ -224,4 +224,7 @@ a{
 	.character_area img {
 		width: 35vh;
 	} 
+	body{
+		overflow: hidden;
+	}
 }
