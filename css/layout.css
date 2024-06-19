@@ -11,8 +11,8 @@ html, body {
 
 .mainHeader {
   text-align: center;
-  position: fixed;
-  top: 0px;
+	position: fixed;
+	top: 0px;
 	padding-top: 20px;
 	width: 100% !important;
 	z-index: 999999;
@@ -43,15 +43,9 @@ a{
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  box-sizing: border-box;
   overflow: hidden;
 }
-#content div {
-  display: flex;
-  align-items: center;
-}
 #content > * > a {
-  box-sizing: border-box;
   display: grid;
   align-items: center;
   justify-items: center;
@@ -59,14 +53,13 @@ a{
   height: 100%;
   transition: all 0.4s;
   opacity: 0;
-  font-size: min(.8em, 1em);
+  font-size: 1em;
   line-height: 2em;
   text-align: center;
   cursor: pointer;
   transform: rotate(20deg);
 }
 #content > * > a:hover {
-  box-sizing: border-box;
   opacity: 1;
   font-size: 1em;
   line-height: 1em;
@@ -154,11 +147,12 @@ a{
   text-decoration:none;
 }
 .info_content{
+	padding-top: 10vh;
 	padding-left: 3.5%;
 	padding-right: 3.5%;
 	text-align: center;
 	font-size: 0.75em;
-  	color: white;
+  color: white;
 }
 
 @media (orientation: landscape) {
@@ -171,15 +165,12 @@ a{
   #content {
     width: 90vw;
     height: 100vw;
-  	overflow: hidden;
   }
   #content a {
-    font-size: .7em !important;
+    font-size: .8em !important;
   }
   .info_content{
-	font-size: 0.6em;
-  }
-  #div_3 {
-  background-position: -24vh;
-  }
+		padding-top: 10%;
+		font-size: 0.6em;
+	}
 }

@@ -106,7 +106,7 @@ a{
     border-bottom: 1px solid black;
 }
 .howto:hover, .download:hover, .mainGo:hover, .mainGo:hover a{
-	background-color: #ffa205 !important;
+	background-color: black !important;
 	color: white !important;
 	font-weight: normal;
 }

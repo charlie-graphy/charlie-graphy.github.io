@@ -3,7 +3,6 @@
 body{
 	overflow:hidden;
 	background-color: black;
-	text-align: left;
 }
 .header, .header a, .menu-icon, .navigation li a{
 	color: white;
@@ -14,7 +13,6 @@ body{
 	height: 100%;
 	right: 10%;
 	z-index: 9999;
-	overflow:hidden;
 }
 .video_content .profile_text{
 	text-align: center;
