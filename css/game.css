@@ -138,8 +138,8 @@ a{
 /* 탭 화면에서만 보이는 스타일 */
 @media only screen and (min-width:768px) and (max-width:1089px) {
 	.wrapper, .gameboard {
-    	max-width: 550px !important;
-    	max-height: 550px !important;
+    	max-width: 530px !important;
+    	max-height: 530px !important;
 	}	
 	.gameMain_content div.active a{
 		font-size: 2em;
