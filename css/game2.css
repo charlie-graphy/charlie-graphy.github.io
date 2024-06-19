@@ -132,7 +132,7 @@ a{
 }
 .character_area img {
     grid-area: 1 / 1;
-    width: 66vw;
+    width: 35vh;
     height: auto;
 } 
 .character_area img.chara_eye {
@@ -199,7 +199,7 @@ a{
 		height: 66vh !important;
 	}
 	.character_area img {
-		width: 55vw;
+		width: 35vh;
 	} 
 	.howtoModal b{
 		font-size: 1.8em !important;
@@ -222,6 +222,6 @@ a{
 		font-size: .9em !important;
 	}	
 	.character_area img {
-		width: 18vw;
+		width: 35vh;
 	} 
 }
