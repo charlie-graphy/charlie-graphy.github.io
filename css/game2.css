@@ -10,6 +10,7 @@
     place-items: center;
 }
 .imgDiv{
+	display: grid;
 	height: 22vw !important;
 }
 .howDiv{
@@ -73,6 +74,7 @@ a{
 /* 파일 대체 */
 .card-img {
     position: relative;
+	align-content: center;
 }
 .character__area img {
     position: absolute;
@@ -130,7 +132,7 @@ a{
 }
 .character_area img {
     grid-area: 1 / 1;
-    width: min(9em,15em);
+    width: 66vw;
     height: auto;
 } 
 .character_area img.chara_eye {
@@ -192,8 +194,25 @@ a{
 	}
 }
 /* 탭 화면에서만 보이는 스타일 */
-@media only screen and (min-width:768px) and (max-width:1366px) {
-
+@media only screen and (min-width:768px) and (max-width:1366px) {	
+	.imgDiv{
+		height: 66vh !important;
+	}
+	.character_area img {
+		width: 55vw;
+	} 
+	.howtoModal b{
+		font-size: 1.8em !important;
+	}
+	.howtoModal .howtoCont{
+		font-size: 1.1em !important;
+	}
+	.howtoModal{
+		height: 35%;
+	}
+	.choice {
+		height: 24vw;
+	}
 }
 @media only screen and ( min-width : 1367px) {
 	.howtoModal b{
@@ -201,5 +220,8 @@ a{
 	}
 	.howtoModal .howtoCont{
 		font-size: .9em !important;
-	}
+	}	
+	.character_area img {
+		width: 18vw;
+	} 
 }
