@@ -145,5 +145,7 @@ a{
 }
 /* PC 화면에서만 보이는 스타일 */
 @media only screen and ( min-width : 1367px) {	
-    
+    .slides {
+        position: relative;
+    }
 }
