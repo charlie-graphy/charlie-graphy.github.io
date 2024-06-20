@@ -38,7 +38,6 @@ body, .content {
     align-items: center;
 }
 .slide img {
-    width: auto;
     max-height: 100%;
     box-shadow: 11px 9px 0px white;
     border: 1px solid #575757;
