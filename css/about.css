@@ -105,11 +105,15 @@ a{
 	font-weight: 600;
 }
 .content table{
-	word-break: keep-all;
 	font-size: 1em;
 }
 .content table td:first-child{
-	padding-right:1.4vw;
+	word-break: keep-all;
+	padding-right:1.5vw;
+	font-weight: 400;
+}
+.content table td{
+	padding-bottom:1.5vh;
 }
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 1366px) {
