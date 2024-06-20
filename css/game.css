@@ -112,7 +112,7 @@ a{
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 767px) {
 	.about_content{
-		width: 100%;
+		width: 55vh;
 	}
 	.puzzleDiv{
 		padding-top: 2vh;
@@ -144,7 +144,7 @@ a{
 /* 탭 화면에서만 보이는 스타일 */
 @media only screen and (min-width:768px) and (max-width:1089px) {
 	.about_content{
-		width: 100%;
+		width: 43vh;
 	}
 	.wrapper, .gameboard {
     	max-width: 530px !important;
