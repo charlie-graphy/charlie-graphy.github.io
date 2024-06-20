@@ -12,44 +12,47 @@
 		<link rel="apple-touch-icon" href="img/favicon.ico"/>
 		<link rel="stylesheet" type="text/css" href="css/layout.css" />
 		<link rel="stylesheet" type="text/css" href="css/about.css" />
-		<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"></script>
 	</head>
 	
 	<body>
 		<div class="mainHeader"><a href="https://charlie-graphy.github.io">AHNJEEHWANY</a></div>
 
 		<div class="container">
-			<div class="slideshow">
-				<div class="slide fade">
-					<img src="https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg" >
-				</div>
-				<div class="slide fade">
-					<img src="https://blog.kakaocdn.net/dn/2p33E/btsHEyAqpQq/ysURNEoOI5pg8GIFJm8NP1/img.jpg" >
-				</div>
-				<div class="slide fade">
-					<img src="https://blog.kakaocdn.net/dn/bUWc99/btsHDNrom9n/SYISTjKEb5wC057weCoXK0/img.jpg" >
-				</div>
-				<div class="slide fade">
-					<img src="https://blog.kakaocdn.net/dn/b1yTVR/btsHEDhgcP8/uHvQvSMaVhYuhUow1VjrrK/img.jpg" >
-				</div>
-				<div class="slide fade">
-					<img src="https://blog.kakaocdn.net/dn/bk3zZT/btsHESL0y9m/g502WGO7AD7kObb5cAHgZk/img.jpg" >
-				</div>
-				<div class="slide fade">
-					<img src="https://blog.kakaocdn.net/dn/30NfL/btsHDGFWadH/GlDqADK2CxdsrkSopVE7k1/img.jpg" >
-				</div>
-				<div class="slide fade">
-					<img src="https://blog.kakaocdn.net/dn/D0ef3/btsHEXNcujL/5yZA5rVuX14xvYRaxRm8M0/img.jpg" >
-				</div>
-				<div class="slide fade">
-					<img src="https://blog.kakaocdn.net/dn/vtvAn/btsHFnkA7Tl/W4ICaZx71bEEkaYsfKUoG0/img.jpg" >
-				</div>
-				<div class="slide fade">
-					<img src="https://blog.kakaocdn.net/dn/btFor3/btsHDAMyL8S/0kgmqYzFClkdEuEDWjgAY0/img.jpg" >
+    		<div class="slider">
+				<div class="slides">
+					<div class="slide">
+						<img src="https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg" >
+					</div>
+					<div class="slide">
+						<img src="https://blog.kakaocdn.net/dn/2p33E/btsHEyAqpQq/ysURNEoOI5pg8GIFJm8NP1/img.jpg" >
+					</div>
+					<div class="slide">
+						<img src="https://blog.kakaocdn.net/dn/bUWc99/btsHDNrom9n/SYISTjKEb5wC057weCoXK0/img.jpg" >
+					</div>
+					<div class="slide">
+						<img src="https://blog.kakaocdn.net/dn/b1yTVR/btsHEDhgcP8/uHvQvSMaVhYuhUow1VjrrK/img.jpg" >
+					</div>
+					<div class="slide">
+						<img src="https://blog.kakaocdn.net/dn/bk3zZT/btsHESL0y9m/g502WGO7AD7kObb5cAHgZk/img.jpg" >
+					</div>
+					<div class="slide">
+						<img src="https://blog.kakaocdn.net/dn/30NfL/btsHDGFWadH/GlDqADK2CxdsrkSopVE7k1/img.jpg" >
+					</div>
+					<div class="slide">
+						<img src="https://blog.kakaocdn.net/dn/D0ef3/btsHEXNcujL/5yZA5rVuX14xvYRaxRm8M0/img.jpg" >
+					</div>
+					<div class="slide">
+						<img src="https://blog.kakaocdn.net/dn/vtvAn/btsHFnkA7Tl/W4ICaZx71bEEkaYsfKUoG0/img.jpg" >
+					</div>
+					<div class="slide">
+						<img src="https://blog.kakaocdn.net/dn/btFor3/btsHDAMyL8S/0kgmqYzFClkdEuEDWjgAY0/img.jpg" >
+					</div>
 				</div>
 				<div class="slide_btn">
-				  <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-				  <a class="next" onclick="changeSlide(1)">&#10095;</a>
+					<a class="prev" style="diplay:none;" onclick="changeSlide(-1)">&#10094;</a>
+					<a class="next" onclick="changeSlide(1)">&#10095;</a>
 				</div>
 			</div>
 			<div class="content">
@@ -60,7 +63,7 @@
 					<b>극단 아어</b> 소속<br>제8회 한국뮤지컬어워즈 조연상(남자) 노미네이트<br>
 					<hr>
 					<b>FILMOGRAPHY</b><br>
-					<span>뮤지컬 </span> &nbsp;<span class="emp">:</span>&nbsp;&nbsp;등등곡
+					<span>뮤지컬 : </span><br> 등등곡 <span class="emp">|</span> 렛미플라이 <span class="emp">|</span> 비더슈탄트 <span class="emp">|</span> 라흐 헤스트
 					<hr>
 					<b>INTERVIEW</b>
 					<p><a class="interview" href="https://news.v.daum.net/v/20180428133014583" target="_blank">[루키인터뷰 : 얘 어때?③] '무한동력' 안지환 "꿈과 밥, 둘 다 쫓는 배우 될래요”</a></p>
@@ -86,9 +89,30 @@
 </html>
 
 <script>
-let slideIndex = 1;
-$(document).ready(function(){ 
-
+let slideIndex = 0;
+let currentIndex = 0;
+const slides = $('.slides');
+const slideCount = $('.slide').length;
+$(document).ready(function(){
+	 $('.slider').swipe({
+         swipeLeft: function() {
+             if (currentIndex < slideCount - 1) {
+            	 $('.prev').show();
+                 currentIndex++;
+            	 if(currentIndex == slideCount-1) $('.next').hide();
+                 goToSlide(currentIndex);
+             }
+         },
+         swipeRight: function() {
+             if (currentIndex > 0) {
+            	 $('.next').show();
+                 currentIndex--;
+                 if(currentIndex < 1) $('.prev').hide();
+                 goToSlide(currentIndex);
+             }
+         }
+     });
+	
 	const date1 = new Date(2015, 12, 11);
 	const today = new Date(new Date().getFullYear(), new Date().getMonth()+1, new Date().getDate());		
 	const diffDate = Math.abs((date1.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))+1;
@@ -99,23 +123,21 @@ $(document).ready(function(){
 		if($(window).width() <= '1366') $('.desc_birth #showBr').show();
 		else $('.desc_birth #showBr').hide();
 	});
-	showSlides(slideIndex);
 });
-function changeSlide(n) {
-    showSlides(slideIndex += n);
+function goToSlide(index) {
+    slides.css('transform', 'translateX(' + (-index * 100) + '%)');
 }
-
-function showSlides(n) {
-    let slides = document.getElementsByClassName("slide");
-    if (n > slides.length) {
-        slideIndex = 1;
+function changeSlide(n) {
+	if (n == -1) {
+		$('.next').show();
+		currentIndex--;
+		if(currentIndex < 1) $('.prev').hide();
     }
-    if (n < 1) {
-        slideIndex = slides.length;
+	if (n == 1) {
+		$('.prev').show();
+		currentIndex++;
+		if(currentIndex == slideCount-1) $('.next').hide();
     }
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    slides[slideIndex-1].style.display = "block";
+	goToSlide(currentIndex);
 }
 </script>
