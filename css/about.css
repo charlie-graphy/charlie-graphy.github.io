@@ -11,10 +11,9 @@ body, .content {
 .container{
     display: flex;
     flex-direction: row;
-    height: 80vh;
+    height: 77vh;
 	width: 85vw;
 }
-
 .slider, .content {
     flex: 1;
     align-items: center;
