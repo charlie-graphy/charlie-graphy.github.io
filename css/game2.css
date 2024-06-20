@@ -213,6 +213,10 @@ a{
 	.choice {
 		height: 24vw;
 	}
+	body{
+		overflow-y: auto; 
+		lign-items: end;
+	}
 }
 @media only screen and ( min-width : 1367px) {
 	.howtoModal b{
@@ -223,7 +227,7 @@ a{
 	}	
 	.character_area img {
 		width: 35vh;
-	} 
+	}
 	body{
 		overflow: hidden;
 	}

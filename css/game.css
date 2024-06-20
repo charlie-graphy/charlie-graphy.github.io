@@ -5,6 +5,9 @@ html, body{
 .mainHeader a{
 	color: black !important;
 }
+.about_content{
+	margin-bottom: 5vh;
+}
 .about_content, .gameMain_content {
 	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
 	width: 60vh;
