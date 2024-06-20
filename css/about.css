@@ -113,8 +113,13 @@ a{
     .content{
         margin-bottom: 4vh;
     }
+    body{
+    	overflow-y: auto;
+    }
 }
 /* PC 화면에서만 보이는 스타일 */
-@media only screen and ( min-width : 1367px) {
-	
+@media only screen and ( min-width : 1367px) {	
+    body{
+    	overflow: hidden;
+    }
 }
