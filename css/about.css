@@ -108,8 +108,10 @@ a{
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 1366px) {
 	.container {
+		position: relative;
+    	top: -3vh;
         flex-direction: column;
-    	height: 75vh;
+    	height: 77vh;
     }
     .slider, .content {
         flex: 1;
