@@ -15,7 +15,7 @@ html, body{
 	margin-bottom: 10vh;
 	display: grid;
     justify-items: center;
-    align-items: center;
+    align-items: start;
     width: 100vw;
 	height: 100vh;
 }
@@ -150,6 +150,7 @@ a{
 @media only screen and (min-width:768px) and (max-width:1089px) {
 	.about_content{
 		max-width: 100%;
+		align-items: center !important;
 	}
 	.wrapper, .gameboard {
 		max-width: 550px !important;
@@ -163,6 +164,10 @@ a{
 }
 /* 탭 화면에서만 보이는 스타일 */
 @media only screen and (min-width:1090px) and (max-width:1366px) {
+	.about_content{
+		max-width: 100%;
+		align-items: center !important;
+	}
 	.wrapper, .gameboard{
     	max-width: 750px !important;
     	max-height: 750px !important;
@@ -190,6 +195,7 @@ a{
 @media only screen and ( min-width : 1367px) {
 	.about_content{
 		max-width: 100%;
+		align-items: center !important;
 	}
 	.wrapper, .gameboard {
 		max-width: 770px !important;
