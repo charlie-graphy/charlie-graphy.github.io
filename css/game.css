@@ -12,7 +12,7 @@ html, body{
 	text-align: center;
 }
 .about_content{
-	margin-bottom: 5vh;
+	margin-bottom: 10vh;
 	display: grid;
     justify-items: center;
     align-items: center;
@@ -154,7 +154,7 @@ a{
 	.wrapper, .gameboard {
 		max-width: 550px !important;
 		width: 70%;
-	}	
+	}
 	.gameMain_content div.active a{
 		font-size: 2em;
 		font-weight: bolder;
