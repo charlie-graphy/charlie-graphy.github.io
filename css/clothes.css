@@ -1,0 +1,239 @@
+@charset "UTF-8";
+.cloth_content {
+	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
+	width: 70%;
+	height: 100%;
+	text-align: center;
+  	margin: auto;   	
+  	display: grid;
+    grid-template: "howDiv" "imgDiv" "choice1" "choice";
+    place-items: center;
+}
+.imgDiv{
+	display: grid;
+	height: 22vw !important;
+}
+.howDiv{
+	width: 100%;
+}
+/* .imgDiv, .choice1, .choice{
+	height: 100%;
+} */
+a{
+	color: #666;
+	text-decoration-line: none;
+}
+.cloth_content a:hover{
+	cursor: pointer;
+	color: black;
+	font-weight: 600;
+}
+.choice1{
+    height: 3vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    font-size: .9em;
+    font-weight: 600;
+    align-content: center;
+}
+.choice1 div{
+	border-top: 2px solid black;
+	border-right: 2px solid black;
+	border-bottom: 2px solid black;
+	border-radius: 10px 10px 0 0;
+    padding: .5em 0;
+}
+.choice1 div:first-child{
+	border-left: 2px solid black;
+	border-radius: 10px 10px 0 0;
+}
+.choice div img, .choice1 div{
+    cursor: pointer;
+}
+.choice{
+	padding-top: 1em;
+    height: 17vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-gap: 10px;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	border-bottom: 2px solid black;
+	overflow: auto;
+}
+.choice .under{
+    display: none;
+}
+.choice1 div.act, .choice1 div:hover{
+	border-bottom: none;
+}
+.choice div img:hover{
+	background-color: #f2f2f2;
+}
+/* 파일 대체 */
+.card-img {
+    position: relative;
+	align-content: center;
+}
+.character__area img {
+    position: absolute;
+}  
+.character__area img.chara_eye {
+    z-index: 2;
+}  
+.character__area img.chara_mouth {
+    z-index: 2;
+}  
+.character__area img.chara_hair {
+    z-index: 3;
+}  
+.character__area img.chara_cloth {
+    z-index: 4;
+} 
+.character__area img.chara_accessory {
+    z-index: 4;
+}
+.how{
+	width: 100%;
+	font-size: 0.8em;
+    float: right;
+}
+.howto, .download, .mainGo{
+	padding: .3em 1.2em;
+    cursor: pointer;
+	border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.howto:hover, .download:hover, .mainGo:hover, .mainGo:hover a{
+	background-color: black !important;
+	color: white !important;
+	font-weight: normal;
+}
+.howto, .download{
+	float: right;
+}
+.download{
+	clear: right;
+}
+.mainGo{
+	float: left;
+}
+.mainGo a{
+	color: black;
+}
+/*수정*/
+.character_area{
+    display: grid;
+	position: relative;
+	width: 100%;
+    max-width: 500px; /* 필요에 따라 조정 */
+    height: auto; 
+}
+.character_area img {
+    grid-area: 1 / 1;
+    width: 35vh;
+    height: auto;
+} 
+.character_area img.chara_eye {
+    z-index: 2;
+}  
+.character_area img.chara_mouth {
+    z-index: 2;
+}  
+.character_area img.chara_hair {
+    z-index: 3;
+}  
+.character_area img.chara_cloth {
+    z-index: 4;
+} 
+.character_area img.chara_accessory {
+    z-index: 4;
+}
+.choice img{
+	width: 60%;
+	padding: 5px;
+	border: 1px solid black;
+	border-radius: 50%;
+}
+
+.howtoModal{
+	display: inline-block;
+	vertical-align:middle;
+	padding: 24px 16px;
+	width: 70%;
+	height: 45%;
+	background-color: rgba(255,255,255, 80%) !important;
+}
+/* 모바일 화면에서만 보이는 스타일 */
+@media only screen and ( max-width:767px){
+	.cloth_content{
+		width: 95%;
+	}
+	.choice{
+		padding-top:1em;
+		height: 40vw;
+	}
+	.choice img{
+		width: 80%;
+	}
+	.imgDiv{
+		height: 49vh !important;
+	}
+	.choice1{
+		font-size: .75em;
+	}
+	.howtoModal b{
+		font-size: 1.2em !important;
+	}
+	.howtoModal .howtoCont{
+		font-size: .75em !important;
+	}
+	.mainGo, .download{
+		font-size: .7em;
+	}
+	body{
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+}
+/* 탭 화면에서만 보이는 스타일 */
+@media only screen and (min-width:768px) and (max-width:1366px) {	
+	.imgDiv{
+		height: 66vh !important;
+	}
+	.character_area img {
+		width: 35vh;
+	} 
+	.howtoModal b{
+		font-size: 1.8em !important;
+	}
+	.howtoModal .howtoCont{
+		font-size: 1.1em !important;
+	}
+	.howtoModal{
+		height: 35%;
+	}
+	.choice {
+		height: 24vw;
+	}
+	body{
+		overflow-x: hidden;
+		overflow-y: auto;
+		lign-items: end;
+	}
+}
+@media only screen and ( min-width : 1367px) {
+	.howtoModal b{
+		font-size: 2em !important;
+	}
+	.howtoModal .howtoCont{
+		font-size: .9em !important;
+	}	
+	.character_area img {
+		width: 35vh;
+	}
+	body{
+		overflow: hidden;
+	}
+}
