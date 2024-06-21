@@ -192,6 +192,10 @@ a{
 	.mainGo, .download{
 		font-size: .7em;
 	}
+	body{
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
 }
 /* 탭 화면에서만 보이는 스타일 */
 @media only screen and (min-width:768px) and (max-width:1366px) {	
@@ -214,7 +218,8 @@ a{
 		height: 24vw;
 	}
 	body{
-		overflow-y: auto; 
+		overflow-x: hidden;
+		overflow-y: auto;
 		lign-items: end;
 	}
 }
