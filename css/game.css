@@ -5,19 +5,17 @@ html, body{
 .mainHeader a{
 	color: black !important;
 }
-.about_content, .gameMain_content {
+.puzzle_content, .gameMain_content {
 	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
 	width: 60vh;
 	height: 100%;
 	text-align: center;
 }
-.about_content{
-	margin-bottom: 10vh;
+.puzzle_content{
 	display: grid;
     justify-items: center;
     align-items: center !important;
     width: 100vw;
-	height: 100vh;
 }
 .puzzleDiv a{
 	font-size: .8em;
@@ -55,14 +53,13 @@ a{
 	color: #666;
 	text-decoration-line: none;
 }
-.about_content a:hover, .gameMain_content a:hover{
+.puzzle_content a:hover, .gameMain_content a:hover{
 	cursor: pointer;
 	color: black;
 	font-weight: 600;
 }
 .gameMain{
-	margin: 0 auto;
-	padding: .5em 2em;
+	margin: 5 auto;
     cursor: pointer;
     font-size: .72em;
     text-align: center;
@@ -116,7 +113,7 @@ a{
 
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 767px) {
-	.about_content{
+	.puzzle_content{
 		max-width: 100%;
 		max-height: 90%;
 	}
@@ -125,7 +122,7 @@ a{
 		width: 90vw;
 	}
 	.puzzleDiv{
-		padding-top: 2vh;
+		padding-top: 10vh;
 	}
 	.gameMain_content div{
 		margin: 0 auto; /* 수평 가운데 정렬 */
@@ -153,7 +150,7 @@ a{
 }
 /* 탭 화면에서만 보이는 스타일 */
 @media only screen and (min-width:768px) and (max-width:1089px) {
-	.about_content{
+	.puzzle_content{
 		max-width: 100%;
 	}
 	.wrapper, .gameboard {
@@ -168,7 +165,7 @@ a{
 }
 /* 탭 화면에서만 보이는 스타일 */
 @media only screen and (min-width:1090px) and (max-width:1366px) {
-	.about_content{
+	.puzzle_content{
 		max-width: 100%;
 	}
 	.wrapper, .gameboard{
@@ -196,7 +193,7 @@ a{
 }
 /* PC 화면에서만 보이는 스타일 */
 @media only screen and ( min-width : 1367px) {
-	.about_content{
+	.puzzle_content{
 		max-width: 100%;
 	}
 	.wrapper, .gameboard {
