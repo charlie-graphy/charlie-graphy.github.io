@@ -2,17 +2,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <html lang="ko" dir="ltr">
 	<head>
-		<meta name="description" content="AHNJEEHWAN" />
-		<meta name="keywords" content="AHNJEEHWAN" />
+		<meta name="description" content="AHNJEEHWAN"/>
+		<meta name="keywords" content="AHNJEEHWAN"/>
 		<meta property="og:image" content="https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg">
 		<meta property="og:title" content="AHNJEEHWANY">
-		<meta property="og:description" content="배우 안지환 아카이브 사이트"> 
+		<meta property="og:description" content="배우 안지환 아카이브 사이트">
 		<title>Jeehwany</title>
 		<link rel="icon" href="img/favicon.ico"/>
 		<link rel="apple-touch-icon" href="img/favicon.ico"/>
 		<link rel="stylesheet" type="text/css" href="css/layout.css"/>
 		<link rel="stylesheet" type="text/css" href="css/game.css"/>
-		<link rel="stylesheet" type="text/css" href="css/game2.css" />
+		<link rel="stylesheet" type="text/css" href="css/clothes.css" />
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 	</head>
@@ -49,10 +49,10 @@
 			<!-- modal -->
 			<div class="modal on">
 			    <div class="modal_popup howtoModal">
-			        <b>지환이 옷 입히기!</b><br><br><br>
+			        <b>지화니 옷 입히기!</b><br><br><br>
 			        <span class="howtoCont">
 			        	하단에 '머리', '눈', '입', '옷', '액세서리' 탭에서 원하는 오브젝트를 선택하세요.<br><br>
-						선택한 오브젝트대로 지환이를 직접 꾸밀 수 있습니다!<br><br>
+						선택한 오브젝트대로 지화니를 직접 꾸밀 수 있습니다!<br><br>
 						꾸민 모습을 저장하고 싶다면<br>
 						우측  상단에 '저장'을 누르고<br>
 						'다운로드'를 선택해야 저장할 수 있습니다.
@@ -123,7 +123,7 @@ $(document).ready(function(){
 	//사진저장
 	$('.download').on('click', function(){
 		
-		html2canvas($('#capture')[0]).then(function (canvas){
+		html2canvas($('.character_area')[0]).then(function (canvas){
 			var link = document.createElement('a');
 			link.href = canvas.toDataURL();
 			link.download = new Date().getFullYear()+new Date().getMonth().toString().padStart(2,'0')+new Date().getDate()+"_"+'Jeehwany.png';
