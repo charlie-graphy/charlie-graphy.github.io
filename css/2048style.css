@@ -23,7 +23,7 @@ a:hover {
 }
 
 .wrapper {
-  max-width: 500px;
+  max-width: 520px;
   margin: 0 2.5vw;
   padding: 0 6vw 2vh 6vw;
 }
@@ -102,9 +102,9 @@ h2 {
   /* Position: relative; set for tile-container, which absolutely positions over it to match grid's dimensions; */
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 520px;
   /* height: 100%; */
-  max-height: 500px;
+  max-height: 520px;
   margin: auto;
   padding: 8px;
   background: #ffffff08;
