@@ -5,14 +5,19 @@ html, body{
 .mainHeader a{
 	color: black !important;
 }
-.about_content{
-	margin-bottom: 5vh;
-}
 .about_content, .gameMain_content {
 	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
 	width: 60vh;
 	height: 100%;
 	text-align: center;
+}
+.about_content{
+	margin-bottom: 5vh;
+	display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100vw;
+	height: 100vh;
 }
 .puzzleDiv a{
 	font-size: .8em;
@@ -112,7 +117,7 @@ a{
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 767px) {
 	.about_content{
-		width: 55vh;
+		max-width: 100%;
 	}
 	.puzzleDiv{
 		padding-top: 2vh;
@@ -144,11 +149,11 @@ a{
 /* 탭 화면에서만 보이는 스타일 */
 @media only screen and (min-width:768px) and (max-width:1089px) {
 	.about_content{
-		width: 43vh;
+		max-width: 100%;
 	}
 	.wrapper, .gameboard {
-    	max-width: 530px !important;
-    	max-height: 530px !important;
+		max-width: 550px !important;
+		width: 70%;
 	}	
 	.gameMain_content div.active a{
 		font-size: 2em;
@@ -184,6 +189,10 @@ a{
 /* PC 화면에서만 보이는 스타일 */
 @media only screen and ( min-width : 1367px) {
 	.about_content{
-		width: 39vw;
+		max-width: 100%;
+	}
+	.wrapper, .gameboard {
+		max-width: 770px !important;
+		width: 35%;
 	}
 }
