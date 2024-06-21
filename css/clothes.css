@@ -36,8 +36,11 @@ a{
     font-size: .9em;
     font-weight: 600;
     align-content: center;
+    background-color: white;
+    z-index: 999;
 }
 .choice1 div{
+	background-color: white;
 	border-top: 2px solid black;
 	border-right: 2px solid black;
 	border-bottom: 2px solid black;
@@ -52,6 +55,7 @@ a{
     cursor: pointer;
 }
 .choice{
+	padding: .5em;
 	padding-top: 1em;
     height: 17vw;
     display: grid;
@@ -61,11 +65,13 @@ a{
 	border-right: 2px solid black;
 	border-bottom: 2px solid black;
 	overflow: auto;
+    background-color: #bbe0fb;
 }
 .choice .under{
     display: none;
 }
 .choice1 div.act, .choice1 div:hover{
+    background-color: #bbe0fb;
 	border-bottom: none;
 }
 .choice div img:hover{
@@ -128,7 +134,8 @@ a{
 	position: relative;
 	width: 100%;
     max-width: 500px; /* 필요에 따라 조정 */
-    height: auto; 
+    height: auto;
+    border: 2px solid #333;
 }
 .character_area img {
     grid-area: 1 / 1;
@@ -155,6 +162,7 @@ a{
 	padding: 5px;
 	border: 1px solid black;
 	border-radius: 50%;
+	background-color: white;
 }
 
 .howtoModal{
@@ -171,7 +179,6 @@ a{
 		width: 95%;
 	}
 	.choice{
-		padding-top:1em;
 		height: 40vw;
 	}
 	.choice img{
@@ -193,7 +200,6 @@ a{
 		font-size: .7em;
 	}
 	body{
-		overflow-x: hidden;
 		overflow-y: auto;
 	}
 }
@@ -218,7 +224,6 @@ a{
 		height: 24vw;
 	}
 	body{
-		overflow-x: hidden;
 		overflow-y: auto;
 		lign-items: end;
 	}
