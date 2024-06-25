@@ -198,6 +198,5 @@ a{
 	}
 	.wrapper, .gameboard {
 		max-width: 770px !important;
-		width: 35%;
 	}
 }
