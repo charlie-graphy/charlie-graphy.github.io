@@ -127,10 +127,10 @@ a{
 	.gameMain_content div{
 		margin: 0 auto; /* 수평 가운데 정렬 */
 		display: block; /* 가로 영역 차지 */
-		font-size: 1.5em;
 		margin-bottom: 3em;
 	}
 	.gameMain_content div a{
+		font-size: 1.5em !important;
 		line-height: 50px;
 	}
 	.gameMain_content div.active{
