@@ -13,6 +13,7 @@ body{
   	display: grid;
     grid-template: "howDiv" "imgDiv" "choice1" "choice";
     place-items: center;
+	grid-template-rows: 3% auto 2fr;
 }
 .imgDiv{
 	display: grid;
