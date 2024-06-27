@@ -9,7 +9,7 @@
 * Dependencies:
 * Lodash, jQuery, hammerjs
 */
-
+let winYn = 'N';
 function gameStart() {
   window.game = new Game(4);
   window.game.initialize();
@@ -166,8 +166,11 @@ Game.prototype.initEventListeners = function () {
  * Game is WON!
  */
 Game.prototype.gameWon = function () {
-	$('.modal h3').text('YOU WIN');
-	$('.modal').addClass('on');
+	if(winYn == 'N'){
+		$('.modal h3').text('YOU WIN');
+		$('.modal').addClass('on');
+		winYn = 'Y';
+	}
 };
 /**/
 
