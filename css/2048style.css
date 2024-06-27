@@ -440,7 +440,7 @@ h2 {
 }
 
 .tile_number[data-value="16"] {
-  background-image: url('https://blog.kakaocdn.net/dn/x1a7A/btsHGcefPvY/1dFpKk0KqaZffST7TWhGwK/img.jpg');
+  background-image: url('https://blog.kakaocdn.net/dn/pXqXH/btsHGwDo3hP/bkvhhn81qKdbVMNluKdy0K/img.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
   color: transparent;
@@ -456,7 +456,7 @@ h2 {
 }
 
 .tile_number[data-value="64"] {
-  background-image: url('https://blog.kakaocdn.net/dn/pXqXH/btsHGwDo3hP/bkvhhn81qKdbVMNluKdy0K/img.jpg');
+  background-image: url('https://blog.kakaocdn.net/dn/Dx9Rl/btsHHQtMLZN/krWOBtEtB4j2TCsEuWMV4K/img.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
   color: transparent;
@@ -464,7 +464,7 @@ h2 {
 }
 
 .tile_number[data-value="128"] {
-  background-image: url('https://blog.kakaocdn.net/dn/Dx9Rl/btsHHQtMLZN/krWOBtEtB4j2TCsEuWMV4K/img.jpg');
+  background-image: url('https://blog.kakaocdn.net/dn/dpSPG3/btsHHpQKzPB/jiecRxGi0AV1e7hHONYSG0/img.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
   color: transparent;
@@ -472,7 +472,7 @@ h2 {
 }
 
 .tile_number[data-value="256"] {
-  background-image: url('https://blog.kakaocdn.net/dn/dpSPG3/btsHHpQKzPB/jiecRxGi0AV1e7hHONYSG0/img.jpg');
+  background-image: url('https://blog.kakaocdn.net/dn/bd2WsJ/btsHGygTNo8/g02IyAqBJWG0m8DDgOmvbK/img.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
   color: transparent;
@@ -480,7 +480,7 @@ h2 {
 }
 
 .tile_number[data-value="512"] {
-  background-image: url('https://blog.kakaocdn.net/dn/bd2WsJ/btsHGygTNo8/g02IyAqBJWG0m8DDgOmvbK/img.jpg');
+  background-image: url('https://blog.kakaocdn.net/dn/eunlhD/btsHGyHWhCr/WoMmk118vNwSOVtJ0AngIK/img.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
   color: transparent;
@@ -488,7 +488,7 @@ h2 {
 }
 
 .tile_number[data-value="1024"] {
-  background-image: url('https://blog.kakaocdn.net/dn/eunlhD/btsHGyHWhCr/WoMmk118vNwSOVtJ0AngIK/img.jpg');
+  background-image: url('https://blog.kakaocdn.net/dn/bV6hT3/btsHHKgeKLp/LDYvpSctFK5MIuNiTdacA1/img.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
   color: transparent;
@@ -496,7 +496,15 @@ h2 {
 }
 
 .tile_number[data-value="2048"] {
-  background-image: url('https://blog.kakaocdn.net/dn/bV6hT3/btsHHKgeKLp/LDYvpSctFK5MIuNiTdacA1/img.jpg');
+  background-image: url('https://blog.kakaocdn.net/dn/q017I/btsIfuxvz1w/WhkQeJQlyO5gLYeP14TP40/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #1c0b19;
+}
+
+.tile_number[data-value="4096"] {
+  background-image: url('https://blog.kakaocdn.net/dn/q017I/btsIfuxvz1w/WhkQeJQlyO5gLYeP14TP40/img.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
   color: transparent;
