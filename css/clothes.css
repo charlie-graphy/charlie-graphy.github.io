@@ -1,6 +1,5 @@
 @charset "UTF-8";
 body{
-	display: grid;
 	height: 100%;
 	min-height: 0;
 }
@@ -13,11 +12,13 @@ body{
   	display: grid;
     grid-template: "howDiv" "imgDiv" "choice1" "choice";
     place-items: center;
-	grid-template-rows: 3% auto 2fr;
+	grid-template-rows: 3% auto 2fr; /* 과연 */
 }
 .imgDiv{
 	display: grid;
 	height: 22vw !important;
+	align-items: center;
+	align-content: center;
 }
 .howDiv{
 	width: 100%;
