@@ -134,8 +134,8 @@ h2 {
 }
 .grid_cell, .tile {
   display: inline-block;
-  height: 25% !important;
-  width: 25% !important;
+  height: 25%;
+  width: 25%;
   padding: 8px;
   float: left;
   background: rgba(238, 228, 218, 0.35);
@@ -157,10 +157,11 @@ h2 {
   bottom: 0;
   margin: auto;
   border-radius: 5px;
+  overflow: hidden;
 }
 
 .tile {
-  display: table;
+  display: flex;/* table; */
   background: #eee4da;
   background-clip: content-box;
   position: absolute;
@@ -221,6 +222,8 @@ h2 {
   font-size: 2rem;
   font-weight: bold;
   color: white;
+  flex: 1;
+  width: 100%;
 }
 
 .tile:nth-of-type(1) {
@@ -413,7 +416,7 @@ h2 {
 }
 
 .tile_number[data-value="2"] {
-  background-image: url('https://blog.kakaocdn.net/dn/eunlhD/btsHGyHWhCr/WoMmk118vNwSOVtJ0AngIK/img.jpg');
+  background-image: url('https://blog.kakaocdn.net/dn/c1lwGY/btsHF14Y62Q/nDKtLDHlj8tluEBgBYkds0/img.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
   color: transparent;
@@ -485,7 +488,7 @@ h2 {
 }
 
 .tile_number[data-value="1024"] {
-  background-image: url('https://blog.kakaocdn.net/dn/c1lwGY/btsHF14Y62Q/nDKtLDHlj8tluEBgBYkds0/img.jpg');
+  background-image: url('https://blog.kakaocdn.net/dn/eunlhD/btsHGyHWhCr/WoMmk118vNwSOVtJ0AngIK/img.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
   color: transparent;
