@@ -211,7 +211,7 @@ a{
 	}
 }
 /* 탭 화면에서만 보이는 스타일 */
-@media only screen and (min-width:768px) and (max-width:1366px) {	
+@media only screen and (min-width:768px) and (max-width:1366px) {
 	.imgDiv{
 		height: 66vh !important;
 	}
@@ -231,7 +231,7 @@ a{
 		height: 35%;
 	}
 	.choice {
-		height: 28vw;
+		height: 18vh;
 	}
 	body{
 		overflow: hidden;
