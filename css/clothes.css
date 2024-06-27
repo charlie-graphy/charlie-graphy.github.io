@@ -215,6 +215,9 @@ a{
 	.imgDiv{
 		height: 66vh !important;
 	}
+	.choice img{
+		width: 70%;
+	}
 	.character_area img {
 		width: 35vh;
 	} 
@@ -228,10 +231,10 @@ a{
 		height: 35%;
 	}
 	.choice {
-		height: 24vw;
+		height: 28vw;
 	}
 	body{
-		overflow-y: auto;
+		overflow: hidden;
 	}
 }
 @media only screen and ( min-width : 1367px) {
