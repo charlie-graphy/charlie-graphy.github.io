@@ -78,10 +78,16 @@ $(document).ready(function(){
 });
 function timeFormat(){
 	var month = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
+	var week = ['일','월','화','수','목','금','토'];
+	
 	//월
 	var year = $('.fc-header-toolbar h2').text().split(' ')[1];
 	$('.fc-header-toolbar h2').text(year+" "+(jQuery.inArray($('.fc-header-toolbar h2').text().split(' ')[0].toUpperCase(), month)+1)+"월");
 	
+	//주
+	for(var i = 0 ; i < $('.fc-day-header').length; i++){
+		$('.fc-day-header:eq('+i+') span').text(week[i]);
+	}
 	//시간
 	for(var i = 0 ; i < $('.fc-time').length ; i++){
 		$('.fc-time:eq('+i+'):contains("p")').text(($('.fc-time:eq('+i+')').text().length > 2) ? (Number($('.fc-time:eq('+i+')').text().split(':')[0])+12+":"+$('.fc-time:eq('+i+')').text().split(':')[1].substring(0,2)): Number($('.fc-time:eq('+i+')').text().split('p')[0])+12+":00");
