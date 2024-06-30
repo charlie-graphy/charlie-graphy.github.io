@@ -329,7 +329,7 @@ temporary rendered events).
   background: none;
   /* in case <td>s are globally styled */
   border-color: transparent;
-  padding: .12rem .12rem;
+  padding: .1rem;
 }
 
 .fc-row .fc-content-skeleton td,
