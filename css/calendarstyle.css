@@ -1399,7 +1399,7 @@ be a descendant of the grid when it is being dragged.
 
 
 .fc th.fc-day-header{
-    padding: 11px 7px;
+    padding: 7px;
     font-size: 16px;
     font-weight: 400;
 }
