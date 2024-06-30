@@ -498,7 +498,7 @@
 				},
 				{
 					title: '쇄골에 천사가 잠들고 있다',
-					description: '토루 役 | 안지환<br>요시오 役 | 도예준<br>유우카 役 | 강연정<br>카즈에 役 | 이아진<br>타쿠지 役 | 이형훈<br>마사미 役 | 김보나<br>쿄코 役 | 문경희<br>켄토 役 | 서진원',
+					description: '<p class="event">더블 적립</p>토루 役 | 안지환<br>요시오 役 | 도예준<br>유우카 役 | 강연정<br>카즈에 役 | 이아진<br>타쿠지 役 | 이형훈<br>마사미 役 | 김보나<br>쿄코 役 | 문경희<br>켄토 役 | 서진원',
 					start: '2024-06-18 20:00',
 					className: 'bg-green',
 					allDay: false
@@ -512,7 +512,7 @@
 				},
 				{
 					title: '쇄골에 천사가 잠들고 있다',
-					description: '토루 役 | 안지환<br>요시오 役 | 김바다<br>유우카 役 | 한수림<br>카즈에 役 | 오현서<br>타쿠지 役 | 이형훈<br>마사미 役 | 김진이<br>쿄코 役 | 송희정<br>켄토 役 | 서진원',
+					description: '<p class="event">더블 적립</p>토루 役 | 안지환<br>요시오 役 | 김바다<br>유우카 役 | 한수림<br>카즈에 役 | 오현서<br>타쿠지 役 | 이형훈<br>마사미 役 | 김진이<br>쿄코 役 | 송희정<br>켄토 役 | 서진원',
 					start: '2024-06-21 16:00',
 					className: 'bg-green',
 					allDay: false
@@ -533,7 +533,7 @@
 				},
 				{
 					title: '쇄골에 천사가 잠들고 있다',
-					description: '토루 役 | 안지환<br>요시오 役 | 김바다<br>유우카 役 | 강연정<br>카즈에 役 | 김계림<br>타쿠지 役 | 이형훈<br>마사미 役 | 김진이<br>쿄코 役 | 송희정<br>켄토 役 | 장용철',
+					description: '<p class="event">스페셜 커튼콜 데이</p>토루 役 | 안지환<br>요시오 役 | 김바다<br>유우카 役 | 강연정<br>카즈에 役 | 김계림<br>타쿠지 役 | 이형훈<br>마사미 役 | 김진이<br>쿄코 役 | 송희정<br>켄토 役 | 장용철',
 					start: '2024-06-25 20:00',
 					className: 'bg-green',
 					allDay: false
@@ -547,7 +547,7 @@
 				},
 				{
 					title: '쇄골에 천사가 잠들고 있다',
-					description: '토루 役 | 안지환<br>요시오 役 | 도예준<br>유우카 役 | 김보정<br>카즈에 役 | 김계림<br>타쿠지 役 | 정명군<br>마사미 役 | 김보나<br>쿄코 役 | 문경희<br>켄토 役 | 장용철',
+					description: '<p class="event">스페셜 커튼콜 데이</p>토루 役 | 안지환<br>요시오 役 | 도예준<br>유우카 役 | 김보정<br>카즈에 役 | 김계림<br>타쿠지 役 | 정명군<br>마사미 役 | 김보나<br>쿄코 役 | 문경희<br>켄토 役 | 장용철',
 					start: '2024-06-28 16:00',
 					className: 'bg-green',
 					allDay: false
@@ -582,7 +582,7 @@
 				},
 				{
 					title: '쇄골에 천사가 잠들고 있다',
-					description: '토루 役 | 안지환<br>요시오 役 | 김바다<br>유우카 役 | 한수림<br>카즈에 役 | 오현서<br>타쿠지 役 | 장태민<br>마사미 役 | 최지혜<br>쿄코 役 | 문경희<br>켄토 役 | 서진원',
+					description: '<p class="event">지정 폴라 데이</p>토루 役 | 안지환<br>요시오 役 | 김바다<br>유우카 役 | 한수림<br>카즈에 役 | 오현서<br>타쿠지 役 | 장태민<br>마사미 役 | 최지혜<br>쿄코 役 | 문경희<br>켄토 役 | 서진원',
 					start: '2024-07-04 20:00',
 					className: 'bg-green',
 					allDay: false
@@ -596,14 +596,14 @@
 				},
 				{
 					title: '쇄골에 천사가 잠들고 있다',
-					description: '토루 役 | 안지환<br>요시오 役 | 김바다<br>유우카 役 | 강연정<br>카즈에 役 | 오현서<br>타쿠지 役 | 이형훈<br>마사미 役 | 김보나<br>쿄코 役 | 문경희<br>켄토 役 | 장용철',
+					description: '<p class="event">지정 폴라 데이</p>토루 役 | 안지환<br>요시오 役 | 김바다<br>유우카 役 | 강연정<br>카즈에 役 | 오현서<br>타쿠지 役 | 이형훈<br>마사미 役 | 김보나<br>쿄코 役 | 문경희<br>켄토 役 | 장용철',
 					start: '2024-07-06 15:00',
 					className: 'bg-green',
 					allDay: false
 				},
 				{
 					title: '쇄골에 천사가 잠들고 있다',
-					description: '토루 役 | 안지환<br>요시오 役 | 김바다<br>유우카 役 | 한수림<br>카즈에 役 | 이아진<br>타쿠지 役 | 정명군<br>마사미 役 | 김진이<br>쿄코 役 | 문경희<br>켄토 役 | 장용철',
+					description: '<p class="event">지정 폴라 데이</p>토루 役 | 안지환<br>요시오 役 | 김바다<br>유우카 役 | 한수림<br>카즈에 役 | 이아진<br>타쿠지 役 | 정명군<br>마사미 役 | 김진이<br>쿄코 役 | 문경희<br>켄토 役 | 장용철',
 					start: '2024-07-06 19:00',
 					className: 'bg-green',
 					allDay: false
@@ -624,14 +624,14 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 박준휘<br>정진명 役 | 김경록<br>이경신 役 | 임태현',
+					description: '<p class="event">스페셜 커튼콜 데이 : M11. 그런 세상</p>김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 박준휘<br>정진명 役 | 김경록<br>이경신 役 | 임태현',
 					start: '2024-07-09 20:00',
 					className: 'bg-red',
 					allDay: false
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 김경록<br>이경신 役 | 임태현',
+					description: '<p class="event">스페셜 커튼콜 데이 : M1. 등등곡</p>김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 김경록<br>이경신 役 | 임태현',
 					start: '2024-07-11 20:00',
 					className: 'bg-red',
 					allDay: false
@@ -652,7 +652,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 유승현<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박선영<br>이경신 役 | 임태현',
+					description: '<p class="event">스페셜 커튼콜 데이 : M16. 그래도 가겠다</p>김영운 役 | 유승현<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박선영<br>이경신 役 | 임태현',
 					start: '2024-07-14 14:00',
 					className: 'bg-red',
 					allDay: false
@@ -673,49 +673,49 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 박준휘<br>정진명 役 | 김경록<br>이경신 役 | 임태현',
+					description: '<p class="event">인터파크 피크닉 #4</p>김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 박준휘<br>정진명 役 | 김경록<br>이경신 役 | 임태현',
 					start: '2024-07-19 20:00',
 					className: 'bg-red',
 					allDay: false
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 유승현<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
+					description: '<p class="event">자석 오프너 버튼 랜덤 1종 증정</p>김영운 役 | 유승현<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
 					start: '2024-07-20 15:00',
 					className: 'bg-red',
 					allDay: false
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 유승현<br>최윤 役 | 안지환<br>초 役 | 박준휘<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
+					description: '<p class="event">자석 오프너 버튼 랜덤 1종 증정</p>김영운 役 | 유승현<br>최윤 役 | 안지환<br>초 役 | 박준휘<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
 					start: '2024-07-20 19:00',
 					className: 'bg-red',
 					allDay: false
 				},
 				{
 					title: '쇄골에 천사가 잠들고 있다',
-					description: '토루 役 | 안지환<br>요시오 役 | 유희제<br>유우카 役 | 김보정<br>카즈에 役 | 김계림<br>타쿠지 役 | 장태민<br>마사미 役 | 김보나<br>쿄코 役 | 송희정<br>켄토 役 | 장용철',
+					description: '<p class="event">마지막 공연</p>토루 役 | 안지환<br>요시오 役 | 유희제<br>유우카 役 | 김보정<br>카즈에 役 | 김계림<br>타쿠지 役 | 장태민<br>마사미 役 | 김보나<br>쿄코 役 | 송희정<br>켄토 役 | 장용철',
 					start: '2024-07-21 15:00',
 					className: 'bg-green',
 					allDay: false
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 유승현<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박선영<br>이경신 役 | 임태현',
+					description: '<p class="event">스페셜 커튼콜 데이 : M19. 영운</p>김영운 役 | 유승현<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박선영<br>이경신 役 | 임태현',
 					start: '2024-07-23 20:00',
 					className: 'bg-red',
 					allDay: false
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 김경록<br>이경신 役 | 황두현',
+					description: '<p class="event">스페셜 커튼콜 데이 : M9. 놀아보자</p>김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 김경록<br>이경신 役 | 황두현',
 					start: '2024-07-24 20:00',
 					className: 'bg-red',
 					allDay: false
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 박준휘<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
+					description: '<p class="event">스페셜 커튼콜 데이 : M12. 태평성대</p>김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 박준휘<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
 					start: '2024-07-28 18:00',
 					className: 'bg-red',
 					allDay: false
