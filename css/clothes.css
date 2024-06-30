@@ -1,11 +1,10 @@
 @charset "UTF-8";
 body{
 	height: 100%;
-	min-height: 0;
 }
 .cloth_content {
 	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
-	width: 80%;
+	width: 70vw;
 	height: 100%;
 	text-align: center;
   	margin: auto;   	
@@ -23,9 +22,6 @@ body{
 .howDiv{
 	width: 100%;
 }
-/* .imgDiv, .choice1, .choice{
-	height: 100%;
-} */
 a{
 	color: #666;
 	text-decoration-line: none;
