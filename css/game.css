@@ -44,7 +44,6 @@ html, body{
 	box-sizing: border-box;
 	display: block; /* 세로 정렬 */
 	font-size: 2em;
-	font-weight: bolder;
 	text-decoration-line: none;
 	color: black;
 	cursor: pointer;
