@@ -1,4 +1,10 @@
 @charset "UTF-8";
+@font-face {
+	font-family: 'yg-jalnan';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+  }
 html, body{
 	background-color: white;
 }
@@ -21,6 +27,7 @@ html, body{
 	font-size: .8em;
 }
 .gameMain_content{
+	width: 70vh;
 	margin: 0 auto; /* 수평 가운데 정렬 */
 	display: flex;
 	justify-content: center;
@@ -33,7 +40,7 @@ html, body{
   	display: flex;
 }
 .gameMain_content div, .gameMain_content div a {
-	font-family: "Helvetica", "Andale Mono", times, serif;
+	font-family: 'yg-jalnan', "Helvetica", "Andale Mono", times, serif;
 	box-sizing: border-box;
 	display: block; /* 세로 정렬 */
 	font-size: 2em;
@@ -42,7 +49,7 @@ html, body{
 	color: black;
 	cursor: pointer;
 	position: relative; /* 상대 위치 설정 */
-	line-height: 70px;
+	line-height: 80px;
 }
 .gameMain_content a:hover, .gameMain_content div.active a{
 	font-size: 2em;
@@ -124,14 +131,17 @@ a{
 	.puzzleDiv{
 		padding-top: 10vh;
 	}
+	.gameMain_content{
+		margin: -3vh auto; 
+	}
 	.gameMain_content div{
-		margin: 0 auto; /* 수평 가운데 정렬 */
+		margin: -6vh auto; /* 수평 가운데 정렬 */
 		display: block; /* 가로 영역 차지 */
 		margin-bottom: 3em;
 	}
 	.gameMain_content div a{
-		font-size: 1.5em !important;
-		line-height: 50px;
+		font-size: 1.3em !important;
+		line-height: 52px;
 	}
 	.gameMain_content div.active{
 		font-size: 2em;
