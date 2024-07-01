@@ -52,7 +52,6 @@ html, body{
 }
 .gameMain_content a:hover, .gameMain_content div.active a{
 	font-size: 2em;
-	font-weight: bolder;
 	color: #ffa205;
 }
 a{
@@ -62,7 +61,6 @@ a{
 .puzzle_content a:hover{
 	cursor: pointer;
 	color: black;
-	font-weight: 600;
 }
 .gameMain{
 	margin: 5 auto;
@@ -72,9 +70,6 @@ a{
 }
 .gameMain a{
 	color: black;
-}
-.gameMain:hover{
-	font-weight: 600;
 }
 
 /*모달 팝업 영역 스타일링*/
@@ -168,7 +163,6 @@ a{
 	}
 	.gameMain_content div.active a{
 		font-size: 2em;
-		font-weight: bolder;
 		color: #ffa205;
 	}
 }
@@ -196,7 +190,6 @@ a{
 	}	
 	.gameMain_content div.active{
 		font-size: 2em;
-		font-weight: bolder;
 		color: #ffa205;
 	}
 }
