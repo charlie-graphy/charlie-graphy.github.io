@@ -1,5 +1,17 @@
 @charset "UTF-8";
 /* 공통 스타일 */
+@font-face {
+	font-family: 'GmarketSansLight';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'GmarketSansMedium';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
 body{
 	overflow: hidden;
 }
@@ -73,14 +85,18 @@ body, .content {
     color: rgba(127, 127, 127, 0.8);
 }
 .content {
+    font-family: 'GmarketSansLight';
     background-color: #f4f4f4;
     padding: 20px;
     box-sizing: border-box;
     text-align: left;
 	overflow-y: auto;
 }
-
+.content b{
+    font-family: 'GmarketSansMedium';
+}
 .content .name {
+    font-family: 'GmarketSansMedium';
     font-size: 2.2em;
 }
 .content .nameEng {
@@ -133,10 +149,10 @@ a{
 		font-size: 1.4em;
 	}
 	.content .nameEng {
-		font-size: .8em;
+		font-size: .7em;
 	}
 	.content .desc {
-		font-size: .7em;
+		font-size: .63em;
 		line-height: 1.4;
 	}
     .content{
