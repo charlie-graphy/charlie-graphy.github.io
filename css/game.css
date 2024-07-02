@@ -5,6 +5,24 @@
 	font-style: normal;
 	font-weight: normal;
 }
+@font-face {
+	font-family: 'GmarketSansLight';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'GmarketSansMedium';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'GmarketSansBold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
 html, body{
 	background-color: white;
 }
@@ -90,11 +108,12 @@ a{
 }
 .modal .modal_popup {
 /*팝업*/
+	font-family: 'GmarketSansMedium', 'GmarketSansLight';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 25px;
+    padding: 24px;
     background: #ffffff;
     border-radius: 20px;
     background: rgba(255,255,255,1);

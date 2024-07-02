@@ -5,6 +5,24 @@
   Variables:
 */
 /**/
+@font-face {
+	font-family: 'GmarketSansLight';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'GmarketSansMedium';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'GmarketSansBold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
 *,
 *:before,
 *:after {
@@ -37,6 +55,7 @@ h2 {
   margin-bottom: 5px;
 }
 .intro_title {
+	font-family: 'GmarketSansBold', 'GmarketSansMedium';
   text-align: center;
   color: black;
   margin: 5px 0;
@@ -46,6 +65,7 @@ h2 {
 /**/
 /* Guide instructions */
 .controls_game, .controls_score {
+	font-family: 'GmarketSansMedium', 'GmarketSansLight';
   display: inline-block;
   width: 50%;
   float: left;
@@ -56,6 +76,7 @@ h2 {
   }
 } */
 .controls_game-btn {
+	font-family: 'GmarketSansMedium', 'GmarketSansLight';
   margin-top: .25rem;
   margin-bottom: .25rem;
   padding: 0.5em 0.75em;
