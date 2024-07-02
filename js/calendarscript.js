@@ -722,7 +722,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박선영<br>이경신 役 | 임태현',
+					description: '김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 김경록<br>이경신 役 | 임태현',
 					start: '2024-07-31 16:00',
 					className: 'bg-red',
 					allDay: false
