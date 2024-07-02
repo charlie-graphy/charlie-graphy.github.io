@@ -10,6 +10,12 @@
 	font-style: normal;
 	font-weight: normal;
 }
+@font-face {
+	font-family: 'GmarketSansBold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
 html, body {
 	font-family: 'GmarketSansMedium', "Helvetica", sans-serif !important;
   text-align: center;
@@ -21,6 +27,7 @@ html, body {
   min-height: 100vh;
 }
 .mainHeader {
+	font-family: 'GmarketSansBold', 'GmarketSansMedium', "Helvetica" !important;
   text-align: center;
   position: fixed;
   top: 0px;
