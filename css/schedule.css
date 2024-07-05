@@ -8,6 +8,9 @@
 	background-color: white !important;
 	overflow-y: auto !important;
 }
+.about_content{
+	padding-top: 15px;
+}
 a{
 	color: #666;
 	text-decoration-line: none;
@@ -55,10 +58,7 @@ p.event{
 	font-size: .7em;
 }
 /* 모바일 화면에서만 보이는 스타일 */
-@media only screen and ( max-width : 1366px) {	
-	.about_content{
-		padding-top: 10px;
-	}
+@media only screen and ( max-width : 1366px) {
 	.fc-header-toolbar h2{
 		font-size: 1.3em;
 		height: 20px;

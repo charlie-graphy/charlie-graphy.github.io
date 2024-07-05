@@ -37,6 +37,9 @@ body .fc {
 .fc-scroller{
 	height: 100% !important;
 }
+.fc-today .fc-day-number{
+	font-weight: bolder !important;
+}
 /* Colors
 --------------------------------------------------------------------------------------------------*/
 .fc-highlight {
@@ -1416,6 +1419,7 @@ be a descendant of the grid when it is being dragged.
 body{
   font-family: 'Nunito', sans-serif;
   background: #F3F5F9;
+  align-content : start;
 }
 .card{
   border: 0;
