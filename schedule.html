@@ -12,7 +12,6 @@
 		<link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io/apple-touch-icon.png">
 		<link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io/favicon-16x16.png">
-		<link rel="manifest" href="img/favicon_io/site.webmanifest">
 		<link rel="stylesheet" type="text/css" href="css/layout.css"/>
 		<link rel="stylesheet" type="text/css" href="css/schedule.css"/>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
@@ -51,25 +50,25 @@
 			    <div class="modal_popup">
 			    	<table>
 			    		<tr>
-			    			<td> < </td>			    			
-			    			<td colspan="4" style="padding-bottom: 10px;"><span class="year">2024</span> 년</td>
-			    			<td> > </td>
+			    			<td class="prevYear" style="padding-bottom: 30px;"> < </td>			    			
+			    			<td colspan="4" style="padding-bottom: 30px;"><span class="year">2024</span> 년</td>
+			    			<td class="nextYear" style="padding-bottom: 30px;"> > </td>
 			    		</tr>
 			    		<tr class="month">
-			    			<td><span>1월</span></td>
-			    			<td><span>2월</span></td>
-			    			<td><span>3월</span></td>
-			    			<td><span>4월</span></td>
-			    			<td><span>5월</span></td>
-			    			<td><span>6월</span></td>
+			    			<td><span data-idx="01">1월</span></td>
+			    			<td><span data-idx="02">2월</span></td>
+			    			<td><span data-idx="03">3월</span></td>
+			    			<td><span data-idx="04">4월</span></td>
+			    			<td><span data-idx="05">5월</span></td>
+			    			<td><span data-idx="06">6월</span></td>
 			    		</tr>
 			    		<tr class="month">
-			    			<td><span>7월</span></td>
-			    			<td><span>8월</span></td>
-			    			<td><span>9월</span></td>
-			    			<td><span>10월</span></td>
-			    			<td><span>11월</span></td>
-			    			<td><span>12월</span></td>
+			    			<td><span data-idx="07">7월</span></td>
+			    			<td><span data-idx="08">8월</span></td>
+			    			<td><span data-idx="09">9월</span></td>
+			    			<td><span data-idx="10">10월</span></td>
+			    			<td><span data-idx="11">11월</span></td>
+			    			<td><span data-idx="12">12월</span></td>
 			    		</tr>
 			    	</table>
 			    </div>
@@ -90,6 +89,7 @@
 </html>
 <script>
 $(document).ready(function(){
+	$('.monthModal .month span[data-idx='+String(new Date().getMonth()+1).padStart(2,'0')+']').addClass('now');
 	$('.fa-chevron-left').text('<');
 	$('.fa-chevron-right').text('>');
 	
@@ -109,9 +109,20 @@ $(document).ready(function(){
 	});
 	
 	$('.monthModal .month span').on('click', function(e){
-		//$('#calendar').fullCalendar('gotoDate', new Date(2024 + '-' + 05 + '-01'));
-		//timeFormat();
+		$('.monthModal .month span').removeClass('now');
+		$('#calendar').fullCalendar('gotoDate', new Date($('.monthModal .year').text() + '-' + $(this).data('idx') + '-01'));
+		timeFormat();
 		$('.monthModal').removeClass('on');
+		$(this).addClass('now');
+	});
+	
+	$('.monthModal .prevYear').on('click', function(e){
+		if($('.monthModal .year').text()=='2024') alert('2024년부터 볼 수 있습니다.');
+		else $('.monthModal .year').text(Number($('.monthModal .year').text())-1);
+	});
+
+	$('.monthModal .nextYear').on('click', function(e){
+		$('.monthModal .year').text(Number($('.monthModal .year').text())+1);
 	});
 
 	$(document).mouseup(function (e){
