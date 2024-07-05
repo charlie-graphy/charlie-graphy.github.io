@@ -86,10 +86,17 @@ p.event{
 	text-align: center;
 	padding: 5px;
 }
+.monthModal .prevYear, .monthModal .nextYear{
+	cursor: pointer;
+}
 .monthModal table tr.month td span{
 	word-break: keep-all;
 	padding: 5px;
 	cursor: pointer;
+}
+.monthModal table tr.month td span.now{
+	font-family: 'GmarketSansBold';
+	font-weight: bolder;
 }
 .fc-center{
 	cursor: pointer;
