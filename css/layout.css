@@ -26,6 +26,9 @@ html, body {
   min-width: 100vw;
   min-height: 100vh;
 }
+.blind{
+	display:none;
+}
 .mainHeader {
 	font-family: 'GmarketSansBold', 'GmarketSansMedium', "Helvetica" !important;
   text-align: center;
