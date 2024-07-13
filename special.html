@@ -122,6 +122,23 @@
 <script>
 $(document).ready(function(){    
 	var idx = 0;
+	var id = window.location.search.split('id=')[1];
+	var idURL = '';
+
+	if(id != undefined){
+		switch(Number(id[0])){
+			case 0: 
+				idURL = $('.video_content div.menu ul[data-idx=0] li:eq(0)').data('url');
+				break;
+			default: break;
+		}
+		if(idURL != ''){
+			$('.video_content .screen iframe').remove();
+			$('.video_content .screen').prepend('<iframe style="width:100%; height:100%" src="https://www.youtube.com/embed/'+idURL+'&autoplay=1&controls=0&enablejsapi=1&rel=0" frameborder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>');
+			$('.video_content div.menu').toggleClass('no');
+			$('.video_content iframe').toggleClass('stop');
+		}
+	}
 	
 	//비디오 메뉴
 	$('.video_content div.text').on('click', function() {
