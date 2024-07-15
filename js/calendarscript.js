@@ -659,14 +659,14 @@
 				},
 				{
 					title: '쇄골에 천사가 잠들고 있다',
-					description: '토루 役 | 안지환<br>요시오 役 | 도예준<br>유우카 役 | 강연정<br>카즈에 役 | 오현서<br>타쿠지 役 | 장태민<br>마사미 役 | 김보나<br>쿄코 役 | 문경희<br>켄토 役 | 서진원',
+					description: '<p class="event">스페셜 커튼콜 데이</p>토루 役 | 안지환<br>요시오 役 | 도예준<br>유우카 役 | 강연정<br>카즈에 役 | 오현서<br>타쿠지 役 | 장태민<br>마사미 役 | 김보나<br>쿄코 役 | 문경희<br>켄토 役 | 서진원',
 					start: '2024-07-16 20:00',
 					className: 'bg-green',
 					allDay: false
 				},
 				{
 					title: '쇄골에 천사가 잠들고 있다',
-					description: '토루 役 | 안지환<br>요시오 役 | 김바다<br>유우카 役 | 김보정<br>카즈에 役 | 이아진<br>타쿠지 役 | 정명군<br>마사미 役 | 김진이<br>쿄코 役 | 송희정<br>켄토 役 | 장용철',
+					description: '<p class="event">스페셜 커튼콜 데이</p>토루 役 | 안지환<br>요시오 役 | 김바다<br>유우카 役 | 김보정<br>카즈에 役 | 이아진<br>타쿠지 役 | 정명군<br>마사미 役 | 김진이<br>쿄코 役 | 송희정<br>켄토 役 | 장용철',
 					start: '2024-07-17 20:00',
 					className: 'bg-green',
 					allDay: false
