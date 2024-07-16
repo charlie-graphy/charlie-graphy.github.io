@@ -37,6 +37,7 @@
 						<img data-value = "Hair" class="chara_hair chara-parts" src="img/closet/hair_1.png" alt="머리">
 						<img data-value = "Clothes" class="chara_cloth chara-parts" src="img/closet/clothes_1.png" alt="옷">
 						<img data-value = "Accessory" class="chara_accessory chara-parts" src="img/closet/accessory_1.png" alt="액세서리">
+						<img data-value = "Background" class="chara_background chara-parts" src="img/closet/background_1.png" alt="액세서리">
 					</div>
 				</div>
 			</div>
@@ -46,6 +47,7 @@
 				<div id="Mouth" class="group">입</div>
 				<div id="Clothes" class="group">옷</div>
 				<div id="Accessory" class="group">액세서리</div>
+				<div id="Background" class="group">배경</div>
 			</div>
 			<div class="choice"></div>
 			<!-- modal -->
@@ -92,6 +94,10 @@ $(document).ready(function(){
 	for(var i = 1 ; i <=1 ; i++ ){
 		$("div.choice").append($("<div>",{"class":"under groupAccessory"}).append($("<img>",{"src":"img/closet/accessory_"+i+".png","alt":"액세사리"})));
 	}
+	//qㅐ경
+	for(var i = 1 ; i <=1 ; i++ ){
+		$("div.choice").append($("<div>",{"class":"under groupBackground"}).append($("<img>",{"src":"img/closet/background_"+i+".png","alt":"배경"})));
+	}
 	$(".under.groupHair").show();
 
 	//분류 선택
@@ -124,7 +130,6 @@ $(document).ready(function(){
 	});
 	//사진저장
 	$('.download').on('click', function(){
-		
 		html2canvas($('.character_area')[0]).then(function (canvas){
 			var link = document.createElement('a');
 			link.href = canvas.toDataURL();
