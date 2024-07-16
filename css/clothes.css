@@ -102,6 +102,7 @@ a{
 .card-img {
     position: relative;
 	align-content: center;
+    border: 2px solid #333;
 }
 .character__area img {
     position: absolute;
@@ -156,7 +157,6 @@ a{
 	width: 100%;
     max-width: 500px; /* 필요에 따라 조정 */
     height: auto;
-    border: 2px solid #333;
 }
 .character_area img {
     grid-area: 1 / 1;
