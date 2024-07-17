@@ -81,6 +81,7 @@ a{
     cursor: pointer;
 }
 .choice{
+	width: 70vw;
 	padding: .5em;
 	padding-top: 1em;
     height: 17vw;
@@ -207,7 +208,7 @@ a{
 		height: 40vw;
 	}
 	.choice img{
-		width: 80%;
+		width: 88%;
 	}
 	.imgDiv{
 		height: 50vh !important;
