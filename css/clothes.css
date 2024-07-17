@@ -83,12 +83,12 @@ a{
 	padding-top: 1em;
     height: 17vw;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
     grid-gap: 10px;
 	border-left: 2px solid black;
 	border-right: 2px solid black;
 	border-bottom: 2px solid black;
-	overflow: auto;
+	overflow-y: auto;
     background-color: #bbe0fb;
 }
 .choice .under{
@@ -179,8 +179,11 @@ a{
 	vertical-align:middle;
 	padding: 24px 16px;
 	width: 70%;
-	height: 45%;
+	height: 30%;
 	background-color: rgba(255,255,255, 80%) !important;
+}
+.howtoCont{
+	word-break: keep-all;
 }
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width:767px){
@@ -198,6 +201,9 @@ a{
 	}
 	.choice1{
 		font-size: .7em;
+	}
+	.howtoModal{
+		height: 45%;
 	}
 	.howtoModal b{
 		font-size: 1.2em !important;
