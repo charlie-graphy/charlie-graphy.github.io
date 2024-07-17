@@ -18,9 +18,9 @@
 	font-weight: normal;
 }
 body{
-	overflow-x: hidden;
+	overflow: hidden;
 	height: 100%;
-	box-sizing:border-box;
+	box-sizing: border-box;
 }
 .cloth_content {
 	font-family: 'GmarketSansMedium', HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
@@ -229,9 +229,8 @@ a{
 	.mainGo, .download{
 		font-size: .7em;
 	}
-	body, html{
-		box-sizing: border-box;
-		overflow: hidden;
+	body {
+		
 	}
 }
 /* 탭 화면에서만 보이는 스타일 */
