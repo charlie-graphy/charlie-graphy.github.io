@@ -19,6 +19,7 @@
 }
 body{
 	height: 100%;
+	box-sizing:border-box;
 }
 .cloth_content {
 	font-family: 'GmarketSansMedium', HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
