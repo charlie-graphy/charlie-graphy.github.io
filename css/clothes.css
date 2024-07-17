@@ -201,7 +201,7 @@ a{
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and (max-width:767px){
 	.cloth_content{
-		width: 92vw;
+		width: 95vw;
 	}
 	.choice{
 		height: 40vw;
@@ -227,7 +227,8 @@ a{
 	.mainGo, .download{
 		font-size: .7em;
 	}
-	body{
+	body, html{
+		overflow-x: hidden;
 		overflow-y: auto;
 	}
 }
