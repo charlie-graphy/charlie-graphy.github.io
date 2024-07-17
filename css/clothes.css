@@ -20,8 +20,10 @@
 body{
 	height: 100%;
 	box-sizing:border-box;
+	background-color: red;
 }
 .cloth_content {
+	background-color: yellow;
 	font-family: 'GmarketSansMedium', HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
 	width: 70vw;
 	height: 100%;
