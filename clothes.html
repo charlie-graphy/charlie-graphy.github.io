@@ -6,7 +6,7 @@
 		<meta name="keywords" content="안지환"/>
 		<meta property="og:image" content="https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg">
 		<meta property="og:title" content="AHNJEEHWANY">
-		<meta property="og:description" content="배우 안지환 아카이브 사이트">
+		<meta property="og:description" content="아깨비 날개옷 입히기!">
 		<title>AHNJEEHWANY</title>
 		<link rel="icon" href="img/favicon_io/favicon.webp" type="image/x-icon">
 		<link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io/apple-touch-icon.png">
@@ -37,7 +37,7 @@
 						<img data-value = "Hair" class="chara_hair chara-parts" src="img/closet/hair_1.png" alt="머리">
 						<img data-value = "Clothes" class="chara_cloth chara-parts" src="img/closet/clothes_1.png" alt="옷">
 						<img data-value = "Accessory" class="chara_accessory chara-parts" src="img/closet/accessory_1.png" alt="액세서리">
-						<img data-value = "Background" class="chara_background chara-parts" src="img/closet/background_1.png" alt="액세서리">
+						<img data-value = "Background" class="chara_background chara-parts" src="img/closet/background_1.png" alt="배경">
 					</div>
 				</div>
 			</div>
@@ -55,7 +55,7 @@
 			    <div class="modal_popup howtoModal">
 			        <b>아깨비 날개옷 입히기!</b><br><br><br>
 			        <span class="howtoCont">
-			        	하단에 '머리', '눈', '입', '옷', '액세서리' 탭에서 원하는 오브젝트를 선택하세요.<br><br>
+			        	하단에 '머리', '눈', '입', '옷', '액세서리', '배경' 탭에서 원하는 오브젝트를 선택하세요.<br><br>
 						선택한 오브젝트대로 아깨비에게 날개옷을 입힐 수 있습니다!<br><br>
 						꾸민 모습을 저장하고 싶다면<br>
 						우측  상단에 '저장'을 누르고<br>
@@ -75,26 +75,26 @@
 <script>
 $(document).ready(function(){
 	//머리
-	for(var i = 1 ; i <=3 ; i++ ){
+	for(var i = 1 ; i <=15 ; i++ ){
 		$("div.choice").append($("<div>",{"class":"under groupHair"}).append($("<img>",{"src":"img/closet/hair_"+i+".png","alt":"헤어"})));
 	}
 	//눈
-	for(var i = 1 ; i <=6 ; i++ ){
+	for(var i = 1 ; i <=17 ; i++ ){
 		$("div.choice").append($("<div>",{"class":"under groupEyes"}).append($("<img>",{"src":"img/closet/eyes_"+i+".png","alt":"눈"})));
 	}
 	//입
-	for(var i = 1 ; i <=5 ; i++ ){
+	for(var i = 1 ; i <=20 ; i++ ){
 		$("div.choice").append($("<div>",{"class":"under groupMouth"}).append($("<img>",{"src":"img/closet/mouth_"+i+".png","alt":"입"})));
 	}
 	//옷
-	for(var i = 1 ; i <=3 ; i++ ){
+	for(var i = 1 ; i <=6 ; i++ ){
 		$("div.choice").append($("<div>",{"class":"under groupClothes"}).append($("<img>",{"src":"img/closet/clothes_"+i+".png","alt":"옷"})));
 	}
 	//액세사리
-	for(var i = 1 ; i <=1 ; i++ ){
+	for(var i = 1 ; i <=2 ; i++ ){
 		$("div.choice").append($("<div>",{"class":"under groupAccessory"}).append($("<img>",{"src":"img/closet/accessory_"+i+".png","alt":"액세사리"})));
 	}
-	//qㅐ경
+	//배경
 	for(var i = 1 ; i <=1 ; i++ ){
 		$("div.choice").append($("<div>",{"class":"under groupBackground"}).append($("<img>",{"src":"img/closet/background_"+i+".png","alt":"배경"})));
 	}
