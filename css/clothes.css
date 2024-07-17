@@ -187,7 +187,6 @@ a{
 	background-color: white;
 }
 .howtoModal{
-	word-break: break-all;
 	font-family: 'GmarketSansMedium', "Helvetica", "Andale Mono", times, serif;
 	display: inline-block;
 	vertical-align:middle;
