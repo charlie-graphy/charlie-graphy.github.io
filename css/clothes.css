@@ -202,6 +202,8 @@ a{
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and (max-width:767px){
 	.cloth_content{
+		position: relative;
+		top: -10px;
 		width: 100%;
 	}
 	.choice{
