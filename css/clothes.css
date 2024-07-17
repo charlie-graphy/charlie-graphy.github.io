@@ -193,7 +193,7 @@ a{
 	padding: 24px 16px;
 	width: 70%;
 	height: 30%;
-	background-color: rgba(255,255,255, 80%) !important;
+	background-color: rgba(255,255,255, 92%) !important;
 }
 .howtoCont{
 	word-break: keep-all;
@@ -201,7 +201,7 @@ a{
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and (max-width:767px){
 	.cloth_content{
-		width: 95vw;
+		width: 95%;
 	}
 	.choice{
 		height: 40vw;
@@ -228,6 +228,7 @@ a{
 		font-size: .7em;
 	}
 	body, html{
+		box-sizing: border-box;
 		overflow-x: hidden;
 		overflow-y: auto;
 	}
@@ -235,7 +236,7 @@ a{
 /* 탭 화면에서만 보이는 스타일 */
 @media only screen and (min-width:768px) and (max-width:1366px) {
 	.cloth_content{
-		width: 90vw;
+		width: 90%;
 	}
 	.imgDiv{
 		height: 66vh !important;
