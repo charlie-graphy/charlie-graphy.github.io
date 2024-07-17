@@ -18,12 +18,11 @@
 	font-weight: normal;
 }
 body{
+	overflow-x: hidden;
 	height: 100%;
 	box-sizing:border-box;
-	background-color: red;
 }
 .cloth_content {
-	background-color: yellow;
 	font-family: 'GmarketSansMedium', HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
 	width: 70vw;
 	height: 100%;
@@ -203,7 +202,7 @@ a{
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and (max-width:767px){
 	.cloth_content{
-		width: 95vw;
+		width: 92vw;
 	}
 	.choice{
 		height: 40vw;
