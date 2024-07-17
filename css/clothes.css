@@ -205,6 +205,7 @@ a{
 		width: 95%;
 	}
 	.choice{
+		width: 85vw;
 		height: 40vw;
 	}
 	.choice img{
@@ -255,7 +256,7 @@ a{
 		font-size: 1.1em !important;
 	}
 	.howtoModal{
-		height: 35%;
+		height: 38%;
 	}
 	.choice {
 		height: 18vh;
