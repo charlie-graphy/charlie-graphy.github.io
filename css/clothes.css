@@ -231,8 +231,7 @@ a{
 	}
 	body, html{
 		box-sizing: border-box;
-		overflow-x: hidden;
-		overflow-y: auto;
+		overflow: hidden;
 	}
 }
 /* 탭 화면에서만 보이는 스타일 */
