@@ -94,6 +94,17 @@ a{
 .choice .under{
     display: none;
 }
+.choice::-webkit-scrollbar {
+  width: 8px;  /* 스크롤바의 너비 */
+}
+.choice::-webkit-scrollbar-thumb {
+  height: 30%; /* 스크롤바의 길이 */
+  background: #6799FF; /* 스크롤바의 색상 */ 
+  border-radius: 10px;
+}
+.choice::-webkit-scrollbar-track {
+  background: rgba(33, 122, 244, .1);  /*스크롤바 뒷 배경 색상*/
+}
 .choice1 div.act, .choice1 div:hover{
     background-color: #bbe0fb;
 	border-bottom: none;
@@ -174,6 +185,7 @@ a{
 	background-color: white;
 }
 .howtoModal{
+	word-break: break-all;
 	font-family: 'GmarketSansMedium', "Helvetica", "Andale Mono", times, serif;
 	display: inline-block;
 	vertical-align:middle;
@@ -186,7 +198,7 @@ a{
 	word-break: keep-all;
 }
 /* 모바일 화면에서만 보이는 스타일 */
-@media only screen and ( max-width:767px){
+@media only screen and (max-width:767px){
 	.cloth_content{
 		width: 95vw;
 	}
