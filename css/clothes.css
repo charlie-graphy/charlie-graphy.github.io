@@ -17,7 +17,7 @@
 	font-style: normal;
 	font-weight: normal;
 }
-body{
+body, html{
 	overflow: hidden;
 	height: 100%;
 	box-sizing: border-box;
