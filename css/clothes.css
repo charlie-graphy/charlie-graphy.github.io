@@ -228,6 +228,7 @@ a{
 	}
 	.mainGo, .download{
 		font-size: .7em;
+		z-index: 99999;
 	}
 	body {
 		
