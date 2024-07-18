@@ -687,7 +687,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '<p class="event">자석 오프너 버튼 랜덤 1종 증정</p>김영운 役 | 유승현<br>최윤 役 | 안지환<br>초 役 | 박준휘<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
+					description: '<p class="event">자석 오프너 버튼 랜덤 1종 증정</p>김영운 役 | 유승현<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
 					start: '2024-07-20 19:00',
 					className: 'bg-red',
 					allDay: false
