@@ -81,7 +81,7 @@ a{
 	color: black;
 }
 .gameMain{
-	margin: 5 auto;
+	margin: 7 auto;
     cursor: pointer;
     font-size: .72em;
     text-align: center;
@@ -142,7 +142,7 @@ a{
 		width: 90vw;
 	}
 	.puzzleDiv{
-		padding-top: 6vh;
+		padding-top: 5vh;
 	}
 	.gameMain_content{
 		margin: -3vh auto; 
