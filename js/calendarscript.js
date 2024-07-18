@@ -673,7 +673,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '<p class="event">인터파크 피크닉 #4</p>김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 박준휘<br>정진명 役 | 김경록<br>이경신 役 | 임태현',
+					description: '<p class="event">인터파크 피크닉 #4</p>김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 김경록<br>이경신 役 | 임태현',
 					start: '2024-07-19 20:00',
 					className: 'bg-red',
 					allDay: false
