@@ -76,27 +76,27 @@
 $(document).ready(function(){
 	//머리
 	for(var i = 1 ; i <=15 ; i++ ){
-		$("div.choice").append($("<div>",{"class":"under groupHair"}).append($("<img>",{"src":"img/closet/hair_"+i+".png","alt":"헤어"})));
+		$("div.choice").append($("<div>",{"class":"under groupHair"}).append($("<img>",{"src":"img/closet/hair_"+i+".png","alt":"헤어",'oncontextmenu':'return false'})));
 	}
 	//눈
 	for(var i = 1 ; i <=20 ; i++ ){
-		$("div.choice").append($("<div>",{"class":"under groupEyes"}).append($("<img>",{"src":"img/closet/eyes_"+i+".png","alt":"눈"})));
+		$("div.choice").append($("<div>",{"class":"under groupEyes"}).append($("<img>",{"src":"img/closet/eyes_"+i+".png","alt":"눈",'oncontextmenu':'return false'})));
 	}
 	//입
 	for(var i = 1 ; i <=22 ; i++ ){
-		$("div.choice").append($("<div>",{"class":"under groupMouth"}).append($("<img>",{"src":"img/closet/mouth_"+i+".png","alt":"입"})));
+		$("div.choice").append($("<div>",{"class":"under groupMouth"}).append($("<img>",{"src":"img/closet/mouth_"+i+".png","alt":"입",'oncontextmenu':'return false'})));
 	}
 	//옷
 	for(var i = 1 ; i <=26 ; i++ ){
-		$("div.choice").append($("<div>",{"class":"under groupClothes"}).append($("<img>",{"src":"img/closet/clothes_"+i+".png","alt":"옷"})));
+		$("div.choice").append($("<div>",{"class":"under groupClothes"}).append($("<img>",{"src":"img/closet/clothes_"+i+".png","alt":"옷",'oncontextmenu':'return false'})));
 	}
 	//액세사리
 	for(var i = 1 ; i <=2 ; i++ ){
-		$("div.choice").append($("<div>",{"class":"under groupAccessory"}).append($("<img>",{"src":"img/closet/accessory_"+i+".png","alt":"액세사리"})));
+		$("div.choice").append($("<div>",{"class":"under groupAccessory"}).append($("<img>",{"src":"img/closet/accessory_"+i+".png","alt":"액세사리",'oncontextmenu':'return false'})));
 	}
 	//배경
 	for(var i = 1 ; i <=1 ; i++ ){
-		$("div.choice").append($("<div>",{"class":"under groupBackground"}).append($("<img>",{"src":"img/closet/background_"+i+".png","alt":"배경"})));
+		$("div.choice").append($("<div>",{"class":"under groupBackground"}).append($("<img>",{"src":"img/closet/background_"+i+".png","alt":"배경",'oncontextmenu':'return false'})));
 	}
 	$(".under.groupHair").show();
 
@@ -136,6 +136,10 @@ $(document).ready(function(){
 			link.download = new Date().getFullYear()+new Date().getMonth().toString().padStart(2,'0')+new Date().getDate()+"_"+'Jeehwany.png';
 			link.click();
 		});
+	});
+	$('.choice1').on('click','img', function(e){
+		e.preventDefault();
+		return false;
 	});
 });
 </script>
