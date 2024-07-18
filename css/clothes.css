@@ -71,6 +71,9 @@ a{
 	border-radius: 0 10px 0 0;
     padding: .5em 0;
 }
+.choice1 img{
+	-webkit-touch-callout:none;
+}
 .choice1 div:first-child{
 	border-left: 2px solid black;
 }
