@@ -137,6 +137,10 @@ $(document).ready(function(){
 			link.click();
 		});
 	});
+	$('.choice1').on('contextmenu','img', function(e){
+		e.preventDefault();
+		return false;
+	});
 	$('.choice1').on('click','img', function(e){
 		e.preventDefault();
 		return false;
