@@ -71,9 +71,6 @@ a{
 	border-radius: 0 10px 0 0;
     padding: .5em 0;
 }
-.choice1 img{
-	-webkit-touch-callout:none;
-}
 .choice1 div:first-child{
 	border-left: 2px solid black;
 }
@@ -192,6 +189,7 @@ a{
 	border: 1px solid black;
 	border-radius: 50%;
 	background-color: white;
+	-webkit-touch-callout:none;
 }
 .howtoModal{
 	font-family: 'GmarketSansMedium', "Helvetica", "Andale Mono", times, serif;
