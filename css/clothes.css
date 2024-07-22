@@ -166,25 +166,25 @@ a{
     border-radius: 30px;
 }
 .character_area img.chara_base {
-    z-index: 1;
+    z-index: 2;
 } 
 .character_area img.chara_eye {
-    z-index: 2;
-}  
-.character_area img.chara_mouth {
-    z-index: 2;
-}  
-.character_area img.chara_hair {
     z-index: 3;
 }  
-.character_area img.chara_cloth {
+.character_area img.chara_mouth {
+    z-index: 3;
+}  
+.character_area img.chara_hair {
     z-index: 4;
+}  
+.character_area img.chara_cloth {
+    z-index: 5;
 } 
 .character_area img.chara_accessory {
-    z-index: 4;
+    z-index: 5;
 }
 .character_area img.chara_background {
-    z-index: 0;
+    z-index: 1;
 }
 .choice img{
 	width: 60%;
