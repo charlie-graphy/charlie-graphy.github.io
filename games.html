@@ -20,8 +20,8 @@
 		<div class="mainHeader"><a href="https://jeehwany.com">AHNJEEHWANY</a></div>
 		<div class="gameMain_content">			
 			<div><a href="https://jeehwany.com/2048">지화니<br>2048</a></div>
-			<div><a href="#" class="hbd">아깨비<br>날개옷 입히기</a></div>
-			<div><a href="#" class="hbd">지화니<br>조각 퍼즐</a></div>
+			<div><a href="https://jeehwany.com/clothes">아깨비<br>날개옷 입히기</a></div>
+			<div><a href="https://jeehwany.com/puzzle">지화니<br>조각 퍼즐</a></div>
 		</div>
 		<!-- modal -->
 		<div class="modal">
@@ -40,8 +40,6 @@
 </html>
 <script>
 $(document).ready(function(){
-	const event = new Date(2024,6,23,0);
-	if(new Date() <= event) $('.gameMain_content a.hbd').css('color','darkgrey');
     
 	$('.gameMain_content div').on('mouseover', function() {
 		$('.gameMain_content div').removeClass('active');
@@ -50,21 +48,6 @@ $(document).ready(function(){
 
 	$('.gameMain_content div').on('mouseout', function() {
 		$('.gameMain_content div').removeClass('active');
-    });
-	
-
-	$('.gameMain_content a.hbd').on('click', function(e) {
-		if($(this).hasClass('hbd')){
-			if(new Date() <= event){
-				$('.modal').toggleClass('on');
-				setTimeout(function(){$('.modal').removeClass('on')}, 2000);
-			}else{
-				if($(this).parent('div').index() == 1) $(this).attr('href','https://jeehwany.com/clothes');
-				else $(this).attr('href','https://jeehwany.com/puzzle');
-				$(this).removeClass('hbd')
-				$(this).trigger('click');
-			}
-		}
     });
 
 	$(document).mouseup(function (e){
