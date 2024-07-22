@@ -1,0 +1,8 @@
+.tile,.answer {
+	height: 0;
+	padding-bottom: 100%;
+	grid-area: var(--area, auto);
+	border: none;
+	background: url('https://blog.kakaocdn.net/dn/IXtlk/btsIHHqIyXI/Ww3gUCa9K6YWOmIA5eN9q0/img.jpg');
+	background-size: 300%;
+}
