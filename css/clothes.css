@@ -164,6 +164,9 @@ a{
     width: 35vh;
     height: auto;
     border-radius: 30px;
+}
+.character_area img.chara_base {
+    z-index: 1;
 } 
 .character_area img.chara_eye {
     z-index: 2;
@@ -181,7 +184,7 @@ a{
     z-index: 4;
 }
 .character_area img.chara_background {
-    z-index: 1;
+    z-index: 0;
 }
 .choice img{
 	width: 60%;
