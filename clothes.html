@@ -130,12 +130,14 @@ $(document).ready(function(){
 	});
 	//사진저장
 	$('.download').on('click', function(){
+		$('.character_area img').addClass('save');
 		html2canvas($('.character_area')[0]).then(function (canvas){
 			var link = document.createElement('a');
 			link.href = canvas.toDataURL();
 			link.download = new Date().getFullYear()+new Date().getMonth().toString().padStart(2,'0')+new Date().getDate()+"_"+'Jeehwany.png';
 			link.click();
 		});
+		$('.character_area img').removeClass('save');
 	});
 	$('.choice').on('contextmenu, click','img', function(e){
 		e.preventDefault();
