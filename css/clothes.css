@@ -165,6 +165,9 @@ a{
     height: auto;
     border-radius: 30px;
 }
+.character_area img.save{
+    border-radius: 0;
+}
 .character_area img.chara_base {
     z-index: 2;
 } 
