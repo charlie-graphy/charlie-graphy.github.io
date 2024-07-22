@@ -129,13 +129,13 @@ a{
 #div_4 {
   grid-column: 2/4;
   grid-row: 3/4;
-  background-image: url("../img/hi.gif");
+  background-image: url("https://blog.kakaocdn.net/dn/1A1oy/btsIG3mBLT0/9KOpXuRRI0wFc5nuBhjPzK/img.gif");
 }
 
 #div_5 {
   grid-column: 2/3;
   grid-row: 2/3;
-  background-image: url("../img/baby.gif");
+  background-image: url("https://blog.kakaocdn.net/dn/yVJlY/btsIIzxR5Tu/V1nlWrcefC3GOruBGtTMSk/img.gif");
 }
 
 .footer {
