@@ -164,6 +164,7 @@ a{
     width: 35vh;
     height: auto;
     border-radius: 30px;
+	-webkit-touch-callout:none;
 }
 .character_area img.save{
     border-radius: 0;
