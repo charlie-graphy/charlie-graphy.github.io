@@ -16,7 +16,7 @@
 			header: {
 				left: 'prev',
 				center: 'title',
-				right: 'next'
+				right: 'today, next'
 			},
 			locale: 'ko',
 			events: [
