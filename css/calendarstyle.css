@@ -1402,8 +1402,8 @@ be a descendant of the grid when it is being dragged.
 
 
 .fc th.fc-day-header{
-    padding: 7px;
-    font-size: 16px;
+    padding: 5px;
+    font-size: 14px;
     font-weight: 400;
 }
 .fc-day.fc-today{
