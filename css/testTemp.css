@@ -1,0 +1,142 @@
+@font-face {
+	font-family: 'GmarketSansLight';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'GmarketSansMedium';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'GmarketSansBold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
+html, body {
+	font-family: 'GmarketSansMedium', "Helvetica", sans-serif !important;
+	text-align: center;
+	font-size: 20px;
+	background: white;
+	overflow: hidden;
+	display: flex;
+	align-items:flex-start;
+}
+.mainHeader a{
+	color: black;
+}
+.container {
+	width: 500px;
+	display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+	margin-top: 70px;
+    overflow: hidden;
+    letter-spacing: -1px;
+    font-size: 1.05rem;
+    line-height: 1.2rem;
+	border:1px solid #ddd;
+}
+.intro .titleCont {
+    height: 400px;
+    vertical-align: middle;
+}
+.intro .inputCont, .shareCont {
+	padding: 0;
+    height: 100%;
+    background-color: #fee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.intro input.name {
+	font-family: 'GmarketSansMedium', "Helvetica", sans-serif !important;
+    font-size: .9em;
+    text-align: center;
+	width: 85%;
+	height: 55px;
+	margin: 20px 20px 10px 20px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(237, 237, 237);
+}
+.intro input.name::placeholder {
+    text-align: center;
+}
+.intro button.start {
+	font-family: 'GmarketSansBold', "Helvetica", sans-serif !important;
+    font-size: 1em;
+    font-weight: bold;
+	width: 85%;
+	height: 55px;
+	margin: 10px;
+	border-radius: 6px;
+	border: none;
+	background: rgba(3,3,3,.1);
+	-webkit-transition: all 2s ease-in-out;
+	-moz-transition: all 2s ease-in-out;
+	-o-transition: all 2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	cursor: pointer;
+}
+.intro button.start:hover {
+  opacity: 0.7;
+}
+.intro .shareTitle {
+	width: 80%;
+	border-top: 1px solid #ddd;
+	margin: 20px;
+	padding: 18px;
+}
+.ing .titleText {
+	font-family: 'GmarketSansBold', "Helvetica", sans-serif !important;
+	position: relative;
+	margin: 15px 10px;
+}
+.ing .titleText a {
+	color: black;
+	cursor: pointer;
+	position: absolute;
+	left: 10;
+}
+.ing .progress{
+	margin: 18px 0;
+}
+.ing .progress .bar{
+	height: 0.25rem;
+	background-color: black;
+}
+.ing .imgCont {
+	height: 230px;
+	padding: 20px;
+}
+.ing .question {
+	height: 100px;
+	padding: 20px 10px 5px 10px;
+	border: 1px solid #ddd;
+}
+.ing .choose {
+	height: 350px;
+}
+.ing ul {
+	padding: 0 20px;
+}
+.ing li {
+	list-style: none;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ddd;
+	cursor: pointer;
+}
+/* 모바일 화면에서만 보이는 스타일 */
+@media only screen and ( max-width : 500px) {
+	.container {
+		width: 100%;
+    }
+}
