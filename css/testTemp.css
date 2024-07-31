@@ -98,7 +98,7 @@ html, body {
 .ing .titleText {
 	font-family: 'GmarketSansBold', "Helvetica", sans-serif !important;
 	position: relative;
-	margin: 15px 10px;
+	margin: 10px;
 }
 .ing .titleText a {
 	color: black;
@@ -107,18 +107,18 @@ html, body {
 	left: 10;
 }
 .ing .progress{
-	margin: 18px 0;
+	margin: 15px 0;
 }
 .ing .progress .bar{
 	height: 0.25rem;
 	background-color: black;
 }
 .ing .imgCont {
-	height: 180px;
-	padding: 20px;
+	height: 160px;
+	padding: 10px;
 }
 .ing .question {
-	height: 80px;
+	height: 60px;
 	padding: 20px 10px 5px 10px;
 	border: 1px solid #ddd;
 }
