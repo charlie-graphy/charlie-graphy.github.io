@@ -63,7 +63,7 @@
 let progress = 0;
 let name = "";
 let questionCont = ['1질문','2질문','3질문','4질문','5질문','6질문','7질문','8질문','9질문'];
-let chooseCont = [['1답','2답','3답','4답'],['1-2답','2-2답','3-2답','4-2답']];
+let chooseCont = [['1답','2답','3답'],['1-2답','2-2답','3-2답']];
 $(document).ready(function(){
 	$('.ing .question span').text(questionCont[progress]);
 	for(var i = 0 ; i < chooseCont[progress].length; i++){
@@ -89,9 +89,11 @@ $(document).ready(function(){
 	    }
 	    if(progress > 0 ) progress-=1;
 	});
+	//문항선택
 	$('.ing .choose ul').on('click', 'li', function(){
 		progress+=1;
-		showData(progress);
+		if(progress == questionCont.length) resultData();
+		else showData(progress);
 	});
 });
 function showData(idx){
@@ -101,5 +103,8 @@ function showData(idx){
 		$li = $('<li>',{'text':chooseCont[idx][i]});
 		$('.ing .choose ul').append($li);
 	}
+}
+function resultData(){
+	
 }
 </script>
