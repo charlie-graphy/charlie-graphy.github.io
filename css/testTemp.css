@@ -113,11 +113,11 @@ html, body {
 	background-color: black;
 }
 .ing .imgCont {
-	height: 200px;
+	height: 180px;
 	padding: 20px;
 }
 .ing .question {
-	height: 100px;
+	height: 80px;
 	padding: 20px 10px 5px 10px;
 	border: 1px solid #ddd;
 }
