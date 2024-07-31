@@ -33,7 +33,7 @@ html, body {
 	display: flex;
     flex-direction: column;
     margin: 0 auto;
-	margin-top: 70px;
+	margin-top: 50px;
     overflow: hidden;
     letter-spacing: -1px;
     font-size: 1.05rem;
@@ -41,7 +41,7 @@ html, body {
 	border:1px solid #ddd;
 }
 .intro .titleCont {
-    height: 400px;
+    height: 350px;
     vertical-align: middle;
 }
 .intro .inputCont, .shareCont {
@@ -113,7 +113,7 @@ html, body {
 	background-color: black;
 }
 .ing .imgCont {
-	height: 230px;
+	height: 200px;
 	padding: 20px;
 }
 .ing .question {
