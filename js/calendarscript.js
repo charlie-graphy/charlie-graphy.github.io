@@ -750,7 +750,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 김자철<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
+					description: '김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
 					start: '2024-08-08 20:00',
 					className: 'bg-red',
 					allDay: false
@@ -767,6 +767,76 @@
 					description: '<p class="event">마지막 공연</p>김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박선영<br>이경신 役 | 임태현',
 					start: '2024-08-11 14:00',
 					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '<p class="event">첫 공연(프리뷰)</p>알란 役 | 이상홍<br>폴 役 | 임주환<br>데이비 役 | 안지환',
+					start: '2024-09-28 18:30',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '<p class="event">프리뷰</p>알란 役 | 김수현<br>폴 役 | 김경남<br>데이비 役 | 안지환',
+					start: '2024-10-01 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 최영준<br>폴 役 | 김경남<br>데이비 役 | 안지환',
+					start: '2024-10-06 15:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 이상홍<br>폴 役 | 이동하<br>데이비 役 | 안지환',
+					start: '2024-10-09 18:30',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 김수현<br>폴 役 | 김경남<br>데이비 役 | 안지환',
+					start: '2024-10-11 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 이상홍<br>폴 役 | 임주환<br>데이비 役 | 안지환',
+					start: '2024-10-12 15:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 이상홍<br>폴 役 | 임주환<br>데이비 役 | 안지환',
+					start: '2024-10-16 16:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 최영준<br>폴 役 | 김경남<br>데이비 役 | 안지환',
+					start: '2024-10-16 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 김수현<br>폴 役 | 이동하<br>데이비 役 | 안지환',
+					start: '2024-10-18 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 최영준<br>폴 役 | 김경남<br>데이비 役 | 안지환',
+					start: '2024-10-19 18:30',
+					className: 'bg-purple',
 					allDay: false
 				}
 			],
