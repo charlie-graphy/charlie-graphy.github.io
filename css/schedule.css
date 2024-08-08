@@ -48,6 +48,9 @@ td.fc-sat, th.fc-sat {
 .bg-gray{
 	background-color: rgb(146, 148, 151, 0.2) !important;
 }
+.bg-purple{
+	background-color: rgb(146, 100, 217, 0.2) !important;
+}
 
 p.event{
 	font-size: .8em;
