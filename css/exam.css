@@ -1,0 +1,167 @@
+@font-face {
+	font-family: 'GmarketSansLight';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'GmarketSansMedium';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'GmarketSansBold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
+html, body {
+	font-family: 'GmarketSansMedium', "Helvetica", sans-serif !important;
+	text-align: center;
+	font-size: 20px;
+	background: white;
+	overflow: hidden;
+	display: flex;
+	align-items:flex-start;
+}
+.mainHeader a{
+	color: black;
+}
+.container {
+	width: 500px;
+	display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+	margin-top: 50px;
+    overflow: hidden;
+    letter-spacing: -1px;
+    font-size: 1.05rem;
+    line-height: 1.2rem;
+}
+article{
+	display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+	margin: auto;
+	height: 100%;
+	width: 100%;
+}
+article.intro {
+    align-items: center;
+}
+.title, .titleCont {
+	height: 180px;
+	-webkit-font-smoothing: antialiased;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.title .big {
+	font-size: 1.3em;
+	font-family: 'GmarketSansBold', "Helvetica", sans-serif !important;
+	color: #ffa205;
+	padding: 15;
+}
+.title .little {
+	font-size: 0.8em;
+	font-family: 'GmarketSansMedium', "Helvetica", sans-serif !important;
+}
+.titleCont {
+    height: 300px;
+}
+.intro .inputCont {
+	padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.intro input.name {
+	font-family: 'GmarketSansMedium', "Helvetica", sans-serif !important;
+    font-size: .9em;
+    text-align: center;
+	width: 100%;
+	height: 55px;
+	margin: 20px 20px 10px 20px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	border: 1px solid rgb(237, 237, 237);
+	background-color: rgb(237, 237, 237, 0.3);
+}
+.intro input.name::placeholder {
+    text-align: center;
+}
+button {
+	font-family: 'GmarketSansMedium', "Helvetica", sans-serif !important;
+    font-size: .8em;
+    color: white;
+	width: 85%;
+	height: 50px;
+	margin: 30px;
+	border-radius: 6px;
+	border: none;
+	background-color: #ffa205;
+	-webkit-transition: all 2s ease-in-out;
+	-moz-transition: all 2s ease-in-out;
+	-o-transition: all 2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	cursor: pointer;
+}
+button:hover, li:hover {
+  opacity: 0.7;
+}
+.titleText {
+	font-family: 'GmarketSansBold', "Helvetica", sans-serif !important;
+	position: relative;
+	margin: 10px;
+}
+.titleText a {
+	color: black;
+	cursor: pointer;
+	position: absolute;
+	left: 10;
+}
+.ing .progress{
+	margin: 15px 0;
+}
+.ing .progress .bar{
+	height: 0.25rem;
+	background-color: #ffa205;
+}
+.imgCont {
+	height: 160px;
+	padding: 10px;
+}
+.question {
+	height: 160px;
+	display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+.choose {
+	height: 350px;
+}
+.choose ul {
+	padding: 0 20px;
+}
+.choose li {
+	font-size: 0.9em;
+	list-style: none;
+	padding: 10px;
+	margin-bottom: 20px;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	cursor: pointer;
+}
+/* 모바일 화면에서만 보이는 스타일 */
+@media only screen and ( max-width : 500px) {
+	.container {
+		width: 100%;
+    }
+}
