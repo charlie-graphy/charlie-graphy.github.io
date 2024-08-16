@@ -49,6 +49,20 @@
 					<ul></ul>
 				</div>
 			</article>
+			<article class="result" style="display:none;">
+				<div class="titleCont">
+					결과 사진
+				</div>
+				<div class="question">
+					<span>결과 내용</span>
+				</div>
+				<div class="shareCont">
+					<div class="shareTitle"><span>공유하기</span></div>
+	    			<div class="shareBox">
+	    			
+	    			</div>
+				</div>
+			</article>
 		</div>
 	    
 		<footer class="footer">
@@ -105,6 +119,7 @@ function showData(idx){
 	}
 }
 function resultData(){
-	
+    $("article.ing").hide();
+    $("article.result").show();
 }
 </script>
