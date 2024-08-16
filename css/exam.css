@@ -58,6 +58,9 @@ article.intro {
 	align-items: center;
 	flex-direction: column;
 }
+.titleCont {
+	height: 120px;
+}
 .title .big {
 	font-size: 1.3em;
 	font-family: 'GmarketSansBold', "Helvetica", sans-serif !important;
@@ -83,7 +86,7 @@ article.intro {
 	font-family: 'GmarketSansMedium', "Helvetica", sans-serif !important;
     font-size: .9em;
     text-align: center;
-	width: 100%;
+	width: 85%;
 	height: 55px;
 	margin: 20px 20px 10px 20px;
 	border: 0;
