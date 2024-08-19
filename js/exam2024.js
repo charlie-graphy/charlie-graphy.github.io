@@ -109,7 +109,7 @@ $(document).ready(function(){
         var twitterUrl = 'https://x.com/intent/post?url='+url+'&text='+text;
 
         // 새로운 창으로 트위터 공유 링크를 엽니다.
-        window.open(twitterUrl, '_blank');
+        window.open(twitterUrl);
 	});
 	
 	//URL 공유
