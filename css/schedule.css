@@ -16,8 +16,7 @@ a{
 	text-decoration-line: none;
 }
 .fc-row.fc-week.table-bordered tr{
-	height: 2em;
-	
+	height: 1em;
 }
 .fc-event-container {
 	cursor: pointer !important;
