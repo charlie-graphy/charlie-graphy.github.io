@@ -90,7 +90,7 @@ article.intro, article.result {
 	font-size: 0.8em;
 	font-family: 'GmarketSansMedium', "Helvetica", sans-serif !important;
 }
-.titleCont {
+.titleCont, .resultImgCont {
     height: 300px;
 }
 .resultCont {
