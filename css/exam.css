@@ -189,7 +189,7 @@ button:hover, li:hover {
 }
 .shareBox i{
 	color: black;
-	font-size: 2.5em;
+	font-size: 1.3em;
 }
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 500px) {
