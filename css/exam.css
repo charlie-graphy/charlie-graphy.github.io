@@ -61,6 +61,7 @@ article{
 }
 article.loading {
 	margin-top: 50%;
+	width: 70%;
 }
 article.intro, article.result {
     align-items: center;
