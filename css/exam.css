@@ -59,19 +59,22 @@ article{
 	height: 100%;
 	width: 100%;
 }
-article.intro {
+article.loading {
+	margin-top: 50%;
+}
+article.intro, article.result {
     align-items: center;
 }
-.title, .titleCont {
+.loading h3{
+	color: #ffa205;
+}
+.title, .titleCont, .resultImgCont, .resultCont {
 	height: 130px;
 	-webkit-font-smoothing: antialiased;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-}
-.titleCont {
-	height: 100px;
 }
 .title .big {
 	font-size: 1.3em;
@@ -172,6 +175,21 @@ button:hover, li:hover {
 	border: 1px solid #ddd;
 	border-radius: 6px;
 	cursor: pointer;
+}
+.shareCont {
+	border-top: 5px solid #ffd793;
+	padding: 20;
+	width: 80%;
+}
+.shareBox {
+	margin: 20;
+}
+.shareBox a{
+	margin-right: 15;
+}
+.shareBox i{
+	color: black;
+	font-size: 2.5em;
 }
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 500px) {
