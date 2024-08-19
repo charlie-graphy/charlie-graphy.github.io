@@ -102,5 +102,19 @@ function showIngData(idx){
 }
 function resultData(){
     $("article.ing").hide();
-    $("article.result").show();
+    $("article.loading").show();
+    var counter = 0;
+    var c = 0;
+    var i = setInterval(function(){
+	      $(".loading .counter h3").html(c + "%");
+	      $(".loading .counter hr").css("width", c + "%");
+	    counter++;
+	    c++;
+	    if(counter == 101) {
+	        clearInterval(i);
+	        $('.loading').fadeOut("slow", function(){
+	        	$("article.result").fadeIn();
+	        });
+	    }
+	  }, 10);
 }
