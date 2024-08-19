@@ -31,7 +31,7 @@ body::-webkit-scrollbar {
 }
 body::-webkit-scrollbar-thumb {
   height: 30%; /* 스크롤바의 길이 */
-  background: #ffa205; /* 스크롤바의 색상 */ 
+  background: #ffd793; /* 스크롤바의 색상 */ 
   border-radius: 10px;
 }
 body::-webkit-scrollbar-track {
@@ -46,14 +46,14 @@ body::-webkit-scrollbar-track {
 	display: flex;
     flex-direction: column;
     margin: 0 auto;
-	margin-top: 50px;
+	margin-top: 60px;
     letter-spacing: -1px;
     font-size: 1.05rem;
     line-height: 1.2rem;
 }
 article{
 	display: flex;
-    justify-content: space-around;
+    justify-content: start;
     flex-direction: column;
 	margin: auto;
 	height: 100%;
