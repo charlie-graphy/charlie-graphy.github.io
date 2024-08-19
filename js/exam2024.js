@@ -20,6 +20,7 @@ $(document).ready(function(){
 	    $("article.intro").hide();
 	    $("article.ready").show();
 	    
+	    $("html, body").css('overflow','hidden');
 	    $('.ready .choose ul').empty();
 		for(var i = 0 ; i < groupCont.length; i++){
 			$li = $('<li>',{'text':groupCont[i]});
@@ -37,6 +38,8 @@ $(document).ready(function(){
 	$('.ready a.back').on('click', function(){
 		$("article.intro").show();
 		$("article.ready").hide();
+		$("html, body").css('overflow-x','hidden');
+		$("html, body").css('overflow-y','auto');
 	});
 	$('.ing a.back').on('click', function(){
 	    if(progress == 0){
