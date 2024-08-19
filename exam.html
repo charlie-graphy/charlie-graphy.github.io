@@ -25,8 +25,9 @@
 		<div class="container">
 			<article class="loading">
 				<div class="counter">
-					<h3>0%</h3>
+					<h3>로딩중</h3>
 					<hr>
+					<span></span>
 				</div>
 			</article>
 			<article class="intro" style="display:none;">
@@ -67,16 +68,25 @@
 				</div>
 				<div class="resultCont">
 					<div class="titleText"><span>100점</span></div>
+					<button class="start">해설지 보기</button>
+					<button class="return"><i class="bi bi-arrow-counterclockwise"></i>&nbsp;&nbsp;&nbsp;다시하기</button>
 				</div>
 				<div class="shareCont">
-					<div class="shareTitle"><span>공유하기</span></div>
+					<div class="shareTitle"><span>결과 공유하기</span></div>
 	    			<div class="shareBox">
-	    				 <a href='#'><i class="bi bi-facebook"></i></a>
-	    				 <a href='#'><i class="bi bi-twitter-x"></i></a>
-	    				 <a href='#'><i class="bi bi-link-45deg"></i></a>
+	    				 <a href='#' class="fbCopy"><i class="bi bi-facebook"></i></a>
+	    				 <a href='#' class="xCopy"><i class="bi bi-twitter-x"></i></a>
+	    				 <a href='#' class="urlCopy"><i class="bi bi-link-45deg"></i></a>
 	    			</div>
 				</div>
 			</article>
+			<div class="modal">
+			    <div class="modal_popup" style="text-align:center;">
+			        <span class="howtoCont" style="font-size:.8em;">
+			        	복사되었습니다.
+			        </span>
+			    </div>
+			</div>
 		</div>
 	</body>	
 </html>
