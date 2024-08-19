@@ -201,6 +201,19 @@ button:hover, li:hover {
 	color: black;
 	font-size: 1.5em;
 }
+.result .titleText{
+	padding-bottom: 20;
+	border-bottom: 5px solid #ffd793;
+}
+.titleText .rstInfo{
+	font-family: 'GmarketSansMedium', "Helvetica", sans-serif !important;
+	font-size: .8em;
+	margin-bottom: 20;
+}
+.titleText .score{
+	font-size: 1.5em;
+	color: #ffa205;
+}
 /*모달 팝업 영역 스타일링*/
 .modal {
 /*팝업 배경*/
