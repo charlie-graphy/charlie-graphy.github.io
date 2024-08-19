@@ -1,10 +1,12 @@
 let group = 0,
 	progress = 0,
 	name = "",
-	groupCont = ['싱클레어','토루','최윤','데이비','안지환'],
+	answerlist = [];
+const groupCont = ['싱클레어','토루','최윤','데이비','안지환'],
 	questionCont = [['싱1질문','2질문','3질문','4질문'],['토1질문','2질문']],
 	chooseCont = [[['싱1답','2답','3답','4답'],['1-2답','2-2답','3-2답'],['싱1답','2답','3답','4답'],['1-2답','2-2답','3-2답']]
-				,[['토1답','2답','3답','4답'],['1-2답','2-2답','3-2답']]];
+				,[['토1답','2답','3답','4답'],['1-2답','2-2답','3-2답']]],
+	answerCont = [[1,2,3,4],[1,2]];
 
 $(document).ready(function(){
 	  // loading page
@@ -30,9 +32,10 @@ $(document).ready(function(){
 	});
 	//시작하기
 	$('button.start').on('click', function(){
-		name = $('.inputCont').val();
+		name = $('.inputCont .name').val();
 		/*if(name == ""){
-			alert("이름을 입력해주세요.");
+		  	$('.howtoCont').text("이름을 입력해주세요.");
+			$('.modal').fadeIn(400).delay(400).fadeOut(400);
 			return false;
 		}*/
 	    $("article.intro").fadeOut("fast", function(){
@@ -73,6 +76,7 @@ $(document).ready(function(){
 	});
 	$('.ing a.back').on('click', function(){
 		$('.ing .choose ul').empty();
+		answerlist.pop();
 	    if(progress == 0){
 		    $("article.ing").fadeOut("fast", function(){
 			    $("article.ready").fadeIn();
@@ -88,6 +92,7 @@ $(document).ready(function(){
 	$('.ing .choose ul').on('click', 'li', function(){
 		progress+=1;
 		$('.progress .bar').css('width',(progress+1)*10+'%');
+		answerlist.push($(this).index()+1);
 		if(progress == questionCont[group].length) resultData();
 		else showIngData(progress);
 	});
@@ -143,8 +148,18 @@ function showIngData(idx){
 	}
 }
 function resultData(){
+	let score = 100;
     $("article.ing").hide();
     $("article.loading").show();
+    
+    
+    //채점
+    for(var j = 0 ; j < answerlist.length ; j++){
+    	if(answerCont[group][j] != answerlist[j]) score-=10;
+    }
+
+    $('.rstName').text(name);
+    $('.score').text(score+"점");
     var counter = 0;
     var c = 0;
     var i = setInterval(function(){
@@ -156,6 +171,8 @@ function resultData(){
 	    if(counter == 101) {
 	        clearInterval(i);
 	        $('.loading').fadeOut("slow", function(){
+	    		$("html, body").css('overflow-x','hidden');
+	    		$("html, body").css('overflow-y','auto');
 	        	$("article.result").fadeIn();
 	        });
 	    }
