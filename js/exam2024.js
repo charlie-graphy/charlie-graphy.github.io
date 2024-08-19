@@ -11,7 +11,7 @@ $(document).ready(function(){
 	  var counter = 0;
 	  var c = 0;
 	  var i = setInterval(function(){
-	      $(".loading .counter h3").html(c + "%");
+	      $(".loading .counter span").html(c + "%");
 	      $(".loading .counter hr").css("width", c + "%");
 	    counter++;
 	    c++;
@@ -91,6 +91,48 @@ $(document).ready(function(){
 		if(progress == questionCont[group].length) resultData();
 		else showIngData(progress);
 	});
+	
+
+	//페이스북 공유
+	$('.result .fbCopy').on('click', function(){
+		
+	});
+	
+	//x 공유
+	$('.result .xCopy').on('click', function(){
+		//현재 페이지의 URL을 가져옵니다.
+        var url = encodeURIComponent("https://www.jeehwany.com/exam");
+        var text = encodeURIComponent($('.ing .titleText').text().substring(1)+" - "+name+"님의 점수는 "+"점"); //텍스트
+        //var hashtags = '&hashtags='+encodeURIComponent("example,webdevelopment"); // 해시태그 설정
+
+        // 트위터 공유 URL을 생성합니다.
+        var twitterUrl = 'https://x.com/intent/post?url='+url+'&text='+text;
+
+        // 새로운 창으로 트위터 공유 링크를 엽니다.
+        window.open(twitterUrl, '_blank');
+	});
+	
+	//URL 공유
+	$('.result .urlCopy').on('click', function(){
+		//Clipboard API를 사용하여 현재 URL 복사
+        navigator.clipboard.writeText("https://www.jeehwany.com/exam")
+        .then(function() {
+        	$('.howtoCont').text('URL이 복사되었습니다.');
+        }).catch(function() {
+        	$('.howtoCont').text('URL 복사에 실패했습니다.');
+        });
+		$('.modal').fadeIn(400).delay(400).fadeOut(400);
+	});
+	
+	//다시하기
+	$('.result .return').on('click', function(){
+		progress = 0
+		$('.progress .bar').css('width','10%');
+		$('.ing .choose ul').empty();
+		$("article.result").fadeOut("fast", function(){
+		    $("article.intro").fadeIn();
+        });
+	});
 });
 function showIngData(idx){
 	$('.ing .choose ul').empty();
@@ -106,7 +148,8 @@ function resultData(){
     var counter = 0;
     var c = 0;
     var i = setInterval(function(){
-	      $(".loading .counter h3").html(c + "%");
+	      $(".loading .counter h3").text("채점중");
+	      $(".loading .counter span").html(c + "%");
 	      $(".loading .counter hr").css("width", c + "%");
 	    counter++;
 	    c++;
