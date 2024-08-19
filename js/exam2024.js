@@ -39,7 +39,7 @@ $(document).ready(function(){
 		    $("article.ready").fadeIn();
         });
 	    
-	    $("html, body").scrollTop(0)
+	    $(window).scrollTop(0);
 	    $("html, body").css('overflow','hidden');
 	    $('.ready .choose ul').empty();
 		for(var i = 0 ; i < groupCont.length; i++){
