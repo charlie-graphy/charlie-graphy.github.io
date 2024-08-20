@@ -30,7 +30,7 @@ $(document).ready(function(){
 				else{
 					$('.rstName').text(name);
 				    $('.score').text(score+"점");
-				    url = "https://www.jeehwany.com/exam?name="+name+"&score="+score);
+				    url = "https://www.jeehwany.com/exam?name="+name+"&score="+score;
 		        	$("article.result").fadeIn();
 				}
 			});
