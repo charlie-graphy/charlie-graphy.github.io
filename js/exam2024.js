@@ -54,8 +54,6 @@ $(document).ready(function(){
 		    $("article.ready").fadeIn();
         });
 	    
-	    $(window).scrollTop(0);
-	    $("html, body").css('overflow','hidden');
 	    $('.ready .choose ul').empty();
 		for(var i = 0 ; i < groupCont.length; i++){
 			$li = $('<li>',{'text':groupCont[i]});
@@ -83,8 +81,6 @@ $(document).ready(function(){
 		$("article.ready").fadeOut("fast", function(){
 			$("article.intro").fadeIn();
         });
-		$("html, body").css('overflow-x','hidden');
-		$("html, body").css('overflow-y','auto');
 	});
 	$('.ing a.back').on('click', function(){
 		$('.ing .choose ul').empty();
@@ -112,13 +108,15 @@ $(document).ready(function(){
 
 	//페이스북 공유
 	$('.result .fbCopy').on('click', function(){
-		
+		const text = encodeURIComponent($('.ing .titleText').text().substring(1)+" - "+name+"님의 점수는 "+$('.score').text());
+		var facebookUrl = `https://www.facebook.com/sharer/sharer.php?t=`+text+`&u=`+encodeURIComponent(url);
+
+        window.open(facebookUrl, '_blank', 'width=600,height=400');
 	});
 	
 	//x 공유
 	$('.result .xCopy').on('click', function(){
 		const text = encodeURIComponent($('.ing .titleText').text().substring(1)+" - "+name+"님의 점수는 "+$('.score').text());
-        //var hashtags = '&hashtags='+encodeURIComponent("example,webdevelopment"); // 해시태그
         const twitterUrl = `https://x.com/intent/post?text=`+text+`&url=`+encodeURIComponent(url);
 
         window.open(twitterUrl, '_blank');
@@ -148,6 +146,8 @@ $(document).ready(function(){
 		$('.ing .choose ul').empty();
 		$('.inputCont input.name').val('');
 		$("article.result").fadeOut("fast", function(){
+			$("html, body").css('overflow','hidden');
+			$(window).scrollTop(0);
 		    $("article.intro").fadeIn();
         });
 	});
