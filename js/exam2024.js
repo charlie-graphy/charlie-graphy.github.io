@@ -1,29 +1,41 @@
 let group = 0,
-	progress = 0,
+	progress = 0
+	score = 100,
 	name = "",
-	answerlist = [];
+	answerlist = [],
+	url = "";
 const groupCont = ['싱클레어','토루','최윤','데이비','안지환'],
 	questionCont = [['싱1질문','2질문','3질문','4질문'],['토1질문','2질문']],
 	chooseCont = [[['싱1답','2답','3답','4답'],['1-2답','2-2답','3-2답'],['싱1답','2답','3답','4답'],['1-2답','2-2답','3-2답']]
 				,[['토1답','2답','3답','4답'],['1-2답','2-2답','3-2답']]],
 	answerCont = [[1,2,3,4],[1,2]];
+const urlParams = new URL(location.href).searchParams;
 
 $(document).ready(function(){
-	  // loading page
-	  var counter = 0;
-	  var c = 0;
-	  var i = setInterval(function(){
-	      $(".loading .counter span").html(c + "%");
-	      $(".loading .counter hr").css("width", c + "%");
-	    counter++;
-	    c++;
-	    if(counter == 101) {
-	        clearInterval(i);
-	        $('.loading').fadeOut("fast", function(){
-		        $('.intro').fadeIn();
-	        });
-	    }
-	  }, 10);
+	name = urlParams.get('name');
+	score = urlParams.get('score');
+	
+	// loading page
+	var counter = 0;
+	var c = 0;
+	var i = setInterval(function(){
+		$(".loading .counter span").html(c + "%");
+		$(".loading .counter hr").css("width", c + "%");
+		counter++;
+		c++;
+		if(counter == 101) {
+			clearInterval(i);
+			$('.loading').fadeOut("fast", function(){
+				if(name == "" || name == null) $('.intro').fadeIn();
+				else{
+					$('.rstName').text(name);
+				    $('.score').text(score+"점");
+				    url = "https://www.jeehwany.com/exam?name="+name+"&score="+score);
+		        	$("article.result").fadeIn();
+				}
+			});
+		}
+	}, 10);
 	  
 	$('.inputCont input.name').on('input', function(){
 	    var value = $(this).val();
@@ -105,10 +117,9 @@ $(document).ready(function(){
 	
 	//x 공유
 	$('.result .xCopy').on('click', function(){
-		const url = encodeURIComponent("https://www.jeehwany.com/exam");
-        const text = encodeURIComponent($('.ing .titleText').text().substring(1)+" - "+name+"님의 점수는 "+$('.score').text());
+		const text = encodeURIComponent($('.ing .titleText').text().substring(1)+" - "+name+"님의 점수는 "+$('.score').text());
         //var hashtags = '&hashtags='+encodeURIComponent("example,webdevelopment"); // 해시태그
-        const twitterUrl = `https://x.com/intent/post?text=`+text+`&url=`+url;
+        const twitterUrl = `https://x.com/intent/post?text=`+text+`&url=`+encodeURIComponent(url);
 
         window.open(twitterUrl, '_blank');
 	});
@@ -120,7 +131,7 @@ $(document).ready(function(){
 	
 	//URL 공유
 	$('.result .urlCopy').on('click', function(){
-        navigator.clipboard.writeText("https://www.jeehwany.com/exam")
+        navigator.clipboard.writeText(url)
         .then(function() {
         	$('.howtoCont').text('URL이 복사되었습니다.');
         }).catch(function() {
@@ -150,7 +161,7 @@ function showIngData(idx){
 	}
 }
 function resultData(){
-	let score = 100;
+	score = 100;
     $("article.ing").hide();
     $("article.loading").show();
     
@@ -161,6 +172,8 @@ function resultData(){
 
     $('.rstName').text(name);
     $('.score').text(score+"점");
+    url = "https://www.jeehwany.com/exam?name="+name+"&score="+$('.score').text().substring(0,$('.score').text().length-1);
+    
     var counter = 0;
     var c = 0;
     var i = setInterval(function(){
