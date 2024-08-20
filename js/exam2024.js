@@ -19,7 +19,7 @@ $(document).ready(function(){
 	    c++;
 	    if(counter == 101) {
 	        clearInterval(i);
-	        $('.loading').fadeOut("slow", function(){
+	        $('.loading').fadeOut("fast", function(){
 		        $('.intro').fadeIn();
 	        });
 	    }
@@ -131,9 +131,11 @@ $(document).ready(function(){
 	
 	//다시하기
 	$('.result .return').on('click', function(){
-		progress = 0
+		progress = 0;
+		answerlist = [];
 		$('.progress .bar').css('width','10%');
 		$('.ing .choose ul').empty();
+		$('.inputCont input.name').val('');
 		$("article.result").fadeOut("fast", function(){
 		    $("article.intro").fadeIn();
         });
@@ -151,7 +153,6 @@ function resultData(){
 	let score = 100;
     $("article.ing").hide();
     $("article.loading").show();
-    
     
     //채점
     for(var j = 0 ; j < answerlist.length ; j++){
