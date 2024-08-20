@@ -26,7 +26,7 @@ $(document).ready(function(){
 		if(counter == 101) {
 			clearInterval(i);
 			$('.loading').fadeOut("fast", function(){
-				if(name == "" || name == null) $('.intro').fadeIn();
+				if(name == "" || name == 'null') $('.intro').fadeIn();
 				else{
 					$('.rstName').text(name);
 				    $('.score').text(score+"점");
