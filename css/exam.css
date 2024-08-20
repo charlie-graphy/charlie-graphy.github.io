@@ -100,6 +100,9 @@ article.intro, article.result {
 .resultCont button{
 	margin-bottom: 5;
 }
+.resultCont .return{
+	margin-bottom: 15;
+}
 .intro .inputCont {
 	padding: 0;
     display: flex;
@@ -235,7 +238,7 @@ button:hover, li:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 20px;
+    padding: 20 10;
     border-radius: 20px;
     background: rgba(255,255,255,1);
 }
