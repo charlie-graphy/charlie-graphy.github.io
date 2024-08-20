@@ -105,21 +105,21 @@ $(document).ready(function(){
 	
 	//x 공유
 	$('.result .xCopy').on('click', function(){
-		//현재 페이지의 URL을 가져옵니다.
-        var url = encodeURIComponent("https://www.jeehwany.com/exam");
-        var text = encodeURIComponent($('.ing .titleText').text().substring(1)+" - "+name+"님의 점수는 "+"점"); //텍스트
-        //var hashtags = '&hashtags='+encodeURIComponent("example,webdevelopment"); // 해시태그 설정
+		const url = encodeURIComponent("https://www.jeehwany.com/exam");
+        const text = encodeURIComponent($('.ing .titleText').text().substring(1)+" - "+name+"님의 점수는 "+$('.score').text());
+        //var hashtags = '&hashtags='+encodeURIComponent("example,webdevelopment"); // 해시태그
+        const twitterUrl = `https://x.com/intent/post?text=`+text+`&url=`+url;
 
-        // 트위터 공유 URL을 생성합니다.
-        var twitterUrl = 'https://x.com/intent/post?url='+url+'&text='+text;
+        window.open(twitterUrl, '_blank');
+	});
 
-        // 새로운 창으로 트위터 공유 링크를 엽니다.
-        window.open(twitterUrl);
+	//카카오톡 공유
+	$('.result .ktCopy').on('click', function(){
+		
 	});
 	
 	//URL 공유
 	$('.result .urlCopy').on('click', function(){
-		//Clipboard API를 사용하여 현재 URL 복사
         navigator.clipboard.writeText("https://www.jeehwany.com/exam")
         .then(function() {
         	$('.howtoCont').text('URL이 복사되었습니다.');
