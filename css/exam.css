@@ -321,6 +321,14 @@ button:hover, li:hover {
 .divLayer .divExam ul li.bold{
 	font-weight: bold;
 }
+.divLayer .divExam ul li.comment{
+	margin: 6px 0;
+    padding: 10 7;
+    font-size: .85em;
+    background-color: rgb(177 177 177 / 15%);
+    border: 1px solid rgb(177 177 177 / 60%);
+    border-radius: 10px;
+}
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 500px) {
 	.container {
