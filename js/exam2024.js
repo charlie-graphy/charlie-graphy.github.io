@@ -138,6 +138,38 @@ $(document).ready(function(){
 		$('.modal').fadeIn(400).delay(400).fadeOut(400);
 	});
 	
+	//해설지보기
+	$('.result .review').on('click', function(){
+		$('.divExamTt').text('2024 지환고사 : '+groupCont[group]+'영역 해설지');
+		$('.divExam').empty();
+		
+		for(var i = 0 ; i < questionCont[group].length ; i++){
+			$('.divExam').append($('<div>',{'text':(i+1)+'. '+questionCont[group][i]}));
+			var $ul = $('<ul>');
+			for(var j = 0 ; j < chooseCont[group][i].length; j++){
+				$ul.append($('<li>',{'text':(j+1)+'. '+chooseCont[group][i][j]}));
+			}
+			$('.divExam').append($ul);
+		}
+		
+		for(var i = 0 ; i < answerCont[group].length ; i++){
+			$('.divExam ul:eq('+i+')').find('li').eq(answerCont[group][i]-1).addClass('bold');
+		}
+		
+		$('.divLayer').show();
+		setTimeout(() => {
+			$(".layerCont").css({
+				'transform':'translateY(0)',
+				'transition':'all ease .2s'
+			});
+		}, 10);
+	});
+	//해설지닫기
+	$('.result .b_handle').on('click', function(){
+		$('.divLayer').hide();
+		$(".layerCont").css({'transform':'translateY(100%)'});
+	});
+	
 	//다시하기
 	$('.result .return').on('click', function(){
 		progress = 0;
