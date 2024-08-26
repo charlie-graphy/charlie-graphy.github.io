@@ -18,26 +18,26 @@
 }
 html, body {
 	font-family: 'GmarketSansMedium', "Helvetica", sans-serif !important;
-  text-align: center;
-  font-size: 20px;
-  background: black;
-  display: grid;
-  place-content: center;
-  min-width: 100vw;
-  min-height: 100vh;
+	text-align: center;
+	font-size: 20px;
+	background: black;
+	display: grid;
+	place-content: center;
+	min-width: 100vw;
+	min-height: 100vh;
 }
 .blind{
 	display:none;
 }
 .mainHeader {
 	font-family: 'GmarketSansBold', 'GmarketSansMedium', "Helvetica" !important;
-  text-align: center;
-  position: fixed;
-  top: 0px;
+	text-align: center;
+	position: fixed;
+	top: 0px;
 	padding-top: 20px;
 	width: 100% !important;
 	z-index: 999999;
-  font-size: 1em;
+	font-size: 1em;
 }
 .mainHeader a{
   text-align: center;
@@ -181,6 +181,60 @@ a{
   	color: white;
 }
 
+ /* 모달 오버레이 스타일 */
+.modal-overlay {
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none; /* 기본적으로 숨김 */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* 모달 콘텐츠 스타일 */
+.modal-content {
+	background: #fff;
+    padding: 20px;
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
+}
+
+/* 이미지 스타일 */
+.modal-content img {
+	width: 100%;
+	height: auto;
+    display: block;
+}
+
+/* 닫기 버튼 스타일 */
+.close-btn, .close-today-btn {
+	font-family: 'GmarketSansMedium', "Helvetica" !important;
+	margin-top: 10px;
+	padding: 8;
+	border: 1px solid #9b9b9b;
+	cursor: pointer;
+	border-radius: 4px;
+	font-size: .65em;
+	background-color: #fff;
+}
+
+/* 'X' 버튼 스타일 */
+.close-x {
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	background: transparent;
+	border: none;
+	font-size: 20px;
+	cursor: pointer;
+}
+        
 @media (orientation: landscape) {
   #content {
     width: 80vh;
@@ -198,5 +252,9 @@ a{
   }
   .info_content{
 	font-size: 0.6em;
+  }
+  .modal-content {
+  	width: 50%;
+  	height: auto;
   }
 }
