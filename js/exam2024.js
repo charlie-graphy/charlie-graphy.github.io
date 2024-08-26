@@ -122,7 +122,7 @@ $(document).ready(function(){
 		const text = encodeURIComponent($('.ing .titleText').text().substring(1)+" - "+name+"님의 점수는 "+$('.score').text());
         const xUrl = `https://x.com/intent/post?text=`+text+`&url=`+encodeURIComponent(url);
 
-        window.location.replace(xUrl);
+        window.open(xUrl, '_blank');
 	});
 
 	//카카오톡 공유
@@ -167,10 +167,13 @@ $(document).ready(function(){
 				'transition':'all ease .2s'
 			});
 		}, 10);
+		$("html, body").css('overflow','hidden');
 	});
 	//해설지닫기
 	$('.result .b_handle').on('click', function(e){
 		e.preventDefault();
+		$("html, body").css('overflow-x','hidden');
+		$("html, body").css('overflow-y','auto');
 		$('.divLayer').hide();
 		$(".layerCont").css({'transform':'translateY(100%)'});
 	});
