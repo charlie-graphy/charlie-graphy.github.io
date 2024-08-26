@@ -13,6 +13,7 @@ const groupCont = ['싱클레어','토루','최윤','데이비','안지환'],
 const urlParams = new URL(location.href).searchParams;
 
 $(document).ready(function(){
+	group = urlParams.get('group');
 	name = urlParams.get('name');
 	score = urlParams.get('score');
 	$(window).scrollTop(0);
@@ -32,7 +33,7 @@ $(document).ready(function(){
 				else{
 					$('.rstName').text(name);
 				    $('.score').text(score+"점");
-				    url = "https://www.jeehwany.com/exam?name="+name+"&score="+score;
+				    url = "https://www.jeehwany.com/exam?group="+group+"&name="+name+"&score="+score;
 		        	$("article.result").fadeIn();
 				}
 			});
@@ -212,7 +213,7 @@ function resultData(){
 
     $('.rstName').text(name);
     $('.score').text(score+"점");
-    url = "https://www.jeehwany.com/exam?name="+name+"&score="+$('.score').text().substring(0,$('.score').text().length-1);
+    url = "https://www.jeehwany.com/exam?group="+group+"&name="+name+"&score="+$('.score').text().substring(0,$('.score').text().length-1);
     
     var counter = 0;
     var c = 0;
