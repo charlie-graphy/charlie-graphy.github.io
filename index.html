@@ -15,6 +15,7 @@
 		<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css'>
 		<link rel="stylesheet" type="text/css" href="css/layout.css"/>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+		<script type="text/javascript" src="js/index.js?v0"></script>
 	</head>
 	<body>
 		<div class="mainHeader"><a href="https://jeehwany.com">AHNJEEHWANY</a></div>
@@ -26,10 +27,22 @@
 			<div id="div_4"><a href="https://jeehwany.com/special">SPECIAL CURTAIN CALL</a></div>
 			<div id="div_5"><a href="https://jeehwany.com/games">GAMES</a></div>		
 		</div>
+		<!-- 모달 오버레이 -->
+	    <div class="modal-overlay" id="modal">
+	        <div class="modal-content">
+	            <!-- X 닫기 버튼 -->
+	            <button class="close-x" id="closeX">&times;</button>
+	            <!-- 팝업 이미지 -->
+	            <img src="img/Jeehwany.png" alt="팝업 이미지">
+	            <!-- 버튼들 -->
+	            <button class="close-today-btn" id="closeToday">오늘 하루동안만 닫기</button>
+	            <button class="close-btn" id="closeBtn">닫기</button>
+	        </div>
+	    </div>
 		<footer class="footer">
 	    	<div class="footer-left"><a href="https://instagram.com/jeehwany" target="_blank" class="insta">INSTAGRAM</a></div>
 	        <div class="footer-center"><a href="https://jeehwany.com/schedule">SCHEDULE</a></div>
 	        <div class="footer-right"><a href="https://jeehwany.com/info">INFO</a></div>
 	    </footer>
-	</body>	
+	</body>
 </html>
