@@ -8,7 +8,8 @@ const groupCont = ['싱클레어','토루','최윤','데이비','안지환'],
 	questionCont = [['싱1질문','2질문','3질문','4질문'],['토1질문','2질문']],
 	chooseCont = [[['싱1답','2답','3답','4답'],['1-2답','2-2답','3-2답'],['싱1답','2답','3답','4답'],['1-2답','2-2답','3-2답']]
 				,[['토1답','2답','3답','4답'],['1-2답','2-2답','3-2답']]],
-	answerCont = [[1,2,3,4],[1,2]];
+	answerCont = [[1,2,3,4],[1,2]],
+	answerComment = [['일','이','삼','사'],['가나다라마바사','나다라다']];
 const urlParams = new URL(location.href).searchParams;
 
 $(document).ready(function(){
@@ -119,9 +120,9 @@ $(document).ready(function(){
 	//x 공유
 	$('.result .xCopy').on('click', function(){
 		const text = encodeURIComponent($('.ing .titleText').text().substring(1)+" - "+name+"님의 점수는 "+$('.score').text());
-        const twitterUrl = `https://x.com/intent/post?text=`+text+`&url=`+encodeURIComponent(url);
+        const xUrl = `https://x.com/intent/post?text=`+text+`&url=`+encodeURIComponent(url);
 
-        window.open(twitterUrl, '_blank');
+        window.location.replace(xUrl);
 	});
 
 	//카카오톡 공유
@@ -156,6 +157,7 @@ $(document).ready(function(){
 		
 		for(var i = 0 ; i < answerCont[group].length ; i++){
 			$('.divExam ul:eq('+i+')').find('li').eq(answerCont[group][i]-1).addClass('bold');
+			$('.divExam ul:eq('+i+')').append($('<li>',{'class':'comment','text':answerComment[group][i]}));
 		}
 		
 		$('.divLayer').show();
@@ -167,7 +169,8 @@ $(document).ready(function(){
 		}, 10);
 	});
 	//해설지닫기
-	$('.result .b_handle').on('click', function(){
+	$('.result .b_handle').on('click', function(e){
+		e.preventDefault();
 		$('.divLayer').hide();
 		$(".layerCont").css({'transform':'translateY(100%)'});
 	});
