@@ -241,6 +241,86 @@ button:hover, li:hover {
     border-radius: 20px;
     background: rgba(255,255,255,1);
 }
+/* 레이어 */
+.divLayer{
+	display:none;
+	position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+.divLayer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+}
+.divLayer .layerCont{
+	position: absolute;
+	top: 15%;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #fff;
+	z-index: 9999;
+	border-radius: 15px 15px 0 0;
+	-webkit-transform: translateY(100%);
+	transform: translateY(100%);
+	-webkit-transition: all ease 0.2s;
+	transition: all ease 0.2s;
+}
+.divLayer .b_handle{
+	display: block;
+	height: 28px;
+	text-indent: -999999em;
+	line-height: 0;
+	overflow: hidden;
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+.divLayer .b_handle:after{
+	content: "";
+	display: block;
+	width: 60px;
+	height: 4px;
+	border-radius: 2px;
+	background: #d9d9d9;
+	margin: 12px auto 0;
+}
+.divLayer .divExamTt{
+	font-family: 'GmarketSansBold', 'GmarketSansMedium', 'GmarketSansLight';
+	padding: 10;
+	font-size: .9em;
+}
+.divLayer .divExam{
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	border-top: 1px solid #ccc;
+	margin-top: -1px;
+	padding: 20;
+	overflow-y: auto;
+	height: calc(100% - 78px);
+	text-align: left;
+	font-size: .8em;
+}
+.divLayer .divExam ul{
+	padding: 0 10;
+	margin: 5 0 20;
+}
+.divLayer .divExam ul li{
+	font-family: 'GmarketSansMedium', 'GmarketSansLight';
+	list-style: none;
+	font-size: .95em;
+}
+.divLayer .divExam ul li.bold{
+	font-weight: bold;
+}
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 500px) {
 	.container {
