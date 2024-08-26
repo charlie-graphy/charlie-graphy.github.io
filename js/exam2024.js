@@ -14,6 +14,7 @@ const urlParams = new URL(location.href).searchParams;
 $(document).ready(function(){
 	name = urlParams.get('name');
 	score = urlParams.get('score');
+	$(window).scrollTop(0);
 	
 	// loading page
 	var counter = 0;
@@ -51,6 +52,7 @@ $(document).ready(function(){
 			return false;
 		}*/
 	    $("article.intro").fadeOut("fast", function(){
+	    	$(window).scrollTop(0);
 		    $("article.ready").fadeIn();
         });
 	    
