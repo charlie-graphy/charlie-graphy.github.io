@@ -164,6 +164,21 @@ button:hover, li:hover {
 	height: 0.25rem;
 	background-color: #ffa205;
 }
+/* Slide-in 애니메이션 정의 */
+@keyframes slideIn {
+	0% {
+		opacity: 0;
+		transform: translateY(20px); /* 아래에서 시작 */
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0); /* 제자리로 이동 */
+	}
+}
+.ing .slide-in {
+	opacity: 0;
+	animation: slideIn 0.5s ease-out forwards;
+}
 .imgCont {
 	height: 160px;
 	padding: 10px;
