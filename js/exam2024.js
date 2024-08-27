@@ -141,7 +141,7 @@ $(document).ready(function(){
 							DESC: groupCont[group]+'영역 나의 점수는...', // 설명 텍스트 ${DESC}
 			}
 		});*/
-		Kakao.Link.sendDefault({
+		Kakao.Share.sendDefault({
 		    objectType: 'feed',
 		    content: {
 		      title: '2024 지환고사',
@@ -149,12 +149,18 @@ $(document).ready(function(){
 		      imageUrl: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FeB1Yj7%2Fbtrn8HKdp01%2FlZMtAuvo986os4dCkVoAOk%2Fimg.png',
 		      imageWidth: 1200,
 		      imageHeight: 630,
-		      link: url
+		      link: {
+				    mobileWebUrl: url,
+				    webUrl: url
+				  }
 		    },
 		    buttons: [
 		      {
 		        title: '자세히 보기',
-		        link: url
+		        link: {
+				    mobileWebUrl: url,
+				    webUrl: url
+				  }
 		      },
 		    ],
 		  });
