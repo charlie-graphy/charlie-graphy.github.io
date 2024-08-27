@@ -201,6 +201,8 @@ $(document).ready(function(){
         const diffY = endY - startY;
 
         if (diffY > 100) { // 일정 거리 이상 드래그한 경우 레이어 닫기
+    		$("html, body").css('overflow-x','hidden');
+    		$("html, body").css('overflow-y','auto');
     		$('.divLayer').hide();
     		$(".layerCont").css({'transform':'translateY(100%)'});
         } else { // 그렇지 않으면 원래 위치로 되돌리기
