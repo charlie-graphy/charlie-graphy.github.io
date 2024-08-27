@@ -36,6 +36,8 @@ $(document).ready(function(){
 					$('.rstName').text(name);
 				    $('.score').text(score+"점");
 				    url = "https://www.jeehwany.com/exam?group="+group+"&name="+name+"&score="+score;
+		    		$("html, body").css('overflow-x','hidden');
+		    		$("html, body").css('overflow-y','auto');
 		        	$("article.result").fadeIn();
 				}
 			});
