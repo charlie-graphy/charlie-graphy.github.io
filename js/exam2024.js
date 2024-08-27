@@ -133,7 +133,7 @@ $(document).ready(function(){
 	//카카오톡 공유
 	Kakao.init('44b5bc45b8dee34b194c72f77af3cf0e');
 	$('.result .ktCopy').on('click', function(){
-		Kakao.Link.sendScrap({
+		Kakao.Share.sendScrap({
 			requestUrl: url, // 페이지 url
 			templateId: 111536, // 메시지템플릿 번호
 			templateArgs: { THUMB: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FeB1Yj7%2Fbtrn8HKdp01%2FlZMtAuvo986os4dCkVoAOk%2Fimg.png', // 썸네일 주소 ${THUMB}
