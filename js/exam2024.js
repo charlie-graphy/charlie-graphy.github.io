@@ -125,44 +125,30 @@ $(document).ready(function(){
 	//x 공유
 	$('.result .xCopy').on('click', function(){
 		const text = encodeURIComponent($('.ing .titleText').text().substring(1)+" - "+name+"님의 점수는 "+$('.score').text());
-        const xUrl = `https://x.com/intent/post?text=`+text+`&url=`+encodeURIComponent(url);
+		const xUrl = new URL('https://twitter.com/intent/tweet?text='+text+'&url='+encodeURIComponent(url));
+        //const xUrl = `https://x.com/intent/post?text=`+text+`&url=`+encodeURIComponent(url);
 
         window.open(xUrl, '_blank');
+        //window.s3app.openBrowser(xUrl)
 	});
 
 	//카카오톡 공유
 	Kakao.init('44b5bc45b8dee34b194c72f77af3cf0e');
-	$('.result .ktCopy').on('click', function(){
-		/*Kakao.Share.sendScrap({
-			requestUrl: url, // 페이지 url
-			templateId: 111536, // 메시지템플릿 번호
-			templateArgs: { THUMB: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FeB1Yj7%2Fbtrn8HKdp01%2FlZMtAuvo986os4dCkVoAOk%2Fimg.png', // 썸네일 주소 ${THUMB}
-							TITLE: '2024 지환고사', // 제목 텍스트 ${TITLE}
-							DESC: groupCont[group]+'영역 나의 점수는...', // 설명 텍스트 ${DESC}
-			}
-		});*/
+	$('.result .ktCopy').on('click', function(e){
 		Kakao.Share.sendDefault({
 		    objectType: 'feed',
 		    content: {
-		      title: '2024 지환고사',
-		      description: groupCont[group]+'영역 나의 점수는...',
-		      imageUrl: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FeB1Yj7%2Fbtrn8HKdp01%2FlZMtAuvo986os4dCkVoAOk%2Fimg.png',
-		      imageWidth: 1200,
-		      imageHeight: 630,
-		      link: {
-				    mobileWebUrl: url,
-				    webUrl: url
-				  }
+		    	title: '2024 지환고사',
+		    	description: groupCont[group]+'영역 '+name+'님의 점수는...',
+		    	imageUrl: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FeB1Yj7%2Fbtrn8HKdp01%2FlZMtAuvo986os4dCkVoAOk%2Fimg.png',
+		    	imageWidth: 1200,
+		    	imageHeight: 630,
+		    	link: { mobileWebUrl: url, webUrl: url }
 		    },
-		    buttons: [
-		      {
-		        title: '자세히 보기',
-		        link: {
-				    mobileWebUrl: url,
-				    webUrl: url
-				  }
-		      },
-		    ],
+		    buttons: [{
+		    	title: '자세히 보기',
+		        link: { mobileWebUrl: url, webUrl: url }
+		    }]
 		  });
 	});
 	
