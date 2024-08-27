@@ -214,11 +214,17 @@ button:hover, li:hover {
 	margin: 20;
 }
 .shareBox a{
-	margin-right: 20;
+	margin-right: 15;
 }
 .shareBox i{
-	color: black;
-	font-size: 1.5em;
+	color: #fff;
+    font-size: 1.2em;
+    background-color: black;
+    padding: 7 10;
+    border-radius: 50%;
+}
+.shareBox i::before{
+	vertical-align: middle !important;
 }
 .result .titleText{
 	padding-bottom: 20;
