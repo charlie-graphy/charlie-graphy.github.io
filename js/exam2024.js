@@ -17,6 +17,8 @@ $(document).ready(function(){
 	name = urlParams.get('name');
 	score = urlParams.get('score');
 	$(window).scrollTop(0);
+	let startY = 0;
+    let isDragging = false;
 	
 	// loading page
 	var counter = 0;
@@ -72,7 +74,7 @@ $(document).ready(function(){
 
 		$('.ing .question span').text(questionCont[group][progress]);
 		for(var i = 0 ; i < chooseCont[group][progress].length; i++){
-			$li = $('<li>',{'text':chooseCont[group][progress][i]});
+			$li = $('<li>',{'class':'slideIn','text':chooseCont[group][progress][i]});
 			$('.ing .choose ul').append($li);
 		}
 
@@ -163,10 +165,7 @@ $(document).ready(function(){
 		
 		$('.divLayer').show();
 		setTimeout(() => {
-			$(".layerCont").css({
-				'transform':'translateY(0)',
-				'transition':'all ease .2s'
-			});
+			$(".layerCont").css({'transform':'translateY(0)','transition':'all ease .2s'});
 		}, 10);
 		$("html, body").css('overflow','hidden');
 	});
@@ -178,6 +177,36 @@ $(document).ready(function(){
 		$('.divLayer').hide();
 		$(".layerCont").css({'transform':'translateY(100%)'});
 	});
+	$('.result .divExam, .b_handle').on('touchstart', function(e) {
+        if ($(this).scrollTop() === 0) { // 스크롤이 최상단인지 확인
+            startY = e.touches[0].clientY;
+            isDragging = true;
+        }
+    });
+	$('.result .divExam, .b_handle').on('touchmove', function(e) {
+        if (!isDragging) return;
+
+        const currentY = e.touches[0].clientY;
+        const diffY = currentY - startY;
+
+        if (diffY > 0) { // 손가락을 아래로 끌었을 때
+        	$(".layerCont").css({'transform':'translateY('+diffY+'px)'});
+        }
+    });
+	$('.result .divExam, .b_handle').on('touchend', function(e) {
+        if (!isDragging) return;
+
+        isDragging = false;
+        const endY = e.changedTouches[0].clientY;
+        const diffY = endY - startY;
+
+        if (diffY > 100) { // 일정 거리 이상 드래그한 경우 레이어 닫기
+    		$('.divLayer').hide();
+    		$(".layerCont").css({'transform':'translateY(100%)'});
+        } else { // 그렇지 않으면 원래 위치로 되돌리기
+            $(".layerCont").css({'transform':'translateY(0)','transition':'all ease .2s'});
+        }
+    });
 	
 	//다시하기
 	$('.result .return').on('click', function(){
@@ -197,7 +226,7 @@ function showIngData(idx){
 	$('.ing .choose ul').empty();
 	$('.ing .question span').text(questionCont[group][idx]);
 	for(var i = 0 ; i < chooseCont[group][idx].length; i++){
-		$li = $('<li>',{'text':chooseCont[group][idx][i]});
+		$li = $('<li>',{'class':'slide-in','text':chooseCont[group][idx][i]});
 		$('.ing .choose ul').append($li);
 	}
 }
