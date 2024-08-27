@@ -205,6 +205,11 @@ button:hover, li:hover {
 	border-radius: 6px;
 	cursor: pointer;
 }
+.choose li:hover, .choose li:active {
+	color: #fff;
+	background-color: #ffa205;
+	opacity: 0.7;
+}
 .shareCont {
 	border-top: 5px solid #ffd793;
 	padding: 20;
