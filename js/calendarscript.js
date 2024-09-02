@@ -784,6 +784,20 @@
 					allDay: false
 				},
 				{
+					title: '렛미플라이 - 울진',
+					description: '노인 남원 役 | 이형훈<br>선희 役 | 최수진<br>청년 남원 役 | 안지환<br>정분 役 | 임예진',
+					start: '2024-10-04 19:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이 - 울진',
+					description: '노인 남원 役 | 이형훈<br>선희 役 | 최수진<br>청년 남원 役 | 안지환<br>정분 役 | 임예진',
+					start: '2024-10-05 14:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
 					title: '킬롤로지',
 					description: '알란 役 | 최영준<br>폴 役 | 김경남<br>데이비 役 | 안지환',
 					start: '2024-10-06 15:00',
@@ -837,6 +851,20 @@
 					description: '알란 役 | 최영준<br>폴 役 | 김경남<br>데이비 役 | 안지환',
 					start: '2024-10-19 18:30',
 					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '렛미플라이 - 구미',
+					description: '노인 남원 役 | 김태한<br>선희 役 | 방진의<br>청년 남원 役 | 안지환<br>정분 役 | 임예진',
+					start: '2024-10-25 19:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이 - 구미',
+					description: '노인 남원 役 | 김태한<br>선희 役 | 방진의<br>청년 남원 役 | 안지환<br>정분 役 | 임예진',
+					start: '2024-10-26 14:00',
+					className: 'bg-blue',
 					allDay: false
 				}
 			],
