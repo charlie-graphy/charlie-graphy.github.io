@@ -866,6 +866,20 @@
 					start: '2024-10-26 14:00',
 					className: 'bg-blue',
 					allDay: false
+				},
+				{
+					title: '렛미플라이 - 의성',
+					description: '노인 남원 役 | 김도빈<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 나하나',
+					start: '2024-10-31 19:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이 - 의성',
+					description: '노인 남원 役 | 김도빈<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 나하나',
+					start: '2024-11-01 19:00',
+					className: 'bg-blue',
+					allDay: false
 				}
 			],
 			eventClick: function(event, jsEvent, view) {
