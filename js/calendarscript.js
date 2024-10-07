@@ -799,28 +799,28 @@
 				},
 				{
 					title: '킬롤로지',
-					description: '알란 役 | 최영준<br>폴 役 | 김경남<br>데이비 役 | 안지환',
+					description: '<p class="event">더블 적립</p>알란 役 | 최영준<br>폴 役 | 김경남<br>데이비 役 | 안지환',
 					start: '2024-10-06 15:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '킬롤로지',
-					description: '알란 役 | 이상홍<br>폴 役 | 이동하<br>데이비 役 | 안지환',
+					description: '<p class="event">커튼콜 데이</p>알란 役 | 이상홍<br>폴 役 | 이동하<br>데이비 役 | 안지환',
 					start: '2024-10-09 18:30',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '킬롤로지',
-					description: '알란 役 | 김수현<br>폴 役 | 김경남<br>데이비 役 | 안지환',
+					description: '<p class="event">커튼콜 데이</p>알란 役 | 김수현<br>폴 役 | 김경남<br>데이비 役 | 안지환',
 					start: '2024-10-11 20:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '킬롤로지',
-					description: '알란 役 | 이상홍<br>폴 役 | 임주환<br>데이비 役 | 안지환',
+					description: '<p class="event">커튼콜 데이</p>알란 役 | 이상홍<br>폴 役 | 임주환<br>데이비 役 | 안지환',
 					start: '2024-10-12 15:00',
 					className: 'bg-purple',
 					allDay: false
@@ -854,6 +854,20 @@
 					allDay: false
 				},
 				{
+					title: '킬롤로지',
+					description: '알란 役 | 이상홍<br>폴 役 | 김경남<br>데이비 役 | 안지환',
+					start: '2024-10-22 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 이상홍<br>폴 役 | 이동하<br>데이비 役 | 안지환',
+					start: '2024-10-23 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
 					title: '렛미플라이 - 구미',
 					description: '노인 남원 役 | 김태한<br>선희 役 | 방진의<br>청년 남원 役 | 안지환<br>정분 役 | 임예진',
 					start: '2024-10-25 19:30',
@@ -868,6 +882,20 @@
 					allDay: false
 				},
 				{
+					title: '킬롤로지',
+					description: '알란 役 | 최영준<br>폴 役 | 김경남<br>데이비 役 | 안지환',
+					start: '2024-10-27 18:30',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '<p class="event">집들이 이벤트</p>알란 役 | 이상홍<br>폴 役 | 이동하<br>데이비 役 | 안지환',
+					start: '2024-10-29 19:30',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
 					title: '렛미플라이 - 의성',
 					description: '노인 남원 役 | 김도빈<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 나하나',
 					start: '2024-10-31 19:00',
@@ -879,6 +907,62 @@
 					description: '노인 남원 役 | 김도빈<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 나하나',
 					start: '2024-11-01 19:00',
 					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 김수현<br>폴 役 | 이동하<br>데이비 役 | 안지환',
+					start: '2024-11-03 15:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 이상홍<br>폴 役 | 임주환<br>데이비 役 | 안지환',
+					start: '2024-11-03 18:30',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 김수현<br>폴 役 | 이동하<br>데이비 役 | 안지환',
+					start: '2024-11-07 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 이상홍<br>폴 役 | 김경남<br>데이비 役 | 안지환',
+					start: '2024-11-09 15:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 이상홍<br>폴 役 | 임주환<br>데이비 役 | 안지환',
+					start: '2024-11-09 18:30',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 김수현<br>폴 役 | 김경남<br>데이비 役 | 안지환',
+					start: '2024-11-13 16:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 최영준<br>폴 役 | 이동하<br>데이비 役 | 안지환',
+					start: '2024-11-13 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 김수현<br>폴 役 | 임주환<br>데이비 役 | 안지환',
+					start: '2024-11-16 15:00',
+					className: 'bg-purple',
 					allDay: false
 				}
 			],
