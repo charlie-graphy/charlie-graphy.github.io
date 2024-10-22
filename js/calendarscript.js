@@ -964,6 +964,48 @@
 					start: '2024-11-16 15:00',
 					className: 'bg-purple',
 					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 김수현<br>폴 役 | 이동하<br>데이비 役 | 안지환',
+					start: '2024-11-19 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 최영준<br>폴 役 | 임주환<br>데이비 役 | 안지환',
+					start: '2024-11-22 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 김수현<br>폴 役 | 이동하<br>데이비 役 | 안지환',
+					start: '2024-11-23 18:30',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 이상홍<br>폴 役 | 김경남<br>데이비 役 | 안지환',
+					start: '2024-11-26 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 최영준<br>폴 役 | 임주환<br>데이비 役 | 안지환',
+					start: '2024-11-29 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '킬롤로지',
+					description: '알란 役 | 최영준<br>폴 役 | 임주환<br>데이비 役 | 안지환',
+					start: '2024-12-01 18:30',
+					className: 'bg-purple',
+					allDay: false
 				}
 			],
 			eventClick: function(event, jsEvent, view) {
