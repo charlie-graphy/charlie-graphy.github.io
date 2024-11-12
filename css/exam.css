@@ -209,7 +209,7 @@ button:hover, li:hover {
 	border-radius: 6px;
 	cursor: pointer;
 }
-.choose li:hover, .choose li:active {
+.choose li:hover, .choose li.act {
 	color: #fff;
 	background-color: #ffa205;
 	opacity: 0.7;
