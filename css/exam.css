@@ -190,6 +190,10 @@ button:hover, li:hover {
     align-items: center;
     flex-direction: column;
 }
+.question span{
+	width: 80%;
+	word-break: keep-all;
+}
 .choose {
 	height: 350px;
 }
@@ -346,7 +350,7 @@ button:hover, li:hover {
 	font-size: .95em;
 }
 .divLayer .divExam ul li.bold{
-	font-weight: bold;
+	font-weight: bolder;
 }
 .divLayer .divExam ul li.comment{
 	margin: 6px 0;
