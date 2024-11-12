@@ -6,7 +6,7 @@ let group = 0,
 	url = "";
 const groupCont = ['싱클레어','토루','최윤','데이비','안지환'],
 	questionType = [[1,1,1,1],[1,1]],//1t,2i,3ox
-	questionCont = [['다관람 증정 혜택에 있는 voice letter에서 지환 싱클레어는 누구에 편지를 썼나요?','싱클레어의 욕망으로 옳은 것은?','3질문','4질문'],
+	questionCont = [['다관람 증정 혜택에 있는 voice letter에서 지환 싱클레어는 누구에게 편지를 썼나요?','싱클레어의 욕망으로 옳은 것은?','3질문','4질문'],
 					['토1질문','2질문']],
 	chooseCont = [[['데미안','싱클레어','크나우어','아버지'],['사랑하고 싶다.','사랑 받고 싶다.','듣고 싶다.','여행하고 싶다.'],['싱1답','2답','3답','4답'],['1-2답','2-2답','3-2답']]
 				,[['토1답','2답','3답','4답'],['1-2답','2-2답','3-2답']]],
@@ -109,12 +109,12 @@ $(document).ready(function(){
 	//문항선택
 	$('.ing .choose ul').on('click', 'li', function(){
 		progress+=1;
+		$(this).addClass('act');
 		$('.progress .bar').css('width',(progress+1)*10+'%');
 		answerlist.push($(this).index()+1);
 		if(progress == questionCont[group].length) resultData();
 		else showIngData(progress);
-	});
-	
+	});	
 
 	//페이스북 공유
 	$('.result .fbCopy').on('click', function(){
