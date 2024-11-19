@@ -4,15 +4,8 @@ let group = 0,
 	name = "",
 	answerlist = [],
 	url = "";
-const groupCont = ['싱클레어','토루','최윤','데이비','안지환'],
-	questionType = [[1,1,1,1],[1,1]],//1t,2i,3ox
-	questionCont = [['다관람 증정 혜택에 있는 voice letter에서 지환 싱클레어는 누구에게 편지를 썼나요?','싱클레어의 욕망으로 옳은 것은?','3질문','4질문'],
-					['토1질문','2질문']],
-	chooseCont = [[['데미안','싱클레어','크나우어','아버지'],['사랑하고 싶다.','사랑 받고 싶다.','듣고 싶다.','여행하고 싶다.'],['싱1답','2답','3답','4답'],['1-2답','2-2답','3-2답']]
-				,[['토1답','2답','3답','4답'],['1-2답','2-2답','3-2답']]],
-	answerCont = [[1,2,3,4],[1,2]],
-	answerComment = [['일','이','삼','사'],['가나다라마바사','나다라다']];
 const urlParams = new URL(location.href).searchParams;
+loadScript("js/exam2024_msg.js");
 
 $(document).ready(function(){
 	group = urlParams.get('group');
@@ -26,8 +19,6 @@ $(document).ready(function(){
 	var counter = 0;
 	var c = 0;
 	var i = setInterval(function(){
-		$(".loading .counter span").html(c + "%");
-		$(".loading .counter hr").css("width", c + "%");
 		counter++;
 		c++;
 		if(counter == 101) {
@@ -40,6 +31,7 @@ $(document).ready(function(){
 				    url = "https://www.jeehwany.com/exam?group="+group+"&name="+name+"&score="+score;
 		    		$("html, body").css('overflow-x','hidden');
 		    		$("html, body").css('overflow-y','auto');
+		    		showContent(group);
 		        	$("article.result").fadeIn();
 				}
 			});
@@ -76,6 +68,7 @@ $(document).ready(function(){
 	    $("article.ing .group").attr('data-id',$(this).index());
 	    group = $(this).index();
 
+	    showTypeQuestion(group, progress);
 		$('.ing .question span').text(questionCont[group][progress]);
 		for(var i = 0 ; i < chooseCont[group][progress].length; i++){
 			$li = $('<li>',{'class':'slideIn','text':chooseCont[group][progress][i]});
@@ -103,14 +96,14 @@ $(document).ready(function(){
 	    	showIngData(progress-1);
 	    }
 	    if(progress > 0 ) progress-=1;
-		$('.progress .bar').css('width',(progress+1)*10+'%');
+		$('.progress .bar').css('width',(progress+1)*12.5+'%');
 	});
 	
 	//문항선택
 	$('.ing .choose ul').on('click', 'li', function(){
 		progress+=1;
 		$(this).addClass('act');
-		$('.progress .bar').css('width',(progress+1)*10+'%');
+		$('.progress .bar').css('width',(progress+1)*12.5+'%');
 		answerlist.push($(this).index()+1);
 		if(progress == questionCont[group].length) resultData();
 		else showIngData(progress);
@@ -168,13 +161,14 @@ $(document).ready(function(){
 		$('.divExamTt').text('2024 지환고사 : '+groupCont[group]+'영역 해설지');
 		$('.divExam').empty();
 		
+		$('.divExam').append($('<ol>',{'type':'1'}));
 		for(var i = 0 ; i < questionCont[group].length ; i++){
-			$('.divExam').append($('<div>',{'text':(i+1)+'. '+questionCont[group][i]}));
+			$('.divExam ol').append($('<li>',{'text':questionCont[group][i]}));
 			var $ul = $('<ul>');
 			for(var j = 0 ; j < chooseCont[group][i].length; j++){
 				$ul.append($('<li>',{'text':(j+1)+'. '+chooseCont[group][i][j]}));
 			}
-			$('.divExam').append($ul);
+			$('.divExam ol').append($ul);
 		}
 		
 		for(var i = 0 ; i < answerCont[group].length ; i++){
@@ -233,7 +227,7 @@ $(document).ready(function(){
 	$('.result .return').on('click', function(){
 		progress = 0;
 		answerlist = [];
-		$('.progress .bar').css('width','10%');
+		$('.progress .bar').css('width','12.5%');
 		$('.ing .choose ul').empty();
 		$('.inputCont input.name').val('');
 		$("article.result").fadeOut("fast", function(){
@@ -243,9 +237,25 @@ $(document).ready(function(){
         });
 	});
 });
+//문제유형
+function showTypeQuestion(i, ii){
+	//문제
+	$('.ing .question .imgQ').empty();
+	if(questionType[i][ii] == 2){//i=q
+		$('.ing .question .imgQ').append($('<img>',{'src':'https://img.sbs.co.kr/news/pc/thumb_v2.png','style':'width:85%;margin-bottom:20;border:1px solid #aaa;'}));
+		$('.ing .question').css('height','400px');
+	}else{
+		$('.ing .question').css('height','');
+	}
+}
+//내용
 function showIngData(idx){
 	$('.ing .choose ul').empty();
+	
+	showTypeQuestion(group, idx);
 	$('.ing .question span').text(questionCont[group][idx]);
+	
+	//선택
 	for(var i = 0 ; i < chooseCont[group][idx].length; i++){
 		$li = $('<li>',{'class':'slide-in','text':chooseCont[group][idx][i]});
 		$('.ing .choose ul').append($li);
@@ -258,7 +268,7 @@ function resultData(){
     
     //채점
     for(var j = 0 ; j < answerlist.length ; j++){
-    	if(answerCont[group][j] != answerlist[j]) score-=10;
+    	if(answerCont[group][j] != answerlist[j]) score-=12.5;
     }
 
     $('.rstName').text(name);
@@ -268,9 +278,7 @@ function resultData(){
     var counter = 0;
     var c = 0;
     var i = setInterval(function(){
-	      $(".loading .counter h3").text("채점중");
-	      $(".loading .counter span").html(c + "%");
-	      $(".loading .counter hr").css("width", c + "%");
+    	$(".loading .counter h3").text("채점중");
 	    counter++;
 	    c++;
 	    if(counter == 101) {
@@ -282,4 +290,37 @@ function resultData(){
 	        });
 	    }
 	  }, 10);
+    showContent(group);
+}
+function showContent(idx){
+	if(Number(idx) < 4){
+    	$('.recommendCont .recTitle').text("2024년 지환 "+groupCont[idx]+"가\n궁금하다면?");
+    }else $('.recommendCont .recTitle').text("2024년 지환 배우가\n궁금하다면?");
+	
+	$('.recommendCont .recCont1').empty();
+	switch(Number(idx)){
+		case 0:  //싱클레어
+			$('.recommendCont .recCont1').append($('<img>',{'src':'https://blog.kakaocdn.net/dn/vIOaX/btsJfFZzl31/1WLxLqsrEkekz4fQq0BZxK/img.jpg','style':'width:100%;margin-top:12;'}));
+			break;
+		case 1: //토루
+			$('.recommendCont .recCont1').append($('<img>',{'src':'https://blog.kakaocdn.net/dn/bH4XhJ/btsJg4DP6hD/snrlFkZEYB03rMw525pitK/img.jpg','style':'width:100%;margin-top:12;'}));
+			break;
+		case 2: //최윤
+			$('.recommendCont .recCont1').append($('<img>',{'src':'https://blog.kakaocdn.net/dn/dDkEut/btsJgwgCN6t/3EeDEjmeyW6nwg26cUqTU1/img.jpg','style':'width:100%;margin-top:12;'}));
+			break;
+		case 3: //데이비
+			$('.recommendCont .recCont1').append($('<img>',{'src':'https://blog.kakaocdn.net/dn/po8x9/btsJgGcbRKf/gCSLOItKcvx3H2DAo5DuXk/img.jpg','style':'width:100%;margin-top:12;'}));
+			break;
+		case 4: //안지환
+			$('.recommendCont .recCont1').append($('<img>',{'src':'https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg','style':'width:100%;margin-top:12;'}));
+			break;
+		default: break;
+	}	
+}
+function loadScript(url) {
+    const script = document.createElement("script");
+    script.src = url;
+    script.type = "text/javascript";
+    script.defer = true;  // 필요한 경우 async 또는 defer 사용
+    document.head.appendChild(script);
 }
