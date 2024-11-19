@@ -90,8 +90,8 @@ article.intro, article.result {
 	font-family: 'GmarketSansMedium', "Helvetica", sans-serif !important;
 }
 .titleCont, .resultImgCont {
-    height: 280px;
-    padding: 8px 15px;
+    height: 240px;
+    padding: 5px 15px;
 }
 .resultCont {
 	height: 300px;
