@@ -297,22 +297,21 @@ function showContent(idx){
     	$('.recommendCont .recTitle').text("2024년 지환 "+groupCont[idx]+"가\n궁금하다면?");
     }else $('.recommendCont .recTitle').text("2024년 지환 배우가\n궁금하다면?");
 	
-	$('.recommendCont .recCont1').empty();
 	switch(Number(idx)){
 		case 0:  //싱클레어
-			$('.recommendCont .recCont1').append($('<img>',{'src':'https://blog.kakaocdn.net/dn/vIOaX/btsJfFZzl31/1WLxLqsrEkekz4fQq0BZxK/img.jpg','style':'width:100%;margin-top:12;'}));
+			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/vIOaX/btsJfFZzl31/1WLxLqsrEkekz4fQq0BZxK/img.jpg');
 			break;
 		case 1: //토루
-			$('.recommendCont .recCont1').append($('<img>',{'src':'https://blog.kakaocdn.net/dn/bH4XhJ/btsJg4DP6hD/snrlFkZEYB03rMw525pitK/img.jpg','style':'width:100%;margin-top:12;'}));
+			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/bH4XhJ/btsJg4DP6hD/snrlFkZEYB03rMw525pitK/img.jpg');
 			break;
 		case 2: //최윤
-			$('.recommendCont .recCont1').append($('<img>',{'src':'https://blog.kakaocdn.net/dn/dDkEut/btsJgwgCN6t/3EeDEjmeyW6nwg26cUqTU1/img.jpg','style':'width:100%;margin-top:12;'}));
+			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/dDkEut/btsJgwgCN6t/3EeDEjmeyW6nwg26cUqTU1/img.jpg');
 			break;
 		case 3: //데이비
-			$('.recommendCont .recCont1').append($('<img>',{'src':'https://blog.kakaocdn.net/dn/po8x9/btsJgGcbRKf/gCSLOItKcvx3H2DAo5DuXk/img.jpg','style':'width:100%;margin-top:12;'}));
+			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/po8x9/btsJgGcbRKf/gCSLOItKcvx3H2DAo5DuXk/img.jpg');
 			break;
 		case 4: //안지환
-			$('.recommendCont .recCont1').append($('<img>',{'src':'https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg','style':'width:100%;margin-top:12;'}));
+			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg');
 			break;
 		default: break;
 	}	
