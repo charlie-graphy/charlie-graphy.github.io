@@ -230,7 +230,6 @@ button:hover, li:hover {
 .recommendCont {
 	border-top: 3px solid #ffd793;
 	padding: 15;
-	width: 95%;
 }
 .recommendCont .recTitle{
 	font-size: 0.96em !important;
