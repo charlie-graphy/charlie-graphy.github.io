@@ -258,6 +258,7 @@ function showIngData(idx){
 		$li = $('<li>',{'class':'slide-in','text':chooseCont[group][idx][i]});
 		$('.ing .choose ul').append($li);
 	}
+	$('.ing .choose ul li').removeClass('act');
 }
 function resultData(){
 	score = 100;
