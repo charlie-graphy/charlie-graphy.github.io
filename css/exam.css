@@ -26,18 +26,21 @@ html, body {
 	align-items:flex-start;
 }
 body::-webkit-scrollbar {
-  width: 5px;  /* 스크롤바의 너비 */
+	width: 5px;  /* 스크롤바의 너비 */
 }
 body::-webkit-scrollbar-thumb {
-  height: 30%; /* 스크롤바의 길이 */
-  background: #ffd793; /* 스크롤바의 색상 */ 
-  border-radius: 10px;
+	height: 30%; /* 스크롤바의 길이 */
+	background: #ffd793; /* 스크롤바의 색상 */ 
+	border-radius: 10px;
 }
 body::-webkit-scrollbar-track {
-  background: white;  /*스크롤바 뒷 배경 색상*/
+	background: white;  /*스크롤바 뒷 배경 색상*/
 }
 svg path, svg rect{
-  fill: #FF6700;
+	fill: #FF6700;
+}
+img{
+	-webkit-touch-callout:none;
 }
 .mainHeader a{
 	color: black;
@@ -381,6 +384,7 @@ button:hover, li:hover {
 }
 .divLayer .divExam ul li.bold{
 	font-weight: bolder;
+	background-color: rgb(255 174 102 / 14%);
 }
 .divLayer .divExam ul li.comment{
 	margin: 6px 0;
