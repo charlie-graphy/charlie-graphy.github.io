@@ -298,23 +298,23 @@ function showContent(idx){
 	
 	switch(Number(idx)){
 		case 0:  //싱클레어
-			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/vIOaX/btsJfFZzl31/1WLxLqsrEkekz4fQq0BZxK/img.jpg');
+			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/RMiPn/btsKPRD6ZCx/ksQjghTKATL9HQuHLktATK/img.jpg');
 			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi/uIDh-GDr5vo/maxresdefault.jpg")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'마지막 수업'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"듣고싶어요.\n내 안의 소리를"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/uIDh-GDr5vo")'}))));
 			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/a0M5u8ueiks/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'보름달'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"우리 마음속에 남는 거지"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/a0M5u8ueiks")'}))));
 			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi/TgmCnvcGI4U/maxresdefault.jpg")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'편지'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"테를 늘리는 일이 얼마나 고통스러울지"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/TgmCnvcGI4U")'}))));
 			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/9XxQQXTtQY8/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'수용'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"그건 엄청난 용기가 필요한 거라고"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/9XxQQXTtQY8")'}))));
 			break;
 		case 1: //토루
-			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/bH4XhJ/btsJg4DP6hD/snrlFkZEYB03rMw525pitK/img.jpg');
+			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/ZWGkK/btsKPQd0yUK/DzFzpTnisWP0B3394RJgF0/img.jpg');
 			break;
 		case 2: //최윤
-			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/dDkEut/btsJgwgCN6t/3EeDEjmeyW6nwg26cUqTU1/img.jpg');
+			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/BDOPa/btsKQ8EQ2Uc/gDO4Xsae7XFdhCCzF3I3M1/img.jpg');
 			break;
 		case 3: //데이비
-			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/po8x9/btsJgGcbRKf/gCSLOItKcvx3H2DAo5DuXk/img.jpg');
+			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/XlovM/btsKPhwoHGL/yiRgZiA40R4ELi8AGRdfbk/img.jpg');
 			break;
 		case 4: //안지환
-			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg');
+			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/1gYan/btsKQ4P3wkD/qe9BGwJz54gqkmNjhCvCak/img.jpg');
 			break;
 		default: break;
 	}	
