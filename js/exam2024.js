@@ -294,7 +294,7 @@ function showContent(idx){
 	if(Number(idx) < 4){
     	$('.recommendCont .recTitle').text("2024년 지환 "+groupCont[idx]+"가\n궁금하다면?");
     }else $('.recommendCont .recTitle').text("2024년 지환 배우가\n궁금하다면?");
-	$('.recommendCont .recCont2').empty();
+	$('.recommendCont .recCont2 .page-content').empty();
 	
 	switch(Number(idx)){
 		case 0:  //싱클레어
