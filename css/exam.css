@@ -453,7 +453,7 @@ button:hover, li:hover {
 	font-style: italic;
 	font-weight: bolder;
 	line-height: 1.35;
-	margin-top: 0.3rem;
+	margin: 0;
 	color: black;
 	word-break: keep-all;
 	opacity: .8;
