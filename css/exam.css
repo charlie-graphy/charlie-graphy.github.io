@@ -430,7 +430,7 @@ button:hover, li:hover {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 100%;
+	height: 150px;
 	transition: transform var(--d) var(--e);
 	z-index: 1;
 	word-break: keep-all;
