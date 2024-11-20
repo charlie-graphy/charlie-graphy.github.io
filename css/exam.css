@@ -436,7 +436,7 @@ button:hover, li:hover {
 	word-break: keep-all;
 	white-space: pre-line;
 	opacity: .8;
-	position: absoulte;
+	position: absolute;
 }
 .recCont2 .title {
 	font-family: 'GmarketSansMedium', "Helvetica", sans-serif !important;
