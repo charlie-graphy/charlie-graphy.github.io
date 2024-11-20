@@ -30,7 +30,7 @@ $(document).ready(function(){
 				    url = "https://www.jeehwany.com/exam?group="+group+"&name="+name+"&score="+score;
 		    		$("html, body").css('overflow-x','hidden');
 		    		$("html, body").css('overflow-y','auto');
-		    		showContent(group);
+		    		showContent(group, score);
 		        	$("article.result").fadeIn();
 				}
 			});
@@ -289,9 +289,14 @@ function resultData(){
 	        });
 	    }
 	  }, 10);
-    showContent(group);
+    showContent(group, score);
 }
-function showContent(idx){
+function showContent(idx, sco){
+	const scoreImg = [["1","2","3"],["1","2","3"],["1","2","3"],["1","2","3"],["1","2","3"]] 
+	if(sco <= 40) $('.result .resultImgCont img').attr('src',scoreImg[idx][0]);
+	else if(sco >= 41 && sco <= 75)  $('.result .resultImgCont img').attr('src',scoreImg[idx][1]);
+	else $('.result .resultImgCont img').attr('src',scoreImg[idx][2]);
+	
 	if(Number(idx) < 4){
     	$('.recommendCont .recTitle').text("2024년 지환 "+groupCont[idx]+"가\n궁금하다면?");
     }else $('.recommendCont .recTitle').text("2024년 지환 배우가\n궁금하다면?");
