@@ -391,6 +391,84 @@ button:hover, li:hover {
     border: 1px solid rgb(177 177 177 / 60%);
     border-radius: 10px;
 }
+.recCont2 .page-content{
+	display: grid;
+	grid-gap: 1rem;
+  	margin-top: 12;
+  	
+	@media (min-width: 300px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	@media (min-width: 400px) {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+.recCont2 .card{
+	position: relative;
+	display: flex;
+	align-items: flex-end;
+	overflow: hidden;
+	padding: .5rem;
+	width: 90%;
+	text-align: center;
+	color: whitesmoke;
+	background-color: whitesmoke;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.1), 
+		0 2px 2px rgba(0,0,0,0.1), 
+		0 4px 4px rgba(0,0,0,0.1), 
+		0 8px 8px rgba(0,0,0,0.1),
+		0 16px 16px rgba(0,0,0,0.1);
+	justify-content: center;
+	@media (min-width: 300px) {
+    	height: 150px;
+  	}
+}
+.recCont2 .content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+	transition: transform var(--d) var(--e);
+	z-index: 1;
+	word-break: keep-all;
+	white-space: pre-line;
+	opacity: .8;
+}
+.recCont2 .title {
+	font-family: 'GmarketSansMedium', "Helvetica", sans-serif !important;
+	font-size: 80%;
+	font-weight: bolder;
+	line-height: 1.2;
+	margin-top: 10;
+	opacity: .8;
+}
+.recCont2 .copy {
+	text-align: center;
+	font-family: 'GmarketSansMedium', "Helvetica", sans-serif !important;
+	font-size: 70%;
+	font-style: italic;
+	font-weight: bolder;
+	line-height: 1.35;
+	margin-top: 0.3rem;
+	color: black;
+	word-break: keep-all;
+	opacity: .8;
+}
+.recCont2 .btn {
+  cursor: pointer;
+  margin-top: 0;
+  padding: 0.35rem;
+  font-size: 60%;
+  font-weight: bold;
+  letter-spacing: 0.025rem;
+  text-transform: uppercase;
+  color: white;
+  background-color: black;
+  border: none;
+}
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 500px) {
 	.container {
