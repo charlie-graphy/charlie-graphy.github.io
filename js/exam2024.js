@@ -12,7 +12,6 @@ $(document).ready(function(){
 	name = urlParams.get('name');
 	score = urlParams.get('score');
 	$(window).scrollTop(0);
-	let startY = 0;
     let isDragging = false;
 	
 	// loading page
@@ -156,6 +155,20 @@ $(document).ready(function(){
 		$('.modal').fadeIn(400).delay(400).fadeOut(400);
 	});
 	
+	//다시하기
+	$('.result .return').on('click', function(){
+		progress = 0;
+		answerlist = [];
+		$('.progress .bar').css('width','12.5%');
+		$('.ing .choose ul').empty();
+		$('.inputCont input.name').val('');
+		$("article.result").fadeOut("fast", function(){
+			$("html, body").css('overflow','hidden');
+			$(window).scrollTop(0);
+		    $("article.intro").fadeIn();
+        });
+	});
+
 	//해설지보기
 	$('.result .review').on('click', function(){
 		$('.divExamTt').text('2024 지환고사 : '+groupCont[group]+'영역 해설지');
@@ -178,63 +191,47 @@ $(document).ready(function(){
 		
 		$('.divLayer').show();
 		setTimeout(() => {
+			$('.divExam').scrollTop(0);
 			$(".layerCont").css({'transform':'translateY(0)','transition':'all ease .2s'});
 		}, 10);
 		$("html, body").css('overflow','hidden');
-	});
-	//해설지닫기
-	$('.result .b_handle').on('click', function(e){
+	});	
+	//해설지 닫기
+	$('.layerCont .b_handle').on('click', function(e){
 		e.preventDefault();
 		$("html, body").css('overflow-x','hidden');
 		$("html, body").css('overflow-y','auto');
 		$('.divLayer').hide();
 		$(".layerCont").css({'transform':'translateY(100%)'});
 	});
-	$('.result .divExam, .b_handle').on('touchstart', function(e) {
-        if ($(this).scrollTop() === 0) { // 스크롤이 최상단인지 확인
-            startY = e.touches[0].clientY;
-            isDragging = true;
-        }
-    });
-	$('.result .divExam, .b_handle').on('touchmove', function(e) {
-        if (!isDragging) return;
-
-        const currentY = e.touches[0].clientY;
-        const diffY = currentY - startY;
-
-        if (diffY > 0) { // 손가락을 아래로 끌었을 때
-        	$(".layerCont").css({'transform':'translateY('+diffY+'px)'});
-        }
-    });
-	$('.result .divExam, .b_handle').on('touchend', function(e) {
-        if (!isDragging) return;
-
-        isDragging = false;
-        const endY = e.changedTouches[0].clientY;
-        const diffY = endY - startY;
-
-        if (diffY > 100) { // 일정 거리 이상 드래그한 경우 레이어 닫기
-    		$("html, body").css('overflow-x','hidden');
-    		$("html, body").css('overflow-y','auto');
-    		$('.divLayer').hide();
-    		$(".layerCont").css({'transform':'translateY(100%)'});
-        } else { // 그렇지 않으면 원래 위치로 되돌리기
-            $(".layerCont").css({'transform':'translateY(0)','transition':'all ease .2s'});
-        }
-    });
+	//해설지 드래그해서 닫기
+	let startY;
+	$('.layerCont .b_handle, .divExamTt').on('touchstart', function(evt){
+		if($(this).scrollTop() === 0) {
+			startY = evt.originalEvent.changedTouches[0].pageY;
+		}
+	});
 	
-	//다시하기
-	$('.result .return').on('click', function(){
-		progress = 0;
-		answerlist = [];
-		$('.progress .bar').css('width','12.5%');
-		$('.ing .choose ul').empty();
-		$('.inputCont input.name').val('');
-		$("article.result").fadeOut("fast", function(){
-			$("html, body").css('overflow','hidden');
-			$(window).scrollTop(0);
-		    $("article.intro").fadeIn();
-        });
+	$('.layerCont .b_handle, .divExamTt').on('touchmove', function (evt){
+		var diff = evt.originalEvent.changedTouches[0].pageY - startY;
+		if($(this).scrollTop() === 0 && diff > 0) {
+			evt.preventDefault();
+		}
+	});
+	$('.layerCont .b_handle, .divExamTt').on('touchend', function(evt){
+		if ($(this).scrollTop() === 0) {
+			var diff = evt.originalEvent.changedTouches[0].pageY - startY;
+
+			if (diff > 75){
+				$('.layerCont').css({
+					transform: 'translateY(100%)'
+				});
+				setTimeout(function(){
+					$('.layerCont .b_handle').trigger('click');
+				}, 100);
+				startY = 0;
+			}
+		}
 	});
 });
 //문제유형
@@ -300,6 +297,10 @@ function showContent(idx){
 	switch(Number(idx)){
 		case 0:  //싱클레어
 			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/vIOaX/btsJfFZzl31/1WLxLqsrEkekz4fQq0BZxK/img.jpg');
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi/uIDh-GDr5vo/maxresdefault.jpg")'}).append($('<div>',{'class':'content'}).append($('<h4>',{'class':'title','text':'마지막 수업'}), $('<p>',{'class':'copy','text':'"듣고싶어요.\n내 안의 소리를"'}), $('<button>',{'class':'btn','text':'바로가기','onclick':'window.open("https://youtu.be/uIDh-GDr5vo")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/a0M5u8ueiks/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<h4>',{'class':'title','text':'보름달'}), $('<p>',{'class':'copy','text':'"우리 마음속에 남는 거지"'}), $('<button>',{'class':'btn','text':'바로가기','onclick':'window.open("https://youtu.be/a0M5u8ueiks")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi/TgmCnvcGI4U/maxresdefault.jpg")'}).append($('<div>',{'class':'content'}).append($('<h4>',{'class':'title','text':'편지'}), $('<p>',{'class':'copy','text':'"이상하다 너에게 쓰는 편지인데"'}), $('<button>',{'class':'btn','text':'바로가기','onclick':'window.open("https://youtu.be/TgmCnvcGI4U")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/9XxQQXTtQY8/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<h4>',{'class':'title','text':'수용'}), $('<p>',{'class':'copy','text':'"엄청난 용기가 필요한 거라고"'}), $('<button>',{'class':'btn','text':'바로가기','onclick':'window.open("https://youtu.be/9XxQQXTtQY8")'}))));
 			break;
 		case 1: //토루
 			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/bH4XhJ/btsJg4DP6hD/snrlFkZEYB03rMw525pitK/img.jpg');
