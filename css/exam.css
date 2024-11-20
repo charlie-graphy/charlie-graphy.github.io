@@ -399,9 +399,9 @@ button:hover, li:hover {
 	@media (min-width: 300px) {
 		grid-template-columns: repeat(2, 1fr);
 	}
-	@media (min-width: 400px) {
+	/* @media (min-width: 400px) {
 		grid-template-columns: repeat(4, 1fr);
-	}
+	} */
 }
 .recCont2 .card{
 	position: relative;
