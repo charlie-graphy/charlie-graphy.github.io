@@ -5,6 +5,16 @@ let group = 0,
 	answerlist = [],
 	url = "";
 const urlParams = new URL(location.href).searchParams;
+const firebaseConfig = {
+	    apiKey: "AIzaSyCmF81jQ27FLmyb1zZgT6pEboTpeFUUt-k",
+	    authDomain: "ahnjeehwany.firebaseapp.com",
+	    databaseURL: "https://ahnjeehwany-default-rtdb.firebaseio.com",
+	    projectId: "ahnjeehwany",
+	    storageBucket: "ahnjeehwany.firebasestorage.app",
+	    messagingSenderId: "4142402443",
+	    appId: "1:4142402443:web:773ee03ac4ff8631183d8e",
+	    measurementId: "G-BWPFC2L1VG"
+	  };
 loadScript("js/exam2024_msg.js");
 
 $(document).ready(function(){
@@ -110,7 +120,21 @@ $(document).ready(function(){
 			if(progress == questionCont[group].length) resultData();
 			else showIngData(progress);
 		},300);
-	});	
+	});
+	//textarea 완료
+	$('.ing .choose .btnSucces').on('click', function(){
+		progress+=1;
+		$('.progress .bar').css('width',(progress+1)*12.5+'%');
+		answerlist.push($('.ing .choose textarea').val());
+		
+		//전송
+		sendMessage($('.ing .choose textarea').val());
+		
+		setTimeout(() => {
+			if(progress == questionCont[group].length) resultData();
+			else showIngData(progress);
+		},300);
+	});
 
 	//페이스북 공유
 	$('.result .fbCopy').on('click', function(){
@@ -254,14 +278,19 @@ function showTypeQuestion(i, ii){
 //내용
 function showIngData(idx){
 	$('.ing .choose ul').empty();
+	$('.ing .choose .textCont').hide();
 	
 	showTypeQuestion(group, idx);
 	$('.ing .question span').text(questionCont[group][idx]);
-	
+
 	//선택
-	for(var i = 0 ; i < chooseCont[group][idx].length; i++){
-		$li = $('<li>',{'class':'slide-in','text':chooseCont[group][idx][i]});
-		$('.ing .choose ul').append($li);
+	if(questionType[group][idx] == 3){ //a=t
+		$('.ing .choose .textCont').show();
+	}else {
+		for(var i = 0 ; i < chooseCont[group][idx].length; i++){
+			$li = $('<li>',{'class':'slide-in','text':chooseCont[group][idx][i]});
+			$('.ing .choose ul').append($li);
+		}
 	}
 	$('.ing .choose ul li').removeClass('act');
 }
@@ -272,7 +301,7 @@ function resultData(){
     
     //채점
     for(var j = 0 ; j < answerlist.length ; j++){
-    	if(answerCont[group][j] != answerlist[j]) score-=12.5;
+    	if(answerCont[group][j] != 'X' && answerCont[group][j] != answerlist[j]) score-=12.5;
     }
 
     $('.rstName').text(name);
@@ -350,4 +379,11 @@ function loadScript(url) {
     script.type = "text/javascript";
     script.defer = true;  // 필요한 경우 async 또는 defer 사용
     document.head.appendChild(script);
+}
+function sendMessage(msg){
+	// Initialize Firebase
+	firebase.initializeApp(firebaseConfig);
+	var db = firebase.database();
+	
+	firebase.database().ref('2024/').set(msg);	
 }
