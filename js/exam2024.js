@@ -123,7 +123,8 @@ $(document).ready(function(){
 	//x(트위터) 공유
 	$('.result .xCopy').on('click', function(){
 		const text = encodeURIComponent($('.ing .titleText').text().substring(1)+" - "+name+"님의 점수는 "+$('.score').text());
-		const xUrl = new URL('https://twitter.com/intent/tweet?text='+text+'&url='+encodeURIComponent(url));
+		const encodedUrl = encodeURIComponent("https://www.jeehwany.com/exam?group="+group+"&name="+encodeURIComponent(name)+"&score="+score);
+		const xUrl = 'https://twitter.com/intent/tweet?text='+text+'&url='+encodedUrl;
 
         window.open(xUrl, '_blank');
 	});
