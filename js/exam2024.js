@@ -26,10 +26,11 @@ $(document).ready(function(){
 				if(name == "" || name == 'null') $('.intro').fadeIn();
 				else{
 					$('.rstName').text(name);
+					$('.titleText .group').attr('data-id',group);
+					$('.titleText .group').text(groupCont[group]);
 				    $('.score').text(score+"점");
 				    url = "https://www.jeehwany.com/exam?group="+group+"&name="+name+"&score="+score;
-		    		$("html, body").css('overflow-x','hidden');
-		    		$("html, body").css('overflow-y','auto');
+		    		$("html, body").css({'overflow-x':'hidden','overflow-y':'auto'});
 		    		showContent(group, score);
 		        	$("article.result").fadeIn();
 				}
@@ -104,8 +105,11 @@ $(document).ready(function(){
 		$(this).addClass('act');
 		$('.progress .bar').css('width',(progress+1)*12.5+'%');
 		answerlist.push($(this).index()+1);
-		if(progress == questionCont[group].length) resultData();
-		else showIngData(progress);
+		
+		setTimeout(() => {
+			if(progress == questionCont[group].length) resultData();
+			else showIngData(progress);
+		},300);
 	});	
 
 	//페이스북 공유
@@ -116,7 +120,7 @@ $(document).ready(function(){
         window.open(facebookUrl, '_blank', 'width=600,height=400');
 	});
 	
-	//x 공유
+	//x(트위터) 공유
 	$('.result .xCopy').on('click', function(){
 		const text = encodeURIComponent($('.ing .titleText').text().substring(1)+" - "+name+"님의 점수는 "+$('.score').text());
 		const xUrl = new URL('https://twitter.com/intent/tweet?text='+text+'&url='+encodeURIComponent(url));
@@ -292,7 +296,7 @@ function resultData(){
     showContent(group, score);
 }
 function showContent(idx, sco){
-	const scoreImg = [["1","2","3"],["1","2","3"],["1","2","3"],["1","2","3"],["1","2","3"]] 
+	const scoreImg = [["img/test.png","img/test.png","img/test.png"],["1","2","3"],["1","2","3"],["1","2","3"],["1","2","3"]] 
 	if(sco <= 40) $('.result .resultImgCont img').attr('src',scoreImg[idx][0]);
 	else if(sco >= 41 && sco <= 75)  $('.result .resultImgCont img').attr('src',scoreImg[idx][1]);
 	else $('.result .resultImgCont img').attr('src',scoreImg[idx][2]);
@@ -305,29 +309,29 @@ function showContent(idx, sco){
 	switch(Number(idx)){
 		case 0:  //싱클레어
 			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/RMiPn/btsKPRD6ZCx/ksQjghTKATL9HQuHLktATK/img.jpg');
-			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi/uIDh-GDr5vo/maxresdefault.jpg")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'마지막 수업'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"듣고싶어요.\n내 안의 소리를"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/uIDh-GDr5vo")'}))));
-			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/a0M5u8ueiks/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'보름달'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"우리 마음속에 남는 거지"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/a0M5u8ueiks")'}))));
-			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi/TgmCnvcGI4U/maxresdefault.jpg")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'편지'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"테를 늘리는 일이 얼마나 고통스러울지"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/TgmCnvcGI4U")'}))));
-			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/9XxQQXTtQY8/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'수용'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"그건 엄청난 용기가 필요한 거라고"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/9XxQQXTtQY8")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi/uIDh-GDr5vo/maxresdefault.jpg")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'마지막 수업'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/uIDh-GDr5vo")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/a0M5u8ueiks/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'보름달'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/a0M5u8ueiks")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi/TgmCnvcGI4U/maxresdefault.jpg")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'편지'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/TgmCnvcGI4U")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/9XxQQXTtQY8/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'수용'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/9XxQQXTtQY8")'}))));
 			break;
 		case 1: //토루
 			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/ZWGkK/btsKPQd0yUK/DzFzpTnisWP0B3394RJgF0/img.jpg');
-			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/rpj2LhxvAxc/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'커튼콜(1)'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"너때문이 아니야"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/rpj2LhxvAxc")'}))));
-			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/pH44E1XJ4pg/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'커튼콜(2)'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"탕관이라는 것은..."'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/pH44E1XJ4pg")'}))));
-			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/BPWaUkE8Zlw/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'커튼콜(3)'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"실례하겠습니다"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/BPWaUkE8Zlw")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/rpj2LhxvAxc/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'커튼콜(1)'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/rpj2LhxvAxc")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/pH44E1XJ4pg/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'커튼콜(2)'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/pH44E1XJ4pg")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/BPWaUkE8Zlw/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'커튼콜(3)'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/BPWaUkE8Zlw")'}))));
 			break;
 		case 2: //최윤
 			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/BDOPa/btsKQ8EQ2Uc/gDO4Xsae7XFdhCCzF3I3M1/img.jpg');
-			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/id7WpsHWCZQ/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'등등곡'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"신명을 바쳐라\n허깨비들 보신다"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/id7WpsHWCZQ")'}))));
-			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/pVwLQejFfMA/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'놀아보자'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"선비란 무엇인가\n솔직히 말해보자면"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/pVwLQejFfMA")'}))));
-			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/_aMJZn7oX-s/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'그런 세상'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"나는 아낌없이\n그저 살아가리라"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/_aMJZn7oX-s")'}))));
-			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/c8RKNwIhoqk/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'태평성대'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"결자해지만이 답이오!"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/c8RKNwIhoqk")'}))));
-			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi/PcFz2DyieNk/maxresdefault.jpg")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'그래도 가겠다'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"사람으로 사람처럼\n살다 죽는 그런 세상"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/PcFz2DyieNk")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/id7WpsHWCZQ/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'등등곡'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/id7WpsHWCZQ")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/pVwLQejFfMA/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'놀아보자'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/pVwLQejFfMA")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/_aMJZn7oX-s/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'그런 세상'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/_aMJZn7oX-s")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/c8RKNwIhoqk/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'태평성대'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/c8RKNwIhoqk")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi/PcFz2DyieNk/maxresdefault.jpg")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'그래도 가겠다'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/PcFz2DyieNk")'}))));
 			break;
 		case 3: //데이비
 			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/XlovM/btsKPhwoHGL/yiRgZiA40R4ELi8AGRdfbk/img.jpg');
-			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/DUgJ8V3XcIo/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'커튼콜(1)'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"별을 향해\n내가 닿을 수 없는 곳으로"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/DUgJ8V3XcIo")'}))));
-			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/eEonxsXG74g/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'커튼콜(2)'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':'"그럼 나는 씨익"'})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/eEonxsXG74g")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/DUgJ8V3XcIo/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'커튼콜(1)'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/DUgJ8V3XcIo")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/eEonxsXG74g/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'커튼콜(2)'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/eEonxsXG74g")'}))));
 			break;
 		case 4: //안지환
 			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg');
