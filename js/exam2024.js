@@ -5,17 +5,8 @@ let group = 0,
 	answerlist = [],
 	url = "";
 const urlParams = new URL(location.href).searchParams;
-const firebaseConfig = {
-	    apiKey: "AIzaSyCmF81jQ27FLmyb1zZgT6pEboTpeFUUt-k",
-	    authDomain: "ahnjeehwany.firebaseapp.com",
-	    databaseURL: "https://ahnjeehwany-default-rtdb.firebaseio.com",
-	    projectId: "ahnjeehwany",
-	    storageBucket: "ahnjeehwany.firebasestorage.app",
-	    messagingSenderId: "4142402443",
-	    appId: "1:4142402443:web:773ee03ac4ff8631183d8e",
-	    measurementId: "G-BWPFC2L1VG"
-	  };
 loadScript("js/exam2024_msg.js");
+loadScript("js/exam2024_data.js");
 
 $(document).ready(function(){
 	group = urlParams.get('group');
@@ -95,8 +86,10 @@ $(document).ready(function(){
 			$("article.intro").fadeIn();
         });
 	});
+	//뒤로가기
 	$('.ing a.back').on('click', function(){
 		$('.ing .choose ul').empty();
+		$('.ing .choose .textCont').hide();
 		answerlist.pop();
 	    if(progress == 0){
 		    $("article.ing").fadeOut("fast", function(){
@@ -190,6 +183,7 @@ $(document).ready(function(){
 		answerlist = [];
 		$('.progress .bar').css('width','12.5%');
 		$('.ing .choose ul').empty();
+		$('.ing .choose .textCont').hide();
 		$('.inputCont input.name').val('');
 		$("article.result").fadeOut("fast", function(){
 			$("html, body").css('overflow','hidden');
@@ -379,11 +373,4 @@ function loadScript(url) {
     script.type = "text/javascript";
     script.defer = true;  // 필요한 경우 async 또는 defer 사용
     document.head.appendChild(script);
-}
-function sendMessage(msg){
-	// Initialize Firebase
-	firebase.initializeApp(firebaseConfig);
-	var db = firebase.database();
-	
-	firebase.database().ref('2024/').set(msg);	
 }
