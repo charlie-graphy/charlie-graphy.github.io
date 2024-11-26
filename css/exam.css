@@ -219,7 +219,7 @@ button:hover, li:hover {
 	border-radius: 6px;
 	cursor: pointer;
 }
-.choose li:hover, .choose li.act {
+.choose li:hover {
 	color: #fff;
 	background-color: #ffa205;
 	opacity: 0.7;
