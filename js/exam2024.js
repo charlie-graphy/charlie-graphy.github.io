@@ -262,9 +262,10 @@ $(document).ready(function(){
 //문제유형
 function showTypeQuestion(i, ii){
 	//문제
+	const imgQ = ['img/q1.jpeg']
 	$('.ing .question .imgQ').empty();
 	if(questionType[i][ii] == 2){//i=q
-		$('.ing .question .imgQ').append($('<img>',{'src':'https://img.sbs.co.kr/news/pc/thumb_v2.png','style':'width:85%;margin-bottom:20;border:1px solid #aaa;'}));
+		$('.ing .question .imgQ').append($('<img>',{'src':imgQ[i],'style':'width:85%;margin-bottom:20;border:1px solid #aaa;'}));
 		$('.ing .question').css('height','400px');
 	}else{
 		$('.ing .question').css('height','');
