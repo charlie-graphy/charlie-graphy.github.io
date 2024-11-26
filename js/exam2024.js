@@ -210,7 +210,8 @@ $(document).ready(function(){
 		
 		for(var i = 0 ; i < answerCont[group].length ; i++){
 			$('.divExam ul:eq('+i+')').find('li').eq(answerCont[group][i]-1).addClass('bold');
-			$('.divExam ul:eq('+i+')').append($('<li>',{'class':'comment','text':answerComment[group][i]}));
+			//$('.divExam ul:eq('+i+')').append($('<li>',{'class':'comment','text':answerComment[group][i]}));
+			$('.divExam ul:eq('+i+')').append(('<li class="comment">'+answerComment[group][i]+'</li>'));
 		}
 		
 		$('.divLayer').show();
@@ -337,6 +338,7 @@ function showContent(idx, sco){
 			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/a0M5u8ueiks/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'보름달'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/a0M5u8ueiks")'}))));
 			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi/TgmCnvcGI4U/maxresdefault.jpg")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'편지'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/TgmCnvcGI4U")'}))));
 			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/9XxQQXTtQY8/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'수용'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/9XxQQXTtQY8")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/fLc4WWo6VFI/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'온더로드'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/fLc4WWo6VFI")'}))));
 			break;
 		case 1: //토루
 			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/ZWGkK/btsKPQd0yUK/DzFzpTnisWP0B3394RJgF0/img.jpg');
