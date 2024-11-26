@@ -16,7 +16,7 @@ $(document).ready(function(){
 	score = urlParams.get('score');
 	$(window).scrollTop(0);
     let isDragging = false,
-    	imgQList = ['img/q1.jpeg'];
+    	imgQList = ['img/q1.jpeg','img/q2.jpeg'];
     
     for(let i = 0; i < imgQList.length; i++) {
         imgQ[i] = $('<img>',{'class':'slide-in','src':imgQList[i],'style':'width:85%;margin-bottom:20;border:1px solid #aaa;'})
@@ -329,7 +329,7 @@ function resultData(){
     showContent(group, score);
 }
 function showContent(idx, sco){
-	const scoreImg = [["img/test.png","img/test.png","img/test.png"],["1","2","3"],["1","2","3"],["1","2","3"],["1","2","3"]] 
+	const scoreImg = [["img/test.png","img/test.png","img/test.png"],["img/test.png","img/test.png","img/test.png"],["1","2","3"],["1","2","3"],["1","2","3"]] 
 	if(sco <= 40) $('.result .resultImgCont img').attr('src',scoreImg[idx][0]);
 	else if(sco >= 41 && sco <= 75)  $('.result .resultImgCont img').attr('src',scoreImg[idx][1]);
 	else $('.result .resultImgCont img').attr('src',scoreImg[idx][2]);
