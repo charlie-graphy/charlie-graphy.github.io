@@ -19,7 +19,7 @@ $(document).ready(function(){
     	imgQList = ['img/q1.jpeg','img/q2.jpeg'];
     
     for(let i = 0; i < imgQList.length; i++) {
-        imgQ[i] = $('<img>',{'class':'slide-in','src':imgQList[i],'style':'width:85%;margin-bottom:20;border:1px solid #aaa;'})
+        imgQ[i] = $('<img>',{'class':'slide-in','src':imgQList[i],'style':'height:230px;margin-bottom:20;border:1px solid #aaa;'})
     }
 	// loading page
 	var counter = 0;
@@ -271,7 +271,6 @@ function showTypeQuestion(i, ii){
 	//문제
 	$('.ing .question .imgQ').empty();
 	if(questionType[i][ii] == 2){//i=q
-		//$('.ing .question .imgQ').append($('<img>',{'class':'slide-in','src':imgQ[i],'style':'width:85%;margin-bottom:20;border:1px solid #aaa;'}));
 		$('.ing .question .imgQ').append(imgQ[i]);
 		$('.ing .question').css('height','330px');
 	}else{
