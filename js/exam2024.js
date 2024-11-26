@@ -70,7 +70,8 @@ $(document).ready(function(){
 	    group = $(this).index();
 
 	    showTypeQuestion(group, progress);
-		$('.ing .question span').text(questionCont[group][progress]);
+		$('.ing .question span').remove();
+		$('.ing .question').append($('<span>',{'class':'slide-in','text':questionCont[group][progress]}));
 		for(var i = 0 ; i < chooseCont[group][progress].length; i++){
 			$li = $('<li>',{'class':'slideIn','text':chooseCont[group][progress][i]});
 			$('.ing .choose ul').append($li);
@@ -265,8 +266,8 @@ function showTypeQuestion(i, ii){
 	const imgQ = ['img/q1.jpeg']
 	$('.ing .question .imgQ').empty();
 	if(questionType[i][ii] == 2){//i=q
-		$('.ing .question .imgQ').append($('<img>',{'src':imgQ[i],'style':'width:85%;margin-bottom:20;border:1px solid #aaa;'}));
-		$('.ing .question').css('height','400px');
+		$('.ing .question .imgQ').append($('<img>',{'class':'slide-in','src':imgQ[i],'style':'width:85%;margin-bottom:20;border:1px solid #aaa;'}));
+		$('.ing .question').css('height','330px');
 	}else{
 		$('.ing .question').css('height','');
 	}
@@ -277,7 +278,8 @@ function showIngData(idx){
 	$('.ing .choose .textCont').hide();
 	
 	showTypeQuestion(group, idx);
-	$('.ing .question span').text(questionCont[group][idx]);
+	$('.ing .question span').remove();
+	$('.ing .question').append($('<span>',{'class':'slide-in','text':questionCont[group][idx]}));
 
 	//선택
 	if(questionType[group][idx] == 3){ //a=t
