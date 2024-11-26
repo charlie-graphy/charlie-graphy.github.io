@@ -73,7 +73,7 @@ $(document).ready(function(){
 		$('.ing .question span').remove();
 		$('.ing .question').append($('<span>',{'class':'slide-in','text':questionCont[group][progress]}));
 		for(var i = 0 ; i < chooseCont[group][progress].length; i++){
-			$li = $('<li>',{'class':'slideIn','text':chooseCont[group][progress][i]});
+			$li = $('<li>',{'class':'slideIn','text':chooseCont[group][progress][i],'style':'color:black;background-color:white;opacity:1;'});
 			$('.ing .choose ul').append($li);
 		}
 
@@ -106,12 +106,11 @@ $(document).ready(function(){
 	//문항선택
 	$('.ing .choose ul').on('click', 'li', function(){
 		progress+=1;
-		$(this).addClass('act');
+		$(this).css({'color':'white','background-color':'#ffa205'});
 		$('.progress .bar').css('width',(progress+1)*12.5+'%');
 		answerlist.push($(this).index()+1);
 		
 		setTimeout(() => {
-			$('.ing .choose ul li').removeClass('act');
 			if(progress == questionCont[group].length) resultData();
 			else showIngData(progress);
 		},300);
@@ -287,7 +286,7 @@ function showIngData(idx){
 		$('.ing .choose .textCont').show();
 	}else {
 		for(var i = 0 ; i < chooseCont[group][idx].length; i++){
-			$li = $('<li>',{'class':'slide-in','text':chooseCont[group][idx][i]});
+			$li = $('<li>',{'class':'slide-in','text':chooseCont[group][idx][i],'style':'color:black;background-color:white;'});
 			$('.ing .choose ul').append($li);
 		}
 	}
