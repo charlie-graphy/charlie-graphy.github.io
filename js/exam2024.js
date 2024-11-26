@@ -4,10 +4,11 @@ let group = 0,
 	name = "",
 	answerlist = [],
 	url = "",
-	imgQ = ['img/q1.jpeg'];
+	imgQ = [];
 const urlParams = new URL(location.href).searchParams;
 loadScript("js/exam2024_msg.js");
 loadScript("js/exam2024_data.js");
+
 
 
 $(document).ready(function(){
@@ -15,11 +16,12 @@ $(document).ready(function(){
 	name = urlParams.get('name');
 	score = urlParams.get('score');
 	$(window).scrollTop(0);
-    let isDragging = false;
+    let isDragging = false,
+    	imgQList = ['img/q1.jpeg'];
     
-    for(let i = 0; i < imgQ.lenght; i++) {
+    for(let i = 0; i < imgQList.length; i++) {
     	imgQ[i] = new Image();
-        imgQ[i].src = preload.arguments.src;
+        imgQ[i].src = imgQList[i];
     }
 	// loading page
 	var counter = 0;
