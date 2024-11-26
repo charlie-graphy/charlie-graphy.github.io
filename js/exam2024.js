@@ -111,6 +111,7 @@ $(document).ready(function(){
 		answerlist.push($(this).index()+1);
 		
 		setTimeout(() => {
+			$('.ing .choose ul li').removeClass('act');
 			if(progress == questionCont[group].length) resultData();
 			else showIngData(progress);
 		},300);
@@ -290,7 +291,6 @@ function showIngData(idx){
 			$('.ing .choose ul').append($li);
 		}
 	}
-	$('.ing .choose ul li').removeClass('act');
 }
 function resultData(){
 	score = 100;
