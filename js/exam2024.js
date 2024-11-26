@@ -3,10 +3,12 @@ let group = 0,
 	score = 100,
 	name = "",
 	answerlist = [],
-	url = "";
+	url = "",
+	imgQ = ['img/q1.jpeg'];
 const urlParams = new URL(location.href).searchParams;
 loadScript("js/exam2024_msg.js");
 loadScript("js/exam2024_data.js");
+
 
 $(document).ready(function(){
 	group = urlParams.get('group');
@@ -14,7 +16,11 @@ $(document).ready(function(){
 	score = urlParams.get('score');
 	$(window).scrollTop(0);
     let isDragging = false;
-	
+    
+    for(let i = 0; i < imgQ.lenght; i++) {
+    	imgQ[i] = new Image();
+        imgQ[i].src = preload.arguments.src;
+    }
 	// loading page
 	var counter = 0;
 	var c = 0;
@@ -263,7 +269,6 @@ $(document).ready(function(){
 //문제유형
 function showTypeQuestion(i, ii){
 	//문제
-	const imgQ = ['img/q1.jpeg']
 	$('.ing .question .imgQ').empty();
 	if(questionType[i][ii] == 2){//i=q
 		$('.ing .question .imgQ').append($('<img>',{'class':'slide-in','src':imgQ[i],'style':'width:85%;margin-bottom:20;border:1px solid #aaa;'}));
