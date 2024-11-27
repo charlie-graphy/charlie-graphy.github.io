@@ -205,9 +205,10 @@ button:hover, li:hover {
 	white-space: pre-line;
 }
 .choose {
-	height: 350px;
+	height: 370px;
 }
 .choose ul {
+	margin-top: 10px;
 	padding: 0 20px;
 }
 .choose li {
