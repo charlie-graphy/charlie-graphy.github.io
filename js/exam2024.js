@@ -87,7 +87,7 @@ $(document).ready(function(){
 
 	    showTypeQuestion(group, progress);
 		$('.ing .question span').remove();
-		$('.ing .question').append($('<span>',{'class':'slide-in','text':questionCont[group][progress]}));
+		$('.ing .question').append(('<span class="slide-in">'+questionCont[group][progress]+'</span>'));
 		for(var i = 0 ; i < chooseCont[group][progress].length; i++){
 			$li = $('<li>',{'class':'slideIn','text':chooseCont[group][progress][i],'style':'color:black;background-color:white;opacity:1;'});
 			$('.ing .choose ul').append($li);
@@ -217,7 +217,7 @@ $(document).ready(function(){
 		
 		$('.divExam').append($('<ol>',{'type':'1'}));
 		for(var i = 0 ; i < questionCont[group].length ; i++){
-			$('.divExam ol').append($('<li>',{'text':questionCont[group][i]}));
+			$('.divExam ol').append(('<li>'+questionCont[group][i]+'</li>'));
 			var $ul = $('<ul>');
 			for(var j = 0 ; j < chooseCont[group][i].length; j++){
 				$ul.append($('<li>',{'text':(j+1)+'. '+chooseCont[group][i][j]}));
@@ -227,7 +227,6 @@ $(document).ready(function(){
 		
 		for(var i = 0 ; i < answerCont[group].length ; i++){
 			$('.divExam ul:eq('+i+')').find('li').eq(answerCont[group][i]-1).addClass('bold');
-			//$('.divExam ul:eq('+i+')').append($('<li>',{'class':'comment','text':answerComment[group][i]}));
 			$('.divExam ul:eq('+i+')').append(('<li class="comment">'+answerComment[group][i]+'</li>'));
 		}
 		
@@ -293,7 +292,7 @@ function showIngData(idx){
 	
 	showTypeQuestion(group, idx);
 	$('.ing .question span').remove();
-	$('.ing .question').append($('<span>',{'class':'slide-in','text':questionCont[group][idx]}));
+	$('.ing .question').append(('<span class="slide-in">'+questionCont[group][idx]+'</span>'));
 
 	//선택
 	if(questionType[group][idx] == 3){ //a=t
