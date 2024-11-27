@@ -9,8 +9,18 @@ const urlParams = new URL(location.href).searchParams;
 loadScript("js/exam2024_msg.js");
 loadScript("js/exam2024_data.js");
 
+$(window).on('resize orientationchange', function() {
+    if (window.matchMedia("(orientation: portrait)").matches) {// 세로일 때
+		$("html, body").css({'overflow-y':'hidden'});
+    	$(window).scrollTop(0);
+    }else { // 가로일 때
+		$("html, body").css({'overflow-y':'auto'});
+    }
+});
 
 $(document).ready(function(){
+	$(window).trigger('resize');
+	
 	group = urlParams.get('group');
 	name = urlParams.get('name');
 	score = urlParams.get('score');
@@ -231,8 +241,7 @@ $(document).ready(function(){
 	//해설지 닫기
 	$('.layerCont .b_handle').on('click', function(e){
 		e.preventDefault();
-		$("html, body").css('overflow-x','hidden');
-		$("html, body").css('overflow-y','auto');
+		$("html, body").css({'overflow-x':'hidden','overflow-y':'auto'});
 		$('.divLayer').hide();
 		$(".layerCont").css({'transform':'translateY(100%)'});
 	});
@@ -319,8 +328,7 @@ function resultData(){
 	    if(counter == 101) {
 	        clearInterval(i);
 	        $('.loading').fadeOut("slow", function(){
-	    		$("html, body").css('overflow-x','hidden');
-	    		$("html, body").css('overflow-y','auto');
+	    		$("html, body").css({'overflow-x':'hidden','overflow-y':'auto'});
 	        	$("article.result").fadeIn();
 	        });
 	    }
