@@ -211,10 +211,10 @@ button:hover, li:hover {
 	padding: 0 20px;
 }
 .choose li {
-	font-size: 0.9em;
+	font-size: 0.85em;
 	list-style: none;
 	padding: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 18px;
 	border: 1px solid #ddd;
 	border-radius: 6px;
 	cursor: pointer;
@@ -516,5 +516,19 @@ button:hover, li:hover {
 @media only screen and ( max-width : 500px) {
 	.container {
 		width: 100%;
+    }
+}
+@media only screen and ( max-height : 715px) {
+	.question {
+		height: 200px !important;
+    }
+    .question .imgQ img{
+    	height: 140px !important;
+    }
+    .question span{
+    	font-size: 0.8em !important;
+    }
+    .choose li{
+    	font-size: 0.77em !important;
     }
 }
