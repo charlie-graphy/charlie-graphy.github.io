@@ -521,10 +521,10 @@ button:hover, li:hover {
 }
 @media only screen and ( max-height : 715px) {
 	.question {
-		height: 200px !important;
+		height: 180px !important;
     }
     .question .imgQ img{
-    	height: 175px !important;
+    	height: 170px !important;
     }
     .question span{
     	font-size: 0.85em !important;
