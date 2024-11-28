@@ -21,6 +21,7 @@ $(window).on('resize orientationchange', function() {
 });
 
 $(document).ready(function(){
+	$("html, body").css({'overflow-x':'hidden','overflow-y':'auto'});
 	$(window).trigger('resize');
 	$(window).scrollTop(0);
 	
@@ -205,7 +206,7 @@ $(document).ready(function(){
 		$('.ing .choose .textCont').hide();
 		$('.inputCont input.name').val('');
 		$("article.result").fadeOut("fast", function(){
-			$("html, body").css('overflow','hidden');
+			//$("html, body").css('overflow','hidden');
 			$(window).scrollTop(0);
 		    $("article.intro").fadeIn();
         });
