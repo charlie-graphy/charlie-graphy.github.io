@@ -8,11 +8,31 @@ const firebaseConfig = {
 	    appId: "1:4142402443:web:773ee03ac4ff8631183d8e",
 	    measurementId: "G-BWPFC2L1VG"
 	  };
+const app = firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
 
-
-function sendMessage(msg){
-	firebase.initializeApp(firebaseConfig);
-	var db = firebase.database();
+function getIdx(){
 	
-	firebase.database().ref('2024/').set(msg);	
+}
+
+function sendMessage(msg){	
+	const newPostRef = database.ref('posts').push(); // 새로운 게시글 생성
+    newPostRef.set({
+      content: msg,
+      timestamp: new Date().toISOString()
+    });
+}
+
+function readMessage(){	
+	database.ref('posts').on('value', function(snapshot) {
+		const posts = snapshot.val();
+		const $board = $('#board');
+		
+        if(posts){
+        	Object.keys(posts).forEach(function(key){
+        		const post = posts[key];
+        		//조회 ${post.content} ${key}
+        	});
+        }
+    });
 }
