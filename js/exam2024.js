@@ -90,7 +90,7 @@ $(document).ready(function(){
 
 	    showTypeQuestion(group, progress);
 		$('.ing .question span').remove();
-		$('.ing .question').append(('<span class="slide-in">'+questionCont[group][progress]+'</span>'));
+		$('.ing .question').append(('<span class="slide-in" style="margin:auto;">'+questionCont[group][progress]+'</span>'));
 		for(var i = 0 ; i < chooseCont[group][progress].length; i++){
 			$li = $('<li>',{'class':'slideIn','text':chooseCont[group][progress][i],'style':'color:black;background-color:white;opacity:1;'});
 			$('.ing .choose ul').append($li);
@@ -295,7 +295,7 @@ function showIngData(idx){
 	
 	showTypeQuestion(group, idx);
 	$('.ing .question span').remove();
-	$('.ing .question').append(('<span class="slide-in">'+questionCont[group][idx]+'</span>'));
+	$('.ing .question').append(('<span class="slide-in" style="margin:auto;">'+questionCont[group][idx]+'</span>'));
 
 	//선택
 	if(questionType[group][idx] == 3){ //a=t
