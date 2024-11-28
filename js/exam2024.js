@@ -218,19 +218,19 @@ $(document).ready(function(){
 		$('.divExamTt').text('2024 지환고사 : '+groupCont[group]+'영역 해설지');
 		$('.divExam').empty();
 		
-		$('.divExam').append($('<ol>',{'type':'1'}));
+		$('.divExam').append($('<ol>',{'type':'1','class':'q'}));
 		for(var i = 0 ; i < questionCont[group].length ; i++){
-			$('.divExam ol').append(('<li>'+questionCont[group][i]+'</li>'));
-			var $ul = $('<ul>');
+			$('.divExam ol.q').append(('<li>'+questionCont[group][i]+'</li>'));
+			var $ol = $('<ol>',{'type':'1','class':'c'});
 			for(var j = 0 ; j < chooseCont[group][i].length; j++){
-				$ul.append($('<li>',{'text':(j+1)+'. '+chooseCont[group][i][j]}));
+				$ol.append($('<li>',{'text':chooseCont[group][i][j]}));
 			}
-			$('.divExam ol').append($ul);
+			$('.divExam ol.q').append($ol);
 		}
 		
 		for(var i = 0 ; i < answerCont[group].length ; i++){
-			$('.divExam ul:eq('+i+')').find('li').eq(answerCont[group][i]-1).addClass('bold');
-			$('.divExam ul:eq('+i+')').append(('<li class="comment">'+answerComment[group][i]+'</li>'));
+			$('.divExam ol.c:eq('+i+')').find('li').eq(answerCont[group][i]-1).addClass('bold');
+			$('.divExam ol.c:eq('+i+')').append(('<li class="comment">'+answerComment[group][i]+'</li>'));
 		}
 		
 		$('.divLayer').show();
