@@ -283,7 +283,7 @@ function showTypeQuestion(i, ii){
 	$('.ing .question .imgQ').empty();
 	if(questionType[i][ii] == 2){//i=q
 		$('.ing .question .imgQ').append(imgQ[i]);
-		$('.ing .question').attr('style','height:280px !important;');
+		$('.ing .question').attr('style','height:290px !important;');
 	}else{
 		$('.ing .question').css('height','');
 	}
