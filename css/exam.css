@@ -219,6 +219,8 @@ button:hover, li:hover {
 	border: 1px solid #ddd;
 	border-radius: 6px;
 	cursor: pointer;
+	word-break: keep-all;
+	white-space: pre-line;
 }
 .choose li:hover {
 	color: #fff;
