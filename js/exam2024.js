@@ -21,7 +21,6 @@ $(window).on('resize orientationchange', function() {
 });
 
 $(document).ready(function(){
-	$("html, body").css({'overflow-x':'hidden','overflow-y':'auto'});
 	$(window).trigger('resize');
 	$(window).scrollTop(0);
 	
@@ -73,6 +72,7 @@ $(document).ready(function(){
 		}
 	    $("article.intro").fadeOut("fast", function(){
 	    	$(window).scrollTop(0);
+	    	$("html, body").css('overflow','hidden');
 		    $("article.ready").fadeIn();
         });
 	    
