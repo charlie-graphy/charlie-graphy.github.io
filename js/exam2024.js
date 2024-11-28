@@ -283,7 +283,7 @@ function showTypeQuestion(i, ii){
 	$('.ing .question .imgQ').empty();
 	if(questionType[i][ii] == 2){//i=q
 		$('.ing .question .imgQ').append(imgQ[i]);
-		$('.ing .question').attr('style','height:300px !important;');
+		$('.ing .question').attr('style','height:280px !important;');
 	}else{
 		$('.ing .question').css('height','');
 	}
@@ -371,11 +371,15 @@ function showContent(idx, sco){
 			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/_aMJZn7oX-s/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'그런 세상'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/_aMJZn7oX-s")'}))));
 			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/c8RKNwIhoqk/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'태평성대'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/c8RKNwIhoqk")'}))));
 			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi/PcFz2DyieNk/maxresdefault.jpg")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'그래도 가겠다'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/PcFz2DyieNk")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/GMqSSWmBU88/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'어화둥둥'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/GMqSSWmBU88")'}))));
 			break;
 		case 3: //데이비
 			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/XlovM/btsKPhwoHGL/yiRgZiA40R4ELi8AGRdfbk/img.jpg');
 			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/DUgJ8V3XcIo/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'커튼콜(1)'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/DUgJ8V3XcIo")'}))));
 			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi_webp/eEonxsXG74g/maxresdefault.webp")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'커튼콜(2)'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/eEonxsXG74g")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi/moLr80ym83k/maxres2.jpg")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'캐릭터 티저'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtube.com/shorts/moLr80ym83k")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi/7ZD3X-gYvwI/oardefault.jpg")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'데일리 킬롤로지'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtube.com/shorts/7ZD3X-gYvwI")'}))));
+			$('.recommendCont .recCont2 .page-content').append($('<div>',{'class':'card','style':'background-image:url("https://i.ytimg.com/vi/l88EhZIT-FM/maxresdefault.jpg")'}).append($('<div>',{'class':'content'}).append($('<div>',{'class':'title','text':'하이라이트'}), $('<div>',{'class':'copy'}).append($('<span>',{'text':''})), $('<button>',{'class':'btn','text':'보러가기','onclick':'window.open("https://youtu.be/l88EhZIT-FM")'}))));
 			break;
 		case 4: //안지환
 			$('.recommendCont .recCont1 img').attr('src','https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg');
