@@ -174,7 +174,7 @@ $(document).ready(function(){
 		    content: {
 		    	title: '2024 지환고사',
 		    	description: groupCont[group]+'영역 '+name+'님의 점수는 '+$('.score').text(),
-		    	imageUrl: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FeB1Yj7%2Fbtrn8HKdp01%2FlZMtAuvo986os4dCkVoAOk%2Fimg.png',
+		    	imageUrl: 'img/2024Eaxam.jpg',
 		    	imageWidth: 1200,
 		    	imageHeight: 630,
 		    	link: { mobileWebUrl: url, webUrl: url }
