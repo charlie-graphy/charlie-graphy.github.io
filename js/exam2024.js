@@ -10,21 +10,23 @@ loadScript("js/exam2024_msg.js");
 loadScript("js/exam2024_data.js");
 
 $(window).on('resize orientationchange', function() {
-    if (window.matchMedia("(orientation: portrait)").matches) {// 세로일 때
-		$("html, body").css({'overflow-y':'hidden'});
-    	$(window).scrollTop(0);
-    }else { // 가로일 때
-		$("html, body").css({'overflow-y':'auto'});
-    }
+	if($('.result').is(':hidden')){
+	    if(window.matchMedia("(orientation: portrait)").matches) {// 세로일 때
+			$("html, body").css({'overflow-y':'hidden'});
+	    	$(window).scrollTop(0);
+	    }else { // 가로일 때
+			$("html, body").css({'overflow-y':'auto'});
+	    }
+	}
 });
 
 $(document).ready(function(){
 	$(window).trigger('resize');
+	$(window).scrollTop(0);
 	
 	group = urlParams.get('group');
 	name = urlParams.get('name');
 	score = urlParams.get('score');
-	$(window).scrollTop(0);
     let isDragging = false,
     	imgQList = ['img/q1.jpeg','img/q2.jpeg','img/q3.jpeg','img/q4.jpeg'];
     
