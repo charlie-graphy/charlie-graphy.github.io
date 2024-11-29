@@ -26,7 +26,7 @@ html, body {
 	display: flex;
 	align-items:flex-start;
 }
-body::-webkit-scrollbar {
+body::-webkit-scrollbar, .msgCont::-webkit-scrollbar {
 	width: 5px;  /* 스크롤바의 너비 */
 }
 body::-webkit-scrollbar-thumb {
@@ -34,7 +34,7 @@ body::-webkit-scrollbar-thumb {
 	background: #ffd793; /* 스크롤바의 색상 */ 
 	border-radius: 10px;
 }
-body::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track, .msgCont::-webkit-scrollbar-track {
 	background: white;  /*스크롤바 뒷 배경 색상*/
 }
 svg path, svg rect{
@@ -184,7 +184,7 @@ button:hover, li:hover {
 		transform: translateY(0); /* 제자리로 이동 */
 	}
 }
-.ing .slide-in {
+.slide-in {
 	opacity: 0;
 	animation: slideIn 0.5s ease-out forwards;
 }
@@ -505,18 +505,45 @@ button:hover, li:hover {
 	align-items: center;
 }
 .recCont2 .btn {
-  cursor: pointer;
-  padding: 0.35rem;
-  font-size: 60%;
-  font-weight: bold;
-  letter-spacing: 0.025rem;
-  text-transform: uppercase;
-  color: white;
-  background-color: black;
-  border: none;
-  width: 60%;
-  height: 25%;
-  margin-bottom: 5;
+	cursor: pointer;
+	padding: 0.35rem;
+	font-size: 60%;
+	font-weight: bold;
+	letter-spacing: 0.025rem;
+	text-transform: uppercase;
+	color: white;
+	background-color: black;
+	border: none;
+	width: 60%;
+	height: 25%;
+	margin-bottom: 5;
+}
+.message .postit {
+	background: #FFF9C4;
+	width: 300px;
+	margin: 60px auto;
+	padding: 10px;
+	box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+	color: #424242;
+}
+.message .tape {
+	margin: -30px auto 10px;
+	width: 165px;
+	height: 30px;
+	background: rgba(255,255,200,0.4);
+	-webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.4);
+	-moz-box-shadow: 0px 1px 3px rgba(0,0,0,0.4);
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.4);
+	text-align: center;
+	line-height: 40px;
+	font-weight: bold;
+	color: #424242;
+}
+.message .msg{
+	font-size: .75em;
+	word-break: keep-all;
+	white-space: pre-line;
+	margin: 25;
 }
 /* 모바일 화면에서만 보이는 스타일 */
 @media only screen and ( max-width : 500px) {
