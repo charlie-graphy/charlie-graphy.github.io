@@ -988,7 +988,7 @@
 				},
 				{
 					title: '킬롤로지',
-					description: '알란 役 | 이상홍<br>폴 役 | 김경남<br>데이비 役 | 안지환',
+					description: '<p class="event">앵콜 배웅데이</p>알란 役 | 이상홍<br>폴 役 | 김경남<br>데이비 役 | 안지환',
 					start: '2024-11-26 20:00',
 					className: 'bg-purple',
 					allDay: false
@@ -1002,7 +1002,7 @@
 				},
 				{
 					title: '킬롤로지',
-					description: '알란 役 | 최영준<br>폴 役 | 임주환<br>데이비 役 | 안지환',
+					description: '<p class="event">마지막 공연</p>알란 役 | 최영준<br>폴 役 | 임주환<br>데이비 役 | 안지환',
 					start: '2024-12-01 18:30',
 					className: 'bg-purple',
 					allDay: false
