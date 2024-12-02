@@ -10,9 +10,13 @@ const firebaseConfig = {
 	  };
 const app = firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
-let messageRef = database.ref('posts');
+let messageRef = null;
 
-function sendMessage(msg){	
+function sendMessage(msg){
+	firebase.database().goOnline();
+	if(messageRef) messageRef.off(); // 이전 리스너 해제
+	messageRef = database.ref('posts'); // 새로운 리스너 추가
+	
 	const newPostRef = database.ref('posts').push();
 	const currentTime = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
     newPostRef.set({
