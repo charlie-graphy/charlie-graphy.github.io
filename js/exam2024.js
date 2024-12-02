@@ -7,7 +7,7 @@ let group = 0,
 	imgQ = [];
 const urlParams = new URL(location.href).searchParams;
 loadScript("js/exam2024_msg.min.js");
-loadScript("js/exam2024_data.min.js");
+loadScript("js/exam2024_data.js");
 
 $(window).on('resize orientationchange', function() {
 	if($('.result').is(':hidden')){
@@ -84,6 +84,11 @@ $(document).ready(function(){
 	});
 	//메시지
 	$('#msgIcon').on('click', function(){
+		/*if(new Date().getHours() < 15){
+			$('.howtoCont').text("3시 이후에 오픈됩니다.");
+			$('.modal').fadeIn(400).delay(400).fadeOut(400);
+			return false;
+		}*/
 		$('.msgCont').empty();
 		$('#msgIcon').addClass('bi-envelope-open-heart');
 		$('#msgIcon').removeClass('bi-envelope-heart');

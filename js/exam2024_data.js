@@ -39,6 +39,8 @@ function readMessage(){
         	});
         }
     });
+	
+	setTimeout(() => { disconnect() },1000);
 }
 
 //연결을 종료하고 Firebase 오프라인 처리하는 함수
