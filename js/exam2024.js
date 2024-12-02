@@ -10,7 +10,7 @@ loadScript("js/exam2024_msg.js");
 loadScript("js/exam2024_data.js");
 
 $(window).on('resize orientationchange', function() {
-	if($('.result').is(':hidden')){
+	if(!$('.ready').is(':hidden') || !$('.ing').is(':hidden')){
 	    if(window.matchMedia("(orientation: portrait)").matches) {// 세로일 때
 			$("html, body").css({'overflow-y':'hidden'});
 	    	$(window).scrollTop(0);
