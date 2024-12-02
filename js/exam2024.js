@@ -6,7 +6,7 @@ let group = 0,
 	url = "",
 	imgQ = [];
 const urlParams = new URL(location.href).searchParams;
-loadScript("js/exam2024_msg.min.js");
+loadScript("js/exam2024_msg.js");
 loadScript("js/exam2024_data.js");
 
 $(window).on('resize orientationchange', function() {
