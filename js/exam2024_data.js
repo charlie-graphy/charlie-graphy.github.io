@@ -10,6 +10,7 @@ const firebaseConfig = {
 	  };
 const app = firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
+let messageRef = database.ref('posts');
 
 function sendMessage(msg){	
 	const newPostRef = database.ref('posts').push();
@@ -17,11 +18,13 @@ function sendMessage(msg){
     newPostRef.set({
       content: msg,
       timestamp: currentTime
+    }).then(() => {
+        console.log("메시지 전송 완료");
+        disconnect(); // 전송 후 연결 해제
+    }).catch(error => {
+        console.error("메시지 전송 오류:", error);
     });
 }
-
-//메시지 읽는 함수 (연결 해제 추가)
-let messageRef = null;
 
 function readMessage(){
 	firebase.database().goOnline();
