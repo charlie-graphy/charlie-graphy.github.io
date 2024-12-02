@@ -6,8 +6,8 @@ let group = 0,
 	url = "",
 	imgQ = [];
 const urlParams = new URL(location.href).searchParams;
-loadScript("js/exam2024_msg.js");
-loadScript("js/exam2024_data.js");
+loadScript("js/exam2024_msg.min.js");
+loadScript("js/exam2024_data.min.js");
 
 $(window).on('resize orientationchange', function() {
 	if($('.result').is(':hidden')){
@@ -82,6 +82,18 @@ $(document).ready(function(){
 			$('.ready .choose ul').append($li);
 		}
 	});
+	//메시지
+	$('#msgIcon').on('click', function(){
+		$('.msgCont').empty();
+		$('#msgIcon').addClass('bi-envelope-open-heart');
+		$('#msgIcon').removeClass('bi-envelope-heart');
+		readMessage();
+		$("article.intro").fadeOut("last", function(){
+	    	$(window).scrollTop(0);
+		    $("article.message").fadeIn();
+			$(".msgCont").css({'overflow':'hidden auto','padding-bottom':'50px'});
+        });
+	});
 	//영역선택
 	$('.ready .choose ul').on('click', 'li', function(){
 	    $("article.ing .group").text($(this).text());
@@ -106,10 +118,11 @@ $(document).ready(function(){
 			$("article.intro").fadeIn();
         });
 	});
-	//뒤로가기
+	//ing 뒤로가기
 	$('.ing a.back').on('click', function(){
 		$('.ing .choose ul').empty();
 		$('.ing .choose .textCont').hide();
+		$('textarea').val('');
 		answerlist.pop();
 	    if(progress == 0){
 		    $("article.ing").fadeOut("fast", function(){
@@ -120,6 +133,16 @@ $(document).ready(function(){
 	    }
 	    if(progress > 0 ) progress-=1;
 		$('.progress .bar').css('width',(progress+1)*12.5+'%');
+	});
+	//msg 뒤로가기
+	$('.message a.back').on('click', function(){
+		$("article.message").fadeOut("fast", function(){
+	    	$(window).scrollTop(0);
+		    $("article.intro").fadeIn();
+			$('#msgIcon').removeClass('bi-envelope-open-heart');
+			$('#msgIcon').addClass('bi-envelope-heart');
+			disconnect();
+        });
 	});
 	
 	//문항선택
@@ -141,7 +164,9 @@ $(document).ready(function(){
 		answerlist.push($('.ing .choose textarea').val());
 		
 		//전송
-		sendMessage($('.ing .choose textarea').val());
+		if($('.ing .choose textarea').val() != ""){
+			sendMessage($('.ing .choose textarea').val());
+		}
 		
 		setTimeout(() => {
 			if(progress == questionCont[group].length) resultData();
@@ -204,13 +229,12 @@ $(document).ready(function(){
 		$('.progress .bar').css('width','12.5%');
 		$('.ing .choose ul').empty();
 		$('.ing .choose .textCont').hide();
-		$('.inputCont input.name').val('');
+		$('.inputCont input.name, textarea').val('');
 		$("article.result").fadeOut("fast", function(){
-			//$("html, body").css('overflow','hidden');
 			$(window).scrollTop(0);
 		    $("article.intro").fadeIn();
         });
-		//history.pushState(null, null, 'exam');
+		history.pushState(null, null, 'exam');
 	});
 
 	//해설지보기
@@ -230,7 +254,7 @@ $(document).ready(function(){
 		
 		for(var i = 0 ; i < answerCont[group].length ; i++){
 			$('.divExam ol.c:eq('+i+')').find('li').eq(answerCont[group][i]-1).addClass('bold');
-			$('.divExam ol.c:eq('+i+')').append(('<li class="comment">'+answerComment[group][i]+'</li>'));
+			if(answerComment[group][i] != '') $('.divExam ol.c:eq('+i+')').append(('<li class="comment">'+answerComment[group][i]+'</li>'));
 		}
 		
 		$('.divLayer').show();

@@ -11,28 +11,38 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-function getIdx(){
-	
-}
-
 function sendMessage(msg){	
-	const newPostRef = database.ref('posts').push(); // 새로운 게시글 생성
+	const newPostRef = database.ref('posts').push();
+	const currentTime = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
     newPostRef.set({
       content: msg,
-      timestamp: new Date().toISOString()
+      timestamp: currentTime
     });
 }
 
-function readMessage(){	
-	database.ref('posts').on('value', function(snapshot) {
+//메시지 읽는 함수 (연결 해제 추가)
+let messageRef = null;
+
+function readMessage(){
+	if(messageRef) messageRef.off(); // 이전 리스너 해제
+	messageRef = database.ref('posts'); // 새로운 리스너 추가
+	messageRef.on('value', function(snapshot) {
 		const posts = snapshot.val();
-		const $board = $('#board');
+		const $board = $('.msgCont');
 		
         if(posts){
         	Object.keys(posts).forEach(function(key){
         		const post = posts[key];
-        		//조회 ${post.content} ${key}
+        		const $tape = $('<div>',{'class':'tape','text':''});
+        		const $cont = $('<div>',{'class':'msg','data-dt':post.timestamp}).append($('<p>'+post.content+'</p>'));
+        		$board.append($('<div>',{'class':'postit slide-in'}).append($tape, $cont));
         	});
         }
     });
+}
+
+//연결을 종료하고 Firebase 오프라인 처리하는 함수
+function disconnect(){
+	if(messageRef) messageRef.off(); // 리스너 해제
+	firebase.database().goOffline(); // Firebase 연결 끊기
 }
