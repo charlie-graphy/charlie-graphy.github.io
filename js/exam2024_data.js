@@ -24,6 +24,7 @@ function sendMessage(msg){
 let messageRef = null;
 
 function readMessage(){
+	firebase.database().goOnline();
 	if(messageRef) messageRef.off(); // 이전 리스너 해제
 	messageRef = database.ref('posts'); // 새로운 리스너 추가
 	messageRef.on('value', function(snapshot) {
@@ -40,7 +41,7 @@ function readMessage(){
         }
     });
 	
-	setTimeout(() => { disconnect() },1000);
+	setTimeout(() => { disconnect() },10000);
 }
 
 //연결을 종료하고 Firebase 오프라인 처리하는 함수
