@@ -38,8 +38,10 @@ $(document).ready(function(){
 	 $('#closeBtn').on('click', function(e){
 	 	$('#modal').hide();
 	 });
-	
+	 
 	 // '오늘 하루동안만 닫기' 버튼 클릭 시 모달 닫고 쿠키 설정
+	 $('#closeToday').text('오늘 하루동안 보이지 않기');
+	 $('#closeBtn').text('닫기');
 	 $('#closeToday').on('click', function(e){
 	     setCookie('popupClosed', 'true', 1); // 1일 동안 쿠키 설정
 	 	$('#modal').hide();
