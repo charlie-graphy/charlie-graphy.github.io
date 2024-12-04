@@ -88,8 +88,8 @@ $(document).ready(function(){
 	});
 	//메시지
 	$('#msgIcon').on('click', function(){
-		/*if(new Date().getHours() < 15){
-			$('.howtoCont').text("3시 이후에 오픈됩니다.");
+		/*if(new Date().getHours() <= 12 && new Date().getMinutes() <= 11){
+			$('.howtoCont').text("12:11 PM에 오픈됩니다.");
 			$('.modal').fadeIn(400).delay(400).fadeOut(400);
 			return false;
 		}*/
@@ -372,8 +372,11 @@ function resultData(){
     showContent(group, score);
 }
 function showContent(idx, sco){
-	const scoreImg = [["img/test.png","img/test.png","img/test.png"],["img/test.png","img/test.png","img/test.png"],["img/test.png","img/test.png","img/test.png"]
-						,["img/test.png","img/test.png","img/test.png"],["img/test.png","img/test.png","img/test.png"]] 
+	const scoreImg = [["https://blog.kakaocdn.net/dn/bdKhEr/btsK48l0E7O/phDxD0sjD4Ic5AbJl2vmnk/img.png","https://blog.kakaocdn.net/dn/J3E0s/btsK7BNos8E/YgfpN8HVbldEmJVSsk4c4k/img.png","https://blog.kakaocdn.net/dn/lMeQh/btsK6v8dGDT/dD6uQ8nrrxNk7WnGYiEkRk/img.png"]
+						,["https://blog.kakaocdn.net/dn/AAnOl/btsK5GbwC1H/Sd24AuHbBCDrdPU9bYshkk/img.png","https://blog.kakaocdn.net/dn/bt9JW8/btsK63QUnZK/BiaZNWOPvA39wEQtgjp0QK/img.png","https://blog.kakaocdn.net/dn/bu8bWn/btsK7IeBPxZ/fTvTU9bV6UG70GkDAoNsWk/img.png"]
+						,["https://blog.kakaocdn.net/dn/cCMLKC/btsK418fbSC/PiS4gUCDEwA88WdiJe2xH1/img.png","https://blog.kakaocdn.net/dn/kYY3V/btsK6bWGJkd/ixnUKHJ9eOSXalzERzC4T1/img.png","https://blog.kakaocdn.net/dn/dclfv5/btsK7IFFJig/WxLW86C3fU2lKgXJSR1g9K/img.png"]
+						,["https://blog.kakaocdn.net/dn/cEYiQJ/btsK5o3vPQt/kphn6VjiGAthke2QiXUNX1/img.png","https://blog.kakaocdn.net/dn/M4QaR/btsK643noQU/mffK1xS4RG3OhYak2efPj1/img.png","https://blog.kakaocdn.net/dn/M4QaR/btsK643noQU/mffK1xS4RG3OhYak2efPj1/img.png"]
+						,["img/test.png","img/test.png","img/test.png"]] 
 	if(sco <= 40) $('.result .resultImgCont img').attr('src',scoreImg[idx][0]);
 	else if(sco >= 41 && sco <= 75)  $('.result .resultImgCont img').attr('src',scoreImg[idx][1]);
 	else $('.result .resultImgCont img').attr('src',scoreImg[idx][2]);
