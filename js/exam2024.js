@@ -209,7 +209,7 @@ $(document).ready(function(){
 		    content: {
 		    	title: '2024 지환고사',
 		    	description: groupCont[group]+'영역 '+name+'님의 점수는 '+$('.score').text(),
-		    	imageUrl: 'img/2024Eaxam.jpg',
+		    	imageUrl: 'https://blog.kakaocdn.net/dn/b7SiG3/btsK8sqyQcF/AZfSza1WZz4SYqrYmQTvkK/img.png',
 		    	imageWidth: 1200,
 		    	imageHeight: 630,
 		    	link: { mobileWebUrl: url, webUrl: url }
@@ -372,11 +372,11 @@ function resultData(){
     showContent(group, score);
 }
 function showContent(idx, sco){
-	const scoreImg = [["https://blog.kakaocdn.net/dn/bdKhEr/btsK48l0E7O/phDxD0sjD4Ic5AbJl2vmnk/img.png","https://blog.kakaocdn.net/dn/J3E0s/btsK7BNos8E/YgfpN8HVbldEmJVSsk4c4k/img.png","https://blog.kakaocdn.net/dn/lMeQh/btsK6v8dGDT/dD6uQ8nrrxNk7WnGYiEkRk/img.png"]
-						,["https://blog.kakaocdn.net/dn/AAnOl/btsK5GbwC1H/Sd24AuHbBCDrdPU9bYshkk/img.png","https://blog.kakaocdn.net/dn/bt9JW8/btsK63QUnZK/BiaZNWOPvA39wEQtgjp0QK/img.png","https://blog.kakaocdn.net/dn/bu8bWn/btsK7IeBPxZ/fTvTU9bV6UG70GkDAoNsWk/img.png"]
-						,["https://blog.kakaocdn.net/dn/cCMLKC/btsK418fbSC/PiS4gUCDEwA88WdiJe2xH1/img.png","https://blog.kakaocdn.net/dn/kYY3V/btsK6bWGJkd/ixnUKHJ9eOSXalzERzC4T1/img.png","https://blog.kakaocdn.net/dn/dclfv5/btsK7IFFJig/WxLW86C3fU2lKgXJSR1g9K/img.png"]
-						,["https://blog.kakaocdn.net/dn/cEYiQJ/btsK5o3vPQt/kphn6VjiGAthke2QiXUNX1/img.png","https://blog.kakaocdn.net/dn/M4QaR/btsK643noQU/mffK1xS4RG3OhYak2efPj1/img.png","https://blog.kakaocdn.net/dn/M4QaR/btsK643noQU/mffK1xS4RG3OhYak2efPj1/img.png"]
-						,["img/test.png","img/test.png","img/test.png"]] 
+	const scoreImg = [["https://blog.kakaocdn.net/dn/0Toir/btsK9jsNEGd/pkMBiipZaXbY243yXZVb1K/img.png","https://blog.kakaocdn.net/dn/bi935o/btsK8YvFtdQ/wHAOs9MSzSmBehV4nQ0NGK/img.png","https://blog.kakaocdn.net/dn/vEsgr/btsK74DxJQD/vK4kSqbF7cBOU8rbd6Nto0/img.png"]
+						,["https://blog.kakaocdn.net/dn/DaOO5/btsK87sBAL1/DPdtoslXzsrF7rB5vfqvb0/img.png","https://blog.kakaocdn.net/dn/bcdden/btsK9PEPZzp/DObevEQPV3QiAfj13jW2s0/img.png","https://blog.kakaocdn.net/dn/c5AYfi/btsK9NtuhZY/wOee2YOn0WJEr9O1Rcj2d1/img.png"]
+						,["https://blog.kakaocdn.net/dn/bGKiXd/btsK7dgLgGZ/68S9BWhbgC5PkcUF57Bx11/img.png","https://blog.kakaocdn.net/dn/ckC4r4/btsK8v8Cyri/5q4UzHWQZKdAKZ1Z5n2fg0/img.png","https://blog.kakaocdn.net/dn/Wa5P4/btsK9NAeW7i/j0kSdDK2UiOggOZI72AMzk/img.png"]
+						,["https://blog.kakaocdn.net/dn/c4mJUP/btsK7OOpay1/D8yc0rjPTQVFu61xYG6dc0/img.png","https://blog.kakaocdn.net/dn/bD1rdE/btsK88ruMSK/G2aarZCPqybjBU1Ihu0Thk/img.png","https://blog.kakaocdn.net/dn/JFLCW/btsK9TN0FD8/3cURczPDYANJi1Vhz0ixKk/img.png"]
+						,["https://blog.kakaocdn.net/dn/sc91k/btsK7DTXsUZ/ay7kjW9wdKCmHMtxKWOJH1/img.png","https://blog.kakaocdn.net/dn/v7g6e/btsK9PEP0sh/EX7YCPOFqkkMr20Jf4uEf1/img.png","https://blog.kakaocdn.net/dn/chBrpQ/btsK9xj7MKz/zQbmvXDTkuvGI7ceJzYcM1/img.png"]] 
 	if(sco <= 40) $('.result .resultImgCont img').attr('src',scoreImg[idx][0]);
 	else if(sco >= 41 && sco <= 75)  $('.result .resultImgCont img').attr('src',scoreImg[idx][1]);
 	else $('.result .resultImgCont img').attr('src',scoreImg[idx][2]);
