@@ -210,7 +210,7 @@ $(document).ready(function(){
 		    content: {
 		    	title: '2024 지환고사',
 		    	description: groupCont[group]+'영역 '+name+'님의 점수는 '+$('.score').text(),
-		    	imageUrl: 'https://blog.kakaocdn.net/dn/b7SiG3/btsK8sqyQcF/AZfSza1WZz4SYqrYmQTvkK/img.png',
+		    	imageUrl: 'https://blog.kakaocdn.net/dn/lJC7J/btsK8WdNZP9/001GH2uZw7tkoLlDBpzRT1/img.png',
 		    	imageWidth: 1200,
 		    	imageHeight: 630,
 		    	link: { mobileWebUrl: url, webUrl: url }
