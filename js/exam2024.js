@@ -52,7 +52,7 @@ $(document).ready(function(){
 					$('.titleText .group').attr('data-id',group);
 					$('.titleText .group').text(groupCont[group]);
 				    $('.score').text(score+"점");
-				    url = "https://www.jeehwany.com/exam?group="+group+"&name="+name+"&score="+score;
+				    url = "https://www.jeehwany.com/2024exam?group="+group+"&name="+name+"&score="+score;
 		    		$("html, body").css({'overflow-x':'hidden','overflow-y':'auto'});
 		    		showContent(group, score);
 		        	$("article.result").fadeIn();
@@ -196,7 +196,7 @@ $(document).ready(function(){
 	//x(트위터) 공유
 	$('.result .xCopy').on('click', function(){
 		const text = encodeURIComponent($('.ing .titleText').text().substring(1)+" - "+name+"님의 점수는 "+$('.score').text());
-		const encodedUrl = encodeURIComponent("https://www.jeehwany.com/exam?group="+group+"&name="+encodeURIComponent(name)+"&score="+score);
+		const encodedUrl = encodeURIComponent("https://www.jeehwany.com/2024exam?group="+group+"&name="+encodeURIComponent(name)+"&score="+score);
 		const hashtags = encodeURIComponent('2024지환고사');
 		const xUrl = 'https://twitter.com/intent/tweet?text='+text+'&url='+encodedUrl+'&hashtags='+hashtags;
 
@@ -355,7 +355,7 @@ function resultData(){
 
     $('.rstName').text(name);
     $('.score').text(score+"점");
-    url = "https://www.jeehwany.com/exam?group="+group+"&name="+name+"&score="+$('.score').text().substring(0,$('.score').text().length-1);
+    url = "https://www.jeehwany.com/2024exam?group="+group+"&name="+name+"&score="+$('.score').text().substring(0,$('.score').text().length-1);
     
     var counter = 0;
     var c = 0;
