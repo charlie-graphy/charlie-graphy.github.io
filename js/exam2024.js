@@ -101,6 +101,7 @@ $(document).ready(function(){
 	    	$(window).scrollTop(0);
 		    $("article.message").fadeIn();
 			$(".msgCont").css({'overflow':'hidden auto','padding-bottom':'50px'});
+			$("html, body").css({'overflow-y':'auto'});
         });
 	});
 	//영역선택
