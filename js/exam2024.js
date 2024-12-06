@@ -197,7 +197,8 @@ $(document).ready(function(){
 	$('.result .xCopy').on('click', function(){
 		const text = encodeURIComponent($('.ing .titleText').text().substring(1)+" - "+name+"님의 점수는 "+$('.score').text());
 		const encodedUrl = encodeURIComponent("https://www.jeehwany.com/exam?group="+group+"&name="+encodeURIComponent(name)+"&score="+score);
-		const xUrl = 'https://twitter.com/intent/tweet?text='+text+'&url='+encodedUrl;
+		const hashtags = encodeURIComponent('2024지환고사');
+		const xUrl = 'https://twitter.com/intent/tweet?text='+text+'&url='+encodedUrl+'hashtags='+hashtags;
 
         window.open(xUrl, '_blank');
 	});
