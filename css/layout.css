@@ -203,6 +203,7 @@ a{
     max-width: 90%;
     max-height: 90%;
     overflow: auto;
+    margin: auto;
 }
 
 /* 이미지 스타일 */
