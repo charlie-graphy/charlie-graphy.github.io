@@ -44,6 +44,9 @@ td.fc-sat, th.fc-sat {
 .bg-blue{
 	background-color: rgb(50, 100, 200, 0.2) !important;
 }
+.bg-sky{
+	background-color: rgb(87 238 255 / 0.2) !important;
+}
 .bg-gray{
 	background-color: rgb(146, 148, 151, 0.2) !important;
 }
