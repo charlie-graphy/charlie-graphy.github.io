@@ -195,7 +195,7 @@ $(document).ready(function(){
 	
 	//x(트위터) 공유
 	$('.result .xCopy').on('click', function(){
-		const text = encodeURIComponent($('.ing .titleText').text().substring(1)+" - "+name+"님의 점수는 "+$('.score').text())+" #2024지환고사";
+		const text = encodeURIComponent($('.ing .titleText').text().substring(1)+" - "+name+"님의 점수는 "+$('.score').text()+" #2024지환고사");
 		const encodedUrl = encodeURIComponent("https://www.jeehwany.com/2024exam?group="+group+"&name="+encodeURIComponent(name)+"&score="+score);
 		const xUrl = 'https://twitter.com/intent/tweet?text='+text+'&url='+encodedUrl;
 
