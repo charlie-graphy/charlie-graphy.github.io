@@ -21,8 +21,7 @@ html, body {
 	text-align: center;
 	font-size: 20px;
 	background: white;
-	overflow-x: hidden;
-	overflow-y: auto;
+	overflow: hidden auto;
 	display: flex;
 	align-items:flex-start;
 }
@@ -506,7 +505,7 @@ button:hover, li:hover {
 }
 .recCont2 .btn {
 	cursor: pointer;
-	padding: 0.35rem;
+	padding-top: 0.35em;
 	font-size: 60%;
 	font-weight: bold;
 	letter-spacing: 0.025rem;
