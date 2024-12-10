@@ -32,7 +32,7 @@ $(document).ready(function(){
 	name = urlParams.get('name');
 	score = urlParams.get('score');
     let isDragging = false,
-    	imgQList = ['img/q1.jpeg','img/q2.jpeg','img/q3.jpeg','img/q4.jpeg'];
+    	imgQList = ['img/q1.jpeg','img/q2.jpeg','img/q3.jpeg','img/q4.jpeg','img/q5.jpeg'];
     
     for(let i = 0; i < imgQList.length; i++) {
         imgQ[i] = $('<img>',{'class':'slide-in','src':imgQList[i],'style':'height:230px;margin-bottom:20;border:1px solid #aaa;'})
@@ -127,6 +127,7 @@ $(document).ready(function(){
 	$('.ready a.back').on('click', function(){
 		$("article.ready").fadeOut("fast", function(){
 			$("article.intro").fadeIn();
+		    $("html, body").css({'overflow-x':'hidden','overflow-y':'auto'});
         });
 	});
 	//ing 뒤로가기
@@ -319,7 +320,7 @@ function showTypeQuestion(i, ii){
 	$('.ing .question .imgQ').empty();
 	if(questionType[i][ii] == 2){//i=q
 		$('.ing .question .imgQ').append(imgQ[i]);
-		$('.ing .question').attr('style','height:290px !important;');
+		$('.ing .question').attr('style','height:285px !important;');
 	}else{
 		$('.ing .question').css('height','');
 	}
