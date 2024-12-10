@@ -51,7 +51,7 @@ img{
 	display: flex;
     flex-direction: column;
     margin: 0 auto;
-	margin-top: 60px !important;
+	margin-top: 54px !important;
     letter-spacing: -1px;
     font-size: 1.05rem;
     line-height: 1.2rem;
@@ -215,7 +215,7 @@ button:hover, li:hover {
 	font-size: 0.85em;
 	list-style: none;
 	padding: 10px;
-	margin-bottom: 18px;
+	margin-bottom: 16px;
 	border: 1px solid #ddd;
 	border-radius: 6px;
 	cursor: pointer;
@@ -230,7 +230,7 @@ button:hover, li:hover {
 .choose textarea{
 	font-family: 'GmarketSansLight', "GmarketSansBold", sans-serif !important;
 	width: 80%;
-	height: 70%;
+	height: 59%;
 	max-height: 70%;
 	word-wrap: break-word;
 	resize: none;
@@ -562,5 +562,34 @@ button:hover, li:hover {
     }
     .choose li{
     	font-size: 0.8em !important;
+    }
+}
+@media only screen and ( max-height : 650px) {
+	.question {
+		height: 145px !important;
+    }
+    .question span{
+    	font-size: 0.8em !important;
+    }
+    .choose li{
+    	font-size: 0.76em !important;
+    	margin-bottom: 13px;
+    	padding: 8px;
+    }
+}
+@media only screen and ( max-height : 558px) {
+	.question {
+		height: 95px !important;
+    }
+    .question .imgQ img{
+    	height: 145px !important;
+    }
+    .question span{
+    	font-size: 0.75em !important;
+    }
+    .choose li{
+    	font-size: 0.7em !important;
+    	margin-bottom: 11px;
+    	padding: 6px;
     }
 }
