@@ -247,7 +247,7 @@ $(document).ready(function(){
 			$(window).scrollTop(0);
 		    $("article.intro").fadeIn();
         });
-		history.pushState(null, null, 'exam');
+		history.pushState(null, null, '2024exam');
 	});
 
 	//해설지보기
