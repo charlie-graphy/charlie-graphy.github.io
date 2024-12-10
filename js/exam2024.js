@@ -376,9 +376,9 @@ function resultData(){
 }
 function showContent(idx, sco){
 	const scoreImg = [["https://blog.kakaocdn.net/dn/swOYB/btsK8LwIU0k/9dBhI63vPHM0mcpHgNXqnk/img.png","https://blog.kakaocdn.net/dn/Y9Tig/btsK8jURDhs/G1OPuwbSrsKMDPl2UARsO0/img.png","https://blog.kakaocdn.net/dn/cJ2Kpv/btsK7KFnHEh/RSMX6KTAZ6aT2tV1vcV7CK/img.png"]
-						,["https://blog.kakaocdn.net/dn/cihNEZ/btsK9fqzeFP/qBcTZkb6pew5srJDf8EnjK/img.png","https://blog.kakaocdn.net/dn/zFQsz/btsK9it45uy/WEnsHqX2DE6PiWekAYRhn0/img.png","https://blog.kakaocdn.net/dn/EHmMc/btsK9RW47Ta/PnrLI9AkPhYQkESVgrLa0k/img.png"]
+						,["https://blog.kakaocdn.net/dn/cihNEZ/btsK9fqzeFP/qBcTZkb6pew5srJDf8EnjK/img.png","https://blog.kakaocdn.net/dn/cTqarV/btsK9C7g1D5/K0EokaFMoARD9zkQGelHsk/img.png","https://blog.kakaocdn.net/dn/EHmMc/btsK9RW47Ta/PnrLI9AkPhYQkESVgrLa0k/img.png"]
 						,["https://blog.kakaocdn.net/dn/WOhT4/btsK9weAcYZ/nTKeuoITRsx4YMJK2MGOY1/img.png","https://blog.kakaocdn.net/dn/cFECRX/btsK8aDGMkL/DYjtonFZ2AscFUbNk5VrY0/img.png","https://blog.kakaocdn.net/dn/k9tLT/btsK7OVd6st/eCibYQ0jXnq4d5cIrtHV90/img.png"]
-						,["https://blog.kakaocdn.net/dn/cLon3y/btsK7GiQcPC/BojAwzfJ4MspIk6lBnu5k0/img.png","https://blog.kakaocdn.net/dn/bkAr0C/btsK8q7uF2s/rDjJmrfofrz4bj2si0cvyK/img.png","https://blog.kakaocdn.net/dn/bntSy9/btsK83cKEfo/znp7zHUJbiCV45VW4K30P0/img.png"]
+						,["https://blog.kakaocdn.net/dn/q541y/btsK9zQhT4m/Vnxl9sUppAGdQkTRSgbi2K/img.png","https://blog.kakaocdn.net/dn/bkAr0C/btsK8q7uF2s/rDjJmrfofrz4bj2si0cvyK/img.png","https://blog.kakaocdn.net/dn/bntSy9/btsK83cKEfo/znp7zHUJbiCV45VW4K30P0/img.png"]
 						,["https://blog.kakaocdn.net/dn/m0aV0/btsK9VrCPgU/QEYmQa9JkDhfXHgCUHFMP1/img.png","https://blog.kakaocdn.net/dn/oOWgJ/btsK8pHsVZ5/RcnBK71lehBLpVlTD6s2Mk/img.png","https://blog.kakaocdn.net/dn/z4ytn/btsK9zCj9yZ/NLo5q48zGQfHiFDetf6s6K/img.png"]] 
 	if(sco <= 40) $('.result .resultImgCont img').attr('src',scoreImg[idx][0]);
 	else if(sco >= 41 && sco <= 75)  $('.result .resultImgCont img').attr('src',scoreImg[idx][1]);
