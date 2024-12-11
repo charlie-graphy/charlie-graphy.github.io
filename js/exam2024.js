@@ -88,12 +88,7 @@ $(document).ready(function(){
 	});
 	//메시지
 	$('#msgIcon').on('click', function(){
-		const nowTime = new Date().getMonth()+1+('0' + new Date().getDate()).slice(-2)+new Date().getHours()+new Date().getMinutes();
-		if(Number(nowTime) < 12111211){
-			$('.howtoCont').text("12:11PM부터 볼 수 있습니다.");
-			$('.modal').fadeIn(400).delay(400).fadeOut(400);
-			return false;
-		}
+		//const nowTime = new Date().getMonth()+1+('0' + new Date().getDate()).slice(-2)+new Date().getHours()+new Date().getMinutes();
 		$('.msgCont').empty();
 		$('#msgIcon').addClass('bi-envelope-open-heart');
 		$('#msgIcon').removeClass('bi-envelope-heart');
