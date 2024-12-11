@@ -25,9 +25,8 @@ function getCookie(name) {
 $(document).ready(function(){
     var popupClosed = getCookie('popupClosed');
     if (!popupClosed) {
-    	const nowTime = new Date().getMonth()+1+('0' + new Date().getDate()).slice(-2);
-		if(Number(nowTime) < 1211) $('#modal').remove();
-		else $('#modal').css('display','flex');
+    	//const nowTime = new Date().getMonth()+1+('0' + new Date().getDate()).slice(-2);
+		$('#modal').css('display','flex');
     }
 
 	 // 'X' 닫기 버튼 클릭 시 모달 닫기
