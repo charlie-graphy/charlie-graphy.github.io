@@ -551,3 +551,8 @@ h1 strong sup {
 .pt-73 .front {
   background-image: url('https://blog.kakaocdn.net/dn/pNzTt/btsLazWXHIz/e4fYkeOaHdp8vJtkpnDdi1/img.png');
 }
+.pt-73 .back {
+  background-image: url('https://blog.kakaocdn.net/dn/cpRr0v/btsLkXKo83X/9xIV7dH0nCld3CAx7W1kVk/img.jpg');
+  background-size: cover;
+  background-position: center;
+}
