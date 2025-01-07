@@ -1010,7 +1010,7 @@
 				{
 					title: '그해 여름',
 					description: '<p class="event">프리뷰, 첫 공연 무대인사</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 김지훈<br>이복자 役 | 이선주',
-					start: '2025-01-21 16:00',
+					start: '2025-01-22 16:00',
 					className: 'bg-sky',
 					allDay: false
 				},
