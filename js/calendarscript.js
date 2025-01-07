@@ -1051,7 +1051,7 @@
 				},
 				{
 					title: '그해 여름',
-					description: '<p class="event">커튼콜 데이</p>서정인 役 | 허혜진<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 조훈<br>이복자 役 | 이선주',
+					description: '<p class="event">커튼콜 데이 / 산실데이</p>서정인 役 | 허혜진<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 조훈<br>이복자 役 | 이선주',
 					start: '2025-01-30 14:00',
 					className: 'bg-sky',
 					allDay: false
@@ -1074,6 +1074,76 @@
 					title: '그해 여름',
 					description: '<p class="event">커튼콜 데이</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 김지훈<br>이복자 役 | 이선주',
 					start: '2025-02-02 18:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">스페셜 커튼콜 데이</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 조훈<br>이복자 役 | 이유경',
+					start: '2025-02-05 16:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">스페셜 커튼콜 데이</p>서정인 役 | 허혜진<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 조훈<br>이복자 役 | 이유경',
+					start: '2025-02-05 20:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">스페셜 커튼콜 데이</p>서정인 役 | 허혜진<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 조훈<br>이복자 役 | 이유경',
+					start: '2025-02-07 20:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">스페셜 커튼콜 데이</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 조훈<br>이복자 役 | 이선주',
+					start: '2025-02-08 14:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">스페셜 커튼콜 데이</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 조훈<br>이복자 役 | 이선주',
+					start: '2025-02-08 18:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">셀카 포토카드 5종 SET 증정 / 실황 촬영</p>서정인 役 | 허혜진<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 조훈<br>이복자 役 | 이유경',
+					start: '2025-02-11 20:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">셀카 포토카드 5종 SET 증정</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 김지훈<br>이복자 役 | 이선주',
+					start: '2025-02-12 16:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">셀카 포토카드 5종 SET 증정</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 김지훈<br>이복자 役 | 이선주',
+					start: '2025-02-12 20:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">셀카 포토카드 5종 SET 증정</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 조훈<br>이복자 役 | 이선주',
+					start: '2025-02-14 20:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">셀카 포토카드 5종 SET 증정</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 김지훈<br>이복자 役 | 이유경',
+					start: '2025-02-16 14:00',
 					className: 'bg-sky',
 					allDay: false
 				}
