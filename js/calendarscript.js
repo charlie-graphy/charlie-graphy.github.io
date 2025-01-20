@@ -1036,6 +1036,13 @@
 					allDay: false
 				},
 				{
+					title: '김바다, 김이담 토크 콘서트 < PIZZA BBANG >',
+					description: '김바다, 김이담<br>게스트 : 안지환, 황순종',
+					start: '2025-01-26 18:30',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
 					title: '그해 여름',
 					description: '<p class="event">커튼콜 데이</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 김지훈<br>이복자 役 | 이유경',
 					start: '2025-01-27 16:00',
