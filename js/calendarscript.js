@@ -372,7 +372,7 @@
 				},
 				{
 					title: '헤르츠클란',
-					description: '<p class="event">마지막 공연</p>데미안 役 | 김도빈<br>싱클레어 役 | 안지환<br>크나우어 役 | 김서환<br>알폰스 벡 役 | 김기리',
+					description: '<p class="event">마지막 공연(무대 인사)</p>데미안 役 | 김도빈<br>싱클레어 役 | 안지환<br>크나우어 役 | 김서환<br>알폰스 벡 役 | 김기리',
 					start: '2024-04-06 19:00',
 					className: 'bg-gray',
 					allDay: false
@@ -694,7 +694,7 @@
 				},
 				{
 					title: '쇄골에 천사가 잠들고 있다',
-					description: '<p class="event">마지막 공연</p>토루 役 | 안지환<br>요시오 役 | 유희제<br>유우카 役 | 김보정<br>카즈에 役 | 김계림<br>타쿠지 役 | 장태민<br>마사미 役 | 김보나<br>쿄코 役 | 송희정<br>켄토 役 | 장용철',
+					description: '<p class="event">마지막 공연(무대 인사)</p>토루 役 | 안지환<br>요시오 役 | 유희제<br>유우카 役 | 김보정<br>카즈에 役 | 김계림<br>타쿠지 役 | 장태민<br>마사미 役 | 김보나<br>쿄코 役 | 송희정<br>켄토 役 | 장용철',
 					start: '2024-07-21 15:00',
 					className: 'bg-green',
 					allDay: false
@@ -764,7 +764,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '<p class="event">마지막 공연</p>김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박선영<br>이경신 役 | 임태현',
+					description: '<p class="event">마지막 공연(무대 인사)</p>김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박선영<br>이경신 役 | 임태현',
 					start: '2024-08-11 14:00',
 					className: 'bg-red',
 					allDay: false
@@ -1002,14 +1002,14 @@
 				},
 				{
 					title: '킬롤로지',
-					description: '<p class="event">마지막 공연</p>알란 役 | 최영준<br>폴 役 | 임주환<br>데이비 役 | 안지환',
+					description: '<p class="event">마지막 공연(무대 인사)</p>알란 役 | 최영준<br>폴 役 | 임주환<br>데이비 役 | 안지환',
 					start: '2024-12-01 18:30',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '그해 여름',
-					description: '<p class="event">프리뷰, 첫 공연 무대인사</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 김지훈<br>이복자 役 | 이선주',
+					description: '<p class="event">프리뷰, 첫 공연 무대 인사</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 김지훈<br>이복자 役 | 이선주',
 					start: '2025-01-22 16:00',
 					className: 'bg-sky',
 					allDay: false
@@ -1086,35 +1086,35 @@
 				},
 				{
 					title: '그해 여름',
-					description: '<p class="event">스페셜 커튼콜 데이</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 조훈<br>이복자 役 | 이유경',
+					description: '<p class="event">스페셜 커튼콜 데이 : M8. 어느 날 갑자기</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 조훈<br>이복자 役 | 이유경',
 					start: '2025-02-05 16:00',
 					className: 'bg-sky',
 					allDay: false
 				},
 				{
 					title: '그해 여름',
-					description: '<p class="event">스페셜 커튼콜 데이</p>서정인 役 | 허혜진<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 조훈<br>이복자 役 | 이유경',
+					description: '<p class="event">스페셜 커튼콜 데이 : M3. 글자들을 따라</p>서정인 役 | 허혜진<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 조훈<br>이복자 役 | 이유경',
 					start: '2025-02-05 20:00',
 					className: 'bg-sky',
 					allDay: false
 				},
 				{
 					title: '그해 여름',
-					description: '<p class="event">스페셜 커튼콜 데이</p>서정인 役 | 허혜진<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 조훈<br>이복자 役 | 이유경',
+					description: '<p class="event">스페셜 커튼콜 데이 : M15. 편지</p>서정인 役 | 허혜진<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 조훈<br>이복자 役 | 이유경',
 					start: '2025-02-07 20:00',
 					className: 'bg-sky',
 					allDay: false
 				},
 				{
 					title: '그해 여름',
-					description: '<p class="event">스페셜 커튼콜 데이</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 조훈<br>이복자 役 | 이선주',
+					description: '<p class="event">스페셜 커튼콜 데이 : M4. 물고기 이야기</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 조훈<br>이복자 役 | 이선주',
 					start: '2025-02-08 14:00',
 					className: 'bg-sky',
 					allDay: false
 				},
 				{
 					title: '그해 여름',
-					description: '<p class="event">스페셜 커튼콜 데이</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 조훈<br>이복자 役 | 이선주',
+					description: '<p class="event">스페셜 커튼콜 데이 : M2. 수내리에 온 걸 환영해</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 조훈<br>이복자 役 | 이선주',
 					start: '2025-02-08 18:00',
 					className: 'bg-sky',
 					allDay: false
@@ -1151,6 +1151,76 @@
 					title: '그해 여름',
 					description: '<p class="event">셀카 포토카드 5종 SET 증정</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 김지훈<br>이복자 役 | 이유경',
 					start: '2025-02-16 14:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">랜덤 폴라 데이</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 김지훈<br>이복자 役 | 이유경',
+					start: '2025-02-19 16:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">랜덤 폴라 데이</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 김지훈<br>이복자 役 | 이유경',
+					start: '2025-02-19 20:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">랜덤 폴라 데이</p>서정인 役 | 허혜진<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 조훈<br>이복자 役 | 이유경',
+					start: '2025-02-21 20:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">랜덤 폴라 데이</p>서정인 役 | 허혜진<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 김지훈<br>이복자 役 | 이선주',
+					start: '2025-02-23 14:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">랜덤 폴라 데이</p>서정인 役 | 허혜진<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 김지훈<br>이복자 役 | 이선주',
+					start: '2025-02-23 18:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">커튼콜 데이, 배웅회</p>서정인 役 | 허혜진<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 김지훈<br>이복자 役 | 이유경',
+					start: '2025-02-25 20:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">커튼콜 데이</p>서정인 役 | 허혜진<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 조훈<br>이복자 役 | 이유경',
+					start: '2025-02-27 20:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">커튼콜 데이</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 김지훈<br>이복자 役 | 이선주',
+					start: '2025-02-28 16:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">커튼콜 데이</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 김지훈<br>이복자 役 | 이선주',
+					start: '2025-02-28 20:00',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름',
+					description: '<p class="event">마지막 공연(무대 인사)</p>서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 김석환<br>김만중 役 | 김지훈<br>이복자 役 | 이선주',
+					start: '2025-03-02 14:00',
 					className: 'bg-sky',
 					allDay: false
 				}
