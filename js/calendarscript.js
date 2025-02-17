@@ -1191,7 +1191,7 @@
 				},
 				{
 					title: '그해 여름',
-					description: '<p class="event">커튼콜 데이, 배웅회</p>서정인 役 | 허혜진<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 김지훈<br>이복자 役 | 이유경',
+					description: '<p class="event">배웅회</p>서정인 役 | 허혜진<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 김지훈<br>이복자 役 | 이유경',
 					start: '2025-02-25 20:00',
 					className: 'bg-sky',
 					allDay: false
