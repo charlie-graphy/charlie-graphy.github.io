@@ -46,8 +46,9 @@ body, .content {
 .slide {
 	min-width: 100%;
 	max-width: 500px;
+	height: auto;
+    max-height: 500px;
 	box-sizing: border-box;
-	height: 97%;
 	display: flex;
     justify-content: center;
     align-items: center;
