@@ -41,7 +41,7 @@ body, .content {
 	display: flex;
 	transition: transform 0.5s ease;
 	height: 100%;
-    position: absolute;
+    /* position: absolute; */
 }
 .slide {
 	min-width: 100%;
