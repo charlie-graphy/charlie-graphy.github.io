@@ -142,7 +142,7 @@ a{
 		position: relative;
     	top: -3vh;
         flex-direction: column;
-    	height: 77vh;
+    	height: 74vh;
     }
     .slider, .content {
         flex: 1;
