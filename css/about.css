@@ -27,6 +27,7 @@ body, .content {
     flex-direction: row;
     height: 80vh;
 	width: 85vw;
+	top: 0 !important;
 }
 .slider, .content {
     flex: 1;
@@ -36,25 +37,28 @@ body, .content {
 
 .slider {
     position: relative;
+    width: 100%;
+    height: 100vh;
 }
 .slides {
 	display: flex;
 	transition: transform 0.5s ease;
-	height: 100%;
+    height: 100vh; 
     /* position: absolute; */
 }
 .slide {
 	min-width: 100%;
-	max-width: 500px;
-	min-height: 100%;
-    max-height: 600px;
+    height: 32vh;
 	box-sizing: border-box;
 	display: flex;
     justify-content: center;
     align-items: center;
 }
 .slide img {
-    max-width: 63%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
     box-shadow: 11px 9px 0px white;
     border: 1px solid #575757;
 }
@@ -162,7 +166,22 @@ a{
 }
 /* PC 화면에서만 보이는 스타일 */
 @media only screen and ( min-width : 1367px) {	
+	.container {
+    	width: 92vw;
+    }
     .slides {
         position: relative;
+        top: 30;
     }
+	.slide {
+		min-width: 100%;
+	    height: 70vh;
+		box-sizing: border-box;
+		display: flex;
+	    justify-content: center;
+	    align-items: center;
+	}
+	.slide img{
+		box-shadow: none;
+	}
 }
