@@ -45,15 +45,15 @@ body, .content {
 }
 .slide {
 	min-width: 100%;
+	max-width: 500px;
 	box-sizing: border-box;
 	height: 97%;
 	display: flex;
     justify-content: center;
     align-items: center;
-    width: 5vw;
 }
 .slide img {
-    max-height: 100%;
+    max-width: 63%;
     box-shadow: 11px 9px 0px white;
     border: 1px solid #575757;
 }
