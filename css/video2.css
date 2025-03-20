@@ -79,6 +79,7 @@ a {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* 2칸 보기 모드 */
@@ -124,7 +125,9 @@ a {
 
 /* 반응형 스타일 */
 @media (max-width: 900px) {
-    
+    .nav-item, .selected-title,  .video-item{
+	    font-size: 14px;
+	}
 }
 
 @media (min-width: 901px) {
