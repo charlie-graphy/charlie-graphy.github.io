@@ -1,3 +1,8 @@
+$(window).on("load", function() {
+   	$(".loader").fadeOut(500, function() {
+   		$(".main-content").addClass("show");
+   	});
+});
 $(document).ready(function() {
     let zIndexCounter = 100; // 팝업창의 z-index 관리
     let popup = $(".side-popup");
@@ -50,15 +55,6 @@ $(document).ready(function() {
             popup.addClass("open");
             $(".toggle-button").text("▶");
         }
-    });
-
-    
-    
-    $(window).on("load", function() {
-    	//$(".loader").fadeOut(1500, function() {
-    	$(".loader").fadeOut(500, function() {
-            $(".main-content").addClass("show");
-        });
     });
     
     // 메뉴 토글 기능
