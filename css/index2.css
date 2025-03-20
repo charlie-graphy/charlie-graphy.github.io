@@ -11,7 +11,7 @@
     font-weight: 400;
 }
 
-body {
+html, body {
     background: white;
     color: #1E1E1E;
     font-family: 'DNFBitBitv2', 'NeoDunggeunmoPro-Regular', cursive;
@@ -21,6 +21,7 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    overflow-y: none;
 }
 
 * {
@@ -91,7 +92,7 @@ body {
 }
 
 .logo {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     color: #1E1E1E;
     padding-left: 15px;
@@ -155,7 +156,7 @@ body {
 /* 날짜 & 시간 */
 .datetime {
     color: #1E1E1E;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 /* 콘텐츠 영역 */
@@ -178,8 +179,8 @@ body {
 
 /* 아이콘 개별 스타일 */
 .icon-menu li {
-    width: 83px;
-    height: 70px;
+    width: 70px;
+    height: 65px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -200,7 +201,7 @@ body {
 
 .icon-menu li span {
     font-weight: normal;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 /* 팝업창 */
@@ -295,7 +296,7 @@ body {
 }
 
 .side-popup .icon-list span{
-    font-size: 12px;
+    font-size: 10px;
 }
 
 /* 반응형 스타일 */
@@ -351,7 +352,7 @@ body {
 
     .side-popup .sidebar-text {
         writing-mode: vertical-rl;
-        font-size: 14px;
+        font-size: 11px;
         font-weight: bold;
         text-align: center;
     }
