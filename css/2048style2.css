@@ -1,19 +1,12 @@
 /* GAME1 레이아웃*/
 .game-list {
 	place-items: center;
-	height: 100%;
+	height: 80%;
 }
 /*
   Variables:
 */
 /**/
-@font-face {
-	font-family: 'GmarketSansLight';
-	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
-	font-style: normal;
-	font-weight: normal;
-}
-
 *,
 *:before,
 *:after {
@@ -42,7 +35,7 @@ h2 {
 /**/
 /* Guide instructions */
 .controls_game, .controls_score {
-	font-family: 'NeoDunggeunmoPro-Regular', 'GmarketSansLight';
+	font-family: 'NeoDunggeunmoPro-Regular', 'DNFBitBitv2';
 	display: inline-block;
 	width: 100%;
 	text-align: center;
@@ -53,7 +46,7 @@ h2 {
   }
 } */
 .controls_game-btn {
-	font-family: 'NeoDunggeunmoPro-Regular', 'GmarketSansLight';
+	font-family: 'NeoDunggeunmoPro-Regular', 'DNFBitBitv2';
   margin-top: .25rem;
   margin-bottom: .25rem;
   padding: 0.5em 0.75em;
@@ -559,12 +552,12 @@ h2 {
 /* 반응형 스타일 */
 @media (max-width: 900px) {
     .wrapper {
-		width: 60%;
+		width: 75%;
 	}
 }
 
 @media (min-width: 901px) {
     .wrapper {
-		width: 82%;
+		width: 30%;
 	}
 }
