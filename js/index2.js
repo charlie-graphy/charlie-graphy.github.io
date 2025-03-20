@@ -108,7 +108,7 @@ $(document).ready(function() {
         
         targetWindow.fadeIn().css({
             top: "100px", 
-            left: "25%", 
+            left: "15%", 
             "z-index": ++zIndexCounter // 선택한 팝업 맨 앞으로
         });
     });
