@@ -167,7 +167,7 @@ Game.prototype.initEventListeners = function () {
  */
 Game.prototype.gameWon = function () {
 	if(winYn == 'N'){
-		$('.modal h3').text('YOU WIN');
+		$('.modal .controls_score-text.result, .modal h3').text('YOU WIN');
 		$('.modal').addClass('on');
 		winYn = 'Y';
 	}
@@ -178,7 +178,7 @@ Game.prototype.gameWon = function () {
  * Game is LOST!
  */
 Game.prototype.gameLost = function () {
-	$('.modal h3').text('GAME OVER');
+	$('.modal .controls_score-text.result, .modal h3').text('GAME OVER');
 	$('.modal').addClass('on');
 };
 /**/
