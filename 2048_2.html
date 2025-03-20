@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="배우 안지환 영상 아카이브">
+    <meta name="keywords" content="안지환">
+    <meta property="og:image" content="https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg">
+    <meta property="og:title" content="AHNJEEHWANY">
+    <meta property="og:description" content="배우 안지환 영상 아카이브">
+    <title>AHNJEEHWANY</title>
+    
+    <!-- 파비콘 -->
+    <link rel="icon" href="img/favicon_io/favicon.webp" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io/favicon-16x16.png">
+    
+    <!-- 스타일시트 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index2.css">
+    <link rel="stylesheet" type="text/css" href="css/games2.css">
+	<link rel="stylesheet" type="text/css" href="css/2048style2.css">
+    
+    <!-- jQuery 및 스크립트 -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+    <script type="text/javascript" src="js/index2.js"></script>
+</head>
+<body id="game">
+    <!-- 로딩 화면 -->
+  	<div class="loader">
+        <i class='bx bx-smile bx-spin spinner'></i>
+    </div> 
+
+    <!-- 메인 콘텐츠 (초기에는 숨김) -->
+    <div class="main-content">
+        <!-- 상단 헤더 -->
+        <header class="top-bar">
+            <div class="left-section">
+                <button class="menu-toggle">☰</button>
+                <div class="logo"><a href="https://jeehwany.com">AHNJEEHWANY</a></div>
+                <nav class="menu">
+                    <a href="#">Home</a>
+                    <a href="#">Filmography</a>
+                    <a href="video2.html">Videos</a>
+                    <a href="#">Special</a>
+                    <a href="games2.html">Games</a>
+                    <a href="#">Info</a>
+                </nav>
+            </div>
+            <div class="center-section"></div> <!-- 비어 있는 중앙 영역 -->
+            <div class="right-section">
+                <i class='bx bx-fullscreen fullscreen'></i>
+                <i class='bx bx-moon darkmode' data-YN="N"></i>
+                <span class="datetime"></span>
+            </div>
+        </header>
+
+        <!-- 콘텐츠 영역 (헤더 아래 분리) -->
+        <div class="content-section">
+	        <!-- 2번째 줄: 선택된 항목 표시 + 보기 모드 선택 -->
+	        <div class="game-display" style="height: 35px;">
+	            <div class="folderTitle"><i class='bx bx-chevron-right' style="margin-right: 10px;"></i><span class="selected-title">지화니 2048</span></div>
+	        </div>
+	
+	        <!-- 3번째 줄: 스크롤 가능한 콘텐츠 목록 -->
+	        <div class="game-list">
+	            
+	            <main class="wrapper">
+					<!-- controls -->
+					<div class="controls clearfix">
+						<div class="controls_game">
+					  		<button data-js="newGame" class="controls_game-btn"> New Game </button>
+					 	</div>
+					 	<div class="controls_score">
+					  		<span class="controls_score-label">Score</span>
+					  		<br>
+					  		<span class="controls_score-text" data-js="score"> </span>
+					 	</div>
+					</div>
+					<!-- gameboard -->
+					<div id="touchGameboard" class="gameboard">
+					 	<div class="grid"></div>
+					 	<div class="tile-container"></div>
+					</div>
+				</main>
+				
+				<!-- templates -->
+				<script type="text/html" id="template_grid_cell">
+					<div class="grid_cell"></div>
+				</script>
+				   
+				<script type="text/html" id="template_tile">
+					<div class="tile" style="width: 25% !important; height: 25% !important;">
+						<span class="tile_number"> </span>
+					</div>
+				</script>
+				<!-- partial -->
+				<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
+				<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.js'></script>
+				<script src='https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js'></script>
+				<script src="js/2048script.js"></script>
+				<!-- modal -->
+				<div class="modal">
+				    <div class="modal_popup">
+				        <span class="controls_score-text result"> </span><br><br>
+				        <span class="controls_score-text" data-js="score"> </span>
+				    </div>
+				</div>
+	            
+	        </div>
+        </div>
+        
+    </div>
+</body>
+</html>
+<script>
+$(document).ready(function() {
+    $('.modal .close_btn').on('click', function(){
+		$('.modal').removeClass('on');
+	});
+	
+	$(document).mouseup(function (e){
+		if($(".modal_popup").has(e.target).length === 0){
+			$('.modal').removeClass('on');
+		}
+	});
+});
+</script>
