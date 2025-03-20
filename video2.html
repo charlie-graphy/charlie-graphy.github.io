@@ -334,6 +334,9 @@ $(document).ready(function() {
     $(".view-btn").click(function() {
         let mode = $(this).data("view");
         $(".video-list").toggleClass("double", mode === "double");
+        if(mode === "double" && urlParams.get("only") === "content-section"){
+        	$(".video-list.double").css({"grid-template-columns":"repeat(2, 1fr)"});
+        }else if(mode === "single" && urlParams.get("only") === "content-section")$(".video-list").css({"grid-template-columns":"repeat(1, 1fr)"});
     });
     
     // 선택 바 클릭 시 변경
