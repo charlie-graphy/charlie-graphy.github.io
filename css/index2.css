@@ -156,7 +156,6 @@ body {
 .datetime {
     color: #1E1E1E;
     font-size: 12px;
-    padding-left: 5px;
 }
 
 /* 콘텐츠 영역 */
@@ -208,7 +207,7 @@ body {
 .window {
     display: none;
     position: absolute;
-    width: 400px;
+    width: 310px;
     height: 300px;
     background: white;
     color: #1E1E1E;

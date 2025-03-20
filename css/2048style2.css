@@ -32,7 +32,7 @@ a:hover {
 }
 
 .wrapper {
-	width: 60%;
+	width: 70%;
 }
 
 h2 {
@@ -565,6 +565,6 @@ h2 {
 
 @media (min-width: 901px) {
     .wrapper {
-		width: 30%;
+		width: 82%;
 	}
 }
