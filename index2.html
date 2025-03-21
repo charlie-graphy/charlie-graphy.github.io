@@ -38,7 +38,7 @@
                 <button class="menu-toggle">☰</button>
                 <div class="logo"><a href="https://jeehwany.com">AHNJEEHWANY</a></div>
                 <nav class="menu">
-                    <a href="#">Home</a>
+                    <a href="index2.html">Home</a>
                     <a href="#">Filmography</a>
                     <a href="video2.html">Videos</a>
                     <a href="#">Special</a>
@@ -49,7 +49,7 @@
             <div class="center-section"></div> <!-- 비어 있는 중앙 영역 -->
             <div class="right-section">
                 <i class='bx bx-fullscreen fullscreen'></i>
-                <i class='bx bx-moon darkmode' data-YN="N"></i>
+                <!-- <i class='bx bx-moon darkmode' data-YN="N"></i>  -->
                 <span class="datetime"></span>
             </div>
         </header>
@@ -61,9 +61,9 @@
 
         <!-- 아이콘 메뉴 (하단 3개, 위쪽 2개) -->
         <ul class="icon-menu">
-            <li class="icon" data-window="about">
+            <li class="icon" data-window="about" data-name="😈 About">
                 <div>
-                    <img src="img/favicon_io/favicon.ico" alt="About" class="iconImg">
+                    <img src="img/favicon_io/favicon.ico" alt="About" class="iconImg" oncontextmenu="return false">
                     <span>About</span>
                 </div>
             </li>
@@ -75,28 +75,28 @@
                     <span>Videos</span>
                 </div>
             </li>
-            <li class="icon" data-window="filmography">
+            <li class="icon" data-window="filmography" data-name="👤 Filmography">
                 <div>
-                    <img src="img/favicon_io/favicon.ico" alt="👤 Filmography" class="iconImg">
+                    <img src="img/favicon_io/favicon.ico" alt="👤 Filmography" class="iconImg" oncontextmenu="return false">
                     <span>Filmography</span>
                 </div>
             </li>
             <li class="empty"></li>
-            <li class="icon" data-window="games">
+            <li class="icon" data-window="games" data-name="🎮 Games" data-src="games2.html?only=content-section">
                 <div>
-                    <img src="img/favicon_io/favicon.ico" alt="🎮 Games" class="iconImg">
+                    <img src="img/favicon_io/favicon.ico" alt="🎮 Games" class="iconImg" oncontextmenu="return false">
                     <span>Games</span>
                 </div>
             </li>
-            <li class="icon" data-window="contact">
+            <li class="icon" data-window="contact" data-name="📹 Special Curtain Call" >
                 <div>
-                    <img src="img/favicon_io/favicon.ico" alt="📹 Special Curtain Call" class="iconImg">
+                    <img src="img/favicon_io/favicon.ico" alt="📹 Special Curtain Call" class="iconImg" oncontextmenu="return false">
                     <span>Special</span>
                 </div>
             </li>
-            <li class="icon" data-window="contact">
+            <li class="icon" data-window="contact" data-name="📅 Schedule">
                 <div>
-                    <img src="img/favicon_io/favicon.ico" alt="📅 Schedule" class="iconImg">
+                    <img src="img/favicon_io/favicon.ico" alt="📅 Schedule" class="iconImg" oncontextmenu="return false">
                     <span>Schedule</span>
                 </div>
             </li>
@@ -111,14 +111,14 @@
 		    </div>
 
 		    <!-- 중앙 이미지 (모바일 & PC 동일) -->
-		    <img class="popup-image" src="https://blog.kakaocdn.net/dn/bpb0mG/btsMKDW3how/eF5FV41D8WPY4JtRAzrfrk/img.jpg" alt="mainImage">
+		    <img class="popup-image" src="https://blog.kakaocdn.net/dn/bpb0mG/btsMKDW3how/eF5FV41D8WPY4JtRAzrfrk/img.jpg" alt="mainImage" oncontextmenu="return false">
 		
 		    <!-- 아이콘 리스트 (펼친 상태에서 보임) -->
 		    <div class="icon-list">
-		        <div class="iconDiv"><img src="img/favicon_io/favicon.ico" data-target="content1"><span>&nbsp;&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
-		        <div class="iconDiv"><img src="img/favicon_io/favicon.ico" data-target="content2"><span>Filmography</span></div>
-		        <div class="iconDiv"><img src="img/favicon_io/favicon.ico" data-target="content3"><span>Interview</span></div>
-		        <div class="iconDiv"><img src="img/favicon_io/favicon.ico" data-target="content4"><span>Instagram</span></div>
+		        <div class="iconDiv"><img src="img/favicon_io/favicon.ico" data-target="content1" oncontextmenu="return false"><span>&nbsp;&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+		        <div class="iconDiv"><img src="img/favicon_io/favicon.ico" data-target="content2" oncontextmenu="return false"><span>Filmography</span></div>
+		        <div class="iconDiv"><img src="img/favicon_io/favicon.ico" data-target="content3" oncontextmenu="return false"><span>Interview</span></div>
+		        <div class="iconDiv"><img src="img/favicon_io/favicon.ico" data-target="content4" oncontextmenu="return false"><span>Instagram</span></div>
 		    </div>
 		</div>
 
@@ -126,49 +126,16 @@
         <div class="window" id="templete">
             <div class="title-bar">
                 <span></span>
-                <i class='bx bx-x close-btn'></i>
+                <div>
+	                <i class='bx bxs-square max-btn'></i>
+	                <i class='bx bx-x close-btn'></i>
+                </div>
             </div>
             <div class="content">
                 <iframe src=""></iframe>
             </div>
             <div class='resize-handle'></div>
         </div>
-        <!-- <div class="window" id="videoPlayer">
-            <div class="title-bar">
-                <span>📺 Video Player</span>
-                <i class='bx bx-x close-btn'></i>
-            </div>
-            <div class="content">
-                <p>Watch your favorite videos!</p>
-            </div>
-        </div>
-        <div class="window" id="musicPlayer">
-            <div class="title-bar">
-                <span>🎵 Music Player</span>
-                <i class='bx bx-x close-btn'></i>
-            </div>
-            <div class="content">
-                <p>Welcome to the music player!</p>
-            </div>
-        </div>
-        <div class="window" id="gallery">
-            <div class="title-bar">
-                <span>🖼️ Gallery</span>
-                <i class='bx bx-x close-btn'></i>
-            </div>
-            <div class="content">
-                <p>Explore the image gallery!</p>
-            </div>
-        </div>
-        <div class="window" id="contact">
-            <div class="title-bar">
-                <span>📩 Contact</span>
-                <i class='bx bx-x close-btn'></i>
-            </div>
-            <div class="content">
-                <p>Get in touch with us!</p>
-            </div>
-        </div> -->
         
     </div>
 </body>

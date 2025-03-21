@@ -39,7 +39,7 @@
                 <button class="menu-toggle">☰</button>
                 <div class="logo"><a href="https://jeehwany.com">AHNJEEHWANY</a></div>
                 <nav class="menu">
-                    <a href="#">Home</a>
+                    <a href="index2.html">Home</a>
                     <a href="#">Filmography</a>
                     <a href="video2.html">Videos</a>
                     <a href="#">Special</a>
@@ -91,6 +91,9 @@ $(document).ready(function() {
     $(".view-btn").click(function() {
         let mode = $(this).data("view");
         $(".game-list").toggleClass("double", mode === "double");
+        if(mode === "double" && urlParams.get("only") === "content-section"){
+        	$(".game-list.double").css({"grid-template-columns":"repeat(2, 1fr)"});
+        }else if(mode === "single" && urlParams.get("only") === "content-section")$(".game-list").css({"grid-template-columns":"repeat(1, 1fr)"});
     });
 });
 </script>
