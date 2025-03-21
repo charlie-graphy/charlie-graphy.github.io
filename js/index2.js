@@ -101,6 +101,10 @@ $(document).ready(function() {
     	if($(".window[data-id="+$(this).data("window")+"]").length == 0){
             let targetWindow = $("#templete").clone();
             
+            if($(this).data("window") == 'games'){
+            	targetWindow.css({'width':'382px','height':'585px'});
+            	targetWindow.find('.resize-handle').remove();
+            }
             $(".main-content").append(targetWindow);
             
             targetWindow.attr("data-id", $(this).data("window"));
@@ -122,7 +126,10 @@ $(document).ready(function() {
 
     // 팝업창 확대
     $(".main-content").on("click", ".max-btn", function(e){
-    	window.open("video2.html", "_self");
+    	if($(this).closest(".window").data("id") == "games"){
+    		alert("현재 하고 있는 게임이 사라집니다.")
+    	}
+    	window.open($(this).closest(".window").data("id")+"2.html", "_self");
     });
 
     // 팝업창 이동 기능 (화면 내부 제한 + 클릭 시 맨 앞으로)
