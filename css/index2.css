@@ -112,14 +112,14 @@ img{
 }
 
 /* 메뉴 스타일 */
-.menu {
+.top-bar .menu {
     display: flex;
     gap: 10px;
     padding-left: 10px;
     font-weight: normal;
 }
 
-.menu a {
+.top-bar .menu a {
     text-decoration: none;
     color: #1E1E1E;
     font-size: 12px;
@@ -136,7 +136,7 @@ img{
     border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.menu.active {
+.top-bar .menu.active {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -311,7 +311,7 @@ img{
 
 /* 반응형 스타일 */
 @media (max-width: 900px) {
-    .menu {
+    .top-bar .menu {
         display: none;
     }
     .menu-toggle {
