@@ -37,6 +37,10 @@ html, body {
     -webkit-font-smoothing: antialiased;
 }
 
+img{
+	-webkit-touch-callout:none;
+}
+
 /* 로딩 화면 */
 .loader {
     position: fixed;
@@ -397,6 +401,13 @@ html, body {
         justify-content: center;
         cursor: pointer;
     }
+    
+    .nav-item,  .video-item{
+	    font-size: 14px;
+	}
+	.selected-title{
+		font-size: 16px;
+	}
 }
 
 @media (min-width: 901px) {

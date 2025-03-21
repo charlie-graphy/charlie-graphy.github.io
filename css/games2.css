@@ -27,11 +27,6 @@ a {
     font-size: 18px;
 }
 
-.selected-title {
-    margin: 0;
-    font-size: 18px;
-}
-
 /* 보기 모드 선택 버튼 */
 .view-options {
     display: flex;
