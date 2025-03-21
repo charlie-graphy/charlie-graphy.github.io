@@ -59,7 +59,7 @@ $(document).ready(function() {
     
     // 메뉴 토글 기능
     $(".menu-toggle").click(function() {
-        $(".menu").toggleClass("active");
+        $(".top-bar .menu").toggleClass("active");
     });
 
     // 시간 & 날짜 업데이트
