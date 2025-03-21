@@ -84,12 +84,12 @@ $(document).ready(function() {
     // 다크모드 기능
     $(".darkmode").click(function(e) {
         if($(this).attr('data-YN') == 'N') {
-        	$('body, button, span, div').css({'background':'#1E1E1E','color':'white'});
+        	$('body, button, span, div').not('.resize-handle').css({'background':'#1E1E1E','color':'white'});
         	$('header, div, button').css({'border-color':'rgba(255, 255, 255, 0.3)'});
         	$(this).removeClass('bx-moon').addClass('bxs-moon');
         	$(this).attr('data-YN','Y');
         }else{
-        	$('body, button, span, div').css({'background':'white','color':'#1E1E1E'});
+        	$('body, button, span, div').not('.resize-handle').css({'background':'white','color':'#1E1E1E'});
         	$('header, div, button').css({'border-color':'rgba(0, 0, 0, 0.3)'});
         	$(this).removeClass('bxs-moon').addClass('bx-moon');
         	$(this).attr('data-YN','N');
@@ -98,24 +98,31 @@ $(document).ready(function() {
     
     // 팝업창 열기
     $(".icon").click(function() {
-        let targetWindow = $("#templete").clone();
-        
-        $(".main-content").append(targetWindow);
-        
-        targetWindow.attr("data-id", $(this).data("window"));
-        targetWindow.find(".title-bar span").text($(this).data("name"));
-        targetWindow.find(".content iframe").attr("src", $(this).data("src"));
-        
-        targetWindow.fadeIn().css({
-            top: "100px", 
-            left: "15%", 
-            "z-index": ++zIndexCounter // 선택한 팝업 맨 앞으로
-        });
+    	if($(".window[data-id="+$(this).data("window")+"]").length == 0){
+            let targetWindow = $("#templete").clone();
+            
+            $(".main-content").append(targetWindow);
+            
+            targetWindow.attr("data-id", $(this).data("window"));
+            targetWindow.find(".title-bar span").text($(this).data("name"));
+            targetWindow.find(".content iframe").attr("src", $(this).data("src"));
+            
+            targetWindow.fadeIn().css({
+                top: "100px", 
+                left: "15%", 
+                "z-index": ++zIndexCounter // 선택한 팝업 맨 앞으로
+            });
+    	}
     });
 
     // 팝업창 닫기
     $(".main-content").on("click", ".close-btn", function(e){
     	$(this).closest(".window").remove();
+    });
+
+    // 팝업창 확대
+    $(".main-content").on("click", ".max-btn", function(e){
+    	window.open("video2.html", "_self");
     });
 
     // 팝업창 이동 기능 (화면 내부 제한 + 클릭 시 맨 앞으로)
@@ -173,5 +180,10 @@ $(document).ready(function() {
     		$(".menu").removeClass("active"); //메뉴 닫기
     		$(".icon-menu li.empty").hide();
     	}else $(".icon-menu li.empty").show();
+    });
+    
+    $(".main-content").on("contextmenu, click", "img", function(e) {
+		e.preventDefault();
+		return false;
     });
 });
