@@ -1,0 +1,199 @@
+<!DOCTYPE html><html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="배우 안지환 영상 아카이브">
+    <meta name="keywords" content="안지환">
+    <meta property="og:image" content="https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg">
+    <meta property="og:title" content="AHNJEEHWANY">
+	<meta property="og:description" content="아깨비 날개옷 입히기">
+    <title>AHNJEEHWANY</title>
+    
+    <!-- 파비콘 -->
+    <link rel="icon" href="img/favicon_io/favicon.webp" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io/favicon-16x16.png">
+    
+    <!-- 스타일시트 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index2.css">
+    <link rel="stylesheet" type="text/css" href="css/games2.css">
+	<link rel="stylesheet" type="text/css" href="css/clothes2.css"/>
+    
+    <!-- jQuery 및 스크립트 -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+    <script type="text/javascript" src="js/index2.js"></script>
+	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body id="game">
+    <!-- 로딩 화면 -->
+  	<div class="loader">
+        <i class='bx bx-smile bx-spin spinner'></i>
+    </div> 
+
+    <!-- 메인 콘텐츠 (초기에는 숨김) -->
+    <div class="main-content">
+        <!-- 상단 헤더 -->
+        <header class="top-bar">
+            <div class="left-section">
+                <button class="menu-toggle">☰</button>
+                <div class="logo"><a href="https://jeehwany.com">AHNJEEHWANY</a></div>
+                <nav class="menu">
+                    <a href="index2.html">Home</a>
+                    <a href="#">Filmography</a>
+                    <a href="video2.html">Videos</a>
+                    <a href="#">Special</a>
+                    <a href="games2.html">Games</a>
+                    <a href="#">Info</a>
+                </nav>
+            </div>
+            <div class="center-section"></div> <!-- 비어 있는 중앙 영역 -->
+            <div class="right-section">
+                <i class='bx bx-fullscreen fullscreen'></i>
+                <span class="datetime"></span>
+            </div>
+        </header>
+
+        <!-- 콘텐츠 영역 (헤더 아래 분리) -->
+        <div class="content-section">
+	        <!-- 2번째 줄: 선택된 항목 표시 + 보기 모드 선택 -->
+	        <div class="game-display" style="height: 35px;">
+	            <div class="folderTitle"><i class='bx bx-chevron-right' style="margin-right: 10px;"></i><span class="selected-title">아깨비 날개옷 입히기</span></div>
+	            <div class="view-options">
+	                <div class="view-btn" style="font-size:15px;"><a href="games2.html">메인으로</a></div>
+	                <div class="view-btn download" style="font-size:15px;">저장</div>
+	            </div>
+	        </div>
+	
+	        <!-- 3번째 줄: 스크롤 가능한 콘텐츠 목록 -->
+	        <div class="game-list">
+	            
+				<div class="imgDiv">
+					<div id="capture" class="card-img">
+						<div class="character_area">
+							<img data-value = "Background" class="chara_background chara-parts" src="img/closet/background_1.png" alt="배경" oncontextmenu="return false">
+							<img class="chara_base"src="img/closet/jeehwany_base_1.png" alt="베이스" oncontextmenu="return false">
+							<img data-value = "Eyes" class="chara_eye chara-parts" src="img/closet/eyes_1.png" alt="눈" oncontextmenu="return false">
+							<img data-value = "Mouth" class="chara_mouth chara-parts" src="img/closet/mouth_1.png" alt="입" oncontextmenu="return false">
+							<img data-value = "Hair" class="chara_hair chara-parts" src="img/closet/hair_1.png" alt="머리" oncontextmenu="return false">
+							<img data-value = "Clothes" class="chara_cloth chara-parts" src="img/closet/clothes_1.png" alt="옷" oncontextmenu="return false">
+							<img data-value = "Accessory" class="chara_accessory chara-parts" src="img/closet/accessory_1.png" alt="액세서리" oncontextmenu="return false">
+						</div>
+					</div>
+				</div>
+				<div class="choice1">
+					<div id="Hair" class="group act">머리</div>
+					<div id="Eyes" class="group">눈</div>
+					<div id="Mouth" class="group">입</div>
+					<div id="Clothes" class="group">옷</div>
+					<div id="Accessory" class="group">액세서리</div>
+					<div id="Background" class="group">배경</div>
+				</div>
+				<div class="choice"></div>
+				<!-- modal -->
+				<div class="modal on">
+				    <div class="modal_popup howtoModal">
+				        <b>아깨비 날개옷 입히기!</b><br><br>
+				        <span class="howtoCont">
+				        	'머리', '눈', '입', '옷', '액세서리', '배경' 탭에서 원하는 오브젝트를 선택하세요.<br><br>
+							선택한 오브젝트대로 아깨비에게 날개옷을 입힐 수 있습니다!<br><br>
+							꾸민 모습을 저장하고 싶다면<br>
+							우측  상단에 '저장'을 누르고<br>
+							'다운로드'를 선택해야 저장됩니다.
+				        </span>
+				    </div>
+				</div>
+	            
+	        </div>
+        </div>
+        
+    </div>
+</body>
+</html>
+<script>
+$(document).ready(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    if (urlParams.get("only") === "content-section") {
+        $(".top-bar").hide(); // 헤더 숨기기
+        $("body#game").css("padding", "0"); // 여백 제거
+		$("#game .content-section").css({"margin-top":"0","height":"calc(100vh - 2px)"});
+        $(".game-list").css("height","100%");
+        $("a").each(function(e){
+        	$(this).attr("href",$(this).attr("href")+"?only=content-section");
+        });
+	}
+    
+  //머리
+	for(var i = 1 ; i <=23 ; i++ ){
+		$("div.choice").append($("<div>",{"class":"under groupHair"}).append($("<img>",{"src":"img/closet/hair_"+i+".png","alt":"헤어",'oncontextmenu':'return false'})));
+	}
+	//눈
+	for(var i = 1 ; i <=23 ; i++ ){
+		$("div.choice").append($("<div>",{"class":"under groupEyes"}).append($("<img>",{"src":"img/closet/eyes_"+i+".png","alt":"눈",'oncontextmenu':'return false'})));
+	}
+	//입
+	for(var i = 1 ; i <=23 ; i++ ){
+		$("div.choice").append($("<div>",{"class":"under groupMouth"}).append($("<img>",{"src":"img/closet/mouth_"+i+".png","alt":"입",'oncontextmenu':'return false'})));
+	}
+	//옷
+	for(var i = 1 ; i <=41 ; i++ ){
+		$("div.choice").append($("<div>",{"class":"under groupClothes"}).append($("<img>",{"src":"img/closet/clothes_"+i+".png","alt":"옷",'oncontextmenu':'return false'})));
+	}
+	//액세사리
+	for(var i = 1 ; i <=30 ; i++ ){
+		$("div.choice").append($("<div>",{"class":"under groupAccessory"}).append($("<img>",{"src":"img/closet/accessory_"+i+".png","alt":"액세사리",'oncontextmenu':'return false'})));
+	}
+	//배경
+	for(var i = 1 ; i <=13 ; i++ ){
+		$("div.choice").append($("<div>",{"class":"under groupBackground"}).append($("<img>",{"src":"img/closet/background_"+i+".png","alt":"배경",'oncontextmenu':'return false'})));
+	}
+	$(".under.groupHair").show();
+
+	//분류 선택
+	$(".choice1 div").on("click",function(){
+		$(".choice1 div").removeClass("act");
+		$(this).addClass("act");
+		$(".under").hide();
+		
+		$(".under.group"+$(this).attr('id')).show();
+	});
+	
+	//상세 선택
+	$(".choice div img").on("click",function(){
+		const group = $(".choice1 div.act").attr("id");		
+		$(".character_area img[data-value="+group+"]").attr("src",$(this).attr("src"))
+	});
+	
+	$('.modal .close_btn').on('click', function(){
+		$('.modal').removeClass('on');
+	});
+	
+	$(document).mouseup(function (e){
+		if($(".modal_popup").has(e.target).length === 0){
+			$('.modal').removeClass('on');
+		}
+	});
+	//사진저장
+	$('.download').on('click', function(){
+		$('.character_area img').addClass('save');
+		html2canvas($('.character_area')[0]).then(function (canvas){
+			var link = document.createElement('a');
+			link.href = canvas.toDataURL();
+			link.download = new Date().getFullYear()+new Date().getMonth().toString().padStart(2,'0')+new Date().getDate()+"_"+'Jeehwany.png';
+			link.click();
+		});
+		$('.character_area img').removeClass('save');
+	});
+	$('.choice').on('contextmenu, click','img', function(e){
+		e.preventDefault();
+		return false;
+	});
+	$('.character_area').on('contextmenu, click','img', function(e){
+		e.preventDefault();
+		return false;
+	});
+});
+</script>

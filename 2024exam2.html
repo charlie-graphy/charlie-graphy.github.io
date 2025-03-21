@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="2024 지환고사">
+    <meta name="keywords" content="안지환">
+    <meta property="og:image" content="https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg">
+    <meta property="og:title" content="AHNJEEHWANY">
+	<meta property="og:description" content="2024 지환고사">
+    <title>AHNJEEHWANY</title>
+    
+    <!-- Facebook Open Graph-->
+	<meta property="og:type" content="website">
+	<meta property="og:locale" content="ko_KR">
+	<meta property="og:site_name" content="AHNJEEHWANY">
+	<meta property="og:url" content="https://jeehwany.com/2024exam">
+	<meta property="og:image" content="https://blog.kakaocdn.net/dn/lJC7J/btsK8WdNZP9/001GH2uZw7tkoLlDBpzRT1/img.png">
+	<meta property="og:title" content="AHNJEEHWANY">
+	<meta property="og:description" content="2024 지환고사">
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@jeehwany_com">
+	<meta name="twitter:creator" content="@jeehwany_com">
+	<meta name="twitter:url" content="https://jeehwany.com/2024exam">
+	<meta name="twitter:image" content="https://blog.kakaocdn.net/dn/lJC7J/btsK8WdNZP9/001GH2uZw7tkoLlDBpzRT1/img.png">
+	<meta name="twitter:title" content="AHNJEEHWANY">
+	<meta name="twitter:description" content="2024 지환고사">		
+		
+    <!-- 파비콘 -->
+    <link rel="icon" href="img/favicon_io/favicon.webp" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io/favicon-16x16.png">
+    
+    <!-- 스타일시트 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index2.css">
+    <link rel="stylesheet" type="text/css" href="css/games2.css">
+    <link rel="stylesheet" type="text/css" href="css/exam2.css"/>
+	<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css'>
+	
+    <!-- jQuery 및 스크립트 -->
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+	<script type="text/javascript" src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.1/kakao.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+    <script type="text/javascript" src="js/index2.js"></script>
+    <script type="text/javascript" src="js/exam20242.js"></script>
+</head>
+<body id="game">
+    <!-- 메인 콘텐츠 (초기에는 숨김) -->
+    <div class="main-content show">
+        <!-- 상단 헤더 -->
+        <header class="top-bar">
+            <div class="left-section">
+                <button class="menu-toggle">☰</button>
+                <div class="logo"><a href="https://jeehwany.com">AHNJEEHWANY</a></div>
+                <nav class="menu">
+                    <a href="index2.html">Home</a>
+                    <a href="#">Filmography</a>
+                    <a href="video2.html">Videos</a>
+                    <a href="#">Special</a>
+                    <a href="games2.html">Games</a>
+                    <a href="#">Info</a>
+                </nav>
+            </div>
+            <div class="center-section"></div> <!-- 비어 있는 중앙 영역 -->
+            <div class="right-section">
+                <i class='bx bx-fullscreen fullscreen'></i>
+                <span class="datetime"></span>
+            </div>
+        </header>
+
+        <!-- 콘텐츠 영역 (헤더 아래 분리) -->
+        <div class="content-section">
+	        <!-- 2번째 줄: 선택된 항목 표시 + 보기 모드 선택 -->
+	        <div class="game-display" style="height: 35px;">
+	            <div class="folderTitle"><i class='bx bx-chevron-right' style="margin-right: 10px;"></i><span class="selected-title">2024 지환고사</span></div>
+	            <div class="view-options">
+	                <div class="view-btn" style="font-size:15px;"><a href="games2.html">메인으로</a></div>
+	            </div>
+	        </div>
+	
+	        <!-- 3번째 줄: 스크롤 가능한 콘텐츠 목록 -->
+	        <div class="game-list">
+	        	
+	        	<article class="loading">
+					<div class="counter">
+						<h3>로딩중</h3>
+						<div>
+						  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						     width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+						    <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
+						      <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" />
+						      <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+						      <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+						    </rect>
+						    <rect x="8" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+						      <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+						      <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+						      <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+						    </rect>
+						    <rect x="16" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+						      <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+						      <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+						      <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+						    </rect>
+						  </svg>
+						</div>
+					</div>
+				</article>
+				<article class="intro" style="display:none;">
+					<div class="titleCont">
+						<div style="height:100%; display:flex; justify-content:center;"><img src="https://blog.kakaocdn.net/dn/lJC7J/btsK8WdNZP9/001GH2uZw7tkoLlDBpzRT1/img.png" style="width:95%; margin:auto;"/></div>
+					</div>
+					<div><i id="msgIcon" class="bi bi-envelope-heart" style="cursor:pointer"></i></div>
+					<div class="title">
+						<div class="big">2024 지환고사</div>
+						<div class="little"><b>"2024년 12월 11일"</b><br>안지환 배우님의 데뷔 <b>9주년</b>을 맞이하여<br>한 해를 되돌아 보기 위해 실시합니다.</div>
+					</div>
+		    		<div class="inputCont">
+		    			<input type="text" class="name" maxlength="8" placeholder="응시자 이름"/>
+		    			<button class="start">&gt;&nbsp;&nbsp;&nbsp;시험 응시하기</button>
+		    		</div>
+				</article>
+				<article class="ready" style="display:none;">
+					<div class="titleText"><a class="back">&lt;</a><span>2024 지환고사</span></div>
+					<div class="question">
+						<span>응시 할 영역을 고르세요.</span>
+					</div>
+					<div class="choose">
+						<ul></ul>
+					</div>
+				</article>
+				<article class="ing" style="display:none;">
+					<div class="titleText"><a class="back">&lt;</a><span>2024 지환고사</span> : <span class="group" data-id=""></span>영역</div>
+					<div class="progress"><div class="bar" style="width:12.5%;"></div></div>
+					<div class="question"><div class="imgQ"></div><span>질 문1</span></div>
+					<div class="choose"><ul></ul><div class="textCont" style="display:none;"><textarea id="text" rows="4" placeholder="내용을 입력해주세요."></textarea><button class="btnSucces">완료</button></div></div>
+				</article>
+				<article class="result" style="display:none;">
+					<div class="resultImgCont">
+						<img src="" style="height:100%;"/>
+					</div>
+					<div class="resultCont">
+						<div class="titleText">
+							<div class="rstInfo"><span class="rstName"></span>님의 점수는...</div>
+							<span class="score">100점</span>
+						</div>
+						<button class="review">해설지 보기</button>
+						<button class="return"><i class="bi bi-arrow-counterclockwise"></i>&nbsp;&nbsp;다시하기</button>
+					</div>
+					<div class="shareCont">
+						<div class="shareTitle"><span>결과 공유하기</span></div>
+		    			<div class="shareBox">
+		    				 <a class="fbCopy"><i class="bi bi-facebook"></i></a>
+		    				 <a class="xCopy"><i class="bi bi-twitter-x"></i></a>
+		    				 <a class="ktCopy"><i class="bi bi-chat-fill"></i></a>
+		    				 <a class="urlCopy" style="margin-right:0"><i class="bi bi-link-45deg"></i></a>
+		    			</div>
+						<div class="recommendCont">
+							<div class="recTitle"><span></span></div>
+							<div class="recCont1"><span>😊<br>짱! 멋진 프로필!</span><img src="" style="width:100%;margin-top:12;" oncontextmenu="return false"/></div>
+							<div class="recCont2"><span>👍<br>추천 영상!</span><div class="page-content"></div></div>
+							<div class="recCont3" style="display:none;"><span>💕<br>관련 영상 추천!</span></div>
+						</div>
+					</div>
+					<div class="divLayer">
+						<div class="layerCont">
+							<a class="b_handle">레이어 닫기</a>
+							<div class="divExamTt">: 영역</div>
+							<div class="divExam"></div>
+						</div>
+					</div>
+				</article>
+				<article class="message" style="display:none;">
+					<div class="titleText"><a class="back">&lt;</a><span>2024 지환고사</span> : 축하메시지</div>
+					<div class="msgCont"></div>
+				</article>
+				<div class="modal">
+				    <div class="modal_popup" style="text-align:center;">
+				        <span class="howtoCont" style="font-size:.75em;">
+				        	복사되었습니다.
+				        </span>
+				    </div>
+				</div>
+	        	
+	        	
+	        </div>
+        </div>
+        
+    </div>
+</body>
+</html>
+<script>
+$(document).ready(function() {
+	const urlParams = new URLSearchParams(window.location.search);
+    
+    if(urlParams.get("only") === "content-section") {
+        $(".top-bar").hide(); // 헤더 숨기기
+        $("body#game").css("padding", "0"); // 여백 제거
+		$("#game .content-section").css({"margin-top":"0","height":"calc(100vh - 2px)"});
+        $(".game-list").css("height","100%");
+        $("a").each(function(e){
+        	$(this).attr("href",$(this).attr("href")+"?only=content-section");
+        });
+	}
+});
+</script>

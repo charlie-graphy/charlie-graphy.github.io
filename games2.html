@@ -50,7 +50,6 @@
             <div class="center-section"></div> <!-- 비어 있는 중앙 영역 -->
             <div class="right-section">
                 <i class='bx bx-fullscreen fullscreen'></i>
-                <i class='bx bx-moon darkmode' data-YN="N"></i>
                 <span class="datetime"></span>
             </div>
         </header>
@@ -69,9 +68,9 @@
 	        <!-- 3번째 줄: 스크롤 가능한 콘텐츠 목록 -->
 	        <div class="game-list">
 	            <div class="game-item" data-idx="1"><i class='bx bx-chevron-right'></i><a href="2048_2.html">지화니 2048</a></div>
-				<div class="game-item" data-idx="2"><i class='bx bx-chevron-right'></i><a href="">아깨비 날개옷 입히기</a></div>
-				<div class="game-item" data-idx="3"><i class='bx bx-chevron-right'></i><a href="">지화니 퍼즐</a></div>
-				<div class="game-item" data-idx="4"><i class='bx bx-chevron-right'></i><a href="">2024 지환고사</a></div>
+				<div class="game-item" data-idx="2"><i class='bx bx-chevron-right'></i><a href="clothes2.html">아깨비 날개옷 입히기</a></div>
+				<div class="game-item" data-idx="3"><i class='bx bx-chevron-right'></i><a href="puzzle2.html">지화니 조각 퍼즐</a></div>
+				<div class="game-item" data-idx="4"><i class='bx bx-chevron-right'></i><a href="2024exam2.html">2024 지환고사</a></div>
 	        </div>
         </div>
         
@@ -85,6 +84,9 @@ $(document).ready(function() {
         $(".top-bar").hide(); // 헤더 숨기기
         $("body#game").css("padding", "0"); // 여백 제거
 		$("#game .content-section").css({"margin-top":"0","height":"calc(100vh - 2px)"});
+        $("a").each(function(e){
+        	$(this).attr("href",$(this).attr("href")+"?only=content-section");
+        });
 	}
 
     // 보기 모드 변경
