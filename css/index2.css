@@ -11,6 +11,12 @@
     font-weight: 400;
 }
 
+html, body, .main-content{
+    overflow: hidden;
+    -webkit-overflow-scrolling: none;
+    overscroll-behavior: none;
+}
+
 html, body {
     background: white;
     color: #1E1E1E;
@@ -21,7 +27,6 @@ html, body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    overflow-y: hidden;
 }
 
 * {
@@ -217,6 +222,7 @@ html, body {
     cursor: grab;
     box-shadow: 5px 5px 10px #c9c9c9;
     transition: background .01s ease-in-out;
+    overflow: hidden;
 }
 
 /* 팝업창 내부 iframe */
@@ -245,8 +251,8 @@ html, body {
 	font-size: 15px;
 }
 
-/* 닫기 버튼 */
-.close-btn {
+/* 팝업 버튼 */
+.max-btn, .close-btn {
     color: #1E1E1E;
     background-color: transparent;
     border: 1px solid #1E1E1E;
