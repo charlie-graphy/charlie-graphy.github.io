@@ -41,15 +41,15 @@ article{
     flex-direction: column;
 	margin: auto;
 	height: 100vh;
-	width: 90vw;
+	width: 100vw;
 }
 article.loading {
-	margin-top: 50%;
+	margin-top: 20%;
 }
 article.intro {
 	display: grid;
-    grid-template-rows: 30% 8% 20% 20%;
-    justify-content: start;
+    grid-template-rows: 30% 8% 22% 20%;
+    justify-content: center	;
 }
 article.intro, article.result {
     align-items: center;
@@ -57,7 +57,7 @@ article.intro, article.result {
 .loading h3{
 	color: #ffa205;
 }
-.title, .titleCont, .resultImgCont, .resultCont {
+.title, .resultImgCont, .resultCont {
 	height: 130px;
 	-webkit-font-smoothing: antialiased;
 	display: flex;
@@ -74,8 +74,12 @@ article.intro, article.result {
 	font-size: 0.8em;
 }
 .titleCont, .resultImgCont {
-    height: 220px;
+    height: 85%;
     padding: 5px 0px;
+}
+.titleCont img{
+	height: 112%;
+	margin:auto;
 }
 .resultCont {
 	height: 300px;
@@ -187,12 +191,14 @@ button:hover, li:hover {
 }
 .choose {
 	height: 370px;
+	margin: 0 auto;
 }
 .choose ul {
 	margin-top: 10px;
 	padding: 0px 20px;
 }
 .choose li {
+	width: 80vw;
 	font-size: 0.85em;
 	list-style: none;
 	padding: 10px;
@@ -232,7 +238,7 @@ button:hover, li:hover {
 .shareCont {
 	border-top: 5px solid #ffd793;
 	padding: 20px;
-	width: 85%;
+	width: 100%;
 	margin-top: 10px;
 }
 .shareCont .shareTitle{
@@ -259,11 +265,11 @@ button:hover, li:hover {
 	margin-bottom: 30px;
 }
 .shareBox a{
-	margin-right: 15px;
+	margin-right: 13px;
 }
 .shareBox i{
 	color: #fff;
-    font-size: 1.2em;
+    font-size: 22px;
     background-color: black;
     padding: 7px 10px;
     border-radius: 50%;
@@ -427,7 +433,8 @@ button:hover, li:hover {
 	align-items: flex-end;
 	overflow: hidden;
 	padding: .5rem;
-	width: 90%;
+	height: 250px;
+	width: 250px;
 	text-align: center;
 	color: whitesmoke;
 	background-color: whitesmoke;
@@ -440,9 +447,13 @@ button:hover, li:hover {
 		0 8px 8px rgba(0,0,0,0.1),
 		0 16px 16px rgba(0,0,0,0.1);
 	justify-content: center;
-	@media (min-width: 300px) {
-    	height: 150px;
-  	}
+	margin: auto;
+	
+	/* 반응형 스타일 */
+	@media (max-width: 900px) {
+		height: 100%;
+        width: auto;
+	}
 }
 .recCont2 .content {
 	display: flex;
@@ -485,16 +496,15 @@ button:hover, li:hover {
 }
 .recCont2 .btn {
 	cursor: pointer;
-	padding-top: 0.35em;
-	font-size: 60%;
+	font-size: 11px;
 	font-weight: bold;
 	letter-spacing: 0.025rem;
 	text-transform: uppercase;
 	color: white;
 	background-color: black;
 	border: none;
-	width: 60%;
-	height: 25%;
+	width: 100px;
+    height: 50px;
 	margin-bottom: 5px;
 }
 .message .postit {
@@ -528,6 +538,11 @@ button:hover, li:hover {
 .howtoCont{
 	font-family: 'NeoDunggeunmoPro-Regular', 'DNFBitBitv2';
 	word-break: keep-all;
+}
+
+.recCont1 img{
+	width:80%;
+	margin-top:12px;
 }
 
 @media only screen and ( max-height : 715px) {
@@ -572,4 +587,23 @@ button:hover, li:hover {
     	margin-bottom: 11px;
     	padding: 6px;
     }
+}
+
+
+@media (min-width: 901px) {
+	article.loading {
+		justify-content: center;
+		margin-top: 0px;
+	}
+	.titleCont img{
+		padding-top: 30px;
+	}
+	article.intro {
+	    align-items: start;
+		grid-template-rows: 40% 5% 15% 20%;
+	}
+	.recCont1 img{
+		width:45%;
+		margin-top:12px;
+	}
 }

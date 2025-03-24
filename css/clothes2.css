@@ -142,6 +142,9 @@
 }
 
 @media (min-width: 901px) {
+	.choice1, .choice{
+		width: 75%;
+	}
 	.imgDiv{
 		height: 80% !important;
 	}

@@ -432,7 +432,7 @@ img{
         width: 400px;
         height: 600px;
         left: 50%;
-        top: 40%;
+        top: calc(40% - 35px);
         transform: translate(-50%, -50%);
         display: flex;
         flex-direction: column;
@@ -442,7 +442,7 @@ img{
     	transition: background .01s ease-in-out;
     }
     .side-popup:not(.open) {
-    	top: 16% !important;
+    	top: calc(15% - 35px) !important;
         height: 35px !important;
     }
     

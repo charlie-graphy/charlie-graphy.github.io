@@ -73,10 +73,10 @@
   background-color: #0069ff;
   box-sizing: border-box;
   font-family: "Sys","_neodgm";
-  font-size: 32px;
+  font-size: 25px;
   height: auto;
   text-transform: uppercase;
-  width: 77%;
+  width: 70%;
   text-shadow: 1px 1px 0 #000000, -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000;
   filter: blur(1px);
   color: #fff;
@@ -136,6 +136,7 @@
 .tvmenu footer .key {
   float: left;
   width: 50%;
+  font-size: 23px;
 }
 .tvmenu footer .key span {
   background-color: #0069ff;

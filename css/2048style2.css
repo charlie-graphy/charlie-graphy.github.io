@@ -558,6 +558,9 @@ h2 {
 
 @media (min-width: 901px) {
     .wrapper {
-		width: 40%;
+		width: 35%;
+	}
+	.game-list {
+		height: 100%;
 	}
 }
