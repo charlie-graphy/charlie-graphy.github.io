@@ -102,9 +102,10 @@ $(document).ready(function() {
     // 팝업창 열기
     $(".icon").click(function() {
     	if($(".window[data-id="+$(this).data("window")+"]").length == 0){
+    		const target = $(this).data("window");
             let targetWindow = $("#templete").clone();
             
-            if($(this).data("window") == 'games'){
+            if(target == 'games'){
             	targetWindow.css({'width':'382px','height':'585px'});
             	targetWindow.find('.resize-handle').remove();
             	
@@ -112,6 +113,8 @@ $(document).ready(function() {
             		window.open("games2.html", "_self");
             		return false;
             	}
+            }else if(target == 'schedule'){
+            	targetWindow.css({'width':'382px','height':'685px'});
             }
             $(".main-content").append(targetWindow);
             
