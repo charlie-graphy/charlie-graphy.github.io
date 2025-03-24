@@ -1,0 +1,244 @@
+a {
+    text-decoration: none;
+    color: #1E1E1E;
+}
+
+/* 헤더 제외한 콘텐츠 영역 */
+.content-section {
+	font-family: 'NeoDunggeunmoPro-Regular';
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 35px); /* 헤더(35px) 제외한 나머지 높이 */
+    overflow: hidden;
+    padding: 0px;
+}
+
+/* 2번째 줄: 타이틀*/
+.fc-toolbar {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    align-items: center;
+}
+
+.fc-center{
+    font-size: 18px;
+}
+
+/* 3번째 줄: 스크롤 가능한 콘텐츠 목록 */
+.schedule-list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    overflow-y: auto;
+}
+
+/* 2칸 보기 모드 */
+.schedule-list.double {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* 스크롤바 커스텀 */
+.schedule-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.schedule-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.schedule-list::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
+/* 콘텐츠 개별 아이템 */
+.schedule-item {
+    height: 50px;
+    background-color: transparent;
+    padding: 15px;
+    text-align: left;
+    border-radius: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: 20px repeat(1, 1fr);
+    align-items: center;
+    word-break: keep-all;
+}
+
+.schedule-list.double .schedule-item {
+    text-align: center;
+    grid-template-columns: 14px repeat(1, 1fr);
+    font-size: 14px;
+    height: 100px;
+}
+
+/*모달 팝업 영역 스타일링*/
+.modal {
+/*팝업 배경*/
+	display: none; /*평소에는 보이지 않도록*/
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: rgba(0,0,0,0.4);
+    z-index: 999;
+}
+.modal.on {
+    display: block;
+}
+/*팝업*/
+.modal .modal_popup {
+	font-family: 'NeoDunggeunmoPro-Regular';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 20px;
+    background: rgba(255,255,255,1);
+    text-align: center;
+}
+.modal .modal_popup .controls_score-text{
+	font-weight: bolder; 
+}
+.modal .modal_popup .close_btn {
+    display: block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+
+
+/* 공통 스타일 */
+body {
+	width: 100%;
+	height: 100%;
+	right: 10%;
+	background-color: white !important;
+	overflow-y: auto !important;
+}
+.fc-row.fc-week.table-bordered tr{
+	height: 1em;
+}
+.fc-event-container {
+	cursor: pointer !important;
+}
+/* 요일 */
+td.fc-sun, th.fc-sun {
+	background-color: rgb(180, 0, 0, 3%);
+}
+.fc-sun span{
+	color: mediumvioletred !important;
+}
+td.fc-sat, th.fc-sat {
+	background-color: rgb(0, 0, 180, 3%);
+}
+.fc-sat span{
+	color: dodgerblue !important;
+}
+/* 바탕색  */
+.bg-red{
+	background-color: rgb(255, 160, 160, 0.2) !important;
+}
+.bg-green{
+	background-color: rgb(152, 211, 168, 0.2) !important;
+}
+.bg-blue{
+	background-color: rgb(50, 100, 200, 0.2) !important;
+}
+.bg-sky{
+	background-color: rgb(87 238 255 / 0.2) !important;
+}
+.bg-gray{
+	background-color: rgb(146, 148, 151, 0.2) !important;
+}
+.bg-purple{
+	background-color: rgb(146, 100, 217, 0.2) !important;
+}
+
+p.event{
+	font-size: .13px;
+	font-weight: 600;
+	margin-bottom: .5rem !important;	
+}
+.event-body{
+	font-size: 16px;
+}
+.monthModal {
+	display: none; /*평소에는 보이지 않도록*/
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: rgba(0,0,0,0.4);
+    z-index: 999;
+}
+.monthModal.on {
+    display: block;
+}
+.monthModal .modal_popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 22px;
+    background: #ffffff;
+    border-radius: 20px;
+    background: rgba(255,255,255,1);
+}
+.monthModal table tr td{
+	text-align: center;
+	padding: 5px;
+}
+.monthModal .prevYear, .monthModal .nextYear{
+	cursor: pointer;
+}
+.monthModal table tr.month td span{
+	word-break: keep-all;
+	padding: 5px;
+	cursor: pointer;
+}
+.monthModal table tr.month td span.now{
+	font-weight: bolder;
+}
+/* 모바일 화면에서만 보이는 스타일 */
+@media only screen and ( max-width : 1366px) {
+	.fc-header-toolbar .fc-today-button{
+		width: 5.5em;
+		height: 6%;
+	}
+	.fc .fc-row .fc-content-skeleton table,
+	.fc .fc-row .fc-content-skeleton td,
+	.fc .fc-row .fc-helper-skeleton td {
+		padding: 0 !important;
+	}
+}
+
+/* 반응형 스타일 */
+@media (max-width: 900px) {
+    
+}
+
+@media (min-width: 901px) {
+	.schedule-list {
+		width: 90%;
+	}
+    .content-section {
+    	place-items: center;
+    }
+    .fc-view-container {
+    	height:80vh;
+    }
+    .fc-basic-view .fc-body .fc-row {
+    	max-widht: 150px;
+    	max-height: 150px;
+    }
+}

@@ -84,6 +84,7 @@ img{
     padding: 0 5px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     background: transparent;
+    z-index: 1000;
 }
 
 /* 헤더 내부 요소 */
@@ -106,7 +107,7 @@ img{
     color: #1E1E1E;
     padding-left: 15px;
 }
-.logo a {
+.logo a, .logo a:hover {
     text-decoration: none;
     color: #1E1E1E;
 }
@@ -134,6 +135,8 @@ img{
     color: #1E1E1E;
     cursor: pointer;
     border-right: 1px solid rgba(0, 0, 0, 0.2);
+    font-family: none !important;
+    line-height: inherit;
 }
 
 .top-bar .menu.active {
