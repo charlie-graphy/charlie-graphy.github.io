@@ -152,8 +152,8 @@
 			                        <li data-url="ua5H9V3DmeY?si=anR2IcQLgAJgWfPl"><a class="tab" href="#">커튼콜</a></li>
 			                    </ul>
 			                    <footer>
-			                        <div class="key"><em>Exit</em>: <span>1</span></div>
-			                        <div class="key"><em>Select</em>: <span>2</span></div>
+			                        <div class="key"><em>Exit</em>:<span>1</span></div>
+			                        <div class="key"><em>Select</em>:<span>2</span></div>
 			                    </footer>
 			                </div>
 			            </div>
@@ -169,15 +169,27 @@
 </html>
 <script>
 $(document).ready(function() {
+	$('.menu-toggle').remove();
+	
 	$("#video .loader").fadeOut(500, function() {
         $("#video .main-content").addClass("show");
     });
 
 	const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get("only") === "content-section") {
-        $(".top-bar").hide(); // 헤더 숨기기
+        $(".top-bar").remove(); // 헤더 숨기기
         $("body#video").css("padding", "0"); // 여백 제거
-		$("#video .content-section").css({"margin-top":"0","height":"calc(100vh - 2px)"});
+		$("#video .content-section").css({"margin-top":"0","height":"100vh"});
+        
+		
+        $('.tvmenu').css({'font-size':'18px','width':'70%'});
+        $('.tvmenu ul ').css({'max-height': '100px'});
+        $('.tvmenu footer').css({'padding':'0 5px'});
+        $('.tvmenu footer .key').css({'font-size':'15px'});
+        $('.tvmenu footer .key span').css({'line-height':'28px','height':'30px'});
+		
+		$('.scanlines .overlay').css({'top':'0px','height':'100vh'});
+		$('.scanlines .overlay, #video .content-section').addClass('con');
 	}
     
     var idx = 0;
