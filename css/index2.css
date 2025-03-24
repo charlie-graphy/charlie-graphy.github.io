@@ -41,6 +41,10 @@ img{
 	-webkit-touch-callout:none;
 }
 
+a {
+    text-decoration: none;
+    color: #1E1E1E;
+}
 /* 로딩 화면 */
 .loader {
     position: fixed;
@@ -121,8 +125,6 @@ img{
 }
 
 .top-bar .menu a {
-    text-decoration: none;
-    color: #1E1E1E;
     font-size: 12px;
 }
 
