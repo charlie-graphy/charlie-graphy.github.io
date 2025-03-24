@@ -7,8 +7,11 @@ $(document).ready(function() {
     let zIndexCounter = 100; // 팝업창의 z-index 관리
     let popup = $(".side-popup");
 
-    if($(window).width() > 900) $(".toggle-button").text("▲");
-    else $(".toggle-button").text("▶");
+    if($(window).width() > 900){
+		$(".top-bar .menu").removeClass("active"); //메뉴 닫기
+		$(".icon-menu li.empty").hide();
+    	$(".toggle-button").text("▲");
+    } else $(".toggle-button").text("▶");
     
     // 토글 버튼 클릭 시 펼치기/접기
     $(".toggle-button").click(function(e) {
@@ -36,7 +39,7 @@ $(document).ready(function() {
         if ($(window).width() > 900) {
             popup.css({
                 left: "50%",
-                top: "40%",
+                top: "calc(40% - 35px)",
                 transform: "translate(-50%, -50%)",
                 width: "400px",
                 height: "600px"
@@ -104,6 +107,11 @@ $(document).ready(function() {
             if($(this).data("window") == 'games'){
             	targetWindow.css({'width':'382px','height':'585px'});
             	targetWindow.find('.resize-handle').remove();
+            	
+            	if($(window).width() < 900){
+            		window.open("games2.html", "_self");
+            		return false;
+            	}
             }
             $(".main-content").append(targetWindow);
             
@@ -126,9 +134,6 @@ $(document).ready(function() {
 
     // 팝업창 확대
     $(".main-content").on("click", ".max-btn", function(e){
-    	if($(this).closest(".window").data("id") == "games"){
-    		alert("현재 하고 있는 게임이 사라집니다.")
-    	}
     	window.open($(this).closest(".window").data("id")+"2.html", "_self");
     });
 
@@ -184,7 +189,7 @@ $(document).ready(function() {
     
     $(window).on("resize", function(){
     	if($(window).width() > 900){
-    		$(".menu").removeClass("active"); //메뉴 닫기
+    		$(".top-bar .menu").removeClass("active"); //메뉴 닫기
     		$(".icon-menu li.empty").hide();
     	}else $(".icon-menu li.empty").show();
     });
