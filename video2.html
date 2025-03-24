@@ -308,6 +308,9 @@
 				<div class="video-item" data-folder="N" data-idx="1"><i class='bx bxl-youtube'></i><a href="https://www.youtube.com/watch?v=rOE4HouRIGg" target="_blank">[유테이크] 배우수첩 08 : 여신님, 우리 보여요?</a></div>
 				<div class="video-item" data-folder="N" data-idx="1"><i class='bx bxl-youtube'></i><a href="https://youtu.be/CWa6jNs6hQo?si=OxbQ9_ktxMqF88dG" target="_blank">[유테이크] 배우수첩 09 : 여신님, 우리 잘하고 있어요?</a></div>
 				<div class="video-item" data-folder="N" data-idx="1"><i class='bx bxl-youtube'></i><a href="https://www.youtube.com/watch?v=yVpO1e5yJ8Y" target="_blank">[유테이크] 배우수첩 14 : 펜싱을 할 때, 너무나 분명히 살아있어</a></div>
+				
+				<!-- Empty -->
+				<div class="video-item" data-target="EMPTY" data-folder="Y" style="border: none;"></div><div class="video-item" data-target="EMPTY" data-folder="Y" style="border: none;"></div>
 	        </div>
         </div>
         
@@ -368,6 +371,8 @@ $(document).ready(function() {
         if(folder != "N"){
             $(".selected-title").text($(this).find('span').text());
         }
+        
+        $(".video-list").find(".video-item[data-target=EMPTY]").show();
     });
 
 });
