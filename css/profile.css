@@ -59,7 +59,6 @@ a {
     flex-direction: column;
     align-items: center;
     padding: 15px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 /* 프로필 이미지 슬라이더 */
@@ -130,7 +129,7 @@ a {
 /* 프로필 내용 */
 .profile-content {
 	width: 100%;
-	max-width: 290px;
+	max-width:  500px;
     text-align: left;
     padding-top: 10px;
     padding-left: 5px;
@@ -144,12 +143,25 @@ a {
     font-size: 17px;
 }
 
-.profile-content p{	
+.profile-content .content{
     padding: 8px 0;
     font-size: 15.5px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     line-height: 17px;
 }
+
+.profile-content ul{
+	display: grid;
+    grid-template-columns: 11% auto;
+}
+
+.profile-content li{
+    display: inline-block;
+	word-break: keep-all;
+	width: 90%;
+	vertical-align: top;
+}
+
 
 .profile-content .emp{
 	color: lightgray;
@@ -157,6 +169,7 @@ a {
 
 .profile-content .year{
 	color: darkgray;
+    padding-right: 6px;
 }
 
 /* 반응형 스타일 */
@@ -176,8 +189,4 @@ a {
         max-width: 400px;
     }
 
-    .profile-content {
-        text-align: left;
-        max-width: 500px;
-    }
 }
