@@ -99,10 +99,10 @@ a {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.2);
     color: white;
     border: none;
-    padding: 10px;
+    padding: 8px;
     cursor: pointer;
     z-index: 10;
 }
@@ -118,12 +118,12 @@ a {
 /* 현재 사진 번호 */
 .slide-number {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.5);
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.2);
     color: white;
-    padding: 5px 10px;
-    font-size: 12px;
+    padding: 4px 8px;
+    font-size: 11px;
     border-radius: 5px;
 }
 /* 프로필 내용 */
@@ -152,7 +152,7 @@ a {
 
 .profile-content ul{
 	display: grid;
-    grid-template-columns: 11% auto;
+    grid-template-columns: 40px auto;
 }
 
 .profile-content li{
@@ -182,7 +182,7 @@ a {
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        gap: 20px;
+        gap: 30px;
     }
 
     .profile-slider {

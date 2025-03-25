@@ -396,6 +396,9 @@ temporary rendered events).
     -moz-border-radius: 3px 0px 0px 3px;
     border-radius: 3px 0px 0px 3px;
 }
+.fc-event .fc-time {
+    font-size: 11px;
+}
 .fc-event .fc-title {
     font-weight: 500;
     position: relative;
@@ -406,7 +409,7 @@ temporary rendered events).
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     word-break: break-all;
-    font-size: 12.5px;
+    font-size: 11px;
 }
 .fc-event i{
     font-size: 26px;
@@ -440,7 +443,7 @@ temporary rendered events).
     color: #2c304d;
     position: relative;
     z-index: 2;
-    padding: 5px 2px;
+    padding: 4px 2px;
 }
 
 /* resizer (cursor AND touch devices) */
@@ -867,7 +870,7 @@ NOTE: use percentage font sizes or else old IE chokes
   text-align: center; }
 
 .fc-toolbar.fc-header-toolbar {
-	height: 50px;
+	height: 40px;
 }
 
 .fc-toolbar.fc-footer-toolbar {
@@ -911,13 +914,14 @@ NOTE: use percentage font sizes or else old IE chokes
 
 /* title text */
 .fc-toolbar h2 {
+	font-family:'DNFBitBitv2';
   text-transform: uppercase;
-  font-weight: 600;
-  font-size: 19px;
+  font-weight: normal;
+  font-size: 17px;
   text-align: center;
   letter-spacing: 1px;
   color: #1E1E1E;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 /* button layering (for border precedence) */
@@ -1445,7 +1449,7 @@ body{
   color: black;
   position: absolute;
   right: 0;
-  top: 6px;
+  top: 1px;
 }
 .modal-body{
   text-align: center;

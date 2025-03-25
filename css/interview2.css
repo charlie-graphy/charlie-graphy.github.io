@@ -1,0 +1,85 @@
+a {
+    text-decoration: none;
+    color: #1E1E1E;
+}
+
+/* 헤더 제외한 콘텐츠 영역 */
+.content-section {
+	font-family: 'NeoDunggeunmoPro-Regular';
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 35px); /* 헤더(35px) 제외한 나머지 높이 */
+    overflow: hidden;
+    padding: 0;
+}
+
+/* 2번째 줄: 선택된 항목 표시 */
+.interview-display {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    align-items: center;
+}
+
+.folderTitle{
+	display: flex;
+    font-size: 18px;
+    padding: 7px 0px;
+}
+
+/* 3번째 줄: 스크롤 가능한 콘텐츠 목록 */
+.interview-list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    overflow-y: auto;
+}
+
+/* 2칸 보기 모드 */
+.interview-list.double {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* 스크롤바 커스텀 */
+.interview-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.interview-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.interview-list::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
+/* 콘텐츠 개별 아이템 */
+.interview-item {
+    background-color: transparent;
+    padding: 15px;
+    text-align: left;
+    border-radius: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: 20px repeat(1, 1fr);
+    align-items: center;
+    word-break: keep-all;
+}
+
+.interview-list.double .interview-item {
+    text-align: center;
+    grid-template-columns: 14px repeat(1, 1fr);
+    font-size: 14px;
+    height: 100px;
+}
+
+
+/* 반응형 스타일 */
+@media (max-width: 900px) {
+    
+}
+
+@media (min-width: 901px) {
+	
+}

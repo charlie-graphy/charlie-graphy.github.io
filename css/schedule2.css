@@ -1,6 +1,6 @@
 a {
     text-decoration: none;
-    color: #1E1E1E;
+    color: #1E1E1E !important;
 }
 
 /* 헤더 제외한 콘텐츠 영역 */
