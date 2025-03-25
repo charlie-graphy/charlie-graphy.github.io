@@ -354,7 +354,8 @@ $(document).ready(function() {
             $(".video-list .video-item").not("[data-target="+target+"]").hide();
             $(".video-list").find(".video-item[data-target="+target+"]").show();
         }
-		$('.video-list').scrollTop(0)
+		$('.video-list').scrollTop(0);
+        $(".video-list").find(".video-item[data-target=EMPTY]").show();
     });
 
     $(".video-list").on("click", ".video-item", function(e){
