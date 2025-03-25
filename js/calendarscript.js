@@ -1223,6 +1223,27 @@
 					start: '2025-03-02 14:00',
 					className: 'bg-sky',
 					allDay: false
+				},
+				{
+					title: '킹콩 by 스타쉽 계약',
+					description: '',
+					start: '2025-03-13 10:30',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름 - 세종',
+					description: '서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 김지훈<br>이복자 役 | 이선주',
+					start: '2025-05-09 19:30',
+					className: 'bg-sky',
+					allDay: false
+				},
+				{
+					title: '그해 여름 - 세종',
+					description: '서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 김지훈<br>이복자 役 | 이선주',
+					start: '2025-05-10 15:00',
+					className: 'bg-sky',
+					allDay: false
 				}
 			],
 			eventClick: function(event, jsEvent, view) {
