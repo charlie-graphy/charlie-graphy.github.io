@@ -103,11 +103,12 @@ a {
 }
 
 .video-content .keyM {
-    border: 2px solid darkred;
     border-radius: 7px;
     padding: 3px;
     font-size: 12px;
     margin-right: 5px;
+    background-color: #1e1e1e;
+    color: white;
 }
 
 .video-content .remark {
