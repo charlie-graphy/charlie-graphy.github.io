@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="배우 안지환 아카이브 사이트">
+    <meta name="keywords" content="안지환">
+    <meta property="og:image" content="https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg">
+    <meta property="og:title" content="AHNJEEHWANY">
+    <meta property="og:description" content="배우 안지환 아카이브 사이트">
+    <title>AHNJEEHWANY</title>
+    
+    <!-- 파비콘 -->
+    <link rel="icon" href="img/favicon_io/favicon.webp" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io/favicon-16x16.png">
+    
+    <!-- 스타일시트 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index2.css">
+    <link rel="stylesheet" type="text/css" href="css/filmography2.css">
+    
+    <!-- jQuery 및 스크립트 -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+    <script type="text/javascript" src="js/index2.js"></script>
+</head>
+<body id="video">
+    <!-- 로딩 화면 -->
+  	<div class="loader">
+        <i class='bx bx-smile bx-spin spinner'></i>
+    </div> 
+
+    <!-- 메인 콘텐츠 (초기에는 숨김) -->
+    <div class="main-content">
+        <!-- 상단 헤더 -->
+        <header class="top-bar">
+            <div class="left-section">
+                <button class="menu-toggle">☰</button>
+                <div class="logo"><a href="https://jeehwany.com">AHNJEEHWANY</a></div>
+                <nav class="menu">
+                    <a href="index2.html">Home</a>
+                    <a href="filmography2.html">Filmography</a>
+                    <a href="video2.html">Videos</a>
+                    <a href="special2.html">Special</a>
+                    <a href="schedule2.html">Schedule</a>
+                    <a href="profiles2.html">profiles</a>
+                    <a href="#">Info</a>
+                </nav>
+            </div>
+            <div class="center-section"></div> <!-- 비어 있는 중앙 영역 -->
+            <div class="right-section">
+                <i class='bx bx-fullscreen fullscreen'></i>
+                <span class="datetime"></span>
+            </div>
+        </header>
+
+        <!-- 콘텐츠 영역 (헤더 아래 분리) -->
+        <div class="content-section">
+        	<ul class="video-nav">
+	            <li class="nav-item home active" data-target="ALL" data-name="Home">전체</li>
+	            <li class="nav-item" data-target="M" data-name="뮤지컬">뮤지컬</li>
+	            <li class="nav-item" data-target="P" data-name="연극">연극</li>
+	            <li class="nav-item" data-target="C" data-name="콘서트">콘서트</li>
+	            <li class="nav-item" data-target="D" data-name="드라마">드라마</li>
+	            <li class="nav-item" data-target="M" data-name="영화">영화</li>
+	        </ul>
+	
+	        <!-- 3번째 줄: 스크롤 가능한 콘텐츠 목록 -->
+	        <div class="video-list">
+                <!-- 2025 -->
+		        <div class="video-display">
+		            <div class="folderTitle"><i class='bx bx-chevron-down' style="margin-right: 10px;"></i><span class="selected-title">2025년</span></div>
+		        </div>
+		        <div class="video-content">
+		            <div class="video-item" data-target="M" data-folder="Y" data-idx="18">
+		            	<img src="https://blog.kakaocdn.net/dn/pNzTt/btsLazWXHIz/e4fYkeOaHdp8vJtkpnDdi1/img.png"></img>
+		            	<div class="desc">
+		            		<p class="key"><span class="keyM">#뮤지컬</span></p>
+		            		<p><span>그해 여름</span></p>
+		            		<p>2025.01.21 - 03.02</p>
+		            		<p>인터파크 서경스퀘어 2관</p>
+		            		<p>윤석영 役</p>
+		            		<p class="remark">지방 공연 : 세종, 울주, 전주</p>
+		            	</div>
+		            </div>
+		        </div>
+                <div class="video-display">
+		            <div class="folderTitle"><i class='bx bx-chevron-right' style="margin-right: 10px;"></i><span class="selected-title">2025년</span></div>
+		        </div>
+				
+				<!-- Empty -->
+				<div class="video-item" data-target="EMPTY" data-folder="Y" style="border: none;"></div><div class="video-item" data-target="EMPTY" data-folder="Y" style="border: none;"></div>
+	        </div>
+        </div>
+        
+    </div>
+</body>
+</html>
+<script>
+$(document).ready(function() {
+    $(".video-list .video-item[data-folder=N]").hide();
+
+	$("#video .loader").fadeOut(500, function() {
+        $("#video .main-content").addClass("show");
+    });
+
+	const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("only") === "content-section") {
+        $(".top-bar").hide(); // 헤더 숨기기
+        $("body#video").css("padding", "0"); // 여백 제거
+		$("#video .content-section").css({"margin-top":"0","height":"calc(100vh - 2px)"});
+	}
+    
+    // 선택 바 클릭 시 변경
+    $(".nav-item").click(function() {
+        const target = $(this).data("target");
+        $(".nav-item").removeClass("active");
+        $(this).addClass("active");
+        $(".selected-title").text($(this).data('name'));
+        if(target == "ALL"){
+            $(".video-list .video-item[data-folder=N]").hide();
+            $(".video-list .video-item[data-folder=Y]").show();
+        }else{
+            $(".video-list .video-item").not("[data-target="+target+"]").hide();
+            $(".video-list").find(".video-item[data-target="+target+"]").show();
+        }
+		$('.video-list').scrollTop(0);
+        $(".video-list").find(".video-item[data-target=EMPTY]").show();
+    });
+
+    $(".video-list").on("click", ".video-item", function(e){
+        const folder = $(this).data("folder");
+        const idx = $(this).data("idx");
+        if(folder == "Y"){
+            $(".video-list .video-item").hide();
+            $(".video-list").find(".video-item[data-folder=N][data-idx="+idx+"]").show();
+			$(".nav-item").removeClass("active");
+			$(".nav-item[data-target="+$(this).data("target")+"]").addClass("active");
+			$('.video-list').scrollTop(0)
+        }
+        
+        if(folder != "N"){
+            $(".selected-title").text($(this).find('span').text());
+        }
+        
+        $(".video-list").find(".video-item[data-target=EMPTY]").show();
+    });
+
+});
+</script>
