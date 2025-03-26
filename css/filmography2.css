@@ -16,7 +16,6 @@ a {
 .filmo-nav {
 	text-align: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    font-weight: bolde;
   	position: relative;
     bottom: -1px;
     z-index: 9;
@@ -96,6 +95,7 @@ a {
     grid-template-rows: repeat(5, 1fr);
     align-items: center;
     height: 90%;
+    font-size: 14px;
 }
 
 .filmo-content .key {
@@ -138,7 +138,7 @@ a {
 /* 콘텐츠 개별 아이템 */
 .filmo-item {
     background-color: transparent;
-    padding: 5px 15px;
+    padding: 5px 12px;
     text-align: left;
     border-radius: 5px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
