@@ -881,7 +881,8 @@
                         </div>
                     </div>
 				<!-- Empty -->
-				<div class="filmo-item" data-target="EMPTY" style="border: none;"></div><div class="filmo-item" data-target="EMPTY" data-folder="Y" style="border: none;"></div>
+				<div class="filmo-item" data-target="EMPTY" style="border: none;"></div><div class="filmo-item" data-target="EMPTY" style="border: none;"></div>
+				<div class="filmo-item" data-target="EMPTY" style="border: none;"></div><div class="filmo-item" data-target="EMPTY" style="border: none;"></div>
 	        </div>
         </div>
         
@@ -899,6 +900,7 @@ $(document).ready(function() {
         $(".top-bar").hide(); // 헤더 숨기기
         $("body#filmo").css("padding", "0"); // 여백 제거
 		$("#filmo .content-section").css({"margin-top":"0","height":"calc(100vh - 2px)"});
+        $('.filmo-list').css('height','100vh');
 	}
     
     // 선택 바 클릭 시 변경
@@ -906,6 +908,8 @@ $(document).ready(function() {
         const target = $(this).data("target");
         $(".nav-item").removeClass("active");
         $(this).addClass("active");
+        
+        $('.folderTitle, .filmo-content').show();
 		$('.yearChoice').removeClass("bx-chevron-up").addClass("bx-chevron-down");
 
         if(target == "ALL"){
@@ -920,18 +924,20 @@ $(document).ready(function() {
 				$('.filmo-display').eq(i).hide();
 			}else $('.filmo-display').eq(i).show();
 		});
+
+        $(".filmo-list [data-target=EMPTY]").show();
 		$('.filmo-list').scrollTop(0);
     });
 
-    $(".filmo-list").on("click",".yearChoice", function(e){
-        let $target = $(this).parent().parent();
-        if($(this).hasClass("bx-chevron-down")){
-            $(this).removeClass("bx-chevron-down");
-            $(this).addClass("bx-chevron-up");
+    $(".filmo-list").on("click",".folderTitle", function(e){
+        let $target = $(this).parent();
+        if($(this).find('.yearChoice').hasClass("bx-chevron-down")){
+        	$(this).find('.yearChoice').removeClass("bx-chevron-down");
+        	$(this).find('.yearChoice').addClass("bx-chevron-up");
             $target.next().hide();
         }else{
-            $(this).removeClass("bx-chevron-up");
-            $(this).addClass("bx-chevron-down");
+        	$(this).find('.yearChoice').removeClass("bx-chevron-up");
+        	$(this).find('.yearChoice').addClass("bx-chevron-down");
             $target.next().show();
         }
     });
