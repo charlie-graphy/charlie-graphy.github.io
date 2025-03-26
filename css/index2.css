@@ -315,6 +315,10 @@ a {
     font-size: 10px;
 }
 
+.selected-title{
+	font-size: 17px;
+}
+
 /* 반응형 스타일 */
 @media (max-width: 900px) {
     .top-bar .menu {
@@ -410,9 +414,6 @@ a {
     
     .nav-item,  .video-item{
 	    font-size: 14px;
-	}
-	.selected-title{
-		font-size: 16px;
 	}
 }
 

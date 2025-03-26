@@ -20,7 +20,6 @@ a {
 	text-align: center;
 	grid-template-columns: 50px repeat(3, 1fr);
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    font-weight: bolder;
 }
 
 .nav-item {
@@ -30,7 +29,7 @@ a {
     padding: 10px 15px;
     border: none;
     background-color: transparent;
-    font-size: 17px;
+    font-size: 16px;
 }
 
 .nav-item:nth-child(1) {
@@ -57,7 +56,7 @@ a {
 
 .selected-title {
     margin: 0;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 /* 보기 모드 선택 버튼 */
