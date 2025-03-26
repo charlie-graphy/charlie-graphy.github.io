@@ -125,12 +125,7 @@ a {
 
 /* 반응형 스타일 */
 @media (max-width: 900px) {
-    .nav-item, .selected-title,  .video-item{
-	    font-size: 14px;
-	}
-	.selected-title{
-		font-size: 16px;
-	}
+	
 }
 
 @media (min-width: 901px) {

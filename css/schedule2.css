@@ -235,10 +235,9 @@ p.event{
     	place-items: center;
     }
     .fc-view-container {
-    	height:80vh;
+    	height:99vh;
     }
     .fc-basic-view .fc-body .fc-row {
-    	max-widht: 150px;
-    	max-height: 150px;
+    	max-height: 130px;
     }
 }
