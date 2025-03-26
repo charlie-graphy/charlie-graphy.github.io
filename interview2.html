@@ -44,8 +44,8 @@
                     <a href="video2.html">Videos</a>
                     <a href="special2.html">Special</a>
                     <a href="schedule2.html">Schedule</a>
-                    <a href="profiles2.html">profiles</a>
-                    <a href="#">Info</a>
+                    <a href="games2.html">Games</a>
+                    <a href="info2.html">Info</a>
                 </nav>
             </div>
             <div class="center-section"></div> <!-- 비어 있는 중앙 영역 -->
@@ -94,14 +94,5 @@ $(document).ready(function() {
         	$(this).attr("href",$(this).attr("href")+"?only=content-section");
         });
 	}
-
-    // 보기 모드 변경
-    $(".view-btn").click(function() {
-        let mode = $(this).data("view");
-        $(".interview-list").toggleClass("double", mode === "double");
-        if(mode === "double" && urlParams.get("only") === "content-section"){
-        	$(".interview-list.double").css({"grid-template-columns":"repeat(2, 1fr)"});
-        }else if(mode === "single" && urlParams.get("only") === "content-section")$(".interview-list").css({"grid-template-columns":"repeat(1, 1fr)"});
-    });
 });
 </script>

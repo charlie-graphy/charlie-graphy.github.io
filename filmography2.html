@@ -920,9 +920,8 @@ $(document).ready(function() {
         }
 		
 		$('.filmo-content').each(function(i,v){
-			if($('.filmo-content').eq(i).find('.filmo-item:visible').length == 0){
-				$('.filmo-display').eq(i).hide();
-			}else $('.filmo-display').eq(i).show();
+			if($('.filmo-content').eq(i).find('.filmo-item:visible').length == 0) $('.filmo-display').eq(i).hide();
+			else $('.filmo-display').eq(i).show();
 		});
 
         $(".filmo-list [data-target=EMPTY]").show();
