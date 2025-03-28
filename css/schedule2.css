@@ -228,14 +228,8 @@ p.event{
 }
 
 @media (min-width: 901px) {
-	.schedule-list {
-		width: 90%;
-	}
     .content-section {
     	place-items: center;
-    }
-    .fc-view-container {
-    	height:99vh;
     }
     .fc-basic-view .fc-body .fc-row {
     	max-height: 130px;

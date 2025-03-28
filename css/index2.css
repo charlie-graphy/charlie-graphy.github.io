@@ -350,14 +350,17 @@ a {
         top: 60px;
         right: 0;
         display: grid;
-        grid-template-columns: 20px repeat(1, 1fr);
+        grid-template-columns: 24px repeat(1, 1fr);
         grid-template-rows: 65% 35%;
         justify-items: center;
-        padding: 8px;
+        padding: 5px 0px 5px 5px;
         border-left: 1px solid #1E1E1E;
     }
     .side-popup:not(.open) {
-        width: 32px !important;
+        width: 30px !important;
+    }
+    .side-popup:not(.open) .sidebar-left{
+        padding-right: 5px;
     }
 
     /* 왼쪽 영역 */
@@ -383,7 +386,7 @@ a {
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
         border: 1px solid #1E1E1E;
-        width: 95%;
+        width: 200px;
         padding: 5px 0;
     }
 
@@ -394,7 +397,7 @@ a {
 
     /* 이미지 (모바일에서도 항상 표시) */
     .popup-image {
-        width: 95%;
+        width: 200px;
         height: auto;
         display: block;
         border: 1px solid #1E1E1E;
