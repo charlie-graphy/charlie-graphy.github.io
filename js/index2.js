@@ -3,6 +3,8 @@ $(window).on("load", function() {
    		$(".main-content").addClass("show");
    	});
 });
+
+var size = 5;
 $(document).ready(function() {
     let zIndexCounter = 100; // 팝업창의 z-index 관리
     let popup = $(".side-popup");
@@ -36,7 +38,7 @@ $(document).ready(function() {
 
     // 창 크기 변경 시 스타일 조정
     $(window).resize(function() {
-        if ($(window).width() > 900) {
+        if($(window).width() > 900) {
             popup.css({
                 left: "50%",
                 top: "calc(40% - 35px)",
@@ -46,7 +48,7 @@ $(document).ready(function() {
             }).show();
             popup.addClass("open");
             $(".toggle-button").text("▲");
-        } else {
+        }else {
             popup.removeClass("open").css({
                 top: "60px",
             	left: "",
@@ -103,6 +105,7 @@ $(document).ready(function() {
     $(".icon").click(function() {
     	if($(".window[data-id="+$(this).data("window")+"]").length == 0){
     		const target = $(this).data("window");
+    		let length = $(".window").length;
             let targetWindow = $("#templete").clone();
             
             if(target == 'games'){
@@ -114,7 +117,7 @@ $(document).ready(function() {
             		return false;
             	}
             }else if(target == 'schedule'){
-            	targetWindow.css({'width':'382px','height':'685px'});
+            	targetWindow.css({'width':'360px','height':'600px'});
             }
             $(".main-content").append(targetWindow);
             
@@ -122,11 +125,19 @@ $(document).ready(function() {
             targetWindow.find(".title-bar span").text($(this).data("name"));
             targetWindow.find(".content iframe").attr("src", $(this).data("src"));
             
-            targetWindow.fadeIn().css({
-                top: "100px", 
-                left: "15%", 
-                "z-index": ++zIndexCounter // 선택한 팝업 맨 앞으로
-            });
+            if($(window).width() > 900) {
+                targetWindow.fadeIn().css({
+                    top: target == 'schedule' ? '50px' : (60+length*10)+"px", 
+                    left: (20+length*3)+"%", 
+                    "z-index": ++zIndexCounter // 선택한 팝업 맨 앞으로
+                });
+            }else{
+                targetWindow.fadeIn().css({
+                    top: target == 'schedule' ? '50px' : (60+length*10)+"px", 
+                    left: target == 'schedule' ? '0px' : (3+length*3)+"%", 
+                    "z-index": ++zIndexCounter // 선택한 팝업 맨 앞으로
+                });
+            }
     	}
     });
 
