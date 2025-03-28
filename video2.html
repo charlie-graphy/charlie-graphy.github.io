@@ -331,6 +331,7 @@ $(document).ready(function() {
         $(".top-bar").hide(); // 헤더 숨기기
         $("body#video").css("padding", "0"); // 여백 제거
 		$("#video .content-section").css({"margin-top":"0","height":"calc(100vh - 2px)"});
+        $('.video-item[data-target=EMPTY]').remove();
 	}
 
     // 보기 모드 변경

@@ -901,6 +901,7 @@ $(document).ready(function() {
         $("body#filmo").css("padding", "0"); // 여백 제거
 		$("#filmo .content-section").css({"margin-top":"0","height":"calc(100vh - 2px)"});
         $('.filmo-list').css('height','100vh');
+        $('.filmo-item[data-target=EMPTY]').remove();
 	}
     
     // 선택 바 클릭 시 변경
