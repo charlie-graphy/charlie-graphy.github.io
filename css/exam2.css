@@ -591,19 +591,28 @@ button:hover, li:hover {
 
 
 @media (min-width: 901px) {
+	article {
+		width: 52vw;
+	}
 	article.loading {
 		justify-content: center;
 		margin-top: 0px;
-	}
-	.titleCont img{
-		padding-top: 30px;
 	}
 	article.intro {
 	    align-items: start;
 		grid-template-rows: 40% 5% 15% 20%;
 	}
+	.choose li {
+		width: 40vw;
+	}
+	.titleCont img{
+		padding-top: 30px;
+	}
+	button:not(.menu-toggle) {
+		width:55%;
+	}
 	.recCont1 img{
-		width:45%;
+		width:35%;
 		margin-top:12px;
 	}
 }

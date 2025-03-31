@@ -87,7 +87,7 @@ a {
     justify-content: space-between;
     padding: 0 5px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    background: transparent;
+    background: white;
     z-index: 1000;
 }
 
@@ -442,7 +442,7 @@ a {
         width: 400px;
         height: 600px;
         left: 50%;
-        top: calc(40% - 35px);
+        top: calc(50% - 35px);
         transform: translate(-50%, -50%);
         display: flex;
         flex-direction: column;
@@ -452,7 +452,7 @@ a {
     	transition: background .01s ease-in-out;
     }
     .side-popup:not(.open) {
-    	top: calc(15% - 35px) !important;
+    	top: calc(30% - 35px) !important;
         height: 35px !important;
     }
     
