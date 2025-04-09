@@ -18,7 +18,9 @@ html, body, .main-content{
 }
 
 html, body {
-    background: white;
+    background-image: url('../img/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     color: #1E1E1E;
     font-family: 'DNFBitBitv2', 'NeoDunggeunmoPro-Regular', cursive;
     height: 100vh;
