@@ -1,0 +1,259 @@
+<!DOCTYPE html><html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="배우 안지환 아카이브">
+    <meta name="keywords" content="안지환">
+    <meta property="og:image" content="https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg">
+    <meta property="og:title" content="AHNJEEHWANY">
+    <meta property="og:description" content="배우 안지환 아카이브 사이트 - 테스트">
+    <title>AHNJEEHWANY</title>
+    
+    <!-- Facebook Open Graph-->
+	<meta property="og:type" content="website">
+	<meta property="og:locale" content="ko_KR">
+	<meta property="og:site_name" content="AHNJEEHWANY">
+	<meta property="og:url" content="https://jeehwany.com/2024exam">
+	<meta property="og:image" content="https://blog.kakaocdn.net/dn/lJC7J/btsK8WdNZP9/001GH2uZw7tkoLlDBpzRT1/img.png">
+	<meta property="og:title" content="AHNJEEHWANY">
+	<meta property="og:description" content="2024 지환고사">
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@jeehwany_com">
+	<meta name="twitter:creator" content="@jeehwany_com">
+	<meta name="twitter:url" content="https://jeehwany.com/2024exam">
+	<meta name="twitter:image" content="https://blog.kakaocdn.net/dn/lJC7J/btsK8WdNZP9/001GH2uZw7tkoLlDBpzRT1/img.png">
+	<meta name="twitter:title" content="AHNJEEHWANY">
+	<meta name="twitter:description" content="2024 지환고사">		
+		
+    <!-- 파비콘 -->
+    <link rel="icon" href="img/favicon_io/favicon.webp" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io/favicon-16x16.png">
+    
+    <!-- 스타일시트 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index2.css">
+    <link rel="stylesheet" type="text/css" href="css/games2.css">
+	<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css'>
+	
+    <!-- jQuery 및 스크립트 -->
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+	<script type="text/javascript" src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.1/kakao.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+    <script type="text/javascript" src="js/index2.js"></script>
+</head>
+<body id="game">
+    <!-- 메인 콘텐츠 (초기에는 숨김) -->
+    <div class="main-content show">
+        <!-- 상단 헤더 -->
+        <header class="top-bar">
+            <div class="left-section">
+                <button class="menu-toggle">☰</button>
+                <div class="logo"><a href="https://jeehwany.com">AHNJEEHWANY</a></div>
+                <nav class="menu">
+                    <a href="index2.html">Home</a>
+                    <a href="profile2.html">Profile</a>
+                    <a href="filmography2.html">Filmography</a>
+                    <a href="video2.html">Videos</a>
+                    <a href="special2.html">Special</a>
+                    <a href="schedule2.html">Schedule</a>
+                    <a href="games2.html">Games</a>
+                    <a href="info2.html">Info</a>
+                </nav>
+            </div>
+            <div class="center-section"></div> <!-- 비어 있는 중앙 영역 -->
+            <div class="right-section">
+                <i class='bx bx-fullscreen fullscreen'></i>
+                <span class="datetime"></span>
+            </div>
+        </header>
+
+        <!-- 콘텐츠 영역 (헤더 아래 분리) -->
+        <div class="content-section">
+	        <!-- 2번째 줄: 선택된 항목 표시 + 보기 모드 선택 -->
+	        <div class="game-display" style="height: 35px;">
+	            <div class="folderTitle"><i class='bx bx-chevron-right' style="margin-right: 10px;"></i><span class="selected-title">지화니</span></div>
+	            <div class="view-options">
+	                <div class="view-btn" style="font-size:15px;"><a href="games2.html">메인으로</a></div>
+	            </div>
+	        </div>
+	
+	        <!-- 3번째 줄: 스크롤 가능한 콘텐츠 목록 -->
+	        <div class="game-list">
+	        	
+	        	<div id="start-screen">
+			        <button id="start-btn" class="game-start-btn">테스트 시작하기</button>
+			    </div>
+			    <div id="test-screen" style="display: none;">
+			        <img id="question-image" src="" alt="질문 이미지" class="question-image">
+			        <p id="question-text" class="question-text">질문이 표시됩니다.</p>
+			        <div class="choice-container">
+			            <button class="choice-btn" data-choice="A">선택지 A</button>
+			            <button class="choice-btn" data-choice="B">선택지 B</button>
+			        </div>
+			    </div>
+			    <div id="loading-screen" style="display: none;">
+			        <p class="loading-text">결과를 분석 중...</p>
+			    </div>
+			    <div id="result-screen" style="display: none;">
+			        <p id="result-text" class="result-text">결과가 표시됩니다.</p>
+			        <button id="restart-btn" class="restart-btn">다시 하기</button>
+			    </div>
+	        	
+	        </div>
+        </div>
+        
+    </div>
+</body>
+</html>
+<style>
+.game-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.game-start-btn, .choice-btn, .restart-btn {
+    margin: 10px;
+    padding: 12px 24px;
+    font-size: 18px;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 8px;
+    background: white;
+    width: 80%;
+    max-width: 300px;
+}
+
+.choice-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.question-text {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.question-image {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 15px;
+    display: none;
+}
+
+.result-text {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.loading-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: gray;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    .game-start-btn, .choice-btn, .restart-btn {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    .question-text {
+        font-size: 18px;
+    }
+    .question-image {
+        width: 90%;
+    }
+}
+</style>
+<script>
+const questions = [
+    { text: "질문 1", image: "img1.jpg", choices: { A: "선택지 1A", B: "선택지 1B" } },
+    { text: "질문 2", image: "img2.jpg", choices: { A: "선택지 2A", B: "선택지 2B" } },
+    { text: "질문 3", image: "img3.jpg", choices: { A: "선택지 3A", B: "선택지 3B" } },
+    { text: "질문 4", image: "img4.jpg", choices: { A: "선택지 4A", B: "선택지 4B" } },
+    { text: "질문 5", image: "img5.jpg", choices: { A: "선택지 5A", B: "선택지 5B" } },
+    { text: "질문 6", image: "img6.jpg", choices: { A: "선택지 6A", B: "선택지 6B" } },
+    { text: "질문 7", image: "img7.jpg", choices: { A: "선택지 7A", B: "선택지 7B" } },
+    { text: "질문 8", image: "img8.jpg", choices: { A: "선택지 8A", B: "선택지 8B" } },
+    { text: "질문 9", image: "img9.jpg", choices: { A: "선택지 9A", B: "선택지 9B" } },
+    { text: "질문 10", image: "img10.jpg", choices: { A: "선택지 10A", B: "선택지 10B" } }
+];
+
+let currentQuestion = 0;
+let choiceCounts = { A: 0, B: 0 };
+
+$(document).ready(function() {
+    $("#start-btn").click(function() {
+        $("#start-screen").hide();
+        $("#test-screen").show();
+        loadQuestion();
+    });
+
+    $(".choice-btn").click(function() {
+        let choice = $(this).data("choice");
+        choiceCounts[choice]++;
+        
+        if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            loadQuestion();
+        } else {
+            $("#test-screen").hide();
+            $("#loading-screen").show();
+            setTimeout(function() {
+                $("#loading-screen").hide();
+                showResult();
+                $("#result-screen").show();
+            }, 2000); 
+        }
+    });
+
+    $("#restart-btn").click(function() {
+        currentQuestion = 0;
+        choiceCounts = { A: 0, B: 0 };
+        $("#result-screen").hide();
+        $("#start-screen").show();
+    });
+});
+
+function loadQuestion() {
+    $("#question-text").text(questions[currentQuestion].text);
+    $(".choice-btn").eq(0).text(questions[currentQuestion].choices.A);
+    $(".choice-btn").eq(1).text(questions[currentQuestion].choices.B);
+    
+    if (questions[currentQuestion].image) {
+        $("#question-image").attr("src", questions[currentQuestion].image).show();
+    } else {
+        $("#question-image").hide();
+    }
+}
+
+function showResult() {
+    let resultMessage = "";
+    if (choiceCounts.A > choiceCounts.B) {
+        resultMessage = "당신은 A 성향이 더 강합니다!";
+    } else if (choiceCounts.B > choiceCounts.A) {
+        resultMessage = "당신은 B 성향이 더 강합니다!";
+    } else {
+        resultMessage = "A와 B 성향이 균형 잡혀 있습니다!";
+    }
+    $("#result-text").text(resultMessage);
+}
+</script>
