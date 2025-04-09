@@ -355,7 +355,7 @@ a {
     
     .side-popup {
         width: 250px; /* 기본 펼쳐진 상태 */
-        height: 410px;
+        height: 400px;
         top: 60px;
         right: 0;
         display: grid;
@@ -395,7 +395,7 @@ a {
         grid-template-columns: repeat(2, 1fr);
         gap: 6px;
         width: 200px;
-        padding: 5px 0;
+        padding: 4px 0;
     }
 
     .side-popup .icon-list img {
