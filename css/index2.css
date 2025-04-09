@@ -450,7 +450,7 @@ a {
         width: 400px;
         height: 600px;
         left: 50%;
-        top: calc(50% - 35px);
+        top: calc(50% - 45px);
         transform: translate(-50%, -50%);
         display: flex;
         flex-direction: column;
@@ -460,7 +460,7 @@ a {
     	transition: background .01s ease-in-out;
     }
     .side-popup:not(.open) {
-    	top: calc(30% - 35px) !important;
+    	top: calc(30% - 45px) !important;
         height: 35px !important;
     }
     
