@@ -187,7 +187,7 @@ a {
     bottom: 20px;
     left: 20px;
     display: grid;
-    gap: 6px;
+    gap: 4px;
     list-style: none;
     padding: 0;
 }
@@ -209,14 +209,13 @@ a {
 }
 
 .icon-menu li .iconImg {
-    margin-bottom: 5px;
     width: 40px;
     height: 40px;
 }
 
 .icon-menu li span {
     font-weight: normal;
-    font-size: 10px;
+    font-size: 11px;
 }
 
 /* 팝업창 */
@@ -312,7 +311,7 @@ a {
 }
 
 .side-popup .icon-list span{
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .selected-title{
