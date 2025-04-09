@@ -63,9 +63,16 @@ a {
     transition: opacity 0.5s ease-out;
 }
 
-/* 스피너 */
-.spinner {
-    font-size: 30pt;
+.loader img {
+    width: 45px;
+    height: auto;
+    animation: rotate_image 6s linear infinite;
+    transform-origin: 50% 50%
+}
+@keyframes rotate_image{
+	100% {
+    	transform: rotate(360deg);
+    }
 }
 
 /* 메인 콘텐츠 */
