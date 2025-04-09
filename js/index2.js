@@ -1,9 +1,7 @@
 $(window).on("load", function() {
-	$(".loader").fadeOut(500, function() {
-		$(".main-content").addClass("show");
-	});
-	
-	$('header').load("header.html");
+   	$(".loader").fadeOut(500, function() {
+   		$(".main-content").addClass("show");
+   	});
 });
 
 var size = 5;
