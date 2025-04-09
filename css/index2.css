@@ -193,8 +193,8 @@ a {
 /* 아이콘 메뉴 */
 .icon-menu {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
+    bottom: 15px;
+    left: 15px;
     display: grid;
     gap: 4px;
     list-style: none;
@@ -392,8 +392,7 @@ a {
     .side-popup .icon-list {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-        border: 1px solid #1E1E1E;
+        gap: 6px;
         width: 200px;
         padding: 5px 0;
     }
