@@ -154,7 +154,16 @@ a {
 	font-size: 16px;	
 }
 
-.filmoImg.y {
+.filmoImgDiv {
+	width: 100px !important;
+	height: 140px !important;
+}
+.filmoImgDiv img{
+    width: 100% !important;
+	height: 100% !important;
+    object-fit:cover;
+}
+.filmoImgDiv.y {
     box-shadow: 3px 3px 5px #c9c9c9;
 }
 
