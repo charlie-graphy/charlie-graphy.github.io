@@ -21,7 +21,7 @@ svg path, svg rect{
 	fill: #FF6700;
 }
 .mainHeader a{
-	color: black;
+	color: #1E1E1E;
 }
 .game-list {
 	width: 100vw;
@@ -144,7 +144,7 @@ button:hover, li:hover {
 	margin: 10px;
 }
 .titleText a {
-	color: black;
+	color: #1E1E1E;
 	cursor: pointer;
 	position: absolute;
 	left: 10px;
@@ -270,7 +270,7 @@ button:hover, li:hover {
 .shareBox i{
 	color: #fff;
     font-size: 22px;
-    background-color: black;
+    background-color: #1E1E1E;
     padding: 7px 10px;
     border-radius: 50%;
 }
@@ -486,7 +486,7 @@ button:hover, li:hover {
 	font-weight: bolder;
 	line-height: 1.35;
 	margin: 0px;
-	color: black;
+	color: #1E1E1E;
 	word-break: keep-all;
 	opacity: .7;
 	height: 40%;
@@ -501,7 +501,7 @@ button:hover, li:hover {
 	letter-spacing: 0.025rem;
 	text-transform: uppercase;
 	color: white;
-	background-color: black;
+	background-color: #1E1E1E;
 	border: none;
 	width: 100px;
     height: 50px;

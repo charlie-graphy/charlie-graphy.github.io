@@ -22,20 +22,20 @@
     text-align: center;
 }
 .choice1 div{
-	border-top: 2px solid black;
-	border-left: 1px solid black;
-	border-right: 1px solid black;
-	border-bottom: 2px solid black;
+	border-top: 2px solid #1E1E1E;
+	border-left: 1px solid #1E1E1E;
+	border-right: 1px solid #1E1E1E;
+	border-bottom: 2px solid #1E1E1E;
 	border-radius: 0 10px 0 0;
 	height: 50px;
     padding: 15px 0;
     font-size: 13px;
 }
 .choice1 div:first-child{
-	border-left: 2px solid black;
+	border-left: 2px solid #1E1E1E;
 }
 .choice1 div:last-child{
-	border-right: 2px solid black;
+	border-right: 2px solid #1E1E1E;
 }
 .choice div img, .choice1 div{
     cursor: pointer;
@@ -48,9 +48,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
     grid-gap: 10px;
-	border-left: 2px solid black;
-	border-right: 2px solid black;
-	border-bottom: 2px solid black;
+	border-left: 2px solid #1E1E1E;
+	border-right: 2px solid #1E1E1E;
+	border-bottom: 2px solid #1E1E1E;
 	overflow-y: auto;
 }
 .choice .under{
@@ -112,7 +112,7 @@
 .choice img{
 	width: 100%;
 	padding: 5px;
-	border: 1px solid black;
+	border: 1px solid #1E1E1E;
 	border-radius: 50%;
 	background-color: white;
 	-webkit-touch-callout:none;

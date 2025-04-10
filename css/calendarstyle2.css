@@ -1446,7 +1446,7 @@ body{
 }
 .btn.btn-primary{
   background: transparent;
-  color: black;
+  color: #1E1E1E;
   position: absolute;
   right: 0;
   top: 1px;

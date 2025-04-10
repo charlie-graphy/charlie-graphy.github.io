@@ -47,7 +47,7 @@ a {
 
 .nav-item.active {
     color: white;
-    background-color: black;
+    background-color: #1E1E1E;
 }
 
 /* 2번째 줄: 선택된 항목 표시 */
