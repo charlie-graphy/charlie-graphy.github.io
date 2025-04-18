@@ -60,7 +60,7 @@
         <div class="content-section">
 	        <!-- 2번째 줄: 선택된 항목 표시 + 보기 모드 선택 -->
 	        <div class="profile-display">
-	            <div class="folderTitle"><i class='bx bx-chevron-right' style="margin-right: 10px;"></i><span class="selected-title">안지환</span></div>
+	            <div class="folderTitle"><i class='bx bx-chevron-right' style="margin-right: 10px;"></i><span class="selected-title">Profile</span></div>
 	            <div class="view-options">
 	                <div class="view-btn" style="font-size:15px;"><a href="interview2.html">+ 인터뷰</a></div>
 	            </div>
@@ -99,8 +99,8 @@
 			            <div class="content">1992.07.25 &nbsp;<span class="emp">|</span>&nbsp;178cm&nbsp;<span class="emp">|</span>&nbsp; INFP, A형
 							<ul><span class="year">학력</span><li>한국예술종합학교 연기과</li></ul>
 							<span class="year">소속사</span>킹콩 by 스타쉽</br>
-							<ul><span class="year">소속</span>극단 아어</li></ul>
-							<ul><span class="year">데뷔</span>2015.12.11 연극 <외계인들>  <b class="dday"></b></li></ul>
+							<ul><span class="year">소속</span><li>극단 아어</li></ul>
+							<ul><span class="year">데뷔</span><li>2015.12.11 연극 <외계인들>  <b class="dday"></b></li></ul>
 							제8회 한국뮤지컬어워즈 조연상(남자) 노미네이트
 						</div>
 						<h3>TV 드라마</h3>
@@ -113,7 +113,7 @@
 			            		<ul><span class="year">2016</span><li>그녀가 있어야 할 곳(단편), 담피르(단편)</li></ul>
 			            		<ul><span class="year">2015</span><li>괴물(단편), 동(단편), 이런 사랑(단편)</li></ul></div>
 						<h3>뮤지컬</h3>
-			            <div class="content"><ul><span class="year">2025</span><li>그해 여름</li></ul>
+			            <div class="content"><ul><span class="year">2025</span><li>그해 여름, 등등곡</li></ul>
 			            		<ul><span class="year">2024</span><li>등등곡</li></ul>
 			            		<ul><span class="year">2023</span><li>나르치스와 골드문트, 여신님이 보고 계셔, 라흐 헤스트, 와일드 그레이, 비더슈탄트, 렛미플라이</li></ul>
 			            		<ul><span class="year">2022</span><li>나르치스와 골드문트, 렛미플라이, 차미, 비더슈탄트, 라흐 헤스트, 여신님이 보고 계셔</li></ul>
@@ -125,7 +125,8 @@
 			            		<ul><span class="year">2016</span><li>전설의 리틀 농구단</li></ul>
 			            		</div>
 						<h3>연극</h3>
-			            <div class="content"><ul><span class="year">2024</span><li>헤르츠클란, 쇄골에 천사가 잠들고 있다, 킬롤로지</li></ul>
+			            <div class="content"><ul><span class="year">2025</span><li>미러</li></ul>
+			            		<ul><span class="year">2024</span><li>헤르츠클란, 쇄골에 천사가 잠들고 있다, 킬롤로지</li></ul>
 			            		<ul><span class="year">2018</span><li>외국인들</li></ul>
 			            		<ul><span class="year">2016</span><li>모든 군인은 불쌍하다</li></ul>
 			            		<ul><span class="year">2015</span><li>외계인들</li></ul></div>
@@ -205,6 +206,10 @@ $(document).ready(function() {
         showNextSlide();
        // startAutoSlide();
     });
-    
+    const date1 = new Date(2015, 12, 11);
+	const today = new Date(new Date().getFullYear(), new Date().getMonth()+1, new Date().getDate());		
+	const diffDate = Math.abs((date1.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))+1;
+		
+	$('.profile-content .dday').text("+"+diffDate);
 });
 </script>
