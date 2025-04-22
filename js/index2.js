@@ -41,7 +41,7 @@ $(document).ready(function() {
         if($(window).width() > 900) {
             popup.css({
                 left: "50%",
-                top: "calc(40% - 35px)",
+                top: "calc(55% - 45px)",
                 transform: "translate(-50%, -50%)",
                 width: "400px",
                 height: "600px"
