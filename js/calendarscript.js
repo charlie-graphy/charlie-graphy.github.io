@@ -1244,6 +1244,69 @@
 					start: '2025-05-10 15:00',
 					className: 'bg-sky',
 					allDay: false
+				},
+				{
+					title: '미러',
+					description: '<p class="event">첫 공연</p>첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
+					start: '2025-06-26 20:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 안창용',
+					start: '2025-06-28 15:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
+					start: '2025-06-28 19:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '첼릭 役 | 김재범<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 김세환',
+					start: '2025-07-04 20:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 김세환',
+					start: '2025-07-05 15:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 김세환',
+					start: '2025-07-05 19:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '첼릭 役 | 김재범<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 김세환',
+					start: '2025-07-10 20:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
+					start: '2025-07-12 19:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 안창용',
+					start: '2025-07-13 18:00',
+					className: 'bg-gray',
+					allDay: false
 				}
 			],
 			eventClick: function(event, jsEvent, view) {
