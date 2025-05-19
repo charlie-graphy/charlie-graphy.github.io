@@ -1253,6 +1253,13 @@
 					allDay: false
 				},
 				{
+					title: '등등곡',
+					description: '<p class="event">첫 공연(프리뷰)</p>김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
+					start: '2025-06-27 20:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
 					title: '미러',
 					description: '첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 안창용',
 					start: '2025-06-28 15:00',
@@ -1264,6 +1271,20 @@
 					description: '첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
 					start: '2025-06-28 19:00',
 					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '<p class="event">프리뷰</p>김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 정서안<br>이경신 役 | 황두현',
+					start: '2025-06-29 14:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 안재영<br>최윤 役 | 김재범<br>초 役 | 강찬<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
+					start: '2025-07-03 20:00',
+					className: 'bg-red',
 					allDay: false
 				},
 				{
@@ -1285,6 +1306,13 @@
 					description: '첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 김세환',
 					start: '2025-07-05 19:00',
 					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 고상호<br>최윤 役 | 김재범<br>초 役 | 박준휘<br>정진명 役 | 정서안<br>이경신 役 | 김준식',
+					start: '2025-07-06 18:00',
+					className: 'bg-red',
 					allDay: false
 				},
 				{
