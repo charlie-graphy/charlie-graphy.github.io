@@ -24,6 +24,9 @@ body {
   color: var(--text);
   overflow-x: hidden;
 }
+img{
+	-webkit-touch-callout:none;
+}
 .overlay {
   position: fixed;
   top: 0;
@@ -156,6 +159,7 @@ footer {
   background-size: cover;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  -webkit-touch-callout:none;
 }
 
 /* 상단 좌우 텍스트 영역 */
