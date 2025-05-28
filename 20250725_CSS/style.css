@@ -17,11 +17,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 body {
   font-family: 'SBAggroB', 'Pretendard', sans-serif;
   background-color: var(--bg);
   color: var(--text);
+  overflow-x: hidden;
 }
 .overlay {
   position: fixed;
@@ -187,15 +189,14 @@ footer {
 /* 콘텐츠 */
 .intro-content {
   position: absolute;
-  bottom: 100px; /* scroll-down 위에 위치하도록 조정 */
+  bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
-  max-width: 700px;
-  padding: 20px;
+  width: calc(100% - 60px); /* 반응형 너비 */
+  max-width: 900px;
   text-align: center;
-  
-  background: rgba(0, 0, 0, 0.2); /* 어두운 반투명 배경 */
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   padding: 30px;
   backdrop-filter: blur(3px);
