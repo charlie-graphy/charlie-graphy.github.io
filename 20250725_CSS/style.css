@@ -346,6 +346,22 @@ footer {
   font-size: 1rem;
   line-height: 1.5;
 }
+.info-line {
+  display: flex;
+  align-items: flex-start;
+}
+
+.label {
+  width: 80px; /* 라벨 너비 고정 */
+  font-weight: bold;
+  color: #444;
+  flex-shrink: 0;
+}
+
+.value {
+  flex: 1;
+  color: #333;
+}
 
 /* 코치 소제목 */
 .section-label {
