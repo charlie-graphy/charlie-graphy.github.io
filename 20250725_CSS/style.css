@@ -17,7 +17,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 body {
   font-family: 'SBAggroB', 'Pretendard', sans-serif;
@@ -124,7 +123,7 @@ footer {
   color: var(--text);
   text-align: center;
   padding: 20px;
-  font-size: 0.8em;
+  font-size: 0.75em;
 }
 
 /* 인트로 섹션 스타일 */
@@ -334,6 +333,7 @@ footer {
   box-shadow: 0 6px 16px rgba(0,0,0,0.06);
   font-size: 1rem;
   line-height: 1.6;
+  text-align: left;
 }
 
 .member-info h2 {
@@ -713,6 +713,7 @@ footer {
   box-sizing: border-box;
   font-size: 14px;
   color: #222;
+  width: 100%;
 }
 
 textarea {
