@@ -80,12 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // 팝업 표시
     document.getElementById('resultPopup').style.display = 'block';
     document.getElementById('overlay').style.display = 'block';
+    document.getElementById('page').style.overflow = 'hidden';
   });
 
   // 팝업 닫기
   document.getElementById('closePopup').addEventListener('click', function () {
     document.getElementById('resultPopup').style.display = 'none';
     document.getElementById('overlay').style.display = 'none';
+    document.getElementById('page').style.overflow = 'auto';
   });
 
   const resultCards = [
