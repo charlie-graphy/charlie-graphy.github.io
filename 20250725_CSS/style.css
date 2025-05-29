@@ -976,9 +976,9 @@ textarea {
   background-color: var(--sky-dark); 
 }
 
-button, #footer, .cta-button, .info-line {
+button, #footer, .cta-button, .info-line, #resultSubText {
 	font-family: 'SBAggroL', 'Pretendard', sans-serif;
 }
-.side-menu, .section-subtitle, .result-content, .coach-note, .coach-card, .result-category, .filter-btn, .form-row label {
+.side-menu, .section-subtitle, .result-content, .coach-note, .coach-card p, .result-category, .filter-btn, .form-row label, .info-line .label {
 	font-family: 'SBAggroM', 'Pretendard', sans-serif;
 }
