@@ -7,6 +7,18 @@
 }
 
 @font-face {
+    font-family: 'SBAggroL';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroL.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SBAggroM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
     font-family: 'SBAggroB';
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
     font-weight: normal;
@@ -223,7 +235,6 @@ footer {
   opacity: 0;
   transform: translateY(20px);
   font-size: 2.5rem;
-  font-weight: 600;
   color: #fff;
   animation: fadeInUp 0.8s ease forwards;
 }
@@ -272,7 +283,6 @@ footer {
   font-size: 1rem;
   background-color: #4fb4ff;
   color: #fff;
-  font-weight: 700;
   text-decoration: none;
   border: none;
   border-radius: 6px;
@@ -304,7 +314,6 @@ footer {
 /* 큰 섹션 제목 스타일 */
 .section-title {
   font-size: 2rem;
-  font-weight: 800;
   margin-bottom: 20px;
   text-align: center;
   color: #111;
@@ -389,7 +398,6 @@ footer {
   background-color: var(--sky);
   color: #000;
   font-size: 1.2rem;
-  font-weight: 600;
   padding: 6px 14px;
   margin: 10px 0 10px 0; /* 좌우 여백 제거 */
 }
@@ -535,7 +543,6 @@ footer {
 
 .flip-front h3 {
   font-size: 1.1rem;
-  font-weight: 700;
   color: #003366;
   letter-spacing: 0.3px;
 }
@@ -633,8 +640,6 @@ footer {
   font-size: 1rem;
   background: #4fb4ff;
   color: #fff;
-  
-  font-weight: 700;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -656,17 +661,38 @@ footer {
 
 /* ✅ 팝업 콘텐츠 */
 .slider-result-content {
-  background: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 90%;
-  max-width: 400px;
-  margin: 100px auto;
-  padding: 30px 20px;
-  border-radius: 20px;
-  text-align: center;
-  position: relative;
-  animation: fadeIn 0.4s ease;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  max-width: 360px;
+  background: #fffdf7; /* 종이 느낌 나는 배경색 */
+  border: 2px solid #9ecbff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 24px;
+  z-index: 1001;
+  animation: popupFadeIn 0.4s ease;
 }
+#resultText {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+  text-align: center;
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+}
+
+#resultSubText {
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: center;
+  color: #555;
+  white-space: pre-wrap;
+}
+
 
 /* ✅ 팝업 이미지 */
 .slider-result-content img {
@@ -687,6 +713,16 @@ footer {
 @keyframes fadeIn {
   from { transform: scale(0.95); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
+}
+@keyframes popupFadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -48%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .form-section {
@@ -733,7 +769,6 @@ footer {
 
 .form-row label {
   width: 80px;
-  font-weight: 600;
   color: var(--sky-dark);   /* 진한 하늘색으로 가독성 개선 */
   flex-shrink: 0;
 }
@@ -742,7 +777,7 @@ footer {
 .form-row select,
 .form-row textarea {
   flex: 1;
-  font-family: 'Pretendard', sans-serif;
+  font-family: 'SBAggroL', 'Pretendard', sans-serif;
   padding: 10px 14px;
   border: 2px solid #a0d0ff;
   border-radius: 6px;
@@ -762,7 +797,6 @@ textarea {
   width: 100%;
   padding: 12px 28px;
   font-size: 1rem;
-  font-weight: 700;
   background-color: #4fb4ff;
   color: #fff;
   border: none;
@@ -805,7 +839,6 @@ textarea {
   background-color: #d0eaff;
   border: none;
   border-radius: 20px;
-  font-weight: 600;
   color: #004b7c;
   cursor: pointer;
   transition: 0.2s ease;
@@ -857,11 +890,9 @@ textarea {
   border-radius: 16px;
   font-size: 0.75rem;
   margin-bottom: 10px;
-  font-weight: bold;
 }
 .result-nickname {
   font-size: 1rem;
-  font-weight: bold;
   color: #333;
   margin-bottom: 6px;
 }
@@ -901,7 +932,6 @@ textarea {
 .lab-banner-text {
   white-space: nowrap;
   margin-right: 4rem;
-  font-weight: 600;
   font-size: 1.2rem;
   color: #2251a4;
   letter-spacing: 0.02em;
@@ -944,4 +974,11 @@ textarea {
 /* 마우스 오버 시 색상 변화 */
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--sky-dark); 
+}
+
+button, #footer, .cta-button, .info-line {
+	font-family: 'SBAggroL', 'Pretendard', sans-serif;
+}
+.side-menu, .section-subtitle, .result-content, .coach-note, .coach-card, .result-category, .filter-btn, .form-row label {
+	font-family: 'SBAggroM', 'Pretendard', sans-serif;
 }

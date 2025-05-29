@@ -32,10 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	    if (targetEl) {
 	      const top = targetEl.offsetTop;
-	      window.scrollTo({
-	        top,
-	        behavior: 'smooth'
-	      });
+	      window.scrollTo({top,behavior: 'smooth'});
 	    }
 	  });
 	});
@@ -69,23 +66,29 @@ document.addEventListener('DOMContentLoaded', () => {
       '침착하고 섬세한 분석왕!',
       '균형감 최고! 유연한 전천후 타입!'
     ];
+    const resultSubTextList = [
+      '당신은 활발하고 긍정적인 에너지를 가진 연구원! 주변을 즐겁게 만드는 능력이 있어요.',
+      '차분하고 분석적인 당신은 모든 실험에서 신뢰를 받는 중심 역할이에요.',
+      '유연하고 센스 있는 당신은 언제나 독창적인 아이디어로 연구소를 놀라게 해요.'
+    ];
     
     // 랜덤 결과 선택
     const i = Math.floor(Math.random() * resultImageList.length);
     document.getElementById('resultImage').src = resultImageList[i];
     document.getElementById('resultText').textContent = resultTextList[i];
+    document.getElementById('resultSubText').textContent = resultSubTextList[i];
 
     // 팝업 표시
-    document.getElementById('resultPopup').style.display = 'block';
-    document.getElementById('overlay').style.display = 'block';
-    document.getElementById('page').style.overflow = 'hidden';
+    setTimeout(function() {
+        document.getElementById('resultPopup').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+	}, 300);
   });
 
   // 팝업 닫기
   document.getElementById('closePopup').addEventListener('click', function () {
     document.getElementById('resultPopup').style.display = 'none';
     document.getElementById('overlay').style.display = 'none';
-    document.getElementById('page').style.overflow = 'auto';
   });
 
   const resultCards = [
