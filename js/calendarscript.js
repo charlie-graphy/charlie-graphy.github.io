@@ -1254,7 +1254,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '<p class="event">첫 공연(프리뷰)</p>김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
+					description: '<p class="event">첫 공연(프리뷰) + 길삼봉 원형 부채 증정</p>김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
 					start: '2025-06-27 20:00',
 					className: 'bg-red',
 					allDay: false
@@ -1275,14 +1275,14 @@
 				},
 				{
 					title: '등등곡',
-					description: '<p class="event">프리뷰</p>김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 정서안<br>이경신 役 | 황두현',
+					description: '<p class="event">프리뷰 + 길삼봉 원형 부채 증정</p>김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 정서안<br>이경신 役 | 황두현',
 					start: '2025-06-29 14:00',
 					className: 'bg-red',
 					allDay: false
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 안재영<br>최윤 役 | 김재범<br>초 役 | 강찬<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
+					description: '<p class="event">등등회 캐릭터 엽서 5종 증정 + 커튼콜 데이</p>김영운 役 | 안재영<br>최윤 役 | 김재범<br>초 役 | 강찬<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
 					start: '2025-07-03 20:00',
 					className: 'bg-red',
 					allDay: false
@@ -1310,7 +1310,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 고상호<br>최윤 役 | 김재범<br>초 役 | 박준휘<br>정진명 役 | 정서안<br>이경신 役 | 김준식',
+					description: '<p class="event">등등회 캐릭터 엽서 5종 증정 + 커튼콜 데이</p>김영운 役 | 고상호<br>최윤 役 | 김재범<br>초 役 | 박준휘<br>정진명 役 | 정서안<br>이경신 役 | 김준식',
 					start: '2025-07-06 18:00',
 					className: 'bg-red',
 					allDay: false
@@ -1334,6 +1334,13 @@
 					description: '첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 안창용',
 					start: '2025-07-13 18:00',
 					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '그해 여름 - 전주',
+					description: '서정인 役 | 홍나현<br>윤석영 役 | 안지환<br>강재호役 | 이강혁<br>김만중 役 | 김지훈<br>이복자 役 | 이선주',
+					start: '2025-07-19 15:00',
+					className: 'bg-sky',
 					allDay: false
 				}
 			],
