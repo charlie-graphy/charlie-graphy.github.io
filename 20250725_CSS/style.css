@@ -178,9 +178,9 @@ footer {
   top: 50%;
   left: 50%;
   width: 100%;
-  max-width: 680px;
+  max-width: 580px;
   height: 100%;
-  background-image: url('../20250725_IMG/man2.png');
+  background-image: url('https://blog.kakaocdn.net/dn/CK1tS/btsOhc6IqIM/BHdqBrTkrfJjIdQv0mrN60/img.png');
   background-repeat: no-repeat;
   background-position: center ;
   background-size: cover;
@@ -435,6 +435,7 @@ footer {
 
 .coach-card img {
   width: 100%;
+  max-height: 210px;
   border-radius: 8px;
   margin-bottom: 10px;
 }
