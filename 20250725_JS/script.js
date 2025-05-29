@@ -78,17 +78,16 @@ $(document).ready(function () {
 	
 	function renderCards(filter = 'all') {
 		const $container = $('#resultCards');
-		$container.empty();
 		const filtered = filter === 'all' ? resultCards : resultCards.filter(c => c.category === filter);
+		$container.empty();
+		
 		filtered.forEach(card => {
-			const $el = $(`
-	        <div class="result-card" data-category="${card.category}">
-	          <div class="result-category">${card.category}</div>
-	          <div class="result-nickname">${card.nickname}</div>
-	          <div class="result-content">${card.content}</div>
-	        </div>
-	      `);
-			$container.append($el);
+			const $divBig = $('<div>',{'class':'result-card','data-category':card.category})
+				, $divCate = $('<div>',{'class':'result-category','text':card.category})
+				, $divName = $('<div>',{'class':'result-nickname','text':card.nickname})
+				, $divCont = $('<div>',{'class':'result-content','text':card.content});
+			
+			$container.append($divBig.append($divCate, $divName, $divCont));
 		});
 	}
 	
