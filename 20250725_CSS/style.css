@@ -37,12 +37,7 @@ img{
   z-index: 1000;
   display: none;
 }
-/* 왼쪽 사이드 메뉴 (기본 숨김) */
-.side-menu {
-    opacity: 0;
-}
-
-@media (min-width: 1024px) {
+/* 왼쪽 사이드 메뉴 */
   .side-menu {
 	  position: fixed;
 	  top: 50%;
@@ -53,6 +48,7 @@ img{
 	  flex-direction: column;
 	  gap: 20px;
 	  z-index: 2000;
+   	 opacity: 0;
   }
 
   .side-menu.show {
@@ -98,6 +94,10 @@ img{
 	  color: var(--sky-dark);
 	  font-weight: bold;
   }
+@media (max-width: 1024px) {
+	.side-menu {
+	    display:none;
+	}
 }
 
 /* 섹션 스타일 */
@@ -194,7 +194,6 @@ footer {
 .intro-date-right {
   color: var(--sky-dark);
   padding: 6px 14px;
-  backdrop-filter: blur(3px);
 }
 .intro-date-left{
 	text-align : left;
