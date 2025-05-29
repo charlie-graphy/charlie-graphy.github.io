@@ -19,14 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 스크롤 내리면 메뉴 나타남
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-      menu.classList.add('show');
-    } else {
-      menu.classList.remove('show');
-    }
+	// 처음 로드할 때도 실행
+	  if (window.scrollY > 178) menu.classList.add('show'); 
+	  else menu.classList.remove('show');
   });
   
-  document.querySelectorAll('.cta-button').forEach(btn => {
+  document.querySelectorAll('.cta-button, .side-menu a').forEach(btn => {
 	  btn.addEventListener('click', e => {
 	    e.preventDefault();
 	    const targetId = btn.getAttribute('href') || btn.dataset.target;

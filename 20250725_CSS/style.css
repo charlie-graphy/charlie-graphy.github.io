@@ -39,27 +39,26 @@ img{
 }
 /* 왼쪽 사이드 메뉴 (기본 숨김) */
 .side-menu {
-  display: none;
+    opacity: 0;
 }
 
 @media (min-width: 1024px) {
   .side-menu {
-    position: fixed;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    padding: 10px 15px;
-    z-index: 1000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
+	  position: fixed;
+	  top: 50%;
+	  left: 20px;
+	  transform: translateY(20px);
+	  transition: opacity 0.6s ease, transform 0.6s ease;
+	  display: flex;
+	  flex-direction: column;
+	  gap: 20px;
+	  z-index: 2000;
   }
 
   .side-menu.show {
     opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
     pointer-events: auto;
   }
 
@@ -74,14 +73,30 @@ img{
   }
 
   .side-menu a {
-    color: #000;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95em;
+	  position: relative;
+	  font-size: 15px;
+	  color: var(--sky);
+	  text-decoration: none;
+	  padding: 4px 8px;
+	  line-height: 1.4;
+	  transition: all 0.3s ease;
   }
+  .side-menu a::before {
+	  content: '';
+	  position: absolute;
+	  left: 0;
+	  bottom: 0.1em;
+	  width: 100%;
+	  height: 1em;
+	  background: rgba(255, 251, 229, 1); /* 형광펜 색상 */
+	  z-index: -1;
+	  transform: rotate(-1.5deg);
+	}
 
   .side-menu a:hover {
-    color: #0077cc;
+	  background: var(--lemon);
+	  color: var(--sky-dark);
+	  font-weight: bold;
   }
 }
 
@@ -168,7 +183,7 @@ footer {
   top: 20px;
   left: 0;
   width: 100%;
-  padding: 0 30px;
+  padding: 0 12px;
   display: flex;
   justify-content: space-between;
   z-index: 2;
@@ -179,7 +194,6 @@ footer {
 .intro-date-right {
   color: var(--sky-dark);
   padding: 6px 14px;
-  border-radius: 30px;
   backdrop-filter: blur(3px);
 }
 .intro-date-left{
@@ -257,7 +271,7 @@ footer {
   margin-top: 30px;
   padding: 12px 28px;
   font-size: 1rem;
-  background-color: var(--sky);
+  background-color: #4fb4ff;
   color: #fff;
   font-weight: 700;
   text-decoration: none;
@@ -270,7 +284,7 @@ footer {
 
 .cta-button:hover, .result-btn:hover, .form-submit-btn:hover {	
   color: #fff;
-  background-color: #4fb4ff;
+  background-color: var(--sky-dark);
   transform: translateY(-2px);
 }
 
@@ -579,7 +593,7 @@ footer {
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 6px 12px rgba(0,0,0,0.05);
-  border: 2px solid var(--sky);
+  border: 2px solid #9ecbff;
   position: relative;
 }
 
@@ -618,7 +632,7 @@ footer {
   margin-top: 20px;
   padding: 12px 28px;
   font-size: 1rem;
-  background: var(--sky);
+  background: #4fb4ff;
   color: #fff;
   
   font-weight: 700;
@@ -750,7 +764,7 @@ textarea {
   padding: 12px 28px;
   font-size: 1rem;
   font-weight: 700;
-  background-color: var(--sky);
+  background-color: #4fb4ff;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -762,7 +776,7 @@ textarea {
 /* 연구 결과 보고서 스타일 */
 /* 섹션 전체 스타일 */
 #research-results {
-  background: #f7fbff; /* 은은한 하늘빛 배경 */
+  background: radial-gradient(circle at top left, #f7fbff 45%, #cbeaff 100%);
   padding: 70px 20px;
   text-align: center;
 }
@@ -856,7 +870,7 @@ textarea {
 .result-content {
   position: relative;
   background-color: white;
-  padding: 24px 32px;
+  padding: 24px 26px;
   line-height: 1.5;
   color: #333;
   border-radius: 12px;
@@ -881,7 +895,7 @@ textarea {
 
 .lab-banner-track {
   display: flex;
-  animation: scroll-left 20s linear infinite;
+  animation: scroll-left 18s linear infinite;
   width: max-content;
 }
 
