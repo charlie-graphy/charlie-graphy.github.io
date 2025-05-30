@@ -44,28 +44,85 @@ $(document).ready(function () {
 		'https://blog.kakaocdn.net/dn/bpb0mG/btsMKDW3how/eF5FV41D8WPY4JtRAzrfrk/img.jpg',
 		'https://blog.kakaocdn.net/dn/yI2Tw/btsMI7SwJgr/c1vW5mXQZQaWmDny0e15hK/img.jpg'
 	];
-	const resultTextList = [
-		'에너지 폭발! 활동력 최강 실험가!',
-		'침착하고 섬세한 분석왕!',
-		'균형감 최고! 유연한 전천후 타입!'
-	];
-	const resultSubTextList = [
-		'당신은 활발하고 긍정적인 에너지를 가진 연구원! 주변을 즐겁게 만드는 능력이 있어요.',
-		'차분하고 분석적인 당신은 모든 실험에서 신뢰를 받는 중심 역할이에요.',
-		'유연하고 센스 있는 당신은 언제나 독창적인 아이디어로 연구소를 놀라게 해요.'
-	];
+	function getPotionResult(song, act, vis) {
+		  const avg = (song + act + vis) / 3;
+
+		  // 조건 1 ~ 15 (위에서 정의한 순서대로 체크)
+		  if (song === 100 && act < 100 && vis < 100) {
+		    return makeResult('노래 요정 포션', '목소리 하나로 세상을 녹이는 천상의 보컬을 가졌어요.', '🎤');
+		  }
+		  if (act === 100 && song < 100 && vis < 100) {
+		    return makeResult('몰입 연기 포션', '감정선을 꿰뚫는 깊은 연기로 모두를 빠져들게 해요.', '🎭');
+		  }
+		  if (vis === 100 && song < 100 && act < 100) {
+		    return makeResult('비주얼 깡패 포션', '존재만으로 반짝이는, 모두의 시선을 사로잡는 아우라!', '✨');
+		  }
+		  if (song + act >= 180) {
+		    return makeResult('무대 장인 포션', '무대 위 감정과 사운드의 완벽한 조합! 프로페셔널 그 자체.', '🎶');
+		  }
+		  if (song + vis >= 180) {
+		    return makeResult('뮤직비디오 천재 포션', '듣기만 해도 좋고, 보기만 해도 설레는 감각적 매력의 결정체!', '💫');
+		  }
+		  if (act + vis >= 180) {
+		    return makeResult('영화 주인공 포션', '카메라가 사랑할 수밖에 없는 얼굴과 연기력! 주인공의 자격.', '🎬');
+		  }
+		  if (song >= 90 && act >= 90 && vis >= 90) {
+		    return makeResult('레전드 포션', '이 시대의 아이콘, 모든 영역에서 완성된 완전체 포션이에요!', '🧪');
+		  }
+		  if (song === 0 && vis >= 90) {
+		    return makeResult('시선강탈 포션', '단 한 번의 등장만으로도 강렬한 인상을 남기는 비주얼 마스터.', '👀');
+		  }
+		  if (act === 0 && song >= 90) {
+		    return makeResult('감성 싱어 포션', '감정을 노래에 담아 전달하는, 마음을 울리는 음유시인!', '🎧');
+		  }
+		  if (vis === 0 && act >= 90) {
+		    return makeResult('목소리 배우 포션', '오직 연기로 감동을 주는 진짜 배우! 빛나는 내면의 힘.', '🎙');
+		  }
+		  if (song >= 40 && song <= 60 && act >= 40 && act <= 60 && vis >= 40 && vis <= 60) {
+		    return makeResult('균형잡힌 포션', '어디 하나 치우침 없는 안정적인 매력, 조화의 미학!', '⚖️');
+		  }
+		  if (song <= 30 && act <= 30 && vis <= 30) {
+		    return makeResult('감히 실험할 수 없다 포션', '당신의 포텐셜은 아직 베일에 싸여 있어요. 그 자체로 미스터리!', '🌀');
+		  }
+		  if (song > act && vis >= 40 && vis <= 60) {
+		    return makeResult('보컬 집중형 포션', '목소리에 집중된 에너지! 음악으로 존재감을 빛내요.', '🎵');
+		  }
+		  if (act > vis && song <= 30) {
+		    return makeResult('연기 집중형 포션', '표정 하나, 눈빛 하나로 말하는 감정 연기의 고수예요.', '🎥');
+		  }
+		  if (vis > song && vis > act && avg < 50) {
+		    return makeResult('매력 포션', '아직은 은근한 분위기파! 시간이 지날수록 스며드는 스타일.', '🪞');
+		  }
+
+		  // 기본 fallback
+		  return makeResult('균형잡힌 포션', '어디 하나 치우침 없는 안정적인 매력, 조화의 미학!', '⚖️');
+	}
+
+	// 결과 객체 생성 함수
+	function makeResult(title, description, emoji) {
+		return { title, description, emoji };
+	}
+
 	
 	$('.result-btn').on('click', function () {
-		const i = Math.floor(Math.random() * resultImageList.length);
+		const i = Math.floor(Math.random() * resultImageList.length);		
+		const song = parseInt($('.slider').eq(0).val());
+		const act = parseInt($('.slider').eq(1).val());
+		const vis = parseInt($('.slider').eq(2).val());
+
+		const result = getPotionResult(song, act, vis);
+
+		// 팝업에 결과 삽입
 		$('#resultImage').attr('src', resultImageList[i]);
-		$('#resultText').text(resultTextList[i]);
-		$('#resultSubText').text(resultSubTextList[i]);
+		$('#resultText').text(`${result.emoji} ${result.title}`);
+		$('#resultSubText').text(result.description);
+
 		
-		setTimeout(() => { $('#resultPopup, #overlay').fadeIn(); }, 300);
+		setTimeout(() => { $('#resultPopup').fadeIn(); }, 300);
 	});
 	
 	$('#closePopup').on('click', function () {
-		$('#resultPopup, #overlay').fadeOut();
+		$('#resultPopup').fadeOut();
 	});
 	
 	// 결과 카드 렌더링

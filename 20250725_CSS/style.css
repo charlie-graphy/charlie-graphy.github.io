@@ -706,46 +706,60 @@ footer {
   transform: translate(-50%, -50%);
   width: 90%;
   max-width: 360px;
-  background: #fffdf7; /* 종이 느낌 나는 배경색 */
-  border: 2px solid #9ecbff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  padding: 24px;
-  z-index: 1001;
+  background: rgb(255, 253, 247);
+  border: 2px dashed #90e0ef; /* 연한 블루 점선 */
+  border-radius: 18px;
+  padding: 28px 22px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  text-align: center;
   animation: popupFadeIn 0.4s ease;
 }
-#resultText {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.4;
-  text-align: center;
-  letter-spacing: -0.5px;
-  margin-bottom: 10px;
+.slider-result-content h3 {
+  font-size: 1.4rem;
+  color: #0077b6; /* 강조 색 */
+  margin-bottom: 16px;
+  border-bottom: 2px dotted #90e0ef;
+  display: inline-block;
+  padding-bottom: 4px;
 }
-
-#resultSubText {
-  font-size: 15px;
-  line-height: 1.6;
-  text-align: center;
-  color: #555;
-  white-space: pre-wrap;
-}
-
-
 /* ✅ 팝업 이미지 */
 .slider-result-content img {
   width: 80%;
   max-width: 200px;
-  margin: 20px 0;
+  margin: 16px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+/* 결과 텍스트 */
+#resultText {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #023e8a;
+  margin-bottom: 8px;
+  white-space: pre-line;
+  line-height: 1.5;
+}
+
+/* 서브텍스트 */
+#resultSubText {
+  font-size: 0.95rem;
+  color: #22577a;
+  line-height: 1.6;
+  white-space: pre-line;
 }
 
 /* ✅ 팝업 닫기 버튼 */
 .close-btn {
   position: absolute;
-  top: 15px; right: 20px;
-  font-size: 24px;
+  top: 12px;
+  right: 16px;
+  font-size: 1.4rem;
+  color: #999;
   cursor: pointer;
+  transition: color 0.2s;
+}
+.close-btn:hover {
+  color: #333;
 }
 
 /* ✅ 팝업 등장 애니메이션 */
@@ -764,6 +778,7 @@ footer {
   }
 }
 
+/* 폼 섹션*/
 .form-section {
   padding: 80px 20px;
   background: linear-gradient(180deg, #fefefe 0%, #f7fbff 100%);
