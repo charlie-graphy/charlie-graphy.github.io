@@ -653,15 +653,40 @@ footer {
 
 /* ✅ 슬라이더 바 */
 .slider {
+  -webkit-appearance: none;
   width: 100%;
-  accent-color: var(--sky);
+  height: 8px;
+  border-radius: 5px;
+  background: #ddd; /* 비채워진 바 */
+  outline: none;
   cursor: pointer;
 }
 
-/* 눈금 스타일 (슬라이더 하단 선 느낌) */
-.slider::-webkit-slider-runnable-track {
-  height: 6px;
-  border-radius: 5px;
+/* 슬라이더 동그라미 (thumb) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #0077b6;
+  margin-top: -6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+/* 🎵 노래 */
+.slider-block:nth-of-type(1) .slider {
+  background: linear-gradient(to right, #a0e9ff, #89c4f4);
+}
+
+/* 🎭 연기 */
+.slider-block:nth-of-type(2) .slider {
+  background: linear-gradient(to right, #ffc6ff, #b28dff);
+}
+
+/* 🎨 비주얼 */
+.slider-block:nth-of-type(3) .slider {
+  background: linear-gradient(to right, #ffeaa7, #f6d365);
 }
 
 /* ✅ 퍼센트 표시 */
@@ -706,7 +731,7 @@ footer {
   transform: translate(-50%, -50%);
   width: 90%;
   max-width: 360px;
-  background: rgb(255, 253, 247);
+  background: #f6fbff;
   border: 2px dashed #90e0ef; /* 연한 블루 점선 */
   border-radius: 18px;
   padding: 28px 22px;
@@ -716,7 +741,7 @@ footer {
 }
 .slider-result-content h3 {
   font-size: 1.4rem;
-  color: #0077b6; /* 강조 색 */
+  color: #2251a4; /* 강조 색 */
   margin-bottom: 16px;
   border-bottom: 2px dotted #90e0ef;
   display: inline-block;
@@ -734,7 +759,7 @@ footer {
 #resultText {
   font-size: 1.1rem;
   font-weight: bold;
-  color: #023e8a;
+  color: #1c318e;
   margin-bottom: 8px;
   white-space: pre-line;
   line-height: 1.5;
@@ -746,6 +771,8 @@ footer {
   color: #22577a;
   line-height: 1.6;
   white-space: pre-line;
+  overflow-wrap: break-word;
+  word-break: keep-all;
 }
 
 /* ✅ 팝업 닫기 버튼 */
@@ -958,6 +985,8 @@ textarea {
   line-height: 1.5;
   color: #333;
   border-radius: 12px;
+  overflow-wrap: break-word;
+  word-break: keep-all;
 }
 
 /* 배너 */

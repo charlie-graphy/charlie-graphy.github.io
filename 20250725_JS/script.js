@@ -192,5 +192,26 @@ $(document).ready(function () {
 
 	// 초기 실행
 	updateLiquidBackground();
+	
+	// 슬라이더 배경
+	function updateSliderBackgrounds() {
+		$('.slider').each(function () {
+			const val = $(this).val();
+			const max = $(this).attr('max') || 100;
+			const percent = (val / max) * 100;
+			
+			let gradient;
+			if ($(this).closest('.slider-block').index() === 0) gradient = `linear-gradient(to right, #a0e9ff ${percent}%, #e0e0e0 ${percent}%)`;
+			else if ($(this).closest('.slider-block').index() === 1) gradient = `linear-gradient(to right, #ffc6ff ${percent}%, #e0e0e0 ${percent}%)`;
+			else gradient = `linear-gradient(to right, #ffeaa7 ${percent}%, #e0e0e0 ${percent}%)`;
+
+			$(this).css('background', gradient);
+		});
+	}
+	
+	// 슬라이더 값 바뀔 때마다 업데이트
+	$('.slider').on('input change', updateSliderBackgrounds);
+	// 최초 1회 실행
+	updateSliderBackgrounds();
 
 });
