@@ -158,12 +158,14 @@
 	<section id="test" class="event-section fade-up">
 		<h2 class="section-title">실험하기</h2>
 		<div class="text-center">
-			<p class="coach-note" style="text-align:center;">3가지 요소를 조합해 결과를 확인해 주세요.</p>
+			<p class="coach-note" style="text-align: center;">3가지 요소를 조합해 결과를
+				확인해 주세요.</p>
 		</div>
 
 		<div class="slider-wrap">
 			<div class="slider-block">
-				<label>노래</label> <input type="range" min="0" max="100" value="50" class="slider" step="10" list="ticks1">
+				<label>노래</label> <input type="range" min="0" max="100" value="50"
+					class="slider" step="10" list="ticks1">
 				<datalist id="ticks1">
 					<option value="0"></option>
 					<option value="50"></option>
@@ -202,10 +204,22 @@
 			<div class="slider-result-content">
 				<span class="close-btn" id="closePopup">&times;</span>
 				<h3>🎉 당신의 실험 결과는!</h3>
-				<img id="resultImage" src="" alt="결과 이미지" oncontextmenu="return false"/>
+				<img id="resultImage" src="" alt="결과 이미지"
+					oncontextmenu="return false" />
 				<p id="resultText">분석 중...</p>
 				<p id="resultSubText"></p>
 			</div>
+		</div>
+		
+		<div class="wave-container">
+			<svg class="wave-svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+				<path id="wavePath" class="wave-path-glow" fill="#4fb4ff" d="M0,160 C360,220 1080,100 1440,160 L1440,320 L0,320 Z">
+					<animate attributeName="d" dur="5s" repeatCount="indefinite"
+						values=" M0,160 C360,220 1080,100 1440,160 L1440,320 L0,320 Z;
+	          					M0,170 C300,110 1140,250 1440,160 L1440,320 L0,320 Z;
+	          					M0,160 C360,220 1080,100 1440,160 L1440,320 L0,320 Z" />
+	    		</path>
+	    	</svg>
 		</div>
 	</section>
 

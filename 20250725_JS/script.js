@@ -104,4 +104,36 @@ $(document).ready(function () {
 			else $(this).hide();
 		});
 	});
+
+	function updateLiquidBackground() {
+		  const song = $('.slider').eq(0).val();
+		  const act = $('.slider').eq(1).val();
+		  const vis = $('.slider').eq(2).val();
+		  const avg = (parseInt(song) + parseInt(act) + parseInt(vis)) / 3;
+
+		  // ✅ 파도 높이 vh 기준으로 조정
+		  const minHeight = 30;
+		  const maxHeight = 130;
+		  const heightVh = minHeight + ((maxHeight - minHeight) * (avg / 100));
+		  $('.wave-container').css('height', `${heightVh}vh`);
+		  
+		  // 파란 계열: 하늘색 → 진한 파랑
+		  const skyBlue = [180, 220, 255];  // #b4dcff
+		  const softBlue = [40, 130, 200];       // #2882c8
+
+		  const r = Math.round(skyBlue[0] + (softBlue[0] - skyBlue[0]) * (avg / 100));
+		  const g = Math.round(skyBlue[1] + (softBlue[1] - skyBlue[1]) * (avg / 100));
+		  const b = Math.round(skyBlue[2] + (softBlue[2] - skyBlue[2]) * (avg / 100));
+
+		  const fillColor = `rgba(${r}, ${g}, ${b}, 0.6)`;
+
+		  $('#wavePath').attr('fill', fillColor);
+	}
+
+	// 슬라이더 변화에 반응
+	$('.slider').on('input', updateLiquidBackground);
+
+	// 초기 실행
+	updateLiquidBackground();
+
 });
