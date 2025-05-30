@@ -597,6 +597,10 @@ footer {
   pointer-events: none;
   transition: height 0.4s ease;
 }
+.event-section > *:not(.wave-container) {
+  position: relative;
+  z-index: 2;
+}
 
 .wave-svg {
   width: 100%;
@@ -617,10 +621,7 @@ footer {
     filter: brightness(1.35);
   }
 }
-.event-section > *:not(.wave-container) {
-  position: relative;
-  z-index: 2;
-}
+
 
 /* ✅ 슬라이더 전체 그룹 */
 .slider-wrap {
