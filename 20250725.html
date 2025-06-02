@@ -226,6 +226,14 @@
 	</section>
 
 
+	<!-- 제출용 팝업 -->
+	<div class="form-popup" id="formPopup">
+	  <div class="form-popup-content">
+	    <span class="close-form-popup" id="closeFormPopup">&times;</span>
+	    <h3 id="formPopupTitle">잠시만요!</h3>
+	    <p id="formPopupMessage">내용을 모두 작성해 주세요.</p>
+	  </div>
+	</div>
 	<!-- 신청서 -->
 	<section id="form" class="form-section fade-up">
 		<h2 class="section-title">연구 보고서 작성</h2>
@@ -275,6 +283,7 @@
 		</div>
 
 		<div class="result-scroll-wrapper">
+			<div id="resultLoading" class="result-loading">결과 보고서를 불러오는 중입니다...</div>
 			<div id="resultCards" class="result-cards"></div>
 		</div>
 	</section>

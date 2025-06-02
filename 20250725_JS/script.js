@@ -138,23 +138,43 @@ $(document).ready(function () {
 	$('#closePopup').on('click', function () {
 		$('#resultPopup').fadeOut();
 	});
-	
+
 	// 결과 카드 렌더링
-	const resultCards = [
-		{ category: "분류1", nickname: "연구원A", content: "새로운 기술 적용 결과 매우 우수함." },
-		{ category: "분류2", nickname: "참여자B", content: "참여도가 높고 분석이 뛰어남." },
-		{ category: "분류3", nickname: "지원자C", content: "정확한 데이터 기록으로 우수 사례로 분류됨." },
-		{ category: "분류1", nickname: "테스터D", content: "예상치보다 높은 수치 기록." }
-	];
+	const resultCards = [];
+	
+	function readMessage(){
+		firebase.database().goOnline();
+		if(messageRef) messageRef.off(); // 이전 리스너 해제
+		messageRef = database.ref('research'); // 새로운 리스너 추가
+
+		$('#resultLoading').show(); // 🔹 로딩 표시 시작
+		
+		messageRef.on('value', function(snapshot) {
+			const posts = snapshot.val();
+			
+	        if(posts){
+	        	Object.keys(posts).forEach(function(key){
+	        		const post = posts[key];
+	        		resultCards.push({'category':post.content.category, 'nickname':post.content.nickname, 'content':post.content.message});
+	        	});
+	        }
+
+			renderCards();
+			$('#resultLoading').hide();  // 🔹 로딩 표시 종료
+			disconnect();
+	    });
+	}
+	
 	
 	function renderCards(filter = 'all') {
-		const $container = $('#resultCards');
-		const filtered = filter === 'all' ? resultCards : resultCards.filter(c => c.category === filter);
+		const $container = $('#resultCards')
+			, filtered = filter === 'all' ? resultCards : resultCards.filter(c => c.category === filter)
+			, categoryNm = ['','언제, 어떻게 처음 알게 되었나요?','어떤 순간이 가장 강하게 기억에 남았나요?','마음을 지속하게 되는 이유는 무엇인가요?','어떤 존재인가요?'];
 		$container.empty();
 		
 		filtered.forEach(card => {
 			const $divBig = $('<div>',{'class':'result-card','data-category':card.category})
-				, $divCate = $('<div>',{'class':'result-category','text':card.category})
+				, $divCate = $('<div>',{'class':'result-category','text':categoryNm[card.category]})
 				, $divName = $('<div>',{'class':'result-nickname','text':card.nickname})
 				, $divCont = $('<div>',{'class':'result-content','text':card.content});
 			
@@ -162,7 +182,7 @@ $(document).ready(function () {
 		});
 	}
 	
-	renderCards();
+	readMessage();
 	
 	$('.filter-btn').on('click', function () {
 		$('.filter-btn').removeClass('active');
@@ -231,8 +251,19 @@ $(document).ready(function () {
 	//폼
 	$('.form-submit-btn').on('click', function(e){
 		e.preventDefault();
-		const researchData= $("#research-form").serializeObject();
-		sendMessage(researchData)
+		const researchData= $("#research-form").serializeObject()
+			, category = $('#category').val()
+			, nickname = $('#nickname').val().trim()
+			, message = $('#message').val().trim();
+
+		if (!category || !nickname || !message) {
+			showFormPopup("잠시만요!", "모든 항목을 빠짐없이 작성해 주세요.");
+			return;
+		}
+
+		$('#closeFormPopup').hide();
+		showFormPopup("제출 중입니다...", "잠시만 기다려 주세요.");
+		sendMessage(researchData);
 	});
 });
 
@@ -241,20 +272,15 @@ $.fn.serializeObject = function() {
 	  var result = {}
 	  var extend = function(i, element) {
 	    var node = result[element.name]
-	    if ("undefined" !== typeof node && node !== null) {
-	      if ($.isArray(node)) {
-	        node.push(element.value)
-	      } else {
-	        result[element.name] = [node, element.value]
-	      }
-	    } else {
-	      result[element.name] = element.value
-	    }
+	    if("undefined" !== typeof node && node !== null){
+	    	if($.isArray(node)) node.push(element.value);
+	    	else result[element.name] = [node, element.value];
+	    }else result[element.name] = element.value;
 	  }
 
-	  $.each(this.serializeArray(), extend)
-	  return result
-	}
+	  $.each(this.serializeArray(), extend);
+	  return result;
+}
 
 function sendMessage(data){
 	firebase.database().goOnline();
@@ -263,13 +289,41 @@ function sendMessage(data){
 	
 	const newPostRef = database.ref('research').push();
 	const currentTime = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+
+    let parsedData;
+    try {
+    	parsedData = typeof data === "string" ? JSON.parse(data) : data;
+    }catch(e){
+    	console.error("JSON 파싱 오류:", e);
+    	return;
+    }
+    
     newPostRef.set({
-      content: msg,
-      timestamp: currentTime
+    	content: parsedData,
+    	timestamp: currentTime
     }).then(() => {
         console.log("메시지 전송 완료");
         disconnect(); // 전송 후 연결 해제
+        
+        showFormPopup("제출 완료!", "연구 보고서가 성공적으로 저장되었습니다.");
+		$('#closeFormPopup').show();
+    	$("#research-form")[0].reset();
     }).catch(error => {
         console.error("메시지 전송 오류:", error);
     });
 }
+//연결을 종료하고 Firebase 오프라인 처리하는 함수
+function disconnect(){
+	if(messageRef) messageRef.off(); // 리스너 해제
+	firebase.database().goOffline(); // Firebase 연결 끊기
+}
+function showFormPopup(title, message) {
+	$('#formPopupTitle').text(title);
+	$('#formPopupMessage').text(message);
+	$('#formPopup').fadeIn();
+}
+
+$('#closeFormPopup').on('click', function () {
+	$('#formPopup').fadeOut();
+	 location.reload();
+});
