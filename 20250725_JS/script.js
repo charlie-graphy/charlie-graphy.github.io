@@ -231,16 +231,30 @@ $(document).ready(function () {
 	//폼
 	$('.form-submit-btn').on('click', function(e){
 		e.preventDefault();
-		const researchArray = $("#research-from").serializeArray();
-		// result --> 0: {name: "input1", value: "1"}
-//			          1: {name: "input2", value: "2"}
-		var param = {};
-		researchArray.map(function(data,index){
-			param[data.name] = data.value;
-		});
-		sendMessage(researchArray)
+		const researchData= $("#research-form").serializeObject();
+		sendMessage(researchData)
 	});
 });
+
+$.fn.serializeObject = function() {
+	  "use strict"
+	  var result = {}
+	  var extend = function(i, element) {
+	    var node = result[element.name]
+	    if ("undefined" !== typeof node && node !== null) {
+	      if ($.isArray(node)) {
+	        node.push(element.value)
+	      } else {
+	        result[element.name] = [node, element.value]
+	      }
+	    } else {
+	      result[element.name] = element.value
+	    }
+	  }
+
+	  $.each(this.serializeArray(), extend)
+	  return result
+	}
 
 function sendMessage(data){
 	firebase.database().goOnline();
