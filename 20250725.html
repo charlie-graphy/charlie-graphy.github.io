@@ -88,7 +88,7 @@
 						<p><strong>"아덤"</strong><br>신인 작가</p>
 					</div>
 					<div class="coach-card fade-up">
-						<img src="https://blog.kakaocdn.net/dn/biKzJw/btsOjZjYSPE/gcIWT3mqFY3avnjZwEOC30/img.png" alt="최윤" oncontextmenu="return false">
+						<img src="https://blog.kakaocdn.net/dn/8PFL7/btsOm8OBaXH/JgXcFGshCVxBoDGGM7olHk/img.png" alt="최윤" oncontextmenu="return false">
 						<p><strong>"최윤"</strong><br>수려한 외모</p>
 					</div>
 					<!-- ... 나머지 3개 코치 카드도 동일하게 추가 -->
@@ -224,29 +224,30 @@
 	<section id="form" class="form-section fade-up">
 		<h2 class="section-title">연구 보고서 작성</h2>
 		<div class="text-center">
-			<p class="coach-note" style="text-align:center;">연구 분야에 관한 결과를 작성해 주세요.</p>
+			<p class="coach-note" style="text-align:center;">연구 분류에 관한 질문의 답변을 작성해 주세요.</p>
 		</div>
 		
-		<form class="lab-form">
+		<form class="lab-form" id="research-form">
 			<h3 class="form-title">🧪 연구 보고서</h3>
-
+			<p class="form-subtitle">아래 작성한 보고서 내용은 정리 후,<br>연구소에 게시될 예정입니다.(~7/21)</p>
 			<div class="form-row">
-				<label for="category">분야</label> <select id="category"
+				<label for="category">분류</label> <select id="category"
 					name="category">
 					<option value="">-- 선택 --</option>
-					<option value="노래">노래</option>
-					<option value="연기">연기</option>
-					<option value="무대">무대</option>
+					<option value="1">언제, 어떻게 처음 알게 되었나요?</option>
+					<option value="2">어떤 순간이 가장 강하게 기억에 남았나요?</option>
+					<option value="3">마음을 지속하게 되는 이유는 무엇인가요?</option>
+					<option value="4">어떤 존재인가요?</option>
 				</select>
 			</div>
 
 			<div class="form-row">
-				<label for="nickname">닉네임</label> <input type="text" id="nickname" name="nickname" maxlength="10" placeholder="(최대 10자 이내)">
+				<label for="nickname">닉네임</label> <input type="text" id="nickname" name="nickname" maxlength="10" placeholder="최대 10자 이내">
 			</div>
 
 			<div class="form-row">
 				<label for="message">내용</label>
-				<textarea id="message" name="message" rows="4" placeholder="연구한 내용"></textarea>
+				<textarea id="message" name="message" rows="4" placeholder="대상을 연구한 내용"></textarea>
 			</div>
 
 			<button type="submit" class="form-submit-btn">제출하기</button>
@@ -261,9 +262,10 @@
 
 		<div class="result-filter">
 			<button class="filter-btn active" data-filter="all">전체</button>
-			<button class="filter-btn" data-filter="분류1">분류1</button>
-			<button class="filter-btn" data-filter="분류2">분류2</button>
-			<button class="filter-btn" data-filter="분류3">분류3</button>
+			<button class="filter-btn" data-filter="1">언제, 어떻게 처음 알게 되었나요?</button>
+			<button class="filter-btn" data-filter="2">어떤 순간이 가장 강하게 기억에 남았나요?</button>
+			<button class="filter-btn" data-filter="3">마음을 지속하게 되는 이유는 무엇인가요?</button>
+			<button class="filter-btn" data-filter="4">어떤 존재인가요?</button>
 		</div>
 
 		<div class="result-scroll-wrapper">
