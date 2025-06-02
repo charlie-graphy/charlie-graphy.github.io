@@ -439,6 +439,12 @@ footer {
   border-radius: 8px;
   margin-bottom: 10px;
 }
+.coach-card p {
+	font-size: 0.85rem;
+}
+.coach-card strong {
+	font-size: 1rem;
+}
 /* 중앙 정렬 원할 경우 */
 .text-center {
   text-align: center;
@@ -1125,9 +1131,9 @@ textarea {
   background-color: var(--sky-dark); 
 }
 
-button, #footer, .cta-button, .info-line, #resultSubText, .result-content, #formPopupMessage {
+button, #footer, .cta-button, .info-line, #resultSubText, .result-content, #formPopupMessage, .coach-card p, .coach-card strong {
 	font-family: 'SBAggroL', 'Pretendard', sans-serif;
 }
-.side-menu, .section-subtitle, .result-nickname, .coach-note, .coach-card p, .result-category, .filter-btn, .form-row label, .info-line .label {
+.side-menu, .section-subtitle, .result-nickname, .coach-note, .result-category, .filter-btn, .form-row label, .info-line .label {
 	font-family: 'SBAggroM', 'Pretendard', sans-serif;
 }
