@@ -325,5 +325,5 @@ function showFormPopup(title, message) {
 
 $('#closeFormPopup').on('click', function () {
 	$('#formPopup').fadeOut();
-	 location.reload();
+	if($('#formPopupTitle').text() == '제출 완료!') location.reload();
 });
