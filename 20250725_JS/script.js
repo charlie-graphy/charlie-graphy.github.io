@@ -1,3 +1,17 @@
+const firebaseConfig = {
+	    apiKey: "AIzaSyCmF81jQ27FLmyb1zZgT6pEboTpeFUUt-k",
+	    authDomain: "ahnjeehwany.firebaseapp.com",
+	    databaseURL: "https://ahnjeehwany-default-rtdb.firebaseio.com",
+	    projectId: "ahnjeehwany",
+	    storageBucket: "ahnjeehwany.firebasestorage.app",
+	    messagingSenderId: "4142402443",
+	    appId: "1:4142402443:web:773ee03ac4ff8631183d8e",
+	    measurementId: "G-BWPFC2L1VG"
+	  };
+const app = firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+let messageRef = null;
+
 $(document).ready(function () {
 	// 인터섹션 오브저버 대체 – fade 효과
 	$('.fade-up, .fade-left, .fade-right').each(function () {
@@ -214,4 +228,34 @@ $(document).ready(function () {
 	// 최초 1회 실행
 	updateSliderBackgrounds();
 
+	//폼
+	$('.form-submit-btn').on('click', function(e){
+		e.preventDefault();
+		const researchArray = $("#research-from").serializeArray();
+		// result --> 0: {name: "input1", value: "1"}
+//			          1: {name: "input2", value: "2"}
+		var param = {};
+		researchArray.map(function(data,index){
+			param[data.name] = data.value;
+		});
+		sendMessage(researchArray)
+	});
 });
+
+function sendMessage(data){
+	firebase.database().goOnline();
+	if(messageRef) messageRef.off(); // 이전 리스너 해제
+	messageRef = database.ref('research'); // 새로운 리스너 추가
+	
+	const newPostRef = database.ref('research').push();
+	const currentTime = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+    newPostRef.set({
+      content: msg,
+      timestamp: currentTime
+    }).then(() => {
+        console.log("메시지 전송 완료");
+        disconnect(); // 전송 후 연결 해제
+    }).catch(error => {
+        console.error("메시지 전송 오류:", error);
+    });
+}
