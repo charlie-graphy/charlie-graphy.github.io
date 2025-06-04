@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="배우 안지환 아카이브 사이트">
     <meta name="keywords" content="안지환">
-    <meta property="og:image" content="https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg">
+    <meta property="og:image" content="https://blog.kakaocdn.net/dn/bpb0mG/btsMKDW3how/eF5FV41D8WPY4JtRAzrfrk/img.jpg">
     <meta property="og:title" content="AHNJEEHWANY">
 	<meta property="og:description" content="배우 안지환 아카이브 사이트 - 스케줄">
     <title>AHNJEEHWANY</title>
@@ -209,13 +209,39 @@ function timeFormat(){
 	$('.fc-header-toolbar h2').text(year+" "+(jQuery.inArray($('.fc-header-toolbar h2').text().split(' ')[0].toUpperCase(), month)+1)+"월");
 	
 	//주
-	for(var i = 0 ; i < $('.fc-day-header').length; i++){
+	$('.fc-day-header').each(function(i, v) {
+		$(this).find('span').text(week[i]);
+	});
+	/* for(var i = 0 ; i < $('.fc-day-header').length; i++){
 		$('.fc-day-header:eq('+i+') span').text(week[i]);
-	}
+	} */
+	
 	//시간
-	for(var i = 0 ; i < $('.fc-time').length ; i++){
-		$('.fc-time:eq('+i+'):contains("p")').text(($('.fc-time:eq('+i+')').text().length > 2) ? (Number($('.fc-time:eq('+i+')').text().split(':')[0])+12+":"+$('.fc-time:eq('+i+')').text().split(':')[1].substring(0,2)): Number($('.fc-time:eq('+i+')').text().split('p')[0])+12+":00");
-		$('.fc-time:eq('+i+'):contains("a")').text(($('.fc-time:eq('+i+')').text().length > 2) ? ($('.fc-time:eq('+i+')').text().split(':')[0]+":"+$('.fc-time:eq('+i+')').text().split(':')[1].substring(0,2)): $('.fc-time:eq('+i+')').text().split('p')[0]+":00");
+	$('.fc-time').each(function(i, v) {
+		const endWord = $(this).text().charAt($(this).text().length-1);
+		let time = '';
+		
+		if($(this).text() != '12a'){
+			if(endWord == 'p'){
+				if($(this).text().length > 2){
+					time = Number($('.fc-time:eq('+i+')').text().split(':')[0])+12+":"+$('.fc-time:eq('+i+')').text().split(':')[1].substring(0,2);
+				}else{
+					time = Number($('.fc-time:eq('+i+')').text().split('p')[0])+12+":00"
+				}
+			}else if(endWord == 'a'){
+				if($(this).text().length > 2){
+					time = $('.fc-time:eq('+i+')').text().split(':')[0]+":"+$('.fc-time:eq('+i+')').text().split(':')[1].substring(0,2);
+				}else{
+					time = $('.fc-time:eq('+i+')').text().split('a')[0]+":00"
+				}
+			}
+		}
+		
+		$(this).text(time);
+	});
+	
+	if($('.fc-week').last().find('.fc-other-month').length > 7){
+		$('.fc-week').last().remove();
 	}
 }
 </script>
