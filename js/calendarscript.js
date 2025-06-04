@@ -1228,7 +1228,7 @@
 					title: '킹콩 by 스타쉽 계약',
 					description: '',
 					start: '2025-03-13',
-					className: 'bg-sky',
+					className: 'bg-white',
 					allDay: false
 				},
 				{
@@ -1410,7 +1410,7 @@
 					title: '🎉생일',
 					description: '안지환 배우님 생일🥳',
 					start: '2025-07-25',
-					className: 'bg-blue',
+					className: 'bg-white',
 					allDay: false
 				},
 				{
