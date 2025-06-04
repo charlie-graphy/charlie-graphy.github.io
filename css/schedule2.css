@@ -161,6 +161,9 @@ td.fc-sat, th.fc-sat {
 .bg-purple{
 	background-color: rgb(146, 100, 217, 0.2) !important;
 }
+.bg-white{
+	background-color: white !important;
+}
 .event-title{
 	font-size: 19px;
 }
