@@ -1,7 +1,9 @@
 $(window).on("load", function() {
-   	$(".loader").fadeOut(500, function() {
-   		$(".main-content").addClass("show");
-   	});
+	if(new Date().getMonth() >= 6 && new Date().getDate() >= 25){
+	   	$(".loader").fadeOut(500, function() {
+	   		$(".main-content").addClass("show");
+	   	});
+	}
 });
 
 var size = 5;
