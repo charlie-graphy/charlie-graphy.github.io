@@ -243,5 +243,10 @@ function timeFormat(){
 	if($('.fc-week').last().find('.fc-other-month').length > 7){
 		$('.fc-week').last().remove();
 	}
+	
+	$('.fc-other-month').each(function(i, v) {//fc-day-top
+		const target= $(this);
+		//$(this).parents('div.fc-bg').next().find('tbody td').eq($(this).index()).remove();
+	});
 }
 </script>
