@@ -1310,7 +1310,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '<p class="event">등등회 캐릭터 엽서 5종 증정 + 커튼콜 데이</p>김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 박준휘<br>정진명 役 | 정서안<br>이경신 役 | 김준식',
+					description: '<p class="event">등등회 캐릭터 엽서 5종 증정 + 커튼콜 데이</p>김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 정서안<br>이경신 役 | 김준식',
 					start: '2025-07-06 18:00',
 					className: 'bg-red',
 					allDay: false
