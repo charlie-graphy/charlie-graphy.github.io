@@ -212,9 +212,6 @@ function timeFormat(){
 	$('.fc-day-header').each(function(i, v) {
 		$(this).find('span').text(week[i]);
 	});
-	/* for(var i = 0 ; i < $('.fc-day-header').length; i++){
-		$('.fc-day-header:eq('+i+') span').text(week[i]);
-	} */
 	
 	//시간
 	$('.fc-time').each(function(i, v) {
@@ -244,9 +241,11 @@ function timeFormat(){
 		$('.fc-week').last().remove();
 	}
 	
-	$('.fc-other-month').each(function(i, v) {//fc-day-top
-		const target= $(this);
-		//$(this).parents('div.fc-bg').next().find('tbody td').eq($(this).index()).remove();
+	$('.fc-day-top.fc-other-month').each(function(i, v) {
+		if($(this).parents('thead').next().find('tr:eq(0) td').eq($(this).index()).hasClass('fc-event-container')){
+			//$(this).parents('thead').next().find('tr:eq(0) td').eq($(this).index()).empty().removeClass('fc-event-container');
+		}
+		//$(this).parents('thead').next().find('tr:eq(1) td.fc-event-container').empty().removeClass('fc-event-container');
 	});
 }
 </script>
