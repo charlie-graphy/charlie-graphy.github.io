@@ -13,6 +13,8 @@ const database = firebase.database();
 let messageRef = null;
 
 $(document).ready(function () {
+	history.replaceState(null, '', window.location.origin + window.location.pathname);
+	
 	// 인터섹션 오브저버 대체 – fade 효과
 	$('.fade-up, .fade-left, .fade-right').each(function () {
 		const el = $(this);
