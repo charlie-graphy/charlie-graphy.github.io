@@ -1345,7 +1345,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 박준휘<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
+					description: '김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
 					start: '2025-07-15 20:00',
 					className: 'bg-red',
 					allDay: false
