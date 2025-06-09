@@ -440,7 +440,8 @@ footer {
   margin-bottom: 10px;
 }
 .coach-card p {
-	font-size: 0.85rem;
+	font-size: 0.8rem;
+	line-heihgt: 1.2rem;
 }
 .coach-card strong {
 	font-size: 1rem;
@@ -571,7 +572,7 @@ footer {
   font-size: 1.3rem;
   margin: 12px 0 6px;
   font-weight: 800;
-  background: #4fb4ff;
+  background: var(--sky-dark);
   -webkit-background-clip: text;
   color: transparent;
 }
@@ -1189,7 +1190,7 @@ textarea {
   border-radius: 12px;
   overflow-wrap: break-word;
   word-break: keep-all;
-  font-size: 0.93m
+  font-size: 0.93em
 }
 
 /* 배너 */
