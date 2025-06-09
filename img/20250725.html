@@ -1,0 +1,308 @@
+<!DOCTYPE html><html lang="ko" id="page">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A₇J₂H₅ 깨비 연구소">
+	<meta name="keywords" content="안지환">
+	<meta property="og:image" content="https://blog.kakaocdn.net/dn/bpb0mG/btsMKDW3how/eF5FV41D8WPY4JtRAzrfrk/img.jpg">
+	<meta property="og:title" content="AHNJEEHWANY">
+	<meta property="og:description" content="A₇J₂H₅ 깨비 연구소">
+	<title>A₇J₂H₅ 깨비 연구소</title>
+	
+    <!-- 파비콘 -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io_new/apple-icon-180x180.png">
+    <link rel="icon" type="image/x-icon" href="img/favicon_io_new/ms-icon-310x310.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io_new/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io_new/favicon-16x16.png">
+    
+    <!-- jQuery 및 스크립트 & CSS-->
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+	<link rel="stylesheet" href="20250725_CSS/style.css?"/>
+</head>
+<body>
+	<!-- 왼쪽 고정 메뉴 (PC 전용, 초반엔 숨김) -->
+	<aside class="side-menu show">
+		<ul>
+			<li><a href="#target">연구 대상</a></li>
+			<li><a href="#place">깨비 연구소</a></li>
+			<li><a href="#test">실험하기</a></li>
+			<li><a href="#form">연구 결과 작성하기</a></li>
+			<li><a href="#research-results">연구 결과 보고서</a></li>
+		</ul>
+	</aside>
+
+	<!-- 인트로 섹션 -->
+	<section id="intro" class="fade-up intro-section">
+		<div class="intro-background-icon" oncontextmenu="return false"></div>
+		<div class="intro-header">
+			<div class="intro-date-left">7.25</div>
+			<div class="intro-date-right">AJH</div>
+		</div>
+		<div class="intro-content">
+			<div class="intro-line">AJH</div>
+			<div class="intro-line highlight">LAB</div>
+			<div class="intro-line sub">우리의 깨비 연구소</div>
+			<a href="#target" class="cta-button">지금 연구하기</a>
+		</div>
+		<div class="scroll-down">▼ Scroll</div>
+	</section>
+
+	<!-- 연구 대상 소개 -->
+	<section id="target" class="fade-up member-section">
+
+  		<h2 class="section-title fade-left">깨비 연구소에<br>온 걸 환영해!</h2>
+  		
+		<div class="member-flex-wrap">
+				
+			<!-- 왼쪽 클럽장 이미지 -->
+			<div class="member-image fade-left">
+				<img src="https://blog.kakaocdn.net/dn/yI2Tw/btsMI7SwJgr/c1vW5mXQZQaWmDny0e15hK/img.jpg" alt="연구 대상" oncontextmenu="return false"/>
+			</div>
+
+			<!-- 오른쪽 정보 + 코치 포함 -->
+			<div class="member-info-block fade-up">
+				<!-- 클럽장 네임카드 -->
+				<div class="member-info fade-left">				
+					<div class="text-left fade-right">
+						<div class="section-label">오늘의 연구 대상</div>
+					</div>
+					<div class="info-line" style="margin-top:10px;">
+						<span class="label">이름</span> <span class="value">안지환</span>
+					</div>
+					<div class="info-line">
+						<span class="label">생년월일</span> <span class="value">1992년 7월 25일</span>
+					</div>
+					<div class="info-line">
+						<span class="label">필살기</span> <span class="value">방심하게 하기</span>
+					</div>
+					<div class="info-line">
+						<span class="label">특징</span> <span class="value">웃을 때 보조개가 생김, <br>감미로운 목소리 보유</span>
+					</div>
+				</div>
+
+				<!-- 스페셜 코치 영역 -->
+				<div class="text-left fade-left">
+					<div class="section-label">올해의 연구 대상</div>
+				</div>
+				<p class="coach-note fade-left">올해 꼭 연구해야 할 대상들을 소개합니다.</p>
+				<div class="coach-grid">
+					<div class="coach-card fade-up">
+						<img src="https://blog.kakaocdn.net/dn/biKzJw/btsOjZjYSPE/gcIWT3mqFY3avnjZwEOC30/img.png" alt="윤석영" oncontextmenu="return false">
+						<p><strong>윤석영</strong><br>한국대 다비드</p>
+					</div>
+					<div class="coach-card fade-up">
+						<img src="https://blog.kakaocdn.net/dn/ebSVKd/btsOifaOjtv/5jpZi8rDoKl4PeNAbWrk7k/img.png" alt="아덤" oncontextmenu="return false">
+						<p><strong>아덤</strong><br>신인 작가</p>
+					</div>
+					<div class="coach-card fade-up">
+						<img src="https://blog.kakaocdn.net/dn/8PFL7/btsOm8OBaXH/JgXcFGshCVxBoDGGM7olHk/img.png" alt="최윤" oncontextmenu="return false">
+						<p><strong>최윤</strong><br>수려한 외모</p>
+					</div>
+					<!-- ... 나머지 3개 코치 카드도 동일하게 추가 -->
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- 카드형 정보 -->
+	<section id="place" class="card-section fade-up">
+		<h2 class="section-title fade-left">깨비 연구소 둘러보기</h2>
+		<div class="text-center">
+			<p class="coach-note" style="text-align:center;">깨비 연구소에는 무엇이 있을까요?<br>아래 카드를 클릭하여 확인해 주세요.</p>
+		</div>
+
+		<div class="flip-grid">
+			<!-- 카드 1 -->
+			<div class="flip-card">
+				<div class="flip-inner">
+					<div class="flip-front fancy-card-cute">
+						<div class="emoji">🎁✨</div>
+						<h3>특전</h3>
+						<p class="emoji-sub">엽서, 핀버튼, 짐색까지!</p>
+					</div>
+					<div class="flip-back cute-back" data-category="1">
+						<p>
+							<strong>기본 특전</strong><br>엽서 & 스티커팩 & 미니 L홀더 & 포토카드<br><br>
+							<strong>스페셜 특전</strong><br>짐색 1일 선착 3명 (7/24-25 한정)<br>핀버튼 1일 선착 10명
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- 카드 2 -->
+			<div class="flip-card">
+				<div class="flip-inner">
+					<div class="flip-front fancy-card-cute">
+						<div class="emoji">🧪💖</div>
+						<h3>체험</h3>
+						<p class="emoji-sub">마음 비커 & 연구일지</p>
+					</div>
+					<div class="flip-back cute-back" data-category="2">
+						<p>
+							<strong>마음 비커</strong><br>순간에 느꼈던 마음을 담아주세요.<br><br>
+							<strong>연구일지 작성</strong><br>그림과 글 자유롭게 작성 & 밸런스 게임 & 지환요소 그래프
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- 배너 -->
+	<section class="lab-banner-container" style="opacity: 1;">
+		<div class="lab-banner">
+			<div class="lab-banner-track">
+				<p class="lab-banner-text">
+					오늘도 <strong>안지환의 연구는 계속된다</strong> – 나의 하루에 선물처럼 다가온 사람!
+				</p>
+				<p class="lab-banner-text">
+					오늘도 <strong>안지환의 연구는 계속된다</strong> – 신명을 바쳐라!
+				</p>
+				<p class="lab-banner-text">
+					오늘도 <strong>안지환의 연구는 계속된다</strong> – 천년만년 맘껏 누리소서
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- 이벤트 -->
+	<section id="test" class="event-section fade-up">
+		<h2 class="section-title">실험하기</h2>
+		<div class="text-center">
+			<p class="coach-note" style="text-align: center;">3가지 요소를 조합해 결과를
+				확인해 주세요.</p>
+		</div>
+
+		<div class="slider-wrap">
+			<div class="slider-block">
+				<label>노래</label> <input type="range" min="0" max="100" value="50" class="slider" step="10" list="ticks1">
+				<datalist id="ticks1">
+					<option value="0"></option>
+					<option value="50"></option>
+					<option value="100"></option>
+				</datalist>
+				<div class="percent-display">50%</div>
+			</div>
+
+			<div class="slider-block">
+				<label>연기</label> <input type="range" min="0" max="100" value="50" class="slider" step="10" list="ticks2">
+				<datalist id="ticks2">
+					<option value="0"></option>
+					<option value="50"></option>
+					<option value="100"></option>
+				</datalist>
+				<div class="percent-display">50%</div>
+			</div>
+
+			<div class="slider-block">
+				<label>에너지</label> <input type="range" min="0" max="100" value="50" class="slider" step="10" list="ticks3">
+				<datalist id="ticks3">
+					<option value="0"></option>
+					<option value="50"></option>
+					<option value="100"></option>
+				</datalist>
+				<div class="percent-display">50%</div>
+			</div>
+		</div>
+
+		<button class="result-btn">결과 확인하기</button>
+
+		<!-- 결과 팝업 -->
+		<div class="result-popup" id="resultPopup">
+			<div class="slider-result-content">
+				<span class="close-btn" id="closePopup">&times;</span>
+				<h3>당신의 실험 결과는!</h3>
+				<img id="resultImage" src="" alt="결과 이미지" oncontextmenu="return false"/>
+				<p id="resultText">분석 중...</p>
+				<p id="resultSubText"></p>
+			</div>
+		</div>
+		
+		<div class="wave-container">
+			<svg class="wave-svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+				<path id="wavePath" class="wave-path-glow" fill="#4fb4ff" d="M0,160 C360,220 1080,100 1440,160 L1440,320 L0,320 Z">
+					<animate attributeName="d" dur="5s" repeatCount="indefinite"
+						values=" M0,160 C360,220 1080,100 1440,160 L1440,320 L0,320 Z;
+	          					M0,170 C300,110 1140,250 1440,160 L1440,320 L0,320 Z;
+	          					M0,160 C360,220 1080,100 1440,160 L1440,320 L0,320 Z" />
+	    		</path>
+	    	</svg>
+		</div>
+	</section>
+
+
+	<!-- 제출용 팝업 -->
+	<div class="form-popup" id="formPopup">
+	  <div class="form-popup-content">
+	    <span class="close-form-popup" id="closeFormPopup">&times;</span>
+	    <h3 id="formPopupTitle">잠시만요!</h3>
+	    <p id="formPopupMessage">내용을 모두 작성해 주세요.</p>
+	  </div>
+	</div>
+	<!-- 신청서 -->
+	<section id="form" class="form-section fade-up">
+		<h2 class="section-title">연구 보고서 작성</h2>
+		<div class="text-center">
+			<p class="coach-note" style="text-align:center;">연구 분류에 관한 질문의 답변을 작성해 주세요.</p>
+		</div>
+		
+		<form class="lab-form" id="research-form">
+			<h3 class="form-title">🧪 연구 보고서</h3>
+			<p class="form-subtitle">작성한 내용은 아래 '연구 결과 보고서'에서 확인할 수 있습니다<br>그리고 21일까지 작성한 보고서는 정리 후,<br>연구소에 게시될 예정입니다.</p>
+			<div class="form-row">
+				<label for="category">분류</label> <select id="category" name="category">
+					<option value="">-- 선택 --</option>
+					<option value="1">언제, 어떻게 처음 알게 되었나요?</option>
+					<option value="2">어떤 순간이 가장 강하게 기억에 남았나요?</option>
+					<option value="3">마음을 지속하게 되는 이유는 무엇인가요?</option>
+					<option value="4">어떤 존재인가요?</option>
+				</select>
+			</div>
+
+			<div class="form-row">
+				<label for="nickname">닉네임</label> <input type="text" id="nickname" name="nickname" maxlength="10" placeholder="최대 10자 이내">
+			</div>
+
+			<div class="form-row">
+				<label for="message">내용</label>
+				<textarea id="message" name="message" rows="4" placeholder="대상을 연구한 내용"></textarea>
+			</div>
+
+			<button type="submit" class="form-submit-btn">제출하기</button>
+		</form>
+	</section>
+
+
+	<!-- 연구 결과 보고서 -->
+	<section id="research-results" class="section fade-up">
+		<h2 class="section-title">연구 결과 보고서</h2>
+		<p class="section-subtitle">연구원들이 남긴 결과 보고서를 확인해 보세요.</p>
+
+		<div class="result-filter">
+			<button class="filter-btn active" data-filter="all">전체</button>
+			<button class="filter-btn" data-filter="1">언제, 어떻게 처음 알게 되었나요?</button>
+			<button class="filter-btn" data-filter="2">어떤 순간이 가장 강하게 기억에 남았나요?</button>
+			<button class="filter-btn" data-filter="3">마음을 지속하게 되는 이유는 무엇인가요?</button>
+			<button class="filter-btn" data-filter="4">어떤 존재인가요?</button>
+		</div>
+
+		<div class="result-scroll-wrapper">
+			<div id="resultLoading" class="result-loading">결과 보고서를 불러오는 중입니다...</div>
+			<div id="resultCards" class="result-cards"></div>
+		</div>
+	</section>
+
+
+	<footer id="footer">
+		<p>2025.07.23 - 27 | 서울 종로구 동숭4가길 2, 1층 청킹, 깨비사랑단(@Attention__JH)<br>Copyright Ⓒ AHNJEEHWANY</p>
+	</footer>
+
+	<script src="20250725_JS/script.js?"></script>
+	<div class="overlay" id="overlay"></div>
+</body>
+</html>
