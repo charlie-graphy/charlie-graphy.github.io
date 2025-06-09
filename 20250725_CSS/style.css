@@ -529,6 +529,8 @@ footer {
   align-items: center;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s;
+  overflow-wrap: break-word;
+  word-break: keep-all;
 }
 
 /* 앞면: 키치한 스타일 */
@@ -848,9 +850,10 @@ footer {
 }
 .form-subtitle {
   font-size: 13px;
-  font-family: 'SBAggroL', 'Pretendard', sans-serif;
   color: #555;
   margin-bottom: 30px;
+  overflow-wrap: break-word;
+  word-break: keep-all;
 }
 
 .form-row {
@@ -1053,12 +1056,13 @@ textarea {
 .result-content {
   position: relative;
   background-color: white;
-  padding: 20px;
-  line-height: 1.5;
+  padding: 17px;
+  line-height: 1.3;
   color: #333;
   border-radius: 12px;
   overflow-wrap: break-word;
   word-break: keep-all;
+  font-size: 0.93m
 }
 
 /* 배너 */
@@ -1131,9 +1135,9 @@ textarea {
   background-color: var(--sky-dark); 
 }
 
-button, #footer, .cta-button, .info-line, #resultSubText, .result-content, #formPopupMessage, .coach-card p, .coach-card strong {
+.form-subtitle, button, #footer, .cta-button, .info-line, #resultSubText, .result-content, #formPopupMessage, .coach-card p, .coach-card strong, .flip-back p {
 	font-family: 'SBAggroL', 'Pretendard', sans-serif;
 }
-.side-menu, .section-subtitle, .result-nickname, .coach-note, .result-category, .filter-btn, .form-row label, .info-line .label {
+.side-menu, .section-subtitle, .result-nickname, .coach-note, .result-category, .filter-btn, .form-row label, .info-line .label, .flip-back strong {
 	font-family: 'SBAggroM', 'Pretendard', sans-serif;
 }

@@ -178,7 +178,7 @@ $(document).ready(function () {
 				, $divName = $('<div>',{'class':'result-nickname','text':card.nickname})
 				, $divCont = $('<div>',{'class':'result-content','text':card.content});
 			
-			$container.append($divBig.append($divCate, $divName, $divCont));
+			$container.prepend($divBig.append($divCate, $divName, $divCont));
 		});
 	}
 	
