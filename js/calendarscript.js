@@ -1247,28 +1247,28 @@
 				},
 				{
 					title: '미러',
-					description: '<p class="event">첫 공연</p>첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
+					description: '<p class="event">첫 공연 & WEDDING PHOTO DAY</p>첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
 					start: '2025-06-26 20:00',
 					className: 'bg-gray',
 					allDay: false
 				},
 				{
 					title: '등등곡',
-					description: '<p class="event">첫 공연(프리뷰) + 길삼봉 원형 부채 증정</p>김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
+					description: '<p class="event">첫 공연(프리뷰) & 길삼봉 원형 부채 증정</p>김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
 					start: '2025-06-27 20:00',
 					className: 'bg-red',
 					allDay: false
 				},
 				{
 					title: '미러',
-					description: '첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 안창용',
+					description: '<p class="event">프리뷰 & WEDDING PHOTO DAY</p>첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 안창용',
 					start: '2025-06-28 15:00',
 					className: 'bg-gray',
 					allDay: false
 				},
 				{
 					title: '미러',
-					description: '첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
+					description: '<p class="event">프리뷰 & WEDDING PHOTO DAY</p>첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
 					start: '2025-06-28 19:00',
 					className: 'bg-gray',
 					allDay: false
@@ -1282,28 +1282,28 @@
 				},
 				{
 					title: '등등곡',
-					description: '<p class="event">등등회 캐릭터 엽서 5종 증정 + 커튼콜 데이</p>김영운 役 | 안재영<br>최윤 役 | 김재범<br>초 役 | 강찬<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
+					description: '<p class="event">등등회 캐릭터 엽서 5종 증정 & 커튼콜 데이</p>김영운 役 | 안재영<br>최윤 役 | 김재범<br>초 役 | 강찬<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
 					start: '2025-07-03 20:00',
 					className: 'bg-red',
 					allDay: false
 				},
 				{
 					title: '미러',
-					description: '첼릭 役 | 김재범<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 김세환',
+					description: '<p class="event">WELCOME GIFT 증정</p>첼릭 役 | 김재범<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 김세환',
 					start: '2025-07-04 20:00',
 					className: 'bg-gray',
 					allDay: false
 				},
 				{
 					title: '미러',
-					description: '첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 김세환',
+					description: '<p class="event">WELCOME GIFT 증정</p>첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 김세환',
 					start: '2025-07-05 15:00',
 					className: 'bg-gray',
 					allDay: false
 				},
 				{
 					title: '미러',
-					description: '첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 김세환',
+					description: '<p class="event">WELCOME GIFT 증정</p>첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 김세환',
 					start: '2025-07-05 19:00',
 					className: 'bg-gray',
 					allDay: false
@@ -1317,7 +1317,7 @@
 				},
 				{
 					title: '미러',
-					description: '첼릭 役 | 김재범<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 김세환',
+					description: '<p class="event">더블 적립</p>첼릭 役 | 김재범<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 김세환',
 					start: '2025-07-10 20:00',
 					className: 'bg-gray',
 					allDay: false
@@ -1331,14 +1331,14 @@
 				},
 				{
 					title: '미러',
-					description: '첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
+					description: '<p class="event">더블 적립</p>첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
 					start: '2025-07-12 19:00',
 					className: 'bg-gray',
 					allDay: false
 				},
 				{
 					title: '미러',
-					description: '첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 안창용',
+					description: '<p class="event">더블 적립</p>첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 안창용',
 					start: '2025-07-13 18:00',
 					className: 'bg-gray',
 					allDay: false
@@ -1348,6 +1348,20 @@
 					description: '김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
 					start: '2025-07-15 20:00',
 					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '<p class="event">SPECIAL 하객 맞이</p>첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 김세환',
+					start: '2025-07-16 16:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '<p class="event">SPECIAL 하객 맞이</p>첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 김세환',
+					start: '2025-07-16 20:00',
+					className: 'bg-gray',
 					allDay: false
 				},
 				{
@@ -1366,28 +1380,14 @@
 				},
 				{
 					title: '미러',
-					description: '첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 김세환',
-					start: '2025-07-16 16:00',
-					className: 'bg-gray',
-					allDay: false
-				},
-				{
-					title: '미러',
-					description: '첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 김세환',
-					start: '2025-07-16 20:00',
-					className: 'bg-gray',
-					allDay: false
-				},
-				{
-					title: '미러',
-					description: '첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
+					description: '<p class="event">WEDDING INVITATION 증정</p>첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
 					start: '2025-07-23 16:00',
 					className: 'bg-gray',
 					allDay: false
 				},
 				{
 					title: '미러',
-					description: '첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 안창용',
+					description: '<p class="event">WEDDING INVITATION 증정</p>첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 안창용',
 					start: '2025-07-23 20:00',
 					className: 'bg-gray',
 					allDay: false
@@ -1415,28 +1415,28 @@
 				},
 				{
 					title: '미러',
-					description: '첼릭 役 | 김재범<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
+					description: '<p class="event">WEDDING INVITATION 증정</p>첼릭 役 | 김재범<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
 					start: '2025-07-27 18:00',
 					className: 'bg-gray',
 					allDay: false
 				},
 				{
 					title: '미러',
-					description: '첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 김세환',
+					description: '<p class="event">SPECIAL VIDEO OPEN</p>첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 김세환',
 					start: '2025-07-29 20:00',
 					className: 'bg-gray',
 					allDay: false
 				},
 				{
 					title: '미러',
-					description: '첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 김세환',
+					description: '<p class="event">SPECIAL VIDEO OPEN</p>첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 김세환',
 					start: '2025-07-31 20:00',
 					className: 'bg-gray',
 					allDay: false
 				},
 				{
 					title: '미러',
-					description: '첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 김세환',
+					description: '<p class="event">SPECIAL VIDEO OPEN</p>첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 김세환',
 					start: '2025-08-02 15:00',
 					className: 'bg-gray',
 					allDay: false
