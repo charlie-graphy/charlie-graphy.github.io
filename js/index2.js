@@ -1,9 +1,22 @@
 $(window).on("load", function() {
 	//if(new Date().getMonth() >= 6 && new Date().getDate() >= 25){
+		$('.loader #newLoad').remove();
 	   	$(".loader").fadeOut(500, function() {
 	   		$(".main-content").addClass("show");
 	   	});
 	//}
+	
+
+	   	let targetWindow = $("#templete").clone();
+        targetWindow.css({'width':'282px','height':'282px'});
+        $(".main-content").append(targetWindow);
+        
+        targetWindow.attr("data-id", "banner");
+        targetWindow.find(".title-bar span").text("😈 깨비 연구소 ~ 7/28");
+        targetWindow.find(".content iframe").remove();
+        targetWindow.find(".content").append($('<img>',{'src':'https://blog.kakaocdn.net/dn/dP1Bk6/btsOFsNGJi9/mKyGfA0bNRZ87tDzNKBMv0/img.png'}));
+        
+        //targetWindow.fadeIn().css({top: '150px', left: "3%"});
 });
 
 var size = 5;
