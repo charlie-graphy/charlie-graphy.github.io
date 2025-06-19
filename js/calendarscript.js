@@ -1324,7 +1324,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박선영<br>이경신 役 | 김준식',
+					description: '<p class="event">미공개 캐릭터 스티커 증정</p>김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박선영<br>이경신 役 | 김준식',
 					start: '2025-07-11 20:00',
 					className: 'bg-red',
 					allDay: false
@@ -1345,7 +1345,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
+					description: '<p class="event">더블 적립</p>김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
 					start: '2025-07-15 20:00',
 					className: 'bg-red',
 					allDay: false
@@ -1366,7 +1366,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
+					description: '<p class="event">더블 적립</p>김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
 					start: '2025-07-17 20:00',
 					className: 'bg-red',
 					allDay: false
@@ -1394,15 +1394,8 @@
 				},
 				{
 					title: '등등곡',
-					description: '<p class="event">전관</p>김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 정서안<br>이경신 役 | 김준식',
+					description: '<p class="event">전관 & 커튼콜 데이</p>김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 정서안<br>이경신 役 | 김준식',
 					start: '2025-07-24 20:00',
-					className: 'bg-red',
-					allDay: false
-				},
-				{
-					title: '등등곡',
-					description: '김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 정서안<br>이경신 役 | 김준식',
-					start: '2025-07-26 15:00',
 					className: 'bg-red',
 					allDay: false
 				},
@@ -1411,6 +1404,13 @@
 					description: '안지환 배우님 생일🥳',
 					start: '2025-07-25',
 					className: 'bg-white',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '<p class="event">커튼콜 데이</p>김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 정서안<br>이경신 役 | 김준식',
+					start: '2025-07-26 15:00',
+					className: 'bg-red',
 					allDay: false
 				},
 				{
