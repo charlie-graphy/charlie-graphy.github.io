@@ -1098,18 +1098,6 @@ textarea {
   text-align: center;
 }
 
-/* 타이틀 및 서브타이틀 */
-#research-results .section-title {
-  font-size: 2rem;
-  color: var(--black);
-  margin-bottom: 10px;
-}
-#research-results .section-subtitle {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 30px;
-}
-
 /* 필터 버튼 스타일 */
 .result-filter {
   display: flex;
@@ -1117,6 +1105,7 @@ textarea {
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 24px;
+  margin-top: 40px;
 }
 .filter-btn {
   padding: 8px 16px;
@@ -1263,9 +1252,166 @@ textarea {
   background-color: var(--sky-dark); 
 }
 
-.form-subtitle, button, #footer, .cta-button, .info-line, #resultSubText, .result-content, #formPopupMessage, .coach-card p, .coach-card strong, .flip-back p {
+/* 연구 일지 섹션 전용 카드 디자인 */
+#research-log {
+  background: linear-gradient(180deg, #f7fbff 0%, #e1f0ff 100%);
+}
+.log-cards-mask {
+  max-width: 900px;
+  margin: 40px auto;
+  overflow: hidden;
+  position: relative;
+  transition: max-height 0.6s ease;
+}
+
+.log-cards-mask.log-collapsed {
+  max-height: 500px; /* 카드 2.5개 정도 높이 */
+}
+
+.log-cards-mask.log-collapsed::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(to top, #f7fbff, transparent);
+  pointer-events: none;
+}
+
+/* 카드 그리드 */
+.log-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* 카드 디자인 */
+.log-card {
+  background: #fff;
+  border: 1px solid #a0d8ff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 rgba(160, 216, 255, 0.3);
+  transition: transform 0.2s ease;
+}
+.log-card:hover {
+  transform: translateY(-4px);
+}
+
+.log-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 12px;
+}
+.log-number {
+  color: #0077b6;
+}
+.log-author {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+.log-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #222;
+  line-height: 1.5;
+}
+
+.log-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0;
+  border-bottom: 1px dashed #e0f1ff;
+}
+
+.log-text {
+  font-weight: 500;
+  color: #333;
+}
+
+.log-percent {
+  color: #0077b6;
+  font-weight: bold;
+}
+
+
+/* 얌전한 pill 형태 텍스트 버튼 */
+.log-toggle-pill {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #2251a4;
+  background-color: #eef6ff;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  font-family: 'SBAggroM', 'Pretendard', sans-serif;
+}
+.log-toggle-pill:hover {
+  background-color: #d3ebff;
+  color: #1c318e;
+}
+
+/* 연구 일지 팝업 */
+.log-popup {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+}
+
+.log-popup-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 360px;
+  background: #fff;
+  border: 2px dashed #a0d8ff;
+  border-radius: 18px;
+  padding: 28px 22px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  animation: popupFadeIn 0.4s ease;
+}
+.log-popup-content h3 {
+  font-size: 1.2rem;
+  color: #0077b6;
+  margin-bottom: 12px;
+}
+.log-popup-content p {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+.close-log-popup {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.4rem;
+  color: #999;
+  cursor: pointer;
+}
+.close-log-popup:hover {
+  color: #333;
+}
+
+
+.form-subtitle, button, #footer, .cta-button, .info-line, #resultSubText, .result-content, #formPopupMessage, .coach-card p, .coach-card strong, .flip-back p, .log-content, .log-popup-content {
 	font-family: 'SBAggroL', 'Pretendard', sans-serif;
 }
-.side-menu, .section-subtitle, .result-nickname, .coach-note, .result-category, .filter-btn, .form-row label, .info-line .label, .flip-back strong {
+.side-menu, .section-subtitle, .result-nickname, .coach-note, .result-category, .filter-btn, .form-row label, .info-line .label, .flip-back strong, .log-card {
 	font-family: 'SBAggroM', 'Pretendard', sans-serif;
 }

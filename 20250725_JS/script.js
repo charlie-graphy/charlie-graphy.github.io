@@ -266,6 +266,29 @@ $(document).ready(function () {
 		showFormPopup("제출 중입니다...", "잠시만 기다려 주세요.");
 		sendMessage(researchData);
 	});
+	
+	// 연구 일지 전체보기/접기 텍스트 클릭 이벤트
+	$('#toggleLog').on('click', function () {
+		const isCollapsed = $('#logWrapper').toggleClass('log-collapsed').hasClass('log-collapsed');
+		$(this).text(isCollapsed ? '전체보기 ▾' : '접기 ▴');
+	});
+
+	// log-author 클릭 시 팝업 띄우기
+	$('.log-author').on('click', function () {
+	  const $card = $(this).closest('.log-card');
+	  const author = $(this).text().trim();
+	  const content = $card.find('.log-content').text().trim();
+
+	  $('#logPopupTitle').text(author + '의 연구 일지');
+	  $('#logPopupContent').text("안알랴쥼");
+	  $('#logPopup').fadeIn();
+	});
+
+	// 팝업 닫기
+	$('#closeLogPopup').on('click', function () {
+	  $('#logPopup').fadeOut();
+	});
+
 });
 
 $.fn.serializeObject = function() {

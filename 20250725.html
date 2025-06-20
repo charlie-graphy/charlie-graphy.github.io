@@ -174,8 +174,7 @@
 	<section id="test" class="event-section fade-up">
 		<h2 class="section-title">실험하기</h2>
 		<div class="text-center">
-			<p class="coach-note" style="text-align: center;">3가지 요소를 조합해 결과를
-				확인해 주세요.</p>
+			<p class="coach-note" style="text-align: center;">3가지 요소를 조합해 결과를 확인해 주세요.</p>
 		</div>
 
 		<div class="slider-wrap">
@@ -253,7 +252,7 @@
 		
 		<form class="lab-form" id="research-form">
 			<h3 class="form-title">🧪 연구 보고서</h3>
-			<p class="form-subtitle">작성한 내용은 아래 '연구 결과 보고서'에서 확인할 수 있습니다<br>그리고 21일까지 작성한 보고서는 정리 후,<br>연구소에 게시될 예정입니다.</p>
+			<p class="form-subtitle">작성한 내용은 아래 '연구 결과 보고서'에서 확인할 수 있습니다<br>그리고 13일까지 작성한 보고서는 정리 후,<br>연구소에 게시될 예정입니다.</p>
 			<div class="form-row">
 				<label for="category">분류</label> <select id="category" name="category">
 					<option value="">-- 선택 --</option>
@@ -281,7 +280,9 @@
 	<!-- 연구 결과 보고서 -->
 	<section id="research-results" class="section fade-up">
 		<h2 class="section-title">연구 결과 보고서</h2>
-		<p class="section-subtitle">연구원들이 남긴 결과 보고서를 확인해 보세요.</p>
+		<div class="text-center">
+			<p class="coach-note" style="text-align: center;">연구원들이 남긴 결과 보고서를 확인해 보세요.</p>
+		</div>
 
 		<div class="result-filter">
 			<button class="filter-btn active" data-filter="all">전체</button>
@@ -296,6 +297,51 @@
 			<div id="resultCards" class="result-cards"></div>
 		</div>
 	</section>
+
+	<!-- 연구 일지 -->
+	<!-- <section id="research-log" class="section fade-up">
+		<h2 class="section-title">연구 일지</h2>
+		<div class="text-center">
+			<p class="coach-note" style="text-align: center;">기록으로 남긴 연구소의 하루를 소개합니다.</p>
+		</div>
+
+		<div class="log-cards-mask log-collapsed" id="logWrapper">
+			<div class="log-grid" id="logCards">
+				<div class="log-card">
+					<div class="log-meta">
+						<span class="log-number">가장 좋아하는 헤어는?</span><span data-idx="1" class="log-author">상세 보기</span>
+					</div>
+					<div class="log-content">
+						<div class="log-line">
+							<span class="log-text">- 좋아서</span><span class="log-percent">30%</span>
+						</div>
+						<div class="log-line">
+							<span class="log-text">- 이뻐서</span><span class="log-percent">20%</span>
+						</div>
+						<div class="log-line">
+							<span class="log-text">- 말투가 귀여워서</span><span class="log-percent">25%</span>
+						</div>
+						<div class="log-line">
+							<span class="log-text">- 그냥 좋아서</span><span class="log-percent">25%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="log-toggle-wrap">
+			<span id="toggleLog" class="log-toggle-pill">전체보기 ▾</span
+		</div>
+	</section> -->
+
+	<!-- 연구 일지 상세 팝업 -->
+	<!-- <div class="log-popup" id="logPopup">
+		<div class="log-popup-content">
+			<span class="close-log-popup" id="closeLogPopup">&times;</span>
+			<h3 id="logPopupTitle">작성자</h3>
+			<p id="logPopupContent">내용이 여기에 표시됩니다.</p>
+		</div>
+	</div>  -->
+
 
 
 	<footer id="footer">
