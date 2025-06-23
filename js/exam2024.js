@@ -19,10 +19,6 @@ $(window).on('resize orientationchange', function() {
 	}
 });
 
-$(window).on('beforeunload', function() {
-    disconnect();
-});
-
 $(document).ready(function(){
 	$(window).trigger('resize');
 	$(window).scrollTop(0);
@@ -152,7 +148,6 @@ $(document).ready(function(){
 		    $("article.intro").fadeIn();
 			$('#msgIcon').removeClass('bi-envelope-open-heart');
 			$('#msgIcon').addClass('bi-envelope-heart');
-			disconnect();
         });
 	});
 	
@@ -183,7 +178,6 @@ $(document).ready(function(){
 			if(progress == questionCont[group].length) resultData();
 			else showIngData(progress);
 		},300);
-		setTimeout(() => { disconnect(); },1000);
 	});
 
 	//페이스북 공유
