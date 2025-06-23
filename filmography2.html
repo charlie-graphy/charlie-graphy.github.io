@@ -962,7 +962,7 @@ $(document).ready(function() {
     });
 
     $(".filmo-list").on("click",".filmoImg.y", function(e){
-        const idx = $(this).data('idx');
+        const idx = $(this).attr('data-idx');
         const type = $(this).attr('data-type');
         
         if(type == 'poster'){
