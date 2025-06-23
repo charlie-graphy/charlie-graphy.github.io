@@ -7,7 +7,6 @@ let group = 0,
 	imgQ = [];
 const urlParams = new URL(location.href).searchParams;
 loadScript("js/exam2024_msg.js");
-loadScript("js/exam2024_data.js");
 
 $(window).on('resize orientationchange', function() {
 	if(!$('.ready').is(':hidden') || !$('.ing').is(':hidden')){
@@ -88,11 +87,16 @@ $(document).ready(function(){
 	});
 	//메시지
 	$('#msgIcon').on('click', function(){
-		//const nowTime = new Date().getMonth()+1+('0' + new Date().getDate()).slice(-2)+new Date().getHours()+new Date().getMinutes();
 		$('.msgCont').empty();
 		$('#msgIcon').addClass('bi-envelope-open-heart');
 		$('#msgIcon').removeClass('bi-envelope-heart');
-		readMessage();
+		
+		for(var i = 0 ; i < messageCont.length ; i++){
+			const $tape = $('<div>',{'class':'tape','text':''});
+			const $cont = $('<div>',{'class':'msg','data-dt':messageCont[i][1]}).append($('<p>'+messageCont[i][0]+'</p>'));
+			$('.msgCont').append($('<div>',{'class':'postit slide-in'}).append($tape, $cont));
+		}
+		
 		$("article.intro").fadeOut("last", function(){
 	    	$(window).scrollTop(0);
 		    $("article.message").fadeIn();
