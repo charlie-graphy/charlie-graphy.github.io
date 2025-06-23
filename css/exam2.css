@@ -103,7 +103,7 @@ article.intro, article.result {
 	font-family: 'NeoDunggeunmoPro-Regular', 'DNFBitBitv2';
     font-size: 16px;
     text-align: center;
-	width: 80%;
+	width: 70%;
 	height: 50px;
 	margin: 15px 20px 0 20px;
 	border: 0;
@@ -115,6 +115,9 @@ article.intro, article.result {
 }
 .intro input.name::placeholder {
     text-align: center;
+}
+.inputCont button.start{
+	width: 70%;
 }
 button:not(.menu-toggle) {
 	font-family: 'NeoDunggeunmoPro-Regular', 'DNFBitBitv2';
