@@ -1408,8 +1408,238 @@ textarea {
   color: #333;
 }
 
+/* 비커 그리드 */
+.beaker-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
 
-.form-subtitle, button, #footer, .cta-button, .info-line, #resultSubText, .result-content, #formPopupMessage, .coach-card p, .coach-card strong, .flip-back p, .log-content, .log-popup-content {
+/* 비커 카드 */
+.beaker-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* ✅ 가운데 정렬 */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  width: 90px; /* ✅ 비커 넓이와 동일하게 */
+}
+.beaker-card:hover {
+  transform: translateY(-5px);
+}
+
+/* 비커 본체 */
+.beaker.final {
+  position: relative;
+  width: 80px;
+  height: 100px;
+  border: 1px solid rgba(180, 180, 180, 0.4); 
+  border-top-color: transparent; 
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+  animation: beakerFloat 3s ease-in-out infinite;
+}
+
+/* 물 찰랑 */
+.beaker-water {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, #4fc3f7, #b3e5fc);
+  z-index: 1;
+  animation: waveWiggle 2.8s ease-in-out infinite;
+  backdrop-filter: blur(0.5px); /* 살짝 번짐 효과 주면 더 물 같음 */
+}
+@keyframes beakerFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes waveWiggle {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(1.05); }
+}
+/* 수위 */
+.water-30 { height: 30%; }
+.water-60 { height: 60%; }
+.water-90 { height: 90%; }
+
+/* 유광 반사 */
+.beaker-gloss {
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  width: 12px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: rotate(-10deg);
+  z-index: 3;
+}
+
+/* 눈금 표시 */
+.beaker-marks {
+  position: absolute;
+  left: 6px;
+  top: 10px;
+  width: 10px;
+  height: 100%;
+  z-index: 2;
+}
+.beaker-marks::before,
+.beaker-marks::after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 1px;
+  background: #99cde9;
+  margin: 20px 0;
+}
+.beaker-marks::after {
+  margin-top: 20px;
+}
+.beaker-marks span {
+  display: block;
+  width: 10px;
+  height: 1px;
+  background: #99cde9;
+  margin: 16px 0;
+}
+
+.beaker-label {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: #1c318e;
+  font-weight: 600;
+}
+/* 색상별 비커 */
+/* 연분홍 */
+.color-pink .beaker-water {
+  background: linear-gradient(to top, rgba(244, 143, 177, 0.85), rgba(252, 228, 236, 0.7));
+}
+
+/* 연노랑 */
+.color-yellow .beaker-water {
+  background: linear-gradient(to top, rgba(255, 241, 118, 0.8), rgba(255, 253, 200, 0.6));
+}
+
+/* 하늘색 */
+.color-sky .beaker-water {
+  background: linear-gradient(to top, rgba(135, 206, 250, 0.7), rgba(224, 247, 255, 0.5));
+}
+
+.beaker-heart {
+  position: absolute;
+  bottom: 40%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.6);
+  font-size: 1.4rem;
+  animation: heartPop 0.8s ease forwards;
+  pointer-events: none;
+  z-index: 5;
+}
+
+@keyframes heartPop {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0) scale(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-20px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-40px) scale(1.2);
+  }
+}
+
+
+/* 팝업 */
+#beakerPopup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.beaker-popup {
+  background: #fff;
+  width: 90%;
+  max-width: 540px;
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+#beakerPopupTitle {
+  font-size: 1.3rem;
+  padding: 18px 22px 12px;
+  background: #f4f5f7;
+  border-bottom: 1px solid #eee;
+}
+
+#beakerPopupBody {
+  padding: 20px 18px;
+  overflow-y: auto;
+  background: #fff;
+  color: #2b2b2b;
+}
+
+#beakerPopupBody .log-entry {
+  background: #f9fbfd;
+  border-left: 4px solid #a4c8f0;
+  padding: 10px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  transition: background 0.3s ease;
+}
+
+#beakerPopupBody .log-entry:hover {
+  background: #f0f7ff;
+}
+/* 내용 문장 */
+#beakerPopupBody .log-summary {
+  font-size: 0.96rem;
+  line-height: 1.75;
+  margin: 0;
+  color: #444;
+  position: relative;
+}
+
+#beakerPopupBody .log-summary::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.95rem;
+  color: #7aaadf;
+}
+
+
+.popup-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 22px;
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+}
+
+
+.form-subtitle, button, #footer, .cta-button, .info-line, #resultSubText, .result-content, #formPopupMessage, .coach-card p, .coach-card strong, .flip-back p, .log-content, .log-popup-content, #beakerPopupBody {
 	font-family: 'SBAggroL', 'Pretendard', sans-serif;
 }
 .side-menu, .section-subtitle, .result-nickname, .coach-note, .result-category, .filter-btn, .form-row label, .info-line .label, .flip-back strong, .log-card {

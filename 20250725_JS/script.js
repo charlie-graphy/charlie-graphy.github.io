@@ -289,7 +289,67 @@ $(document).ready(function () {
 	  $('#logPopup').fadeOut();
 	});
 
+	const beakerData = [
+		  {
+		    title: "노래",
+		    body: "우연히 마주쳤을 때,\n마음이 스르륵 흘러들었다.\n낯섦보다 친근함이 먼저였다.",
+		  },
+		  {
+		    title: "연기",
+		    body: "함께 웃고, 걷고, 듣고,\n그 시간들이 쌓여\n찰랑이는 마음이 되었다.",
+		  },
+		  {
+		    title: "에너지",
+		    body: "이제는 설명할 수 없는 무언가로\n가득 차 있다.\n그저 좋아서, 그 이상이라서.",
+		  },
+		];
+
+		$('.beaker-card').on('click', function () {
+			const title = $(this).data('title')+' 비커';
+		    const logs = [
+		      '연구소 종료 후 공개 예정입니다.'
+		    ];
+		    
+		    // 💖 하트 애니메이션
+		    const $beaker = $(this).find('.beaker');
+		    const $heart = $('<div class="beaker-heart">💖</div>');
+		    $beaker.append($heart);
+		    setTimeout(() => $heart.remove(), 1000);
+		    openBeakerPopup(title, logs);
+		});
+
+		$('#beakerPopup .popup-close').on('click', function () {
+		    $('#beakerPopup').fadeOut(200);
+		  });
+
+		
 });
+//비커 팝업 열기 함수
+function openBeakerPopup(title, items) {
+	$('#beakerPopupTitle').text(title);
+	let bdLeft = "4px solid #";
+	
+	if(title == "노래 비커"){
+		bdLeft +='a0e9ff';
+	}else if(title == "연기 비커"){
+		bdLeft +='ffc6ff';
+	}else if(title == "에너지 비커"){
+		bdLeft +='ffeaa7';
+	}
+	
+	const $body = $('#beakerPopupBody');
+	$body.empty(); // 기존 내용 제거
+	
+	$.each(items, function(index, item) {
+		const $entry = $('<div class="log-entry"></div>');
+		const $summary = $('<p class="log-summary"></p>').text(item);
+		
+		$entry.append($summary).css("border-left",bdLeft);
+		$body.append($entry);
+	});
+	
+	$('#beakerPopup').fadeIn(300); // 팝업 보이기
+}
 
 $.fn.serializeObject = function() {
 	  "use strict"
