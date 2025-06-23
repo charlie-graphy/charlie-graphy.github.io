@@ -8,15 +8,19 @@ $(window).on("load", function() {
 	
 
 	   	let targetWindow = $("#templete").clone();
-        targetWindow.css({'width':'282px','height':'282px'});
+        targetWindow.css({'width':'200px','height':'182px'});
         $(".main-content").append(targetWindow);
         
         targetWindow.attr("data-id", "banner");
-        targetWindow.find(".title-bar span").text("😈 깨비 연구소 ~ 7/28");
+        targetWindow.find(".title-bar span").text("😈 깨비 연구소");
         targetWindow.find(".content iframe").remove();
-        targetWindow.find(".content").append($('<img>',{'src':'https://blog.kakaocdn.net/dn/dP1Bk6/btsOFsNGJi9/mKyGfA0bNRZ87tDzNKBMv0/img.png'}));
+        targetWindow.find(".content").append($('<img>',{'class':'banner','src':'','alt':'배너'}));
         
-        //targetWindow.fadeIn().css({top: '150px', left: "3%"});
+        targetWindow.fadeIn().css({top: '150px', left: "1%"});
+        
+        $(".main-content img.banner").click(function(e){
+        	window.location = "https://www.jeehwany.com/20250725";
+        });
 });
 
 var size = 5;
