@@ -3,7 +3,6 @@
   --sky-dark: #2a6ebb;    /* 더 진한 하늘색 for 강조용 */
   --lemon: #fff9b2;
   --text: #333;
-  --bg: #f6fbff;
 }
 
 @font-face {
@@ -32,12 +31,15 @@
 }
 body {
   font-family: 'SBAggroB', 'Pretendard', sans-serif;
-  background-color: var(--bg);
+  background-color: #f6fbff;
   color: var(--text);
   overflow-x: hidden;
 }
 img{
 	-webkit-touch-callout:none;
+	user-drag: none; /* Safari */
+	-webkit-user-drag: none; /* Chrome, Edge 등 */
+	pointer-events: none; /* 마우스 이벤트도 막을 경우 */
 }
 .overlay {
   position: fixed;
@@ -440,11 +442,11 @@ footer {
   margin-bottom: 10px;
 }
 .coach-card p {
-	font-size: 0.8rem;
+	font-size: 0.75rem;
 	line-heihgt: 1.2rem;
 }
 .coach-card strong {
-	font-size: 1rem;
+	font-size: 0.95rem;
 }
 /* 중앙 정렬 원할 경우 */
 .text-center {
@@ -1150,6 +1152,10 @@ textarea {
   flex-shrink: 0;
   margin: 0 10px;
   box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+  max-height: 390px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .result-card:hover {
   transform: translateY(-5px);
@@ -1179,7 +1185,9 @@ textarea {
   border-radius: 12px;
   overflow-wrap: break-word;
   word-break: keep-all;
-  font-size: 0.93em
+  font-size: 0.93em;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 /* 배너 */
