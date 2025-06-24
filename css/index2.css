@@ -41,6 +41,9 @@ html, body {
 
 img{
 	-webkit-touch-callout:none;
+	user-drag: none; /* Safari */
+	-webkit-user-drag: none; /* Chrome, Edge 등 */
+	pointer-events: none; /* 마우스 이벤트도 막을 경우 */
 }
 
 a {
