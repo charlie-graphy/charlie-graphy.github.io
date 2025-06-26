@@ -57,7 +57,7 @@ $(document).ready(function () {
 	// 결과 팝업
 	const resultImageList = [
 		'https://blog.kakaocdn.net/dna/dWYieR/btsOPmACwB5/AAAAAAAAAAAAAAAAAAAAAOgUNsM5X5fYZjOhY18YjOgh8ILVa_NDjuQCTq0fvh52/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=hYBW7oOSb1G8DjrZyq5p09JpkFI%3D',
-		'https://blog.kakaocdn.net/dna/8qUxl/btsOQKtrmjX/AAAAAAAAAAAAAAAAAAAAALOXfnnzh4687Wk1baGQOdU5TyMes4wjHZvAygvg0J_s/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=J4Vp%2FalGvoEaMU5tZbLc8qKbJqg%3D',
+		'https://blog.kakaocdn.net/dna/wHA73/btsOSRmIavB/AAAAAAAAAAAAAAAAAAAAABKemY90pbV42vDU4ESRbYxXMUq512MSU3vlBQM1YW9I/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=tv%2FP6PbO2lxQXDwxqWfQ4zjTtvY%3D',
 		'https://blog.kakaocdn.net/dna/9FQQE/btsOQgTBDa2/AAAAAAAAAAAAAAAAAAAAAG3wq-8fW59BXrLggkw1iDuiuLwaArAGYI_TJ1eJZ_B0/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=H7vIUcUQbzzV1YuPno4Sn1CeQwI%3D',
 		'https://blog.kakaocdn.net/dna/GnNB6/btsOOoeufsj/AAAAAAAAAAAAAAAAAAAAAALoxeVfof6aMet0YqaE45hRJMKH4UfGooW2VpglKcS-/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=IYHN%2F0gowNTS53JmjR8IgDoOPUc%3D',
 		'https://blog.kakaocdn.net/dna/dRDfAP/btsOQTKnVO1/AAAAAAAAAAAAAAAAAAAAAMaY6XaIxbwpZOKtLVDxFgx__NwtWg-MU7GkXiGqPFQC/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=JPGBAP0rXvs5B%2BYvrTKXJvR6lak%3D',
