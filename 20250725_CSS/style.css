@@ -674,7 +674,7 @@ footer {
 .cute-back p::after {
   content: "💫😈";
   top: auto;
-  bottom: -10px;
+  bottom: -20px;
   right: 10px;
   left: auto;
   animation-delay: 0.8s;
