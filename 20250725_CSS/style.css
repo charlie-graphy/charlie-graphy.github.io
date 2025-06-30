@@ -301,7 +301,7 @@ footer {
 
 .cta-button:hover, .result-btn:hover, .form-submit-btn:hover {	
   color: #fff;
-  background-color: var(--sky-dark);
+  background-color: #4fb4ff;
   transform: translateY(-2px);
 }
 
@@ -846,7 +846,7 @@ footer {
   margin-top: 15px;
   padding: 12px 28px;
   font-size: 1rem;
-  background: #4fb4ff;
+  background: #68beff;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -1029,7 +1029,7 @@ textarea {
   width: 100%;
   padding: 12px 28px;
   font-size: 1rem;
-  background-color: #4fb4ff;
+  background-color: #68beff;
   color: #fff;
   border: none;
   border-radius: 6px;

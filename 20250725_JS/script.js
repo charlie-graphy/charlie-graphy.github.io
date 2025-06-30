@@ -10,6 +10,7 @@ const firebaseConfig = {
 	  };
 const app = firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
+let isConnected = false;
 let messageRef = null;
 
 $(document).ready(function () {
@@ -131,7 +132,11 @@ $(document).ready(function () {
 	const resultCards = [];
 	
 	function readMessage(){
-		firebase.database().goOnline();
+		if(!isConnected) {
+			firebase.database().goOnline();
+			isConnected = true;
+		}
+		
 		if(messageRef) messageRef.off(); // 이전 리스너 해제
 		messageRef = database.ref('research'); // 새로운 리스너 추가
 
@@ -382,4 +387,7 @@ function showFormPopup(title, message) {
 $('#closeFormPopup').on('click', function () {
 	$('#formPopup').fadeOut();
 	if($('#formPopupTitle').text() == '제출 완료!') location.reload();
+});
+$(window).on('beforeunload', function(){
+	firebase.database().goOffline();
 });
