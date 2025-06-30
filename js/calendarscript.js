@@ -1428,6 +1428,13 @@
 					allDay: false
 				},
 				{
+					title: '등등곡',
+					description: '김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박선영<br>이경신 役 | 김준식',
+					start: '2025-07-30 16:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
 					title: '미러',
 					description: '<p class="event">SPECIAL VIDEO OPEN</p>첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 김세환',
 					start: '2025-07-31 20:00',
@@ -1435,10 +1442,87 @@
 					allDay: false
 				},
 				{
+					title: '등등곡',
+					description: '김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박선영<br>이경신 役 | 임태현',
+					start: '2025-08-01 20:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
 					title: '미러',
 					description: '<p class="event">SPECIAL VIDEO OPEN</p>첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 김세환',
 					start: '2025-08-02 15:00',
 					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
+					start: '2025-08-03 14:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
+					start: '2025-08-06 16:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 정서안<br>이경신 役 | 김준식',
+					start: '2025-08-08 20:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 정서안<br>이경신 役 | 김준식',
+					start: '2025-08-10 18:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 정서안<br>이경신 役 | 임태현',
+					start: '2025-08-15 14:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 김준식',
+					start: '2025-08-15 18:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박주혁<br>이경신 役 | 황두현',
+					start: '2025-08-17 14:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박주혁<br>이경신 役 | 임태혁',
+					start: '2025-08-20 16:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 김준식',
+					start: '2025-08-22 20:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 정서안<br>이경신 役 | 황두현',
+					start: '2025-08-23 19:00',
+					className: 'bg-red',
 					allDay: false
 				}
 			],
