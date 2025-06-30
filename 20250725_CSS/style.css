@@ -1140,12 +1140,6 @@ textarea {
   padding: 10px 5px;
   scroll-snap-type: x mandatory;
 }
-/* 화면이 넓어질 경우: 가운데 정렬 */
-@media (min-width: 1024px) {
-  .result-cards {
-    justify-content: center; /* 중앙 정렬로 변경 */
-  }
-}
 
 /* 개별 카드 */
 .result-card {
