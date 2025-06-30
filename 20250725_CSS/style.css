@@ -226,9 +226,8 @@ footer {
   width: calc(100% - 60px); /* 반응형 너비 */
   max-width: 500px;
   text-align: center;
-  background: rgba(0, 0, 0, 0.2);
   border-radius: 12px;
-  padding: 30px;
+  padding: 20px;
   backdrop-filter: blur(3px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
@@ -240,7 +239,17 @@ footer {
   color: #fff;
   animation: fadeInUp 0.8s ease forwards;
 }
-
+.intro-logo-img {
+  width: 120%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  transform: translate(-10%, 20px);
+  transition: none; 
+}
+.intro-logo-img.loaded {
+  animation: fadeInUpCentered 1s ease forwards;
+}
 /* 각 줄의 등장 타이밍 차이 */
 .intro-line:nth-child(1) {
   animation-delay: 0.3s;
@@ -250,20 +259,6 @@ footer {
 }
 .intro-line:nth-child(3) {
   animation-delay: 1.3s;
-}
-
-/* 포인트 줄 */
-.intro-line.highlight {
-  color: var(--sky);
-  font-size: 3rem;
-  font-weight: 900;
-}
-
-/* 서브텍스트 */
-.intro-line.sub {
-  font-size: 1.1rem;
-  color: #eee;
-  margin-top: 10px;
 }
 
 /* 애니메이션 정의 */
@@ -277,13 +272,23 @@ footer {
     transform: translateY(0);
   }
 }
+@keyframes fadeInUpCentered {
+  0% {
+    opacity: 0;
+    transform: translate(-10%, 20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-10%, 0);
+  }
+}
 /* CTA 버튼 */
 .cta-button {
   display: inline-block;
   margin-top: 30px;
   padding: 12px 28px;
   font-size: 1rem;
-  background-color: #4fb4ff;
+  background-color: #68beff;
   color: #fff;
   text-decoration: none;
   border: none;
@@ -291,6 +296,7 @@ footer {
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  animation-delay: 0.8s;
 }
 
 .cta-button:hover, .result-btn:hover, .form-submit-btn:hover {	
