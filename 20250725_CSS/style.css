@@ -240,11 +240,11 @@ footer {
   animation: fadeInUp 0.8s ease forwards;
 }
 .intro-logo-img {
-  width: 120%;
+  width: 130%;
   height: auto;
   display: block;
   margin: 0 auto;
-  transform: translate(-10%, 20px);
+  transform: translate(-15%, 20px);
   transition: none; 
 }
 .intro-logo-img.loaded {
@@ -275,11 +275,11 @@ footer {
 @keyframes fadeInUpCentered {
   0% {
     opacity: 0;
-    transform: translate(-10%, 20px);
+    transform: translate(-15%, 20px);
   }
   100% {
     opacity: 1;
-    transform: translate(-10%, 0);
+    transform: translate(-15%, 0);
   }
 }
 /* CTA 버튼 */
