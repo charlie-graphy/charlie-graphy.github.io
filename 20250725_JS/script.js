@@ -373,6 +373,8 @@ function sendMessage(data){
 		$('#closeFormPopup').show();
     	$("#research-form")[0].reset();
     }).catch(error => {
+        showFormPopup("제출 실패!", "연구 보고서 저장을 실패하였습니다.");
+		$('#closeFormPopup').show();
         console.error("메시지 전송 오류:", error);
     });
 }
