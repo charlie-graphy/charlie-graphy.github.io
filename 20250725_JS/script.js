@@ -344,7 +344,10 @@ $.fn.serializeObject = function() {
 }
 
 function sendMessage(data){
-	firebase.database().goOnline();
+	if(!isConnected) {
+		firebase.database().goOnline();
+		isConnected = true;
+	}
 	if(messageRef) messageRef.off(); // 이전 리스너 해제
 	messageRef = database.ref('research'); // 새로운 리스너 추가
 	
@@ -364,7 +367,7 @@ function sendMessage(data){
     	timestamp: currentTime
     }).then(() => {
         console.log("메시지 전송 완료");
-        disconnect(); // 전송 후 연결 해제
+        setTimeout(disconnect, 1000); // 🔸 잠시 후 연결 종료
         
         showFormPopup("제출 완료!", "연구 보고서가 성공적으로 저장되었습니다.");
 		$('#closeFormPopup').show();
@@ -377,6 +380,8 @@ function sendMessage(data){
 function disconnect(){
 	if(messageRef) messageRef.off(); // 리스너 해제
 	firebase.database().goOffline(); // Firebase 연결 끊기
+	isConnected = false;
+	console.log('Firebase 연결 종료됨');
 }
 function showFormPopup(title, message) {
 	$('#formPopupTitle').text(title);
