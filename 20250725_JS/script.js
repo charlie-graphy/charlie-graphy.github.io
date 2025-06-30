@@ -257,6 +257,7 @@ $(document).ready(function () {
 		$('#closeFormPopup').hide();
 		showFormPopup("제출 중입니다...", "잠시만 기다려 주세요.");
 		sendMessage(researchData);
+		//window.location.assign("https://forms.gle/Na4bb5MYwZ7phLPD9","_blank")
 	});
 	
 	// 연구 일지 전체보기/접기 텍스트 클릭 이벤트
