@@ -13,8 +13,40 @@ const database = firebase.database();
 let isConnected = false;
 let messageRef = null;
 
+// 결과 팝업
+const resultImageList = [
+	'https://blog.kakaocdn.net/dna/dWYieR/btsOPmACwB5/AAAAAAAAAAAAAAAAAAAAAOgUNsM5X5fYZjOhY18YjOgh8ILVa_NDjuQCTq0fvh52/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=hYBW7oOSb1G8DjrZyq5p09JpkFI%3D',
+	'https://blog.kakaocdn.net/dna/wHA73/btsOSRmIavB/AAAAAAAAAAAAAAAAAAAAABKemY90pbV42vDU4ESRbYxXMUq512MSU3vlBQM1YW9I/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=tv%2FP6PbO2lxQXDwxqWfQ4zjTtvY%3D',
+	'https://blog.kakaocdn.net/dna/9FQQE/btsOQgTBDa2/AAAAAAAAAAAAAAAAAAAAAG3wq-8fW59BXrLggkw1iDuiuLwaArAGYI_TJ1eJZ_B0/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=H7vIUcUQbzzV1YuPno4Sn1CeQwI%3D',
+	'https://blog.kakaocdn.net/dna/GnNB6/btsOOoeufsj/AAAAAAAAAAAAAAAAAAAAAALoxeVfof6aMet0YqaE45hRJMKH4UfGooW2VpglKcS-/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=IYHN%2F0gowNTS53JmjR8IgDoOPUc%3D',
+	'https://blog.kakaocdn.net/dna/dRDfAP/btsOQTKnVO1/AAAAAAAAAAAAAAAAAAAAAMaY6XaIxbwpZOKtLVDxFgx__NwtWg-MU7GkXiGqPFQC/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=JPGBAP0rXvs5B%2BYvrTKXJvR6lak%3D',
+	'https://blog.kakaocdn.net/dna/djn6gx/btsOPud5hvi/AAAAAAAAAAAAAAAAAAAAAJmeFKIVhCC8OYFbfrL5mEEKZwgz21sZ0_QnOze5ZAl1/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=XjSsFbSlvOMjh6G%2F54cFnZ5p5y8%3D',
+	'https://blog.kakaocdn.net/dna/blBH0L/btsOOmVkctp/AAAAAAAAAAAAAAAAAAAAAH3222b0Km_tJ4oZn3CLE_bWq7JbRD9D0-o-dByYnvYN/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=c0fEqB7%2F95mwR4AFdDbmWnX4S%2Bw%3D',
+	'https://blog.kakaocdn.net/dna/dRA79Z/btsOQGEvQuM/AAAAAAAAAAAAAAAAAAAAAPwnN8ioJyAR3uUXbEitdvaLzbo6mzDogV2nQcAWDghL/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=tw%2BfVclYEAXTud7Gev5VZJuoDcw%3D',
+	'https://blog.kakaocdn.net/dna/GNh3F/btsOPukOF8u/AAAAAAAAAAAAAAAAAAAAAMy8KoYczin_U7qWEZKRhZBvaZR_mQJKWuVMdQ0pDxzY/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=dBci7seF4lNJ2keITPGIrKKxTjw%3D',
+	'https://blog.kakaocdn.net/dna/bBT162/btsOQKtrmpR/AAAAAAAAAAAAAAAAAAAAAHJ5StpYkKt_rQL8A1gJmJxA_qZZnY06o1JXKZ-_Ybnz/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=KGbiv8z9%2BKf8w7WF9RdzOWwq4w8%3D',
+	'https://blog.kakaocdn.net/dna/dyDKGm/btsOPV3vs8q/AAAAAAAAAAAAAAAAAAAAAFkLuUxqCu5cK_u6U00H_ZOid4micSFsHbWLuCdDEuPJ/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=sd5ZNe%2BAU%2BaHPZOjIFsxh8AQ4Xg%3D',
+	'https://blog.kakaocdn.net/dna/bp0hrp/btsOQVuFSSb/AAAAAAAAAAAAAAAAAAAAAFtAWHMVvppvixLVMozsVhBHlCBK9Ctr8frlNEP71U8z/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=PxZKIHfHxtHrN521qAQTP8l49EI%3D',
+	'https://blog.kakaocdn.net/dna/cCrfmh/btsOQ7hmTid/AAAAAAAAAAAAAAAAAAAAAN_8PcAw_EcDdtfVZ4mqJgdPD8XyKpWper1yvX4U4RLs/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=Xh6rtDmBA6RZ%2Fav1oKtD7yuVPwY%3D',
+	'https://blog.kakaocdn.net/dna/ctDugJ/btsOQlgkfxI/AAAAAAAAAAAAAAAAAAAAAMMjCkHwOf3hm3VZXOb08C2ZthCNjnhO1NS7cSLceoSF/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=YokgT%2B%2FoDBXS8NNZT3ezRq%2F6y%2FE%3D',
+	'https://blog.kakaocdn.net/dna/bcMo21/btsOOm8SPkt/AAAAAAAAAAAAAAAAAAAAACD1qTCZRONLTKqMjT8qa8DrwECqamEzoVRt0yLfq3pq/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=YLrLmqTcT5fgbKVWZycF5g%2FeRlc%3D',
+	'https://blog.kakaocdn.net/dna/bE9ZnE/btsOQhrsLH2/AAAAAAAAAAAAAAAAAAAAAHRh413iN25M6joKe6BpMKH3-snu3IEwylxeW39DaeLW/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=2QlYaSyh5RpmYbChNGIdx9hLs%2BY%3D',
+	'https://blog.kakaocdn.net/dna/tVM2k/btsOOzUvAe2/AAAAAAAAAAAAAAAAAAAAANiVeNEX_vKbC-sU_3gq-O8dGMsU4iVfDtXJvjl5G5Sx/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=j38rJA%2Bt3Xq4jSAfk%2F%2Fk8mkg5A8%3D',
+	'https://blog.kakaocdn.net/dna/c9XTzR/btsOQtyqdCe/AAAAAAAAAAAAAAAAAAAAAAl5x6wHnKl1Jn-ASygchR6tqCmXHM3VJtAfDrd-dq8F/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=yC90ylCNYxo0gRnxrkAP6ugJ86Y%3D',
+	'https://blog.kakaocdn.net/dna/bKzCL8/btsOOor3vYT/AAAAAAAAAAAAAAAAAAAAADVBD7xPrsuLfdcRFFweOVsfoYfcrEmCzjvkl8pXOXLY/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=qITuLrpaLtBeNDkSYtQQzT1eGYI%3D'
+];
+
 $(document).ready(function () {
 	history.replaceState(null, '', window.location.origin + window.location.pathname);
+
+	preloadImages(resultImageList);
+	
+	function preloadImages(urls) {
+		urls.forEach((url) => {
+			const img = new Image();
+			img.src = url;
+		});
+	}
 	
 	$('#introLogo').addClass('loaded');
 	
@@ -56,29 +88,6 @@ $(document).ready(function () {
 		const percent = $(this).val() + '%';
 		$(this).closest('.slider-block').find('.percent-display').text(percent);
 	});
-	
-	// 결과 팝업
-	const resultImageList = [
-		'https://blog.kakaocdn.net/dna/dWYieR/btsOPmACwB5/AAAAAAAAAAAAAAAAAAAAAOgUNsM5X5fYZjOhY18YjOgh8ILVa_NDjuQCTq0fvh52/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=hYBW7oOSb1G8DjrZyq5p09JpkFI%3D',
-		'https://blog.kakaocdn.net/dna/wHA73/btsOSRmIavB/AAAAAAAAAAAAAAAAAAAAABKemY90pbV42vDU4ESRbYxXMUq512MSU3vlBQM1YW9I/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=tv%2FP6PbO2lxQXDwxqWfQ4zjTtvY%3D',
-		'https://blog.kakaocdn.net/dna/9FQQE/btsOQgTBDa2/AAAAAAAAAAAAAAAAAAAAAG3wq-8fW59BXrLggkw1iDuiuLwaArAGYI_TJ1eJZ_B0/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=H7vIUcUQbzzV1YuPno4Sn1CeQwI%3D',
-		'https://blog.kakaocdn.net/dna/GnNB6/btsOOoeufsj/AAAAAAAAAAAAAAAAAAAAAALoxeVfof6aMet0YqaE45hRJMKH4UfGooW2VpglKcS-/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=IYHN%2F0gowNTS53JmjR8IgDoOPUc%3D',
-		'https://blog.kakaocdn.net/dna/dRDfAP/btsOQTKnVO1/AAAAAAAAAAAAAAAAAAAAAMaY6XaIxbwpZOKtLVDxFgx__NwtWg-MU7GkXiGqPFQC/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=JPGBAP0rXvs5B%2BYvrTKXJvR6lak%3D',
-		'https://blog.kakaocdn.net/dna/djn6gx/btsOPud5hvi/AAAAAAAAAAAAAAAAAAAAAJmeFKIVhCC8OYFbfrL5mEEKZwgz21sZ0_QnOze5ZAl1/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=XjSsFbSlvOMjh6G%2F54cFnZ5p5y8%3D',
-		'https://blog.kakaocdn.net/dna/blBH0L/btsOOmVkctp/AAAAAAAAAAAAAAAAAAAAAH3222b0Km_tJ4oZn3CLE_bWq7JbRD9D0-o-dByYnvYN/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=c0fEqB7%2F95mwR4AFdDbmWnX4S%2Bw%3D',
-		'https://blog.kakaocdn.net/dna/dRA79Z/btsOQGEvQuM/AAAAAAAAAAAAAAAAAAAAAPwnN8ioJyAR3uUXbEitdvaLzbo6mzDogV2nQcAWDghL/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=tw%2BfVclYEAXTud7Gev5VZJuoDcw%3D',
-		'https://blog.kakaocdn.net/dna/GNh3F/btsOPukOF8u/AAAAAAAAAAAAAAAAAAAAAMy8KoYczin_U7qWEZKRhZBvaZR_mQJKWuVMdQ0pDxzY/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=dBci7seF4lNJ2keITPGIrKKxTjw%3D',
-		'https://blog.kakaocdn.net/dna/bBT162/btsOQKtrmpR/AAAAAAAAAAAAAAAAAAAAAHJ5StpYkKt_rQL8A1gJmJxA_qZZnY06o1JXKZ-_Ybnz/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=KGbiv8z9%2BKf8w7WF9RdzOWwq4w8%3D',
-		'https://blog.kakaocdn.net/dna/dyDKGm/btsOPV3vs8q/AAAAAAAAAAAAAAAAAAAAAFkLuUxqCu5cK_u6U00H_ZOid4micSFsHbWLuCdDEuPJ/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=sd5ZNe%2BAU%2BaHPZOjIFsxh8AQ4Xg%3D',
-		'https://blog.kakaocdn.net/dna/bp0hrp/btsOQVuFSSb/AAAAAAAAAAAAAAAAAAAAAFtAWHMVvppvixLVMozsVhBHlCBK9Ctr8frlNEP71U8z/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=PxZKIHfHxtHrN521qAQTP8l49EI%3D',
-		'https://blog.kakaocdn.net/dna/cCrfmh/btsOQ7hmTid/AAAAAAAAAAAAAAAAAAAAAN_8PcAw_EcDdtfVZ4mqJgdPD8XyKpWper1yvX4U4RLs/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=Xh6rtDmBA6RZ%2Fav1oKtD7yuVPwY%3D',
-		'https://blog.kakaocdn.net/dna/ctDugJ/btsOQlgkfxI/AAAAAAAAAAAAAAAAAAAAAMMjCkHwOf3hm3VZXOb08C2ZthCNjnhO1NS7cSLceoSF/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=YokgT%2B%2FoDBXS8NNZT3ezRq%2F6y%2FE%3D',
-		'https://blog.kakaocdn.net/dna/bcMo21/btsOOm8SPkt/AAAAAAAAAAAAAAAAAAAAACD1qTCZRONLTKqMjT8qa8DrwECqamEzoVRt0yLfq3pq/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=YLrLmqTcT5fgbKVWZycF5g%2FeRlc%3D',
-		'https://blog.kakaocdn.net/dna/bE9ZnE/btsOQhrsLH2/AAAAAAAAAAAAAAAAAAAAAHRh413iN25M6joKe6BpMKH3-snu3IEwylxeW39DaeLW/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=2QlYaSyh5RpmYbChNGIdx9hLs%2BY%3D',
-		'https://blog.kakaocdn.net/dna/tVM2k/btsOOzUvAe2/AAAAAAAAAAAAAAAAAAAAANiVeNEX_vKbC-sU_3gq-O8dGMsU4iVfDtXJvjl5G5Sx/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=j38rJA%2Bt3Xq4jSAfk%2F%2Fk8mkg5A8%3D',
-		'https://blog.kakaocdn.net/dna/c9XTzR/btsOQtyqdCe/AAAAAAAAAAAAAAAAAAAAAAl5x6wHnKl1Jn-ASygchR6tqCmXHM3VJtAfDrd-dq8F/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=yC90ylCNYxo0gRnxrkAP6ugJ86Y%3D',
-		'https://blog.kakaocdn.net/dna/bKzCL8/btsOOor3vYT/AAAAAAAAAAAAAAAAAAAAADVBD7xPrsuLfdcRFFweOVsfoYfcrEmCzjvkl8pXOXLY/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=qITuLrpaLtBeNDkSYtQQzT1eGYI%3D'
-	];
 	
 	function getPotionResult(song, act, ene) {
 		const avg = (song + act + ene) / 3;
