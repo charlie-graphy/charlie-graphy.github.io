@@ -579,7 +579,6 @@ footer {
 .fancy-card-cute h3 {
   font-size: 1.3rem;
   margin: 12px 0 6px;
-  font-weight: 800;
   background: var(--sky-dark);
   -webkit-background-clip: text;
   color: transparent;
