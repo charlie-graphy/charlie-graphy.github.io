@@ -1282,7 +1282,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '<p class="event">등등회 캐릭터 엽서 5종 증정 & 커튼콜 데이</p>김영운 役 | 안재영<br>최윤 役 | 김재범<br>초 役 | 강찬<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
+					description: '<p class="event">등등회 캐릭터 엽서 5종 증정 & 커튼콜 데이</p>김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
 					start: '2025-07-03 20:00',
 					className: 'bg-red',
 					allDay: false
