@@ -357,9 +357,9 @@ a {
     }
     
     .side-popup {
-        width: 250px; /* 기본 펼쳐진 상태 */
-        height: 400px;
-        top: 60px;
+        width: 230px; /* 기본 펼쳐진 상태 */
+        height: 380px;
+        top: 80px;
         right: 0;
         display: grid;
         grid-template-columns: 24px repeat(1, 1fr);
@@ -396,8 +396,8 @@ a {
     .side-popup .icon-list {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 6px;
-        width: 200px;
+        gap: 5px;
+        width: 190px;
         padding: 4px 0;
     }
 
@@ -408,7 +408,7 @@ a {
 
     /* 이미지 (모바일에서도 항상 표시) */
     .popup-image {
-        width: 200px;
+        width: 190px;
         height: auto;
         display: block;
         border: 1px solid #1E1E1E;
