@@ -8,15 +8,15 @@ $(window).on("load", function() {
 	
 
 	   	let targetWindow = $("#templete").clone();
-        targetWindow.css({'width':'200px','height':'182px'});
+        targetWindow.css({'width':'200px','height':'140px'});
         $(".main-content").append(targetWindow);
         
         targetWindow.attr("data-id", "banner");
         targetWindow.find(".title-bar span").text("😈 깨비 연구소");
         targetWindow.find(".content iframe").remove();
-        targetWindow.find(".content").append($('<img>',{'class':'banner','src':'','alt':'배너'}));
+        targetWindow.find(".content").append($('<img>',{'class':'banner','src':'https://lh3.googleusercontent.com/d/1UVLK2jqOVByfLSvmtdM76Epudf92Z1LW','alt':'배너','style':'width:100%'}));
         
-        targetWindow.fadeIn().css({top: '150px', left: "1%"});
+        targetWindow.fadeIn().css({top: '50px', left: "1%"});
         
         $(".main-content img.banner").click(function(e){
         	window.location = "https://www.jeehwany.com/20250725";
@@ -211,8 +211,8 @@ $(document).ready(function() {
             let moveX = e.pageX || e.originalEvent.touches[0].pageX;
             let moveY = e.pageY || e.originalEvent.touches[0].pageY;
 
-            let newWidth = Math.max(310, Math.min($(window).width() - win.offset().left, startWidth + (moveX - startX)));
-            let newHeight = Math.max(200, Math.min($(window).height() - win.offset().top, startHeight + (moveY - startY)));
+            let newWidth = Math.max(180, Math.min($(window).width() - win.offset().left, startWidth + (moveX - startX)));
+            let newHeight = Math.max(140, Math.min($(window).height() - win.offset().top, startHeight + (moveY - startY)));
 
             win.css({ width: newWidth + "px", height: newHeight + "px" });
         }).on("mouseup touchend", function() {
