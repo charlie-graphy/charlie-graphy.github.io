@@ -15,25 +15,25 @@ let messageRef = null;
 
 // 결과 팝업
 const resultImageList = [
-	'https://drive.google.com/uc?id=1R2PNeogqDJaaDSJyn8iNSXs3BrmXSEjF',
-	'https://drive.google.com/uc?id=1aO0KwZ81itjeYcDnhJ6Tn8_bCbeveB3u',
-	'https://drive.google.com/uc?id=1vP0w1mJrN7qtOoRTXg9QzJKsp9aPjqcm',
-	'https://drive.google.com/uc?id=1c6IBHbNGH0cMaHEJkqPKm_UQZ0QBzYB6',
-	'https://drive.google.com/uc?id=1T-59inDUv_U12PcL_MLIfmOxf5DjJuYZ',
-	'https://drive.google.com/uc?id=19I4zudCAJCCNXdZ4dk_G4w4qtyezMG0y',
-	'https://drive.google.com/uc?id=197fSdlPt8DIH8FEUMi-h6arsMzL-JPNp',
-	'https://drive.google.com/uc?id=1tWUODU9DrbTPYCybuElc2msX0pexxrhx',
-	'https://drive.google.com/uc?id=1VXknsUqhsDDPDzOsmnR4aPfv9yNJNSl6',
-	'https://drive.google.com/uc?id=1fgrWwMsPEVU7PNUXhDuqzggk_0RnrZW5',
-	'https://drive.google.com/uc?id=1ZsgXjO-IiOZbavQF1u38N6h16APaGOzq',
-	'https://drive.google.com/uc?id=1KkiueD_RXd3EO9pgK5o-y_wpMGVB2rkq',
-	'https://drive.google.com/uc?id=1eujyua8Q_ARZbXNDkhNoVNxbZ5BrNY8O',
-	'https://drive.google.com/uc?id=1R0isjUwMg30Zp0D2RGWsA8SnIew6DQkM',
-	'https://drive.google.com/uc?id=1QaxMKwT7199_ApVQeGUybNqvndX6B2yJ',
-	'https://drive.google.com/uc?id=1fmtq-tkR10uBIHOzorz7nSTft2JBi2uf',
-	'https://drive.google.com/uc?id=12fReAEy6_BKXIDaMAaTlZV9AzWZwA7wo',
-	'https://drive.google.com/uc?id=1mCF17RB_0ICnegGgCz7K-CE_TH-74lkG',
-	'https://drive.google.com/uc?id=1Jc2qza-X3A8z5z4AZ3LA9ea5GFlNx-IA'
+	'https://blog.kakaocdn.net/dna/dWYieR/btsOPmACwB5/AAAAAAAAAAAAAAAAAAAAAOgUNsM5X5fYZjOhY18YjOgh8ILVa_NDjuQCTq0fvh52/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=9AfV5B9%2B%2Fdea6NaUlBrTofVsmps%3D',
+	'https://blog.kakaocdn.net/dna/wHA73/btsOSRmIavB/AAAAAAAAAAAAAAAAAAAAABKemY90pbV42vDU4ESRbYxXMUq512MSU3vlBQM1YW9I/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=WwqCE3R4O1StElJhIHjuyyGbn%2Bg%3D',
+	'https://blog.kakaocdn.net/dna/9FQQE/btsOQgTBDa2/AAAAAAAAAAAAAAAAAAAAAG3wq-8fW59BXrLggkw1iDuiuLwaArAGYI_TJ1eJZ_B0/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=FZfVjgknIAqjoyxfVT81aE9BVSw%3D',
+	'https://blog.kakaocdn.net/dna/GnNB6/btsOOoeufsj/AAAAAAAAAAAAAAAAAAAAAALoxeVfof6aMet0YqaE45hRJMKH4UfGooW2VpglKcS-/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=Qnm6lz09WWUS%2BwLTmDMxcUQ1tV0%3D',
+	'https://blog.kakaocdn.net/dna/dRDfAP/btsOQTKnVO1/AAAAAAAAAAAAAAAAAAAAAMaY6XaIxbwpZOKtLVDxFgx__NwtWg-MU7GkXiGqPFQC/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=ZGC6RKwB4Tjy2VFOjub%2FDNPW%2F4o%3D',
+	'https://blog.kakaocdn.net/dna/djn6gx/btsOPud5hvi/AAAAAAAAAAAAAAAAAAAAAJmeFKIVhCC8OYFbfrL5mEEKZwgz21sZ0_QnOze5ZAl1/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=bdNnNSfKiUmKnhURdtP0NH%2BwYvc%3D',
+	'https://blog.kakaocdn.net/dna/blBH0L/btsOOmVkctp/AAAAAAAAAAAAAAAAAAAAAH3222b0Km_tJ4oZn3CLE_bWq7JbRD9D0-o-dByYnvYN/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=kjo3l0IbS5roPM545K0de6%2BfZJQ%3D',
+	'https://blog.kakaocdn.net/dna/dRA79Z/btsOQGEvQuM/AAAAAAAAAAAAAAAAAAAAAPwnN8ioJyAR3uUXbEitdvaLzbo6mzDogV2nQcAWDghL/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=jmFxZqR12mQMxb3a2v%2BDQ2XNe9Q%3D',
+	'https://blog.kakaocdn.net/dna/GNh3F/btsOPukOF8u/AAAAAAAAAAAAAAAAAAAAAMy8KoYczin_U7qWEZKRhZBvaZR_mQJKWuVMdQ0pDxzY/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=6qm72pa%2FJHXQh3VunAIcV06SbBI%3D',
+	'https://blog.kakaocdn.net/dna/bBT162/btsOQKtrmpR/AAAAAAAAAAAAAAAAAAAAAHJ5StpYkKt_rQL8A1gJmJxA_qZZnY06o1JXKZ-_Ybnz/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=d%2B3riw9uCgtTktpeS%2BRdybjXTPw%3D',
+	'https://blog.kakaocdn.net/dna/dyDKGm/btsOPV3vs8q/AAAAAAAAAAAAAAAAAAAAAFkLuUxqCu5cK_u6U00H_ZOid4micSFsHbWLuCdDEuPJ/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=VHtXxhYf%2Fjz8%2Fv09Sv79XW95dT0%3D',
+	'https://blog.kakaocdn.net/dna/bp0hrp/btsOQVuFSSb/AAAAAAAAAAAAAAAAAAAAAFtAWHMVvppvixLVMozsVhBHlCBK9Ctr8frlNEP71U8z/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=yt1dwLdTbIaDoWKjvRor63rZA%2FM%3D',
+	'https://blog.kakaocdn.net/dna/cCrfmh/btsOQ7hmTid/AAAAAAAAAAAAAAAAAAAAAN_8PcAw_EcDdtfVZ4mqJgdPD8XyKpWper1yvX4U4RLs/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=53cSLe09PAApxpfCOZrm3JIOPJo%3D',
+	'https://blog.kakaocdn.net/dna/ctDugJ/btsOQlgkfxI/AAAAAAAAAAAAAAAAAAAAAMMjCkHwOf3hm3VZXOb08C2ZthCNjnhO1NS7cSLceoSF/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=nVK4b%2BVPC9itzTFPFtIQ0OLEvOw%3D',
+	'https://blog.kakaocdn.net/dna/bcMo21/btsOOm8SPkt/AAAAAAAAAAAAAAAAAAAAACD1qTCZRONLTKqMjT8qa8DrwECqamEzoVRt0yLfq3pq/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=agO6M7slRzcKBbrVKpx2iOrOoZw%3D',
+	'https://blog.kakaocdn.net/dna/bE9ZnE/btsOQhrsLH2/AAAAAAAAAAAAAAAAAAAAAHRh413iN25M6joKe6BpMKH3-snu3IEwylxeW39DaeLW/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=ioDQ1tDZeZN%2FgyoKWSbL%2F5fstPw%3D',
+	'https://blog.kakaocdn.net/dna/tVM2k/btsOOzUvAe2/AAAAAAAAAAAAAAAAAAAAANiVeNEX_vKbC-sU_3gq-O8dGMsU4iVfDtXJvjl5G5Sx/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=tt2SvPjaJWncVxByypJ37h3rzjY%3D',
+	'https://blog.kakaocdn.net/dna/c9XTzR/btsOQtyqdCe/AAAAAAAAAAAAAAAAAAAAAAl5x6wHnKl1Jn-ASygchR6tqCmXHM3VJtAfDrd-dq8F/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=GV0YmZIESdxSR5Gd3eXa0%2B3HUnw%3D',
+	'https://blog.kakaocdn.net/dna/bKzCL8/btsOOor3vYT/AAAAAAAAAAAAAAAAAAAAADVBD7xPrsuLfdcRFFweOVsfoYfcrEmCzjvkl8pXOXLY/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=iUcUhLmLk171pWpgDdK8WUFiL8E%3D'
 ];
 
 $(document).ready(function () {
