@@ -19,7 +19,7 @@ $(window).on("load", function() {
         targetWindow.fadeIn().css({top: '50px', left: "1%"});
         targetWindow.find('.resize-handle, .max-btn').remove();
         
-        $(".main-content img.banner").parents('.window').click(function(e){
+        $(".main-content img.banner").parents('.content').click(function(e){
         	window.location = "https://www.jeehwany.com/20250725";
         });
 });
