@@ -17,8 +17,9 @@ $(window).on("load", function() {
         targetWindow.find(".content").append($('<img>',{'class':'banner','src':'https://lh3.googleusercontent.com/d/1UVLK2jqOVByfLSvmtdM76Epudf92Z1LW','alt':'배너','style':'width:100%'}));
         
         targetWindow.fadeIn().css({top: '50px', left: "1%"});
+        targetWindow.find('.resize-handle, .max-btn').remove();
         
-        $(".main-content img.banner").click(function(e){
+        $(".main-content img.banner").parents('.window').click(function(e){
         	window.location = "https://www.jeehwany.com/20250725";
         });
 });
