@@ -133,7 +133,7 @@ $(document).ready(function() {
         $(".top-bar").hide(); // 헤더 숨기기
         $("body#schedule").css("padding", "0"); // 여백 제거
 		$("#schedule .content-section").css({"margin-top":"0","height":"calc(100vh - 2px)"});
-        $("a").each(function(e){
+        $("a").not('.fc-day-grid-event').each(function(e){
         	$(this).attr("href",$(this).attr("href")+"?only=content-section");
         });
         $('#schedule .fc-event .fc-title').css({'font-size':'10px'});
