@@ -1429,7 +1429,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박선영<br>이경신 役 | 김준식',
+					description: '<p class="event">스페셜 커튼콜 데이 : M12. 태평성대</p>김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박선영<br>이경신 役 | 김준식',
 					start: '2025-07-30 16:00',
 					className: 'bg-red',
 					allDay: false
@@ -1443,7 +1443,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박선영<br>이경신 役 | 임태현',
+					description: '<p class="event">스페셜 커튼콜 데이 : M19. 영운</p>김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박선영<br>이경신 役 | 임태현',
 					start: '2025-08-01 20:00',
 					className: 'bg-red',
 					allDay: false
@@ -1457,21 +1457,21 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
+					description: '<p class="event">스페셜 커튼콜 데이 : M9. 놀아보자</p>김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
 					start: '2025-08-03 14:00',
 					className: 'bg-red',
 					allDay: false
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
+					description: '<p class="event">스크래치 행운권 & 엽전 증정</p>김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박선영<br>이경신 役 | 황두현',
 					start: '2025-08-06 16:00',
 					className: 'bg-red',
 					allDay: false
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 정서안<br>이경신 役 | 김준식',
+					description: '<p class="event">스크래치 행운권 & 엽전 증정</p>김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 정서안<br>이경신 役 | 김준식',
 					start: '2025-08-08 20:00',
 					className: 'bg-red',
 					allDay: false
@@ -1506,8 +1506,15 @@
 				},
 				{
 					title: '미러',
-					description: '<p class="event">전관 & SPECIAL BOOK - 1 증정</p>첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
-					start: '2025-08-14 20:00',
+					description: '<p class="event">전관 & SPECIAL BOOK - 1 증정</p>첼릭 役 | 김재범<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 안창용',
+					start: '2025-08-13 16:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '<p class="event">SPECIAL BOOK - 1 증정</p>첼릭 役 | 김재범<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 안창용',
+					start: '2025-08-13 20:00',
 					className: 'bg-gray',
 					allDay: false
 				},
