@@ -1,0 +1,57 @@
+<html lang="de-DE" class="flexbox no-touchevents objectfit object-fit no-ios no-ipad no-iphone is-chrome no-instagram-browser phone-size"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<html lang="ko" dir="ltr">
+	<head>
+		<meta name="description" content="배우 안지환 아카이브 사이트"/>
+		<meta name="keywords" content="안지환"/>
+		<meta property="og:image" content="https://blog.kakaocdn.net/dn/bm3Egw/btsHDIKtOe8/JHRYYWiK44ExfL3HhEP6B0/img.jpg">
+		<meta property="og:title" content="AHNJEEHWANY">
+		<meta property="og:description" content="지화니 조각 퍼즐">
+		<title>AHNJEEHWANY</title>
+		<link rel="icon" href="img/favicon_io/favicon.webp" type="image/x-icon">
+		<link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io/favicon-16x16.png">
+		<link rel="stylesheet" type="text/css" href="css/layout.css"/>
+		<link rel="stylesheet" type="text/css" href="css/game.css"/>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+		<link href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky" rel="stylesheet">
+	 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+		<script>
+			const rnd = Math.floor(Math.random() * 33);
+			$('head').append('<link rel="stylesheet" href="css/rnd/rnd'+rnd+'.css">');
+		</script>
+		 <link rel="stylesheet" type="text/css" href="css/puzzle.css" />
+	</head>
+	<body>
+		<div class="mainHeader"><a href="https://jeehwany.com">AHNJEEHWANY</a></div>
+		<div class="puzzle_content puzzleDiv">
+			<div class="gameMain"><a href="https://jeehwany.com/games">메인으로</a></div>
+			<div class="puzzle">
+				<div class="heading">
+					<span>
+						<sub>★</sub> <sup>☆</sup> <sub>★</sub> <sup>☆</sup> <sub>★</sub> <sup>☆</sup> <sub>★</sub>
+					</span>
+					<h2>JEEHWANY</h2>
+					<span>
+						<sup>★</sup> <sub>☆</sub> <sup>★</sup> <sub>☆</sub> <sup>★</sup> <sub>☆</sub> <sup>★</sup>
+					</span>
+				</div>
+				<div class="answer"></div>
+				<div class="grid">
+					<button class="tile tile--1" style="--area:A"></button>
+					<button class="tile tile--2" style="--area:B"></button>
+					<button class="tile tile--3" style="--area:C"></button>
+					<button class="tile tile--4" style="--area:D"></button>
+					<button class="tile tile--5" style="--area:E"></button>
+					<button class="tile tile--6" style="--area:F"></button>
+					<button class="tile tile--7" style="--area:G"></button>
+					<button class="tile tile--8" style="--area:H"></button>
+					<div class="tile tile--empty" style="--area:I"></div>
+				</div>
+			</div>
+			<p style="font-size:.5em">사진은 랜덤입니다.<br>다시 하고 싶으면 새로고침하세요.</p>
+			<script type="module" src="js/puzzle.js"></script>
+		</div>
+	</body>
+</html>

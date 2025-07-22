@@ -1,0 +1,285 @@
+@charset "UTF-8";
+@font-face {
+	font-family: 'GmarketSansLight';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'GmarketSansMedium';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'GmarketSansBold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
+body, html{
+	overflow: hidden;
+	height: 100%;
+	box-sizing: border-box;
+}
+.cloth_content {
+	font-family: 'GmarketSansMedium', HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
+	width: 70vw;
+	height: 100%;
+	text-align: center;
+  	margin: auto;   	
+  	display: grid;
+    grid-template: "howDiv" "imgDiv" "choice1" "choice";
+    place-items: center;
+	grid-template-rows: 3% auto 2fr; /* 과연 */
+}
+.imgDiv{
+	display: grid;
+	height: 22vw !important;
+	align-items: center;
+	align-content: center;
+}
+.howDiv{
+	width: 100%;
+}
+a{
+	color: #666;
+	text-decoration-line: none;
+}
+.cloth_content a:hover{
+	cursor: pointer;
+	color: black;
+	font-weight: 600;
+}
+.choice1{
+    height: 3vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    font-size: .9em;
+    font-weight: 600;
+    align-content: center;
+    background-color: white;
+    z-index: 999;
+}
+.choice1 div{
+	background-color: white;
+	border-top: 2px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 2px solid black;
+	border-radius: 0 10px 0 0;
+    padding: .5em 0;
+}
+.choice1 div:first-child{
+	border-left: 2px solid black;
+}
+.choice1 div:last-child{
+	border-right: 2px solid black;
+}
+.choice div img, .choice1 div{
+    cursor: pointer;
+}
+.choice{
+	width: 70vw;
+	padding: .5em;
+	padding-top: 1em;
+    height: 17vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+    grid-gap: 10px;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	border-bottom: 2px solid black;
+	overflow-y: auto;
+    background-color: #bbe0fb;
+}
+.choice .under{
+    display: none;
+}
+.choice::-webkit-scrollbar {
+  width: 8px;  /* 스크롤바의 너비 */
+}
+.choice::-webkit-scrollbar-thumb {
+  height: 30%; /* 스크롤바의 길이 */
+  background: #6799FF; /* 스크롤바의 색상 */ 
+  border-radius: 10px;
+}
+.choice::-webkit-scrollbar-track {
+  background: rgba(33, 122, 244, .1);  /*스크롤바 뒷 배경 색상*/
+}
+.choice1 div.act, .choice1 div:hover{
+    background-color: #bbe0fb;
+	border-bottom: none;
+}
+.choice div img:hover{
+	background-color: #f2f2f2;
+}
+/* 파일 대체 */
+.card-img {
+    position: relative;
+	align-content: center;
+    border: 2px solid #333;
+    border-radius: 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+.how{
+	width: 100%;
+	font-size: 0.8em;
+    float: right;
+}
+.howto, .download, .mainGo{
+	padding: .3em 1.2em;
+    cursor: pointer;
+	border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.howto:hover, .download:hover, .mainGo:hover, .mainGo:hover a{
+	background-color: black !important;
+	color: white !important;
+	font-weight: normal;
+}
+.howto, .download{
+	float: right;
+}
+.download{
+	clear: right;
+}
+.mainGo{
+	float: left;
+}
+.mainGo a{
+	color: black;
+}
+/*수정*/
+.character_area{
+    display: grid;
+	position: relative;
+	width: 100%;
+    max-width: 500px; /* 필요에 따라 조정 */
+    height: auto;
+}
+.character_area img {
+    grid-area: 1 / 1;
+    width: 35vh;
+    height: auto;
+    border-radius: 30px;
+	-webkit-touch-callout:none;
+}
+.character_area img.save{
+    border-radius: 0;
+}
+.character_area img.chara_base {
+    z-index: 2;
+} 
+.character_area img.chara_eye {
+    z-index: 3;
+}  
+.character_area img.chara_mouth {
+    z-index: 3;
+}  
+.character_area img.chara_hair {
+    z-index: 4;
+}  
+.character_area img.chara_cloth {
+    z-index: 5;
+} 
+.character_area img.chara_accessory {
+    z-index: 5;
+}
+.character_area img.chara_background {
+    z-index: 1;
+}
+.choice img{
+	width: 60%;
+	padding: 5px;
+	border: 1px solid black;
+	border-radius: 50%;
+	background-color: white;
+	-webkit-touch-callout:none;
+}
+.howtoModal{
+	font-family: 'GmarketSansMedium', "Helvetica", "Andale Mono", times, serif;
+	display: inline-block;
+	vertical-align:middle;
+	padding: 24px 16px;
+	width: 70%;
+	height: auto;
+	background-color: rgba(255,255,255, 92%) !important;
+}
+.howtoCont{
+	word-break: keep-all;
+}
+/* 모바일 화면에서만 보이는 스타일 */
+@media only screen and (max-width:767px){
+	.cloth_content{
+		width: 100%;
+	}
+	.choice{
+		width: 91vw;
+		height: 40vw;
+	}
+	.choice img{
+		width: 88%;
+	}
+	.imgDiv{
+		height: 50vh !important;
+	}
+	.choice1{
+		font-size: .7em;
+	}
+	.howtoModal b{
+		font-size: 1.2em !important;
+	}
+	.howtoModal .howtoCont{
+		font-size: .75em !important;
+	}
+	.mainGo, .download{
+		font-size: .7em;
+		z-index: 9999999;
+	}
+	body {
+		
+	}
+}
+/* 탭 화면에서만 보이는 스타일 */
+@media only screen and (min-width:768px) and (max-width:1366px) {
+	.cloth_content{
+		width: 100%;
+	}
+	.imgDiv{
+		height: 66vh !important;
+	}
+	.choice img{
+		width: 70%;
+	}
+	.character_area img {
+		width: 35vh;
+	} 
+	.howtoModal b{
+		font-size: 1.8em !important;
+	}
+	.howtoModal .howtoCont{
+		font-size: 1.1em !important;
+	}
+	.choice {
+		height: 18vh;
+	}
+	body{
+		overflow: hidden;
+	}
+}
+@media only screen and ( min-width : 1367px) {
+	.howtoModal b{
+		font-size: 2em !important;
+	}
+	.howtoModal .howtoCont{
+		font-size: .9em !important;
+	}	
+	.character_area img {
+		width: 35vh;
+	}
+	body{
+		overflow: hidden;
+	}
+}

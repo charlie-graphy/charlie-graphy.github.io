@@ -1,0 +1,187 @@
+@charset "UTF-8";
+/* 공통 스타일 */
+@font-face {
+	font-family: 'GmarketSansLight';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'GmarketSansMedium';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+}
+body{
+	overflow: hidden;
+}
+body, .content {
+	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, "Malgun Gothic", "맑은 고딕", sans-serif;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    height: 80vh;
+	width: 85vw;
+	top: 0 !important;
+}
+.slider, .content {
+    flex: 1;
+    align-items: center;
+    overflow: hidden;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+.slides {
+	display: flex;
+	transition: transform 0.5s ease;
+    height: 100vh; 
+    /* position: absolute; */
+}
+.slide {
+	min-width: 100%;
+    height: 32vh;
+	box-sizing: border-box;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.slide img {
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    box-shadow: 11px 9px 0px white;
+    border: 1px solid #575757;
+}
+.slide_btn{
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    margin-top: -22px;
+}
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 5vw;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+.prev{
+	left: 0;
+}
+.next{
+	right: 0;
+}
+.prev:hover, .next:hover {
+    color: rgba(127, 127, 127, 0.8);
+}
+.content {
+    font-family: 'GmarketSansLight';
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: left;
+	overflow-y: auto;
+}
+.content b{
+    font-family: 'GmarketSansMedium';
+}
+.content .name {
+    font-family: 'GmarketSansMedium';
+    font-size: 2.2em;
+}
+.content .nameEng {
+    font-size: .9em;
+}
+.content .desc {
+    font-size: .8em;
+	line-height: 1.6;
+}
+.content .desc .emp{
+	color: lightgray;
+}
+a{
+	color: #666;
+	text-decoration-line: none;
+}
+.content .interview{
+	line-height: 1.2 !important;
+}
+.content a:hover{
+	color: black;
+	font-weight: 600;
+}
+.content table{
+	font-size: 1em;
+}
+.content table td:first-child{
+	word-break: keep-all;
+	padding-right:1.5vw;
+	font-weight: 400;
+}
+.content table td{
+	padding-bottom:1.5vh;
+}
+/* 모바일 화면에서만 보이는 스타일 */
+@media only screen and ( max-width : 1366px) {
+	.container {
+		position: relative;
+    	top: -4vh;
+        flex-direction: column;
+    	height: 74vh;
+    }
+    .slider, .content {
+        flex: 1;
+    }
+    .slider {
+		margin-bottom: 10px;
+    }
+	.content .name {
+		font-size: 1.4em;
+	}
+	.content .nameEng {
+		font-size: .7em;
+	}
+	.content .desc {
+		font-size: .63em;
+		line-height: 1.4;
+	}
+    .content{
+        margin-bottom: 2vh;
+    }
+}
+/* PC 화면에서만 보이는 스타일 */
+@media only screen and ( min-width : 1367px) {	
+	.container {
+    	width: 92vw;
+    }
+    .slides {
+        position: relative;
+        top: 30;
+    }
+	.slide {
+		min-width: 100%;
+	    height: 70vh;
+		box-sizing: border-box;
+		display: flex;
+	    justify-content: center;
+	    align-items: center;
+	}
+	.slide img{
+		box-shadow: none;
+	}
+}
