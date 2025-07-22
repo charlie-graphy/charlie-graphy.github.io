@@ -1,0 +1,566 @@
+/* GAME1 레이아웃*/
+.game-list {
+	place-items: center;
+	height: 80%;
+}
+/*
+  Variables:
+*/
+/**/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+button:hover,
+a:hover {
+  cursor: pointer;
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.wrapper {
+	width: 70%;
+}
+
+h2 {
+  font-style: italic;
+}
+
+/**/
+/* Guide instructions */
+.controls_game, .controls_score {
+	font-family: 'NeoDunggeunmoPro-Regular', 'DNFBitBitv2';
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+}
+/* @media all and (max-width: 767px) {
+  .controls_game, .controls_score {
+    width: 100%;
+  }
+} */
+.controls_game-btn {
+	font-family: 'NeoDunggeunmoPro-Regular', 'DNFBitBitv2';
+  margin-top: .25rem;
+  margin-bottom: .25rem;
+  padding: 0.5em 0.75em;
+  background: transparent;
+  color: #1E1E1E;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 5px solid transparent;
+  box-shadow: inset 0 0 0px 2px #f9d49a;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 14px!important;
+}
+.controls_game-btn:hover{
+  background-color: #f9d49a;
+  color: white;
+  box-shadow: inset 0 0 0px 2px white;
+}
+.controls_score {
+  width: 100%;
+  font-weight: 600;
+  display: inline-block;
+  min-width: 3em;
+  margin-top: .8rem;
+  margin-bottom: 1rem;
+  padding: 0.4em 0.55em;
+  text-align: center;
+  background: linear-gradient(90deg, white, #ffe6be, white);
+  text-transform: uppercase;
+}
+.controls_score-text {
+  color: #4a3647;
+  font-size: 35px;
+}
+
+/**/
+/*
+  Gameboard:
+  the container for the static grid background; and generated tiles/numbers;
+*/
+.gameboard {
+  /* Position: relative; set for tile-container, which absolutely positions over it to match grid's dimensions; */
+  position: relative;
+  width: 100%;
+  /*max-width: 530px;
+   height: 100%; 
+  max-height: 530px;*/
+  margin: auto;
+  padding: 8px;
+  background: #ffffff08;
+  border-radius: 5px;
+  box-shadow: 0 0 8px 0px #f9d49a;
+}
+.gameboard::before {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+/**/
+/*
+  Grid:
+  Creates the static grid background and individual grid cells;
+*/
+.grid {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+.grid_cell, .tile {
+  display: inline-block;
+  height: 25%;
+  width: 25%;
+  padding: 8px;
+  float: left;
+  background: rgba(238, 228, 218, 0.35);
+  background-clip: content-box;
+}
+
+/**/
+/*
+  Tile container:
+  Contains the dynamically-generated tiles;
+  absolutely positioned over gameboard to match grid dimensions;
+*/
+.tile-container {
+  /* absolutely positioned over gameboard to match dimensions */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.tile {
+  display: flex;/* table; */
+  background: #eee4da;
+  background-clip: content-box;
+  position: absolute;
+  z-index: 2;
+  will-change: top, left;
+  transition-property: top, left;
+  transition-duration: 0.175s;
+  transition-timing-function: ease-out;
+}
+.tile.initialize {
+  -webkit-animation-name: newTile;
+          animation-name: newTile;
+  -webkit-animation-duration: 0.175s;
+          animation-duration: 0.175s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+@-webkit-keyframes newTile {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes newTile {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.tile_number {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  flex: 1;
+  width: 100%;
+}
+
+.tile:nth-of-type(1) {
+  z-index: 2;
+}
+
+.tile:nth-of-type(2) {
+  z-index: 3;
+}
+
+.tile:nth-of-type(3) {
+  z-index: 4;
+}
+
+.tile:nth-of-type(4) {
+  z-index: 5;
+}
+
+.tile:nth-of-type(5) {
+  z-index: 6;
+}
+
+.tile:nth-of-type(6) {
+  z-index: 7;
+}
+
+.tile:nth-of-type(7) {
+  z-index: 8;
+}
+
+.tile:nth-of-type(8) {
+  z-index: 9;
+}
+
+.tile:nth-of-type(9) {
+  z-index: 10;
+}
+
+.tile:nth-of-type(10) {
+  z-index: 11;
+}
+
+.tile:nth-of-type(11) {
+  z-index: 12;
+}
+
+.tile:nth-of-type(12) {
+  z-index: 13;
+}
+
+.tile:nth-of-type(13) {
+  z-index: 14;
+}
+
+.tile:nth-of-type(14) {
+  z-index: 15;
+}
+
+.tile:nth-of-type(15) {
+  z-index: 16;
+}
+
+.tile:nth-of-type(16) {
+  z-index: 17;
+}
+
+.tile[data-x="0"][data-y="0"] {
+  top: 0%;
+  left: 0%;
+}
+
+.tile[data-x="0"][data-y="25"] {
+  top: 25%;
+  left: 0%;
+}
+
+.tile[data-x="0"][data-y="50"] {
+  top: 50%;
+  left: 0%;
+}
+
+.tile[data-x="0"][data-y="75"] {
+  top: 75%;
+  left: 0%;
+}
+
+.tile[data-x="0"][data-y="100"] {
+  top: 100%;
+  left: 0%;
+}
+
+.tile[data-x="25"][data-y="0"] {
+  top: 0%;
+  left: 25%;
+}
+
+.tile[data-x="25"][data-y="25"] {
+  top: 25%;
+  left: 25%;
+}
+
+.tile[data-x="25"][data-y="50"] {
+  top: 50%;
+  left: 25%;
+}
+
+.tile[data-x="25"][data-y="75"] {
+  top: 75%;
+  left: 25%;
+}
+
+.tile[data-x="25"][data-y="100"] {
+  top: 100%;
+  left: 25%;
+}
+
+.tile[data-x="50"][data-y="0"] {
+  top: 0%;
+  left: 50%;
+}
+
+.tile[data-x="50"][data-y="25"] {
+  top: 25%;
+  left: 50%;
+}
+
+.tile[data-x="50"][data-y="50"] {
+  top: 50%;
+  left: 50%;
+}
+
+.tile[data-x="50"][data-y="75"] {
+  top: 75%;
+  left: 50%;
+}
+
+.tile[data-x="50"][data-y="100"] {
+  top: 100%;
+  left: 50%;
+}
+
+.tile[data-x="75"][data-y="0"] {
+  top: 0%;
+  left: 75%;
+}
+
+.tile[data-x="75"][data-y="25"] {
+  top: 25%;
+  left: 75%;
+}
+
+.tile[data-x="75"][data-y="50"] {
+  top: 50%;
+  left: 75%;
+}
+
+.tile[data-x="75"][data-y="75"] {
+  top: 75%;
+  left: 75%;
+}
+
+.tile[data-x="75"][data-y="100"] {
+  top: 100%;
+  left: 75%;
+}
+
+.tile[data-x="100"][data-y="0"] {
+  top: 0%;
+  left: 100%;
+}
+
+.tile[data-x="100"][data-y="25"] {
+  top: 25%;
+  left: 100%;
+}
+
+.tile[data-x="100"][data-y="50"] {
+  top: 50%;
+  left: 100%;
+}
+
+.tile[data-x="100"][data-y="75"] {
+  top: 75%;
+  left: 100%;
+}
+
+.tile[data-x="100"][data-y="100"] {
+  top: 100%;
+  left: 100%;
+}
+
+.tile_number[data-value="2"] {
+  background-image: url('https://blog.kakaocdn.net/dn/c1lwGY/btsHF14Y62Q/nDKtLDHlj8tluEBgBYkds0/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #00d0a4;
+}
+
+.tile_number[data-value="4"] {
+  background-image: url('https://blog.kakaocdn.net/dn/dt6Swe/btsHHe3d0mx/JzQC3803mOP0KE6QTmcJX1/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #dd7373;
+}
+
+.tile_number[data-value="8"] {
+  background-image: url('https://blog.kakaocdn.net/dn/cGa4bB/btsHIaljdDl/kKBIc6kIeim8NbwmOWCAc1/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #7d53de;
+}
+
+.tile_number[data-value="16"] {
+  background-image: url('https://blog.kakaocdn.net/dn/pXqXH/btsHGwDo3hP/bkvhhn81qKdbVMNluKdy0K/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #6622cc;
+}
+
+.tile_number[data-value="32"] {
+  background-image: url('https://blog.kakaocdn.net/dn/bqQRYl/btsHHjwyXX1/lSBQ3fUL00jEcFBnd1Ktf0/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #00bfb2;
+}
+
+.tile_number[data-value="64"] {
+  background-image: url('https://blog.kakaocdn.net/dn/Dx9Rl/btsHHQtMLZN/krWOBtEtB4j2TCsEuWMV4K/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #c06ff2;
+}
+
+.tile_number[data-value="128"] {
+  background-image: url('https://blog.kakaocdn.net/dn/dpSPG3/btsHHpQKzPB/jiecRxGi0AV1e7hHONYSG0/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #340068;
+}
+
+.tile_number[data-value="256"] {
+  background-image: url('https://blog.kakaocdn.net/dn/bd2WsJ/btsHGygTNo8/g02IyAqBJWG0m8DDgOmvbK/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #3e92cc;
+}
+
+.tile_number[data-value="512"] {
+  background-image: url('https://blog.kakaocdn.net/dn/eunlhD/btsHGyHWhCr/WoMmk118vNwSOVtJ0AngIK/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #d8315b;
+}
+
+.tile_number[data-value="1024"] {
+  background-image: url('https://blog.kakaocdn.net/dn/bV6hT3/btsHHKgeKLp/LDYvpSctFK5MIuNiTdacA1/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #1c0b19;
+}
+
+.tile_number[data-value="2048"] {
+  background-image: url('https://blog.kakaocdn.net/dn/q017I/btsIfuxvz1w/WhkQeJQlyO5gLYeP14TP40/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #1c0b19;
+}
+
+.tile_number[data-value="4096"] {
+  background-image: url('https://blog.kakaocdn.net/dn/1KADb/btsIrqVtfhT/tNnfDk8Z2CpqJBvFaTIdAK/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #4b484b;
+}
+
+.tile_number[data-value="8192"] {
+  background-image: url('https://blog.kakaocdn.net/dn/Ch5Zu/btsICDUF9JQ/ASZUHOY3B3poEqyoXSwzf0/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #d8d8d8;
+}
+
+.tile_number[data-value="16384"] {
+  background-image: url('https://blog.kakaocdn.net/dn/dBRAi9/btsIFSjOadZ/KeKkL8mytx4bKeLqvYjiW0/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #221720;
+}
+
+.tile_number[data-value="32768"] {
+  background-image: url('https://blog.kakaocdn.net/dn/dAAZog/btsIDTEyKTf/NQKypXKapFLGdhHiKiDllK/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #f6ffc1;
+}
+
+.tile_number[data-value="65536"] {
+  background-image: url('https://blog.kakaocdn.net/dn/qQclm/btsIBJIaQ1O/53qkhB5QRk4fp50k3RfWnk/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #221720;
+}
+
+.tile_number[data-value="131072"] {
+  background-image: url('https://blog.kakaocdn.net/dn/kTXya/btsIAtffrxk/Q4xo73uQhDfjt2faSjf2fK/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #f6ffc1;
+}
+
+.tile_number[data-value="262144"] {
+  background-image: url('https://blog.kakaocdn.net/dn/b3Papu/btsICwuy0C4/88FcUxKkHWluaboi5dcOXK/img.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+  box-shadow: 0 0 1px 1px #ff8484;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 900px) {
+    .wrapper {
+		width: 75%;
+	}
+}
+
+@media (min-width: 901px) {
+    .wrapper {
+		width: 35%;
+	}
+	.game-list {
+		height: 100%;
+	}
+}

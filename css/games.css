@@ -1,0 +1,143 @@
+a {
+    text-decoration: none;
+    color: #1E1E1E;
+}
+
+/* 헤더 제외한 콘텐츠 영역 */
+.content-section {
+	font-family: 'NeoDunggeunmoPro-Regular';
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 35px); /* 헤더(35px) 제외한 나머지 높이 */
+    overflow: hidden;
+    padding: 0;
+}
+
+/* 2번째 줄: 선택된 항목 표시 */
+.game-display {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    align-items: center;
+}
+
+.folderTitle{
+	display: flex;
+    font-size: 18px;
+}
+
+/* 보기 모드 선택 버튼 */
+.view-options {
+    display: flex;
+    padding: 3px 0;
+}
+
+.view-btn {
+	padding: 2px 10px;
+	font-size: 22px;
+}
+.view-btn:nth-child(1){
+    border-right: 1px solid #ddd;
+}
+
+/* 3번째 줄: 스크롤 가능한 콘텐츠 목록 */
+.game-list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    overflow-y: auto;
+}
+
+/* 2칸 보기 모드 */
+.game-list.double {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* 스크롤바 커스텀 */
+.game-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.game-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.game-list::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
+/* 콘텐츠 개별 아이템 */
+.game-item {
+    height: 50px;
+    background-color: transparent;
+    padding: 15px;
+    text-align: left;
+    border-radius: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: 20px repeat(1, 1fr);
+    align-items: center;
+    word-break: keep-all;
+}
+
+.game-list.double .game-item {
+    text-align: center;
+    grid-template-columns: 14px repeat(1, 1fr);
+    font-size: 14px;
+    height: 100px;
+}
+
+/*모달 팝업 영역 스타일링*/
+.modal {
+/*팝업 배경*/
+	display: none; /*평소에는 보이지 않도록*/
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: rgba(0,0,0,0.4);
+    z-index: 999;
+}
+.modal.on {
+    display: block;
+}
+/*팝업*/
+.modal .modal_popup {
+	font-family: 'NeoDunggeunmoPro-Regular';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 20px;
+    background: rgba(255,255,255,1);
+    text-align: center;
+}
+.modal .modal_popup .controls_score-text{
+	font-weight: bolder; 
+}
+.modal .modal_popup .close_btn {
+    display: block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #1E1E1E;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+
+/* 반응형 스타일 */
+@media (max-width: 900px) {
+    
+}
+
+@media (min-width: 901px) {
+    .game-list.double .game-item {
+	    font-size: 16px;
+	}
+}

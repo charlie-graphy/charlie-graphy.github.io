@@ -1,0 +1,180 @@
+a {
+    text-decoration: none;
+    color: #1E1E1E;
+}
+
+/* 헤더 제외한 콘텐츠 영역 */
+.content-section {
+	font-family: 'NeoDunggeunmoPro-Regular';
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+}
+/* 1번째 줄: 선택 바 */
+.filmo-nav {
+	text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  	position: relative;
+    bottom: -1px;
+    z-index: 9;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    list-style: none;
+    top: 0;
+}
+/* 스크롤바 커스텀 */
+.filmo-nav::-webkit-scrollbar {
+    height: 0px;
+}
+
+.nav-item {
+    padding: 10px 12px;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    list-style: none;
+}
+
+.nav-item.active {
+    color: white;
+    background-color: #1E1E1E;
+}
+
+/* 2번째 줄: 선택된 항목 표시 */
+.filmo-display {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    align-items: center;
+    height: 35px;
+}
+
+.folderTitle{
+	display: flex;
+    font-size: 18px;
+    padding: 8px 0px;
+}
+
+.selected-title {
+    margin: 0;
+    font-size: 17px;
+}
+
+/* 3번째 줄: 스크롤 가능한 콘텐츠 목록 */
+.filmo-list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100vh - 72px); /* 헤더(35px) 제외한 나머지 높이 */
+}
+
+.filmo-content {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.filmo-content img {
+    width: 100px;
+    height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.filmo-content .desc {
+	display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    align-items: center;
+    height: 90%;
+    font-size: 14px;
+}
+
+.filmo-content .key {
+    margin-bottom: 10px;
+}
+
+.filmo-content .keyM {
+    border-radius: 7px;
+    padding: 3px;
+    font-size: 11px;
+    margin-right: 5px;
+    background-color: #1e1e1e;
+    color: white;
+}
+
+.filmo-content .remark {
+	color: darkgray;
+    font-size: 13px;
+}
+
+/* 2칸 보기 모드 */
+.filmo-list.double {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* 스크롤바 커스텀 */
+.filmo-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.filmo-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.filmo-list::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
+/* 콘텐츠 개별 아이템 */
+.filmo-item {
+    background-color: transparent;
+    padding: 5px 12px;
+    text-align: left;
+    border-radius: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: 100px repeat(1, 1fr);
+    gap: 10px;
+    align-items: center;
+    word-break: keep-all;
+    min-height: 22px;
+}
+
+.filmo-item .title {
+	font-size: 16px;	
+}
+
+.filmoImgDiv {
+	width: 100px !important;
+	height: 140px !important;
+}
+.filmoImgDiv img{
+    width: 100% !important;
+	height: 100% !important;
+    object-fit:cover;
+}
+.filmoImgDiv.y {
+    box-shadow: 3px 3px 5px #c9c9c9;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 900px) {
+	
+}
+
+@media (min-width: 901px) {
+    .filmo-nav {
+    	justify-content: start;
+    	text-align: left;
+    }
+}

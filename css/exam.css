@@ -1,0 +1,621 @@
+html, body {
+	text-align: center;
+	font-size: 20px;
+	background: white;
+	overflow: hidden auto;
+	display: flex;
+	align-items:flex-start;
+}
+body::-webkit-scrollbar, .msgCont::-webkit-scrollbar {
+	width: 5px;  /* 스크롤바의 너비 */
+}
+body::-webkit-scrollbar-thumb {
+	height: 30%; /* 스크롤바의 길이 */
+	background: #ffd793; /* 스크롤바의 색상 */ 
+	border-radius: 10px;
+}
+body::-webkit-scrollbar-track, .msgCont::-webkit-scrollbar-track {
+	background: white;  /*스크롤바 뒷 배경 색상*/
+}
+svg path, svg rect{
+	fill: #FF6700;
+}
+.mainHeader a{
+	color: #1E1E1E;
+}
+.game-list {
+	width: 100vw;
+	height: 100vh;
+    margin: 0 auto;
+    letter-spacing: -1px;
+    font-size: 20px;
+    line-height: 25px;
+	place-items: center;
+    align-items: start;
+    overflow: hidden;
+}
+article{
+	font-family: 'NeoDunggeunmoPro-Regular', 'DNFBitBitv2';
+	display: flex;
+    justify-content: start;
+    flex-direction: column;
+	margin: auto;
+	height: 100vh;
+	width: 92vw;
+}
+article.loading {
+	margin-top: 20%;
+}
+article.intro {
+	display: grid;
+    grid-template-rows: 30% 8% 22% 20%;
+    justify-content: center	;
+}
+article.intro, article.result {
+    align-items: center;
+}
+.loading h3{
+	color: #ffa205;
+}
+.title, .resultImgCont, .resultCont {
+	height: 130px;
+	-webkit-font-smoothing: antialiased;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.title .big {
+	font-size: 1.3em;
+	color: #ffa205;
+	padding: 15px;
+}
+.title .little {
+	font-size: 0.8em;
+}
+.titleCont, .resultImgCont {
+    height: 85%;
+    padding: 5px 0px;
+}
+.titleCont img{
+	height: 112%;
+	margin:auto;
+}
+.resultCont {
+	height: 300px;
+	width: 85%;
+}
+.resultCont button{
+	margin-bottom: 5px;
+}
+.resultCont .return{
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.intro .inputCont {
+	padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.intro input.name {
+	font-family: 'NeoDunggeunmoPro-Regular', 'DNFBitBitv2';
+    font-size: 16px;
+    text-align: center;
+	width: 70%;
+	height: 50px;
+	margin: 15px 20px 0 20px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	border: 1px solid rgb(237, 237, 237);
+	background-color: rgb(237, 237, 237, 0.3);
+}
+.intro input.name::placeholder {
+    text-align: center;
+}
+.inputCont button.start{
+	width: 70%;
+}
+button:not(.menu-toggle) {
+	font-family: 'NeoDunggeunmoPro-Regular', 'DNFBitBitv2';
+    font-size: 16px;
+    color: white;
+	width: 85%;
+	height: 45px;
+	margin-top: 15px;
+	border-radius: 6px;
+	border: none;
+	background-color: #ffa205;
+	-webkit-transition: all 2s ease-in-out;
+	-moz-transition: all 2s ease-in-out;
+	-o-transition: all 2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	cursor: pointer;
+}
+button:hover, li:hover {
+  opacity: 0.7;
+}
+.divExam li:hover {
+  opacity: 1 !important;
+}
+.titleText {
+	font-family: 'NeoDunggeunmoPro-Regular', 'DNFBitBitv2';
+	position: relative;
+	margin: 10px;
+}
+.titleText a {
+	color: #1E1E1E;
+	cursor: pointer;
+	position: absolute;
+	left: 10px;
+}
+.ing .progress{
+	margin: 15px 0;
+	background-color: #e7e7e7;
+}
+.ing .progress .bar{
+	height: 0.25rem;
+	background-color: #ffa205;
+}
+/* Slide-in 애니메이션 정의 */
+@keyframes slideIn {
+	0% {
+		opacity: 0;
+		transform: translateY(20px); /* 아래에서 시작 */
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0); /* 제자리로 이동 */
+	}
+}
+.slide-in {
+	opacity: 0;
+	animation: slideIn 0.5s ease-out forwards;
+}
+.imgCont {
+	height: 160px;
+	padding: 10px;
+}
+.question {
+	height: 160px;
+	display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+.question span{
+	width: 85%;
+	font-size: 0.92em;
+	word-break: keep-all;
+	white-space: pre-line;
+}
+.choose {
+	height: 370px;
+	margin: 0 auto;
+}
+.choose ul {
+	margin-top: 10px;
+	padding: 0px 20px;
+}
+.choose li {
+	width: 80vw;
+	font-size: 0.85em;
+	list-style: none;
+	padding: 10px;
+	margin-bottom: 16px;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	cursor: pointer;
+	word-break: keep-all;
+	white-space: pre-line;
+}
+.choose li:hover {
+	color: #fff;
+	background-color: #ffa205;
+	opacity: 0.7;
+}
+.choose textarea{
+	font-family: 'GmarketSansLight', "GmarketSansBold", sans-serif !important;
+	width: 80%;
+	height: 59%;
+	max-height: 70%;
+	word-wrap: break-word;
+	resize: none;
+	background-color:#FFF;
+	color:#222;
+	line-height:25px;
+	padding-left:40px;
+	padding-right:40px;
+	padding-top:35px;
+	padding-bottom:35px;
+	-webkit-border-radius:12px;
+	-webkit-box-shadow: 0px 2px 14px #000;
+	box-shadow: 0px 2px 14px #000;
+	border-radius:12px;
+	border-top:1px solid #FFF;
+	border-bottom:1px solid #FFF;
+}
+.shareCont {
+	border-top: 5px solid #ffd793;
+	padding: 20px;
+	width: 100%;
+	margin-top: 10px;
+}
+.shareCont .shareTitle{
+	font-weight: bold;
+}
+.recommendCont {
+	border-top: 3px solid #ffd793;
+	padding: 15px;
+}
+.recommendCont .recTitle{
+	font-size: 21px !important;
+	margin-bottom: 15px;
+}
+.recommendCont .recTitle, .recCont1, .recCont2, .recCont3{
+	font-size: 0.92em;
+	font-weight: bold;
+	white-space: pre-line;
+}
+.recommendCont .recCont1, .recCont2, .recCont3{
+	padding: 10px;
+}
+.shareBox {
+	margin: 20px;
+	margin-bottom: 30px;
+}
+.shareBox a{
+	margin-right: 13px;
+}
+.shareBox i{
+	color: #fff;
+    font-size: 22px;
+    background-color: #1E1E1E;
+    padding: 7px 10px;
+    border-radius: 50%;
+}
+.shareBox i::before{
+	vertical-align: middle !important;
+}
+.result .titleText{
+	padding-bottom: 20px;
+	border-bottom: 5px solid #ffd793;
+}
+.titleText .rstInfo{
+	font-family: 'NeoDunggeunmoPro-Regular', 'DNFBitBitv2';
+	font-size: .8em;
+	margin-bottom: 20px;
+}
+.titleText .score{
+	font-size: 1.5em;
+	color: #ffa205;
+}
+/*모달 팝업 영역 스타일링*/
+.modal {
+/*팝업 배경*/
+	display: none; /*평소에는 보이지 않도록*/
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: rgba(0,0,0,0.4);
+    z-index: 999;
+}
+.modal .modal_popup {
+/*팝업*/
+	font-family: 'GmarketSansMedium', 'GmarketSansLight';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255,255,255,1);
+}
+/* 레이어 */
+.divLayer{
+	display:none;
+	position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+.divLayer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+}
+.divLayer .layerCont{
+	position: absolute;
+	top: 15%;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #fff;
+	z-index: 9999;
+	border-radius: 15px 15px 0 0;
+	-webkit-transform: translateY(100%);
+	transform: translateY(100%);
+	-webkit-transition: all ease 0.2s;
+	transition: all ease 0.2s;
+}
+.divLayer .b_handle{
+	display: block;
+	height: 28px;
+	text-indent: -999999em;
+	line-height: 0;
+	overflow: hidden;
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+.divLayer .b_handle:after{
+	content: "";
+	display: block;
+	width: 60px;
+	height: 4px;
+	border-radius: 2px;
+	background: #d9d9d9;
+	margin: 12px auto 0;
+}
+.divLayer .divExamTt{
+	padding: 10px;
+	font-size: .9em;
+	font-weight: bold;
+}
+.divLayer .divExam{
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	border-top: 1px solid #ccc;
+	margin-top: -1px;
+	padding: 20px;
+	overflow-y: auto;
+	height: calc(100% - 78px);
+	text-align: left;
+	font-size: .8em;
+}
+.divLayer .divExam ol.q{
+	padding-inline-start: 10px;
+    margin: 0px;
+    word-break: keep-all;
+}
+.divLayer .divExam ol.c{
+	padding: 0px 10px;
+	margin: 5px 0px 20px;
+}
+.divLayer .divExam ol.c li{
+	font-size: .95em;
+	word-break: keep-all;
+	white-space: pre-line;
+}
+.divLayer .divExam ol.c li.bold{
+	font-weight: bolder;
+	background-color: rgb(255 174 102 / 14%);
+}
+.divLayer .divExam ol.c li.comment{
+	margin: 6px 0pxf;
+    padding: 10px 7px;
+    font-size: .85em;
+    background-color: rgb(177 177 177 / 15%);
+    border: 1px solid rgb(177 177 177 / 60%);
+    border-radius: 10px;
+	word-break: keep-all;
+	white-space: pre-line;
+	line-height: normal;
+	list-style: none;
+}
+.divLayer .divExam ol.c li.comment a{
+	color: darkblue;
+}
+.recCont2 .page-content{
+	display: grid;
+	grid-gap: 1rem;
+  	margin-top: 12px;
+  	
+	@media (min-width: 300px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	/* @media (min-width: 400px) {
+		grid-template-columns: repeat(4, 1fr);
+	} */
+}
+.recCont2 .card{
+	position: relative;
+	display: flex;
+	align-items: flex-end;
+	overflow: hidden;
+	padding: .5rem;
+	height: 250px;
+	width: 250px;
+	text-align: center;
+	color: whitesmoke;
+	background-color: whitesmoke;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.1), 
+		0 2px 2px rgba(0,0,0,0.1), 
+		0 4px 4px rgba(0,0,0,0.1), 
+		0 8px 8px rgba(0,0,0,0.1),
+		0 16px 16px rgba(0,0,0,0.1);
+	justify-content: center;
+	margin: auto;
+	
+	/* 반응형 스타일 */
+	@media (max-width: 900px) {
+		height: 100%;
+        width: auto;
+	}
+}
+.recCont2 .content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	transition: transform var(--d) var(--e);
+	z-index: 1;
+	word-break: keep-all;
+	white-space: pre-line;
+	opacity: .8;
+	border: 1px solid;
+}
+.recCont2 .title {
+	font-family: 'NeoDunggeunmoPro-Regular', 'DNFBitBitv2';
+	font-size: 92%;
+	font-weight: bolder;
+	line-height: 1.2;
+	margin-top: 10px;
+	opacity: .8;
+	display: block;
+	height: 30%;
+}
+.recCont2 .copy {
+	text-align: center;
+	font-family: 'NeoDunggeunmoPro-Regular', 'DNFBitBitv2';
+	font-size: 70%;
+	font-style: italic;
+	font-weight: bolder;
+	line-height: 1.35;
+	margin: 0px;
+	color: #1E1E1E;
+	word-break: keep-all;
+	opacity: .7;
+	height: 40%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.recCont2 .btn {
+	cursor: pointer;
+	font-size: 11px;
+	font-weight: bold;
+	letter-spacing: 0.025rem;
+	text-transform: uppercase;
+	color: white;
+	background-color: #1E1E1E;
+	border: none;
+	width: 100px;
+    height: 50px;
+	margin-bottom: 5px;
+}
+.message .postit {
+	background: #FFF9C4;
+	width: 300px;
+	margin: 60px auto;
+	padding: 10px;
+	box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+	color: #424242;
+}
+.message .tape {
+	margin: -30px auto 10px;
+	width: 165px;
+	height: 30px;
+	background: rgba(255,255,200,0.4);
+	-webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.4);
+	-moz-box-shadow: 0px 1px 3px rgba(0,0,0,0.4);
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.4);
+	text-align: center;
+	line-height: 40px;
+	font-weight: bold;
+	color: #424242;
+}
+.message .msg{
+	font-size: .75em;
+	word-break: keep-all;
+	white-space: pre-line;
+	margin: 25px;
+}
+
+.howtoCont{
+	font-family: 'NeoDunggeunmoPro-Regular', 'DNFBitBitv2';
+	word-break: keep-all;
+}
+
+.recCont1 img{
+	width:80%;
+	margin-top:12px;
+}
+
+@media only screen and ( max-height : 715px) {
+	.question {
+		height: 160px !important;
+    }
+    .question .imgQ img{
+    	height: 170px !important;
+    }
+    .question span{
+    	font-size: 0.85em !important;
+    }
+    .choose li{
+    	font-size: 0.8em !important;
+    }
+}
+@media only screen and ( max-height : 650px) {
+	.question {
+		height: 145px !important;
+    }
+    .question span{
+    	font-size: 0.8em !important;
+    }
+    .choose li{
+    	font-size: 0.76em !important;
+    	margin-bottom: 13px;
+    	padding: 8px;
+    }
+}
+@media only screen and ( max-height : 558px) {
+	.question {
+		height: 95px !important;
+    }
+    .question .imgQ img{
+    	height: 145px !important;
+    }
+    .question span{
+    	font-size: 0.75em !important;
+    }
+    .choose li{
+    	font-size: 0.7em !important;
+    	margin-bottom: 11px;
+    	padding: 6px;
+    }
+}
+
+
+@media (min-width: 901px) {
+	article {
+		width: 52vw;
+	}
+	article.loading {
+		justify-content: center;
+		margin-top: 0px;
+	}
+	article.intro {
+	    align-items: start;
+		grid-template-rows: 40% 5% 15% 20%;
+	}
+	.choose li {
+		width: 40vw;
+	}
+	.titleCont img{
+		padding-top: 30px;
+	}
+	button:not(.menu-toggle) {
+		width:55%;
+	}
+	.recCont1 img{
+		width:35%;
+		margin-top:12px;
+	}
+}
