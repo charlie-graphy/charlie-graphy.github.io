@@ -89,7 +89,7 @@ $(document).ready(function() {
         let now = new Date();
         let timeString = now.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: false});
         let dateString = now.toLocaleDateString('ko-KR', {month: 'long',day: 'numeric', weekday: 'long'});
-        $(".datetime").text(`${dateString} ${timeString}`);
+        $(".datetime").text('7월 25일 금요일 00:00');
     }
     setInterval(updateTime, 1000);
     updateTime();
