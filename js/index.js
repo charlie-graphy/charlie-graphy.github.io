@@ -6,22 +6,21 @@ $(window).on("load", function() {
 	   	});
 	}
 	
-
-	   	let targetWindow = $("#templete").clone();
-        targetWindow.css({'width':'200px','height':'140px'});
-        $(".main-content").append(targetWindow);
-        
-        targetWindow.attr("data-id", "banner");
-        targetWindow.find(".title-bar span").text("😈 깨비 연구소");
-        targetWindow.find(".content iframe").remove();
-        targetWindow.find(".content").append($('<img>',{'class':'banner','src':'https://lh3.googleusercontent.com/d/1UVLK2jqOVByfLSvmtdM76Epudf92Z1LW','alt':'배너','style':'width:100%'}));
-        
-        targetWindow.fadeIn().css({top: '50px', left: "1%"});
-        targetWindow.find('.resize-handle, .max-btn').remove();
-        
-        $(".main-content img.banner").parents('.content').click(function(e){
-        	window.location = "https://www.jeehwany.com/20250725";
-        });
+	let targetWindow = $("#templete").clone();
+	targetWindow.css({'width':'210px','height':'150px'});
+	$(".main-content").append(targetWindow);
+	
+	targetWindow.attr("data-id", "banner");
+	targetWindow.find(".title-bar span").text("🥳 HAPPY BIRTHDAY");
+	targetWindow.find(".content iframe").remove();
+	targetWindow.find(".content").append($('<img>',{'class':'banner','src':'https://lh3.googleusercontent.com/d/1UVLK2jqOVByfLSvmtdM76Epudf92Z1LW','alt':'배너','style':'width:100%'}));
+	
+	targetWindow.fadeIn().css({top: '42px', left: "1%"});
+	targetWindow.find('.resize-handle, .max-btn').remove();
+	
+	$(".main-content img.banner").parents('.content').click(function(e){
+		window.location = "https://www.jeehwany.com/20250725";
+	});
 });
 
 var size = 5;
@@ -133,11 +132,14 @@ $(document).ready(function() {
             	targetWindow.find('.resize-handle').remove();
             	
             	if($(window).width() < 900){
-            		window.open("games2.html", "_self");
+            		window.open("games", "_self");
             		return false;
             	}
             }else if(target == 'schedule'){
             	targetWindow.css({'width':'360px','height':'600px'});
+            }else if(target == '깨비연구소'){
+            	window.open("20250725", "_self");
+        		return false;
             }
             $(".main-content").append(targetWindow);
             
@@ -168,7 +170,7 @@ $(document).ready(function() {
 
     // 팝업창 확대
     $(".main-content").on("click", ".max-btn", function(e){
-    	window.open($(this).closest(".window").data("id")+"2.html", "_self");
+    	window.open($(this).closest(".window").data("id"), "_self");
     });
 
     // 팝업창 이동 기능 (화면 내부 제한 + 클릭 시 맨 앞으로)
