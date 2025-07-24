@@ -14,7 +14,7 @@ $(window).on("load", function() {
         targetWindow.find(".content iframe").remove();
         targetWindow.find(".content").append($('<img>',{'class':'banner','src':'https://lh3.googleusercontent.com/d/1UVLK2jqOVByfLSvmtdM76Epudf92Z1LW','alt':'배너','style':'width:100%'}));
         
-        targetWindow.fadeIn().css({top: '50px', left: "1%"});
+        targetWindow.fadeIn().css({top: '42px', left: "1%"});
         targetWindow.find('.resize-handle, .max-btn').remove();
         
         $(".main-content img.banner").parents('.content').click(function(e){
