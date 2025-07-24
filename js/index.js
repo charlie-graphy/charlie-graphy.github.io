@@ -1,10 +1,8 @@
 $(window).on("load", function() {
-	if(new Date().getMonth() >= 6 && new Date().getDate() >= 25){
-		$('.loader #newLoad').remove();
-	   	$(".loader").fadeOut(500, function() {
-	   		$(".main-content").addClass("show");
-	   	});
-	}
+	$('.loader #newLoad').remove();
+   	$(".loader").fadeOut(500, function() {
+	   	$(".main-content").addClass("show");
+	});
 	
 	let targetWindow = $("#templete").clone();
 	targetWindow.css({'width':'210px','height':'150px'});
