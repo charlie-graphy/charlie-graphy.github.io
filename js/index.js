@@ -1,7 +1,7 @@
 $(window).on("load", function() {
 	$('.loader #newLoad').remove();
-   	$(".loader").fadeOut(500, function() {
-	   	$(".main-content").addClass("show");
+	$(".loader").fadeOut(500, function() {
+		$(".main-content").addClass("show");
 	});
 	
 	let targetWindow = $("#templete").clone();
