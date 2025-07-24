@@ -12,8 +12,7 @@ $(window).on("load", function() {
         targetWindow.attr("data-id", "banner");
         targetWindow.find(".title-bar span").text("🥳 HAPPY BIRTHDAY");
         targetWindow.find(".content iframe").remove();
-        //targetWindow.find(".content").append($('<video>',{'class':'banner','src':'img/2025-HBD.mp4','alt':'배너','style':'width:100%','autoplay loop muted':''}));
-        targetWindow.find(".content").append('<video class="banner" src="img/2025-HBD.mp4" alt="배너" style="width:100%;" autoplay loop muted>');
+        targetWindow.find(".content").append('<video class="banner" src="img/2025-HBD.mp4" alt="배너" style="width:100%;" autoplay loop muted playsinline>');
         
         targetWindow.fadeIn().css({top: '42px', left: "1%"});
         targetWindow.find('.resize-handle, .max-btn').remove();
