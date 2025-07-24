@@ -4,22 +4,21 @@ $(window).on("load", function() {
 		$(".main-content").addClass("show");
 	});
 	
-
-	   	let targetWindow = $("#templete").clone();
-        targetWindow.css({'width':'210px','height':'150px'});
-        $(".main-content").append(targetWindow);
-        
-        targetWindow.attr("data-id", "banner");
-        targetWindow.find(".title-bar span").text("🥳 HAPPY BIRTHDAY");
-        targetWindow.find(".content iframe").remove();
-        targetWindow.find(".content").append('<video class="banner" src="img/2025-HBD.mp4" alt="배너" style="width:100%;" autoplay loop muted playsinline>');
-        
-        targetWindow.fadeIn().css({top: '42px', left: "1%"});
-        targetWindow.find('.resize-handle, .max-btn').remove();
-        
-        $(".main-content img.banner").parents('.content').click(function(e){
-        	window.location = "https://www.jeehwany.com/20250725";
-        });
+	let targetWindow = $("#templete").clone();
+	targetWindow.css({'width':'210px','height':'150px'});
+	$(".main-content").append(targetWindow);
+	
+	targetWindow.attr("data-id", "banner");
+	targetWindow.find(".title-bar span").text("🥳 HAPPY BIRTHDAY");
+	targetWindow.find(".content iframe").remove();
+    targetWindow.find(".content").append('<video class="banner" src="img/2025-HBD.mp4" alt="배너" style="width:100%;" autoplay loop muted playsinline>');
+	
+	targetWindow.fadeIn().css({top: '42px', left: "1%"});
+	targetWindow.find('.resize-handle, .max-btn').remove();
+	
+	$(".main-content img.banner").parents('.content').click(function(e){
+		window.location = "https://www.jeehwany.com/20250725";
+	});
 });
 
 var size = 5;
@@ -90,7 +89,7 @@ $(document).ready(function() {
         let now = new Date();
         let timeString = now.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: false});
         let dateString = now.toLocaleDateString('ko-KR', {month: 'long',day: 'numeric', weekday: 'long'});
-        $(".datetime").text('7월 25일 금요일 00:00');
+        $(".datetime").text(`${dateString} ${timeString}`);
     }
     setInterval(updateTime, 1000);
     updateTime();
