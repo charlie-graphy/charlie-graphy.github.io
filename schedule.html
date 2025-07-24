@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="배우 안지환 아카이브 사이트">
+    <meta name="keywords" content="안지환">
+    <meta property="og:image" content="https://blog.kakaocdn.net/dn/bpb0mG/btsMKDW3how/eF5FV41D8WPY4JtRAzrfrk/img.jpg">
+    <meta property="og:title" content="AHNJEEHWANY">
+	<meta property="og:description" content="배우 안지환 아카이브 사이트 - 스케줄">
+    <title>AHNJEEHWANY</title>
+    
+    <!-- 파비콘 -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io_new/apple-icon-180x180.png">
+    <link rel="icon" type="image/x-icon" href="img/favicon_io_new/ms-icon-310x310.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io_new/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io_new/favicon-16x16.png">
+    
+    <!-- 스타일시트 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/schedule.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
+	<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'>
+	<link rel="stylesheet" href="css/calendarstyle.css">
+		
+    <!-- jQuery 및 스크립트 -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</head>
+<body id="schedule">
+    <!-- 로딩 화면 -->
+  	<div class="loader">
+        <img src="icon/slow.png" alt="loading" oncontextmenu="return false">
+    </div> 
+
+    <!-- 메인 콘텐츠 (초기에는 숨김) -->
+    <div class="main-content">
+        <!-- 상단 헤더 -->
+        <header class="top-bar">
+            <div class="left-section">
+                <button class="menu-toggle">☰</button>
+                <div class="logo"><a href="https://jeehwany.com">AHNJEEHWANY</a></div>
+                <nav class="menu">
+                    <a href="https://jeehwany.com">Home</a>
+                    <a href="profile">Profile</a>
+                    <a href="filmography">Filmography</a>
+                    <a href="video">Videos</a>
+                    <a href="special">Special</a>
+                    <a href="schedule">Schedule</a>
+                    <a href="games">Games</a>
+                    <a href="info">Info</a>
+                </nav>
+            </div>
+            <div class="center-section"></div> <!-- 비어 있는 중앙 영역 -->
+            <div class="right-section">
+                <i class='bx bx-fullscreen fullscreen'></i>
+                <span class="datetime"></span>
+            </div>
+        </header>
+
+        <!-- 콘텐츠 영역 (헤더 아래 분리) -->
+        <div class="content-section">
+	
+	        <div class="schedule-list">
+	        	<div class="p-5" style="padding:0px !important;">
+			  		<div class="card">
+			    		<div class="card-body p-0">
+			      			<div id="calendar"></div>
+			    		</div>
+			  		</div>
+				</div>
+			
+				<!-- calendar modal -->
+				<div id="modal-view-event" class="modal modal-top fade calendar-modal">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-body">
+								<h4 class="modal-title"><span class="event-icon"></span><span class="event-title"></span></h4>
+								<button type="button" class="btn btn-primary" data-dismiss="modal">&#10006;</button>
+								<div class="event-date"></div>
+								<div class="event-body"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<!-- month modal -->
+				<div class="monthModal">
+					<div class="modal_popup">
+				    	<table>
+				    		<tr>
+				    			<td class="prevYear" style="padding-bottom: 15px;"> < </td>			    			
+				    			<td colspan="4" style="padding-bottom: 15px;"><span class="year">2025</span> 년</td>
+				    			<td class="nextYear" style="padding-bottom: 15px;"> > </td>
+				    		</tr>
+				    		<tr class="month">
+				    			<td><span data-idx="01">1월</span></td>
+				    			<td><span data-idx="02">2월</span></td>
+				    			<td><span data-idx="03">3월</span></td>
+				    			<td><span data-idx="04">4월</span></td>
+				    			<td><span data-idx="05">5월</span></td>
+				    			<td><span data-idx="06">6월</span></td>
+				    		</tr>
+				    		<tr class="month">
+				    			<td><span data-idx="07">7월</span></td>
+				    			<td><span data-idx="08">8월</span></td>
+				    			<td><span data-idx="09">9월</span></td>
+				    			<td><span data-idx="10">10월</span></td>
+				    			<td><span data-idx="11">11월</span></td>
+				    			<td><span data-idx="12">12월</span></td>
+				    		</tr>
+				    	</table>
+				    </div>
+				</div>
+				
+				<!-- partial -->
+				<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+				<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js'></script>
+				<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js'></script>
+	   			<script src="js/calendarscript.js"></script>
+	        </div>
+        </div>
+        
+    </div>
+</body>
+</html>
+<script>
+$(document).ready(function() {
+	const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("only") === "content-section") {
+        $(".top-bar").hide(); // 헤더 숨기기
+        $("body#schedule").css("padding", "0"); // 여백 제거
+		$("#schedule .content-section").css({"margin-top":"0","height":"calc(100vh - 2px)"});
+        $("a").not('.fc-day-grid-event').each(function(e){
+        	$(this).attr("href",$(this).attr("href")+"?only=content-section");
+        });
+        $('#schedule .fc-event .fc-title').css({'font-size':'10px'});
+	}
+
+    // 보기 모드 변경
+    $(".view-btn").click(function() {
+        let mode = $(this).data("view");
+        $(".schedule-list").toggleClass("double", mode === "double");
+        if(mode === "double" && urlParams.get("only") === "content-section"){
+        	$(".schedule-list.double").css({"grid-template-columns":"repeat(2, 1fr)"});
+        }else if(mode === "single" && urlParams.get("only") === "content-section")$(".schedule-list").css({"grid-template-columns":"repeat(1, 1fr)"});
+    });
+    
+    
+    $('.monthModal .month span[data-idx='+String(new Date().getMonth()+1).padStart(2,'0')+']').addClass('now');
+	$('.fa-chevron-left').text('<');
+	$('.fa-chevron-right').text('>');
+	
+	 $('.fc-view-container').swipe({
+         swipeLeft: function() {
+        	 $('.fc-right button').trigger('click');
+         },
+         swipeRight: function() {
+        	 $('.fc-left button').trigger('click');
+         }
+     });
+	 
+	timeFormat();
+	$('.fc-header-toolbar .fc-prev-button, .fc-header-toolbar .fc-next-button').on('click', function(){
+		if($('.fc-toolbar h2').text() == 'December 2023'){
+			$('.fc-next-button .fa-chevron-right').trigger('click');
+			alert('2024년부터 볼 수 있습니다.');
+			return false;
+		}else{
+			timeFormat();	
+		}
+	});
+	
+	$('.fc-center').on('click', function(e){
+		$('.monthModal').toggleClass('on');
+	});
+	
+	$('.monthModal .month span').on('click', function(e){
+		$('.monthModal .month span').removeClass('now');
+		$('#calendar').fullCalendar('gotoDate', new Date($('.monthModal .year').text() + '-' + $(this).data('idx') + '-01'));
+		timeFormat();
+		$('.monthModal').removeClass('on');
+		$(this).addClass('now');
+	});
+	
+	$('.monthModal .prevYear').on('click', function(e){
+		if($('.monthModal .year').text()=='2024') alert('2024년부터 볼 수 있습니다.');
+		else $('.monthModal .year').text(Number($('.monthModal .year').text())-1);
+	});
+
+	$('.monthModal .nextYear').on('click', function(e){
+		$('.monthModal .year').text(Number($('.monthModal .year').text())+1);
+	});
+
+	$(document).mouseup(function (e){
+		if($(".monthModal .modal_popup").has(e.target).length === 0){
+			$('.monthModal').removeClass('on');
+		}
+	});
+});
+function timeFormat(){
+	var month = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
+	var week = ['일','월','화','수','목','금','토'];
+	
+	//월
+	var year = $('.fc-header-toolbar h2').text().split(' ')[1];
+	$('.fc-header-toolbar h2').text(year+" "+(jQuery.inArray($('.fc-header-toolbar h2').text().split(' ')[0].toUpperCase(), month)+1)+"월");
+	
+	//주
+	$('.fc-day-header').each(function(i, v) {
+		$(this).find('span').text(week[i]);
+	});
+	
+	//시간
+	$('.fc-time').each(function(i, v) {
+		const endWord = $(this).text().charAt($(this).text().length-1);
+		let time = '';
+		
+		if($(this).text() != '12a'){
+			if(endWord == 'p'){
+				if($(this).text().length > 2){
+					time = Number($('.fc-time:eq('+i+')').text().split(':')[0])+12+":"+$('.fc-time:eq('+i+')').text().split(':')[1].substring(0,2);
+				}else{
+					time = Number($('.fc-time:eq('+i+')').text().split('p')[0])+12+":00"
+				}
+			}else if(endWord == 'a'){
+				if($(this).text().length > 2){
+					time = $('.fc-time:eq('+i+')').text().split(':')[0]+":"+$('.fc-time:eq('+i+')').text().split(':')[1].substring(0,2);
+				}else{
+					time = $('.fc-time:eq('+i+')').text().split('a')[0]+":00"
+				}
+			}
+		}
+		
+		$(this).text(time);
+	});
+	
+	if($('.fc-week').last().find('.fc-other-month').length > 7){
+		$('.fc-week').last().remove();
+	}
+	
+	$('.fc-day-top.fc-other-month').each(function(i, v) {
+		if($(this).parents('thead').next().find('tr:eq(0) td').eq($(this).index()).hasClass('fc-event-container')){
+			//$(this).parents('thead').next().find('tr:eq(0) td').eq($(this).index()).empty().removeClass('fc-event-container');
+		}
+		//$(this).parents('thead').next().find('tr:eq(1) td.fc-event-container').empty().removeClass('fc-event-container');
+	});
+}
+</script>
