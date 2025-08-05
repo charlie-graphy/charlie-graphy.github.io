@@ -1492,7 +1492,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 정서안<br>이경신 役 | 김준식',
+					description: '<p class="event">스크래치 행운권 & 엽전 증정</p>김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 정서안<br>이경신 役 | 김준식',
 					start: '2025-08-10 18:00',
 					className: 'bg-red',
 					allDay: false
@@ -1520,14 +1520,14 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 정서안<br>이경신 役 | 임태현',
+					description: '<p class="event">폴라로이드 사진 증정</p>김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 정서안<br>이경신 役 | 임태현',
 					start: '2025-08-15 14:00',
 					className: 'bg-red',
 					allDay: false
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 김준식',
+					description: '<p class="event">폴라로이드 사진 증정</p>김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 김준식',
 					start: '2025-08-15 18:00',
 					className: 'bg-red',
 					allDay: false
@@ -1548,7 +1548,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박주혁<br>이경신 役 | 황두현',
+					description: '<p class="event">행운 부적 증정</p>김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 박주혁<br>이경신 役 | 황두현',
 					start: '2025-08-17 14:00',
 					className: 'bg-red',
 					allDay: false
@@ -1562,21 +1562,21 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
+					description: '<p class="event">스페셜 커튼콜 데이 : M12. 태평성대</p>김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
 					start: '2025-08-20 16:00',
 					className: 'bg-red',
 					allDay: false
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 김준식',
+					description: '<p class="event">스페셜 커튼콜 데이 : M5+6. 길삼봉이 돌아왔다+내 아버지는</p>김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 김준식',
 					start: '2025-08-22 20:00',
 					className: 'bg-red',
 					allDay: false
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 정서안<br>이경신 役 | 황두현',
+					description: '<p class="event">스페셜 커튼콜 데이 : M1. 등등곡</p>김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 정서안<br>이경신 役 | 황두현',
 					start: '2025-08-23 19:00',
 					className: 'bg-red',
 					allDay: false
@@ -1593,6 +1593,111 @@
 					description: '<p class="event">SPECIAL BOOK - 2 증정</p>첼릭 役 | 김재범<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
 					start: '2025-08-24 18:00',
 					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '<p class="event">WEDDING PARTY(기념 뱃지 증정)</p>첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 김세환',
+					start: '2025-08-26 20:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '<p class="event">스페셜 커튼콜 데이 : M16. 그래도 가겠다</p>김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 김서환<br>정진명 役 | 정서안<br>이경신 役 | 황두현',
+					start: '2025-08-27 20:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '<p class="event">전관</p>김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박선영<br>이경신 役 | 김준식',
+					start: '2025-08-28 20:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '<p class="event">WEDDING PARTY(기념 뱃지 증정)</p>첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
+					start: '2025-08-31 18:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
+					start: '2025-09-02 20:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '<p class="event">전관</p>첼릭 役 | 김재범<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 김세환',
+					start: '2025-09-04 20:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 안창용',
+					start: '2025-09-05 16:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '첼릭 役 | 김재범<br>아덤 役 | 안지환<br>메이役 | 조은정<br>벡스役 | 안창용',
+					start: '2025-09-05 20:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 김세환',
+					start: '2025-09-06 15:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 김준식',
+					start: '2025-09-07 14:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박선영<br>이경신 役 | 김준식',
+					start: '2025-09-10 16:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '첼릭 役 | 김재범<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
+					start: '2025-09-11 20:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '첼릭 役 | 김도빈<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
+					start: '2025-09-13 15:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '미러',
+					description: '<p class="event">마지막 공연</p>첼릭 役 | 김재범<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 안창용',
+					start: '2025-09-13 19:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '등등곡',
+					description: '<p class="event">마지막 공연</p>김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
+					start: '2025-09-14 18:00',
+					className: 'bg-red',
 					allDay: false
 				},
 				{
