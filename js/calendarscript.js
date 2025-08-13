@@ -1654,7 +1654,7 @@
 				{
 					title: '미러',
 					description: '첼릭 役 | 주민진<br>아덤 役 | 안지환<br>메이役 | 이서현<br>벡스役 | 김세환',
-					start: '2025-09-06 15:00',
+					start: '2025-09-06 19:00',
 					className: 'bg-gray',
 					allDay: false
 				},
@@ -1662,13 +1662,6 @@
 					title: '등등곡',
 					description: '김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 김준식',
 					start: '2025-09-07 14:00',
-					className: 'bg-red',
-					allDay: false
-				},
-				{
-					title: '등등곡',
-					description: '김영운 役 | 고상호<br>최윤 役 | 안지환<br>초 役 | 강찬<br>정진명 役 | 박선영<br>이경신 役 | 김준식',
-					start: '2025-09-10 16:00',
 					className: 'bg-red',
 					allDay: false
 				},
