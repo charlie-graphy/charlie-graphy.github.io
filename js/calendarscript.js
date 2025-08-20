@@ -1625,7 +1625,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
+					description: '<p class="event">럭키드로우</p>김영운 役 | 김재범<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 임태현',
 					start: '2025-09-02 20:00',
 					className: 'bg-red',
 					allDay: false
@@ -1660,7 +1660,7 @@
 				},
 				{
 					title: '등등곡',
-					description: '김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 김준식',
+					description: '<p class="event">럭키드로우</p>김영운 役 | 김지철<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 박주혁<br>이경신 役 | 김준식',
 					start: '2025-09-07 14:00',
 					className: 'bg-red',
 					allDay: false
