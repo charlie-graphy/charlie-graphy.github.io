@@ -1694,6 +1694,13 @@
 					allDay: false
 				},
 				{
+					title: '등등곡 - 울산',
+					description: '김영운 役 | 안재영<br>최윤 役 | 안지환<br>초 役 | 박상혁<br>정진명 役 | 정서안<br>이경신 役 | 황두현',
+					start: '2025-09-27 18:00',
+					className: 'bg-red',
+					allDay: false
+				},
+				{
 					title: '렛미플라이 - 홍콩',
 					description: '노인 남원 役 | 김태한<br>선희 役 | ?<br>청년 남원 役 | 안지환<br>정분 役 | ?',
 					start: '2025-11-21 20:00',
