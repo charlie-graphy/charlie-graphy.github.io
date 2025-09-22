@@ -1702,28 +1702,28 @@
 				},
 				{
 					title: '렛미플라이 - 홍콩',
-					description: '노인 남원 役 | 김태한<br>선희 役 | ?<br>청년 남원 役 | 안지환<br>정분 役 | ?',
+					description: '노인 남원 役 | 김태한<br>선희 役 | 방진의<br>청년 남원 役 | 안지환<br>정분 役 | 홍지희',
 					start: '2025-11-21 20:00',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: '렛미플라이 - 홍콩',
-					description: '노인 남원 役 | 김태한<br>선희 役 | ?<br>청년 남원 役 | 안지환<br>정분 役 | ?',
+					description: '노인 남원 役 | 김태한<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 나하나',
 					start: '2025-11-22 15:00',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: '렛미플라이 - 홍콩',
-					description: '노인 남원 役 | 김태한<br>선희 役 | ?<br>청년 남원 役 | 안지환<br>정분 役 | ?',
+					description: '노인 남원 役 | 김태한<br>선희 役 | 방진의<br>청년 남원 役 | 안지환<br>정분 役 | 홍지희',
 					start: '2025-11-22 19:30',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: '렛미플라이 - 홍콩',
-					description: '노인 남원 役 | 김태한<br>선희 役 | ?<br>청년 남원 役 | 안지환<br>정분 役 | ?',
+					description: '노인 남원 役 | 김태한<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 나하나',
 					start: '2025-11-23 15:00',
 					className: 'bg-blue',
 					allDay: false
