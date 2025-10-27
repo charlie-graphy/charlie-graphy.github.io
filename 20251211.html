@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>MEMORY DIVE</title>
+    <!-- CSS 파일 연결 -->
+    <link rel="stylesheet" href="20251211.css">
+    <!-- 배경 이미지를 미리 불러와서 로딩 속도를 개선합니다. -->
+    <link rel="preload" href="https://lh3.googleusercontent.com/d/1sIpbZzBC_roHnDF3dliaUTsGtHVuAgwv" as="image">
+</head>
+<body>
+    <!-- 로딩 화면 -->
+    <div id="loader">
+        <div class="loader-text">LOADING...</div>
+    </div>
+
+    <!-- 우주선 조종석 전체 컨테이너 (로딩 후 표시) -->
+    <div class="cockpit-container" style="display: none;">
+        <!-- 터미널 모니터 -->
+        <div class="terminal-monitor">
+            <h1 class="title">MEMORY DIVE</h1>
+            <p class="prompt">시간 여행을 시작하려면<br>우주선 탑승 코드를 입력하세요.</p>
+
+            <div class="password-group">
+                <input type="password" id="password-input" placeholder="MMDD" maxlength="4">
+                <button id="enter-button">탑승</button>
+            </div>
+            <!-- 힌트 위치 변경, MMDD 삭제 -->
+            <p class="hint">HINT: 데뷔일</p>
+            <!-- 상태 메시지 -->
+            <p id="status-message"></p>
+        </div>
+    </div>
+
+    <!-- 스토리 오버레이 (오프닝 후, 항해 지도 전) -->
+    <div id="story-overlay" style="display: none;">
+        <div id="story-text-container">
+            <!-- JS로 내용 추가 -->
+        </div>
+        <span class="story-cursor" style="display: none;">▼</span> <!-- 초기 숨김 -->
+    </div>
+
+
+    <!-- 항해 지도 컨테이너 (초기에는 숨겨져 있음) -->
+    <div class="galaxy-map-container" style="display: none;">
+        <h2 class="map-title">항해 지도</h2>
+
+        <!-- 행성들이 표시될 지도 영역 (가로 스크롤 가능) -->
+        <div class="map-area">
+            <div class="planets-wrapper">
+                 <!-- 행성들을 잇는 SVG 물결 경로 -->
+                <svg class="voyage-path-svg" viewbox="0 0 850 400" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="path-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#80d8ff" />
+                            <stop offset="100%" stop-color="#ea80fc" />
+                        </linearGradient>
+                    </defs>
+                    <path class="voyage-path" d="M 0,200 C 150,100 300,300 425,200 S 700,100 850,200" />
+                </svg>
+
+                <!-- 각 행성의 구조 -->
+                <div class="planet-orbit" id="orbit1">
+                    <div class="planet" id="planet1" data-chapter="1" data-title="CH.1 이륙">
+                        <img src="https://lh3.googleusercontent.com/d/1w35vNriFhcgTDZUeKTjAYh8V6TWwFOTZ" alt="이륙 행성 아이콘">
+                        <span class="planet-name">CH.1 이륙</span>
+                    </div>
+                </div>
+                <div class="planet-orbit" id="orbit2">
+                    <div class="planet" id="planet2" data-chapter="2" data-title="CH.2 탐색">
+                        <img src="https://lh3.googleusercontent.com/d/1PZfIVFahpetwRdMc4nfeeP8aRKX3f0fA" alt="탐색 행성 아이콘">
+                        <span class="planet-name">CH.2 탐색</span>
+                    </div>
+                </div>
+                <div class="planet-orbit" id="orbit3">
+                    <div class="planet" id="planet3" data-chapter="3" data-title="CH.3 확장">
+                        <img src="https://lh3.googleusercontent.com/d/1bKrq-6WYqeOrak46YEJeoJj9BtUQkr1z" alt="확장 행성 아이콘">
+                        <span class="planet-name">CH.3 확장</span>
+                    </div>
+                </div>
+                <div class="planet-orbit" id="orbit4">
+                    <div class="planet" id="planet4" data-chapter="4" data-title="CH.4 연결">
+                        <img src="https://lh3.googleusercontent.com/d/1oM8j5LOdn0mrV1L7EcEvGaFK_DrcjGPG" alt="연결 행성 아이콘">
+                        <span class="planet-name">CH.4 연결</span>
+                    </div>
+                </div>
+                 <div class="planet-orbit" id="orbit5">
+                    <div class="planet" id="planet5" data-chapter="5" data-title="CH.5 우주">
+                        <img src="https://lh3.googleusercontent.com/d/1XevrmVsQOHvb-J0g58TdDTw2pZcXw0yU" alt="우주 행성 아이콘">
+                        <span class="planet-name">CH.5 우주</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="map-hint">행성을 직접 클릭하여<br>자유롭게 탐사할 수도 있습니다.</p>
+
+        <!-- 모드 선택 버튼 영역 -->
+        <div class="mode-selection">
+            <button class="mode-btn" id="explore-btn">항해 시작</button>
+        </div>
+    </div>
+
+    <!-- 커스텀 팝업 모달 -->
+    <div id="custom-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close-btn">&times;</span>
+            <div id="modal-text" class="modal-text"></div>
+            <!-- 버튼을 위한 컨테이너 추가 -->
+            <div id="modal-button-container"></div>
+        </div>
+    </div>
+
+     <!-- 시 내용을 보여줄 별도의 모달 -->
+    <div id="poem-modal" class="modal-overlay">
+        <div class="modal-content poem-content">
+            <span class="modal-close-btn poem-close-btn">&times;</span>
+            <h3>찰스 부코스키 &lt;외계인들&gt;</h3>
+            <div class="modal-text poem-text">믿지 못할지 모르겠지만
+세상에는
+마찰이나 고민 없이 살아가는 사람들이 있다.
+그들은 옷을 잘 차려 입고, 잘 먹고, 잠도 잘 잔다.
+그들은 가족 생활에 만족한다.
+그들에게도 슬픔의 순간이 있지만
+대체로 동요되지 않고
+기분이 좋을 때가 많다.
+그리고 죽을 때도 안락하게 죽는다.
+대개는 자다가.
+
+믿지 못할지 모르겠지만
+그런 사람들이 존재한다.
+
+하지만 나는 그런 사람들 중 하나가 아니다.
+천만에, 나는 그들 중 하나가 아니다.
+나는 그런 사람들 근처에도 못 간다.
+
+그들은 저기에 있고
+나는 여기에 있다.</div>
+             <!-- 하단 닫기 버튼 삭제 -->
+             <div id="poem-modal-button-container"></div>
+        </div>
+    </div>
+
+
+    <!-- 챕터 1: 이륙 컨테이너 -->
+    <div id="chapter1-container" class="chapter-container">
+        <!-- 스토리 인트로 (챕터 시작 시 보여짐) -->
+        <div id="story-intro" style="display: none;">
+            <!-- "WARNING!" 텍스트로 변경 및 스타일링 클래스 추가 -->
+            <p class="alert-text warning-title">WARNING!</p>
+            <p class="alert-text system">미확인 소행성 지대 접근 중!</p>
+            <p class="alert-text warning">충돌 경로 확인! 즉시 회피 기동 실시!</p>
+            <p class="alert-text objective">목표 :: 15초간 생존하여 안전 궤도 진입.</p>
+            <!-- 게임 설명 및 버튼 추가 -->
+            <div id="intro-buttons">
+                 <!-- WASD 조작 설명 제거 -->
+                 <p class="intro-instruction">키보드 방향키로 우주선을 조종하세요.<br>(모바일: 화면 좌우 터치)</p>
+                 <button class="modal-action-btn modal-start-btn" id="start-game-btn">게임 시작</button>
+                 <button class="modal-action-btn modal-skip-btn" id="skip-game-btn">넘어가기</button>
+            </div>
+        </div>
+
+        <!-- 별똥별 피하기 게임 (초기에는 숨겨져 있음) -->
+        <div id="asteroid-game" style="display: none;">
+            <!-- 게임 시작 카운트다운 요소 추가 -->
+            <div id="game-countdown" style="display: none;">3</div>
+            <canvas id="game-canvas"></canvas>
+            <div id="game-timer">남은 시간: 15초</div>
+            <div id="game-score" style="display: none;">피한 별똥별: 0</div> <!-- 점수는 숨김 -->
+            <!-- 이륙 성공 시 나타날 포탈/버튼 -->
+            <div id="exit-portal" style="display: none;">CLEAR</div> <!-- 텍스트 변경 -->
+             <!-- 기억 조각 발견 메시지 삭제 -->
+        </div>
+    </div>
+
+    <!-- 챕터 전환 화면 -->
+    <div id="chapter-transition">
+        <!-- 행성 이미지를 표시할 img 태그 추가 -->
+        <img id="transition-image" src="" alt="Chapter Planet">
+        <h2 id="transition-title"></h2>
+    </div>
+
+
+    <!-- jQuery 라이브러리 로드 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- JavaScript 파일 연결 -->
+    <script src="20251211.js"></script>
+</body>
+</html>
+
