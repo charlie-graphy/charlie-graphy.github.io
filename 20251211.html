@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="20251211.css">
     <!-- 배경 이미지를 미리 불러와서 로딩 속도를 개선합니다. -->
     <link rel="preload" href="https://lh3.googleusercontent.com/d/1sIpbZzBC_roHnDF3dliaUTsGtHVuAgwv" as="image">
+    <!-- 게임 이미지 미리 로드 -->
+    <link rel="preload" href="https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt" as="image">
+    <link rel="preload" href="https://lh3.googleusercontent.com/d/1pnDZFfBczAJKGdcjDj9VLQVs_6uWK8HF" as="image">
+    <link rel="preload" href="https://lh3.googleusercontent.com/d/1jeWf4rvz31POee3PRhbXvKoCBSx26ICD" as="image">
+    <link rel="preload" href="https://lh3.googleusercontent.com/d/1q3t8hjSssd9qXD8z_RKKRIH17EMsnWZD" as="image">
+    <link rel="preload" href="https://lh3.googleusercontent.com/d/11fwRvd-E0xb48Sr4YB0GiOKnzs3j_vF6" as="image">
+
 </head>
 <body>
     <!-- 로딩 화면 -->
@@ -26,8 +33,7 @@
                 <input type="password" id="password-input" placeholder="MMDD" maxlength="4">
                 <button id="enter-button">탑승</button>
             </div>
-            <!-- 힌트 위치 변경, MMDD 삭제 -->
-            <p class="hint">HINT: 데뷔일</p>
+            <p class="hint">힌트 : 데뷔일</p> <!-- HINT: 텍스트 제거 -->
             <!-- 상태 메시지 -->
             <p id="status-message"></p>
         </div>

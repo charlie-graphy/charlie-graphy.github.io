@@ -5,6 +5,8 @@ $(window).on('load', function() {
     $('#loader').fadeOut(500, function() {
         // 로딩 화면이 사라진 후, 조종석을 서서히 나타나게 합니다.
         $('.cockpit-container').fadeIn(500);
+        // 오프닝 화면 로딩 후 상태 메시지 초기화
+        $('#status-message').empty();
     });
 
     // --- DOM 요소 캐싱 ---
@@ -71,8 +73,8 @@ $(window).on('load', function() {
                 showStoryOverlay(); // 스토리 오버레이 표시 함수 호출
             }, 2000); // After takeoff animation
         } else {
-            // 힌트가 보이도록 상태 메시지 초기화 후 에러 메시지 표시
-            $statusMessage.html('<span class="hint">HINT: 데뷔일</span>').css('color', '#ff4757').append(" SYSTEM :: ERROR. 승인 코드가 일치하지 않습니다.");
+            // 힌트는 제거하고 에러 메시지만 표시
+            $statusMessage.html('<span style="color: #ff4757;">ERROR :: 승인 코드가 일치하지 않습니다.</span>'); // ERROR :: 로 수정 및 힌트 완전 제거
             $passwordInput.val("").focus();
         }
     }
@@ -107,44 +109,65 @@ $(window).on('load', function() {
         let lineIndex = 0;
         let charIndex = 0;
         let typingTimeout;
+        let isTyping = true; // 타이핑 진행 상태 플래그
+        let typingFinished = false; // 타이핑 완료 상태 플래그
         $storyTextContainer.empty(); // 이전 내용 비우기
-        $storyCursor.hide(); // 커서 초기 숨김
+        $storyCursor.hide().css('opacity', '0'); // 커서 초기 숨김 및 투명도 0
         $storyOverlay.css('display', 'flex').animate({opacity: 1}, 1000);
 
         function typeWriter() {
-            // 첫 줄 타이핑 효과 적용
-            if (lineIndex < storyLines.length) {
+            if (lineIndex < storyLines.length && isTyping) {
                 const currentLine = storyLines[lineIndex];
                 if (charIndex === 0) {
-                    // 새 줄 시작 시 p 태그 추가
                     $storyTextContainer.append('<p></p>');
                 }
                 if (charIndex < currentLine.length) {
-                    // 현재 줄의 마지막 p 태그에 글자 추가
                     $storyTextContainer.find('p').last().append(currentLine.charAt(charIndex));
                     charIndex++;
-                    typingTimeout = setTimeout(typeWriter, 50); // 타이핑 속도 (ms)
+                    typingTimeout = setTimeout(typeWriter, 50);
                 } else {
-                    // 다음 줄로 이동
                     lineIndex++;
                     charIndex = 0;
-                    typingTimeout = setTimeout(typeWriter, 500); // 줄 바꿈 딜레이
+                    typingTimeout = setTimeout(typeWriter, 500);
                 }
-            } else {
-                // 모든 텍스트 타이핑 완료
-                $storyCursor.css({'display': 'inline-block', 'opacity': '1'}); // 커서 표시
-                // 클릭/터치 이벤트 리스너 추가
-                $storyOverlay.off('click').on('click', function() {
-                    $(this).off('click'); // 이벤트 한번만 실행되도록 제거
-                    clearTimeout(typingTimeout); // 혹시 모를 타임아웃 제거
-                    $storyOverlay.animate({opacity: 0}, 1000, function() {
-                        $(this).hide();
-                        $galaxyMap.css('display', 'flex').hide().fadeIn(1000);
-                    });
-                });
+            } else if (!isTyping) { // 스킵 시
+                clearTimeout(typingTimeout); // 진행중인 타이핑 중단
+                $storyTextContainer.empty();
+                 storyLines.forEach(line => $storyTextContainer.append(`<p>${line}</p>`));
+                 lineIndex = storyLines.length; // 강제로 종료 조건 만듦
+                 finishTyping();
+            } else { // 모든 타이핑 완료
+                 finishTyping();
             }
         }
-        clearTimeout(typingTimeout); // 이전 타임아웃 클리어
+
+        function finishTyping() {
+             isTyping = false;
+             typingFinished = true; // 타이핑 완료 상태로 변경
+             clearTimeout(typingTimeout);
+             // 커서 표시 및 깜빡임 시작 (CSS 애니메이션으로 처리)
+             $storyCursor.css({'display': 'inline-block', 'opacity': '1'}).addClass('blinking'); // 깜빡임 클래스 추가
+
+             // 클릭 이벤트 리스너를 다시 설정 (두 번째 클릭 대기)
+             $storyOverlay.off('click').on('click', function() {
+                 $(this).off('click');
+                 $storyOverlay.animate({opacity: 0}, 1000, function() {
+                     $(this).hide();
+                     $galaxyMap.css('display', 'flex').hide().fadeIn(1000);
+                 });
+             });
+        }
+
+
+        // 첫 클릭: 타이핑 스킵 또는 다음으로 넘어가기
+        $storyOverlay.off('click').on('click', function() {
+            if (isTyping) {
+                isTyping = false; // 스킵 플래그 활성화
+                 typeWriter(); // 강제로 나머지 텍스트 표시 및 finishTyping 호출
+            }
+            // 이미 타이핑 끝났으면 finishTyping에서 설정한 클릭 리스너가 동작
+        });
+
         typeWriter(); // 타이핑 시작
     }
 
@@ -238,20 +261,29 @@ $(window).on('load', function() {
     function startCountdown() {
         $storyIntro.hide(); // 인트로 숨기기
         $asteroidGame.fadeIn(500, function() { // 게임 화면 표시
-            $gameCountdown.text('3').fadeIn(100); // 3 표시
+            $gameCountdown.text('3').show().css('opacity', 1); // 3 표시
 
-            let count = 2;
-            const countdownInterval = setInterval(function() {
-                if (count > 0) {
-                    $gameCountdown.fadeOut(100, function() { $(this).text(count).fadeIn(100); });
+            let count = 2; // 2부터 시작
+            let countdownTimeout;
+
+            function doCountdown() {
+                clearTimeout(countdownTimeout); // 이전 타임아웃 클리어
+                 if (count >= 1) { // 1까지 표시
+                    $gameCountdown.text(count); // 텍스트만 변경 (페이드 효과 제거)
                     count--;
-                } else {
-                    clearInterval(countdownInterval);
-                    $gameCountdown.fadeOut(100, function() { $(this).text('START!').fadeIn(100).fadeOut(500, function() {
-                        initAsteroidGame(); // 카운트다운 후 게임 초기화 및 시작
-                    }); });
+                    countdownTimeout = setTimeout(doCountdown, 1000); // 1초 간격
+                } else if (count === 0){ // 1 다음 START!
+                    $gameCountdown.text('START!');
+                    setTimeout(function() {
+                        $gameCountdown.fadeOut(500, function() {
+                             $(this).text(''); // 내용 비우기
+                            initAsteroidGame(); // 카운트다운 후 게임 초기화 및 시작
+                        });
+                    }, 500); // START! 표시 시간
                 }
-            }, 1000); // 1초 간격
+            }
+            // 3을 표시하고 1초 후에 2를 표시하도록 수정
+            countdownTimeout = setTimeout(doCountdown, 1000);
         });
     }
 
@@ -272,20 +304,30 @@ $(window).on('load', function() {
     };
 
 
-    // 장애물 이미지 (제공될 이미지 주소)
+    // 장애물 이미지 로드
     const asteroidImages = [];
-    // asteroidImages.push(new Image()); asteroidImages[0].src = 'YOUR_SMALL_ASTEROID_IMAGE_URL';
-    // asteroidImages.push(new Image()); asteroidImages[1].src = 'YOUR_ICE_ASTEROID_IMAGE_URL';
-    // asteroidImages.push(new Image()); asteroidImages[2].src = 'YOUR_METAL_ASTEROID_IMAGE_URL';
-
-    // 모든 장애물 이미지 로드를 추적
+    const asteroidImageUrls = [
+        'https://lh3.googleusercontent.com/d/1pnDZFfBczAJKGdcjDj9VLQVs_6uWK8HF',
+        'https://lh3.googleusercontent.com/d/1jeWf4rvz31POee3PRhbXvKoCBSx26ICD',
+        'https://lh3.googleusercontent.com/d/1q3t8hjSssd9qXD8z_RKKRIH17EMsnWZD',
+        'https://lh3.googleusercontent.com/d/11fwRvd-E0xb48Sr4YB0GiOKnzs3j_vF6'
+    ];
     let asteroidImagesLoadedCount = 0;
-    const totalAsteroidImages = 0; // 나중에 3으로 변경될 것
-    // asteroidImages.forEach(img => {
-    //     img.onload = () => {
-    //         asteroidImagesLoadedCount++;
-    //     };
-    // });
+    const totalAsteroidImages = asteroidImageUrls.length;
+    let allAsteroidImagesLoaded = false;
+
+    asteroidImageUrls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+        img.onload = () => {
+            asteroidImagesLoadedCount++;
+            if (asteroidImagesLoadedCount === totalAsteroidImages) {
+                allAsteroidImagesLoaded = true; // 모든 이미지 로드 완료
+            }
+        };
+        asteroidImages.push(img);
+    });
+
 
 
     function initAsteroidGame() {
@@ -453,26 +495,45 @@ $(window).on('load', function() {
 
         // 새로운 별똥별 생성 (난이도 상향: 생성 확률, 속도 증가)
         if (asteroids.length < 15 && Math.random() < 0.06 + elapsedTime * 0.005) { // 생성 확률 증가
-            // if (totalAsteroidImages > 0) { // 장애물 이미지가 로드되었을 경우에만 이미지 사용
-                // const randomImage = asteroidImages[Math.floor(Math.random() * totalAsteroidImages)];
+             if (totalAsteroidImages > 0 && allAsteroidImagesLoaded) { // 장애물 이미지가 모두 로드되었을 경우에만 이미지 사용
+                const randomImageIndex = Math.floor(Math.random() * totalAsteroidImages);
+                const randomImage = asteroidImages[randomImageIndex];
+                // 이미지의 자연 크기를 사용하거나, 비율에 맞춰 크기 조절
+                let randomWidth, randomHeight;
+                if (randomImage.naturalWidth > 0 && randomImage.naturalHeight > 0) {
+                    const baseSize = 35 + Math.random() * 20; // 기본 크기 증가 (35~55)
+                    const aspectRatio = randomImage.naturalWidth / randomImage.naturalHeight;
+                    if(aspectRatio > 1) { // 가로가 더 긴 이미지
+                        randomWidth = baseSize;
+                        randomHeight = baseSize / aspectRatio;
+                    } else { // 세로가 더 길거나 같은 이미지
+                        randomHeight = baseSize;
+                        randomWidth = baseSize * aspectRatio;
+                    }
+                } else { // 이미지 크기 정보 없을 경우 대비
+                    randomWidth = 30 + Math.random() * 15; // 크기 약간 증가
+                    randomHeight = 30 + Math.random() * 15;
+                }
+
+
+                asteroids.push({
+                    x: Math.random() * (canvas.width - randomWidth), // 이미지 너비 고려
+                    y: -randomHeight, // 이미지 높이 고려
+                    width: randomWidth,
+                    height: randomHeight,
+                    speed: Math.random() * 4 + 3 + elapsedTime * 0.08, // 속도 증가
+                    image: randomImage // 장애물 이미지 추가
+                });
+            } else {
+                // 이미지 없을 경우 기본 사각형
                 asteroids.push({
                     x: Math.random() * (canvas.width - 20),
                     y: -20,
-                    width: 20 + Math.random() * 10, // 크기 랜덤
-                    height: 20 + Math.random() * 10,
-                    speed: Math.random() * 4 + 3 + elapsedTime * 0.08 // 속도 증가
-                    // image: randomImage // 장애물 이미지 추가
+                    width: 25 + Math.random() * 10, // 크기 약간 증가
+                    height: 25 + Math.random() * 10,
+                    speed: Math.random() * 4 + 3 + elapsedTime * 0.08
                 });
-            // } else {
-            //     // 이미지 없을 경우 기본 사각형
-            //     asteroids.push({
-            //         x: Math.random() * (canvas.width - 20),
-            //         y: -20,
-            //         width: 20 + Math.random() * 10,
-            //         height: 20 + Math.random() * 10,
-            //         speed: Math.random() * 4 + 3 + elapsedTime * 0.08
-            //     });
-            // }
+            }
         }
 
         // 별똥별 이동 및 충돌 체크
@@ -480,8 +541,8 @@ $(window).on('load', function() {
             const asteroid = asteroids[i];
             asteroid.y += asteroid.speed;
 
-            // 충돌 체크 (판정 범위 약간 축소)
-            const collisionPadding = 5; // 충돌 판정 여유 공간 (작을수록 판정 빡빡해짐)
+            // 충돌 체크 (판정 범위 약간 더 축소)
+            const collisionPadding = 12; // 충돌 판정 여유 공간 더 증가 (판정 더 느슨하게)
             if (player.x + collisionPadding < asteroid.x + asteroid.width - collisionPadding &&
                 player.x + player.width - collisionPadding > asteroid.x + collisionPadding &&
                 player.y + collisionPadding < asteroid.y + asteroid.height - collisionPadding &&
@@ -510,10 +571,11 @@ $(window).on('load', function() {
         }
     }
 
-    // 플레이어 그리기 (임시 사각형 -> 우주선 이미지로 변경)
+    // 플레이어 그리기 (우주선 이미지 사용)
     function drawPlayer() {
         if (playerImageLoaded) { // 이미지가 로드된 경우에만 그림
-            ctx.drawImage(playerShipImage, player.x, player.y, player.width, player.height);
+             // 이미지의 자연스러운 크기를 사용하거나, player.width/height 사용
+             ctx.drawImage(playerShipImage, player.x, player.y, player.width, player.height);
         } else { // 이미지가 로드되지 않았다면 기본 사각형이라도 그림
              ctx.fillStyle = '#4facfe'; // 플레이어 색상
              ctx.shadowColor = '#00f2fe';
@@ -523,18 +585,18 @@ $(window).on('load', function() {
         }
     }
 
-    // 별똥별 그리기 (임시 사각형 -> 소행성 이미지로 변경 예정)
+    // 별똥별 그리기 (소행성 이미지 사용)
     function drawAsteroids() {
-        // if (totalAsteroidImages > 0 && asteroidImagesLoadedCount === totalAsteroidImages) {
-        //     asteroids.forEach(asteroid => {
-        //         ctx.drawImage(asteroid.image, asteroid.x, asteroid.y, asteroid.width, asteroid.height);
-        //     });
-        // } else { // 이미지가 로드되지 않았다면 기본 사각형
+        if (totalAsteroidImages > 0 && allAsteroidImagesLoaded) {
+            asteroids.forEach(asteroid => {
+                ctx.drawImage(asteroid.image, asteroid.x, asteroid.y, asteroid.width, asteroid.height);
+            });
+        } else { // 이미지가 로드되지 않았다면 기본 사각형
             ctx.fillStyle = '#feca57'; // 별똥별 색상
             asteroids.forEach(asteroid => {
                 ctx.fillRect(asteroid.x, asteroid.y, asteroid.width, asteroid.height);
             });
-        // }
+        }
     }
 
     function drawAsteroidGame() {
