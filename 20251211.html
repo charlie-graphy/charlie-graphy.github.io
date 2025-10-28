@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>MEMORY DIVE</title>
-    <!-- CSS 파일 연결 -->
     <link rel="stylesheet" href="20251211.css">
-    <!-- 배경 이미지를 미리 불러와서 로딩 속도를 개선합니다. -->
     <link rel="preload" href="https://lh3.googleusercontent.com/d/1sIpbZzBC_roHnDF3dliaUTsGtHVuAgwv" as="image">
-    <!-- 게임 이미지 미리 로드 -->
     <link rel="preload" href="https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt" as="image">
     <link rel="preload" href="https://lh3.googleusercontent.com/d/1pnDZFfBczAJKGdcjDj9VLQVs_6uWK8HF" as="image">
     <link rel="preload" href="https://lh3.googleusercontent.com/d/1jeWf4rvz31POee3PRhbXvKoCBSx26ICD" as="image">
@@ -17,46 +14,35 @@
 
 </head>
 <body>
-    <!-- 로딩 화면 -->
     <div id="loader">
         <div class="loader-text">LOADING...</div>
     </div>
 
-    <!-- 우주선 조종석 전체 컨테이너 (로딩 후 표시) -->
     <div class="cockpit-container" style="display: none;">
-        <!-- 터미널 모니터 -->
         <div class="terminal-monitor">
             <h1 class="title">MEMORY DIVE</h1>
             <p class="prompt">시간 여행을 시작하려면<br>우주선 탑승 코드를 입력하세요.</p>
-
+            <p class="hint">힌트 : 데뷔일</p>
             <div class="password-group">
                 <input type="password" id="password-input" placeholder="MMDD" maxlength="4">
                 <button id="enter-button">탑승</button>
             </div>
-            <p class="hint">힌트 : 데뷔일</p> <!-- HINT: 텍스트 제거 -->
-            <!-- 상태 메시지 -->
             <p id="status-message"></p>
         </div>
     </div>
 
-    <!-- 스토리 오버레이 (오프닝 후, 항해 지도 전) -->
     <div id="story-overlay" style="display: none;">
         <div id="story-text-container">
-            <!-- JS로 내용 추가 -->
-        </div>
-        <span class="story-cursor" style="display: none;">▼</span> <!-- 초기 숨김 -->
-    </div>
+            </div>
+        <span class="story-cursor" style="display: none;">▼</span> </div>
 
 
-    <!-- 항해 지도 컨테이너 (초기에는 숨겨져 있음) -->
     <div class="galaxy-map-container" style="display: none;">
         <h2 class="map-title">항해 지도</h2>
 
-        <!-- 행성들이 표시될 지도 영역 (가로 스크롤 가능) -->
         <div class="map-area">
             <div class="planets-wrapper">
-                 <!-- 행성들을 잇는 SVG 물결 경로 -->
-                <svg class="voyage-path-svg" viewbox="0 0 850 400" preserveAspectRatio="none">
+                 <svg class="voyage-path-svg" viewbox="0 0 850 400" preserveAspectRatio="none">
                     <defs>
                         <linearGradient id="path-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                             <stop offset="0%" stop-color="#80d8ff" />
@@ -66,7 +52,6 @@
                     <path class="voyage-path" d="M 0,200 C 150,100 300,300 425,200 S 700,100 850,200" />
                 </svg>
 
-                <!-- 각 행성의 구조 -->
                 <div class="planet-orbit" id="orbit1">
                     <div class="planet" id="planet1" data-chapter="1" data-title="CH.1 이륙">
                         <img src="https://lh3.googleusercontent.com/d/1w35vNriFhcgTDZUeKTjAYh8V6TWwFOTZ" alt="이륙 행성 아이콘">
@@ -100,29 +85,24 @@
             </div>
         </div>
 
-        <p class="map-hint">행성을 직접 클릭하여<br>자유롭게 탐사할 수도 있습니다.</p>
+        <p class="map-hint">행성을 직접 선택하여<br>자유롭게 탐사할 수도 있습니다.</p>
 
-        <!-- 모드 선택 버튼 영역 -->
         <div class="mode-selection">
             <button class="mode-btn" id="explore-btn">항해 시작</button>
         </div>
     </div>
 
-    <!-- 커스텀 팝업 모달 -->
     <div id="custom-modal" class="modal-overlay">
         <div class="modal-content">
-            <span class="modal-close-btn">&times;</span>
+            <span class="modal-close-btn">×</span>
             <div id="modal-text" class="modal-text"></div>
-            <!-- 버튼을 위한 컨테이너 추가 -->
             <div id="modal-button-container"></div>
         </div>
     </div>
 
-     <!-- 시 내용을 보여줄 별도의 모달 -->
-    <div id="poem-modal" class="modal-overlay">
+     <div id="poem-modal" class="modal-overlay">
         <div class="modal-content poem-content">
-            <span class="modal-close-btn poem-close-btn">&times;</span>
-            <h3>찰스 부코스키 &lt;외계인들&gt;</h3>
+            <span class="modal-close-btn poem-close-btn">×</span> <h3>찰스 부코스키 <외계인들></h3>
             <div class="modal-text poem-text">믿지 못할지 모르겠지만
 세상에는
 마찰이나 고민 없이 살아가는 사람들이 있다.
@@ -143,55 +123,105 @@
 
 그들은 저기에 있고
 나는 여기에 있다.</div>
-             <!-- 하단 닫기 버튼 삭제 -->
-             <div id="poem-modal-button-container"></div>
+        </div>
+    </div>
+
+    <div id="fragment-modal" class="modal-overlay">
+        <div class="modal-content poem-content" style="border-color: #ffd180; box-shadow: 0 0 25px #ffd180;">
+            <span class="modal-close-btn fragment-close-btn" style="color: #ffd180;">×</span>
+            <h3 id="fragment-title"></h3> <div id="fragment-text" class="modal-text poem-text">
+                </div>
         </div>
     </div>
 
 
-    <!-- 챕터 1: 이륙 컨테이너 -->
     <div id="chapter1-container" class="chapter-container">
-        <!-- 스토리 인트로 (챕터 시작 시 보여짐) -->
         <div id="story-intro" style="display: none;">
-            <!-- "WARNING!" 텍스트로 변경 및 스타일링 클래스 추가 -->
             <p class="alert-text warning-title">WARNING!</p>
             <p class="alert-text system">미확인 소행성 지대 접근 중!</p>
             <p class="alert-text warning">충돌 경로 확인! 즉시 회피 기동 실시!</p>
             <p class="alert-text objective">목표 :: 15초간 생존하여 안전 궤도 진입.</p>
-            <!-- 게임 설명 및 버튼 추가 -->
             <div id="intro-buttons">
-                 <!-- WASD 조작 설명 제거 -->
                  <p class="intro-instruction">키보드 방향키로 우주선을 조종하세요.<br>(모바일: 화면 좌우 터치)</p>
                  <button class="modal-action-btn modal-start-btn" id="start-game-btn">게임 시작</button>
                  <button class="modal-action-btn modal-skip-btn" id="skip-game-btn">넘어가기</button>
             </div>
         </div>
 
-        <!-- 별똥별 피하기 게임 (초기에는 숨겨져 있음) -->
         <div id="asteroid-game" style="display: none;">
-            <!-- 게임 시작 카운트다운 요소 추가 -->
             <div id="game-countdown" style="display: none;">3</div>
             <canvas id="game-canvas"></canvas>
             <div id="game-timer">남은 시간: 15초</div>
-            <div id="game-score" style="display: none;">피한 별똥별: 0</div> <!-- 점수는 숨김 -->
-            <!-- 이륙 성공 시 나타날 포탈/버튼 -->
-            <div id="exit-portal" style="display: none;">CLEAR</div> <!-- 텍스트 변경 -->
-             <!-- 기억 조각 발견 메시지 삭제 -->
+            <div id="exit-portal" style="display: none;">CLEAR</div> 
         </div>
     </div>
 
-    <!-- 챕터 전환 화면 -->
+    <div id="chapter2-container" class="chapter-container">
+        
+        <div class="puzzle-hub">
+            <h2 class="map-title" style="color: #ffd180; text-shadow: 0 0 10px #ffd180;">CH.2 탐색</h2>
+            <p class="map-hint" style="color: #ccc;">흩어진 기억의 조각 중에 하나를<br>클릭하여 탐색을 시작하세요.</p>
+            
+            <div class="puzzle-grid">
+                <div class="puzzle-category" data-puzzle-id="1">
+                    <img src="https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt1" alt="기억 조각 1">
+                    <span class="puzzle-title">첫 번째 걸음</span>
+                </div>
+                <div class="puzzle-category" data-puzzle-id="2">
+                    <img src="https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt2" alt="기억 조각 2">
+                    <span class="puzzle-title">두 번째 무대</span>
+                </div>
+                <div class="puzzle-category" data-puzzle-id="3">
+                    <img src="https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt3" alt="기억 조각 3">
+                    <span class="puzzle-title">기억 조각 #3</span>
+                </div>
+                <div class="puzzle-category" data-puzzle-id="4">
+                    <img src="https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt4" alt="기억 조각 4">
+                    <span class="puzzle-title">기억 조각 #4</span>
+                </div>
+                <div class="puzzle-category" data-puzzle-id="5">
+                    <img src="https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt5" alt="기억 조각 5">
+                    <span class="puzzle-title">기억 조각 #5</span>
+                </div>
+                <div class="puzzle-category" data-puzzle-id="6">
+                    <img src="https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt6" alt="기억 조각 6">
+                    <span class="puzzle-title">기억 조각 #6</span>
+                </div>
+            </div>
+
+            <button class="modal-action-btn modal-map-btn" id="ch2-go-map-btn" style="margin-top: 30px;">지도 보기</button>
+        </div>
+
+        <div id="crossword-game-container" style="display: none;">
+            <h3 id="crossword-title"></h3> <div id="crossword-board">
+                <div id="crossword-grid"></div> 
+                
+                <div id="crossword-clues-container">
+                    <h4>가로 열쇠</h4>
+                    <ul id="clues-across">
+                        </ul>
+                    <h4>세로 열쇠</h4>
+                    <ul id="clues-down">
+                        </ul>
+                </div>
+            </div>
+
+            <div id="crossword-buttons">
+                <button class="modal-action-btn modal-start-btn" id="crossword-check-btn">정답 확인</button>
+                <button class="modal-action-btn modal-map-btn" id="crossword-back-btn">목록으로</button>
+            </div>
+        </div>
+
+    </div>
+
+
     <div id="chapter-transition">
-        <!-- 행성 이미지를 표시할 img 태그 추가 -->
         <img id="transition-image" src="" alt="Chapter Planet">
         <h2 id="transition-title"></h2>
     </div>
 
 
-    <!-- jQuery 라이브러리 로드 -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <!-- JavaScript 파일 연결 -->
     <script src="20251211.js"></script>
 </body>
 </html>
-
