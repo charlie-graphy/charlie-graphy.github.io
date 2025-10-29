@@ -27,18 +27,18 @@ $(window).on('load', function() {
     const $planets = $('.planet');
     const $modal = $('#custom-modal');
     const $modalText = $('#modal-text');
-    const $modalCloseBtn = $('.modal-close-btn');
+    // [유지] $modalCloseBtn 변수 삭제됨
     const $modalButtonContainer = $('#modal-button-container');
     const $poemModal = $('#poem-modal');
-    const $poemCloseBtn = $('.poem-close-btn');
+    const $poemCloseBtn = $('.poem-close-btn'); // [유지] 시 팝업 닫기 버튼
     const $fragmentModal = $('#fragment-modal');
     const $fragmentTitle = $('#fragment-title');
     const $fragmentText = $('#fragment-text');
-    const $fragmentCloseBtn = $('.fragment-close-btn');
+    const $fragmentCloseBtn = $('.fragment-close-btn'); // [수정] 다시 추가
     const $selectFragmentModal = $('#select-fragment-modal');
     const $selectFragmentList = $('#select-fragment-list');
     const $selectedFragmentText = $('#selected-fragment-text');
-    const $selectFragmentCloseBtn = $('.select-fragment-close-btn');
+    const $selectFragmentCloseBtn = $('.select-fragment-close-btn'); // [수정] 다시 추가
     const $storyIntro = $('#story-intro');
     const $startGameBtn = $('#start-game-btn');
     const $skipGameBtn = $('#skip-game-btn');
@@ -231,21 +231,15 @@ $(window).on('load', function() {
     $('head').append(`<style> @keyframes shake { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); } 20%, 40%, 60%, 80% { transform: translateX(5px); } } </style>`);
 
 
-    // --- 공통 모달 기능 ---
+    // --- [유지] 공통 모달 기능 ('x' 버튼 로직 없음) ---
     function showModal(message, buttons = {}) {
         $modalText.html(message);
         $modalButtonContainer.empty();
         const defaultOnClose = buttons.onClose !== undefined ? buttons.onClose : hideModal;
 
         if (buttons.hideClose) {
-            $modalCloseBtn.hide();
             $modal.off('click');
         } else {
-            $modalCloseBtn.show();
-            $modalCloseBtn.off().on('click', function() {
-                if(defaultOnClose) defaultOnClose();
-                 else hideModal();
-            });
             $modal.off('click').on('click', function(event) {
                 if ($(event.target).is($modal)) {
                      if(defaultOnClose) defaultOnClose();
@@ -264,7 +258,7 @@ $(window).on('load', function() {
     }
     function hideModal() { $modal.fadeOut(300); }
 
-    // --- [수정] 시 모달 기능 (챕터 1) - X 버튼 동작 수정 ---
+    // --- [유지] 시 모달 기능 (챕터 1) - X 버튼 동작 수정 ---
     function showPoem() {
         $poemModal.css('display', 'flex').hide().fadeIn(300);
         // X 버튼 클릭 시 클리어 팝업 호출
@@ -281,15 +275,16 @@ $(window).on('load', function() {
 
     // --- 챕터 2 모달 함수 ---
 
-    // 챕터 2 - 개별 기억 조각(내용) 팝업
+    // [수정] 챕터 2 - 개별 기억 조각(내용) 팝업 ('x' 버튼 기능 다시 추가)
     function showFragmentModal(title, content, onCloseCallback) {
         $fragmentTitle.text(title); $fragmentText.html(content.replace(/\n/g, '<br>')); $fragmentModal.css('display', 'flex').hide().fadeIn(300);
+        // [수정] 'x' 버튼 클릭 시 콜백(클리어 팝업) 실행
         $fragmentCloseBtn.off().on('click', function() { hideFragmentModal(); if (onCloseCallback) onCloseCallback(); });
         $fragmentModal.off('click').on('click', function(event) { if ($(event.target).is($fragmentModal)) { hideFragmentModal(); if (onCloseCallback) onCloseCallback(); } });
     }
     function hideFragmentModal() { $fragmentModal.fadeOut(300); }
 
-    // 챕터 2 - "넘어가기" 시 기억 조각 선택 팝업
+    // [수정] 챕터 2 - "넘어가기" 시 기억 조각 선택 팝업 ('x' 버튼 기능 다시 추가)
     function showSelectFragmentPopup() {
         $selectFragmentList.empty(); $selectedFragmentText.empty().hide();
         for (let i = 1; i <= 6; i++) {
@@ -308,6 +303,7 @@ $(window).on('load', function() {
             });
             $selectFragmentList.append($button);
         }
+        // [수정] 'x' 버튼 클릭 시 전체 클리어 팝업 실행
         $selectFragmentCloseBtn.off().on('click', function() { hideSelectFragmentPopup(); showChapter2AllClearPopup(); });
         $selectFragmentModal.off('click').on('click', function(event) { if ($(event.target).is($selectFragmentModal)) { hideSelectFragmentPopup(); showChapter2AllClearPopup(); } });
         $selectFragmentModal.css('display', 'flex').hide().fadeIn(300);
@@ -383,10 +379,10 @@ $(window).on('load', function() {
 			],
 			labels: [ // 열쇠 번호
 			    [1, 0, 2, 0, 0, 0], // 가로 1, 세로 2 시작
-			    [0, 0, 0, 0, 0, 6], // 세로 6 시작 -> 3번으로 수정
-			    [0, 3, 0, 0, 0, 0], // 가로 3 시작 -> 4번으로 수정
-			    [0, 0, 0, 4, 0, 0], // 세로 4 시작 -> 5번으로 수정
-			    [5, 0, 0, 0, 0, 7], // 가로 5 시작 -> 6번으로 수정, 세로 7 시작
+			    [0, 0, 0, 0, 0, 6], // 세로 6 시작 
+			    [0, 3, 0, 0, 0, 0], // 가로 3 시작 
+			    [0, 0, 0, 4, 0, 0], // 세로 4 시작
+			    [5, 0, 0, 0, 0, 7], // 가로 5 시작, 세로 7 시작
 			    [0, 0, 0, 0, 0, 0]
 			],
 			// labels 와 clues num 맞추기
@@ -463,7 +459,7 @@ $(window).on('load', function() {
     $crosswordCheckBtn.on('click', function() {
         if (!currentPuzzleId) return; const puzzleData = puzzleDataStore[currentPuzzleId]; if (!puzzleData || (!puzzleData.gridSize || (typeof puzzleData.gridSize === 'object' && (!puzzleData.gridSize.rows || !puzzleData.gridSize.cols))) || !puzzleData.grid) { console.error(`Cannot check answers for invalid puzzle data (ID: ${currentPuzzleId})`); return; }
         let isAllCorrect = true; $crosswordGrid.find('.cell-input').each(function() { const $input = $(this); const userAnswer = $input.val().trim(); const correctAnswer = $input.data('answer'); if (userAnswer === '') { isAllCorrect = false; $input.css('background-color', 'rgba(255, 0, 0, 0.2)'); if (correctAnswer !== '') $input.css('color', '#ff0000'); return; } else { $input.css('background-color', ''); } if (userAnswer.toUpperCase() === correctAnswer.toUpperCase()) { $input.css('color', '#008000'); } else { $input.css('color', '#ff0000'); isAllCorrect = false; } });
-        if (isAllCorrect) { puzzleCompletionStatus[currentPuzzleId] = true; showModal("정답!<br>기억의 조각을 발견했습니다!", { showStart: true, startText: '확인하기', onStart: () => { showFragmentModal(puzzleData.title, puzzleData.reward, () => { const allPuzzlesComplete = Object.values(puzzleCompletionStatus).every(status => status === true); if (allPuzzlesComplete) { showChapter2AllClearPopup(); } else { showChapter2IndividualClearPopup(puzzleData); } }); }, showSkip: true, skipText: '넘어가기', onSkip: () => { const allPuzzlesComplete = Object.values(puzzleCompletionStatus).every(status => status === true); if (allPuzzlesComplete) { showChapter2AllClearPopup(); } else { showChapter2IndividualClearPopup(puzzleData); } }, hideClose: false, onClose: hideModal }); } else { showModal("오답!<br>붉은색 칸이나 빈칸을 확인해주세요.", { showStart: true, startText: '다시 풀기', onStart: () => { $crosswordGrid.find('.cell-input').css('background-color', ''); }, hideClose: false }); }
+        if (isAllCorrect) { puzzleCompletionStatus[currentPuzzleId] = true; showModal("정답!<br>기억의 조각을 발견했습니다!", { showStart: true, startText: '확인하기', onStart: () => { showFragmentModal(puzzleData.title, puzzleData.reward, () => { const allPuzzlesComplete = Object.values(puzzleCompletionStatus).every(status => status === true); if (allPVlues(puzzleCompletionStatus).every(status => status === true); if (allPuzzlesComplete) { showChapter2AllClearPopup(); } else { showChapter2IndividualClearPopup(puzzleData); } }); }, showSkip: true, skipText: '넘어가기', onSkip: () => { const allPuzzlesComplete = Object.values(puzzleCompletionStatus).every(status => status === true); if (allPuzzlesComplete) { showChapter2AllClearPopup(); } else { showChapter2IndividualClearPopup(puzzleData); } }, hideClose: false, onClose: hideModal }); } else { showModal("오답!<br>붉은색 칸이나 빈칸을 확인해주세요.", { showStart: true, startText: '다시 풀기', onStart: () => { $crosswordGrid.find('.cell-input').css('background-color', ''); }, hideClose: false }); }
     });
 
     // 십자말풀이 게임 숨기고 허브 표시 함수
