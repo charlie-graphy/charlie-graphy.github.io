@@ -134,6 +134,16 @@
         </div>
     </div>
 
+    <div id="select-fragment-modal" class="modal-overlay">
+        <div class="modal-content poem-content select-fragment-content" style="border-color: #ffd180; box-shadow: 0 0 25px #ffd180;">
+            <span class="modal-close-btn select-fragment-close-btn" style="color: #ffd180;">×</span>
+            <h3>기억 조각 선택</h3>
+            <p class="modal-text" style="font-size: 0.9em; margin-bottom: 15px; color: #ccc;">확인하고 싶은 기억 조각(카테고리)을 선택하세요.</p>
+            <div id="select-fragment-list"></div>
+            <div id="selected-fragment-text" class="modal-text poem-text" style="margin-top: 20px; display: none;"></div>
+        </div>
+    </div>
+
 
     <div id="chapter1-container" class="chapter-container">
         <div id="story-intro" style="display: none;">
@@ -152,50 +162,44 @@
             <div id="game-countdown" style="display: none;">3</div>
             <canvas id="game-canvas"></canvas>
             <div id="game-timer">남은 시간: 15초</div>
-            <div id="exit-portal" style="display: none;">CLEAR</div> 
+            <div id="exit-portal" style="display: none;">CLEAR</div>
         </div>
     </div>
 
     <div id="chapter2-container" class="chapter-container">
-        
+
         <div class="puzzle-hub">
             <h2 class="map-title" style="color: #ffd180; text-shadow: 0 0 10px #ffd180;">CH.2 탐색</h2>
             <p class="map-hint" style="color: #ccc;">흩어진 기억의 조각 중에 하나를<br>클릭하여 탐색을 시작하세요.</p>
-            
+
             <div class="puzzle-grid">
                 <div class="puzzle-category" data-puzzle-id="1">
-                    <img src="https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt1" alt="기억 조각 1">
-                    <span class="puzzle-title">첫 번째 걸음</span>
-                </div>
+                    <div class="puzzle-emoji">🏀🌊🤺💄</div>
+                    <span class="puzzle-title">청춘</span> </div>
                 <div class="puzzle-category" data-puzzle-id="2">
-                    <img src="https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt2" alt="기억 조각 2">
-                    <span class="puzzle-title">두 번째 무대</span>
-                </div>
+                    <div class="puzzle-emoji">🎭</div>
+                    <span class="puzzle-title">두 번째 무대</span> </div>
                 <div class="puzzle-category" data-puzzle-id="3">
-                    <img src="https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt3" alt="기억 조각 3">
-                    <span class="puzzle-title">기억 조각 #3</span>
-                </div>
+                    <div class="puzzle-emoji">❓</div>
+                    <span class="puzzle-title">기억 조각 #3</span> </div>
                 <div class="puzzle-category" data-puzzle-id="4">
-                    <img src="https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt4" alt="기억 조각 4">
-                    <span class="puzzle-title">기억 조각 #4</span>
-                </div>
+                    <div class="puzzle-emoji">❓</div>
+                    <span class="puzzle-title">기억 조각 #4</span> </div>
                 <div class="puzzle-category" data-puzzle-id="5">
-                    <img src="https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt5" alt="기억 조각 5">
-                    <span class="puzzle-title">기억 조각 #5</span>
-                </div>
+                    <div class="puzzle-emoji">❓</div>
+                    <span class="puzzle-title">기억 조각 #5</span> </div>
                 <div class="puzzle-category" data-puzzle-id="6">
-                    <img src="https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt6" alt="기억 조각 6">
-                    <span class="puzzle-title">기억 조각 #6</span>
-                </div>
+                    <div class="puzzle-emoji">❓</div>
+                    <span class="puzzle-title">기억 조각 #6</span> </div>
             </div>
 
-            <button class="modal-action-btn modal-map-btn" id="ch2-go-map-btn" style="margin-top: 30px;">지도 보기</button>
+            <button class="modal-action-btn modal-skip-btn" id="ch2-skip-btn" style="margin-top: 30px;">넘어가기</button>
         </div>
 
         <div id="crossword-game-container" style="display: none;">
             <h3 id="crossword-title"></h3> <div id="crossword-board">
-                <div id="crossword-grid"></div> 
-                
+                <div id="crossword-grid"></div>
+
                 <div id="crossword-clues-container">
                     <h4>가로 열쇠</h4>
                     <ul id="clues-across">

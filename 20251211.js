@@ -11,72 +11,56 @@ $(window).on('load', function() {
 
     // --- DOM 요소 캐싱 ---
     const $cockpit = $('.cockpit-container');
-    const $storyOverlay = $('#story-overlay'); // 스토리 오버레이 캐싱
+    const $storyOverlay = $('#story-overlay');
     const $storyTextContainer = $('#story-text-container');
     const $storyCursor = $('.story-cursor');
     const $galaxyMap = $('.galaxy-map-container');
-
-    // 챕터 컨테이너
     const $chapter1 = $('#chapter1-container');
-    const $chapter2 = $('#chapter2-container'); // [신규] 챕터 2 컨테이너
-
-    // 챕터 전환
+    const $chapter2 = $('#chapter2-container');
     const $chapterTransition = $('#chapter-transition');
     const $transitionTitle = $('#transition-title');
-    const $transitionImage = $('#transition-image'); // 전환 이미지 캐싱
-
-    // 오프닝
+    const $transitionImage = $('#transition-image');
     const $passwordInput = $('#password-input');
     const $enterButton = $('#enter-button');
     const $statusMessage = $('#status-message');
-
-    // 항해 지도
     const $exploreBtn = $('#explore-btn');
     const $planets = $('.planet');
-
-    // 모달
     const $modal = $('#custom-modal');
     const $modalText = $('#modal-text');
     const $modalCloseBtn = $('.modal-close-btn');
     const $modalButtonContainer = $('#modal-button-container');
-
-    // 시 모달 (챕터 1)
     const $poemModal = $('#poem-modal');
     const $poemCloseBtn = $('.poem-close-btn');
-
-    // [신규] 기억 조각 모달 (챕터 2)
     const $fragmentModal = $('#fragment-modal');
     const $fragmentTitle = $('#fragment-title');
     const $fragmentText = $('#fragment-text');
     const $fragmentCloseBtn = $('.fragment-close-btn');
-
-    // --- 챕터 1 ---
+    const $selectFragmentModal = $('#select-fragment-modal');
+    const $selectFragmentList = $('#select-fragment-list');
+    const $selectedFragmentText = $('#selected-fragment-text');
+    const $selectFragmentCloseBtn = $('.select-fragment-close-btn');
     const $storyIntro = $('#story-intro');
-    const $startGameBtn = $('#start-game-btn'); // 인트로 화면의 게임 시작 버튼
-    const $skipGameBtn = $('#skip-game-btn');   // 인트로 화면의 넘어가기 버튼
+    const $startGameBtn = $('#start-game-btn');
+    const $skipGameBtn = $('#skip-game-btn');
     const $asteroidGame = $('#asteroid-game');
     const canvas = document.getElementById('game-canvas');
     const ctx = canvas.getContext('2d');
-    const $gameCountdown = $('#game-countdown'); // 카운트다운 요소 캐싱
-    const $gameTimer = $('#game-timer'); // 타이머 표시 요소
-    const $exitPortal = $('#exit-portal'); // 탈출 포탈
-
-    // --- 챕터 2 ---
-    const $puzzleHub = $('.puzzle-hub'); // 6개 카테고리 허브
-    const $puzzleCategories = $('.puzzle-category'); // 6개 아이콘
-    const $crosswordGameContainer = $('#crossword-game-container'); // 십자말풀이 게임 영역
-    const $crosswordGrid = $('#crossword-grid'); // 십자말풀이 판
-    const $crosswordCluesAcross = $('#clues-across'); // 가로 열쇠
-    const $crosswordCluesDown = $('#clues-down'); // 세로 열쇠
-    const $crosswordTitle = $('#crossword-title'); // 퀴즈 제목
-    const $crosswordCheckBtn = $('#crossword-check-btn'); // 정답 확인 버튼
-    const $crosswordBackBtn = $('#crossword-back-btn'); // 뒤로가기 버튼
-    const $ch2GoMapBtn = $('#ch2-go-map-btn'); // 챕터 2 -> 지도가기 버튼
-
+    const $gameCountdown = $('#game-countdown');
+    const $gameTimer = $('#game-timer');
+    const $exitPortal = $('#exit-portal');
+    const $puzzleHub = $('.puzzle-hub');
+    const $puzzleCategories = $('.puzzle-category');
+    const $crosswordGameContainer = $('#crossword-game-container');
+    const $crosswordGrid = $('#crossword-grid');
+    const $crosswordCluesAcross = $('#clues-across');
+    const $crosswordCluesDown = $('#clues-down');
+    const $crosswordTitle = $('#crossword-title');
+    const $crosswordCheckBtn = $('#crossword-check-btn');
+    const $crosswordBackBtn = $('#crossword-back-btn');
+    const $ch2SkipBtn = $('#ch2-skip-btn');
 
     // --- 오프닝 화면 기능 ---
     const correctPassword = "1211";
-
     function boardSpaceship() {
         const inputValue = $passwordInput.val();
         if (inputValue === correctPassword) {
@@ -84,478 +68,90 @@ $(window).on('load', function() {
             $cockpit.css('animation', 'takeoff 2s forwards');
             setTimeout(function() {
                 $cockpit.hide();
-                showStoryOverlay(); // 스토리 오버레이 표시 함수 호출
-            }, 2000); // After takeoff animation
+                showStoryOverlay();
+            }, 2000);
         } else {
-            $statusMessage.html('<span style="color: #ff4757;">ERROR :: 승인 코드가 일치하지 않습니다.</span>'); // ERROR :: 로 수정 및 힌트 완전 제거
+            $statusMessage.html('<span style="color: #ff4757;">ERROR :: 승인 코드가 일치하지 않습니다.</span>');
             $passwordInput.val("").focus();
         }
     }
-
-    $('head').append(`
-        <style>
-            @keyframes takeoff {
-                0% { transform: scale(1) rotate(0deg); opacity: 1; }
-                20% { transform: scale(1.05) rotate(1deg); }
-                40% { transform: scale(1.05) rotate(-1deg); }
-                100% { transform: scale(5); opacity: 0; }
-            }
-        </style>
-    `);
-
+    $('head').append(`<style> @keyframes takeoff { 0% { transform: scale(1) rotate(0deg); opacity: 1; } 20% { transform: scale(1.05) rotate(1deg); } 40% { transform: scale(1.05) rotate(-1deg); } 100% { transform: scale(5); opacity: 0; } } </style>`);
     $enterButton.on('click', boardSpaceship);
-    $passwordInput.on('keyup', function(event) {
-        if (event.key === 'Enter') {
-            boardSpaceship();
-        }
-    });
+    $passwordInput.on('keyup', function(event) { if (event.key === 'Enter') { boardSpaceship(); } });
 
     // --- 스토리 오버레이 로직 ---
     function showStoryOverlay() {
-        // ... (이전 코드와 동일) ...
-        const storyLines = [
-            "시간여행자님, 우주선 탑승을 환영합니다.", "이제부터 10년의 시간을 거슬러 올라가,",
-            "흩어진 기억의 조각들을 모으는 탐사를 시작합니다.", "모든 조각을 찾아 최종 목적지 '우주'에 도달하는 것이 우리의 임무입니다.",
-            "준비되셨다면, 화면을 터치하여 항해를 시작해주십시오."
-        ];
-        let lineIndex = 0;
-        let charIndex = 0;
-        let typingTimeout;
-        let isTyping = true; 
-        let typingFinished = false;
-        $storyTextContainer.empty(); 
-        $storyCursor.hide().css('opacity', '0').removeClass('blinking');
-        $storyOverlay.css('display', 'flex').animate({opacity: 1}, 1000);
-
-        function typeWriter() {
-            if (lineIndex < storyLines.length && isTyping) {
-                const currentLine = storyLines[lineIndex];
-                if (charIndex === 0) { $storyTextContainer.append('<p></p>'); }
-                if (charIndex < currentLine.length) {
-                    $storyTextContainer.find('p').last().append(currentLine.charAt(charIndex));
-                    charIndex++;
-                    typingTimeout = setTimeout(typeWriter, 50);
-                } else {
-                    lineIndex++;
-                    charIndex = 0;
-                    typingTimeout = setTimeout(typeWriter, 500);
-                }
-            } else if (!isTyping) { 
-                clearTimeout(typingTimeout); 
-                $storyTextContainer.empty();
-                 storyLines.forEach(line => $storyTextContainer.append(`<p>${line}</p>`));
-                 lineIndex = storyLines.length;
-                 finishTyping();
-            } else { 
-                 finishTyping();
-            }
-        }
-
-        function finishTyping() {
-             isTyping = false;
-             typingFinished = true;
-             clearTimeout(typingTimeout);
-             $storyCursor.css({'display': 'inline-block', 'opacity': '1'}).addClass('blinking'); 
-             $storyOverlay.off('click').on('click', function() {
-                 $(this).off('click');
-                 $storyOverlay.animate({opacity: 0}, 1000, function() {
-                     $(this).hide();
-                     $galaxyMap.css('display', 'flex').hide().fadeIn(1000);
-                 });
-             });
-        }
-        $storyOverlay.off('click').on('click', function() {
-            if (isTyping) {
-                isTyping = false; 
-                 typeWriter(); 
-            }
-        });
-        typeWriter();
+        const storyLines = ["시간여행자님, 우주선 탑승을 환영합니다.", "이제부터 10년의 시간을 거슬러 올라가,", "흩어진 기억의 조각들을 모으는 탐사를 시작합니다.", "모든 조각을 찾아 최종 목적지 '우주'에 도달하는 것이 우리의 임무입니다.", "준비되셨다면, 화면을 터치하여 항해를 시작해주십시오."];
+        let lineIndex = 0, charIndex = 0, typingTimeout, isTyping = true, typingFinished = false;
+        $storyTextContainer.empty(); $storyCursor.hide().css('opacity', '0').removeClass('blinking'); $storyOverlay.css('display', 'flex').animate({opacity: 1}, 1000);
+        function typeWriter() { if (lineIndex < storyLines.length && isTyping) { const currentLine = storyLines[lineIndex]; if (charIndex === 0) { $storyTextContainer.append('<p></p>'); } if (charIndex < currentLine.length) { $storyTextContainer.find('p').last().append(currentLine.charAt(charIndex)); charIndex++; typingTimeout = setTimeout(typeWriter, 50); } else { lineIndex++; charIndex = 0; typingTimeout = setTimeout(typeWriter, 500); } } else if (!isTyping) { clearTimeout(typingTimeout); $storyTextContainer.empty(); storyLines.forEach(line => $storyTextContainer.append(`<p>${line}</p>`)); lineIndex = storyLines.length; finishTyping(); } else { finishTyping(); } }
+        function finishTyping() { isTyping = false; typingFinished = true; clearTimeout(typingTimeout); $storyCursor.css({'display': 'inline-block', 'opacity': '1'}).addClass('blinking'); $storyOverlay.off('click').on('click', function() { $(this).off('click'); $storyOverlay.animate({opacity: 0}, 1000, function() { $(this).hide(); $galaxyMap.css('display', 'flex').hide().fadeIn(1000); }); }); }
+        $storyOverlay.off('click').on('click', function() { if (isTyping) { isTyping = false; typeWriter(); } }); typeWriter();
     }
 
 
     // --- 챕터 전환 및 시작 로직 ---
     function showChapter(chapterNum, chapterTitle, planetImgSrc) {
         $galaxyMap.fadeOut(500);
-
-        $transitionTitle.text(chapterTitle);
-        $transitionImage.attr('src', planetImgSrc).css('color', $(`#planet${chapterNum} img`).css('color'));
-        $chapterTransition.css('display', 'flex').animate({opacity: 1}, 500);
-
+        $transitionTitle.text(chapterTitle); $transitionImage.attr('src', planetImgSrc).css('color', $(`#planet${chapterNum} img`).css('color')); $chapterTransition.css('display', 'flex').animate({opacity: 1}, 500);
         setTimeout(function() {
-            $chapterTransition.animate({opacity: 0}, 500, function() {
-                $(this).hide();
-            });
-
+            $chapterTransition.animate({opacity: 0}, 500, function() { $(this).hide(); });
             const $targetChapter = $(`#chapter${chapterNum}-container`);
-
-            // 챕터 1 초기화
-            if (chapterNum === 1) {
-                $storyIntro.hide(); 
-                $asteroidGame.hide();
-                 $exitPortal.hide(); 
-            }
-            // 챕터 2 초기화
-            if (chapterNum === 2) {
-                $puzzleHub.show(); // 6개 아이콘 허브 표시
-                $crosswordGameContainer.hide(); // 십자말풀이 게임 숨김
-                // (클리어 상태에 따라 아이콘 비활성화 등 추가 가능)
-            }
-
+            if (chapterNum === 1) { $storyIntro.hide(); $asteroidGame.hide(); $exitPortal.hide(); }
+            if (chapterNum === 2) { $puzzleHub.show(); $crosswordGameContainer.hide(); updatePuzzleHubUI(); }
             $targetChapter.css('display', 'flex').animate({opacity: 1}, 1000, function() {
-                 // 챕터 1 인트로
-                if (chapterNum === 1) {
-                    $storyIntro.fadeIn(500);
-                    $startGameBtn.off().on('click', startCountdown); 
-                    $skipGameBtn.off().on('click', function(){
-                         showModal("기억 조각 발견!<br>확인하시겠습니까?", { 
-                             showStart: true, startText: '확인하기', onStart: showPoem,
-                             showSkip: true, skipText: '넘어가기', onSkip: showClearConfirmationPopup,
-                             hideClose: false,
-                             onClose: () => { $storyIntro.fadeIn(500); } 
-                         });
-                    });
-                }
+                 if (chapterNum === 1) { $storyIntro.fadeIn(500); $startGameBtn.off().on('click', startCountdown); $skipGameBtn.off().on('click', function(){ showModal("기억 조각 발견!<br>확인하시겠습니까?", { showStart: true, startText: '확인하기', onStart: showPoem, showSkip: true, skipText: '넘어가기', onSkip: showClearConfirmationPopup, hideClose: false, onClose: () => { $storyIntro.fadeIn(500); } }); }); }
             });
-
         }, 1500);
     }
 
     // --- 항해 지도로 돌아가는 함수 ---
     function goToMap() {
-        stopAsteroidGame(); 
+        stopAsteroidGame();
         $('.chapter-container').fadeOut(500);
         $poemModal.fadeOut(300);
-        $fragmentModal.fadeOut(300); // [신규] 조각 모달도 숨김
+        $fragmentModal.fadeOut(300);
+        $selectFragmentModal.fadeOut(300);
         $galaxyMap.fadeIn(1000);
     }
 
     // --- 특정 챕터로 바로 전환하는 함수 ---
     function transitionToChapter(chapterNum) {
-        stopAsteroidGame(); 
-         $('.chapter-container').fadeOut(500);
-         $poemModal.fadeOut(300);
-         $fragmentModal.fadeOut(300); // [신규] 조각 모달도 숨김
+        stopAsteroidGame();
+        $('.chapter-container').fadeOut(500);
+        $poemModal.fadeOut(300);
+        $fragmentModal.fadeOut(300);
+        $selectFragmentModal.fadeOut(300);
 
-        if (chapterNum > 5) {
-             showModal("모든 챕터를 클리어했습니다!");
-             goToMap();
-             return;
-        }
-        // [수정] 챕터 3 초과일 때 (4, 5)
-        if (chapterNum > 3) {
-            showModal(`Chapter ${chapterNum}은 아직 개발 중입니다.`);
-            goToMap();
-            return;
-        }
-        
-        // [신규] 챕터 3 로직
-        if (chapterNum === 3) {
-            // (일단 개발 중 팝업, 나중에 챕터 3 만들면 됨)
-            showModal(`Chapter 3은 아직 개발 중입니다.`);
-            goToMap();
-            return;
-        }
-
-        // 챕터 1, 2 로직
-        const $nextPlanet = $(`#planet${chapterNum}`);
-        if ($nextPlanet.length > 0) {
-            const nextChapterTitle = $nextPlanet.data('title');
-            const nextPlanetImgSrc = $nextPlanet.find('img').attr('src');
-            showChapter(chapterNum, nextChapterTitle, nextPlanetImgSrc);
-        } else {
-            showModal("오류: 다음 챕터를 찾을 수 없습니다.");
-            goToMap();
-        }
+        if (chapterNum > 5) { showModal("모든 챕터를 클리어했습니다!"); goToMap(); return; }
+        if (chapterNum > 3) { showModal(`Chapter ${chapterNum}은 아직 개발 중입니다.`); goToMap(); return; }
+        if (chapterNum === 3) { showModal(`Chapter 3은 아직 개발 중입니다.`); goToMap(); return; }
+        const $nextPlanet = $(`#planet${chapterNum}`); if ($nextPlanet.length > 0) { showChapter(chapterNum, $nextPlanet.data('title'), $nextPlanet.find('img').attr('src')); } else { showModal("오류: 다음 챕터를 찾을 수 없습니다."); goToMap(); }
     }
 
     // --- 클리어 확인 팝업 함수 (챕터 1) ---
-    function showClearConfirmationPopup() {
-        $exitPortal.hide();
-        showModal("챕터 1 '이륙' 클리어!<br>다음 여정을 준비하세요.", { 
-             showNext: true, // nextChapterNum이 없으므로 기본값 2로 이동
-             showMap: true, 
-             hideClose: false,
-             onClose: goToMap
-        });
-    }
+    function showClearConfirmationPopup() { $exitPortal.hide(); showModal("챕터 1 '이륙' 클리어!<br>다음 여정을 준비하세요.", { showNext: true, showMap: true, hideClose: false, onClose: goToMap }); }
 
 
     // --- 항해 지도 버튼 ---
-    $exploreBtn.on('click', function() {
-        const $firstPlanet = $('#planet1');
-        showChapter($firstPlanet.data('chapter'), $firstPlanet.data('title'), $firstPlanet.find('img').attr('src'));
-    });
-
-    $planets.on('click', function() {
-        const chapterNum = $(this).data('chapter');
-        const chapterTitle = $(this).data('title');
-        const planetImgSrc = $(this).find('img').attr('src'); 
-
-        // [수정] 챕터 1과 2는 showChapter 호출
-        if (chapterNum === 1 || chapterNum === 2) {
-            showChapter(chapterNum, chapterTitle, planetImgSrc);
-        } else {
-            // [수정] 챕터 3, 4, 5는 개발 중
-            showModal(`Chapter ${chapterNum}은 아직 개발 중입니다.`);
-        }
-    });
+    $exploreBtn.on('click', function() { const $firstPlanet = $('#planet1'); showChapter($firstPlanet.data('chapter'), $firstPlanet.data('title'), $firstPlanet.find('img').attr('src')); });
+    $planets.on('click', function() { const chapterNum = $(this).data('chapter'); if (chapterNum === 1 || chapterNum === 2) { showChapter(chapterNum, $(this).data('title'), $(this).find('img').attr('src')); } else { showModal(`Chapter ${chapterNum}은 아직 개발 중입니다.`); } });
 
     // --- 챕터 1: 게임 시작 카운트다운 ---
-    function startCountdown() {
-        // ... (이전 코드와 동일) ...
-        $storyIntro.hide();
-        $asteroidGame.fadeIn(500, function() {
-            $gameCountdown.text('3').show().css('opacity', 1);
-            let count = 2;
-            let countdownTimeout;
-            function doCountdown() {
-                clearTimeout(countdownTimeout);
-                 if (count >= 1) {
-                    $gameCountdown.text(count);
-                    count--;
-                    countdownTimeout = setTimeout(doCountdown, 1000);
-                } else if (count === 0){
-                    $gameCountdown.text('START!');
-                    setTimeout(function() {
-                        $gameCountdown.fadeOut(500, function() {
-                             $(this).text('');
-                            initAsteroidGame();
-                        });
-                    }, 500);
-                }
-            }
-            countdownTimeout = setTimeout(doCountdown, 1000);
-        });
-    }
+    function startCountdown() { $storyIntro.hide(); $asteroidGame.fadeIn(500, function() { $gameCountdown.text('3').show().css('opacity', 1); let count = 2; let countdownTimeout; function doCountdown() { clearTimeout(countdownTimeout); if (count >= 1) { $gameCountdown.text(count); count--; countdownTimeout = setTimeout(doCountdown, 1000); } else if (count === 0){ $gameCountdown.text('START!'); setTimeout(function() { $gameCountdown.fadeOut(500, function() { $(this).text(''); initAsteroidGame(); }); }, 500); } } countdownTimeout = setTimeout(doCountdown, 1000); }); }
 
     // --- 챕터 1: 별똥별 피하기 게임 로직 ---
-    // ... (이전 코드와 동일) ...
     let player, asteroids, score, gameOver, animationFrameId, startTime, elapsedTime;
-    const keys = {};
-    const GOAL_TIME = 15;
-    let touchLeft = false;
-    let touchRight = false;
-    const playerShipImage = new Image();
-    playerShipImage.src = 'https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt';
-    let playerImageLoaded = false;
-    playerShipImage.onload = () => { playerImageLoaded = true; };
-    const asteroidImages = [];
-    const asteroidImageUrls = [
-        'https://lh3.googleusercontent.com/d/1pnDZFfBczAJKGdcjDj9VLQVs_6uWK8HF', 'https://lh3.googleusercontent.com/d/1jeWf4rvz31POee3PRhbXvKoCBSx26ICD',
-        'https://lh3.googleusercontent.com/d/1q3t8hjSssd9qXD8z_RKKRIH17EMsnWZD', 'https://lh3.googleusercontent.com/d/11fwRvd-E0xb48Sr4YB0GiOKnzs3j_vF6'
-    ];
-    let asteroidImagesLoadedCount = 0;
-    const totalAsteroidImages = asteroidImageUrls.length;
-    let allAsteroidImagesLoaded = false;
-    asteroidImageUrls.forEach(url => {
-        const img = new Image();
-        img.src = url;
-        img.onload = () => {
-            asteroidImagesLoadedCount++;
-            if (asteroidImagesLoadedCount === totalAsteroidImages) {
-                allAsteroidImagesLoaded = true;
-            }
-        };
-        asteroidImages.push(img);
-    });
-    function initAsteroidGame() {
-        canvas.width = $asteroidGame.width();
-        canvas.height = $asteroidGame.height();
-        player = {
-            x: canvas.width / 2 - 25, y: canvas.height - 70,
-            width: 50, height: 50, speed: 3.5, dx: 0, dy: 0
-        };
-        asteroids = [];
-        score = 0; 
-        gameOver = false;
-        startTime = performance.now();
-        elapsedTime = 0;
-        $gameTimer.text(`남은 시간: ${GOAL_TIME}초`).show();
-        $exitPortal.hide(); 
-        for (let key in keys) { keys[key] = false; }
-        touchLeft = false;
-        touchRight = false;
-        $(window).off('.asteroidGame').on('keydown.asteroidGame', function(e) { keys[e.key.toLowerCase()] = true; });
-        $(window).on('keyup.asteroidGame', function(e) { keys[e.key.toLowerCase()] = false; });
-        $(canvas).off('.asteroidTouch').on('touchstart.asteroidTouch touchmove.asteroidTouch', function(e) {
-            e.preventDefault();
-            touchLeft = false;
-            touchRight = false;
-            const touches = e.touches || e.originalEvent.touches;
-            const canvasRect = canvas.getBoundingClientRect();
-            for (let i = 0; i < touches.length; i++) {
-                const touchX = touches[i].clientX - canvasRect.left;
-                if (touchX < canvas.width / 2) { touchLeft = true; } else { touchRight = true; }
-            }
-        }).on('touchend.asteroidTouch touchcancel.asteroidTouch', function(e) {
-             e.preventDefault();
-            const touches = e.changedTouches || e.originalEvent.changedTouches;
-             const canvasRect = canvas.getBoundingClientRect();
-             for (let i = 0; i < touches.length; i++) {
-                const touchX = touches[i].clientX - canvasRect.left;
-                if (touchX < canvas.width / 2) { touchLeft = false; } else { touchRight = false; }
-            }
-             if (!e.touches || e.touches.length === 0) {
-                 touchLeft = false;
-                 touchRight = false;
-             }
-        });
-        if (animationFrameId) { cancelAnimationFrame(animationFrameId); }
-        asteroidGameLoop();
-    }
-    function stopAsteroidGame() {
-        if (animationFrameId) {
-            cancelAnimationFrame(animationFrameId);
-            animationFrameId = null;
-        }
-        gameOver = true;
-        $(window).off('.asteroidGame');
-        $(canvas).off('.asteroidTouch');
-    }
-    function updateAsteroidGame() {
-        if (gameOver) return;
-        const currentTime = performance.now();
-        elapsedTime = (currentTime - startTime) / 1000;
-        const remainingTime = Math.max(0, GOAL_TIME - Math.floor(elapsedTime));
-        $gameTimer.text(`남은 시간: ${remainingTime}초`);
-
-        if (elapsedTime >= GOAL_TIME) {
-            gameOver = true;
-            stopAsteroidGame();
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawPlayer();
-            $exitPortal.fadeIn(500);
-            $exitPortal.off().on('click', function() {
-                 showModal("기억 조각 발견!<br>확인하시겠습니까?", {
-                     showStart: true, startText: '확인하기', onStart: showPoem,
-                     showSkip: true, skipText: '넘어가기', onSkip: showClearConfirmationPopup,
-                     hideClose: false,
-                     onClose: () => { $exitPortal.show(); }
-                 });
-            });
-            return;
-        }
-        let moveX = 0;
-        let moveY = 0;
-        if (keys['arrowleft']) moveX = -1;
-        if (keys['arrowright']) moveX = 1;
-        if (keys['arrowup']) moveY = -1;
-        if (keys['arrowdown']) moveY = 1;
-        if (touchLeft) moveX = -1;
-        if (touchRight) moveX = 1;
-        const length = Math.hypot(moveX, moveY);
-        if (length > 0) {
-            player.dx = (moveX / length) * player.speed;
-            player.dy = (moveY / length) * player.speed;
-        } else {
-            player.dx = 0;
-            player.dy = 0;
-        }
-        player.x += player.dx;
-        player.y += player.dy;
-        if (player.x < 0) player.x = 0;
-        if (player.y < 0) player.y = 0;
-        if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
-        if (player.y + player.height > canvas.height) player.y = canvas.height - player.height;
-        if (asteroids.length < 15 && Math.random() < 0.06 + elapsedTime * 0.005) {
-             if (totalAsteroidImages > 0 && allAsteroidImagesLoaded) {
-                const randomImageIndex = Math.floor(Math.random() * totalAsteroidImages);
-                const randomImage = asteroidImages[randomImageIndex];
-                let randomWidth, randomHeight;
-                if (randomImage.naturalWidth > 0 && randomImage.naturalHeight > 0) {
-                    const baseSize = 35 + Math.random() * 20;
-                    const aspectRatio = randomImage.naturalWidth / randomImage.naturalHeight;
-                    if(aspectRatio > 1) {
-                        randomWidth = baseSize;
-                        randomHeight = baseSize / aspectRatio;
-                    } else {
-                        randomHeight = baseSize;
-                        randomWidth = baseSize * aspectRatio;
-                    }
-                } else {
-                    randomWidth = 30 + Math.random() * 15;
-                    randomHeight = 30 + Math.random() * 15;
-                }
-                asteroids.push({
-                    x: Math.random() * (canvas.width - randomWidth), y: -randomHeight,
-                    width: randomWidth, height: randomHeight,
-                    speed: Math.random() * 4 + 3 + elapsedTime * 0.08, image: randomImage
-                });
-            } else {
-                asteroids.push({
-                    x: Math.random() * (canvas.width - 20), y: -20,
-                    width: 25 + Math.random() * 10, height: 25 + Math.random() * 10,
-                    speed: Math.random() * 4 + 3 + elapsedTime * 0.08
-                });
-            }
-        }
-        for (let i = asteroids.length - 1; i >= 0; i--) {
-            const asteroid = asteroids[i];
-            asteroid.y += asteroid.speed;
-            const collisionPadding = player.width * 0.15;
-            if (player.x + collisionPadding < asteroid.x + asteroid.width - collisionPadding &&
-                player.x + player.width - collisionPadding > asteroid.x + collisionPadding &&
-                player.y + collisionPadding < asteroid.y + asteroid.height - collisionPadding &&
-                player.y + player.height - collisionPadding > asteroid.y + collisionPadding)
-            {
-                gameOver = true;
-                stopAsteroidGame();
-                showModal("충돌! 다시 시도하시겠습니까?", {
-                    showStart: true, startText: '재시도', onStart: initAsteroidGame,
-                    showSkip: true, skipText: '넘어가기', onSkip: () => {
-                         showModal("기억 조각 발견!<br>확인하시겠습니까?", {
-                             showStart: true, startText: '확인하기', onStart: showPoem,
-                             showSkip: true, skipText: '넘어가기', onSkip: showClearConfirmationPopup,
-                             hideClose: false,
-                             onClose: showClearConfirmationPopup
-                         });
-                    },
-                    hideClose: true
-                });
-                return;
-            }
-            if (asteroid.y > canvas.height) {
-                asteroids.splice(i, 1);
-            }
-        }
-    }
-    function drawPlayer() {
-        if (playerImageLoaded) {
-             ctx.drawImage(playerShipImage, player.x, player.y, player.width, player.height);
-        } else {
-             ctx.fillStyle = '#4facfe';
-             ctx.shadowColor = '#00f2fe';
-             ctx.shadowBlur = 10;
-             ctx.fillRect(player.x, player.y, player.width, player.height);
-             ctx.shadowBlur = 0;
-        }
-    }
-    function drawAsteroids() {
-        if (totalAsteroidImages > 0 && allAsteroidImagesLoaded) {
-            asteroids.forEach(asteroid => {
-                ctx.drawImage(asteroid.image, asteroid.x, asteroid.y, asteroid.width, asteroid.height);
-            });
-        } else {
-            ctx.fillStyle = '#feca57';
-            asteroids.forEach(asteroid => {
-                ctx.fillRect(asteroid.x, asteroid.y, asteroid.width, asteroid.height);
-            });
-        }
-    }
-    function drawAsteroidGame() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawPlayer();
-        drawAsteroids();
-    }
-    function asteroidGameLoop() {
-        if (!gameOver) {
-            updateAsteroidGame();
-            drawAsteroidGame();
-            animationFrameId = requestAnimationFrame(asteroidGameLoop);
-        }
-    }
-    // ... (Shake keyframes) ...
+    const keys = {}; const GOAL_TIME = 15; let touchLeft = false; let touchRight = false;
+    const playerShipImage = new Image(); playerShipImage.src = 'https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt'; let playerImageLoaded = false; playerShipImage.onload = () => { playerImageLoaded = true; };
+    const asteroidImages = []; const asteroidImageUrls = [ 'https://lh3.googleusercontent.com/d/1pnDZFfBczAJKGdcjDj9VLQVs_6uWK8HF', 'https://lh3.googleusercontent.com/d/1jeWf4rvz31POee3PRhbXvKoCBSx26ICD', 'https://lh3.googleusercontent.com/d/1q3t8hjSssd9qXD8z_RKKRIH17EMsnWZD', 'https://lh3.googleusercontent.com/d/11fwRvd-E0xb48Sr4YB0GiOKnzs3j_vF6' ]; let asteroidImagesLoadedCount = 0; const totalAsteroidImages = asteroidImageUrls.length; let allAsteroidImagesLoaded = false; asteroidImageUrls.forEach(url => { const img = new Image(); img.src = url; img.onload = () => { asteroidImagesLoadedCount++; if (asteroidImagesLoadedCount === totalAsteroidImages) { allAsteroidImagesLoaded = true; } }; asteroidImages.push(img); });
+    function initAsteroidGame() { canvas.width = $asteroidGame.width(); canvas.height = $asteroidGame.height(); player = { x: canvas.width / 2 - 25, y: canvas.height - 70, width: 50, height: 50, speed: 3.5, dx: 0, dy: 0 }; asteroids = []; score = 0; gameOver = false; startTime = performance.now(); elapsedTime = 0; $gameTimer.text(`남은 시간: ${GOAL_TIME}초`).show(); $exitPortal.hide(); for (let key in keys) { keys[key] = false; } touchLeft = false; touchRight = false; $(window).off('.asteroidGame').on('keydown.asteroidGame', function(e) { keys[e.key.toLowerCase()] = true; }); $(window).on('keyup.asteroidGame', function(e) { keys[e.key.toLowerCase()] = false; }); $(canvas).off('.asteroidTouch').on('touchstart.asteroidTouch touchmove.asteroidTouch', function(e) { e.preventDefault(); touchLeft = false; touchRight = false; const touches = e.touches || e.originalEvent.touches; const canvasRect = canvas.getBoundingClientRect(); for (let i = 0; i < touches.length; i++) { const touchX = touches[i].clientX - canvasRect.left; if (touchX < canvas.width / 2) { touchLeft = true; } else { touchRight = true; } } }).on('touchend.asteroidTouch touchcancel.asteroidTouch', function(e) { e.preventDefault(); const touches = e.changedTouches || e.originalEvent.changedTouches; const canvasRect = canvas.getBoundingClientRect(); for (let i = 0; i < touches.length; i++) { const touchX = touches[i].clientX - canvasRect.left; if (touchX < canvas.width / 2) { touchLeft = false; } else { touchRight = false; } } if (!e.touches || e.touches.length === 0) { touchLeft = false; touchRight = false; } }); if (animationFrameId) { cancelAnimationFrame(animationFrameId); } asteroidGameLoop(); }
+    function stopAsteroidGame() { if (animationFrameId) { cancelAnimationFrame(animationFrameId); animationFrameId = null; } gameOver = true; $(window).off('.asteroidGame'); $(canvas).off('.asteroidTouch'); }
+    function updateAsteroidGame() { if (gameOver) return; const currentTime = performance.now(); elapsedTime = (currentTime - startTime) / 1000; const remainingTime = Math.max(0, GOAL_TIME - Math.floor(elapsedTime)); $gameTimer.text(`남은 시간: ${remainingTime}초`); if (elapsedTime >= GOAL_TIME) { gameOver = true; stopAsteroidGame(); ctx.clearRect(0, 0, canvas.width, canvas.height); drawPlayer(); $exitPortal.fadeIn(500); $exitPortal.off().on('click', function() { showModal("기억 조각 발견!<br>확인하시겠습니까?", { showStart: true, startText: '확인하기', onStart: showPoem, showSkip: true, skipText: '넘어가기', onSkip: showClearConfirmationPopup, hideClose: false, onClose: () => { $exitPortal.show(); } }); }); return; } let moveX = 0, moveY = 0; if (keys['arrowleft']) moveX = -1; if (keys['arrowright']) moveX = 1; if (keys['arrowup']) moveY = -1; if (keys['arrowdown']) moveY = 1; if (touchLeft) moveX = -1; if (touchRight) moveX = 1; const length = Math.hypot(moveX, moveY); if (length > 0) { player.dx = (moveX / length) * player.speed; player.dy = (moveY / length) * player.speed; } else { player.dx = 0; player.dy = 0; } player.x += player.dx; player.y += player.dy; if (player.x < (-player.width / 2)) player.x = (-player.width / 2); if (player.y < 0) player.y = 0; if (player.x > canvas.width - (player.width / 2)) player.x = canvas.width - (player.width / 2); if (player.y + player.height > canvas.height) player.y = canvas.height - player.height; if (asteroids.length < 15 && Math.random() < 0.06 + elapsedTime * 0.005) { if (totalAsteroidImages > 0 && allAsteroidImagesLoaded) { const randomImageIndex = Math.floor(Math.random() * totalAsteroidImages); const randomImage = asteroidImages[randomImageIndex]; let randomWidth, randomHeight; if (randomImage.naturalWidth > 0 && randomImage.naturalHeight > 0) { const baseSize = 35 + Math.random() * 20; const aspectRatio = randomImage.naturalWidth / randomImage.naturalHeight; if(aspectRatio > 1) { randomWidth = baseSize; randomHeight = baseSize / aspectRatio; } else { randomHeight = baseSize; randomWidth = baseSize * aspectRatio; } } else { randomWidth = 30 + Math.random() * 15; randomHeight = 30 + Math.random() * 15; } asteroids.push({ x: Math.random() * (canvas.width - randomWidth), y: -randomHeight, width: randomWidth, height: randomHeight, speed: Math.random() * 4 + 3 + elapsedTime * 0.08, image: randomImage }); } else { asteroids.push({ x: Math.random() * (canvas.width - 20), y: -20, width: 25 + Math.random() * 10, height: 25 + Math.random() * 10, speed: Math.random() * 4 + 3 + elapsedTime * 0.08 }); } } for (let i = asteroids.length - 1; i >= 0; i--) { const asteroid = asteroids[i]; asteroid.y += asteroid.speed; const collisionPadding = player.width * 0.15; if (player.x + collisionPadding < asteroid.x + asteroid.width - collisionPadding && player.x + player.width - collisionPadding > asteroid.x + collisionPadding && player.y + collisionPadding < asteroid.y + asteroid.height - collisionPadding && player.y + player.height - collisionPadding > asteroid.y + collisionPadding) { gameOver = true; stopAsteroidGame(); showModal("충돌! 다시 시도하시겠습니까?", { showStart: true, startText: '재시도', onStart: initAsteroidGame, showSkip: true, skipText: '넘어가기', onSkip: () => { showModal("기억 조각 발견!<br>확인하시겠습니까?", { showStart: true, startText: '확인하기', onStart: showPoem, showSkip: true, skipText: '넘어가기', onSkip: showClearConfirmationPopup, hideClose: false, onClose: hideModal }); }, hideClose: true }); return; } if (asteroid.y > canvas.height) { asteroids.splice(i, 1); } } }
+    function drawPlayer() { if (playerImageLoaded) { ctx.drawImage(playerShipImage, player.x, player.y, player.width, player.height); } else { ctx.fillStyle = '#4facfe'; ctx.shadowColor = '#00f2fe'; ctx.shadowBlur = 10; ctx.fillRect(player.x, player.y, player.width, player.height); ctx.shadowBlur = 0; } }
+    function drawAsteroids() { if (totalAsteroidImages > 0 && allAsteroidImagesLoaded) { asteroids.forEach(asteroid => { ctx.drawImage(asteroid.image, asteroid.x, asteroid.y, asteroid.width, asteroid.height); }); } else { ctx.fillStyle = '#feca57'; asteroids.forEach(asteroid => { ctx.fillRect(asteroid.x, asteroid.y, asteroid.width, asteroid.height); }); } }
+    function drawAsteroidGame() { ctx.clearRect(0, 0, canvas.width, canvas.height); drawPlayer(); drawAsteroids(); }
+    function asteroidGameLoop() { if (!gameOver) { updateAsteroidGame(); drawAsteroidGame(); animationFrameId = requestAnimationFrame(asteroidGameLoop); } }
     $('head').append(`<style> @keyframes shake { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); } 20%, 40%, 60%, 80% { transform: translateX(5px); } } </style>`);
 
 
@@ -564,23 +160,31 @@ $(window).on('load', function() {
         $modalText.html(message);
         $modalButtonContainer.empty();
 
+        // [수정] onClose 기본 동작을 hideModal로 변경 (X 버튼 기본 동작)
+        const defaultOnClose = buttons.onClose !== undefined ? buttons.onClose : hideModal;
+
         if (buttons.hideClose) {
             $modalCloseBtn.hide();
-             $modal.off('click');
+            $modal.off('click');
         } else {
             $modalCloseBtn.show();
+            // X 버튼 클릭
             $modalCloseBtn.off().on('click', function() {
-                hideModal();
-                if (buttons.onClose) buttons.onClose();
+                // hideModal(); // onClose 콜백 내에서 처리하거나, 여기서 직접 호출
+                if(defaultOnClose) defaultOnClose();
+                 else hideModal(); // onClose가 null 이면 그냥 닫기
             });
+            // 모달 외부 클릭
             $modal.off('click').on('click', function(event) {
                 if ($(event.target).is($modal)) {
-                    hideModal();
-                    if (buttons.onClose) buttons.onClose();
+                    // hideModal(); // onClose 콜백 내에서 처리하거나, 여기서 직접 호출
+                     if(defaultOnClose) defaultOnClose();
+                     else hideModal(); // onClose가 null 이면 그냥 닫기
                 }
             });
         }
 
+        // 시작/확인/재시도 버튼
         if (buttons.showStart) {
             const btnText = buttons.startText || '게임 시작';
             const $startButton = $(`<button class="modal-action-btn modal-start-btn">${btnText}</button>`);
@@ -591,27 +195,26 @@ $(window).on('load', function() {
                 else startCountdown();
             });
         }
-        
-        // [수정] '다음 챕터' 버튼이 유연하게 작동하도록 수정
+        // 다음 챕터 버튼
         if (buttons.showNext) {
-            const nextChapter = buttons.nextChapterNum || 2; // 기본값 2, 챕터 2 클리어 시 3이 됨
+            const nextChapter = buttons.nextChapterNum || 2;
             const $nextButton = $(`<button class="modal-action-btn modal-next-btn">다음 챕터로</button>`);
             $modalButtonContainer.append($nextButton);
             $nextButton.on('click', function() {
                 hideModal();
-                transitionToChapter(nextChapter); // 동적 챕터로 이동
+                transitionToChapter(nextChapter);
             });
         }
-
+        // 지도 보기 버튼
         if (buttons.showMap) {
-            const $mapButton = $('<button class="modal-action-btn modal-map-btn">지도 보기</button>');
+            const $mapButton = $(`<button class="modal-action-btn modal-map-btn">지도 보기</button>`);
             $modalButtonContainer.append($mapButton);
             $mapButton.on('click', function() {
                 hideModal();
                 goToMap();
             });
         }
-
+        // 넘어가기/닫기/목록으로 버튼
         if (buttons.showSkip) {
             const skipBtnText = buttons.skipText || '넘어가기';
             const $skipButton = $(`<button class="modal-action-btn modal-skip-btn">${skipBtnText}</button>`);
@@ -621,107 +224,236 @@ $(window).on('load', function() {
                  if(buttons.onSkip) buttons.onSkip();
             });
         }
+        // [신규] 두 번째 Skip 버튼 (개별 클리어 시 '넘어가기' 버튼 용도)
+        if (buttons.showSkip2) {
+             const skipBtnText2 = buttons.skipText2 || '넘어가기2';
+             const $skipButton2 = $(`<button class="modal-action-btn modal-skip-btn">${skipBtnText2}</button>`);
+             $modalButtonContainer.append($skipButton2);
+             $skipButton2.on('click', function() {
+                 hideModal();
+                  if(buttons.onSkip2) buttons.onSkip2();
+             });
+         }
+
 
         $modal.css('display', 'flex').hide().fadeIn(300);
     }
-
-    function hideModal() {
-        $modal.fadeOut(300);
-    }
+    function hideModal() { $modal.fadeOut(300); }
 
     // --- 시 모달 기능 (챕터 1) ---
-    function showPoem() {
-        $poemModal.css('display', 'flex').hide().fadeIn(300);
-        $poemCloseBtn.on('click', function() {
-            hidePoem(); 
-            showClearConfirmationPopup();
+    function showPoem() { $poemModal.css('display', 'flex').hide().fadeIn(300); $poemCloseBtn.off().on('click', function() { hidePoem(); showClearConfirmationPopup(); }); } function hidePoem() { $poemModal.fadeOut(300); } $poemModal.on('click', function(event) { if ($(event.target).is($poemModal)) { /* no action */ } });
+
+    // --- 기억 조각 모달 기능 (챕터 2, 퍼즐 성공 시) ---
+    function showFragmentModal(title, content, onCloseCallback) { // 닫기 콜백 추가
+        $fragmentTitle.text(title);
+        $fragmentText.html(content.replace(/\n/g, '<br>'));
+        $fragmentModal.css('display', 'flex').hide().fadeIn(300);
+
+        // 닫기 버튼 이벤트 (콜백 실행)
+        $fragmentCloseBtn.off().on('click', function() {
+            hideFragmentModal();
+            if (onCloseCallback) onCloseCallback(); // 콜백 실행
+        });
+        // 외부 클릭 이벤트 (콜백 실행)
+        $fragmentModal.off('click').on('click', function(event) {
+            if ($(event.target).is($fragmentModal)) {
+                 hideFragmentModal();
+                 if (onCloseCallback) onCloseCallback(); // 콜백 실행
+            }
         });
     }
-    function hidePoem() {
-        $poemModal.fadeOut(300);
-    }
-    $poemModal.on('click', function(event) {
-        if ($(event.target).is($poemModal)) {
-             // (외부 클릭 방지)
-        }
-    });
+    function hideFragmentModal() { $fragmentModal.fadeOut(300); }
 
-    // --- [신규] 기억 조각 모달 기능 (챕터 2) ---
-    function showFragmentModal(title, content) {
-        $fragmentTitle.text(title);
-        $fragmentText.html(content.replace(/\n/g, '<br>')); // 줄바꿈(\n)을 <br>로 변환
-        $fragmentModal.css('display', 'flex').hide().fadeIn(300);
+    // --- 기억 조각 선택 모달 기능 (챕터 2, 넘어가기 시) ---
+    function showSelectFragmentPopup() {
+        $selectFragmentList.empty(); // 목록 초기화
+        $selectedFragmentText.empty().hide(); // 내용 영역 초기화 및 숨김
+
+        // 카테고리 버튼 생성
+        for (let i = 1; i <= 6; i++) {
+            const puzzleData = puzzleDataStore[i];
+            if (puzzleData.title.endsWith('(개발 중)')) continue; // 개발 중 제외
+
+            const $button = $(`<button class="modal-action-btn">${puzzleData.title}</button>`);
+             $button.css('border-color', `var(${categoryColorVars[i]})`);
+             $button.css('color', `var(${categoryColorVars[i]})`);
+
+            $button.on('click', function() {
+                $selectedFragmentText.html(puzzleData.reward.replace(/\n/g, '<br>')).fadeIn(200);
+                $selectedFragmentText.scrollTop(0);
+                $selectFragmentList.find('button').css({'opacity': '1', 'background-color': 'transparent'});
+                $(this).css({'opacity': '1', 'background-color': 'rgba(255, 255, 255, 0.1)'});
+                 $selectedFragmentText.parent().css('border-color', `var(${categoryColorVars[i]})`);
+                 $selectedFragmentText.parent().find('h3').css('color', `var(${categoryColorVars[i]})`);
+                 $selectFragmentCloseBtn.css('color', `var(${categoryColorVars[i]})`);
+            });
+            $selectFragmentList.append($button);
+        }
+
+        // 닫기 버튼 -> 클리어 팝업
+        $selectFragmentCloseBtn.off().on('click', function() {
+             hideSelectFragmentPopup();
+             showChapter2AllClearPopup();
+        });
+        // 외부 클릭 -> 클리어 팝업
+        $selectFragmentModal.off('click').on('click', function(event) {
+            if ($(event.target).is($selectFragmentModal)) {
+                 hideSelectFragmentPopup();
+                 showChapter2AllClearPopup();
+            }
+        });
+
+        $selectFragmentModal.css('display', 'flex').hide().fadeIn(300);
+         // 모달 열 때 기본 색상 복원
+         $selectedFragmentText.parent().css('border-color', '#ffd180');
+         $selectedFragmentText.parent().find('h3').css('color', '#ffd180');
+         $selectedFragmentText.prev('p').css('color', '#ccc');
+         $selectFragmentCloseBtn.css('color', '#ffd180');
     }
-    function hideFragmentModal() {
-        $fragmentModal.fadeOut(300);
-    }
-    // (닫기 버튼 이벤트는 정답 확인 로직에서 동적으로 바인딩)
+    function hideSelectFragmentPopup() { $selectFragmentModal.fadeOut(300); }
+
+     // --- [수정] 챕터 2 개별 클리어 팝업 함수 ---
+     function showChapter2IndividualClearPopup(puzzleData) {
+         showModal(`'${puzzleData.title}' 탐색 완료!`, {
+             showSkip2: true, skipText2: '넘어가기', onSkip2: showChapter2AllClearPopup, // 전체 클리어 팝업 호출
+             showSkip: true, skipText: '더 탐색하기', onSkip: showPuzzleHub, // 목록(허브)으로
+             hideClose: false,
+             onClose: hideModal // X 누르면 팝업만 닫기
+         });
+     }
+
+     // --- [수정] 챕터 2 전체 클리어 팝업 함수 ---
+     function showChapter2AllClearPopup() {
+         let clearMessage = "챕터 2 '탐색' 클리어!<br>다음 여정을 준비하세요."; // 메시지 수정
+         let clearPopupButtons = {
+             showNext: true, nextChapterNum: 3,
+             showMap: true,
+             hideClose: false,
+             onClose: hideModal // X 누르면 팝업만 닫기
+         };
+         showModal(clearMessage, clearPopupButtons);
+     }
 
 
     // --- 챕터 2: 십자말풀이 로직 ---
 
-    let currentPuzzleId = null; // 현재 풀고 있는 퍼즐 ID 저장
-    // [신규] 챕터 2 퍼즐 클리어 상태
+    let currentPuzzleId = null;
     let puzzleCompletionStatus = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false };
 
-    // [샘플 데이터] 퀴즈 데이터 저장소
-    const puzzleDataStore = {
-        // --- 1번 퍼즐 (샘플) ---
-        1: {
-            title: "첫 번째 걸음",
-            reward: `기억 조각 #1
-            
-"그의 첫 무대는 OO이었다."
-이것은 3x3 샘플 텍스트입니다.
-나중에 이 곳에 실제 가사나
-명대사를 넣어주세요.`,
-            gridSize: 3, // 3x3 그리드
-            grid: [ [0, 1, 1], [0, 1, 0], [1, 1, 0] ],
-            answers: [ [null, '배', '우'], [null, '무', null], ['데', '뷔', null] ],
-            labels: [ [0, 1, 0], [0, 2, 0], [3, 0, 0] ],
-            clues: {
-                across: [ { num: 1, clue: "주인공을 연기하는 사람" } ],
-                down: [ { num: 2, clue: "연극을 하는 장소" }, { num: 3, clue: "첫 공식 활동" } ]
-            }
-        },
-        // --- [신규] 2번 퍼즐 (샘플) ---
-        2: { 
-            title: "두 번째 무대", 
-            reward: `기억 조각 #2
-            
-이것은 4x4 샘플입니다.
-이곳에 가사를 넣어주세요.
-...`,
-            gridSize: 4, // 4x4 그리드
-            grid: [ 
-                [1, 1, 1, 0], 
-                [0, 0, 1, 0], 
-                [0, 0, 1, 0], 
-                [0, 0, 1, 0] 
-            ],
-            answers: [ 
-                ['연', '극', '장', null], 
-                [null, null, '배', null], 
-                [null, null, '우', null], 
-                [null, null, '님', null] 
-            ],
-            labels: [ [1, 0, 2, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0] ],
-            clues: {
-                across: [ { num: 1, clue: "연극을 하는 곳" } ],
-                down: [ { num: 2, clue: "연기하는 사람 (존칭)" } ]
-            }
-        },
-        // --- 3~6번 (개발 중) ---
-        3: { title: "기억 조각 #3 (개발 중)", reward: "...", gridSize: 0, grid: [], answers: [], labels: [], clues: { across: [], down: [] } },
-        4: { title: "기억 조각 #4 (개발 중)", reward: "...", gridSize: 0, grid: [], answers: [], labels: [], clues: { across: [], down: [] } },
-        5: { title: "기억 조각 #5 (개발 중)", reward: "...", gridSize: 0, grid: [], answers: [], labels: [], clues: { across: [], down: [] } },
-        6: { title: "기억 조각 #6 (개발 중)", reward: "...", gridSize: 0, grid: [], answers: [], labels: [], clues: { across: [], down: [] } }
+    // 카테고리별 색상 CSS 변수 이름 매핑
+    const categoryColorVars = {
+        1: '--category-color-1', 2: '--category-color-2', 3: '--category-color-3',
+        4: '--category-color-4', 5: '--category-color-5', 6: '--category-color-6'
     };
+
+    // [수정] 퀴즈 데이터 저장소 (사용자가 제공한 1번 카테고리 데이터 정확히 반영!)
+    const puzzleDataStore = {
+        1: {
+            title: "청춘", // 카테고리 이름
+            reward: `“내가 너무 늦게 왔지? 
+벌써 다 녹아버린 아이스크림
+나처럼 울면서 여기 있네
+시간은 변해도 바다는 변하지 않는다고”
+.
+”펜싱을 할 때 처음으로 느꼈어 
+나는 살아있어 너무나 분명히”
+.
+"탕관이라는 것은, 현세에서의 
+번뇌, 아픔, 고통 등을 씻어내는 의식입니다.”`,
+            // --- 최종 6x6 그리드(7단어) ---
+			gridSize: { rows: 6, cols: 6 }, // 6x6 크기 명시
+			grid: [ // 0: 빈칸, 1: 입력칸
+			    [1, 1, 1, 1, 1, 0], // 장례지도사, 지(지키다),
+			    [0, 0, 1, 0, 0, 1], // 키(지키다), 농(농구)
+			    [0, 1, 1, 0, 0, 1], // 바다 , 다(지키다),구(농구)
+			    [0, 0, 0, 1, 0, 0], // 립(립스틱)
+			    [1, 1, 1, 1, 0, 1], // 스(립스틱), 매그너스, 수(수학)
+			    [0, 0, 0, 1, 0, 1]  // 틱(립스틱), 학(수학)
+			],
+			answers: [ // 각 칸의 정답
+			    ['장', '례', '지', '도', '사', null],
+			    [null, null, '키', null, null, '농'],
+			    [null, '바', '다', null, null, '구'],
+			    [null, null, null, '립', null, null],
+			    ['매', '그', '너', '스', null, '수'],
+			    [null, null, null, '틱', null, '학']
+			],
+			labels: [ // 열쇠 번호
+			    [1, 0, 2, 0, 0, 0], // 가로 1, 세로 2 시작
+			    [0, 0, 0, 0, 0, 6], // 세로 6 시작 -> 3번으로 수정
+			    [0, 3, 0, 0, 0, 0], // 가로 3 시작 -> 4번으로 수정
+			    [0, 0, 0, 4, 0, 0], // 세로 4 시작 -> 5번으로 수정
+			    [5, 0, 0, 0, 0, 7], // 가로 5 시작 -> 6번으로 수정, 세로 7 시작
+			    [0, 0, 0, 0, 0, 0]
+			],
+			// labels 와 clues num 맞추기
+			labels: [
+			    [1, 0, 2, 0, 0, 0], // 1A 장례지도사, 2D 지키다
+			    [0, 0, 0, 0, 0, 3], // 3D 농구
+			    [0, 4, 0, 0, 0, 0], // 4A 바다
+			    [0, 0, 0, 5, 0, 0], // 5D 립스틱
+			    [6, 0, 0, 0, 0, 7], // 6A 매그너스, 7D 수학
+			    [0, 0, 0, 0, 0, 0]
+			],
+			clues: { // 사용자 제공 열쇠 (번호 최종 수정!)
+			    across: [
+			        { num: 1, clue: "토루의 직업" },                       // 장례지도사
+			        { num: 4, clue: "전리농에서 학생들이 가고 싶은 곳" },  // 바다
+			        { num: 6, clue: "비더슈탄트에서 지환 배우의 역할명" }    // 매그너스
+			    ],
+			    down: [
+			        { num: 2, clue: "펜싱의 어원" },                     // 지키다
+			        { num: 3, clue: "토루가 잘하는 스포츠 혹은 전설의 리틀 ㅇㅇ단" }, // 농구
+			        { num: 5, clue: "요시오가 토루에게 발라달라는 것" },   // 립스틱
+			        { num: 7, clue: "다인이가 제일 잘하는 과목" } // 수학
+			    ]
+			}
+        }, // 1번 카테고리 끝
+        2: {
+            title: "기억 조각 #2 (개발 중)",
+            reward: "아직 내용이 없습니다.",
+            gridSize: 0, grid: [], answers: [], labels: [], clues: { across: [], down: [] }
+        },
+        3: { title: "기억 조각 #3 (개발 중)", reward: "아직 내용이 없습니다.", gridSize: 0, grid: [], answers: [], labels: [], clues: { across: [], down: [] } },
+        4: { title: "기억 조각 #4 (개발 중)", reward: "아직 내용이 없습니다.", gridSize: 0, grid: [], answers: [], labels: [], clues: { across: [], down: [] } },
+        5: { title: "기억 조각 #5 (개발 중)", reward: "아직 내용이 없습니다.", gridSize: 0, grid: [], answers: [], labels: [], clues: { across: [], down: [] } },
+        6: { title: "기억 조각 #6 (개발 중)", reward: "아직 내용이 없습니다.", gridSize: 0, grid: [], answers: [], labels: [], clues: { across: [], down: [] } }
+    };
+
+
+    // 퍼즐 허브 UI 업데이트 함수
+    function updatePuzzleHubUI() {
+        $puzzleCategories.each(function() {
+            const $category = $(this);
+            const puzzleId = $category.data('puzzle-id');
+            const categoryData = puzzleDataStore[puzzleId];
+
+            $category.find('.puzzle-title').text(categoryData.title);
+             if (categoryData.title.endsWith('(개발 중)')) {
+                 $category.css({'opacity': '0.5', 'cursor': 'not-allowed'});
+             } else {
+                 $category.css({'opacity': '1', 'cursor': 'pointer'});
+             }
+
+            if (puzzleCompletionStatus[puzzleId]) {
+                $category.css('border-color', '#55efc4');
+                $category.addClass('cleared');
+            } else {
+                 $category.css('border-color', '#ffd180');
+                 $category.removeClass('cleared');
+            }
+        });
+    }
+
 
     // 6개 카테고리 아이콘 클릭 시
     $puzzleCategories.on('click', function() {
         const puzzleId = $(this).data('puzzle-id');
-        currentPuzzleId = puzzleId; // 현재 퍼즐 ID 저장
+        if (puzzleDataStore[puzzleId].title.endsWith('(개발 중)')) {
+             showModal("아직 준비 중인 기억 조각입니다.", {showSkip: true, skipText: '확인'});
+             return;
+        }
+        currentPuzzleId = puzzleId;
         showCrosswordPuzzle(puzzleId);
     });
 
@@ -729,24 +461,40 @@ $(window).on('load', function() {
     function showCrosswordPuzzle(id) {
         const puzzleData = puzzleDataStore[id];
 
-        if (puzzleData.gridSize === 0) {
-            showModal(`'${puzzleData.title}'은<br>아직 개발 중입니다.`);
+         if (!puzzleData || (!puzzleData.gridSize || (typeof puzzleData.gridSize === 'object' && (!puzzleData.gridSize.rows || !puzzleData.gridSize.cols))) || !puzzleData.grid) {
+             const title = puzzleData ? puzzleData.title : `퍼즐 #${id}`;
+            showModal(`'${title}'은(는)<br>아직 데이터가 준비되지 않았습니다.`);
             currentPuzzleId = null;
             return;
         }
+
+        const colorVarName = categoryColorVars[id] || '--category-color-1';
+         $crosswordGameContainer.get(0).style.setProperty('--current-category-color', `var(${colorVarName})`);
+
 
         $puzzleHub.fadeOut(300, function() {
             $crosswordTitle.text(puzzleData.title);
             $crosswordGrid.empty();
             $crosswordCluesAcross.empty();
             $crosswordCluesDown.empty();
-            $crosswordGrid.css('--grid-size', puzzleData.gridSize);
 
-            for (let r = 0; r < puzzleData.gridSize; r++) {
-                for (let c = 0; c < puzzleData.gridSize; c++) {
+             const rows = (typeof puzzleData.gridSize === 'object') ? puzzleData.gridSize.rows : puzzleData.gridSize;
+             const cols = (typeof puzzleData.gridSize === 'object') ? puzzleData.gridSize.cols : puzzleData.gridSize;
+            $crosswordGrid.css('--grid-cols', cols);
+             $crosswordGrid.css('--grid-rows', rows);
+
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    if (!puzzleData.grid[r] || puzzleData.grid[r][c] === undefined) {
+                         console.error(`Invalid grid data at [${r}, ${c}] for puzzle ${id}`);
+                         $crosswordGrid.append('<div class="cell empty">?</div>');
+                         continue;
+                    }
+
                     if (puzzleData.grid[r][c] === 1) {
-                        const labelNum = puzzleData.labels[r][c];
-                        const answer = puzzleData.answers[r][c];
+                        const labelNum = puzzleData.labels[r] ? puzzleData.labels[r][c] : 0;
+                        const answer = (puzzleData.answers[r] && puzzleData.answers[r][c]) ? puzzleData.answers[r][c] : '';
+
                         let cellHtml = '<div class="cell">';
                         if (labelNum > 0) {
                             cellHtml += `<span class="cell-label">${labelNum}</span>`;
@@ -760,130 +508,114 @@ $(window).on('load', function() {
                 }
             }
 
-            puzzleData.clues.across.forEach(clue => {
-                $crosswordCluesAcross.append(`<li><b>${clue.num}</b>. ${clue.clue}</li>`);
-            });
-            puzzleData.clues.down.forEach(clue => {
-                $crosswordCluesDown.append(`<li><b>${clue.num}</b>. ${clue.clue}</li>`);
-            });
+            if (puzzleData.clues && puzzleData.clues.across) {
+                puzzleData.clues.across.forEach(clue => {
+                     if (clue && clue.num !== undefined && clue.clue !== undefined) {
+                         $crosswordCluesAcross.append(`<li><b>${clue.num}</b>. ${clue.clue}</li>`);
+                     }
+                });
+            }
+            if (puzzleData.clues && puzzleData.clues.down) {
+                 puzzleData.clues.down.forEach(clue => {
+                     if (clue && clue.num !== undefined && clue.clue !== undefined) {
+                         $crosswordCluesDown.append(`<li><b>${clue.num}</b>. ${clue.clue}</li>`);
+                     }
+                 });
+            }
 
+            $crosswordGrid.find('.cell-input').css('color', '#000');
             $crosswordGameContainer.css('display', 'flex').hide().fadeIn(300);
+             $chapter2.scrollTop(0);
         });
     }
 
-    // [버그 수정] 한글 입력 오류 해결 (keyup -> input)
+    // 한글 입력 오류 해결 및 자동 다음 칸 이동
     $crosswordGrid.on('input', '.cell-input', function(e) {
+        if (e.originalEvent && e.originalEvent.isComposing) { return; }
         const $this = $(this);
-        
-        // 입력된 값이 1글자이고, 공백이 아닐 경우
         if ($this.val().length === 1 && $this.val().trim() !== '') {
-            
-            // (이후 로직은 방향키 등 고려하여 더 복잡하게 수정 가능)
-            
-            // 일단은 다음 input으로 이동
-            const $next = $this.parent().next().find('.cell-input');
-            if ($next.length) {
-                $next.focus();
-            } else {
-                // 줄바꿈 (다음 줄 첫 번째 input)
-                const $nextRow = $this.parent().parent().find('.cell-input').filter((i, el) => {
-                     return $(el).data('row') > $this.data('row');
-                }).first();
-                if ($nextRow.length) {
-                    $nextRow.focus();
-                } else {
-                     $(this).blur();
-                }
-            }
+             let currentCellIndex = $crosswordGrid.find('.cell-input').index(this);
+             let $nextInput = $crosswordGrid.find('.cell-input').eq(currentCellIndex + 1);
+             if ($nextInput.length > 0) { $nextInput.focus(); } else { $this.blur(); }
         }
     });
 
-    // [기능 수정] 정답 확인 버튼 (새로운 팝업 플로우)
+
+    // [수정] 정답 확인 버튼 (새로운 팝업 플로우 적용)
     $crosswordCheckBtn.on('click', function() {
         if (!currentPuzzleId) return;
-        
         const puzzleData = puzzleDataStore[currentPuzzleId];
-        let isAllCorrect = true;
+         if (!puzzleData || (!puzzleData.gridSize || (typeof puzzleData.gridSize === 'object' && (!puzzleData.gridSize.rows || !puzzleData.gridSize.cols))) || !puzzleData.grid) { console.error(`Cannot check answers for invalid puzzle data (ID: ${currentPuzzleId})`); return; }
 
+        let isAllCorrect = true;
         $crosswordGrid.find('.cell-input').each(function() {
-            const $input = $(this);
-            const userAnswer = $input.val().trim();
-            const correctAnswer = $input.data('answer');
-            if (userAnswer.toUpperCase() === correctAnswer.toUpperCase()) {
-                $input.css('color', '#008000'); // 정답 (녹색)
-            } else {
-                $input.css('color', '#ff0000'); // 오답 (빨간색)
-                isAllCorrect = false;
-            }
+            const $input = $(this); const userAnswer = $input.val().trim(); const correctAnswer = $input.data('answer');
+            if (userAnswer === '') { isAllCorrect = false; $input.css('background-color', 'rgba(255, 0, 0, 0.2)'); if (correctAnswer !== '') $input.css('color', '#ff0000'); return; } else { $input.css('background-color', ''); }
+            if (userAnswer.toUpperCase() === correctAnswer.toUpperCase()) { $input.css('color', '#008000'); } else { $input.css('color', '#ff0000'); isAllCorrect = false; }
         });
 
         if (isAllCorrect) {
-            // --- 1. 정답 플로우 ---
             puzzleCompletionStatus[currentPuzzleId] = true; // 클리어 상태 저장
 
-            // 1-1. "기억 조각 발견" 팝업 (내용)
-            showFragmentModal(puzzleData.title, puzzleData.reward);
-            
-            // 1-2. 내용 팝업의 닫기 버튼/외부 클릭 이벤트 바인딩
-            const fragmentModalClickHandler = function(event) {
-                // 닫기 버튼 또는 모달 배경 클릭 시
-                if (!$(event.target).is($fragmentModal) && !$(event.target).is($fragmentCloseBtn)) {
-                    return; // 모달 컨텐츠 클릭은 무시
-                }
-                
-                hideFragmentModal(); // 내용 팝업 닫기
-                $fragmentModal.off('click', fragmentModalClickHandler); // 이벤트 리스너 제거
-                
-                // 1-3. "클리어" 팝업
-                // 모든 퍼즐을 클리어했는지 확인
-                const allPuzzlesComplete = Object.values(puzzleCompletionStatus).every(status => status === true);
-
-                let clearMessage = `'${puzzleData.title}' 탐색 완료!`;
-                let clearPopupButtons = {
-                    showSkip: true, skipText: '목록으로', onSkip: showPuzzleHub, // [수정] '허브로' -> '목록으로'
-                    showMap: true,
-                    hideClose: false,
-                    onClose: showPuzzleHub
-                };
-
-                if (allPuzzlesComplete) {
-                    // 6개 모두 클리어 (현재 2개만 샘플이라 false)
-                    clearMessage = "챕터 2 '탐색' 클리어!<br>모든 기억 조각을 찾았습니다.";
-                    clearPopupButtons = {
-                        showNext: true, nextChapterNum: 3, // 다음 챕터 (3) 버튼
-                        showMap: true,
-                        hideClose: false,
-                        onClose: goToMap // X 누르면 지도로
-                    };
-                }
-                showModal(clearMessage, clearPopupButtons);
-            };
-            
-            $fragmentModal.off('click').on('click', fragmentModalClickHandler);
-            
-        } else {
-            // --- 2. 오답 플로우 ---
-            showModal("오답!<br>붉은색 칸을 다시 확인해주세요.", {
-                showStart: true, startText: '다시 풀기', onStart: () => {
-                     $crosswordGrid.find('.cell-input').css('color', '#000');
+            // 1. 성공 팝업 (확인/넘어가기)
+            showModal("정답!<br>기억의 조각을 발견했습니다!", {
+                showStart: true, startText: '확인하기',
+                onStart: () => { // "확인하기" 클릭 시
+                    // 2. 내용 팝업 보여주기, 닫으면 클리어 팝업 호출 콜백 전달
+                    showFragmentModal(puzzleData.title, puzzleData.reward, () => {
+                        const allPuzzlesComplete = Object.values(puzzleCompletionStatus).every(status => status === true);
+                        if (allPuzzlesComplete) {
+                            showChapter2AllClearPopup();
+                        } else {
+                            showChapter2IndividualClearPopup(puzzleData);
+                        }
+                    });
                 },
-                hideClose: false
+                showSkip: true, skipText: '넘어가기',
+                onSkip: () => { // "넘어가기" 클릭 시
+                    // 3. 바로 클리어 팝업
+                     const allPuzzlesComplete = Object.values(puzzleCompletionStatus).every(status => status === true);
+                     if (allPuzzlesComplete) {
+                         showChapter2AllClearPopup();
+                     } else {
+                         showChapter2IndividualClearPopup(puzzleData);
+                     }
+                },
+                hideClose: false, // X 버튼 표시
+                onClose: hideModal // X 누르면 이 팝업만 닫기
             });
+
+        } else {
+            // 오답 팝업
+            showModal("오답!<br>붉은색 칸이나 빈칸을 확인해주세요.", {
+                showStart: true, startText: '다시 풀기', onStart: () => {
+                     $crosswordGrid.find('.cell-input').css('background-color', '');
+                }, hideClose: false });
         }
     });
+
 
     // 십자말풀이 게임 숨기고 허브 표시 함수
     function showPuzzleHub() {
         $crosswordGameContainer.fadeOut(300, function() {
             $puzzleHub.fadeIn(300);
-            currentPuzzleId = null; // 현재 퍼즐 ID 리셋
+            updatePuzzleHubUI();
+            currentPuzzleId = null;
+            $chapter2.scrollTop(0);
         });
     }
-    
+
     // 십자말풀이 '뒤로 가기' (목록으로) 버튼
     $crosswordBackBtn.on('click', showPuzzleHub);
-    
-    // 챕터 2 허브에서 지도로 가기 버튼
-    $ch2GoMapBtn.on('click', goToMap);
+
+    // 챕터 2 허브 "넘어가기" 버튼 이벤트 핸들러
+    $ch2SkipBtn.on('click', function() {
+        showModal("기억 조각 발견!<br>확인하시겠습니까?", {
+             showStart: true, startText: '확인하기', onStart: showSelectFragmentPopup,
+             showSkip: true, skipText: '넘어가기', onSkip: showChapter2AllClearPopup,
+             hideClose: false,
+             onClose: () => { /* No action */ }
+         });
+    });
 
 });
