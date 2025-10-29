@@ -455,11 +455,87 @@ $(window).on('load', function() {
     // 한글 입력 오류 해결 및 자동 다음 칸 이동
     $crosswordGrid.on('input', '.cell-input', function(e) { if (e.originalEvent && e.originalEvent.isComposing) { return; } const $this = $(this); if ($this.val().length === 1 && $this.val().trim() !== '') { let currentCellIndex = $crosswordGrid.find('.cell-input').index(this); let $nextInput = $crosswordGrid.find('.cell-input').eq(currentCellIndex + 1); if ($nextInput.length > 0) { $nextInput.focus(); } else { $this.blur(); } } });
 
-    // 정답 확인 버튼
+    // [수정] 정답 확인 버튼 (오류 수정 및 줄 바꿈)
     $crosswordCheckBtn.on('click', function() {
-        if (!currentPuzzleId) return; const puzzleData = puzzleDataStore[currentPuzzleId]; if (!puzzleData || (!puzzleData.gridSize || (typeof puzzleData.gridSize === 'object' && (!puzzleData.gridSize.rows || !puzzleData.gridSize.cols))) || !puzzleData.grid) { console.error(`Cannot check answers for invalid puzzle data (ID: ${currentPuzzleId})`); return; }
-        let isAllCorrect = true; $crosswordGrid.find('.cell-input').each(function() { const $input = $(this); const userAnswer = $input.val().trim(); const correctAnswer = $input.data('answer'); if (userAnswer === '') { isAllCorrect = false; $input.css('background-color', 'rgba(255, 0, 0, 0.2)'); if (correctAnswer !== '') $input.css('color', '#ff0000'); return; } else { $input.css('background-color', ''); } if (userAnswer.toUpperCase() === correctAnswer.toUpperCase()) { $input.css('color', '#008000'); } else { $input.css('color', '#ff0000'); isAllCorrect = false; } });
-        if (isAllCorrect) { puzzleCompletionStatus[currentPuzzleId] = true; showModal("정답!<br>기억의 조각을 발견했습니다!", { showStart: true, startText: '확인하기', onStart: () => { showFragmentModal(puzzleData.title, puzzleData.reward, () => { const allPuzzlesComplete = Object.values(puzzleCompletionStatus).every(status => status === true); if (allPVlues(puzzleCompletionStatus).every(status => status === true); if (allPuzzlesComplete) { showChapter2AllClearPopup(); } else { showChapter2IndividualClearPopup(puzzleData); } }); }, showSkip: true, skipText: '넘어가기', onSkip: () => { const allPuzzlesComplete = Object.values(puzzleCompletionStatus).every(status => status === true); if (allPuzzlesComplete) { showChapter2AllClearPopup(); } else { showChapter2IndividualClearPopup(puzzleData); } }, hideClose: false, onClose: hideModal }); } else { showModal("오답!<br>붉은색 칸이나 빈칸을 확인해주세요.", { showStart: true, startText: '다시 풀기', onStart: () => { $crosswordGrid.find('.cell-input').css('background-color', ''); }, hideClose: false }); }
+        if (!currentPuzzleId) return;
+
+        const puzzleData = puzzleDataStore[currentPuzzleId];
+        
+        if (!puzzleData || 
+            (!puzzleData.gridSize || (typeof puzzleData.gridSize === 'object' && (!puzzleData.gridSize.rows || !puzzleData.gridSize.cols))) || 
+            !puzzleData.grid) {
+            console.error(`Cannot check answers for invalid puzzle data (ID: ${currentPuzzleId})`);
+            return;
+        }
+
+        let isAllCorrect = true;
+
+        $crosswordGrid.find('.cell-input').each(function() {
+            const $input = $(this);
+            const userAnswer = $input.val().trim();
+            const correctAnswer = $input.data('answer');
+
+            if (userAnswer === '') {
+                isAllCorrect = false;
+                $input.css('background-color', 'rgba(255, 0, 0, 0.2)');
+                if (correctAnswer !== '') $input.css('color', '#ff0000');
+                return; // .each() loop에서 다음으로 넘어감
+            } else {
+                $input.css('background-color', '');
+            }
+
+            if (userAnswer.toUpperCase() === correctAnswer.toUpperCase()) {
+                $input.css('color', '#008000');
+            } else {
+                $input.css('color', '#ff0000');
+                isAllCorrect = false;
+            }
+        });
+
+        if (isAllCorrect) {
+            puzzleCompletionStatus[currentPuzzleId] = true;
+            
+            showModal("정답!<br>기억의 조각을 발견했습니다!", {
+                showStart: true,
+                startText: '확인하기',
+                onStart: () => {
+                    // 개별 조각 팝업 표시
+                    showFragmentModal(puzzleData.title, puzzleData.reward, () => {
+                        // 팝업 닫기 콜백
+                        const allPuzzlesComplete = Object.values(puzzleCompletionStatus).every(status => status === true);
+                        
+                        // [수정] 여기가 오류 지점이었습니다.
+                        if (allPuzzlesComplete) {
+                            showChapter2AllClearPopup();
+                        } else {
+                            showChapter2IndividualClearPopup(puzzleData);
+                        }
+                    });
+                },
+                showSkip: true,
+                skipText: '넘어가기',
+                onSkip: () => {
+                    // '넘어가기' 버튼 클릭 시
+                    const allPuzzlesComplete = Object.values(puzzleCompletionStatus).every(status => status === true);
+                    if (allPuzzlesComplete) {
+                        showChapter2AllClearPopup();
+                    } else {
+                        showChapter2IndividualClearPopup(puzzleData);
+                    }
+                },
+                hideClose: false,
+                onClose: hideModal
+            });
+        } else {
+            showModal("오답!<br>붉은색 칸이나 빈칸을 확인해주세요.", {
+                showStart: true,
+                startText: '다시 풀기',
+                onStart: () => {
+                    $crosswordGrid.find('.cell-input').css('background-color', '');
+                },
+                hideClose: false
+            });
+        }
     });
 
     // 십자말풀이 게임 숨기고 허브 표시 함수
