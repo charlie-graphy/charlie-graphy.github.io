@@ -203,7 +203,7 @@ $(window).on('load', function() {
         
         for (let i = asteroids.length - 1; i >= 0; i--) {
             const asteroid = asteroids[i]; asteroid.y += asteroid.speed;
-            const collisionPadding = player.width * 0.15;
+            const collisionPadding = player.width * 0.25;
             if (player.x + collisionPadding < asteroid.x + asteroid.width - collisionPadding && player.x + player.width - collisionPadding > asteroid.x + collisionPadding && player.y + collisionPadding < asteroid.y + asteroid.height - collisionPadding && player.y + player.height - collisionPadding > asteroid.y + collisionPadding) {
                 gameOver = true; stopAsteroidGame();
                 showModal("충돌! 다시 시도하시겠습니까?", {
@@ -453,9 +453,58 @@ $(window).on('load', function() {
         });
     }
 
-    // 한글 입력 오류 해결 및 자동 다음 칸 이동
-    $crosswordGrid.on('input', '.cell-input', function(e) { if (e.originalEvent && e.originalEvent.isComposing) { return; } const $this = $(this); if ($this.val().length === 1 && $this.val().trim() !== '') { let currentCellIndex = $crosswordGrid.find('.cell-input').index(this); let $nextInput = $crosswordGrid.find('.cell-input').eq(currentCellIndex + 1); if ($nextInput.length > 0) { $nextInput.focus(); } else { $this.blur(); } } });
+ // [수정] 한글 입력 오류 해결 및 자동 다음 칸 이동 (모바일 최적화)
 
+    // "다음 칸으로 이동" 로직을 별도 함수로 분리 (재사용을 위해)
+    function moveToNextCell($currentInput) {
+        let currentCellIndex = $crosswordGrid.find('.cell-input').index($currentInput);
+        let $nextInput = $crosswordGrid.find('.cell-input').eq(currentCellIndex + 1);
+        if ($nextInput.length > 0) {
+            $nextInput.focus();
+        } else {
+            $currentInput.blur();
+        }
+    }
+
+    // 한글 조합 중인지 상태를 추적 (플래그)
+    $crosswordGrid.on('compositionstart', '.cell-input', function() {
+        // 'ㄱ', 'ㄴ' 등 조합이 시작될 때
+        $(this).data('isComposing', true);
+    });
+
+    // 한글 조합이 끝났을 때
+    $crosswordGrid.on('compositionend', '.cell-input', function() {
+        // '가', '나' 등 글자가 완성되었을 때
+        $(this).data('isComposing', false);
+        
+        // 조합이 끝난 시점(예: '가' 입력 완료)에, 
+        // 글자 길이가 1이면 다음 칸으로 이동
+        const $this = $(this);
+        if ($this.val().length === 1 && $this.val().trim() !== '') {
+            moveToNextCell($this);
+        }
+    });
+
+    // 'input' 이벤트 (주로 영어, 숫자, 또는 조합이 끝난 후)
+    $crosswordGrid.on('input', '.cell-input', function(e) {
+        const $this = $(this);
+        
+        // (A) 브라우저의 isComposing 속성 확인 (기본 방어)
+        if (e.originalEvent && e.originalEvent.isComposing) {
+            return; 
+        }
+        
+        // (B) 우리가 만든 'isComposing' data 플래그로 한 번 더 확인
+        if ($this.data('isComposing')) {
+            return; // 조합 중이면(예: 'ㄱ'만 입력된 상태) 절대 넘어가지 않음
+        }
+
+        // (C) 조합 중이 아닐 때 (예: 영어 'a' 입력, 또는 한글 붙여넣기)
+        if ($this.val().length === 1 && $this.val().trim() !== '') {
+            moveToNextCell($this);
+        }
+    });
+    
     // [수정] 정답 확인 버튼 (오류 수정 및 줄 바꿈)
     $crosswordCheckBtn.on('click', function() {
         if (!currentPuzzleId) return;
