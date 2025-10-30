@@ -64,7 +64,7 @@ $(window).on('load', function() {
     function boardSpaceship() {
         const inputValue = $passwordInput.val();
         if (inputValue === correctPassword) {
-            $statusMessage.css('color', '#55efc4').text('SYSTEM :: 승인 코드 확인. 이륙 시퀀스를 시작합니다...');
+            $statusMessage.css('color', '#55efc4').text('SYSTEM :: 승인 코드 확인. 곧 이륙합니다...');
             $cockpit.css('animation', 'takeoff 2s forwards');
             setTimeout(function() {
                 $cockpit.hide();
@@ -485,23 +485,46 @@ $(window).on('load', function() {
         }
     });
 
-    // 'input' 이벤트 (주로 영어, 숫자, 또는 조합이 끝난 후)
+    // [재수정] 한글 입력 오류 해결 및 자동 다음 칸 이동 (모바일 최적화)
     $crosswordGrid.on('input', '.cell-input', function(e) {
-        const $this = $(this);
-        
-        // (A) 브라우저의 isComposing 속성 확인 (기본 방어)
+        // (1) 브라우저가 "조합 중"이라고 알려주면, 무조건 대기
+        // (이건 만약을 위한 보험 코드입니다)
         if (e.originalEvent && e.originalEvent.isComposing) {
-            return; 
-        }
-        
-        // (B) 우리가 만든 'isComposing' data 플래그로 한 번 더 확인
-        if ($this.data('isComposing')) {
-            return; // 조합 중이면(예: 'ㄱ'만 입력된 상태) 절대 넘어가지 않음
+            return;
         }
 
-        // (C) 조합 중이 아닐 때 (예: 영어 'a' 입력, 또는 한글 붙여넣기)
-        if ($this.val().length === 1 && $this.val().trim() !== '') {
-            moveToNextCell($this);
+        const $this = $(this);
+        const text = $this.val();
+
+        // (2) 값이 1글자일 때만 다음 칸 이동을 "고려"
+        if (text.length === 1) {
+            
+            // (3) 입력된 1글자의 문자 코드를 확인
+            const charCode = text.charCodeAt(0);
+
+            // (A) '가'(AC00) 부터 '힣'(D7A3) 사이의 "완성된 한글"인지
+            const isCompleteHangul = (charCode >= 0xAC00 && charCode <= 0xD7A3);
+            
+            // (B) 영어 알파벳 (대소문자)인지
+            const isAlphabet = (charCode >= 0x0041 && charCode <= 0x005A) || (charCode >= 0x0061 && charCode <= 0x007A);
+            
+            // (C) 숫자인지
+            const isNumber = (charCode >= 0x0030 && charCode <= 0x0039);
+
+            // (4) "완성된 한글" 또는 "알파벳/숫자"일 때만 다음 칸으로 이동
+            if (isCompleteHangul || isAlphabet || isNumber) {
+                let currentCellIndex = $crosswordGrid.find('.cell-input').index(this);
+                let $nextInput = $crosswordGrid.find('.cell-input').eq(currentCellIndex + 1);
+                
+                if ($nextInput.length > 0) {
+                    $nextInput.focus();
+                } else {
+                    $this.blur();
+                }
+            }
+            // (5) 만약 'ㄱ', 'ㄴ', 'ㅏ' 등 "미완성" 자음/모음(isCompleteHangul=false)이
+            // 단독으로 입력된 거라면, 이 (4)번 if문에 걸리지 않으므로
+            // 다음 칸으로 넘어가지 않고 입력을 기다립니다.
         }
     });
     
