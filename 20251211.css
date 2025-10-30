@@ -388,7 +388,18 @@ body, html {
     box-shadow: 0 0 10px #57606f;
     transform: scale(1.05);
 }
-
+/* [NEW] 테마색 적용 버튼 (예: 더 탐색하기) */
+.modal-themed-btn {
+    /* JS에서 --btn-theme-color 변수를 설정해줍니다 */
+    border-color: var(--btn-theme-color, #feca57); /* 기본값은 노란색 */
+    color: var(--btn-theme-color, #feca57);
+    box-shadow: 0 0 8px var(--btn-theme-color, #feca57);
+}
+.modal-themed-btn:hover {
+    background-color: color-mix(in srgb, var(--btn-theme-color, #feca57) 20%, transparent);
+    box-shadow: 0 0 15px var(--btn-theme-color, #feca57);
+    transform: scale(1.05);
+}
 /* --- 시 내용 모달 & 기억 조각 모달 공통 --- */
 .poem-content { /* .poem-content 클래스를 공통 스타일로 사용 */
     border-color: #feca57;

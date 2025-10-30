@@ -58,7 +58,10 @@ $(window).on('load', function() {
     const $crosswordCheckBtn = $('#crossword-check-btn');
     const $crosswordBackBtn = $('#crossword-back-btn');
     const $ch2SkipBtn = $('#ch2-skip-btn');
+    const $mapArea = $('.map-area');
 
+    let currentChapterNum = 1;
+    
     // --- 오프닝 화면 기능 ---
     const correctPassword = "1211";
     function boardSpaceship() {
@@ -92,6 +95,7 @@ $(window).on('load', function() {
 
     // --- 챕터 전환 및 시작 로직 ---
     function showChapter(chapterNum, chapterTitle, planetImgSrc) {
+    	currentChapterNum = chapterNum;
         $galaxyMap.fadeOut(500);
         $transitionTitle.text(chapterTitle); $transitionImage.attr('src', planetImgSrc).css('color', $(`#planet${chapterNum} img`).css('color')); $chapterTransition.css('display', 'flex').animate({opacity: 1}, 500);
         setTimeout(function() {
@@ -112,6 +116,26 @@ $(window).on('load', function() {
         $poemModal.fadeOut(300);
         $fragmentModal.fadeOut(300);
         $selectFragmentModal.fadeOut(300);
+        
+        // [추가] 행성 가운데 정렬 스크롤 로직
+        const $targetPlanet = $(`#planet${currentChapterNum}`);
+        if ($targetPlanet.length > 0 && $mapArea.length > 0) {
+            
+            // 1. 행성 궤도의 왼쪽 위치 (부모인 .planets-wrapper 기준)
+            const planetOffsetLeft = $targetPlanet.closest('.planet-orbit').position().left;
+            // 2. 행성 궤도의 넓이 (정확한 중앙 정렬을 위해)
+            const planetWidth = $targetPlanet.closest('.planet-orbit').outerWidth();
+            // 3. 스크롤 영역(.map-area)의 보이는 넓이
+            const mapAreaWidth = $mapArea.width();
+
+            // 4. 스크롤할 목표 위치 계산
+            // (행성 위치 - 절반의 화면 넓이 + 절반의 행성 넓이)
+            const targetScrollLeft = planetOffsetLeft - (mapAreaWidth / 2) + (planetWidth / 2);
+
+            // 5. 부드럽게 스크롤
+            $mapArea.animate({ scrollLeft: targetScrollLeft }, 500);
+        }
+        
         $galaxyMap.fadeIn(1000);
     }
 
@@ -252,8 +276,20 @@ $(window).on('load', function() {
         if (buttons.showNext) { const nextChapter = buttons.nextChapterNum || 2; const $nextButton = $(`<button class="modal-action-btn modal-next-btn">다음 챕터로</button>`); $modalButtonContainer.append($nextButton); $nextButton.on('click', function() { hideModal(); transitionToChapter(nextChapter); }); }
         if (buttons.showMap) { const $mapButton = $(`<button class="modal-action-btn modal-map-btn">지도 보기</button>`); $modalButtonContainer.append($mapButton); $mapButton.on('click', function() { hideModal(); goToMap(); }); }
         if (buttons.showSkip) { const skipBtnText = buttons.skipText || '넘어가기'; const $skipButton = $(`<button class="modal-action-btn modal-skip-btn">${skipBtnText}</button>`); $modalButtonContainer.append($skipButton); $skipButton.on('click', function() { hideModal(); if(buttons.onSkip) buttons.onSkip(); }); }
+        if (buttons.showSkipThemed) {
+            const skipBtnText = buttons.skipText || '더 탐색하기';
+            const puzzleId = buttons.puzzleId || 1; 
+            const colorVarName = categoryColorVars[puzzleId] || '--category-color-1';
+            // 'modal-themed-btn' 클래스를 가진 버튼 생성
+            const $skipButton = $(`<button class="modal-action-btn modal-themed-btn">${skipBtnText}</button>`);
+            // 버튼 자체에 CSS 변수를 심어줌 (CSS 파일에서 사용)
+            $skipButton.css('--btn-theme-color', `var(${colorVarName})`); 
+            
+            $modalButtonContainer.append($skipButton);
+            $skipButton.on('click', function() { hideModal(); if(buttons.onSkip) buttons.onSkip(); });
+        }
         if (buttons.showSkip2) { const skipBtnText2 = buttons.skipText2 || '넘어가기2'; const $skipButton2 = $(`<button class="modal-action-btn modal-skip-btn">${skipBtnText2}</button>`); $modalButtonContainer.append($skipButton2); $skipButton2.on('click', function() { hideModal(); if(buttons.onSkip2) buttons.onSkip2(); }); }
-
+        
         $modal.css('display', 'flex').hide().fadeIn(300);
     }
     function hideModal() { $modal.fadeOut(300); }
@@ -312,9 +348,9 @@ $(window).on('load', function() {
     function hideSelectFragmentPopup() { $selectFragmentModal.fadeOut(300); }
 
      // 챕터 2 - 개별 퍼즐 클리어 팝업
-     function showChapter2IndividualClearPopup(puzzleData) {
+     function showChapter2IndividualClearPopup(puzzleData, puzzleId) {
          showModal(`'${puzzleData.title}' 탐색 완료!`, {
-             showSkip: true, skipText: '더 탐색하기', onSkip: showPuzzleHub,
+        	 showSkipThemed: true, skipText: '더 탐색하기', onSkip: showPuzzleHub, puzzleId: puzzleId,
              showSkip2: true, skipText2: '넘어가기', onSkip2: showChapter2AllClearPopup,
              hideClose: false,
              onClose: hideModal
@@ -363,7 +399,7 @@ $(window).on('load', function() {
             // --- 최종 6x6 그리드(7단어) ---
 			gridSize: { rows: 6, cols: 6 }, // 6x6 크기 명시
 			grid: [ // 0: 빈칸, 1: 입력칸
-			    [1, 1, 1, 1, 1, 0], // 장례지도사, 지(지키다),
+			    [1, 1, 1, 1, 1, 0], // 장례지도사, 지(지키다)
 			    [0, 0, 1, 0, 0, 1], // 키(지키다), 농(농구)
 			    [0, 1, 1, 0, 0, 1], // 바다 , 다(지키다),구(농구)
 			    [0, 0, 0, 1, 0, 0], // 립(립스틱)
@@ -379,15 +415,6 @@ $(window).on('load', function() {
 			    [null, null, null, '틱', null, '학']
 			],
 			labels: [ // 열쇠 번호
-			    [1, 0, 2, 0, 0, 0], // 가로 1, 세로 2 시작
-			    [0, 0, 0, 0, 0, 6], // 세로 6 시작 
-			    [0, 3, 0, 0, 0, 0], // 가로 3 시작 
-			    [0, 0, 0, 4, 0, 0], // 세로 4 시작
-			    [5, 0, 0, 0, 0, 7], // 가로 5 시작, 세로 7 시작
-			    [0, 0, 0, 0, 0, 0]
-			],
-			// labels 와 clues num 맞추기
-			labels: [
 			    [1, 0, 2, 0, 0, 0], // 1A 장례지도사, 2D 지키다
 			    [0, 0, 0, 0, 0, 3], // 3D 농구
 			    [0, 4, 0, 0, 0, 0], // 4A 바다
@@ -395,7 +422,7 @@ $(window).on('load', function() {
 			    [6, 0, 0, 0, 0, 7], // 6A 매그너스, 7D 수학
 			    [0, 0, 0, 0, 0, 0]
 			],
-			clues: { // 사용자 제공 열쇠 (번호 최종 수정!)
+			clues: { // 사용자 제공 열쇠
 			    across: [
 			        { num: 1, clue: "토루의 직업" },                       // 장례지도사
 			        { num: 4, clue: "전리농에서 학생들이 가고 싶은 곳" },  // 바다
@@ -408,11 +435,62 @@ $(window).on('load', function() {
 			        { num: 7, clue: "다인이가 제일 잘하는 과목" } // 수학
 			    ]
 			}
-        }, // 1번 카테고리 끝
+        },
         2: {
-            title: "기억 조각 #2 (개발 중)",
-            reward: "아직 내용이 없습니다.",
-            gridSize: 0, grid: [], answers: [], labels: [], clues: { across: [], down: [] }
+            title: "사랑", // 카테고리 이름
+            reward: `“수줍은 인사에 싹을 틔워 
+마주한 눈빛에 잎이 나서
+어느새 훌쩍 자라난 꽃봉오리”
+.
+“너를 원해, 다른 네가 아니라
+널 사랑해, 널 사랑해
+있는 그대로의 너”
+.
+“봐 세상은 변해가 불가능한 건 없어”
+.
+“하루하루 살다 보면 알게 될까
+살아내며 버티던 나날
+어느 날 갑자기 당신을 만나
+진짜 날 찾았죠 그 마음 변함없어요”`,
+            // --- 최종 6x6 그리드(7단어) ---
+			gridSize: { rows: 6, cols: 6 }, // 6x6 크기 명시
+			grid: [ // 0: 빈칸, 1: 입력칸
+			    [0, 1, 0, 1, 1, 1], // 다(다비드), 우물정
+			    [0, 1, 0, 0, 1, 0], // 비(다비드), 고(물고기)
+			    [0, 1, 0, 0, 1, 1], // 드(다비드), 기차 
+			    [0, 0, 1, 1, 0, 0], // 라(라디오), 수(수내리)
+			    [0, 0, 1, 1, 0, 0],  // 디(라디오), 내(수내리)
+			    [1, 1, 1, 1, 0, 0] // 꽃봉오리
+			],
+			answers: [ // 각 칸의 정답
+			    [null, '다', null, '우', '물', '정'],
+			    [null, '비', null, null, '고', null],
+			    [null, '드' ,null, null, '기', '차'],
+			    [null, null, '라', '수', null, null],
+			    [null, null, '디', '내', null, null],
+			    ['꽃', '봉', '오', '리', null, null]
+			],
+			labels: [ // 열쇠 번호
+			    [0, 1, 0, 2, 3, 0],
+			    [0, 0, 0, 0, 0, 0],
+			    [0, 0, 0, 0, 4, 0],
+			    [0, 0, 5, 6, 0, 0],
+			    [0, 0, 0, 0, 0, 0],
+			    [7, 0, 0, 0, 0, 0]
+			],
+			clues: { // 사용자 제공 열쇠
+			    across: [
+			        { num: 2, clue: "고대가 말하는 해시태그의 다른 말" },                       // 우물정
+			        { num: 4, clue: "남원이가 서울가려는 교통수단" },  // 기차
+			        { num: 6, clue: "석구 솔로 넘버 제목" }    // 꽃봉오리
+			    ],
+			    down: [
+			        { num: 1, clue: "석영이의 별명(한국대 법대 ㅇㅇㅇ)" },                     // 다비드
+			        { num: 3, clue: "석구가 잡아 먹은 것 혹은 석영이가 주운 돌 모양" }, // 물고기
+			        { num: 5, clue: "남원이가 정분이에게 준 것" },   // 라디오
+			        { num: 6, clue: "석영이 농활간 곳" } // 수내리
+			    ]
+			}
         },
         3: { title: "기억 조각 #3 (개발 중)", reward: "아직 내용이 없습니다.", gridSize: 0, grid: [], answers: [], labels: [], clues: { across: [], down: [] } },
         4: { title: "기억 조각 #4 (개발 중)", reward: "아직 내용이 없습니다.", gridSize: 0, grid: [], answers: [], labels: [], clues: { across: [], down: [] } },
@@ -563,11 +641,10 @@ $(window).on('load', function() {
                         // 팝업 닫기 콜백
                         const allPuzzlesComplete = Object.values(puzzleCompletionStatus).every(status => status === true);
                         
-                        // [수정] 여기가 오류 지점이었습니다.
                         if (allPuzzlesComplete) {
                             showChapter2AllClearPopup();
                         } else {
-                            showChapter2IndividualClearPopup(puzzleData);
+                            showChapter2IndividualClearPopup(puzzleData, currentPuzzleId);
                         }
                     });
                 },
