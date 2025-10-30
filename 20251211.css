@@ -1,10 +1,4 @@
 /* 사용자 지정 픽셀 폰트 가져오기 */
-@font-face {
-    font-family: 'Galmuri11';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2506-1@1.0/Galmuri11-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-display: swap;
-}
 @import url('https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
 
 /* --- 기본 설정 --- */
@@ -64,13 +58,14 @@ body, html {
     margin-top: 0; margin-bottom: 15px; color: #00ff41;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0 0 8px #00ff41;
 }
-.prompt { font-size: 0.9em; color: #c0c0c0; margin-bottom: 15px; line-height: 1.6; } /* 간격 조정 */
-.hint { font-size: 0.8em; color: #888; display: block; margin-top: 15px; margin-bottom: 10px;} /* 힌트 스타일 및 위치 수정 */
+.prompt { font-family: 'GalmuriMono9', monospace; font-size: 0.9em; color: #c0c0c0; margin-bottom: 15px; line-height: 1.6; } /* 간격 조정 */
+.hint { font-family: 'GalmuriMono9', monospace; font-size: 0.8em; color: #888; display: block; margin-top: 15px; margin-bottom: 10px;} /* 힌트 스타일 및 위치 수정 */
 .password-group { display: flex; justify-content: center; gap: 10px; margin-top: 10px; } /* 상단 여백 추가 */
 #password-input {
     background-color: #000; border: 2px solid #00ff41; color: #00ff41;
     padding: 10px; font-size: 1.5em; font-family: 'Galmuri11', monospace;
     width: 120px; text-align: center;
+    font-weight: 700;
 }
 #password-input::placeholder { color: rgba(0, 255, 65, 0.4); }
 #password-input:focus { outline: none; background-color: #002b00; }
@@ -99,6 +94,7 @@ body, html {
 }
 #story-text-container {
     max-width: 90%;
+    font-family: 'Galmuri11', monospace;
     /* 타이핑 효과를 위해 빈 공간으로 시작 */
 }
 #story-text-container p {
@@ -409,7 +405,7 @@ body, html {
     white-space: pre-wrap; /* 줄바꿈 유지 */
     max-height: 60vh; /* 스크롤 생성을 위한 높이 제한 */
     overflow-y: auto; /* 세로 스크롤 */
-    padding-right: 15px; /* 스크롤바 공간 확보 */
+    padding-right: 5px; /* 스크롤바 공간 확보 */
     font-family: 'Galmuri11', monospace;
     color: #E0E1DD;
     margin-bottom: 0;
@@ -455,7 +451,7 @@ body, html {
 #selected-fragment-text { /* .poem-text 스타일 상속 */
     border-top: 1px solid rgba(255, 209, 128, 0.3); /* 구분선 */
     padding-top: 15px;
-    text-align: left; /* 선택된 내용은 왼쪽 정렬 */
+    text-align: center;
 }
 
 
