@@ -453,9 +453,7 @@ $(window).on('load', function() {
         });
     }
 
- // [수정] 한글 입력 오류 해결 및 자동 다음 칸 이동 (모바일 최적화)
-
-    // "다음 칸으로 이동" 로직을 별도 함수로 분리 (재사용을 위해)
+    // "다음 칸으로 이동" 로직 (재사용)
     function moveToNextCell($currentInput) {
         let currentCellIndex = $crosswordGrid.find('.cell-input').index($currentInput);
         let $nextInput = $crosswordGrid.find('.cell-input').eq(currentCellIndex + 1);
@@ -466,65 +464,53 @@ $(window).on('load', function() {
         }
     }
 
-    // 한글 조합 중인지 상태를 추적 (플래그)
-    $crosswordGrid.on('compositionstart', '.cell-input', function() {
-        // 'ㄱ', 'ㄴ' 등 조합이 시작될 때
-        $(this).data('isComposing', true);
-    });
+    // 각 입력 칸마다 개별 타이머를 저장할 변수
+    let inputTimer = null; 
 
-    // 한글 조합이 끝났을 때
-    $crosswordGrid.on('compositionend', '.cell-input', function() {
-        // '가', '나' 등 글자가 완성되었을 때
-        $(this).data('isComposing', false);
-        
-        // 조합이 끝난 시점(예: '가' 입력 완료)에, 
-        // 글자 길이가 1이면 다음 칸으로 이동
-        const $this = $(this);
-        if ($this.val().length === 1 && $this.val().trim() !== '') {
-            moveToNextCell($this);
-        }
-    });
-
-    // [재수정] 한글 입력 오류 해결 및 자동 다음 칸 이동 (모바일 최적화)
     $crosswordGrid.on('input', '.cell-input', function(e) {
-        // (1) 브라우저가 "조합 중"이라고 알려주면, 무조건 대기
-        // (이건 만약을 위한 보험 코드입니다)
+        
+        // (1) 브라우저가 "조합 중"이라고 알려주면(예: 'ㄱ' 입력 중), 무조건 대기
         if (e.originalEvent && e.originalEvent.isComposing) {
             return;
+        }
+
+        // (2) 기존에 설정된 타이머가 있다면(예: '자'를 입력한 직후) 즉시 취소
+        // (이것이 '장'을 입력할 시간을 벌어줍니다)
+        if (inputTimer) {
+            clearTimeout(inputTimer);
         }
 
         const $this = $(this);
         const text = $this.val();
 
-        // (2) 값이 1글자일 때만 다음 칸 이동을 "고려"
+        // (3) 값이 1글자일 때만 다음 칸 이동을 "고려"
         if (text.length === 1) {
             
-            // (3) 입력된 1글자의 문자 코드를 확인
-            const charCode = text.charCodeAt(0);
-
-            // (A) '가'(AC00) 부터 '힣'(D7A3) 사이의 "완성된 한글"인지
-            const isCompleteHangul = (charCode >= 0xAC00 && charCode <= 0xD7A3);
-            
-            // (B) 영어 알파벳 (대소문자)인지
-            const isAlphabet = (charCode >= 0x0041 && charCode <= 0x005A) || (charCode >= 0x0061 && charCode <= 0x007A);
-            
-            // (C) 숫자인지
-            const isNumber = (charCode >= 0x0030 && charCode <= 0x0039);
-
-            // (4) "완성된 한글" 또는 "알파벳/숫자"일 때만 다음 칸으로 이동
-            if (isCompleteHangul || isAlphabet || isNumber) {
-                let currentCellIndex = $crosswordGrid.find('.cell-input').index(this);
-                let $nextInput = $crosswordGrid.find('.cell-input').eq(currentCellIndex + 1);
+            // (4) [핵심] 바로 이동하지 않고, 100ms(0.1초) 기다림
+            inputTimer = setTimeout(function() {
                 
-                if ($nextInput.length > 0) {
-                    $nextInput.focus();
-                } else {
-                    $this.blur();
+                // (5) 100ms 뒤에 이 칸의 현재 값을 다시 확인
+                const currentText = $this.val();
+                
+                // (6) 100ms가 지났는데도 여전히 "완성된 1글자" 상태일 때만 이동
+                if (currentText.length === 1) {
+                    const charCode = currentText.charCodeAt(0);
+                    
+                    // '가'(AC00) 부터 '힣'(D7A3) 사이의 "완성된 한글"
+                    const isCompleteHangul = (charCode >= 0xAC00 && charCode <= 0xD7A3);
+                    // 영어 알파벳 (대소문자)
+                    const isAlphabet = (charCode >= 0x0041 && charCode <= 0x005A) || (charCode >= 0x0061 && charCode <= 0x007A);
+                    // 숫자
+                    const isNumber = (charCode >= 0x0030 && charCode <= 0x0039);
+
+                    if (isCompleteHangul || isAlphabet || isNumber) {
+                        moveToNextCell($this);
+                    }
                 }
-            }
-            // (5) 만약 'ㄱ', 'ㄴ', 'ㅏ' 등 "미완성" 자음/모음(isCompleteHangul=false)이
-            // 단독으로 입력된 거라면, 이 (4)번 if문에 걸리지 않으므로
-            // 다음 칸으로 넘어가지 않고 입력을 기다립니다.
+                // 만약 100ms 이내에 '장'으로 변경되었다면,
+                // (2)번에서 이 타이머는 이미 취소되었을 것입니다.
+                
+            }, 300); // <-- 300ms (0.3초)의 지연 시간. 
         }
     });
     
