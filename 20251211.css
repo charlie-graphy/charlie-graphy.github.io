@@ -757,13 +757,6 @@ body, html {
     box-shadow: 0 0 15px #ffd180;
 }
 
-/* 이모티콘 스타일 (font-size 제거) */
-.puzzle-emoji {
-    /* font-size: 1.5em; */ /* 제거됨 */
-    margin-bottom: 8px; /* 제목과의 간격 약간 줄임 */
-    line-height: 1.2; /* 이모티콘 잘림 방지 (필요시 조정) */
-}
-
 .puzzle-title {
     font-size: 0.9em;
     font-weight: 700;
