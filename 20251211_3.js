@@ -100,11 +100,11 @@ function initChapter3Game() {
  const shuffledItems = [...chapter3AllItems].sort(() => 0.5 - Math.random());
  ch3ItemsToFind = shuffledItems.slice(0, NUM_ITEMS_TO_FIND); 
 
- // 3. 맵 중앙 스크롤
- const screenWidth = $ch3Container.width();
- const screenHeight = $ch3Container.height();
- $ch3Container.scrollLeft((ch3MapSize.w - screenWidth) / 2);
- $ch3Container.scrollTop((ch3MapSize.h - screenHeight) / 2);
+//3. 맵 스크롤을 (0, 0)으로 초기화
+ // const screenWidth = $ch3Container.width(); // [삭제]
+ // const screenHeight = $ch3Container.height(); // [삭제]
+ $ch3Container.scrollLeft(0); // [수정] 중앙이 아닌 (0, 0)에서 시작
+ $ch3Container.scrollTop(0); // [수정] 중앙이 아닌 (0, 0)에서 시작
 
  // 4. 게임 요소는 모두 숨기고, 인트로 화면만 표시
  $ch3Prompt.hide();
