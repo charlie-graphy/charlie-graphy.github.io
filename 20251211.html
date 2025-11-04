@@ -11,7 +11,7 @@
     <link rel="preload" href="https://lh3.googleusercontent.com/d/1jeWf4rvz31POee3PRhbXvKoCBSx26ICD" as="image">
     <link rel="preload" href="https://lh3.googleusercontent.com/d/1q3t8hjSssd9qXD8z_RKKRIH17EMsnWZD" as="image">
     <link rel="preload" href="https://lh3.googleusercontent.com/d/11fwRvd-E0xb48Sr4YB0GiOKnzs3j_vF6" as="image">
-
+    <link rel="preload" href="https://lh3.googleusercontent.com/d/1edMG0fSDJz8ud_n3wkpg8QghuOO7sZAK" as="image">
 </head>
 <body>
     <div id="loader">
@@ -211,7 +211,41 @@
 
     </div>
 
+    <div id="chapter3-container" class="chapter-container">
+        
+        <div id="ch3-story-intro" style="display: none;">
+            <p class="alert-text warning-title" style="color: #80d8ff;">WARNING!</p>
+            <p class="alert-text system" style="animation-delay: 0.5s;">전방 시야 제로! 짙은 안개 구역 진입!</p>
+            <p class="alert-text warning" style="animation-delay: 1.0s;">탐사 물품 4개의 신호가 안개 속에 사라졌습니다!</p>
+            <p class="alert-text objective" style="color: #80d8ff; animation-delay: 1.5s;">
+                목표 :: 안개를 스캔하여 4개의 물품을 회수하세요!
+            </p>
+            
+            <div id="ch3-intro-buttons" style="animation-delay: 2.0s;"> 
+                 <p class="intro-instruction">화면을 드래그(터치)하여 맵을 탐색하세요.</p>
+                 <button class="modal-action-btn modal-start-btn" id="ch3-start-btn" style="border-color: #80d8ff; color: #80d8ff;">탐색 시작</button>
+                 <button class="modal-action-btn modal-skip-btn" id="ch3-intro-skip-btn">넘어가기</button>
+            </div>
+        </div>
+        <div id="ch3-prompt" style="display: none;">
+            <h2 class="map-title" style="color: #80d8ff; text-shadow: 0 0 10px #80d8ff;">CH.3 확장</h2>
+            <p id="ch3-prompt-text">찾아야 할 기억: <span></span></p>
+        </div>
 
+        <div id="ch3-map-wrapper">
+            <div id="ch3-map-area" data-background-img="https://lh3.googleusercontent.com/d/1edMG0fSDJz8ud_n3wkpg8QghuOO7sZAK">
+                <div id="ch3-fog-layer"></div>
+                </div>
+        </div>
+
+        <div id="ch3-scanner"></div>
+        
+        <div id="ch3-mini-map" style="display: none;">
+        	<div id="ch3-mini-map-viewport"></div>
+        </div>
+
+        <button class="modal-action-btn modal-skip-btn" id="ch3-skip-btn" style="display: none;">넘어가기</button>
+    </div>
     <div id="chapter-transition">
         <img id="transition-image" src="" alt="Chapter Planet">
         <h2 id="transition-title"></h2>
@@ -220,5 +254,6 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="20251211.js"></script>
+    <script src="20251211_3.js"></script>
 </body>
 </html>

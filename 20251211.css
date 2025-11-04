@@ -471,19 +471,21 @@ body, html {
     display: none; /* JS로 제어 */
     position: fixed;
     top: 0; left: 0;
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100dvh; /* [수정] height: 100% -> 100dvh (모바일 버그 수정) */
     color: #fff;
     flex-direction: column;
-    justify-content: flex-start; /* 위쪽 정렬 */
-    padding-top: max(3vh, 20px); /* 상단 여백 (최소 20px 확보) */
+    /* [수정] justify-content: flex-start -> center (인트로 화면 중앙 정렬) */
+    justify-content: center; 
+    padding-top: max(3vh, 20px); 
     align-items: center;
     z-index: 5000;
     opacity: 0;
     transition: opacity 1s ease-in-out;
     overflow-y: auto;
-    padding-left: 20px; /* 좌우 패딩 */
+    padding-left: 20px; 
     padding-right: 20px;
-    padding-bottom: 20px; /* 하단 패딩 */
+    padding-bottom: 20px; 
     box-sizing: border-box;
 }
 
@@ -498,9 +500,9 @@ body, html {
     box-shadow: 0 0 20px #ff4757, inset 0 0 10px rgba(255, 71, 87, 0.5);
     z-index: 6000;
     line-height: 1.8;
-     /* 챕터 컨테이너 상단 정렬 시 중앙 유지를 위해 margin 추가 */
-     margin-top: auto;
-     margin-bottom: auto;
+     /* [수정] 챕터 컨테이너가 center 정렬하므로 margin: auto 불필요 */
+     /* margin-top: auto; */
+     /* margin-bottom: auto; */
 }
 
 .alert-text {
@@ -938,4 +940,277 @@ body, html {
     margin-top: 25px; /* 간격 조정 */
     display: flex;
     gap: 15px; /* 간격 조정 */
+}
+
+
+/* ===== 챕터 3: 확장 --- (이 부분이 합쳐진 부분) ===== */
+
+/* [수정] 챕터 3 컨테이너 (스크롤 가능하게 설정) */
+#chapter3-container {
+    height: 100dvh; /* [수정] 모바일 스크롤 범위 버그 수정 */
+    /* [수정] padding: 0; 제거! (공통 스타일 상속) */
+    overflow: scroll; /* [핵심] 맵을 스크롤/드래그하기 위함 */
+    -webkit-overflow-scrolling: touch;
+    cursor: grab; /* 드래그 가능 커서 */
+    padding: 0 !important; /* [추가] 챕터3 스크롤맵은 여백이 없어야 함 */
+}
+/* [신규] 챕터 3가 '게임 시작'되면 공통 padding을 제거 */
+#chapter3-container.game-started {
+    justify-content: flex-start;
+}
+
+#chapter3-container:active {
+    cursor: grabbing;
+}
+
+/* 1. 상단 제시어 (화면에 고정) */
+#ch3-prompt {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to bottom, rgba(0, 0, 12, 0.9), rgba(0, 0, 12, 0));
+    z-index: 101; /* 스캐너보다 위 */
+    pointer-events: none; /* 클릭 방지 */
+    text-align: center;
+    box-sizing: border-box;
+}
+#ch3-prompt-text {
+    font-size: 1em;
+    color: #fff;
+    margin: 0;
+}
+#ch3-prompt-text span {
+    color: #80d8ff;
+    font-weight: 700;
+}
+
+/* [신규] 맵 래퍼가 맵 콘텐츠만큼 커지도록 설정 */
+#ch3-map-wrapper {
+    width: 2400px; /* ch3-map-area와 동일한 너비 */
+    height: 2500px; /* ch3-map-area와 동일한 높이 */
+    display: none; /* [수정] JS로 제어 */
+    flex-shrink: 0; /* [추가] 맵이 수직으로 수축하는 것을 방지 */
+}
+
+/* 3. 거대한 맵 (실제 콘텐츠 영역) */
+#ch3-map-area {
+    width: 100%; /* [수정] 래퍼의 100%를 채움 */
+    height: 100%; /* [수정] 래퍼의 100%를 채움 */
+    position: relative;
+    /* [수정] JS에서 이미지를 설정할 변수(--ch3-bg-image)를 사용합니다. */
+    background-image: var(--ch3-bg-image, var(--bg-image)); 
+    /* [수정] JS가 --ch3-bg-size를 설정하면 그것을, 아니면 auto를 사용 */
+    background-size: var(--ch3-bg-size, auto); 
+    background-position: center;
+    background-repeat: no-repeat; /* [수정] 새 배경은 반복 안 함 */
+    image-rendering: pixelated;
+    /* [수정] JS가 제어할 수 있도록 animation 속성 변경 */
+    animation: var(--ch3-bg-animation, pan-background 60s linear infinite);
+    overflow: hidden;
+    z-index: 2; /* [수정] 챕터 컨테이너의 ::after 오버레이(z-index: 1)보다 위로 올림 */
+}
+
+/* 4. 안개 레이어 */
+#ch3-fog-layer {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 5, 20, 0.92); /* [수정] 짙은 안개 (농도 낮춤) */
+    z-index: 5;
+    pointer-events: none; /* 클릭이 통과되도록 */
+}
+
+/* 5. 스캐너 (손전등) 효과 (화면에 고정) */
+#ch3-scanner {
+    position: fixed;
+    top: 0; left: 0;
+    width: 200px; /* 스캐너 크기 */
+    height: 200px;
+    border-radius: 50%;
+    /* [핵심] 가운데는 투명하고, 바깥은 어두워지는 그라데이션 */
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.15) 0%, /* 중앙의 희미한 빛 */
+        transparent 80px, /* 빛 범위 */
+        rgba(0, 5, 20, 0.85) 120px /* 안개와 자연스럽게 연결 */
+    );
+    z-index: 100;
+    pointer-events: none; /* 클릭 방지 */
+    transform: translate(-50%, -50%); /* 중앙 정렬 */
+    display: none; /* JS로 제어 */
+}
+/* 모바일(터치)에서는 스캐너 숨김 (터치로 바로 클릭) */
+@media (hover: none) {
+    #ch3-scanner {
+        display: none !important;
+    }
+}
+
+
+/* 6. 넘어가기 버튼 (화면에 고정) */
+#ch3-skip-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 101;
+}
+
+/* 7. JS가 추가할 아이템 스타일 */
+.ch3-item {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    z-index: 10; /* 안개(5)보다 위 */
+    transition: transform 0.3s ease, opacity 0.3s;
+    opacity: 0.7; /* 안개 속에 있는 듯 희미하게 */
+    filter: drop-shadow(0 0 5px #80d8ff);
+}
+.ch3-item:hover {
+    transform: scale(1.15);
+    opacity: 1;
+}
+.ch3-item.found {
+    opacity: 1;
+    transform: scale(1.1);
+    pointer-events: none; /* 찾은 아이템은 다시 클릭 X */
+    filter: drop-shadow(0 0 15px #55efc4);
+}
+
+/* 8. JS가 추가할 '안개 걷힌 영역' 스타일 */
+.ch3-clear-spot {
+    position: absolute;
+    width: 300px; /* 걷히는 영역 크기 */
+    height: 300px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%); /* 중앙 정렬 */
+    background: transparent; /* [수정] 배경색을 투명으로 */
+    z-index: 6; /* 안개(5) 바로 위, 아이템(10) 바로 아래 */
+}
+/* 맵 배경 애니메이션도 동일하게 적용 (더 자연스러움) */
+.ch3-clear-spot::before {
+    content: '';
+    position: absolute;
+    top: -1500px; left: -1500px; /* 부모 크기보다 훨씬 크게 */
+    width: 3000px; height: 3000px;
+    /* [수정] CSS 변수를 사용하여 JS가 제어하는 배경을 그대로 노출 */
+    background-image: var(--ch3-bg-image, var(--bg-image));
+    background-size: var(--ch3-bg-size, auto);
+    background-position: center;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    /* [수정] 맵 애니메이션이 꺼져있으면(none) 이 애니메이션도 끔 */
+    animation: var(--ch3-bg-animation, pan-background 60s linear infinite);
+    z-index: 7;
+}
+.ch3-clear-spot .ch3-item-image-revealed {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px; height: 80px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 8;
+    opacity: 1;
+    filter: drop-shadow(0 0 15px #55efc4);
+}
+
+/* 9. 챕터 3 게임 방법 안내 */
+#ch3-story-intro {
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    /* 챕터 3 테마색 적용 */
+    border: 3px solid #80d8ff; 
+    background-color: rgba(0, 10, 30, 0.9);
+    text-align: center;
+    box-shadow: 0 0 20px #80d8ff, inset 0 0 10px rgba(128, 216, 255, 0.5);
+    z-index: 200; /* 맵/스캐너(101)보다 위에 표시 */
+    line-height: 1.8;
+    /* [수정] 챕터 컨테이너가 center 정렬하므로 margin: auto 불필요 */
+    /* margin-top: auto; */
+    /* margin-bottom: auto; */
+    box-sizing: border-box;
+}
+/* 챕터 1의 스타일을 그대로 사용하되, 버튼 호버 색상만 덮어쓰기 */
+#ch3-start-btn:hover {
+    background-color: rgba(128, 216, 255, 0.2);
+    box-shadow: 0 0 15px #80d8ff;
+}
+/* ===== 챕터 3 인트로 버튼 깨짐 수정 ===== */
+/* 챕터 1의 #intro-buttons 스타일을 챕터 3의 새 ID에 적용 */
+#ch3-intro-buttons {
+    margin-top: 30px;
+    opacity: 0; /* 초기 숨김 */
+    animation: fade-in-buttons 1s forwards;
+    /* 챕터 1과 동일한 @keyframes fade-in-buttons 사용 */
+    animation-delay: 2.5s; 
+}
+
+/* 챕터 1의 #intro-buttons button 스타일을 챕터 3에 적용 */
+#ch3-intro-buttons button {
+    margin: 5px 10px; /* 간격 조정 */
+}
+
+/* ===== [수정] 챕터 3 미니맵 스타일 (홀로그램) ===== */
+#ch3-mini-map {
+    position: fixed;
+    top: 140px; /* [수정] 120px -> 140px로 더 내렸습니다! (글자 가림 방지) */
+    right: 20px;
+    width: 80px; /* [수정] 100px -> 80px로 크기 축소 */
+    height: 80px; /* [수정] 100px -> 80px로 크기 축소 */
+    border: 1px solid rgba(128, 216, 255, 0.5); /* 연한 테두리 */
+    background-color: transparent; /* 배경 제거 */
+    box-shadow: none; /* 그림자 제거 */
+    z-index: 200;
+    overflow: hidden;
+    display: none;
+    pointer-events: none; /* 클릭 안 되게 막음 */
+}
+
+/* 미니맵 안의 '현재 시야' 박스 (연하게) */
+#ch3-mini-map-viewport {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+/* 미니맵 안의 '아이템 위치' 점 (기본: 작고 밝은 흰색) */
+.ch3-mini-map-item-dot {
+    position: absolute;
+    width: 4px; /* "조금 작게" */
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.8); /* "흰색 밝게" */
+    border-radius: 50%;
+    transform: translate(-50%, -50%); /* 중앙 정렬 */
+    transition: all 0.3s ease;
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); /* "밝게" (Glow) */
+}
+
+/* [신규] 현재 '목표 아이템' 점 (깜빡임 효과) */
+.ch3-mini-map-item-dot.target {
+    background-color: #ff8a80; /* 빨간색 경고 */
+    box-shadow: 0 0 8px #ff4757, 0 0 12px #ff4757;
+    animation: pulse-target 1s infinite;
+    transform: translate(-50%, -50%) scale(1.5);
+}
+@keyframes pulse-target {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* 미니맵 안의 '찾은 아이템' 점 (더 밝게 빛남) */
+.ch3-mini-map-item-dot.found {
+    background-color: #55efc4; /* 클리어 색상 */
+    box-shadow: 0 0 8px #55efc4, 0 0 12px #55efc4; /* 빛나는 효과 */
+    transform: translate(-50%, -50%) scale(1.5); /* 찾으면 더 커짐 */
+    animation: none; /* 깜빡임 중지 */
 }

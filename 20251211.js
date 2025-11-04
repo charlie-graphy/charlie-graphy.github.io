@@ -1,3 +1,6 @@
+// [수정] 챕터 3에서 호출할 함수들을 전역 변수로 미리 선언
+let showModal, hideModal, showFragmentModal, hideFragmentModal, transitionToChapter, goToMap, showPoem, showClearConfirmationPopup, stopAsteroidGame;
+
 // 창의 모든 리소스(이미지 포함)가 로드되면 스크립트를 실행합니다.
 $(window).on('load', function() {
 
@@ -17,6 +20,7 @@ $(window).on('load', function() {
     const $galaxyMap = $('.galaxy-map-container');
     const $chapter1 = $('#chapter1-container');
     const $chapter2 = $('#chapter2-container');
+    const $chapter3 = $('#chapter3-container');
     const $chapterTransition = $('#chapter-transition');
     const $transitionTitle = $('#transition-title');
     const $transitionImage = $('#transition-image');
@@ -27,18 +31,17 @@ $(window).on('load', function() {
     const $planets = $('.planet');
     const $modal = $('#custom-modal');
     const $modalText = $('#modal-text');
-    // [유지] $modalCloseBtn 변수 삭제됨
     const $modalButtonContainer = $('#modal-button-container');
     const $poemModal = $('#poem-modal');
-    const $poemCloseBtn = $('.poem-close-btn'); // [유지] 시 팝업 닫기 버튼
+    const $poemCloseBtn = $('.poem-close-btn');
     const $fragmentModal = $('#fragment-modal');
     const $fragmentTitle = $('#fragment-title');
     const $fragmentText = $('#fragment-text');
-    const $fragmentCloseBtn = $('.fragment-close-btn'); // [수정] 다시 추가
+    const $fragmentCloseBtn = $('.fragment-close-btn');
     const $selectFragmentModal = $('#select-fragment-modal');
     const $selectFragmentList = $('#select-fragment-list');
     const $selectedFragmentText = $('#selected-fragment-text');
-    const $selectFragmentCloseBtn = $('.select-fragment-close-btn'); // [수정] 다시 추가
+    const $selectFragmentCloseBtn = $('.select-fragment-close-btn');
     const $storyIntro = $('#story-intro');
     const $startGameBtn = $('#start-game-btn');
     const $skipGameBtn = $('#skip-game-btn');
@@ -64,7 +67,7 @@ $(window).on('load', function() {
     
     // --- 오프닝 화면 기능 ---
     const correctPassword = "1211";
-    function boardSpaceship() {
+    function boardSpaceship() { // [유지] function (지역 함수)
         const inputValue = $passwordInput.val();
         if (inputValue === correctPassword) {
             $statusMessage.css('color', '#55efc4').text('SYSTEM :: 승인 코드 확인. 곧 이륙합니다...');
@@ -83,7 +86,7 @@ $(window).on('load', function() {
     $passwordInput.on('keyup', function(event) { if (event.key === 'Enter') { boardSpaceship(); } });
 
     // --- 스토리 오버레이 로직 ---
-    function showStoryOverlay() {
+    function showStoryOverlay() { // [유지] function (지역 함수)
         const storyLines = ["시간여행자님, 우주선 탑승을 환영합니다.", "이제부터 10년의 시간을 거슬러 올라가,", "흩어진 기억의 조각들을 모으는 탐사를 시작합니다.", "모든 조각을 찾아 최종 목적지 '우주'에 도달하는 것이 우리의 임무입니다.", "준비되셨다면, 화면을 터치하여 항해를 시작해주십시오."];
         let lineIndex = 0, charIndex = 0, typingTimeout, isTyping = true, typingFinished = false;
         $storyTextContainer.empty(); $storyCursor.hide().css('opacity', '0').removeClass('blinking'); $storyOverlay.css('display', 'flex').animate({opacity: 1}, 1000);
@@ -94,7 +97,7 @@ $(window).on('load', function() {
 
 
     // --- 챕터 전환 및 시작 로직 ---
-    function showChapter(chapterNum, chapterTitle, planetImgSrc) {
+    function showChapter(chapterNum, chapterTitle, planetImgSrc) { // [유지] function (지역 함수)
     	currentChapterNum = chapterNum;
         $galaxyMap.fadeOut(500);
         $transitionTitle.text(chapterTitle); $transitionImage.attr('src', planetImgSrc).css('color', $(`#planet${chapterNum} img`).css('color')); $chapterTransition.css('display', 'flex').animate({opacity: 1}, 500);
@@ -103,6 +106,11 @@ $(window).on('load', function() {
             const $targetChapter = $(`#chapter${chapterNum}-container`);
             if (chapterNum === 1) { $storyIntro.hide(); $asteroidGame.hide(); $exitPortal.hide(); }
             if (chapterNum === 2) { $puzzleHub.show(); $crosswordGameContainer.hide(); updatePuzzleHubUI(); }
+            
+            if (chapterNum === 3) {
+                initChapter3Game(); // (이 함수는 20251211_3.js에 전역으로 정의됨)
+            }
+
             $targetChapter.css('display', 'flex').animate({opacity: 1}, 1000, function() {
                  if (chapterNum === 1) { $storyIntro.fadeIn(500); $startGameBtn.off().on('click', startCountdown); $skipGameBtn.off().on('click', function(){ showModal("기억 조각 발견!<br>확인하시겠습니까?", { showStart: true, startText: '확인하기', onStart: showPoem, showSkip: true, skipText: '넘어가기', onSkip: showClearConfirmationPopup, hideClose: false, onClose: hideModal }); }); }
             });
@@ -110,29 +118,21 @@ $(window).on('load', function() {
     }
 
     // --- 항해 지도로 돌아가는 함수 ---
-    function goToMap() {
+    // [수정] 전역 변수에 할당
+    goToMap = function() {
         stopAsteroidGame();
+        stopChapter3Game(); // (이 함수는 20251211_3.js에 전역으로 정의됨)
         $('.chapter-container').fadeOut(500);
         $poemModal.fadeOut(300);
         $fragmentModal.fadeOut(300);
         $selectFragmentModal.fadeOut(300);
         
-        // [추가] 행성 가운데 정렬 스크롤 로직
         const $targetPlanet = $(`#planet${currentChapterNum}`);
         if ($targetPlanet.length > 0 && $mapArea.length > 0) {
-            
-            // 1. 행성 궤도의 왼쪽 위치 (부모인 .planets-wrapper 기준)
             const planetOffsetLeft = $targetPlanet.closest('.planet-orbit').position().left;
-            // 2. 행성 궤도의 넓이 (정확한 중앙 정렬을 위해)
             const planetWidth = $targetPlanet.closest('.planet-orbit').outerWidth();
-            // 3. 스크롤 영역(.map-area)의 보이는 넓이
             const mapAreaWidth = $mapArea.width();
-
-            // 4. 스크롤할 목표 위치 계산
-            // (행성 위치 - 절반의 화면 넓이 + 절반의 행성 넓이)
             const targetScrollLeft = planetOffsetLeft - (mapAreaWidth / 2) + (planetWidth / 2);
-
-            // 5. 부드럽게 스크롤
             $mapArea.animate({ scrollLeft: targetScrollLeft }, 500);
         }
         
@@ -140,8 +140,10 @@ $(window).on('load', function() {
     }
 
     // --- 특정 챕터로 바로 전환하는 함수 ---
-    function transitionToChapter(chapterNum) {
+    // [수정] 전역 변수에 할당
+    transitionToChapter = function(chapterNum) {
         stopAsteroidGame();
+        stopChapter3Game(); // (이 함수는 20251211_3.js에 전역으로 정의됨)
         $('.chapter-container').fadeOut(500);
         $poemModal.fadeOut(300);
         $fragmentModal.fadeOut(300);
@@ -149,25 +151,32 @@ $(window).on('load', function() {
 
         if (chapterNum > 5) { showModal("모든 챕터를 클리어했습니다!"); goToMap(); return; }
         if (chapterNum > 3) { showModal(`Chapter ${chapterNum}은 아직 개발 중입니다.`); goToMap(); return; }
-        if (chapterNum === 3) { showModal(`Chapter 3은 아직 개발 중입니다.`); goToMap(); return; }
         const $nextPlanet = $(`#planet${chapterNum}`); if ($nextPlanet.length > 0) { showChapter(chapterNum, $nextPlanet.data('title'), $nextPlanet.find('img').attr('src')); } else { showModal("오류: 다음 챕터를 찾을 수 없습니다."); goToMap(); }
     }
 
     // --- 클리어 확인 팝업 함수 (챕터 1) ---
-    function showClearConfirmationPopup() {
+    // [수정] 전역 변수에 할당
+    showClearConfirmationPopup = function() {
         $exitPortal.hide();
         showModal("챕터 1 '이륙' 클리어!<br>다음 여정을 준비하세요.", {
             showNext: true,
             showMap: true,
             hideClose: false,
-            onClose: hideModal // X 누르면 팝업만 닫기
+            onClose: hideModal
         });
     }
 
 
     // --- 항해 지도 버튼 ---
     $exploreBtn.on('click', function() { const $firstPlanet = $('#planet1'); showChapter($firstPlanet.data('chapter'), $firstPlanet.data('title'), $firstPlanet.find('img').attr('src')); });
-    $planets.on('click', function() { const chapterNum = $(this).data('chapter'); if (chapterNum === 1 || chapterNum === 2) { showChapter(chapterNum, $(this).data('title'), $(this).find('img').attr('src')); } else { showModal(`Chapter ${chapterNum}은 아직 개발 중입니다.`); } });
+    $planets.on('click', function() { 
+        const chapterNum = $(this).data('chapter'); 
+        if (chapterNum === 1 || chapterNum === 2 || chapterNum === 3) { 
+            showChapter(chapterNum, $(this).data('title'), $(this).find('img').attr('src')); 
+        } else { 
+            showModal(`Chapter ${chapterNum}은 아직 개발 중입니다.`); 
+        } 
+    });
 
     // --- 챕터 1: 게임 시작 카운트다운 ---
     function startCountdown() { $storyIntro.hide(); $asteroidGame.fadeIn(500, function() { $gameCountdown.text('3').show().css('opacity', 1); let count = 2; let countdownTimeout; function doCountdown() { clearTimeout(countdownTimeout); if (count >= 1) { $gameCountdown.text(count); count--; countdownTimeout = setTimeout(doCountdown, 1000); } else if (count === 0){ $gameCountdown.text('START!'); setTimeout(function() { $gameCountdown.fadeOut(500, function() { $(this).text(''); initAsteroidGame(); }); }, 500); } } countdownTimeout = setTimeout(doCountdown, 1000); }); }
@@ -191,7 +200,8 @@ $(window).on('load', function() {
         asteroidGameLoop();
     }
     
-    function stopAsteroidGame() {
+    // [수정] 전역 변수에 할당
+    stopAsteroidGame = function() {
         if (animationFrameId) { cancelAnimationFrame(animationFrameId); animationFrameId = null; }
         gameOver = true;
         $(window).off('.asteroidGame'); $(canvas).off('.asteroidTouch');
@@ -208,7 +218,7 @@ $(window).on('load', function() {
                     showStart: true, startText: '확인하기', onStart: showPoem,
                     showSkip: true, skipText: '넘어가기', onSkip: showClearConfirmationPopup,
                     hideClose: false,
-                    onClose: hideModal // X 누르면 팝업만 닫기
+                    onClose: hideModal
                  });
              });
             return;
@@ -237,7 +247,7 @@ $(window).on('load', function() {
                             showStart: true, startText: '확인하기', onStart: showPoem,
                             showSkip: true, skipText: '넘어가기', onSkip: showClearConfirmationPopup,
                             hideClose: false,
-                            onClose: hideModal // X 누르면 이 팝업만 닫기
+                            onClose: hideModal
                         });
                     },
                     hideClose: true
@@ -255,8 +265,8 @@ $(window).on('load', function() {
     $('head').append(`<style> @keyframes shake { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); } 20%, 40%, 60%, 80% { transform: translateX(5px); } } </style>`);
 
 
-    // --- [유지] 공통 모달 기능 ('x' 버튼 로직 없음) ---
-    function showModal(message, buttons = {}) {
+    // --- [수정] 공통 모달 기능 (전역 변수에 할당) ---
+    showModal = function(message, buttons = {}) {
         $modalText.html(message);
         $modalButtonContainer.empty();
         const defaultOnClose = buttons.onClose !== undefined ? buttons.onClose : hideModal;
@@ -280,9 +290,7 @@ $(window).on('load', function() {
             const skipBtnText = buttons.skipText || '더 탐색하기';
             const puzzleId = buttons.puzzleId || 1; 
             const colorVarName = categoryColorVars[puzzleId] || '--category-color-1';
-            // 'modal-themed-btn' 클래스를 가진 버튼 생성
             const $skipButton = $(`<button class="modal-action-btn modal-themed-btn">${skipBtnText}</button>`);
-            // 버튼 자체에 CSS 변수를 심어줌 (CSS 파일에서 사용)
             $skipButton.css('--btn-theme-color', `var(${colorVarName})`); 
             
             $modalButtonContainer.append($skipButton);
@@ -292,17 +300,17 @@ $(window).on('load', function() {
         
         $modal.css('display', 'flex').hide().fadeIn(300);
     }
-    function hideModal() { $modal.fadeOut(300); }
+    
+    // [수정] 전역 변수에 할당
+    hideModal = function() { $modal.fadeOut(300); }
 
-    // --- [유지] 시 모달 기능 (챕터 1) - X 버튼 동작 수정 ---
-    function showPoem() {
+    // --- [수정] 시 모달 기능 (전역 변수에 할당) ---
+    showPoem = function() {
         $poemModal.css('display', 'flex').hide().fadeIn(300);
-        // X 버튼 클릭 시 클리어 팝업 호출
         $poemCloseBtn.off().on('click', function() {
             hidePoem();
             showClearConfirmationPopup();
         });
-        // 외부 클릭 방지
         $poemModal.off('click').on('click', function(event) {
              if ($(event.target).is($poemModal)) { /* no action */ }
         });
@@ -311,16 +319,17 @@ $(window).on('load', function() {
 
     // --- 챕터 2 모달 함수 ---
 
-    // [수정] 챕터 2 - 개별 기억 조각(내용) 팝업 ('x' 버튼 기능 다시 추가)
-    function showFragmentModal(title, content, onCloseCallback) {
+    // [수정] 전역 변수에 할당
+    showFragmentModal = function(title, content, onCloseCallback) {
         $fragmentTitle.text(title); $fragmentText.html(content.replace(/\n/g, '<br>')); $fragmentModal.css('display', 'flex').hide().fadeIn(300);
-        // [수정] 'x' 버튼 클릭 시 콜백(클리어 팝업) 실행
         $fragmentCloseBtn.off().on('click', function() { hideFragmentModal(); if (onCloseCallback) onCloseCallback(); });
         $fragmentModal.off('click').on('click', function(event) { if ($(event.target).is($fragmentModal)) { hideFragmentModal(); if (onCloseCallback) onCloseCallback(); } });
     }
-    function hideFragmentModal() { $fragmentModal.fadeOut(300); }
+    
+    // [수정] 전역 변수에 할당
+    hideFragmentModal = function() { $fragmentModal.fadeOut(300); }
 
-    // [수정] 챕터 2 - "넘어가기" 시 기억 조각 선택 팝업 ('x' 버튼 기능 다시 추가)
+    // [수정] (내부 호출용)
     function showSelectFragmentPopup() {
         $selectFragmentList.empty(); $selectedFragmentText.empty().hide();
         for (let i = 1; i <= 6; i++) {
@@ -339,7 +348,6 @@ $(window).on('load', function() {
             });
             $selectFragmentList.append($button);
         }
-        // [수정] 'x' 버튼 클릭 시 전체 클리어 팝업 실행
         $selectFragmentCloseBtn.off().on('click', function() { hideSelectFragmentPopup(); showChapter2AllClearPopup(); });
         $selectFragmentModal.off('click').on('click', function(event) { if ($(event.target).is($selectFragmentModal)) { hideSelectFragmentPopup(); showChapter2AllClearPopup(); } });
         $selectFragmentModal.css('display', 'flex').hide().fadeIn(300);
@@ -347,7 +355,7 @@ $(window).on('load', function() {
     }
     function hideSelectFragmentPopup() { $selectFragmentModal.fadeOut(300); }
 
-     // 챕터 2 - 개별 퍼즐 클리어 팝업
+     // [수정] (내부 호출용)
      function showChapter2IndividualClearPopup(puzzleData, puzzleId) {
          showModal(`'${puzzleData.title}' 탐색 완료!`, {
         	 showSkipThemed: true, skipText: '더 탐색하기', onSkip: showPuzzleHub, puzzleId: puzzleId,
@@ -357,7 +365,7 @@ $(window).on('load', function() {
          });
      }
 
-     // 챕터 2 - 전체 클리어 / 넘어가기 팝업
+     // [수정] (내부 호출용)
      function showChapter2AllClearPopup() {
          let clearMessage = "챕터 2 '탐색' 클리어!<br>다음 여정을 준비하세요.";
          let clearPopupButtons = {
@@ -375,17 +383,15 @@ $(window).on('load', function() {
     let currentPuzzleId = null;
     let puzzleCompletionStatus = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false };
 
-    // 카테고리별 색상 CSS 변수 이름 매핑
     const categoryColorVars = {
         1: '--category-color-1', 2: '--category-color-2', 3: '--category-color-3',
         4: '--category-color-4', 5: '--category-color-5', 6: '--category-color-6'
     };
 
-    // 퀴즈 데이터 저장소 (사용자가 제공한 1번 카테고리 데이터 정확히 반영!)
+    // 퀴즈 데이터 저장소 (내용은 그대로)
     const puzzleDataStore = {
         1: {
-            title: "우정", // 카테고리 이름
-            reward: `“내가 너무 늦게 왔지? 
+            title: "우정", reward: `“내가 너무 늦게 왔지? 
 벌써 다 녹아버린 아이스크림
 나처럼 울면서 여기 있네
 시간은 변해도 바다는 변하지 않는다고”
@@ -396,49 +402,14 @@ $(window).on('load', function() {
 “탕관이라는 것은, 
 현세에서의 번뇌, 아픔, 고통 등을
 씻어내는 의식입니다.”`,
-            // --- 최종 6x6 그리드(7단어) ---
-			gridSize: { rows: 6, cols: 6 }, // 6x6 크기 명시
-			grid: [ // 0: 빈칸, 1: 입력칸
-			    [1, 1, 1, 1, 1, 0], // 장례지도사, 지(지키다)
-			    [0, 0, 1, 0, 0, 1], // 키(지키다), 농(농구)
-			    [0, 1, 1, 0, 0, 1], // 바다 , 다(지키다),구(농구)
-			    [0, 0, 0, 1, 0, 0], // 립(립스틱)
-			    [1, 1, 1, 1, 0, 1], // 스(립스틱), 매그너스, 수(수학)
-			    [0, 0, 0, 1, 0, 1]  // 틱(립스틱), 학(수학)
-			],
-			answers: [ // 각 칸의 정답
-			    ['장', '례', '지', '도', '사', null],
-			    [null, null, '키', null, null, '농'],
-			    [null, '바', '다', null, null, '구'],
-			    [null, null, null, '립', null, null],
-			    ['매', '그', '너', '스', null, '수'],
-			    [null, null, null, '틱', null, '학']
-			],
-			labels: [ // 열쇠 번호
-			    [1, 0, 2, 0, 0, 0],
-			    [0, 0, 0, 0, 0, 3],
-			    [0, 4, 0, 0, 0, 0],
-			    [0, 0, 0, 5, 0, 0],
-			    [6, 0, 0, 0, 0, 7],
-			    [0, 0, 0, 0, 0, 0]
-			],
-			clues: { // 사용자 제공 열쇠
-			    across: [
-			        { num: 1, clue: "토루의 직업" },                       // 장례지도사
-			        { num: 4, clue: "전리농에서 학생들이 가고 싶은 곳" },  // 바다
-			        { num: 6, clue: "비더슈탄트에서 지환 배우의 역할명" }    // 매그너스
-			    ],
-			    down: [
-			        { num: 2, clue: "펜싱의 어원" },                     // 지키다
-			        { num: 3, clue: "토루가 잘하는 스포츠 혹은 전설의 리틀 ㅇㅇ단" }, // 농구
-			        { num: 5, clue: "요시오가 토루에게 발라달라는 것" },   // 립스틱
-			        { num: 7, clue: "다인이가 제일 잘하는 과목" } // 수학
-			    ]
-			}
+			gridSize: { rows: 6, cols: 6 },
+			grid: [ [1, 1, 1, 1, 1, 0], [0, 0, 1, 0, 0, 1], [0, 1, 1, 0, 0, 1], [0, 0, 0, 1, 0, 0], [1, 1, 1, 1, 0, 1], [0, 0, 0, 1, 0, 1] ],
+			answers: [ ['장', '례', '지', '도', '사', null], [null, null, '키', null, null, '농'], [null, '바', '다', null, null, '구'], [null, null, null, '립', null, null], ['매', '그', '너', '스', null, '수'], [null, null, null, '틱', null, '학'] ],
+			labels: [ [1, 0, 2, 0, 0, 0], [0, 0, 0, 0, 0, 3], [0, 4, 0, 0, 0, 0], [0, 0, 0, 5, 0, 0], [6, 0, 0, 0, 0, 7], [0, 0, 0, 0, 0, 0] ],
+			clues: { across: [ { num: 1, clue: "토루의 직업" }, { num: 4, clue: "전리농에서 학생들이 가고 싶은 곳" }, { num: 6, clue: "비더슈탄트에서 지환 배우의 역할명" } ], down: [ { num: 2, clue: "펜싱의 어원" }, { num: 3, clue: "토루가 잘하는 스포츠 혹은 전설의 리틀 ㅇㅇ단" }, { num: 5, clue: "요시오가 토루에게 발라달라는 것" }, { num: 7, clue: "다인이가 제일 잘하는 과목" } ] }
         },
         2: {
-            title: "사랑", // 카테고리 이름
-            reward: `“수줍은 인사에 싹을 틔워 
+            title: "사랑", reward: `“수줍은 인사에 싹을 틔워 
 마주한 눈빛에 잎이 나서
 어느새 훌쩍 자라난 꽃봉오리”
 .
@@ -452,49 +423,14 @@ $(window).on('load', function() {
 살아내며 버티던 나날
 어느 날 갑자기 당신을 만나
 진짜 날 찾았죠 그 마음 변함없어요”`,
-            // --- 최종 6x6 그리드(7단어) ---
-			gridSize: { rows: 6, cols: 6 }, // 6x6 크기 명시
-			grid: [ // 0: 빈칸, 1: 입력칸
-			    [0, 1, 0, 1, 1, 1], // 다(다비드), 우물정
-			    [0, 1, 0, 0, 1, 0], // 비(다비드), 고(물고기)
-			    [0, 1, 0, 0, 1, 1], // 드(다비드), 기차 
-			    [0, 0, 1, 1, 0, 0], // 라(라디오), 수(수내리)
-			    [0, 0, 1, 1, 0, 0],  // 디(라디오), 내(수내리)
-			    [1, 1, 1, 1, 0, 0] // 꽃봉오리
-			],
-			answers: [ // 각 칸의 정답
-			    [null, '다', null, '우', '물', '정'],
-			    [null, '비', null, null, '고', null],
-			    [null, '드' ,null, null, '기', '차'],
-			    [null, null, '라', '수', null, null],
-			    [null, null, '디', '내', null, null],
-			    ['꽃', '봉', '오', '리', null, null]
-			],
-			labels: [ // 열쇠 번호
-			    [0, 1, 0, 2, 3, 0],
-			    [0, 0, 0, 0, 0, 0],
-			    [0, 0, 0, 0, 4, 0],
-			    [0, 0, 5, 6, 0, 0],
-			    [0, 0, 0, 0, 0, 0],
-			    [7, 0, 0, 0, 0, 0]
-			],
-			clues: { // 사용자 제공 열쇠
-			    across: [
-			        { num: 2, clue: "고대가 말하는 해시태그의 다른 말" },                       // 우물정
-			        { num: 4, clue: "남원이가 서울을 가기위한 교통수단" },  // 기차
-			        { num: 7, clue: "석구 솔로 넘버 제목" }    // 꽃봉오리
-			    ],
-			    down: [
-			        { num: 1, clue: "석영이의 별명(한국대 법대 ㅇㅇㅇ)" },                     // 다비드
-			        { num: 3, clue: "석구가 잡아 먹은 것 혹은 석영이가 주운 돌 모양" }, // 물고기
-			        { num: 5, clue: "남원이가 정분이에게 준 것" },   // 라디오
-			        { num: 6, clue: "석영이 농활 간 지역" } // 수내리
-			    ]
-			}
+			gridSize: { rows: 6, cols: 6 },
+			grid: [ [0, 1, 0, 1, 1, 1], [0, 1, 0, 0, 1, 0], [0, 1, 0, 0, 1, 1], [0, 0, 1, 1, 0, 0], [0, 0, 1, 1, 0, 0], [1, 1, 1, 1, 0, 0] ],
+			answers: [ [null, '다', null, '우', '물', '정'], [null, '비', null, null, '고', null], [null, '드' ,null, null, '기', '차'], [null, null, '라', '수', null, null], [null, null, '디', '내', null, null], ['꽃', '봉', '오', '리', null, null] ],
+			labels: [ [0, 1, 0, 2, 3, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 4, 0], [0, 0, 5, 6, 0, 0], [0, 0, 0, 0, 0, 0], [7, 0, 0, 0, 0, 0] ],
+			clues: { across: [ { num: 2, clue: "고대가 말하는 해시태그의 다른 말" }, { num: 4, clue: "남원이가 서울을 가기위한 교통수단" }, { num: 7, clue: "석구 솔로 넘버 제목" } ], down: [ { num: 1, clue: "석영이의 별명(한국대 법대 ㅇㅇㅇ)" }, { num: 3, clue: "석구가 잡아 먹은 것 혹은 석영이가 주운 돌 모양" }, { num: 5, clue: "남원이가 정분이에게 준 것" }, { num: 6, clue: "석영이 농활 간 지역" } ] }
         },
         3: { 
-        	title: "예술", // 카테고리 이름
-            reward: `“안개는 기억해 태양에 닿던 느낌
+        	title: "예술", reward: `“안개는 기억해 태양에 닿던 느낌
 날아오르던 그 자유로움”
 .
 “사람은 가고 시는 남아
@@ -503,49 +439,14 @@ $(window).on('load', function() {
 “깡패들 시켜서 폭력을 쓰는 사람은 
 그 깡패보다 나은 걸까요? 
 아니면 못한 걸까요?”`,
-            // --- 최종 6x6 그리드(7단어) ---
-			gridSize: { rows: 6, cols: 6 }, // 6x6 크기 명시
-			grid: [ // 0: 빈칸, 1: 입력칸
-			    [0, 1, 0, 1, 0, 0], // 빗(빗방울), 정(정비공)
-			    [0, 1, 0, 1, 1, 0], // 방(빗방울), 비(정비공), 비극
-			    [1, 1, 0, 1, 0, 1], // 울(빗방울), 거울, 공(정비공), 원(원고)
-			    [0, 0, 1, 0, 0, 1], // 프(프랑스), 고(원고)
-			    [0, 1, 1, 1, 1, 0],  // 랑(프랑스), 낙랑파라 
-			    [0, 0, 1, 0, 0, 0] // 스(프랑스)
-			],
-			answers: [ // 각 칸의 정답
-			    [null, '빗', null, '정', null, null],
-			    [null, '방', null, '비', '극', null],
-			    ['거', '울' ,null, '공', null, '원'],
-			    [null, null, '프', null, null, '고'],
-			    [null, '낙', '랑', '파', '라', null],
-			    [null, null, '스', null, null, null]
-			],
-			labels: [ // 열쇠 번호
-			    [0, 1, 0, 3, 0, 0],
-			    [0, 0, 0, 4, 0, 0],
-			    [2, 0, 0, 0, 0, 5],
-			    [0, 0, 6, 0, 0, 0],
-			    [0, 7, 0, 0, 0, 0],
-			    [0, 0, 0, 0, 0, 0]
-			],
-			clues: { // 사용자 제공 열쇠
-			    across: [
-			        { num: 2, clue: "로스가 다시 읽고 있는 것. 그리스 ㅇㅇ" },  // 비극
-			        { num: 4, clue: "ㅇㅇ은 그림이 아니야.(mirror)" },                     // 거울
-			        { num: 7, clue: "이상과 동림이 만난 장소" }    // 낙랑파라
-			    ],
-			    down: [
-			        { num: 1, clue: "비 오는 날 이상과 동림이 세는 것" },                       // 빗방울
-			        { num: 3, clue: "아덤의 직업" }, // 정비공
-			        { num: 5, clue: "와일드가 가장 먼저 로스에게 보여주는 것" },    // 원고
-			        { num: 6, clue: "로스가 와일드한테 함께 가자는 나라" } // 프랑스
-			    ]
-			}
+			gridSize: { rows: 6, cols: 6 },
+			grid: [ [0, 1, 0, 1, 0, 0], [0, 1, 0, 1, 1, 0], [1, 1, 0, 1, 0, 1], [0, 0, 1, 0, 0, 1], [0, 1, 1, 1, 1, 0], [0, 0, 1, 0, 0, 0] ],
+			answers: [ [null, '빗', null, '정', null, null], [null, '방', null, '비', '극', null], ['거', '울' ,null, '공', null, '원'], [null, null, '프', null, null, '고'], [null, '낙', '랑', '파', '라', null], [null, null, '스', null, null, null] ],
+			labels: [ [0, 1, 0, 3, 0, 0], [0, 0, 0, 4, 0, 0], [2, 0, 0, 0, 0, 5], [0, 0, 6, 0, 0, 0], [0, 7, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0] ],
+			clues: { across: [ { num: 2, clue: "로스가 다시 읽고 있는 것. 그리스 ㅇㅇ" }, { num: 4, clue: "ㅇㅇ은 그림이 아니야.(mirror)" }, { num: 7, clue: "이상과 동림이 만난 장소" } ], down: [ { num: 1, clue: "비 오는 날 이상과 동림이 세는 것" }, { num: 3, clue: "아덤의 직업" }, { num: 5, clue: "와일드가 가장 먼저 로스에게 보여주는 것" }, { num: 6, clue: "로스가 와일드한테 함께 가자는 나라" } ] }
         },
         4: { 
-        	title: "사람", // 카테고리 이름
-            reward: `“고마워 정말 고마워 할머니
+        	title: "사람", reward: `“고마워 정말 고마워 할머니
 내 곁에 있어줘서 키워줘서
 나를 사랑해줘서”
 .
@@ -556,49 +457,14 @@ $(window).on('load', function() {
 밤거리를 달렸어요.
 별을 향해.
 내가 결코 닿을 수 없는 곳으로.”`,
-            // --- 최종 6x6 그리드(7단어) ---
-			gridSize: { rows: 6, cols: 6 }, // 6x6 크기 명시
-			grid: [ // 0: 빈칸, 1: 입력칸
-			    [0, 0, 0, 0, 1, 1], // 상소, 소(소시지)
-			    [0, 0, 1, 1, 0, 1], // 안녕, 시(소시지)
-			    [1, 0, 0, 0, 0, 1], // 장(장기준), 지(소시지) 
-			    [1, 1, 1, 1, 0, 0], // 기(장기준), 기축사화
-			    [1, 0, 0, 0, 0, 1],  // 준(장기준), 과(과거) 
-			    [0, 0, 0, 1, 1, 1] // 자전거, 거(과거)
-			],
-			answers: [ // 각 칸의 정답
-			    [null, null, null, null, '상', '소'],
-			    [null, null, '안', '녕', null, '시'],
-			    ['장', null ,null, null, null, '지'],
-			    ['기', '축', '사', '화', null, null],
-			    ['준', null, null, null, null, '과'],
-			    [null, null, null, '자', '전', '거']
-			],
-			labels: [ // 열쇠 번호
-			    [0, 0, 0, 0, 1, 2],
-			    [0, 0, 3, 0, 0, 0],
-			    [4, 0, 0, 4, 0, 0],
-			    [6, 0, 0, 0, 0, 0],
-			    [0, 0, 0, 0, 0, 5],
-			    [0, 0, 0, 7, 0, 0]
-			],
-			clues: { // 사용자 제공 열쇠
-			    across: [
-			        { num: 1, clue: "최윤이 임금에게 올린 것" },                     // 상소
-			        { num: 3, clue: "마지막 ㅇㅇ은 여기 구내과병원에서" },  // 안녕
-			        { num: 5, clue: "동인들이 화를 입은 사건" },    // 기축사화
-			        { num: 7, clue: "데이비가 8살 소녀에게 빼앗은 것" }    // 자전거
-			    ],
-			    down: [
-			        { num: 2, clue: "친구가 놀러오면 2개를 내놔야 하는 것" },                       // 소시지
-			        { num: 4, clue: "구내과병원에서 지환 배우의 역할명" }, // 장기준
-			        { num: 6, clue: "최윤이 사흘만에 치른 시험" }    // 과거
-			    ]
-			}
+			gridSize: { rows: 6, cols: 6 },
+			grid: [ [0, 0, 0, 0, 1, 1], [0, 0, 1, 1, 0, 1], [1, 0, 0, 0, 0, 1], [1, 1, 1, 1, 0, 0], [1, 0, 0, 0, 0, 1], [0, 0, 0, 1, 1, 1] ],
+			answers: [ [null, null, null, null, '상', '소'], [null, null, '안', '녕', null, '시'], ['장', null ,null, null, null, '지'], ['기', '축', '사', '화', null, null], ['준', null, null, null, null, '과'], [null, null, null, '자', '전', '거'] ],
+			labels: [ [0, 0, 0, 0, 1, 2], [0, 0, 3, 0, 0, 0], [4, 0, 0, 4, 0, 0], [6, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 5], [0, 0, 0, 7, 0, 0] ],
+			clues: { across: [ { num: 1, clue: "최윤이 임금에게 올린 것" }, { num: 3, clue: "마지막 ㅇㅇ은 여기 구내과병원에서" }, { num: 5, clue: "동인들이 화를 입은 사건" }, { num: 7, clue: "데이비가 8살 소녀에게 빼앗은 것" } ], down: [ { num: 2, clue: "친구가 놀러오면 2개를 내놔야 하는 것" }, { num: 4, clue: "구내과병원에서 지환 배우의 역할명" }, { num: 6, clue: "최윤이 사흘만에 치른 시험" } ] }
         },
         5: { 
-        	title: "내면", // 카테고리 이름
-            reward: `“내 이름은 수증기라는 뜻이야,
+        	title: "내면", reward: `“내 이름은 수증기라는 뜻이야,
 수증기처럼 사라져야지”
 .
 “깊은 울음 깊은 어둠
@@ -610,49 +476,14 @@ $(window).on('load', function() {
 “마지막 순간 당신의 얼굴을 조각한다면
 내 삶의 끝은 어디일까요
 어머니”`,
-            // --- 최종 6x6 그리드(7단어) ---
-			gridSize: { rows: 6, cols: 6 }, // 6x6 크기 명시
-			grid: [ // 0: 빈칸, 1: 입력칸
-			    [1, 1, 1, 1, 0, 0], // 레이몬드
-			    [1, 0, 0, 0, 1, 1], // 네(레네), 이반
-			    [0, 1, 1, 0, 1, 0], // 금발, 별(이별) 
-			    [0, 0, 1, 0, 0, 0], // 작(발작)
-			    [0, 0, 0, 0, 0, 0],   
-			    [0, 1, 1, 1, 1, 1] // 라비린토스
-			],
-			answers: [ // 각 칸의 정답
-			    ['레', '이', '몬', '드', null, null],
-			    ['네', null, null, null, '이', '반'],
-			    [null, '금', '발', null, '별', null],
-			    [null, null, '작', null, null, null],
-			    [null, null, null, null, null, null],
-			    [null, '라', '비', '린', '토', '스']
-			],
-			labels: [ // 열쇠 번호
-			    [1, 0, 0, 0, 0, 0],
-			    [0, 0, 0, 0, 2, 0],
-			    [0, 3, 4, 0, 0, 0],
-			    [6, 0, 0, 0, 0, 0],
-			    [0, 0, 0, 0, 0, 0],
-			    [0, 5, 0, 0, 0, 0]
-			],
-			clues: { // 사용자 제공 열쇠
-			    across: [
-			        { num: 1, clue: "아가사에서 지환 배우의 역할명" },                     // 레이몬드
-			        { num: 2, clue: "스메르가 가장 따르는 형제" },  // 이반
-			        { num: 3, clue: "골드문트의 머리" },    // 금발
-			        { num: 5, clue: "아가사가 알려준 미궁의 다른 말" }    // 라비린토스
-			    ],
-			    down: [
-			        { num: 1, clue: "골드문트가 함께 떠나자고 한 인물" },                       // 레네
-			        { num: 2, clue: "골드문트가 어려워하는 순간" }, // 이별
-			        { num: 4, clue: "스메르가 자주 겪는 간질 증상" }    // 발작
-			    ]
-			}
+			gridSize: { rows: 6, cols: 6 },
+			grid: [ [1, 1, 1, 1, 0, 0], [1, 0, 0, 0, 1, 1], [0, 1, 1, 0, 1, 0], [0, 0, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1] ],
+			answers: [ ['레', '이', '몬', '드', null, null], ['네', null, null, null, '이', '반'], [null, '금', '발', null, '별', null], [null, null, '작', null, null, null], [null, null, null, null, null, null], [null, '라', '비', '린', '토', '스'] ],
+			labels: [ [1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 2, 0], [0, 3, 4, 0, 0, 0], [6, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 5, 0, 0, 0, 0] ],
+			clues: { across: [ { num: 1, clue: "아가사에서 지환 배우의 역할명" }, { num: 2, clue: "스메르가 가장 따르는 형제" }, { num: 3, clue: "골드문트의 머리" }, { num: 5, clue: "아가사가 알려준 미궁의 다른 말" } ], down: [ { num: 1, clue: "골드문트가 함께 떠나자고 한 인물" }, { num: 2, clue: "골드문트가 어려워하는 순간" }, { num: 4, clue: "스메르가 자주 겪는 간질 증상" } ] }
         },
         6:  { 
-        	title: "성장", // 카테고리 이름
-            reward: `“가늘고 길게 가늘고 길게 가늘고 길게 롱런”
+        	title: "성장", reward: `“가늘고 길게 가늘고 길게 가늘고 길게 롱런”
 .
 “내 심장이 뜨겁게 뛰고 있어
 나 살아있는 지금 이 순간
@@ -660,44 +491,11 @@ $(window).on('load', function() {
 이 또한 지나가리라”
 .
 “아름다운 건 왜 우릴 스쳐 지나갈까요?”`,
-            // --- 최종 6x6 그리드(7단어) ---
-			gridSize: { rows: 6, cols: 6 }, // 6x6 크기 명시
-			grid: [ // 0: 빈칸, 1: 입력칸
-			    [1, 1, 1, 1, 0, 1], // 온더로드, 공(공무원)
-			    [0, 0, 1, 0, 0, 1], // 망(로망스), 무(공무원)
-			    [0, 0, 1, 0, 0, 1], // 스(로망스), 원(공무원) 
-			    [1, 0,0, 1, 1, 0], // 예(예술가), 캄프
-			    [1, 0, 0, 0, 0, 0],  // 술(예술가) 
-			    [1, 1, 1, 1, 1, 0] // 가늘고길게
-			],
-			answers: [ // 각 칸의 정답
-			    ['온', '더', '로', '드', null, '공'],
-			    [null, null, '망', null, null, '무'],
-			    [null, null ,'스', null, null, '원'],
-			    ['예', null, null, '캄', '프', null],
-			    ['술', null, null, null, null, null],
-			    ['가', '늘', '고', '길', '게', null]
-			],
-			labels: [ // 열쇠 번호
-			    [1, 0, 2, 0, 0, 3],
-			    [0, 0, 0, 0, 0, 0],
-			    [0, 0, 0, 0, 0, 0],
-			    [4, 0, 0, 5, 0, 0],
-			    [0, 0, 0, 0, 0, 0],
-			    [6, 0, 0, 0, 0, 0]
-			],
-			clues: { // 사용자 제공 열쇠
-			    across: [
-			        { num: 1, clue: "싱클레어가 읽고 좋아한다는 책" },                     // 온더로드
-			        { num: 5, clue: "데미안이 만든 특별활동반" },    // 캄프
-			        { num: 6, clue: "진기한이 원하는 삶의 목표(롱런)" }    // 가늘고길게
-			    ],
-			    down: [
-			        { num: 2, clue: "선호가 머무르는 다방" },                       // 로망스
-			        { num: 3, clue: "장선호의 직업 혹은 진기한이 준비하는 것" }, // 공무원
-			        { num: 4, clue: "선호가 과거에서 만난 사람들" }    // 예술가
-			    ]
-			}
+			gridSize: { rows: 6, cols: 6 },
+			grid: [ [1, 1, 1, 1, 0, 1], [0, 0, 1, 0, 0, 1], [0, 0, 1, 0, 0, 1], [1, 0,0, 1, 1, 0], [1, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 0] ],
+			answers: [ ['온', '더', '로', '드', null, '공'], [null, null, '망', null, null, '무'], [null, null ,'스', null, null, '원'], ['예', null, null, '캄', '프', null], ['술', null, null, null, null, null], ['가', '늘', '고', '길', '게', null] ],
+			labels: [ [1, 0, 2, 0, 0, 3], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [4, 0, 0, 5, 0, 0], [0, 0, 0, 0, 0, 0], [6, 0, 0, 0, 0, 0] ],
+			clues: { across: [ { num: 1, clue: "싱클레어가 읽고 좋아한다는 책" }, { num: 5, clue: "데미안이 만든 특별활동반" }, { num: 6, clue: "진기한이 원하는 삶의 목표(롱런)" } ], down: [ { num: 2, clue: "선호가 머무르는 다방" }, { num: 3, clue: "장선호의 직업 혹은 진기한이 준비하는 것" }, { num: 4, clue: "선호가 과거에서 만난 사람들" } ] }
         }
     };
 
@@ -749,81 +547,44 @@ $(window).on('load', function() {
     let inputTimer = null; 
 
     $crosswordGrid.on('input', '.cell-input', function(e) {
-        
-        // (1) 브라우저가 "조합 중"이라고 알려주면(예: 'ㄱ' 입력 중), 무조건 대기
-        if (e.originalEvent && e.originalEvent.isComposing) {
-            return;
-        }
-
-        // (2) 기존에 설정된 타이머가 있다면(예: '자'를 입력한 직후) 즉시 취소
-        // (이것이 '장'을 입력할 시간을 벌어줍니다)
-        if (inputTimer) {
-            clearTimeout(inputTimer);
-        }
-
+        if (e.originalEvent && e.originalEvent.isComposing) { return; }
+        if (inputTimer) { clearTimeout(inputTimer); }
         const $this = $(this);
         const text = $this.val();
-
-        // (3) 값이 1글자일 때만 다음 칸 이동을 "고려"
         if (text.length === 1) {
-            
-            // (4) [핵심] 바로 이동하지 않고, 100ms(0.1초) 기다림
             inputTimer = setTimeout(function() {
-                
-                // (5) 100ms 뒤에 이 칸의 현재 값을 다시 확인
                 const currentText = $this.val();
-                
-                // (6) 100ms가 지났는데도 여전히 "완성된 1글자" 상태일 때만 이동
                 if (currentText.length === 1) {
                     const charCode = currentText.charCodeAt(0);
-                    
-                    // '가'(AC00) 부터 '힣'(D7A3) 사이의 "완성된 한글"
                     const isCompleteHangul = (charCode >= 0xAC00 && charCode <= 0xD7A3);
-                    // 영어 알파벳 (대소문자)
                     const isAlphabet = (charCode >= 0x0041 && charCode <= 0x005A) || (charCode >= 0x0061 && charCode <= 0x007A);
-                    // 숫자
                     const isNumber = (charCode >= 0x0030 && charCode <= 0x0039);
-
                     if (isCompleteHangul || isAlphabet || isNumber) {
                         moveToNextCell($this);
                     }
                 }
-                // 만약 100ms 이내에 '장'으로 변경되었다면,
-                // (2)번에서 이 타이머는 이미 취소되었을 것입니다.
-                
-            }, 300); // <-- 300ms (0.3초)의 지연 시간. 
+            }, 300);
         }
     });
     
     // [수정] 정답 확인 버튼 (오류 수정 및 줄 바꿈)
     $crosswordCheckBtn.on('click', function() {
         if (!currentPuzzleId) return;
-
         const puzzleData = puzzleDataStore[currentPuzzleId];
-        
-        if (!puzzleData || 
-            (!puzzleData.gridSize || (typeof puzzleData.gridSize === 'object' && (!puzzleData.gridSize.rows || !puzzleData.gridSize.cols))) || 
-            !puzzleData.grid) {
-            console.error(`Cannot check answers for invalid puzzle data (ID: ${currentPuzzleId})`);
-            return;
-        }
-
+        if (!puzzleData || (!puzzleData.gridSize || (typeof puzzleData.gridSize === 'object' && (!puzzleData.gridSize.rows || !puzzleData.gridSize.cols))) || !puzzleData.grid) { console.error(`Cannot check answers for invalid puzzle data (ID: ${currentPuzzleId})`); return; }
         let isAllCorrect = true;
-
         $crosswordGrid.find('.cell-input').each(function() {
             const $input = $(this);
             const userAnswer = $input.val().trim();
             const correctAnswer = $input.data('answer');
-
             if (userAnswer === '') {
                 isAllCorrect = false;
                 $input.css('background-color', 'rgba(255, 0, 0, 0.2)');
                 if (correctAnswer !== '') $input.css('color', '#ff0000');
-                return; // .each() loop에서 다음으로 넘어감
+                return;
             } else {
                 $input.css('background-color', '');
             }
-
             if (userAnswer.toUpperCase() === correctAnswer.toUpperCase()) {
                 $input.css('color', '#008000');
             } else {
@@ -834,16 +595,12 @@ $(window).on('load', function() {
 
         if (isAllCorrect) {
             puzzleCompletionStatus[currentPuzzleId] = true;
-            
             showModal("정답!<br>기억의 조각을 발견했습니다!", {
                 showStart: true,
                 startText: '확인하기',
                 onStart: () => {
-                    // 개별 조각 팝업 표시
                     showFragmentModal(puzzleData.title, puzzleData.reward, () => {
-                        // 팝업 닫기 콜백
                         const allPuzzlesComplete = Object.values(puzzleCompletionStatus).every(status => status === true);
-                        
                         if (allPuzzlesComplete) {
                             showChapter2AllClearPopup();
                         } else {
@@ -854,7 +611,6 @@ $(window).on('load', function() {
                 showSkip: true,
                 skipText: '넘어가기',
                 onSkip: () => {
-                    // '넘어가기' 버튼 클릭 시
                     const allPuzzlesComplete = Object.values(puzzleCompletionStatus).every(status => status === true);
                     if (allPuzzlesComplete) {
                         showChapter2AllClearPopup();
