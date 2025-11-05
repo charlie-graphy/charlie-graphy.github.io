@@ -77,34 +77,41 @@ function initChapter3Game() {
  $ch3MiniMap.find('.ch3-mini-map-item-dot').remove(); 
 
  // 맵 크기 갱신
- // ch3MapSize = { w: $ch3MapArea.width(), h: $ch3MapArea.height() }; // [오류 수정] 이 줄을 삭제합니다.
  ch3MiniMapSize = { w: 80, h: 80 }; // [수정] JS가 80으로 값을 알게 함
  
- // 1. 10개의 아이템을 맵에 모두 배치
+//1. 10개의 아이템을 맵에 *랜덤으로* 배치
+ const itemWidth = 80; // 아이템 너비 (CSS와 동일)
+ const itemHeight = 80; // 아이템 높이 (CSS와 동일)
+
  chapter3AllItems.forEach(item => {
+     // [수정] 하드코딩된 x, y 대신 랜덤 좌표 생성
+     // (맵 크기 - 아이템 크기) 범위 내에서 랜덤 위치를 정합니다.
+     const randomX = Math.floor(Math.random() * (ch3MapSize.w - itemWidth));
+     const randomY = Math.floor(Math.random() * (ch3MapSize.h - itemHeight));
+
      // 메인 맵에 아이템 추가
      const $item = $(`<div class="ch3-item"></div>`);
      $item.css({
-         left: `${item.x}px`,
-         top: `${item.y}px`,
+         left: `${randomX}px`, // 랜덤 X좌표 적용
+         top: `${randomY}px`, // 랜덤 Y좌표 적용
          'background-image': `url(${item.img})`
      });
      $item.data('name', item.name);
      $ch3MapArea.append($item);
      
-     // 미니맵에 '희미한 점' 추가
-     addDotToMiniMap(item.x + 40, item.y + 40, item.name);
+     // 미니맵에 '희미한 점' 추가 (새 랜덤 좌표 기준으로)
+     addDotToMiniMap(randomX + (itemWidth / 2), randomY + (itemHeight / 2), item.name);
  });
 
  // 2. 10개 중 4개만 랜덤으로 골라서 "찾아야 할 목록" 생성
  const shuffledItems = [...chapter3AllItems].sort(() => 0.5 - Math.random());
  ch3ItemsToFind = shuffledItems.slice(0, NUM_ITEMS_TO_FIND); 
 
-//3. 맵 스크롤을 (0, 0)으로 초기화
- // const screenWidth = $ch3Container.width(); // [삭제]
- // const screenHeight = $ch3Container.height(); // [삭제]
- $ch3Container.scrollLeft(0); // [수정] 중앙이 아닌 (0, 0)에서 시작
- $ch3Container.scrollTop(0); // [수정] 중앙이 아닌 (0, 0)에서 시작
+ //3. 맵 중앙 스크롤 (인트로 화면용)
+ const screenWidth = $ch3Container.width();
+ const screenHeight = $ch3Container.height();
+ $ch3Container.scrollLeft((ch3MapSize.w - screenWidth) / 2);
+ $ch3Container.scrollTop((ch3MapSize.h - screenHeight) / 2);
 
  // 4. 게임 요소는 모두 숨기고, 인트로 화면만 표시
  $ch3Prompt.hide();
@@ -119,7 +126,7 @@ function initChapter3Game() {
  $ch3SkipBtn.off().on('click', skipChapter3);
 }
 
-// 6. 실제 게임 시작 함수
+//6. 실제 게임 시작 함수
 function startChapter3Game() {
     $ch3StoryIntro.fadeOut(300, function() {
         $(this).hide();
@@ -132,12 +139,17 @@ function startChapter3Game() {
         $ch3SkipBtn.fadeIn(300);
         $ch3MiniMap.fadeIn(300); 
         
-        updateMiniMapViewport(); // 미니맵 초기 위치 업데이트
+        // [추가] 맵이 표시된 직후 스크롤을 (0, 0)으로 강제 이동
+        setTimeout(function() {
+            $ch3Container.scrollLeft(0);
+            $ch3Container.scrollTop(0);
+            updateMiniMapViewport(); // 스크롤 이동 후 미니맵 갱신
+        }, 50); // 50ms 딜레이로 렌더링 보장
+        
         setupChapter3Listeners(); // 게임 이벤트 리스너 시작
         nextCh3Item(); // 첫 번째 아이템 제시
     });
 }
-
 
 // 7. 챕터 3 게임 중지 함수 (메인 JS에서 호출)
 function stopChapter3Game() {

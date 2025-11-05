@@ -475,8 +475,7 @@ body, html {
     height: 100dvh; /* [수정] height: 100% -> 100dvh (모바일 버그 수정) */
     color: #fff;
     flex-direction: column;
-    /* [수정] justify-content: flex-start -> center (인트로 화면 중앙 정렬) */
-    justify-content: center; 
+    justify-content: flex-start;
     padding-top: max(3vh, 20px); 
     align-items: center;
     z-index: 5000;
@@ -500,9 +499,8 @@ body, html {
     box-shadow: 0 0 20px #ff4757, inset 0 0 10px rgba(255, 71, 87, 0.5);
     z-index: 6000;
     line-height: 1.8;
-     /* [수정] 챕터 컨테이너가 center 정렬하므로 margin: auto 불필요 */
-     /* margin-top: auto; */
-     /* margin-bottom: auto; */
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .alert-text {
@@ -781,8 +779,6 @@ body, html {
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
-    margin-top: auto;
-    margin-bottom: auto;
 }
 #crossword-game-container h3 {
     font-family: 'Galmuri11', monospace;
@@ -948,7 +944,6 @@ body, html {
 /* [수정] 챕터 3 컨테이너 (스크롤 가능하게 설정) */
 #chapter3-container {
     height: 100dvh; /* [수정] 모바일 스크롤 범위 버그 수정 */
-    /* [수정] padding: 0; 제거! (공통 스타일 상속) */
     overflow: scroll; /* [핵심] 맵을 스크롤/드래그하기 위함 */
     -webkit-overflow-scrolling: touch;
     cursor: grab; /* 드래그 가능 커서 */
@@ -956,7 +951,8 @@ body, html {
 }
 /* [신규] 챕터 3가 '게임 시작'되면 공통 padding을 제거 */
 #chapter3-container.game-started {
-    justify-content: flex-start;
+    justify-content: flex-start; /* 세로 정렬을 상단으로 */
+    align-items: flex-start; /* [추가] 가로 정렬을 좌측으로 (핵심) */
 }
 
 #chapter3-container:active {
@@ -1018,7 +1014,7 @@ body, html {
     top: 0; left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 5, 20, 0.92); /* [수정] 짙은 안개 (농도 낮춤) */
+    background-color: rgba(0, 5, 20, 0.62);
     z-index: 5;
     pointer-events: none; /* 클릭이 통과되도록 */
 }
@@ -1094,22 +1090,6 @@ body, html {
     background: transparent; /* [수정] 배경색을 투명으로 */
     z-index: 6; /* 안개(5) 바로 위, 아이템(10) 바로 아래 */
 }
-/* 맵 배경 애니메이션도 동일하게 적용 (더 자연스러움) */
-.ch3-clear-spot::before {
-    content: '';
-    position: absolute;
-    top: -1500px; left: -1500px; /* 부모 크기보다 훨씬 크게 */
-    width: 3000px; height: 3000px;
-    /* [수정] CSS 변수를 사용하여 JS가 제어하는 배경을 그대로 노출 */
-    background-image: var(--ch3-bg-image, var(--bg-image));
-    background-size: var(--ch3-bg-size, auto);
-    background-position: center;
-    background-repeat: no-repeat;
-    image-rendering: pixelated;
-    /* [수정] 맵 애니메이션이 꺼져있으면(none) 이 애니메이션도 끔 */
-    animation: var(--ch3-bg-animation, pan-background 60s linear infinite);
-    z-index: 7;
-}
 .ch3-clear-spot .ch3-item-image-revealed {
     position: absolute;
     top: 50%; left: 50%;
@@ -1125,7 +1105,7 @@ body, html {
 
 /* 9. 챕터 3 게임 방법 안내 */
 #ch3-story-intro {
-    width: 100%;
+    width: 90%;
     max-width: 600px;
     padding: 30px;
     /* 챕터 3 테마색 적용 */
@@ -1135,9 +1115,8 @@ body, html {
     box-shadow: 0 0 20px #80d8ff, inset 0 0 10px rgba(128, 216, 255, 0.5);
     z-index: 200; /* 맵/스캐너(101)보다 위에 표시 */
     line-height: 1.8;
-    /* [수정] 챕터 컨테이너가 center 정렬하므로 margin: auto 불필요 */
-    /* margin-top: auto; */
-    /* margin-bottom: auto; */
+    margin-top: auto;
+    margin-bottom: auto;
     box-sizing: border-box;
 }
 /* 챕터 1의 스타일을 그대로 사용하되, 버튼 호버 색상만 덮어쓰기 */
