@@ -190,10 +190,9 @@ function nextCh3Item() {
 
 // 9. 챕터 3 클리어 (로직 동일)
 function clearChapter3() {
-    $ch3PromptText.text("모든 물건을 찾아 시야가 확장되었습니다!");
     stopChapter3Game(); // 이벤트 리스너 제거
     
-    showModal("정답!<br>기억의 조각을 발견했습니다!", {
+    showModal("신호를 다 찾았습니다!<br>기억의 조각을 발견했습니다!", {
         showStart: true,
         startText: '확인하기',
         onStart: () => {
@@ -313,10 +312,13 @@ function setupChapter3Listeners() {
              $revealedImage.css('background-image', $clickedItem.css('background-image'));
              $clearSpot.append($revealedImage);
             $ch3MapArea.append($clearSpot);
-
+            
             // [수정] 미니맵에 '찾았음' 표시 (깜빡임 끄고, found 켜기)
             $ch3MiniMap.find(`.ch3-mini-map-item-dot[data-name="${itemName}"]`).removeClass('target').addClass('found');
-
+            
+            //[신규] 남은 아이템들 위치 셔플!
+            shuffleRemainingItems();
+            
             // 다음 아이템 제시
             nextCh3Item();
         } else if (!ch3CurrentItem || !$clickedItem.hasClass('found')) {
@@ -351,14 +353,15 @@ function updateMiniMapViewport() {
     });
 }
 
-// 13. 미니맵에 '초기 점' 찍는 함수
-function addDotToMiniMap(mapX, mapY, itemName) {
+//13. 미니맵에 '초기 점' 찍는 함수
+function addDotToMiniMap(centerX, centerY, itemName) { 
     // [수정] 버그 수정! ch3MiniMapSize.w/h가 0이 되는 문제 해결
     const ratioX = ch3MiniMapSize.w / ch3MapSize.w;
     const ratioY = ch3MiniMapSize.h / ch3MapSize.h;
     
-    const dotL = mapX * ratioX;
-    const dotT = mapY * ratioY;
+    // [수정] 중앙 좌표를 기준으로 점 위치 계산
+    const dotL = centerX * ratioX;
+    const dotT = centerY * ratioY;
 
     // 점 생성 및 추가
     const $dot = $(`<div class="ch3-mini-map-item-dot"></div>`);
@@ -366,6 +369,97 @@ function addDotToMiniMap(mapX, mapY, itemName) {
         left: `${dotL}px`,
         top: `${dotT}px`
     });
-    $dot.data('name', itemName); // data-name 속성 추가
+    
+    // [수정] .data() 대신 .attr()을 사용해야 미니맵 셔플이 작동합니다
+    $dot.attr('data-name', itemName); 
+    
     $ch3MiniMap.append($dot);
+}
+
+/**
+ * [신규] 남은 아이템 위치 셔플 함수
+ * 'found' 클래스가 없는 모든 아이템의 맵/미니맵 위치를
+ * "찾은" 아이템과 겹치지 않게 재배치합니다.
+ */
+function shuffleRemainingItems() {
+    console.log('Shuffling remaining items... (Avoiding found items)'); 
+    
+    const itemWidth = 80; 
+    const itemHeight = 80;
+    // [신규] 겹쳤다고 판단할 최소 거리 (아이템 너비/높이)
+    const minDistance = Math.max(itemWidth, itemHeight); 
+
+    const ratioX = ch3MiniMapSize.w / ch3MapSize.w;
+    const ratioY = ch3MiniMapSize.h / ch3MapSize.h;
+
+    // 1. "찾은" 아이템들의 *현재* 중앙 위치 목록을 가져옴
+    const $foundItems = $ch3MapArea.find('.ch3-item.found');
+    const foundPositions = [];
+    $foundItems.each(function() {
+        const pos = $(this).position(); // { top: Y, left: X }
+        foundPositions.push({
+            // 중앙 좌표를 저장
+            x: pos.left + (itemWidth / 2),
+            y: pos.top + (itemHeight / 2)
+        });
+    });
+
+    // 2. "아직 찾지 못한" 아이템들을 루프
+    const $remainingItems = $ch3MapArea.find('.ch3-item:not(.found)');
+
+    $remainingItems.each(function() {
+        const $item = $(this);
+        const itemName = $item.data('name');
+        
+        let randomX, randomY;
+        let newCenterX, newCenterY;
+        let isSafe = false;
+        let attempts = 0;
+        const maxAttempts = 50; // 무한 루프 방지
+
+        // 3. "안전한" (겹치지 않는) 위치를 찾을 때까지 (or 50번 시도할 때까지) 반복
+        while (!isSafe && attempts < maxAttempts) {
+            // 새 랜덤 좌표 생성
+            randomX = Math.floor(Math.random() * (ch3MapSize.w - itemWidth));
+            randomY = Math.floor(Math.random() * (ch3MapSize.h - itemHeight));
+            newCenterX = randomX + (itemWidth / 2);
+            newCenterY = randomY + (itemHeight / 2);
+            
+            isSafe = true; // 일단 안전하다고 가정
+            
+            // 4. 모든 "찾은" 아이템 위치와 거리 비교
+            for (const foundPos of foundPositions) {
+                const distance = Math.hypot(newCenterX - foundPos.x, newCenterY - foundPos.y);
+                
+                if (distance < minDistance) {
+                    isSafe = false; // 겹침!
+                    break; // 이 위치는 실패. for 루프 중단.
+                }
+            }
+            attempts++;
+        } // while 루프: isSafe가 true가 아니면 (겹쳤으면) 다시 시도
+
+        if (attempts >= maxAttempts) {
+             console.warn(`Could not find a safe spot for ${itemName}. Placing anyway.`);
+        }
+
+        // 5. "안전한" (또는 50번 시도한) 위치로 아이템 이동
+        $item.css({
+            left: `${randomX}px`,
+            top: `${randomY}px`
+        });
+
+        // 6. 미니맵 점도 이동
+        const $dot = $ch3MiniMap.find(`.ch3-mini-map-item-dot[data-name="${itemName}"]`);
+        if ($dot.length > 0) {
+            // [수정] addDotToMiniMap과 동일하게 중앙 좌표 기준으로 계산
+            const dotL = newCenterX * ratioX;
+            const dotT = newCenterY * ratioY;
+            
+            $dot.css({
+                left: `${dotL}px`,
+                top: `${dotT}px`
+            });
+        }
+    });
 }

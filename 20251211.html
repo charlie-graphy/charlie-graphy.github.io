@@ -212,29 +212,26 @@
     </div>
 
     <div id="chapter3-container" class="chapter-container">
-        
-        <div id="ch3-story-intro" style="display: none;">
-            <p class="alert-text warning-title" style="color: #80d8ff;">WARNING!</p>
-            <p class="alert-text system" style="animation-delay: 0.5s;">짙은 안개 구역 진입!</p>
-            <p class="alert-text warning" style="animation-delay: 1.0s;">탐사 물품 4개의 신호가 안개 속에 사라졌습니다!</p>
-            <p class="alert-text objective" style="color: #80d8ff; animation-delay: 1.5s;">
-                목표 :: 안개 속에서 4개의 물품을 찾으세요!
-            </p>
-            
-            <div id="ch3-intro-buttons" style="animation-delay: 2.0s;"> 
-                 <p class="intro-instruction">화면을 드래그(터치)하여 맵을 탐색하세요.</p>
-                 <button class="modal-action-btn modal-start-btn" id="ch3-start-btn" style="border-color: #80d8ff; color: #80d8ff;">탐색 시작</button>
-                 <button class="modal-action-btn modal-skip-btn" id="ch3-intro-skip-btn">넘어가기</button>
-            </div>
-        </div>
+    	<div id="ch3-story-intro" style="display: none;">
+    		<p class="alert-text warning-title" style="color: #80d8ff;">CAUTION</p>
+    		<p class="alert-text system" style="animation-delay: 0.5s;">'안개' 발생! 신호가 차단되었습니다.</p>
+    		<p class="alert-text warning" style="animation-delay: 1.0s;">불특정 기억 신호 4개가 안개 속에 숨겨졌습니다.</p>
+    		<p class="alert-text objective" style="color: #80d8ff; animation-delay: 1.5s;">목표 :: 4개의 신호를 찾아, 다음 경로를 확장하세요.</p>
+    		
+    		<div id="ch3-intro-buttons" style="animation-delay: 2.0s;"> 
+    			<p class="intro-instruction">화면을 드래그(터치)하여 탐색하세요.</p>
+    			<button class="modal-action-btn modal-start-btn" id="ch3-start-btn" style="border-color: #80d8ff; color: #80d8ff;">탐색 시작</button>
+    			<button class="modal-action-btn modal-skip-btn" id="ch3-intro-skip-btn">넘어가기</button>
+    		</div>
+    	</div>
         <div id="ch3-prompt" style="display: none;">
-            <p id="ch3-prompt-text">찾아야 할 물품: <span></span></p>
+            <p id="ch3-prompt-text">찾아야 할 신호: <span></span></p>
         </div>
-
+        
         <div id="ch3-map-wrapper">
-            <div id="ch3-map-area" data-background-img="https://lh3.googleusercontent.com/d/1edMG0fSDJz8ud_n3wkpg8QghuOO7sZAK">
-                <div id="ch3-fog-layer"></div>
-                </div>
+        	<div id="ch3-map-area" data-background-img="https://lh3.googleusercontent.com/d/1edMG0fSDJz8ud_n3wkpg8QghuOO7sZAK">
+        		<div id="ch3-fog-layer"></div>
+        	</div>
         </div>
 
         <div id="ch3-scanner"></div>
