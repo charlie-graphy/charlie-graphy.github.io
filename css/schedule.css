@@ -164,6 +164,9 @@ td.fc-sat, th.fc-sat {
 .bg-white{
 	background-color: white !important;
 }
+.bg-orange{
+	background-color: orange !important;
+}
 .event-title{
 	font-size: 19px;
 }
