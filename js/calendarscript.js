@@ -1701,6 +1701,20 @@
 					allDay: false
 				},
 				{
+					title: 'tvn 출장십오야 X 스타쉽',
+					description: '11.06 오전 9시 유튜브 "채널 십오야"에서 FULL 공개',
+					start: '2025-11-05 22:50',
+					className: 'bg-orange',
+					allDay: false
+				},
+				{
+					title: 'tvn 출장십오야 X 스타쉽',
+					description: '11.13 오전 9시 유튜브 "채널 십오야"에서 FULL 공개',
+					start: '2025-11-12 22:50',
+					className: 'bg-orange',
+					allDay: false
+				},
+				{
 					title: '렛미플라이 - 홍콩',
 					description: '노인 남원 役 | 김태한<br>선희 役 | 방진의<br>청년 남원 役 | 안지환<br>정분 役 | 홍지희',
 					start: '2025-11-21 20:00',
