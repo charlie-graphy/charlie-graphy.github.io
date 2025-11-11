@@ -18,14 +18,14 @@ $(document).ready(function() {
     const COLS = 6;
     const ROWS = 12;
     let BLOCK_SIZE = 50; // 화면 크기에 따라 변경됩니다.
-    const WIN_SCORE = 1500; 
+    const WIN_SCORE = 1500; // [수정] 1500점
     const CONNECT_COUNT = 3; 
     
     let NEXT_BLOCK_SIZE = 40; 
     let nextCtx = null;
 
     // 모바일 제스처 민감도
-    const SWIPE_THRESHOLD_Y = 40; // 하단 스와이프(하드드롭)만 사용
+    // const SWIPE_THRESHOLD_Y = 40; // [삭제] 스와이프 미사용
     const TAP_MAX_DURATION = 250; 
     const TAP_MAX_TRAVEL = 20;
     
@@ -173,10 +173,9 @@ $(document).ready(function() {
         
         const hudHeight = $hud.outerHeight(true) || 60; 
         const skipBtnHeight = $skipBtn.outerHeight(true) || 50; 
-        // 챕터 컨테이너의 상단 여백
-        const topPadding = ($container.css('padding-top') ? parseInt($container.css('padding-top'), 10) : 10); // 20 -> 10
-        // 캔버스와 버튼 사이 여유 공간
-        const bottomMargin = 5; // 10 -> 5
+        // [수정] 여백 확보
+        const topPadding = ($container.css('padding-top') ? parseInt($container.css('padding-top'), 10) : 10);
+        const bottomMargin = 5; 
         
         const availableWidth = containerWidth;
         const availableHeight = containerHeight - hudHeight - skipBtnHeight - topPadding - bottomMargin;
@@ -494,7 +493,7 @@ $(document).ready(function() {
                 moved = true;
                 break;
             case " ":
-                // 하단 스와이프(Hard Drop)를 위한 로직
+                // 하드 드롭(Hard Drop)을 위한 로직
                 hardDrop();
                 drawGame();
                 return;
@@ -613,7 +612,7 @@ $(document).ready(function() {
 
     function skipChapter4() {
         stopChapter4Game();
-
+        
         // 1. 보상 내용 정의
         const chapter4Reward = {
             title: "🌌",
@@ -624,15 +623,15 @@ $(document).ready(function() {
             이제 마지막 항해를 시작합니다.”`
         };
 
-        // 2. [신규] 최종 클리어 팝업을 함수로 분리 (중복 호출 방지)
+        // 2. 최종 클리어 팝업을 함수로 분리
         function showChapter4ClearPopup() {
             showModal("챕터 4 '연결' 클리어!<br>다음 여정을 준비하세요.", {
                  showNext: true, nextChapterNum: 5,
                  showMap: true, hideClose: false, onClose: hideModal
              });
         }
-
-        // 3. [수정] 챕터 1과 동일하게 "기억 조각 발견!" 모달을 먼저 띄움
+        
+        // 3. "기억 조각 발견!" 모달을 먼저 띄움
         if (typeof showModal === 'function' && typeof showFragmentModal === 'function') {
             showModal("기억 조각 발견!<br>확인하시겠습니까?", {
                 showStart: true, startText: '확인하기',
@@ -654,11 +653,12 @@ $(document).ready(function() {
         }
     }
 
+
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    // --- [신규] 6. 터치 핸들러 로직 (롱 프레스 / 탭 / 스와이프) ---
+    // --- [신규] 6. 터치 핸들러 로직 (롱 프레스 / 탭) ---
 
     /**
      * 터치 시작 시: 롱 프레스 타이머 시작
@@ -689,7 +689,7 @@ $(document).ready(function() {
     }
 
     /**
-     * 터치 종료 시: 롱 프레스 / 탭 / 스와이프 판별
+     * 터치 종료 시: 롱 프레스 / 탭 판별
      */
     function handleTouchEnd(e) {
         if (gameOver || isCheckingConnections || touchStartX === 0) return;
@@ -709,7 +709,7 @@ $(document).ready(function() {
         const deltaY = touchEndY - touchStartY;
         const duration = Date.now() - touchStartTime;
 
-        // 1. 롱 프레스(LONG_PRESS_DURATION)보다 짧게 눌렀을 경우에만 (탭/스와이프)
+        // 1. 롱 프레스(LONG_PRESS_DURATION)보다 짧게 눌렀을 경우에만 (탭)
         if (duration < LONG_PRESS_DURATION) {
             
             // 2. 짧은 탭(Tap) 판별
@@ -732,11 +732,13 @@ $(document).ready(function() {
                     handleInput({ key: "ArrowUp" });
                 }
             }
-            // 3. 스와이프(Swipe) 판별 (하드 드롭만 남김)
+            // 3. [삭제] 스와이프(Swipe) 판별 (하드 드롭)
+            /*
             else if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY > SWIPE_THRESHOLD_Y) {
                 // [유지] 아래로 스와이프 = 하드 드롭 (스페이스바)
                 handleInput({ key: " " });
             }
+            */
             // (좌/우/위 스와이프는 이제 무시됨)
         }
         // (4. 롱 프레스의 경우는 이미 타이머/인터벌이 처리했으므로, 여기서는 아무것도 안 함)
