@@ -1,5 +1,5 @@
-// [수정] 챕터 3에서 호출할 함수들을 전역 변수로 미리 선언
-let showModal, hideModal, showFragmentModal, hideFragmentModal, transitionToChapter, goToMap, showPoem, showClearConfirmationPopup, stopAsteroidGame;
+// [수정] 챕터 3,4에서 호출할 함수들을 전역 변수로 미리 선언
+let showModal, hideModal, showFragmentModal, hideFragmentModal, transitionToChapter, goToMap, showPoem, showClearConfirmationPopup, stopAsteroidGame, initChapter3Game, stopChapter3Game, initChapter4Game, stopChapter4Game;
 
 // 창의 모든 리소스(이미지 포함)가 로드되면 스크립트를 실행합니다.
 $(window).on('load', function() {
@@ -21,6 +21,7 @@ $(window).on('load', function() {
     const $chapter1 = $('#chapter1-container');
     const $chapter2 = $('#chapter2-container');
     const $chapter3 = $('#chapter3-container');
+    const $chapter4 = $('#chapter4-container');
     const $chapterTransition = $('#chapter-transition');
     const $transitionTitle = $('#transition-title');
     const $transitionImage = $('#transition-image');
@@ -106,10 +107,8 @@ $(window).on('load', function() {
             const $targetChapter = $(`#chapter${chapterNum}-container`);
             if (chapterNum === 1) { $storyIntro.hide(); $asteroidGame.hide(); $exitPortal.hide(); }
             if (chapterNum === 2) { $puzzleHub.show(); $crosswordGameContainer.hide(); updatePuzzleHubUI(); }
-            
-            if (chapterNum === 3) {
-                initChapter3Game(); // (이 함수는 20251211_3.js에 전역으로 정의됨)
-            }
+            if (chapterNum === 3) { initChapter3Game();} // (이 함수는 20251211_3.js에 전역으로 정의됨)
+            if (chapterNum === 4) { initChapter4Game(); } // (20251211_4.js에서 정의할 함수)
 
             $targetChapter.css('display', 'flex').animate({opacity: 1}, 1000, function() {
                  if (chapterNum === 1) { $storyIntro.fadeIn(500); $startGameBtn.off().on('click', startCountdown); $skipGameBtn.off().on('click', function(){ showModal("기억 조각 발견!<br>확인하시겠습니까?", { showStart: true, startText: '확인하기', onStart: showPoem, showSkip: true, skipText: '넘어가기', onSkip: showClearConfirmationPopup, hideClose: false, onClose: hideModal }); }); }
@@ -121,7 +120,8 @@ $(window).on('load', function() {
     // [수정] 전역 변수에 할당
     goToMap = function() {
         stopAsteroidGame();
-        stopChapter3Game(); // (이 함수는 20251211_3.js에 전역으로 정의됨)
+        stopChapter3Game();
+        stopChapter4Game();
         $('.chapter-container').fadeOut(500);
         $poemModal.fadeOut(300);
         $fragmentModal.fadeOut(300);
@@ -140,17 +140,17 @@ $(window).on('load', function() {
     }
 
     // --- 특정 챕터로 바로 전환하는 함수 ---
-    // [수정] 전역 변수에 할당
     transitionToChapter = function(chapterNum) {
         stopAsteroidGame();
-        stopChapter3Game(); // (이 함수는 20251211_3.js에 전역으로 정의됨)
+        stopChapter3Game();
+        stopChapter4Game();
         $('.chapter-container').fadeOut(500);
         $poemModal.fadeOut(300);
         $fragmentModal.fadeOut(300);
         $selectFragmentModal.fadeOut(300);
 
         if (chapterNum > 5) { showModal("모든 챕터를 클리어했습니다!"); goToMap(); return; }
-        if (chapterNum > 3) { showModal(`Chapter ${chapterNum}은 아직 개발 중입니다.`); goToMap(); return; }
+        if (chapterNum > 4) { showModal(`Chapter ${chapterNum}은 아직 개발 중입니다.`); goToMap(); return; }
         const $nextPlanet = $(`#planet${chapterNum}`); if ($nextPlanet.length > 0) { showChapter(chapterNum, $nextPlanet.data('title'), $nextPlanet.find('img').attr('src')); } else { showModal("오류: 다음 챕터를 찾을 수 없습니다."); goToMap(); }
     }
 
@@ -171,7 +171,7 @@ $(window).on('load', function() {
     $exploreBtn.on('click', function() { const $firstPlanet = $('#planet1'); showChapter($firstPlanet.data('chapter'), $firstPlanet.data('title'), $firstPlanet.find('img').attr('src')); });
     $planets.on('click', function() { 
         const chapterNum = $(this).data('chapter'); 
-        if (chapterNum === 1 || chapterNum === 2 || chapterNum === 3) { 
+        if (chapterNum === 1 || chapterNum === 2 || chapterNum === 3 || chapterNum === 4) { 
             showChapter(chapterNum, $(this).data('title'), $(this).find('img').attr('src')); 
         } else { 
             showModal(`Chapter ${chapterNum}은 아직 개발 중입니다.`); 
@@ -533,10 +533,35 @@ $(window).on('load', function() {
 별을 향해.
 내가 결코 닿을 수 없는 곳으로.”`,
 			gridSize: { rows: 6, cols: 6 },
-			grid: [ [0, 0, 0, 0, 1, 1], [0, 0, 1, 1, 0, 1], [1, 0, 0, 0, 0, 1], [1, 1, 1, 1, 0, 0], [1, 0, 0, 0, 0, 1], [0, 0, 0, 1, 1, 1] ],
-			answers: [ [null, null, null, null, '상', '소'], [null, null, '안', '녕', null, '시'], ['장', null ,null, null, null, '지'], ['기', '축', '사', '화', null, null], ['준', null, null, null, null, '과'], [null, null, null, '자', '전', '거'] ],
-			labels: [ [0, 0, 0, 0, 1, 2], [0, 0, 3, 0, 0, 0], [4, 0, 0, 4, 0, 0], [6, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 5], [0, 0, 0, 7, 0, 0] ],
-			clues: { across: [ { num: 1, clue: "최윤이 임금에게 올린 것" }, { num: 3, clue: "마지막 ㅇㅇ은 여기 구내과병원에서" }, { num: 5, clue: "동인들이 화를 입은 사건" }, { num: 7, clue: "데이비가 8살 소녀에게 빼앗은 것" } ], down: [ { num: 2, clue: "친구가 놀러오면 2개를 내놔야 하는 것" }, { num: 4, clue: "구내과병원에서 지환 배우의 역할명" }, { num: 6, clue: "최윤이 사흘만에 치른 시험" } ] }
+			grid: [ 
+				[0, 0, 0, 0, 1, 1], 
+				[0, 0, 1, 1, 0, 1], 
+				[1, 0, 0, 0, 0, 1], 
+				[1, 1, 1, 1, 0, 0], 
+				[1, 0, 0, 0, 0, 1], 
+				[0, 0, 0, 1, 1, 1] ],
+			answers: [ 
+				[null, null, null, null, '상', '소'], 
+				[null, null, '안', '녕', null, '시'], 
+				['장', null ,null, null, null, '지'], 
+				['기', '축', '사', '화', null, null], 
+				['준', null, null, null, null, '과'], 
+				[null, null, null, '자', '전', '거'] ],
+			labels: [ 
+				[0, 0, 0, 0, 1, 2], 
+				[0, 0, 3, 0, 0, 0], 
+				[4, 0, 0, 4, 0, 0], 
+				[5, 0, 0, 0, 0, 0], 
+				[0, 0, 0, 0, 0, 6], 
+				[0, 0, 0, 7, 0, 0] ],
+			clues: { 
+				across: [ { num: 1, clue: "최윤이 임금에게 올린 것" }, 
+					{ num: 3, clue: "마지막 ㅇㅇ은 여기 구내과병원에서" }, 
+					{ num: 5, clue: "등등곡에서 동인들이 화를 입은 사건" }, 
+					{ num: 7, clue: "데이비가 8살 소녀에게 빼앗은 것" } 
+				], down: [ { num: 2, clue: "데이비가 친구들이 놀러오면 2개를 내놔야 하는 것" }, 
+					{ num: 4, clue: "구내과병원에서 지환 배우의 역할명" }, 
+					{ num: 6, clue: "최윤이 사흘만에 치른 시험" } ] }
         },
         5: { 
         	title: "내면", reward: `“내 이름은 수증기라는 뜻이야,
@@ -552,10 +577,35 @@ $(window).on('load', function() {
 내 삶의 끝은 어디일까요
 어머니”`,
 			gridSize: { rows: 6, cols: 6 },
-			grid: [ [1, 1, 1, 1, 0, 0], [1, 0, 0, 0, 1, 1], [0, 1, 1, 0, 1, 0], [0, 0, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1] ],
-			answers: [ ['레', '이', '몬', '드', null, null], ['네', null, null, null, '이', '반'], [null, '금', '발', null, '별', null], [null, null, '작', null, null, null], [null, null, null, null, null, null], [null, '라', '비', '린', '토', '스'] ],
-			labels: [ [1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 2, 0], [0, 3, 4, 0, 0, 0], [6, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 5, 0, 0, 0, 0] ],
-			clues: { across: [ { num: 1, clue: "아가사에서 지환 배우의 역할명" }, { num: 2, clue: "스메르가 가장 따르는 형제" }, { num: 3, clue: "골드문트의 머리" }, { num: 5, clue: "아가사가 알려준 미궁의 다른 말" } ], down: [ { num: 1, clue: "골드문트가 함께 떠나자고 한 인물" }, { num: 2, clue: "골드문트가 어려워하는 순간" }, { num: 4, clue: "스메르가 자주 겪는 간질 증상" } ] }
+			grid: [ 
+				[1, 1, 1, 1, 0, 0], 
+				[1, 0, 0, 0, 1, 1], 
+				[0, 1, 1, 0, 1, 0], 
+				[0, 0, 1, 0, 0, 0], 
+				[0, 0, 0, 0, 0, 0], 
+				[0, 1, 1, 1, 1, 1] ],
+			answers: [ 
+				['레', '이', '몬', '드', null, null], 
+				['네', null, null, null, '이', '반'], 
+				[null, '금', '발', null, '별', null], 
+				[null, null, '작', null, null, null], 
+				[null, null, null, null, null, null], 
+				[null, '라', '비', '린', '토', '스'] ],
+			labels: [ 
+				[1, 0, 0, 0, 0, 0], 
+				[0, 0, 0, 0, 2, 0], 
+				[0, 3, 4, 0, 0, 0], 
+				[6, 0, 0, 0, 0, 0], 
+				[0, 0, 0, 0, 0, 0], 
+				[0, 5, 0, 0, 0, 0] ],
+			clues: { 
+				across: [ { num: 1, clue: "아가사에서 지환 배우의 역할명" }, 
+					{ num: 2, clue: "스메르가 가장 따르는 형제" }, 
+					{ num: 3, clue: "골드문트의 머리" }, 
+					{ num: 5, clue: "아가사가 알려준 미궁의 다른 말" } 
+				], down: [ { num: 1, clue: "골드문트가 함께 떠나자고 한 인물" }, 
+					{ num: 2, clue: "골드문트가 어려워하는 순간" }, 
+					{ num: 4, clue: "스메르가 자주 겪는 간질 증상" } ] }
         },
         6:  { 
         	title: "성장", reward: `“가늘고 길게 가늘고 길게 가늘고 길게 롱런”
@@ -567,10 +617,34 @@ $(window).on('load', function() {
 .
 “아름다운 건 왜 우릴 스쳐 지나갈까요?”`,
 			gridSize: { rows: 6, cols: 6 },
-			grid: [ [1, 1, 1, 1, 0, 1], [0, 0, 1, 0, 0, 1], [0, 0, 1, 0, 0, 1], [1, 0,0, 1, 1, 0], [1, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 0] ],
-			answers: [ ['온', '더', '로', '드', null, '공'], [null, null, '망', null, null, '무'], [null, null ,'스', null, null, '원'], ['예', null, null, '캄', '프', null], ['술', null, null, null, null, null], ['가', '늘', '고', '길', '게', null] ],
-			labels: [ [1, 0, 2, 0, 0, 3], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [4, 0, 0, 5, 0, 0], [0, 0, 0, 0, 0, 0], [6, 0, 0, 0, 0, 0] ],
-			clues: { across: [ { num: 1, clue: "싱클레어가 읽고 좋아한다는 책" }, { num: 5, clue: "데미안이 만든 특별활동반" }, { num: 6, clue: "진기한이 원하는 삶의 목표(롱런)" } ], down: [ { num: 2, clue: "선호가 머무르는 다방" }, { num: 3, clue: "장선호의 직업 혹은 진기한이 준비하는 것" }, { num: 4, clue: "선호가 과거에서 만난 사람들" } ] }
+			grid: [ 
+				[1, 1, 1, 1, 0, 1], 
+				[0, 0, 1, 0, 0, 1], 
+				[0, 0, 1, 0, 0, 1], 
+				[1, 0,0, 1, 1, 0], 
+				[1, 0, 0, 0, 0, 0], 
+				[1, 1, 1, 1, 1, 0] ],
+			answers: [ 
+				['온', '더', '로', '드', null, '공'], 
+				[null, null, '망', null, null, '무'], 
+				[null, null ,'스', null, null, '원'], 
+				['예', null, null, '캄', '프', null], 
+				['술', null, null, null, null, null], 
+				['가', '늘', '고', '길', '게', null] ],
+			labels: [ 
+				[1, 0, 2, 0, 0, 3], 
+				[0, 0, 0, 0, 0, 0], 
+				[0, 0, 0, 0, 0, 0], 
+				[4, 0, 0, 5, 0, 0], 
+				[0, 0, 0, 0, 0, 0], 
+				[6, 0, 0, 0, 0, 0] ],
+			clues: { 
+				across: [ { num: 1, clue: "싱클레어가 읽고 좋아한다는 책" }, 
+					{ num: 5, clue: "데미안이 만든 특별활동반" }, 
+					{ num: 6, clue: "진기한이 원하는 삶의 목표(롱런)" } 
+				], down: [ { num: 2, clue: "선호가 머무르는 다방" }, 
+					{ num: 3, clue: "장선호의 직업 혹은 진기한이 준비하는 것" }, 
+					{ num: 4, clue: "선호가 과거에서 만난 사람들" } ] }
         }
     };
 

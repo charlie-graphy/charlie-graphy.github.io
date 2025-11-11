@@ -488,7 +488,6 @@ body, html {
     box-sizing: border-box;
 }
 
-/* --- 챕터 1: 스토리 인트로 --- */
 #story-intro {
     width: 90%;
     max-width: 600px;
@@ -1014,7 +1013,7 @@ body, html {
     top: 0; left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 5, 20, 0.62);
+    background-color: rgba(0, 5, 20, 0.7);
     z-index: 5;
     pointer-events: none; /* 클릭이 통과되도록 */
 }
@@ -1066,7 +1065,7 @@ body, html {
     cursor: pointer;
     z-index: 10; /* 안개(5)보다 위 */
     transition: transform 0.3s ease, opacity 0.3s;
-    opacity: 0.4; /* 안개 속에 있는 듯 희미하게 */
+    opacity: 0.35; /* 안개 속에 있는 듯 희미하게 */
     filter: drop-shadow(0 0 5px #80d8ff);
 }
 .ch3-item:hover {
@@ -1142,7 +1141,7 @@ body, html {
 /* ===== [수정] 챕터 3 미니맵 스타일 (홀로그램) ===== */
 #ch3-mini-map {
     position: fixed;
-    top: 140px; /* [수정] 120px -> 140px로 더 내렸습니다! (글자 가림 방지) */
+    top: 80px;
     right: 20px;
     width: 80px; /* [수정] 100px -> 80px로 크기 축소 */
     height: 80px; /* [수정] 100px -> 80px로 크기 축소 */
@@ -1192,4 +1191,126 @@ body, html {
     box-shadow: 0 0 8px #55efc4, 0 0 12px #55efc4; /* 빛나는 효과 */
     transform: translate(-50%, -50%) scale(1.5); /* 찾으면 더 커짐 */
     animation: none; /* 깜빡임 중지 */
+}
+
+/* --- 챕터 4: 기억 낙하 --- */
+#ch4-story-intro {
+    width: 90%;
+    max-width: 600px;
+    padding: 30px;
+    /* 챕터 4 테마색 적용 */
+    border: 3px solid #90caf9; 
+    background-color: rgba(0, 10, 30, 0.9);
+    text-align: center;
+    box-shadow: 0 0 20px #90caf9, inset 0 0 10px rgba(144, 202, 249, 0.5);
+    z-index: 200; /* 게임 요소들(HUD, 캔버스)보다 위에 표시 */
+    line-height: 1.8;
+    margin-top: auto; /* [중요] 팝업을 세로 중앙에 배치 */
+    margin-bottom: auto; /* [중요] 팝업을 세로 중앙에 배치 */
+    box-sizing: border-box;
+    display: none; /* JS가 .fadeIn()으로 켭니다 */
+}
+/* 챕터 1의 스타일을 그대로 사용하되, 버튼 호버 색상만 덮어쓰기 */
+#ch4-start-btn:hover {
+    background-color: rgba(128, 216, 255, 0.2);
+    box-shadow: 0 0 15px #80d8ff;
+}
+/* 챕터 1의 #intro-buttons 스타일을 챕터 3의 새 ID에 적용 */
+#ch4-intro-buttons {
+    margin-top: 30px;
+    opacity: 0; /* 초기 숨김 */
+    animation: fade-in-buttons 1s forwards;
+    /* 챕터 1과 동일한 @keyframes fade-in-buttons 사용 */
+    animation-delay: 2.5s; 
+}
+
+/* 챕터 1의 #intro-buttons button 스타일을 챕터 3에 적용 */
+#ch4-intro-buttons button {
+    margin: 5px 10px; /* 간격 조정 */
+}
+#chapter4-container {
+    --current-category-color: var(--category-color-4); 
+
+    /* [수정] padding: 0 !important; 를 삭제합니다. */
+    /* [수정] flex-start로 변경해 상단에 정렬합니다. */
+    justify-content: flex-start; 
+
+    overflow-y: hidden !important; 
+}
+
+#ch4-hud {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 300px; /* 캔버스 너비와 맞추기 */
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    z-index: 3;
+    position: relative;
+}
+.hud-item {
+    text-align: center;
+}
+.hud-label {
+    font-size: 0.8em;
+    color: #9ab;
+}
+#ch4-score {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #fff;
+}
+#ch4-next-preview {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px dashed #90caf9;
+    border-radius: 5px;
+}
+
+#memory-drop-canvas {
+    /* 높이는 JS에서 캔버스 비율에 맞춰 설정 */
+    background-color: rgba(0, 5, 20, 0.7);
+    border: 3px solid #90caf9; /* 챕터 4 테마색 */
+    border-radius: 5px;
+    box-shadow: 0 0 15px #90caf9;
+    image-rendering: pixelated;
+    z-index: 3;
+    position: relative;
+}
+/* [신규] 챕터 4 인트로 버튼 깨짐 수정 (챕터 3 복붙) */
+#ch4-intro-buttons {
+    margin-top: 30px;
+    opacity: 0; 
+    animation: fade-in-buttons 1s forwards;
+    animation-delay: 2.5s; 
+}
+#ch4-intro-buttons button {
+    margin: 5px 10px; 
+}
+
+/* [신규] 챕터 4 버튼 호버 */
+#ch4-start-btn:hover {
+    background-color: rgba(144, 202, 249, 0.2); /* 챕터 4 테마색 */
+    box-shadow: 0 0 15px #90caf9;
+}
+/* [신규] 챕터 3, 4 인트로 버튼 래퍼 (flex 적용) */
+.ch3-button-wrapper, .ch4-button-wrapper {
+    margin-top: 20px; /* p 태그와 간격 */
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap; 
+}
+
+/* [수정] 챕터 3, 4 버튼 자체의 마진은 이제 필요 없음 (flex gap이 처리) */
+#ch3-intro-buttons button,
+#ch4-intro-buttons button {
+    margin: 0; /* flex gap이 간격을 관리하므로 마진 제거 */
+}
+#ch4-skip-btn {
+    margin-top: 20px;
+    z-index: 3;
+    position: relative;
 }
