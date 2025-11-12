@@ -101,40 +101,46 @@ $(window).on('load', function() {
     function showChapter(chapterNum, chapterTitle, planetImgSrc) { // [유지] function (지역 함수)
     	currentChapterNum = chapterNum;
         $galaxyMap.fadeOut(500);
-        $transitionTitle.text(chapterTitle); $transitionImage.attr('src', planetImgSrc).css('color', $(`#planet${chapterNum} img`).css('color')); $chapterTransition.css('display', 'flex').animate({opacity: 1}, 500);
-        setTimeout(function() {
-            $chapterTransition.animate({opacity: 0}, 500, function() { $(this).hide(); });
+        
+        // [수정] 1. 챕터 제목을 0.5초 동안 띄웁니다.
+        $transitionTitle.text(chapterTitle); 
+        $transitionImage.attr('src', planetImgSrc).css('color', $(`#planet${chapterNum} img`).css('color')); 
+        $chapterTransition.css('display', 'flex').animate({opacity: 1}, 500, function() {
+            
+            // [수정] 2. 챕터 제목이 '다 뜬 직후' (0.5초 뒤)에 검은 화면 대기 없이 '바로' 다음 로직을 실행합니다.
+            
+            // 2a. 챕터 컨테이너를 미리 찾고 게임 로직 초기화
             const $targetChapter = $(`#chapter${chapterNum}-container`);
             if (chapterNum === 1) { $storyIntro.hide(); $asteroidGame.hide(); $exitPortal.hide(); }
             if (chapterNum === 2) { $puzzleHub.show(); $crosswordGameContainer.hide(); updatePuzzleHubUI(); }
-            if (chapterNum === 3) { initChapter3Game();} // (이 함수는 20251211_3.js에 전역으로 정의됨)
+            if (chapterNum === 3) { initChapter3Game();}
             if (chapterNum === 4) { 
-                $('#ch4-story-intro').hide(); // [추가] 챕터4 인트로가 미리 안보이게 처리
+                $('#ch4-story-intro').hide();
                 initChapter4Game(); 
-            } // (20251211_4.js에서 정의할 함수)
+            }
 
+            // 2b. 새 챕터가 1초에 걸쳐 '서서히' 나타나게 합니다. (Cross-fade In)
             $targetChapter.css('display', 'flex').animate({opacity: 1}, 1000, function() {
+                 // 챕터 화면이 완전히 나타난 '후에' 인트로 팝업을 띄움
                  if (chapterNum === 1) { 
                      $storyIntro.fadeIn(500); 
                      $startGameBtn.off().on('click', startCountdown); 
                      $skipGameBtn.off().on('click', function(){ 
                          showModal("기억 조각 발견!<br>확인하시겠습니까?", { 
-                             showStart: true, 
-                             startText: '확인하기', 
-                             onStart: showPoem, 
-                             showSkip: true, 
-                             skipText: '넘어가기', 
-                             onSkip: showClearConfirmationPopup, 
-                             hideClose: false, 
-                             onClose: hideModal 
+                             showStart: true, startText: '확인하기', onStart: showPoem, 
+                             showSkip: true, skipText: '넘어가기', onSkip: showClearConfirmationPopup, 
+                             hideClose: false, onClose: hideModal 
                          }); 
                      }); 
                  } else if (chapterNum === 4) {
-                     // [오류 수정] 챕터 4의 인트로 팝업을 띄웁니다.
                      $('#ch4-story-intro').fadeIn(500);
                  }
             });
-        }, 1500);
+            
+            // 2c. '동시에' 챕터 제목이 0.5초에 걸쳐 '서서히' 사라지게 합니다. (Cross-fade Out)
+            $chapterTransition.animate({opacity: 0}, 500, function() { $(this).hide(); });
+
+        }); // [수정] setTimeout을 .animate()의 콜백 함수로 변경
     }
 
     // --- 항해 지도로 돌아가는 함수 ---
@@ -148,16 +154,23 @@ $(window).on('load', function() {
         $fragmentModal.fadeOut(300);
         $selectFragmentModal.fadeOut(300);
         
+        // [버그 수정] 맵이 사라진 상태에서 위치 계산이 안되는 버그 수정
+        // 1. $targetPlanet 변수만 미리 찾아둠
         const $targetPlanet = $(`#planet${currentChapterNum}`);
-        if ($targetPlanet.length > 0 && $mapArea.length > 0) {
-            const planetOffsetLeft = $targetPlanet.closest('.planet-orbit').position().left;
-            const planetWidth = $targetPlanet.closest('.planet-orbit').outerWidth();
-            const mapAreaWidth = $mapArea.width();
-            const targetScrollLeft = planetOffsetLeft - (mapAreaWidth / 2) + (planetWidth / 2);
-            $mapArea.animate({ scrollLeft: targetScrollLeft }, 500);
-        }
         
-        $galaxyMap.fadeIn(1000);
+        // 2. 맵을 먼저 화면에 띄우고(fadeIn)
+        $galaxyMap.fadeIn(1000, function() {
+            // 3. 맵이 나타난 '후에' 스크롤 위치를 계산하고 애니메이션 실행
+            if ($targetPlanet.length > 0 && $mapArea.length > 0) {
+                const planetOffsetLeft = $targetPlanet.closest('.planet-orbit').position().left;
+                const planetWidth = $targetPlanet.closest('.planet-orbit').outerWidth();
+                const mapAreaWidth = $mapArea.width();
+                const targetScrollLeft = planetOffsetLeft - (mapAreaWidth / 2) + (planetWidth / 2);
+                
+                // 맵이 다 보인 후에 스크롤 시작
+                $mapArea.animate({ scrollLeft: targetScrollLeft }, 500); 
+            }
+        });
     }
 
     // --- 특정 챕터로 바로 전환하는 함수 ---

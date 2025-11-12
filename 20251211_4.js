@@ -12,7 +12,6 @@ $(document).ready(function() {
     const $scoreEl = $('#ch4-score');
     const $nextPreviewCanvas = $('<canvas id="ch4-next-canvas"></canvas>');
     const $nextPreviewContainer = $('#ch4-next-preview');
-    // const $skipBtn = $('#ch4-skip-btn'); // [삭제]
     const $ch4PauseBtn = $('#ch4-pause-btn'); // [신규] 일시정지 버튼
 
     // --- 2. 게임 설정 ---
@@ -105,7 +104,6 @@ $(document).ready(function() {
         
         $ch4StartBtn.off().on('click', startChapter4Game); 
         $ch4IntroSkipBtn.off().on('click', skipChapter4); 
-        // $skipBtn.off().on('click', skipChapter4); // [삭제]
         $ch4PauseBtn.off().on('click', showPauseModal); // [신규]
     };
     
@@ -187,7 +185,6 @@ $(document).ready(function() {
     function calculateAndSetCanvasSize() {
         const $container = $canvas.parent(); // #chapter4-container
         const $hud = $('#ch4-hud');
-        // [삭제] $skipBtn은 이제 레이아웃에 영향을 주지 않음
 
         // 다른 UI 요소가 보여야 정확한 높이 계산 가능
         $hud.show(); 
@@ -882,4 +879,4 @@ $(document).ready(function() {
         }
     }
 
-}); // $(document).ready 래퍼 닫기
+}); 
