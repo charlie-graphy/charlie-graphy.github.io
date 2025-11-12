@@ -108,10 +108,31 @@ $(window).on('load', function() {
             if (chapterNum === 1) { $storyIntro.hide(); $asteroidGame.hide(); $exitPortal.hide(); }
             if (chapterNum === 2) { $puzzleHub.show(); $crosswordGameContainer.hide(); updatePuzzleHubUI(); }
             if (chapterNum === 3) { initChapter3Game();} // (이 함수는 20251211_3.js에 전역으로 정의됨)
-            if (chapterNum === 4) { initChapter4Game(); } // (20251211_4.js에서 정의할 함수)
+            if (chapterNum === 4) { 
+                $('#ch4-story-intro').hide(); // [추가] 챕터4 인트로가 미리 안보이게 처리
+                initChapter4Game(); 
+            } // (20251211_4.js에서 정의할 함수)
 
             $targetChapter.css('display', 'flex').animate({opacity: 1}, 1000, function() {
-                 if (chapterNum === 1) { $storyIntro.fadeIn(500); $startGameBtn.off().on('click', startCountdown); $skipGameBtn.off().on('click', function(){ showModal("기억 조각 발견!<br>확인하시겠습니까?", { showStart: true, startText: '확인하기', onStart: showPoem, showSkip: true, skipText: '넘어가기', onSkip: showClearConfirmationPopup, hideClose: false, onClose: hideModal }); }); }
+                 if (chapterNum === 1) { 
+                     $storyIntro.fadeIn(500); 
+                     $startGameBtn.off().on('click', startCountdown); 
+                     $skipGameBtn.off().on('click', function(){ 
+                         showModal("기억 조각 발견!<br>확인하시겠습니까?", { 
+                             showStart: true, 
+                             startText: '확인하기', 
+                             onStart: showPoem, 
+                             showSkip: true, 
+                             skipText: '넘어가기', 
+                             onSkip: showClearConfirmationPopup, 
+                             hideClose: false, 
+                             onClose: hideModal 
+                         }); 
+                     }); 
+                 } else if (chapterNum === 4) {
+                     // [오류 수정] 챕터 4의 인트로 팝업을 띄웁니다.
+                     $('#ch4-story-intro').fadeIn(500);
+                 }
             });
         }, 1500);
     }

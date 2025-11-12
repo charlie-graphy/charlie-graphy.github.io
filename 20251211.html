@@ -250,7 +250,7 @@
     		<p class="alert-text warning-title" style="color: #90caf9;">ALERT</p>
     		<p class="alert-text system" style="animation-delay: 0.5s;">'기억 단층' 접근 중!</p>
     		<p class="alert-text warning" style="animation-delay: 1.0s;">기억 조각들이 쏟아져 내립니다.</p>
-    		<p class="alert-text objective" style="color: #90caf9; animation-delay: 1.5s;">목표 :: <strong>1500점</strong>을 달성하여 에너지를 모으세요.</p>
+    		<p class="alert-text objective" style="color: #90caf9; animation-delay: 1.5s;">목표 :: <strong>1000점</strong>을 달성하여 에너지를 모으세요.</p>
 
 			<div id="ch4-intro-buttons" style="animation-delay: 2.0s;"> 
 				<p class="intro-instruction" style="line-height: 1.7;">
@@ -265,22 +265,22 @@
     			</div>
     		</div>
     	</div>
-    	
+        
+        <button id="ch4-pause-btn">||</button>
+        
         <div id="ch4-hud">
-            <div class="hud-item">
+            <div class="hud-item score">
                 <span class="hud-label">SCORE</span>
                 <span id="ch4-score">0</span>
             </div>
-            <div class="hud-item">
+        	
+            <div class="hud-item next">
                 <span class="hud-label">NEXT</span>
-                <div id="ch4-next-preview">
-                    </div>
+                <div id="ch4-next-preview"></div>
             </div>
         </div>
 
         <canvas id="memory-drop-canvas"></canvas>
-
-        <button class="modal-action-btn modal-skip-btn" id="ch4-skip-btn" style="margin-top: 20px;">넘어가기</button>
     </div>
     
     <div id="chapter-transition">

@@ -1229,46 +1229,103 @@ body, html {
     margin: 5px 10px; /* 간격 조정 */
 }
 #chapter4-container {
-    --current-category-color: var(--category-color-4); 
-
-    /* [수정] padding: 0 !important; 를 삭제합니다. */
-    /* [수정] flex-start로 변경해 상단에 정렬합니다. */
-    justify-content: flex-start; 
-
+    --current-category-color: var(--category-color-4);
+    justify-content: center;
     overflow-y: hidden !important; 
+    
+    /* (이하 기존 스타일... display: none, position: fixed 등) */
+    display: none; 
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100dvh; 
+    color: #fff;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5000;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px; 
+    padding-top: max(3vh, 20px);
 }
-
+#chapter4-container.ch4-intro-visible {
+    padding: 0 !important;
+}
+/* 1. HUD 메인 컨테이너: 아이템들을 중앙으로 모읍니다. */
 #ch4-hud {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* [추가] 아이템들을 중앙으로 모음 */
+    gap: 40px; /* [추가] 점수와 다음 아이템 사이의 간격 */
+    align-items: flex-start; 
     width: 100%;
-    max-width: 300px; /* 캔버스 너비와 맞추기 */
+    max-width: 300px; 
     padding: 0 10px;
     box-sizing: border-box;
     margin-bottom: 10px;
     z-index: 3;
     position: relative;
 }
+/* 1. hud-item (공통) */
 .hud-item {
     text-align: center;
+    min-width: 80px; 
 }
+
+/* 2. 점수 아이템: 내부 텍스트도 중앙 정렬합니다. */
+.hud-item.score {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; /* [추가] 텍스트도 중앙 정렬 */
+    flex-shrink: 0;
+    gap: 5px;
+}
+
+/* 3. 다음 아이템: 내부 텍스트/박스도 중앙 정렬합니다. */
+.hud-item.next {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 5px;
+}
+
+/* 4. hud-label (공통 라벨) */
 .hud-label {
     font-size: 0.8em;
     color: #9ab;
+    line-height: 1.2;
 }
+
+/* 5. ch4-score (점수 숫자) */
 #ch4-score {
-    font-size: 1.5em;
+    font-size: 2.2em;
     font-weight: 700;
     color: #fff;
+
+    /* [추가] 60px 높이를 강제하고 숫자를 그 안에 중앙 정렬 */
+    min-height: 60px; /* 'next' 박스(60px)와 높이를 맞춤 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* [수정] flex 정렬을 위해 line-height 조정 */
 }
 #ch4-next-preview {
     width: 60px;
     height: 60px;
     background-color: rgba(255, 255, 255, 0.1);
     border: 2px dashed #90caf9;
-    border-radius: 5px;
+    border-radius: 3px;
+    overflow: hidden; /* [추가] 튀어나오는 부분을 잘라냅니다. */
 }
 
+/* [추가] 캔버스 자체가 박스에 꽉 차도록(선택사항이지만 권장) */
+#ch4-next-preview canvas {
+    width: 100%;
+    height: 100%;
+}
 #memory-drop-canvas {
     /* 높이는 JS에서 캔버스 비율에 맞춰 설정 */
     background-color: rgba(0, 5, 20, 0.7);
@@ -1309,8 +1366,87 @@ body, html {
 #ch4-intro-buttons button {
     margin: 0; /* flex gap이 간격을 관리하므로 마진 제거 */
 }
-#ch4-skip-btn {
-    margin-top: 20px;
-    z-index: 3;
-    position: relative;
+/* --- 챕터 4 일시정지 버튼 (작고 예쁜 CSS 아이콘 스타일) --- */
+
+#ch4-pause-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10; 
+
+    /* [수정] 크기 줄이기 (24px) */
+    width: 26px;
+    height: 26px; 
+    
+    /* [수정] 디자인: 반투명 원형 버튼 */
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%; /* 깔끔한 원형 */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    
+    /* [수정] 텍스트 숨기기 (CSS로 아이콘 그림) */
+    font-size: 0;
+    color: transparent;
+    
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    
+    /* [삭제] 이전 스타일 제거 */
+    text-shadow: none;
+    font-weight: normal;
+    line-height: 1;
+}
+/* [추가] '||' 아이콘의 왼쪽 막대 */
+#ch4-pause-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 8px; /* [수정] 9.5px -> 8px (왼쪽에서 8px) */
+    transform: translateY(-50%); /* [수정] X축 translate 제거 */
+    
+    width: 3px; /* 막대 두께 */
+    height: 10px; /* 막대 높이 */
+    background-color: #fff;
+    border-radius: 1px;
+    transition: all 0.2s ease-out;
+}
+
+/* [추가] '||' 아이콘의 오른쪽 막대 */
+#ch4-pause-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 15px; /* [수정] 16.5px -> 15px (왼쪽에서 15px) */
+    transform: translateY(-50%); /* [수정] X축 translate 제거 */
+    
+    width: 3px; /* 막대 두께 */
+    height: 10px; /* 막대 높이 */
+    background-color: #fff;
+    border-radius: 1px;
+    transition: all 0.2s ease-out;
+}
+/* [수정] 호버 효과 */
+#ch4-pause-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.7);
+    transform: scale(1.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    /* [삭제] 이전 스타일 */
+    color: transparent;
+    text-shadow: none;
+    opacity: 1;
+}
+
+/* [수정] 클릭 효과 */
+#ch4-pause-btn:active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(0.95);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    /* [삭제] 이전 스타일 */
+    color: transparent;
+    text-shadow: none;
+    opacity: 0.8;
 }
