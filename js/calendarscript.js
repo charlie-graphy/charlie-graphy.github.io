@@ -1701,16 +1701,23 @@
 					allDay: false
 				},
 				{
-					title: 'tvn 출장십오야 X 스타쉽',
+					title: 'tvn 출장십오야 X 스타쉽 전국체전',
 					description: '11.06 오전 9시 유튜브 "채널 십오야"에서 FULL 공개',
 					start: '2025-11-05 22:50',
 					className: 'bg-orange',
 					allDay: false
 				},
 				{
-					title: 'tvn 출장십오야 X 스타쉽',
+					title: 'tvn 출장십오야 X 스타쉽 전국체전',
 					description: '11.13 오전 9시 유튜브 "채널 십오야"에서 FULL 공개',
 					start: '2025-11-12 22:50',
+					className: 'bg-orange',
+					allDay: false
+				},
+				{
+					title: 'tvn 출장십오야 X 스타쉽 전국체전',
+					description: '11.20 오전 9시 유튜브 "채널 십오야"에서 FULL 공개',
+					start: '2025-11-19 22:50',
 					className: 'bg-orange',
 					allDay: false
 				},
