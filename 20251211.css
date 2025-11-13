@@ -30,8 +30,8 @@ body, html {
     z-index: 9999;
 }
 .loader-text {
-    font-weight: 700; font-size: 1.5em; color: #00ff41;
-    text-shadow: 0 0 8px #00ff41;
+    font-weight: 700; font-size: 1.5em; color: #3DCD56;
+    text-shadow: 0 0 8px #3DCD56;
     animation: flicker 1.5s infinite;
 }
 @keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
@@ -47,22 +47,22 @@ body, html {
 }
 .terminal-monitor {
     width: 90%; max-width: 500px; padding: 30px;
-    border: 3px solid #00ff41; background-color: rgba(0, 15, 0, 0.85);
-    text-align: center; box-shadow: 0 0 20px #00ff41, inset 0 0 10px rgba(0, 255, 65, 0.5);
+    border: 3px solid #3DCD56; background-color: rgba(0, 15, 0, 0.85);
+    text-align: center; box-shadow: 0 0 20px #3DCD56, inset 0 0 10px rgba(0, 255, 65, 0.5);
     margin: 20px;
 }
 .title {
     font-family: 'Galmuri11', monospace;
     font-weight: 700; font-size: clamp(1.8em, 7vw, 2.2em);
     white-space: nowrap; letter-spacing: 2px;
-    margin-top: 0; margin-bottom: 15px; color: #00ff41;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0 0 8px #00ff41;
+    margin-top: 0; margin-bottom: 15px; color: #3DCD56;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0 0 8px #3DCD56;
 }
 .prompt { font-family: 'GalmuriMono9', monospace; font-size: 0.9em; color: #c0c0c0; margin-bottom: 15px; line-height: 1.6; } /* 간격 조정 */
 .hint { font-family: 'GalmuriMono9', monospace; font-size: 0.8em; color: #888; display: block; margin-top: 15px; margin-bottom: 10px;} /* 힌트 스타일 및 위치 수정 */
 .password-group { display: flex; justify-content: center; gap: 10px; margin-top: 10px; } /* 상단 여백 추가 */
 #password-input {
-    background-color: #000; border: 2px solid #00ff41; color: #00ff41;
+    background-color: #000; border: 2px solid #3DCD56; color: #3DCD56;
     padding: 10px; font-size: 1.5em; font-family: 'Galmuri11', monospace;
     width: 120px; text-align: center;
     font-weight: 700;
@@ -70,11 +70,11 @@ body, html {
 #password-input::placeholder { color: rgba(0, 255, 65, 0.4); }
 #password-input:focus { outline: none; background-color: #002b00; }
 #enter-button {
-    background-color: #00ff41; color: #000; border: 2px solid #00ff41;
+    background-color: #3DCD56; color: #000; border: 2px solid #3DCD56;
     padding: 10px 20px; font-size: 1.5em; font-weight: 700; cursor: pointer;
     font-family: 'Galmuri11', monospace;
 }
-#enter-button:active { background-color: #000; color: #00ff41; }
+#enter-button:active { background-color: #000; color: #3DCD56; }
 /* 상태 메시지: 기본적으로 비어있도록 */
 #status-message { color: #888; margin-top: 10px; height: 20px; font-size: 0.9em; }
 
@@ -218,7 +218,7 @@ body, html {
     fill: none;
     stroke-dasharray: 1500;
     stroke-dashoffset: 1500;
-    animation: draw-path 10s ease-in-out forwards;
+    animation: draw-path 7s ease-in-out forwards;
     filter: drop-shadow(0 0 5px #80d8ff) drop-shadow(0 0 10px #ea80fc);
 }
 @keyframes draw-path {
@@ -837,10 +837,10 @@ body, html {
     position: absolute;
     top: 1px;
     left: 2px;
-    font-size: clamp(0.4em, 1.8vw, 0.55em);
+	font-family: 'galmuri9', 'Galmuri11', monospace; 
+    font-size: clamp(0.5em, 2vw, 0.65em); /* 폰트 크기 살짝 키움 */
     color: #444; /* 숫자 색상 */
     font-weight: bold;
-    font-family: sans-serif;
 }
 
 /* [수정] 입력 칸 디자인 개선 */
@@ -1141,7 +1141,7 @@ body, html {
 /* ===== [수정] 챕터 3 미니맵 스타일 (홀로그램) ===== */
 #ch3-mini-map {
     position: fixed;
-    top: 80px;
+    top: 70px;
     right: 20px;
     width: 80px; /* [수정] 100px -> 80px로 크기 축소 */
     height: 80px; /* [수정] 100px -> 80px로 크기 축소 */
@@ -1158,14 +1158,14 @@ body, html {
 #ch3-mini-map-viewport {
     position: absolute;
     background-color: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.7);
+    border: 1px dashed rgba(255, 255, 255, 0.7);
 }
 
 /* 미니맵 안의 '아이템 위치' 점 (기본: 작고 밝은 흰색) */
 .ch3-mini-map-item-dot {
     position: absolute;
-    width: 4px; /* "조금 작게" */
-    height: 4px;
+    width: 3px; /* "조금 작게" */
+    height: 3px;
     background-color: rgba(255, 255, 255, 0.8); /* "흰색 밝게" */
     border-radius: 50%;
     transform: translate(-50%, -50%); /* 중앙 정렬 */

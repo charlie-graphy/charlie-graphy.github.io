@@ -8,10 +8,14 @@ $(document).ready(function() {
     const $canvas = $('#memory-drop-canvas');
     let ctx = null; 
     
+    // [수정] 터치 이벤트의 기준이 될 컨테이너 캐싱
+    const $ch4Container = $('#chapter4-container'); 
+    
     const $hud = $('#ch4-hud');
     const $scoreEl = $('#ch4-score');
     const $nextPreviewCanvas = $('<canvas id="ch4-next-canvas"></canvas>');
     const $nextPreviewContainer = $('#ch4-next-preview');
+    // const $skipBtn = $('#ch4-skip-btn'); // [삭제]
     const $ch4PauseBtn = $('#ch4-pause-btn'); // [신규] 일시정지 버튼
 
     // --- 2. 게임 설정 ---
@@ -78,7 +82,7 @@ $(document).ready(function() {
 
     initChapter4Game = function() {
         // [수정] 챕터 4 진입 시, 팝업이 잘 보이도록 패딩 0 클래스(ch4-intro-visible)를 붙입니다.
-        $('#chapter4-container').addClass('ch4-intro-visible');
+        $ch4Container.addClass('ch4-intro-visible');
 
         if ($canvas.length === 0) {
             console.error("챕터 4 캔버스를 찾을 수 없습니다.");
@@ -104,6 +108,7 @@ $(document).ready(function() {
         
         $ch4StartBtn.off().on('click', startChapter4Game); 
         $ch4IntroSkipBtn.off().on('click', skipChapter4); 
+        // $skipBtn.off().on('click', skipChapter4); // [삭제]
         $ch4PauseBtn.off().on('click', showPauseModal); // [신규]
     };
     
@@ -111,7 +116,7 @@ $(document).ready(function() {
         $ch4StoryIntro.fadeOut(300, function() {
             
             // [수정] 게임이 '진짜' 시작되면, 패딩 0 클래스를 제거해서 캔버스가 중앙에 오도록 합니다.
-            $('#chapter4-container').removeClass('ch4-intro-visible');
+            $ch4Container.removeClass('ch4-intro-visible');
 
             // 1. 캔버스 크기를 화면에 맞게 계산하고 설정
             calculateAndSetCanvasSize(); 
@@ -145,11 +150,11 @@ $(document).ready(function() {
                 
                 $(document).off('.memorydrop').on('keydown.memorydrop', handleInput);
 
-                // 모바일 터치 이벤트 리스너
-                $canvas.off('.memorydrop');
-                $canvas.on('touchstart.memorydrop', handleTouchStart);
-                $canvas.on('touchend.memorydrop', handleTouchEnd);
-                $canvas.on('touchcancel.memorydrop', handleTouchEnd); 
+                // [수정] 터치 리스너를 $canvas가 아닌 $ch4Container에 등록
+                $ch4Container.off('.memorydrop');
+                $ch4Container.on('touchstart.memorydrop', handleTouchStart);
+                $ch4Container.on('touchend.memorydrop', handleTouchEnd);
+                $ch4Container.on('touchcancel.memorydrop', handleTouchEnd); 
 
                 // 화면 크기 변경(회전) 감지 리스너
                 $(window).off('.memorydrop-resize').on('resize.memorydrop-resize', handleResize);
@@ -167,7 +172,7 @@ $(document).ready(function() {
         if (gameLoopId) cancelAnimationFrame(gameLoopId);
         gameLoopId = null;
         $(document).off('.memorydrop');
-        $canvas.off('.memorydrop'); 
+        $ch4Container.off('.memorydrop'); // [수정] $canvas -> $ch4Container
         $(window).off('.memorydrop-resize'); 
         
         $ch4PauseBtn.off('click', showPauseModal); // [신규]
@@ -185,6 +190,7 @@ $(document).ready(function() {
     function calculateAndSetCanvasSize() {
         const $container = $canvas.parent(); // #chapter4-container
         const $hud = $('#ch4-hud');
+        // [삭제] $skipBtn은 이제 레이아웃에 영향을 주지 않음
 
         // 다른 UI 요소가 보여야 정확한 높이 계산 가능
         $hud.show(); 
@@ -216,8 +222,7 @@ $(document).ready(function() {
         $canvas.attr('height', canvasHeight);
         
         // [수정] 캔버스 크기를 CSS 박스(60px)에 맞추고
-        // NEXT_BLOCK_SIZE를 캔버스 크기에 맞춰 역산합니다.
-        
+        // NEXT_BLOCK_SIZE를 캔버스 크기에 맞춰 역산합니다. (유저 요청)
         const nextCanvasSize = 60; // CSS와 동일하게 60px
         $nextPreviewCanvas.attr('width', nextCanvasSize);
         $nextPreviewCanvas.attr('height', nextCanvasSize);
@@ -243,12 +248,12 @@ $(document).ready(function() {
         isPaused = false;
         gameOver = false; // [오류 수정] gameOver 상태도 함께 해제
         
-        // [오류 수정] '계속하기' 시 중지되었던 입력 리스너 재활성화
+        // [수정] 터치 리스너를 $ch4Container에 다시 등록
         $(document).off('.memorydrop').on('keydown.memorydrop', handleInput);
-        $canvas.off('.memorydrop');
-        $canvas.on('touchstart.memorydrop', handleTouchStart);
-        $canvas.on('touchend.memorydrop', handleTouchEnd);
-        $canvas.on('touchcancel.memorydrop', handleTouchEnd);
+        $ch4Container.off('.memorydrop');
+        $ch4Container.on('touchstart.memorydrop', handleTouchStart);
+        $ch4Container.on('touchend.memorydrop', handleTouchEnd);
+        $ch4Container.on('touchcancel.memorydrop', handleTouchEnd);
 
         lastDropTime = Date.now(); // [중요] 멈춘 시간만큼 블록이 떨어지지 않도록 시간 초기화
         gameLoop(); // 게임 루프 재시작
@@ -506,8 +511,9 @@ $(document).ready(function() {
         
         nextCtx.clearRect(0, 0, canvasWidth, canvasHeight);
         
-        const startX = (canvasWidth / 2) - NEXT_BLOCK_SIZE;
-        const startY = (canvasHeight / 2) - (NEXT_BLOCK_SIZE / 2);
+        // [수정] 60px 캔버스에 24px 블록 2개를 중앙 정렬
+        const startX = (canvasWidth / 2) - NEXT_BLOCK_SIZE; // (60 / 2) - 24 = 6
+        const startY = (canvasHeight / 2) - (NEXT_BLOCK_SIZE / 2); // (60 / 2) - (24 / 2) = 18
         
         drawBlock(nextCtx, 0, 0, nextPiece.pieces[0].id, NEXT_BLOCK_SIZE, startX, startY);
         drawBlock(nextCtx, 1, 0, nextPiece.pieces[1].id, NEXT_BLOCK_SIZE, startX, startY);
@@ -685,7 +691,7 @@ $(document).ready(function() {
         if (longPressTimer) clearTimeout(longPressTimer);
         if (softDropInterval) clearInterval(softDropInterval);
         $(document).off('.memorydrop'); // [오류 수정] 리스너를 팝업 전에 제거
-        $canvas.off('.memorydrop'); 
+        $ch4Container.off('.memorydrop'); // [수정] $canvas -> $ch4Container
 
         if (typeof showModal === 'function') {
             showModal("목표 점수 달성!<br>어떻게 하시겠습니까?", {
@@ -744,7 +750,7 @@ $(document).ready(function() {
 
     function skipChapter4() {
         // [수정] 스킵할 때도 패딩 0 클래스를 제거합니다.
-        $('#chapter4-container').removeClass('ch4-intro-visible');
+        $ch4Container.removeClass('ch4-intro-visible');
 
         stopChapter4Game();
         
@@ -790,6 +796,12 @@ $(document).ready(function() {
     // --- 6. 터치 핸들러 로직 (롱 프레스 / 탭) ---
 
     function handleTouchStart(e) {
+        // [수정] 팝업이나 버튼을 눌렀을 때는 게임 조작이 안 되도록 막음
+        const $target = $(e.target);
+        if ($target.is('button') || $target.closest('.modal-overlay').length > 0 || $target.is('#ch4-pause-btn')) {
+            return;
+        }
+
         if (isPaused || gameOver || isCheckingConnections) return;
         e.preventDefault(); 
         
@@ -811,6 +823,12 @@ $(document).ready(function() {
     }
 
     function handleTouchEnd(e) {
+        // [수정] 팝업이나 버튼을 눌렀을 때는 게임 조작이 안 되도록 막음
+        const $target = $(e.target) || $(e.srcElement);
+         if ($target.is('button') || $target.closest('.modal-overlay').length > 0 || $target.is('#ch4-pause-btn')) {
+            return;
+        }
+
         if (isPaused || gameOver || isCheckingConnections || touchStartX === 0) return;
         e.preventDefault();
         
@@ -833,16 +851,14 @@ $(document).ready(function() {
                 Math.abs(deltaX) < TAP_MAX_TRAVEL && 
                 Math.abs(deltaY) < TAP_MAX_TRAVEL) {
                 
-                const canvasWidth = $canvas.width();
-                // [수정] 터치 좌표는 캔버스 기준이 아니라 *화면(clientX)* 기준
+                // [수정] 캔버스 기준이 아닌, '전체 화면' 기준으로 터치 영역을 계산
+                const screenWidth = $(window).width();
                 const tapX = touchEndX; 
-                // 캔버스의 화면상 좌측 좌표
-                const canvasOffsetLeft = $canvas.offset().left;
 
-                if (tapX < canvasOffsetLeft + (canvasWidth * 0.4)) {
+                if (tapX < screenWidth * 0.4) {
                     // 왼쪽 40% 탭 = 왼쪽 이동
                     handleInput({ key: "ArrowLeft" });
-                } else if (tapX > canvasOffsetLeft + (canvasWidth * 0.6)) {
+                } else if (tapX > screenWidth * 0.6) {
                     // 오른쪽 40% 탭 = 오른쪽 이동
                     handleInput({ key: "ArrowRight" });
                 } else {
@@ -879,4 +895,4 @@ $(document).ready(function() {
         }
     }
 
-}); 
+}); // $(document).ready 래퍼 닫기
