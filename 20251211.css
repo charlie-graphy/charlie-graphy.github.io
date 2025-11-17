@@ -1315,23 +1315,34 @@ body, html {
 #ch4-next-preview {
     width: 60px;
     height: 60px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 2px dashed #90caf9;
-    border-radius: 3px;
-    overflow: hidden; /* [추가] 튀어나오는 부분을 잘라냅니다. */
+    
+    background-color: rgba(0, 0, 0, 0.7); /* [수정] 배경을 캔버스와 통일 */
+    
+    /* [수정] 대시보드 프레임과 통일 */
+    border: 2px solid;
+    border-color: #5b7a9a #c4e0ff; 
+    
+    border-radius: 3px; 
+    overflow: hidden; 
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5); /* [추가] 내부 그림자 */
 }
-
 /* [추가] 캔버스 자체가 박스에 꽉 차도록(선택사항이지만 권장) */
 #ch4-next-preview canvas {
     width: 100%;
     height: 100%;
 }
 #memory-drop-canvas {
-    /* 높이는 JS에서 캔버스 비율에 맞춰 설정 */
-    background-color: rgba(0, 5, 20, 0.7);
-    border: 3px solid #90caf9; /* 챕터 4 테마색 */
+    background-color: rgba(0, 0, 0, 0.7); /* [수정] 배경을 더 어둡게 */
+    
+    /* [수정] 3D 프레임 느낌으로 변경 */
+    border: 3px solid;
+    border-color: #5b7a9a #c4e0ff; /* 위/왼쪽은 어둡게, 아래/오른쪽은 밝게 */
+    
     border-radius: 5px;
-    box-shadow: 0 0 15px #90caf9;
+    
+    /* [수정] 그림자를 더 진하게 */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 15px #90caf9; 
+    
     image-rendering: pixelated;
     z-index: 3;
     position: relative;

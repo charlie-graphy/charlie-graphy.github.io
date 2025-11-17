@@ -36,8 +36,9 @@ $(document).ready(function() {
 
     // [수정] 이미지 리소스 (새 URL 적용)
     const iconImages = {};
-    // [수정] iconSources 변수 이름을 유지하고, 6개 아이템으로 초기화
-    let iconSources = [
+    
+    // [신규] 1단계 아이템 목록 (6개)
+    const level1Items = [
         { id: 1, src: "https://lh3.googleusercontent.com/d/1puP6vCGR6hOr-16YXD6_AH36mw0bNi_-" }, // 1. 라디오
         { id: 2, src: "https://lh3.googleusercontent.com/d/1mSsn1P22ZaczrdwiIfm4GTdZ0hocQVmF" }, // 2. 자전거
         { id: 3, src: "https://lh3.googleusercontent.com/d/1VPfKC1rXUjK1lQKousZkYn-fshDwJSr4" }, // 3. 매화
@@ -46,9 +47,12 @@ $(document).ready(function() {
         { id: 6, src: "https://lh3.googleusercontent.com/d/12elMJDIyD3E9JlmMnZAR06OoA-VB4O8f" }  // 6. 물고기모양 돌
     ];
     
-    // [수정] 7번째 아이템 (원고)을 새 URL로 미리 정의
-    const seventhItem = { id: 7, src: "https://lh3.googleusercontent.com/d/18pxFW7L7LnmWdJ_VArV9BlnevX4yTUmR" }; // 7. 원고
-
+    // [신규] 2단계 아이템 목록 (7개) - 1단계 목록 + 7번째 아이템
+    const level2Items = [
+        ...level1Items,
+        { id: 7, src: "https://lh3.googleusercontent.com/d/18pxFW7L7LnmWdJ_VArV9BlnevX4yTUmR" } // 7. 원고
+    ];
+    
     // [신규] 이미지 로드 함수 (개별 로드)
     function loadIconImage(icon) {
         if (!iconImages[icon.id]) {
@@ -57,8 +61,8 @@ $(document).ready(function() {
         }
     }
     
-    // [수정] 초기 6개 이미지 로드
-    iconSources.forEach(icon => loadIconImage(icon));
+    // [수정] 2단계 목록(7개)에 있는 모든 이미지를 미리 로드
+    level2Items.forEach(icon => loadIconImage(icon));
 
 
     // --- 3. 게임 상태 변수 ---
@@ -67,7 +71,7 @@ $(document).ready(function() {
     let nextPiece = null;
     let score = 0;
     let gameOver = false;
-    let isPaused = false; // [신규] 일시정지 상태
+    let isPaused = false; 
     let gameLoopId = null; 
     let lastDropTime = 0;
     let dropInterval = 1000;
@@ -76,7 +80,13 @@ $(document).ready(function() {
     let touchStartX = 0, touchStartY = 0, touchStartTime = 0;
     let longPressTimer = null; 
     let softDropInterval = null; 
-    let winConfirmationShown = false; // [신규] 목표 점수 팝업을 띄웠는지 여부
+    let winConfirmationShown = false; 
+    
+    // [신규] 현재 게임에서 사용할 아이템 목록 (기본값: 1단계)
+    let currentItemSet = level1Items;
+    
+    // [신규] Puyo Puyo 스타일 "흔들림" 효과를 위한 프레임 카운터
+    let animationFrameCounter = 0;
 
     // --- 4. 메인 함수 (초기화, 중지) ---
 
@@ -92,7 +102,7 @@ $(document).ready(function() {
         
         $canvas.hide();
         $hud.hide();
-        $ch4PauseBtn.hide(); // [수정] $skipBtn -> $ch4PauseBtn
+        $ch4PauseBtn.hide(); 
 
         $nextPreviewContainer.empty().append($nextPreviewCanvas);
         nextCtx = $nextPreviewCanvas.get(0).getContext('2d');
@@ -108,8 +118,7 @@ $(document).ready(function() {
         
         $ch4StartBtn.off().on('click', startChapter4Game); 
         $ch4IntroSkipBtn.off().on('click', skipChapter4); 
-        // $skipBtn.off().on('click', skipChapter4); // [삭제]
-        $ch4PauseBtn.off().on('click', showPauseModal); // [신규]
+        $ch4PauseBtn.off().on('click', showPauseModal); 
     };
     
     function startChapter4Game() {
@@ -123,7 +132,7 @@ $(document).ready(function() {
             
             // 2. 다른 UI 요소들 나타나게 함
             $hud.fadeIn(300);
-            $ch4PauseBtn.fadeIn(300); // [수정] $skipBtn -> $ch4PauseBtn
+            $ch4PauseBtn.fadeIn(300); 
             
             // 3. 캔버스가 fadeIn 완료되면 게임 시작
             $canvas.fadeIn(300, function() {
@@ -136,13 +145,12 @@ $(document).ready(function() {
                 isCheckingConnections = false;
                 dropInterval = 1000;
                 particles = [];
-                winConfirmationShown = false; // [신규] 게임 시작 시 팝업 플래그 리셋
+                winConfirmationShown = false; 
+                animationFrameCounter = 0; // [신규] 애니메이션 카운터 리셋
                 $scoreEl.text(score); 
 
-                // [수정] 7번째 아이템이 추가되었을 수 있으니, 게임 재시작 시 6개로 리셋
-                if (iconSources.length > 6) {
-                    iconSources.pop(); // 마지막에 추가된 7번째 아이템 제거
-                }
+                // [수정] 게임 시작 시 항상 1단계(6개) 아이템으로 리셋
+                currentItemSet = level1Items;
                 
                 nextPiece = createNewPiece();
                 currentPiece = createNewPiece();
@@ -175,7 +183,7 @@ $(document).ready(function() {
         $ch4Container.off('.memorydrop'); // [수정] $canvas -> $ch4Container
         $(window).off('.memorydrop-resize'); 
         
-        $ch4PauseBtn.off('click', showPauseModal); // [신규]
+        $ch4PauseBtn.off('click', showPauseModal); 
         
         if (longPressTimer) clearTimeout(longPressTimer);
         if (softDropInterval) clearInterval(softDropInterval);
@@ -291,6 +299,9 @@ $(document).ready(function() {
             gameLoopId = null;
             return;
         }
+        
+        // [신규] 애니메이션 카운터 업데이트
+        animationFrameCounter = (animationFrameCounter + 1) % 360; // 360 프레임마다 반복
         
         const now = Date.now();
         const delta = now - lastDropTime;
@@ -481,6 +492,9 @@ $(document).ready(function() {
     function drawGame() {
         if (!ctx) return; 
         
+        // [수정] 픽셀 아트가 뭉개지지 않도록 imageSmoothingEnabled 비활성화 (핵심!)
+        ctx.imageSmoothingEnabled = false;
+        
         ctx.clearRect(0, 0, $canvas.attr('width'), $canvas.attr('height'));
         ctx.fillStyle = 'rgba(0, 5, 20, 0.7)';
         ctx.fillRect(0, 0, $canvas.attr('width'), $canvas.attr('height'));
@@ -489,14 +503,16 @@ $(document).ready(function() {
             for (let x = 0; x < COLS; x++) {
                 const id = board[y][x];
                 if (id > 0) {
-                    drawBlock(ctx, x, y, id, BLOCK_SIZE);
+                    // [수정] 흔들림 효과(true)를 켜서 drawBlock 호출
+                    drawBlock(ctx, x, y, id, BLOCK_SIZE, 0, 0, true);
                 }
             }
         }
         
         if (currentPiece) {
             currentPiece.pieces.forEach(p => {
-                drawBlock(ctx, currentPiece.x + p.x, currentPiece.y + p.y, p.id, BLOCK_SIZE);
+                // [수정] 흔들림 효과(true)를 켜서 drawBlock 호출
+                drawBlock(ctx, currentPiece.x + p.x, currentPiece.y + p.y, p.id, BLOCK_SIZE, 0, 0, true);
             });
         }
         
@@ -505,6 +521,9 @@ $(document).ready(function() {
 
     function drawNextPiece() {
         if (!nextCtx || !nextPiece) return;
+        
+        // [수정] "NEXT" 박스도 픽셀 아트가 뭉개지지 않도록 비활성화
+        nextCtx.imageSmoothingEnabled = false;
         
         const canvasWidth = $nextPreviewCanvas.attr('width');
         const canvasHeight = $nextPreviewCanvas.attr('height');
@@ -515,20 +534,57 @@ $(document).ready(function() {
         const startX = (canvasWidth / 2) - NEXT_BLOCK_SIZE; // (60 / 2) - 24 = 6
         const startY = (canvasHeight / 2) - (NEXT_BLOCK_SIZE / 2); // (60 / 2) - (24 / 2) = 18
         
+        // [수정] 흔들림 효과(false)를 끈 상태(기본값)로 drawBlock 호출
         drawBlock(nextCtx, 0, 0, nextPiece.pieces[0].id, NEXT_BLOCK_SIZE, startX, startY);
         drawBlock(nextCtx, 1, 0, nextPiece.pieces[1].id, NEXT_BLOCK_SIZE, startX, startY);
     }
 
-    function drawBlock(targetCtx, x, y, id, size, offsetX = 0, offsetY = 0) {
-        const drawX = (x * size) + offsetX;
-        const drawY = (y * size) + offsetY;
+ // [수정] 둥근 사각형 클리핑 및 enableBobbing 파라미터 추가
+    function drawBlock(targetCtx, x, y, id, size, offsetX = 0, offsetY = 0, enableBobbing = false) {
+        let drawX = (x * size) + offsetX;
+        let drawY = (y * size) + offsetY;
+
+        // [수정] "흔들림" 효과를 Puyo (sin) -> Pixel (hop) 스타일로 변경
+        if (enableBobbing) {
+            // 40프레임(약 0.6초)마다 2px '위로' 톡 튐
+            const hopCycle = 40;
+            const hopHeight = 2; // 2px
+            // 각 블록마다 타이밍 다르게 (고유한 값)
+            const frameOffset = (x * 7 + y * 3) % hopCycle;
+
+            if ((animationFrameCounter + frameOffset) % hopCycle < 4) { // 4프레임(약 0.06초) 동안만 튐
+                drawY -= hopHeight;
+            }
+        }
         
+        // --- [핵심 수정] 둥근 사각형 클리핑 추가 ---
+        targetCtx.save(); // 1. 현재 캔버스 상태 저장
+
+        // 2. 둥근 사각형 경로 생성
+        const radius = size * 0.25; // 둥근 정도 (0.5면 원, 0.25면 적당히 둥글게)
+        const width = size;
+        const height = size;
+
+        targetCtx.beginPath();
+        targetCtx.moveTo(drawX + radius, drawY);
+        targetCtx.lineTo(drawX + width - radius, drawY);
+        targetCtx.quadraticCurveTo(drawX + width, drawY, drawX + width, drawY + radius);
+        targetCtx.lineTo(drawX + width, drawY + height - radius);
+        targetCtx.quadraticCurveTo(drawX + width, drawY + height, drawX + width - radius, drawY + height);
+        targetCtx.lineTo(drawX + radius, drawY + height);
+        targetCtx.quadraticCurveTo(drawX, drawY + height, drawX, drawY + height - radius);
+        targetCtx.lineTo(drawX, drawY + radius);
+        targetCtx.quadraticCurveTo(drawX, drawY, drawX + radius, drawY);
+        targetCtx.closePath();
+        
+        targetCtx.clip(); // 3. 이 둥근 사각형 영역을 클리핑 마스크로 설정
+
+        // 4. 이미지 그리기 (이제 둥근 사각형으로 잘려서 보임)
         const img = iconImages[id];
-        // [수정] 전역 카운터(imagesLoaded) 대신 개별 이미지 로드 상태(.complete)를 체크
         if (img && img.complete && img.naturalHeight !== 0) {
             targetCtx.drawImage(img, drawX, drawY, size, size);
         } else {
-            // [수정] 7가지 아이템 색상 팔레트 적용
+            // 대체 색상 그리기 (이것도 둥근 사각형으로 잘림)
             const colors = [
                 '#7ECFFF', // 1. 라디오 (하늘 파랑)
                 '#9FFFD9', // 2. 자전거 (라임 민트)
@@ -541,6 +597,9 @@ $(document).ready(function() {
             targetCtx.fillStyle = colors[id - 1] || 'grey';
             targetCtx.fillRect(drawX, drawY, size, size);
         }
+
+        targetCtx.restore(); // 5. 저장했던 캔버스 상태(클리핑 해제) 복원
+        // --- [핵심 수정] 끝 ---
     }
 
     function createExplosion(x, y, id) {
@@ -558,15 +617,28 @@ $(document).ready(function() {
         ];
         const color = colors[id - 1] || 'white';
 
-        for (let i = 0; i < 15; i++) { 
+        // [수정] Puyo Puyo 스타일로 "팡!" 터지는 느낌
+        for (let i = 0; i < 25; i++) { // 15 -> 25개 (더 풍성하게)
             particles.push({
                 x: centerX, y: centerY,
-                vx: (Math.random() - 0.5) * 8, 
-                vy: (Math.random() - 0.5) * 8, 
-                size: Math.random() * (BLOCK_SIZE / 20) + 2, 
+                vx: (Math.random() - 0.5) * 12, // 8 -> 12 (더 빠르고 넓게)
+                vy: (Math.random() - 0.5) * 12, // 8 -> 12
+                size: Math.random() * (BLOCK_SIZE / 15) + 3, // 20 -> 15 (더 큰 입자)
                 color: color,
-                life: 30 
+                life: 40 // 30 -> 40 (더 오래 남음)
             });
+            
+            // [추가] 5개의 '섬광' 입자를 추가해서 "팡!"하는 느낌 강조
+            if (i < 5) {
+                particles.push({
+                    x: centerX, y: centerY,
+                    vx: (Math.random() - 0.5) * 6, // 섬광은 멀리 안 퍼짐
+                    vy: (Math.random() - 0.5) * 6,
+                    size: Math.random() * (BLOCK_SIZE / 10) + 4, // 섬광은 더 큼
+                    color: '#FFFFFF', // 흰색!
+                    life: 20 // 섬광은 짧게
+                });
+            }
         }
     }
 
@@ -598,9 +670,9 @@ $(document).ready(function() {
     }
 
     function createNewPiece() {
-        // [수정] iconSources 배열은 6개 혹은 7개가 될 수 있음 (showWinConfirmation에서 변경)
-        const id1 = iconSources[Math.floor(Math.random() * iconSources.length)].id;
-        const id2 = iconSources[Math.floor(Math.random() * iconSources.length)].id;
+        // [수정] iconSources 대신 currentItemSet을 사용
+        const id1 = currentItemSet[Math.floor(Math.random() * currentItemSet.length)].id;
+        const id2 = currentItemSet[Math.floor(Math.random() * currentItemSet.length)].id;
         return {
             x: Math.floor(COLS / 2) - 1, y: 0,
             pieces: [ { id: id1, x: 0, y: 0 }, { id: id2, x: 1, y: 0 } ], 
@@ -718,11 +790,8 @@ $(document).ready(function() {
                 onSkip: () => {
                     hideModal(); 
 
-                    // [신규] 7번째 아이템을 추가하고 로드 (중복 추가 방지)
-                    if (iconSources.length === 6) { 
-                        iconSources.push(seventhItem);
-                        loadIconImage(seventhItem); // 새 이미지 로드 시작
-                    }
+                    // [수정] 2단계(7개) 아이템 목록으로 변경
+                    currentItemSet = level2Items;
                     
                     resumeGame(); // 수정된 resumeGame이 게임을 재개시킴
                 },
