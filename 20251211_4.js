@@ -34,26 +34,26 @@ $(document).ready(function() {
     const LONG_PRESS_DURATION = 300; 
     const SOFT_DROP_SPEED = 60; 
 
-    // 이미지 리소스 (챕터 3 재활용)
+    // [수정] 이미지 리소스 (새 URL 적용)
     const iconImages = {};
-    const iconSources = [
-        { id: 1, src: "https://lh3.googleusercontent.com/d/1iV8cFHpJF8dbBrE9WuR8QL9bvCvcUTkt" }, // 라피에 검
-        { id: 2, src: "https://lh3.googleusercontent.com/d/1E2X0OiY2Nx2WXZph0alj1vfHMrtleZBK" }, // 농구공
-        { id: 3, src: "https://lh3.googleusercontent.com/d/1_48vHjQl3PZJZGNhgVDIO3rKNZZnpNak" }, // 라디오
-        { id: 4, src: "https://lh3.googleusercontent.com/d/1fw0n2SsBAODWS_UQjB8gxbsJHXy3edc5" }, // 매화
-        { id: 5, src: "https://lh3.googleusercontent.com/d/1dT3wFKqge3ADj8irrQs89JhRxiVSbYdy" }, // 자전거
-        { id: 6, src: "https://lh3.googleusercontent.com/d/1wTMP8T9fQ422Qlue1Mrrrx8d2LkK7Bto" }  // 원고
+    // [수정] iconSources 변수 이름을 유지하고, 6개 아이템으로 초기화
+    let iconSources = [
+        { id: 1, src: "https://lh3.googleusercontent.com/d/1puP6vCGR6hOr-16YXD6_AH36mw0bNi_-" }, // 1. 라디오
+        { id: 2, src: "https://lh3.googleusercontent.com/d/1mSsn1P22ZaczrdwiIfm4GTdZ0hocQVmF" }, // 2. 자전거
+        { id: 3, src: "https://lh3.googleusercontent.com/d/1VPfKC1rXUjK1lQKousZkYn-fshDwJSr4" }, // 3. 매화
+        { id: 4, src: "https://lh3.googleusercontent.com/d/1BFnO3cdznUWnwnS_z5MqWAXnUlg_REfL" }, // 4. 농구공
+        { id: 5, src: "https://lh3.googleusercontent.com/d/1FeSVXFq7k4r70dRif8nTjzrbBJ4hN27a" }, // 5. 라피에검
+        { id: 6, src: "https://lh3.googleusercontent.com/d/12elMJDIyD3E9JlmMnZAR06OoA-VB4O8f" }  // 6. 물고기모양 돌
     ];
     
-    // [신규] 7번째 아이템 (물고기 돌)을 미리 정의 (id는 겹치지 않게 7로 지정)
-    const seventhItem = { id: 7, src: "https://lh3.googleusercontent.com/d/15dGFqHvAa7zLeCJOr8i9_q_PsBJ162R6" };
+    // [수정] 7번째 아이템 (원고)을 새 URL로 미리 정의
+    const seventhItem = { id: 7, src: "https://lh3.googleusercontent.com/d/18pxFW7L7LnmWdJ_VArV9BlnevX4yTUmR" }; // 7. 원고
 
     // [신규] 이미지 로드 함수 (개별 로드)
     function loadIconImage(icon) {
         if (!iconImages[icon.id]) {
             iconImages[icon.id] = new Image();
             iconImages[icon.id].src = icon.src;
-            // [수정] onload 카운터 로직 제거 (더 안전한 방식으로 변경)
         }
     }
     
@@ -528,8 +528,16 @@ $(document).ready(function() {
         if (img && img.complete && img.naturalHeight !== 0) {
             targetCtx.drawImage(img, drawX, drawY, size, size);
         } else {
-            // [수정] 7번째 아이템('물고기 돌')을 위한 색상(#ffcc80) 추가
-            const colors = ['#80deea', '#ce93d8', '#a5d6a7', '#90caf9', '#b39ddb', '#8c9eff', '#ffcc80'];
+            // [수정] 7가지 아이템 색상 팔레트 적용
+            const colors = [
+                '#7ECFFF', // 1. 라디오 (하늘 파랑)
+                '#9FFFD9', // 2. 자전거 (라임 민트)
+                '#FFB5C8', // 3. 매화 (코랄 핑크)
+                '#FFF5A5', // 4. 농구공 (레몬 옐로우)
+                '#C4A8FF', // 5. 라피에검 (바이올렛)
+                '#8EF4FF', // 6. 물고기 돌 (아쿠아 블루)
+                '#E6B6FF'  // 7. 원고 (연퍼플)
+            ];
             targetCtx.fillStyle = colors[id - 1] || 'grey';
             targetCtx.fillRect(drawX, drawY, size, size);
         }
@@ -538,8 +546,16 @@ $(document).ready(function() {
     function createExplosion(x, y, id) {
         const centerX = (x + 0.5) * BLOCK_SIZE;
         const centerY = (y + 0.5) * BLOCK_SIZE;
-        // [수정] 7번째 아이템('물고기 돌')을 위한 색상(#ffcc80) 추가
-        const colors = ['#80deea', '#ce93d8', '#a5d6a7', '#90caf9', '#b39ddb', '#8c9eff', '#ffcc80'];
+        // [수정] 7가지 아이템 색상 팔레트 적용
+        const colors = [
+            '#7ECFFF', // 1. 라디오 (하늘 파랑)
+            '#9FFFD9', // 2. 자전거 (라임 민트)
+            '#FFB5C8', // 3. 매화 (코랄 핑크)
+            '#FFF5A5', // 4. 농구공 (레몬 옐로우)
+            '#C4A8FF', // 5. 라피에검 (바이올렛)
+            '#8EF4FF', // 6. 물고기 돌 (아쿠아 블루)
+            '#E6B6FF'  // 7. 원고 (연퍼플)
+        ];
         const color = colors[id - 1] || 'white';
 
         for (let i = 0; i < 15; i++) { 
