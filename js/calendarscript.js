@@ -1748,6 +1748,69 @@
 					start: '2025-11-23 15:00',
 					className: 'bg-blue',
 					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '<p class="event">첫 공연</p>조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					start: '2025-12-24 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
+					start: '2025-12-27 15:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
+					start: '2025-12-28 18:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					start: '2025-12-31 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
+					start: '2026-01-01 18:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					start: '2026-01-04 12:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					start: '2026-01-08 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					start: '2026-01-10 15:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
+					start: '2026-01-11 18:00',
+					className: 'bg-purple',
+					allDay: false
 				}
 			],
 			eventClick: function(event, jsEvent, view) {
