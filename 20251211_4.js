@@ -492,30 +492,67 @@ $(document).ready(function() {
     function drawGame() {
         if (!ctx) return; 
         
-        // [수정] 픽셀 아트가 뭉개지지 않도록 imageSmoothingEnabled 비활성화 (핵심!)
+        // 1. 픽셀 아트 뭉개짐 방지 (기존 코드)
         ctx.imageSmoothingEnabled = false;
         
+        // 2. 캔버스 전체 지우기 (기존 코드)
         ctx.clearRect(0, 0, $canvas.attr('width'), $canvas.attr('height'));
+        
+        // 3. 캔버스 배경색 칠하기 (기존 코드)
         ctx.fillStyle = 'rgba(0, 5, 20, 0.7)';
         ctx.fillRect(0, 0, $canvas.attr('width'), $canvas.attr('height'));
 
+        // --- [핵심 수정] 배경 점선 그리드 그리기 ---
+        const canvasWidth = $canvas.attr('width');
+        const canvasHeight = $canvas.attr('height');
+
+        ctx.save(); // 4. 현재 스타일 저장 (중요: 점선이 다른 그림에 영향 안 주게)
+        
+        // 5. 점선 스타일 설정 (HUD 라벨 색상 #9ab 기반)
+        ctx.strokeStyle = 'rgba(150, 171, 187, 0.2)'; // 20% 투명도
+        ctx.lineWidth = 1;
+        ctx.setLineDash([3, 4]); // 3px 그리고 4px 건너뛰는 점선
+
+        ctx.beginPath(); // 6. 선 그리기 시작
+
+        // 7. 세로 점선 그리기 (COLS - 1 개)
+        for (let x = 1; x < COLS; x++) {
+            const xPos = x * BLOCK_SIZE;
+            ctx.moveTo(xPos, 0);
+            ctx.lineTo(xPos, canvasHeight);
+        }
+        
+        // 8. 가로 점선 그리기 (ROWS - 1 개)
+        for (let y = 1; y < ROWS; y++) {
+            const yPos = y * BLOCK_SIZE;
+            ctx.moveTo(0, yPos);
+            ctx.lineTo(canvasWidth, yPos);
+        }
+        
+        ctx.stroke(); // 9. 모든 점선 한번에 그리기
+        
+        ctx.restore(); // 10. 저장했던 스타일 복원 (점선 끄기)
+        // --- [핵심 수정] 끝 ---
+
+        
+        // 11. 보드 위의 블록들 그리기 (기존 코드)
         for (let y = 0; y < ROWS; y++) {
             for (let x = 0; x < COLS; x++) {
                 const id = board[y][x];
                 if (id > 0) {
-                    // [수정] 흔들림 효과(true)를 켜서 drawBlock 호출
                     drawBlock(ctx, x, y, id, BLOCK_SIZE, 0, 0, true);
                 }
             }
         }
         
+        // 12. 현재 조작 중인 블록 그리기 (기존 코드)
         if (currentPiece) {
             currentPiece.pieces.forEach(p => {
-                // [수정] 흔들림 효과(true)를 켜서 drawBlock 호출
                 drawBlock(ctx, currentPiece.x + p.x, currentPiece.y + p.y, p.id, BLOCK_SIZE, 0, 0, true);
             });
         }
         
+        // 13. 파티클 그리기 (기존 코드)
         drawParticles();
     }
 
