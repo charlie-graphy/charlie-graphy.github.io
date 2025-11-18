@@ -279,7 +279,7 @@ $(document).ready(function() {
                     hideModal(); // 모달 닫고
                     resumeGame(); // 게임 재개
                 },
-                showSkip: true, skipText: '넘어가기', 
+                showSkip: true, skipText: '그만하기', 
                 onSkip: skipChapter4, // '넘어가기' 함수 호출
                 hideClose: false, // 바깥 클릭 시 닫기
                 onClose: () => {
@@ -493,7 +493,8 @@ $(document).ready(function() {
         if (!ctx) return; 
         
         // 1. 픽셀 아트 뭉개짐 방지 (기존 코드)
-        ctx.imageSmoothingEnabled = false;
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
         
         // 2. 캔버스 전체 지우기 (기존 코드)
         ctx.clearRect(0, 0, $canvas.attr('width'), $canvas.attr('height'));
@@ -560,7 +561,8 @@ $(document).ready(function() {
         if (!nextCtx || !nextPiece) return;
         
         // [수정] "NEXT" 박스도 픽셀 아트가 뭉개지지 않도록 비활성화
-        nextCtx.imageSmoothingEnabled = false;
+        nextCtx.imageSmoothingEnabled = true;
+        nextCtx.imageSmoothingQuality = 'high';
         
         const canvasWidth = $nextPreviewCanvas.attr('width');
         const canvasHeight = $nextPreviewCanvas.attr('height');
@@ -576,29 +578,17 @@ $(document).ready(function() {
         drawBlock(nextCtx, 1, 0, nextPiece.pieces[1].id, NEXT_BLOCK_SIZE, startX, startY);
     }
 
- // [수정] 둥근 사각형 클리핑 및 enableBobbing 파라미터 추가
+ // [수정] 둥근 사각형 클리핑 + 비율 유지 + 'Math.floor'로 반올림 오류 방지
     function drawBlock(targetCtx, x, y, id, size, offsetX = 0, offsetY = 0, enableBobbing = false) {
         let drawX = (x * size) + offsetX;
         let drawY = (y * size) + offsetY;
 
-        // [수정] "흔들림" 효과를 Puyo (sin) -> Pixel (hop) 스타일로 변경
-        if (enableBobbing) {
-            // 40프레임(약 0.6초)마다 2px '위로' 톡 튐
-            const hopCycle = 40;
-            const hopHeight = 2; // 2px
-            // 각 블록마다 타이밍 다르게 (고유한 값)
-            const frameOffset = (x * 7 + y * 3) % hopCycle;
-
-            if ((animationFrameCounter + frameOffset) % hopCycle < 4) { // 4프레임(약 0.06초) 동안만 튐
-                drawY -= hopHeight;
-            }
-        }
+        // [삭제] 흔들림 로직은 제거된 상태입니다.
         
-        // --- [핵심 수정] 둥근 사각형 클리핑 추가 ---
-        targetCtx.save(); // 1. 현재 캔버스 상태 저장
+        targetCtx.save(); // 1. 캔버스 상태 저장
 
-        // 2. 둥근 사각형 경로 생성
-        const radius = size * 0.25; // 둥근 정도 (0.5면 원, 0.25면 적당히 둥글게)
+        // 2. 둥근 사각형 클리핑 경로 생성 (기존과 동일)
+        const radius = size * 0.25; 
         const width = size;
         const height = size;
 
@@ -614,29 +604,43 @@ $(document).ready(function() {
         targetCtx.quadraticCurveTo(drawX, drawY, drawX + radius, drawY);
         targetCtx.closePath();
         
-        targetCtx.clip(); // 3. 이 둥근 사각형 영역을 클리핑 마스크로 설정
+        targetCtx.clip(); // 3. 클리핑 마스크 적용
 
-        // 4. 이미지 그리기 (이제 둥근 사각형으로 잘려서 보임)
+        // --- [핵심 수정] 이미지 찌그러짐 방지 (기존과 동일) ---
         const img = iconImages[id];
-        if (img && img.complete && img.naturalHeight !== 0) {
-            targetCtx.drawImage(img, drawX, drawY, size, size);
+        
+        if (img && img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
+            
+            const imgWidth = img.naturalWidth;
+            const imgHeight = img.naturalHeight;
+            const ratio = Math.min(size / imgWidth, size / imgHeight);
+
+            const renderWidth = imgWidth * ratio;
+            const renderHeight = imgHeight * ratio;
+            
+            // [수정] 소수점 좌표를 방지하기 위해 Math.floor() 적용
+            const renderX = Math.floor(drawX + (size - renderWidth) / 2);
+            const renderY = Math.floor(drawY + (size - renderHeight) / 2);
+
+            targetCtx.drawImage(img, renderX, renderY, renderWidth, renderHeight);
+
         } else {
-            // 대체 색상 그리기 (이것도 둥근 사각형으로 잘림)
+            // 8. 대체 색상 그리기
             const colors = [
                 '#7ECFFF', // 1. 라디오 (하늘 파랑)
                 '#9FFFD9', // 2. 자전거 (라임 민트)
                 '#FFB5C8', // 3. 매화 (코랄 핑크)
                 '#FFF5A5', // 4. 농구공 (레몬 옐로우)
-                '#C4A8FF', // 5. 라피에검 (바이올렛)
+                '#C4AFF', // 5. 라피에검 (바이올렛)
                 '#8EF4FF', // 6. 물고기 돌 (아쿠아 블루)
                 '#E6B6FF'  // 7. 원고 (연퍼플)
             ];
             targetCtx.fillStyle = colors[id - 1] || 'grey';
             targetCtx.fillRect(drawX, drawY, size, size);
         }
-
-        targetCtx.restore(); // 5. 저장했던 캔버스 상태(클리핑 해제) 복원
         // --- [핵심 수정] 끝 ---
+
+        targetCtx.restore(); // 9. 클리핑 해제
     }
 
     function createExplosion(x, y, id) {

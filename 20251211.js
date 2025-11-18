@@ -72,11 +72,11 @@ $(window).on('load', function() {
         const inputValue = $passwordInput.val();
         if (inputValue === correctPassword) {
             $statusMessage.css('color', '#55efc4').text('SYSTEM :: 승인 코드 확인. 곧 이륙합니다...');
-            $cockpit.css('animation', 'takeoff 2s forwards');
+            $cockpit.css('animation', 'takeoff 1.5s forwards');
             setTimeout(function() {
                 $cockpit.hide();
                 showStoryOverlay();
-            }, 2000);
+            }, 1500);
         } else {
             $statusMessage.html('<span style="color: #ff4757;">ERROR :: 승인 코드가 일치하지 않습니다.</span>');
             $passwordInput.val("").focus();
