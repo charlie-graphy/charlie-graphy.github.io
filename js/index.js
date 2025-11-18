@@ -4,7 +4,7 @@ $(window).on("load", function() {
 		$(".main-content").addClass("show");
 	});
 	
-	let targetWindow = $("#templete").clone();
+	/*let targetWindow = $("#templete").clone();
 	targetWindow.css({'width':'210px','height':'150px'});
 	$(".main-content").append(targetWindow);
 	
@@ -14,7 +14,7 @@ $(window).on("load", function() {
     targetWindow.find(".content").append('<video class="banner" src="img/2025-HBD.mp4" alt="배너" style="width:100%;" autoplay loop muted playsinline>');
 	
 	targetWindow.fadeIn().css({top: '42px', left: "1%"});
-	targetWindow.find('.resize-handle, .max-btn').remove();
+	targetWindow.find('.resize-handle, .max-btn').remove();*/
 	
 	$(".main-content img.banner").parents('.content').click(function(e){
 		window.location = "https://www.jeehwany.com/20250725";
