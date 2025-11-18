@@ -1787,7 +1787,7 @@
 				{
 					title: '은하철도의 밤',
 					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
-					start: '2026-01-04 12:00',
+					start: '2026-01-04 14:00',
 					className: 'bg-purple',
 					allDay: false
 				},
