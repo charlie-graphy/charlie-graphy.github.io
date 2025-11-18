@@ -858,15 +858,15 @@ $(document).ready(function() {
         const chapter4Reward = {
             title: "🌌",
             content: `“10년의 기억이 모여 빛이되었습니다.
-            <br><br>
-            이 빛은 우리가 함께 만든 은하.
-            <br><br>
-            이제 마지막 항해를 시작합니다.”`
+            
+이 빛은 우리가 함께 만든 은하.
+
+이제 마지막 항해를 시작합니다.”`
         };
         
         if (typeof showModal === 'function' && typeof showFragmentModal === 'function') {
              showFragmentModal(chapter4Reward.title, chapter4Reward.content, () => {
-                showModal("챕터 4 '연결' 클리어!<br>다음 여정을 준비하세요.", {
+                showModal("챕터 4 '연결' 클리어!<br>마지막 여정을 준비하세요.", {
                      showNext: true, nextChapterNum: 5,
                      showMap: true, hideClose: false, onClose: hideModal
                  });
@@ -882,15 +882,15 @@ $(document).ready(function() {
         
         const chapter4Reward = {
             title: "🌌",
-            content: `“10년의 기억이 모여 빛이 되었습니다.
-            <br><br>
-            이 빛은 우리가 함께 만든 은하.
-            <br><br>
-            이제 마지막 항해를 시작합니다.”`
+            content: `“10년의 기억이 모여 빛이되었습니다.
+                
+이 빛은 우리가 함께 만든 은하.
+
+이제 마지막 항해를 시작합니다.”`
         };
 
         function showChapter4ClearPopup() {
-            showModal("챕터 4 '연결' 클리어!<br>다음 여정을 준비하세요.", {
+            showModal("챕터 4 '연결' 클리어!<br>마지막 여정을 준비하세요.", {
                  showNext: true, nextChapterNum: 5,
                  showMap: true, hideClose: false, onClose: hideModal
              });
