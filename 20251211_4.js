@@ -493,7 +493,7 @@ $(document).ready(function() {
         if (!ctx) return; 
         
         // 1. 픽셀 아트 뭉개짐 방지 (기존 코드)
-        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingEnabled = false;
         ctx.imageSmoothingQuality = 'high';
         
         // 2. 캔버스 전체 지우기 (기존 코드)
@@ -561,7 +561,7 @@ $(document).ready(function() {
         if (!nextCtx || !nextPiece) return;
         
         // [수정] "NEXT" 박스도 픽셀 아트가 뭉개지지 않도록 비활성화
-        nextCtx.imageSmoothingEnabled = true;
+        nextCtx.imageSmoothingEnabled = false;
         nextCtx.imageSmoothingQuality = 'high';
         
         const canvasWidth = $nextPreviewCanvas.attr('width');

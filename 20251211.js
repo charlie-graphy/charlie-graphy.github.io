@@ -1,5 +1,5 @@
-// [수정] 챕터 3,4에서 호출할 함수들을 전역 변수로 미리 선언
-let showModal, hideModal, showFragmentModal, hideFragmentModal, transitionToChapter, goToMap, showPoem, showClearConfirmationPopup, stopAsteroidGame, initChapter3Game, stopChapter3Game, initChapter4Game, stopChapter4Game;
+// [수정] 챕터 3,4,5에서 호출할 함수들을 전역 변수로 미리 선언
+let showModal, hideModal, showFragmentModal, hideFragmentModal, transitionToChapter, goToMap, showPoem, showClearConfirmationPopup, stopAsteroidGame, initChapter3Game, stopChapter3Game, initChapter4Game, stopChapter4Game, initChapter5Game, stopChapter5Game;
 
 // 창의 모든 리소스(이미지 포함)가 로드되면 스크립트를 실행합니다.
 $(window).on('load', function() {
@@ -22,6 +22,7 @@ $(window).on('load', function() {
     const $chapter2 = $('#chapter2-container');
     const $chapter3 = $('#chapter3-container');
     const $chapter4 = $('#chapter4-container');
+    const $chapter5 = $('#chapter5-container');
     const $chapterTransition = $('#chapter-transition');
     const $transitionTitle = $('#transition-title');
     const $transitionImage = $('#transition-image');
@@ -118,6 +119,7 @@ $(window).on('load', function() {
                 $('#ch4-story-intro').hide();
                 initChapter4Game(); 
             }
+            if (chapterNum === 5) { initChapter5Game(); }
 
             // 2b. 새 챕터가 1초에 걸쳐 '서서히' 나타나게 합니다. (Cross-fade In)
             $targetChapter.css('display', 'flex').animate({opacity: 1}, 1000, function() {
@@ -149,6 +151,7 @@ $(window).on('load', function() {
         stopAsteroidGame();
         stopChapter3Game();
         stopChapter4Game();
+        stopChapter5Game();
         $('.chapter-container').fadeOut(500);
         $poemModal.fadeOut(300);
         $fragmentModal.fadeOut(300);
@@ -184,7 +187,6 @@ $(window).on('load', function() {
         $selectFragmentModal.fadeOut(300);
 
         if (chapterNum > 5) { showModal("모든 챕터를 클리어했습니다!"); goToMap(); return; }
-        if (chapterNum > 4) { showModal(`Chapter ${chapterNum}은 아직 개발 중입니다.`); goToMap(); return; }
         const $nextPlanet = $(`#planet${chapterNum}`); if ($nextPlanet.length > 0) { showChapter(chapterNum, $nextPlanet.data('title'), $nextPlanet.find('img').attr('src')); } else { showModal("오류: 다음 챕터를 찾을 수 없습니다."); goToMap(); }
     }
 
@@ -205,7 +207,7 @@ $(window).on('load', function() {
     $exploreBtn.on('click', function() { const $firstPlanet = $('#planet1'); showChapter($firstPlanet.data('chapter'), $firstPlanet.data('title'), $firstPlanet.find('img').attr('src')); });
     $planets.on('click', function() { 
         const chapterNum = $(this).data('chapter'); 
-        if (chapterNum === 1 || chapterNum === 2 || chapterNum === 3 || chapterNum === 4) { 
+        if (chapterNum === 1 || chapterNum === 2 || chapterNum === 3 || chapterNum === 4 || chapterNum === 5) { 
             showChapter(chapterNum, $(this).data('title'), $(this).find('img').attr('src')); 
         } else { 
             showModal(`Chapter ${chapterNum}은 아직 개발 중입니다.`); 

@@ -47,8 +47,8 @@
     <div id="story-overlay" style="display: none;">
         <div id="story-text-container">
             </div>
-        <span class="story-cursor" style="display: none;">▼</span> </div>
-
+        <span class="story-cursor" style="display: none;">▼</span>
+    </div>
 
     <div class="galaxy-map-container" style="display: none;">
         <h2 class="map-title">항해 지도</h2>
@@ -67,31 +67,31 @@
 
                 <div class="planet-orbit" id="orbit1">
                     <div class="planet" id="planet1" data-chapter="1" data-title="CH.1 이륙">
-                        <img src="https://lh3.googleusercontent.com/d/1w35vNriFhcgTDZUeKTjAYh8V6TWwFOTZ" alt="이륙 행성 아이콘">
+                        <img src="https://lh3.googleusercontent.com/d/1w35vNriFhcgTDZUeKTjAYh8V6TWwFOTZ" alt="이륙 행성 아이콘" oncontextmenu="return false">
                         <span class="planet-name">CH.1 이륙</span>
                     </div>
                 </div>
                 <div class="planet-orbit" id="orbit2">
                     <div class="planet" id="planet2" data-chapter="2" data-title="CH.2 탐색">
-                        <img src="https://lh3.googleusercontent.com/d/1PZfIVFahpetwRdMc4nfeeP8aRKX3f0fA" alt="탐색 행성 아이콘">
+                        <img src="https://lh3.googleusercontent.com/d/1PZfIVFahpetwRdMc4nfeeP8aRKX3f0fA" alt="탐색 행성 아이콘" oncontextmenu="return false">
                         <span class="planet-name">CH.2 탐색</span>
                     </div>
                 </div>
                 <div class="planet-orbit" id="orbit3">
                     <div class="planet" id="planet3" data-chapter="3" data-title="CH.3 확장">
-                        <img src="https://lh3.googleusercontent.com/d/1bKrq-6WYqeOrak46YEJeoJj9BtUQkr1z" alt="확장 행성 아이콘">
+                        <img src="https://lh3.googleusercontent.com/d/1bKrq-6WYqeOrak46YEJeoJj9BtUQkr1z" alt="확장 행성 아이콘" oncontextmenu="return false">
                         <span class="planet-name">CH.3 확장</span>
                     </div>
                 </div>
                 <div class="planet-orbit" id="orbit4">
                     <div class="planet" id="planet4" data-chapter="4" data-title="CH.4 연결">
-                        <img src="https://lh3.googleusercontent.com/d/1oM8j5LOdn0mrV1L7EcEvGaFK_DrcjGPG" alt="연결 행성 아이콘">
+                        <img src="https://lh3.googleusercontent.com/d/1oM8j5LOdn0mrV1L7EcEvGaFK_DrcjGPG" alt="연결 행성 아이콘" oncontextmenu="return false">
                         <span class="planet-name">CH.4 연결</span>
                     </div>
                 </div>
                  <div class="planet-orbit" id="orbit5">
                     <div class="planet" id="planet5" data-chapter="5" data-title="CH.5 우주">
-                        <img src="https://lh3.googleusercontent.com/d/1XevrmVsQOHvb-J0g58TdDTw2pZcXw0yU" alt="우주 행성 아이콘">
+                        <img src="https://lh3.googleusercontent.com/d/1XevrmVsQOHvb-J0g58TdDTw2pZcXw0yU" alt="우주 행성 아이콘" oncontextmenu="return false">
                         <span class="planet-name">CH.5 우주</span>
                     </div>
                 </div>
@@ -208,11 +208,9 @@
 
                 <div id="crossword-clues-container">
                     <h4>가로 열쇠</h4>
-                    <ul id="clues-across">
-                        </ul>
+                    <ul id="clues-across"></ul>
                     <h4>세로 열쇠</h4>
-                    <ul id="clues-down">
-                        </ul>
+                    <ul id="clues-down"></ul>
                 </div>
             </div>
 
@@ -296,15 +294,125 @@
         <canvas id="memory-drop-canvas"></canvas>
     </div>
     
+    <!-- ===== [신규] 챕터 5: 우주 (방명록) ===== -->
+    <div id="chapter5-container" class="chapter-container">
+    
+        <!-- [신규] 0. 뷰 전환 토글 -->
+        <div id="ch5-view-toggle">
+            <button class="ch5-toggle-btn active" data-view="universe" title="별자리 뷰">
+                <!-- "별자리 뷰" 아이콘 (2x2 격자) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <rect x="2" y="2" width="5" height="5" rx="1"/>
+                    <rect x="9" y="2" width="5" height="5" rx="1"/>
+                    <rect x="2" y="9" width="5" height="5" rx="1"/>
+                    <rect x="9" y="9" width="5" height="5" rx="1"/>
+                </svg>
+            </button>
+            <button class="ch5-toggle-btn" data-view="list" title="목록 뷰">
+                <!-- "목록 뷰" 아이콘 (삼선) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <rect y="2" width="16" height="3" rx="1.5"/>
+                    <rect y="6.5" width="16" height="3" rx="1.5"/>
+                    <rect y="11" width="16" height="3" rx="1.5"/>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- 1. 스크롤 가능한 우주 공간 -->
+        <div id="ch5-universe-wrapper">
+            <!-- 1a. 배경 별 캔버스 -->
+            <canvas id="ch5-starfield-canvas"></canvas>
+            <!-- 1b. 메시지 별(방명록)이 표시될 공간 -->
+            <div id="ch5-constellation">
+                <!-- (JS가 이 안에 .ch5-star div들을 추가합니다) -->
+            </div>
+        </div>
+
+        <!-- [수정] 2. 목록 뷰 -> '캐러셀' 래퍼로 변경 -->
+        <div id="ch5-list-view-wrapper">
+            <!-- 2a. 실제 움직이는 트랙 -->
+            <div id="ch5-list-track">
+                <!-- (JS가 이 안에 .ch5-list-slide div들을 추가합니다) -->
+            </div>
+            <!-- 2b. 탐색 버튼 -->
+            <button id="ch5-list-prev" class="ch5-list-nav-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <button id="ch5-list-next" class="ch5-list-nav-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div id="ch5-list-counter"></div>
+        </div>
+
+        <!-- 3. '별 띄우기' 고정 버튼 -->
+        <button id="ch5-write-btn" class="modal-action-btn">별 띄우기 ✨</button>
+    </div>
+    
+    <!-- [신규] 챕터 5-1: '별 남기기' 작성 폼 모달 -->
+    <div id="ch5-form-modal" class="modal-overlay">
+        <div class="modal-content ch5-modal-content">
+            <span class="modal-close-btn ch5-close-btn">×</span>
+            <h3 id="ch5-form-title">빛이 흐르는 저 하늘에 <br>강물 속에 새하얀 모래알들?</h3>
+            
+            <p class="modal-text" style="font-size: 0.9em; margin-bottom: 20px; color: #ccc;">이 우주에 별을 띄어주세요🌌</p>
+
+            <form id="ch5-guestbook-form">
+                <!-- 1. 별 디자인 선택 -->
+                <label for="ch5-star-selector">디자인</label>
+                <div id="ch5-star-selector">
+                    <!-- (JS가 이 안에 .ch5-star-option span들을 추가합니다) -->
+                </div>
+                <input type="hidden" id="ch5-selected-star" value="✨">
+
+                <!-- 2. 닉네임 -->
+                <label for="ch5-input-name">이름 (닉네임)</label>
+                <input type="text" id="ch5-input-name" placeholder="최대 10자" maxlength="10" required>
+                
+                <!-- 3. 메시지 -->
+                <label for="ch5-input-message">메시지</label>
+                <textarea id="ch5-input-message" rows="4" required></textarea>
+
+                <!-- 4. 제출 버튼 -->
+                <div id="modal-button-container">
+                    <button type="submit" id="ch5-form-submit-btn" class="modal-action-btn">우주로 띄우기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- [신규] 챕터 5-2: '메시지 상세' 보기 모달 -->
+    <div id="ch5-message-modal" class="modal-overlay">
+        <div class="modal-content ch5-modal-content">
+            <span class="modal-close-btn ch5-close-btn">×</span>
+            
+            <!-- (JS가 내용을 채웁니다) -->
+            <div id="ch5-message-modal-icon">✨</div>
+            <h3 id="ch5-message-modal-author">...</h3>
+            <div id="ch5-message-modal-text" class="modal-text poem-text">
+                ...
+            </div>
+        </div>
+    </div>
+    
     <div id="chapter-transition">
-        <img id="transition-image" src="" alt="Chapter Planet">
+        <img id="transition-image" src="" alt="Chapter Planet" oncontextmenu="return false">
         <h2 id="transition-title"></h2>
     </div>
 
 
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="20251211.js"></script>
     <script src="20251211_3.js"></script>
     <script src="20251211_4.js"></script>
+    <script src="20251211_5.js"></script>
 </body>
 </html>
