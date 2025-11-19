@@ -353,7 +353,7 @@ body, html {
 .modal-close-btn:hover { transform: scale(1.2); }
 /* 팝업 텍스트 아래 여백 제거 */
 .modal-text {
-    font-size: 1em; line-height: 1.6; color: #E0E1DD; word-break: keep-all;
+    font-size: 1em; line-height: 1.3; color: #E0E1DD; word-break: keep-all;
     margin-bottom: 0; /* 아래 여백 제거 */
 }
 #modal-button-container {
@@ -1481,8 +1481,9 @@ body, html {
 }
 /* 챕터 5 컨테이너 (기존과 동일) */
 #chapter5-container {
-    height: 100dvh;
-    overflow: scroll;
+	height: 100dvh; 
+    overflow-y: scroll; /* [수정] 세로 스크롤만 허용 */
+    overflow-x: hidden;  /* [신규] 가로 스크롤 명시적 제거 */
     -webkit-overflow-scrolling: touch;
     cursor: grab;
     padding: 0 !important;
@@ -1570,11 +1571,12 @@ body, html {
 
 /* 1. 우주 공간 래퍼 (기존과 동일) */
 #ch5-universe-wrapper {
-    width: 3000px;
-    height: 3000px;
+    /* [수정] 3000px -> 100%로 변경하여 가로 스크롤 제거 */
+    width: 100%; 
+    height: 3000px; /* 세로 스크롤을 위해 높이는 유지 */
     position: relative;
-    display: block; /* [수정] none -> block (기본으로 보이게) */
-    flex-shrink: 0;
+    display: block; 
+    flex-shrink: 0; 
 }
 #ch5-starfield-canvas {
     position: absolute;
@@ -1677,8 +1679,21 @@ body, html {
 }
 /* 카드 내부 아이콘, 이름, 메시지 */
 .ch5-list-item-icon {
-    font-size: 2.5em; /* 카드에서 좀 더 크게 */
+    font-size: 2em;
     margin-bottom: 10px;
+}
+
+/* [신규] 리스트 뷰 아이콘이 이미지일 경우 스타일 */
+.ch5-list-item-icon.image-icon {
+    font-size: 0; /* 이모지 텍스트를 숨김 */
+    
+    /* 2em 크기(약 32px)에 맞춤 */
+    width: 32px; 
+    height: 32px;
+    
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .ch5-list-item-name {
     font-family: 'Galmuri11', monospace;
@@ -1826,8 +1841,8 @@ body, html {
     border-color: var(--ch5-warm-color);
     box-shadow: 0 0 20px rgba(255, 213, 79, 0.5); /* 그림자 살짝 연하게 */
 }
-.ch5-modal-content h3 {
-    /* [수정] 텍스트 -> 흰색 */
+.ch5-modal-content h4 {
+	margin: 15px 0;
     color: #fff;
     font-family: 'Galmuri11', monospace;
 }
@@ -1857,7 +1872,8 @@ body, html {
     /* [수정] justify-content: center -> flex-start (스크롤 시작점) */
     justify-content: flex-start; 
     gap: 15px;
-    margin: 0; /* 부모 form의 gap으로 간격 조절 */
+    align-items: center;
+    margin: 0;
     /* [수정] 스크롤 영역 확보를 위해 padding 추가 */
     padding: 10px; 
     
@@ -1869,11 +1885,22 @@ body, html {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 3px; /* 입력창과 통일 */
 }
+/* 2. 각 옵션 버튼 내부의 텍스트도 중앙 정렬 및 높이/폭 고정 */
 .ch5-star-option {
     font-size: 2em;
     cursor: pointer;
     transition: transform 0.2s, opacity 0.2s;
     opacity: 0.5;
+    
+    /* [수정] 텍스트 아이콘을 Flexbox 항목으로 만들고, 내용 중앙 정렬 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1; /* 글꼴 높이 고정 */
+    
+    /* 2em(약 32px)에 준하는 고정 폭/높이 설정 (이미지와 높이 통일) */
+    width: 32px; 
+    height: 32px; 
 }
 .ch5-star-option.selected {
     transform: scale(1.3);
@@ -1941,14 +1968,88 @@ body, html {
     line-height: 1;
     /* [수정] 별 그림자 -> 흰색+웜톤 믹스 (별자리 별과 통일) */
     filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 15px var(--ch5-warm-color));
+    display: flex; 
+    justify-content: center;
+    align-items: center;
 }
 #ch5-message-modal-text {
     font-size: 1.0em; /* [수정] 이전 요청 반영 */
     max-height: 40vh;
     overflow-y: auto;
+    text-align: left;
+    margin-top: 18px;
+    padding-left: 0; 
 }
 #ch5-message-modal-author {
-    margin-top: 20px;
-    font-size: 0.9em;
+    margin-top: 15px;
+    font-size: 0.85em;
     color: #9ab;
+    font-style: italic; /* 서명 느낌으로 기울임 */
+}
+/* [수정] 챕터 5: 별 아래 닉네임 라벨 스타일 (가시성 및 절대 크기 적용) */
+.ch5-star-name {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    white-space: nowrap; 
+    
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7); /* 밝기 소폭 증가 (이전 수정 유지) */
+    
+    margin-top: 3px; 
+    
+    text-shadow: 0 0 3px #000; 
+    
+    pointer-events: none; 
+}
+/* [신규] 챕터 5: IMG 태그 스타일 (Text-to-Image 전환) */
+
+/* 1. 디자인 선택 모달 및 별자리 뷰의 IMG 크기 */
+.ch5-star-option img, 
+.ch5-star img {
+    /* [수정] 20px -> 35px (이미지 크기 확대) */
+    width: 35px;
+    height: 35px;
+    object-fit: contain; 
+}
+
+/* 2. 목록 뷰 (캐러셀)의 IMG 크기 */
+.ch5-list-item-icon img {
+    width: 32px; /* 2em 크기에 맞춤 */
+    height: 32px;
+    object-fit: contain;
+}
+
+/* 3. 메시지 상세 모달의 IMG 크기 */
+#ch5-message-modal-icon img {
+    width: 40px; /* 모달 내 아이콘 크기 */
+    height: 40px;
+    object-fit: contain;
+}
+/* [신규/수정] 챕터 5: 메시지 상세 모달 (편지/왼쪽 정렬 스타일) */
+#ch5-message-modal .ch5-modal-content {
+    /* [수정] 모달 너비 약간 줄여서 편지/카드 느낌 강조 */
+    max-width: 450px; 
+    
+    /* 콘텐츠 전체 정렬을 왼쪽으로 변경 */
+    text-align: left; 
+    
+    /* 편지 여백처럼 보이도록 패딩 늘리기 */
+    padding: 40px 30px; 
+}
+/* 아이콘 위치 조정 (왼쪽으로 붙이기) */
+#ch5-message-modal-icon {
+    /* [수정] 아이콘을 컨테이너의 왼쪽으로 붙임 */
+    margin: 0 auto 15px 0; /* auto 대신 0으로 설정하여 왼쪽 정렬 */
+    width: auto; /* 이미지/이모지 크기에 맞게 */
+}
+/* [추가 수정] 이미지일 경우 텍스트/이모지 스타일 제거 */
+.ch5-star-option[data-star-design^="http"] {
+    font-size: 0; /* 이모지 폰트 크기 제거 */
+    display: flex; /* 이미지 중앙 정렬 */
+    justify-content: center;
+    align-items: center;
 }

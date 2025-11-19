@@ -55,7 +55,14 @@ $(document).ready(function() {
     const $messageText = $('#ch5-message-modal-text');
 
     // --- 2. 챕터 5 설정 및 상태 변수 ---
-    const STAR_DESIGNS = ['✨', '🌟', '✦', '✧', '★', '🪐', '💜'];
+    const STAR_DESIGNS = [
+        'https://lh3.googleusercontent.com/d/1jeWf4rvz31POee3PRhbXvKoCBSx26ICD', // 이미지 1
+        'https://lh3.googleusercontent.com/d/1HL7UH15Ew5vW0FPprUc6iN-sEJX2a5Rp', // 이미지 2
+        'https://lh3.googleusercontent.com/d/1HM0HUpTYH9rnjYBmXzxSmClbApb1NirW', // 이미지 3
+        'https://lh3.googleusercontent.com/d/1zhDmPKRZ-yMqGzuGA4lnXlvzr7NoO3_p', // 이미지 4
+        'https://lh3.googleusercontent.com/d/1CQLw-S6Szqq8bXFDVIKQO3xBYPZQ0Y4K',  // 이모지 5
+        'https://lh3.googleusercontent.com/d/1EGaQboR4NZBcK8uXxbVcjw0yPWgl_NWe' // 이미지 6
+    ];
     let ch5AnimationId = null;
     
     // 별자리 뷰 드래그
@@ -213,13 +220,14 @@ $(document).ready(function() {
             $messageModal.fadeOut(300);
         });
 
-        // 4. 별 디자인 선택
-        $starSelector.off('click').on('click', '.ch5-star-option', function() {
-            const $this = $(this);
-            $starSelector.children().removeClass('selected');
-            $this.addClass('selected');
-            $selectedStarInput.val($this.data('star-design'));
-        });
+	     // 4. 별 디자인 선택
+	     $starSelector.off('click').on('click', '.ch5-star-option', function() {
+	         const $this = $(this);
+	         $starSelector.children().removeClass('selected');
+	         $this.addClass('selected');
+	         // [수정] data-star-index 값을 저장
+	         $selectedStarInput.val($this.data('star-index'));
+	     });
 
         // 5. 폼 제출
         $form.off('submit').on('submit', function(e) {
@@ -252,17 +260,15 @@ $(document).ready(function() {
             ch5DragStartPos.y = e.clientY;
             $ch5Container.css('cursor', 'grabbing');
         }).on('pointermove.ch5game', function(e) {
-            // [수정] 목록 뷰일 때는 드래그-스크롤 방지
-            if ($ch5Container.hasClass('list-view-active')) return;
+        	$ch5Scanner.css({ display: 'block', left: `${e.clientX}px`, top: `${e.clientY}px` });
             
             if (isCh5Dragging) {
-                const deltaX = e.clientX - ch5DragStartPos.x;
+                // [수정] 가로 이동(deltaX) 계산 및 적용 로직 모두 제거
                 const deltaY = e.clientY - ch5DragStartPos.y;
                 
-                $ch5Container.scrollLeft($ch5Container.scrollLeft() - deltaX);
                 $ch5Container.scrollTop($ch5Container.scrollTop() - deltaY);
                 
-                ch5DragStartPos.x = e.clientX;
+                // Y 좌표만 업데이트하여 가로 드래그를 막음
                 ch5DragStartPos.y = e.clientY;
             }
         }).on('pointerup.ch5game pointerleave.ch5game', function() {
@@ -323,10 +329,18 @@ $(document).ready(function() {
 
     // --- 7. 별 디자인 선택 UI 생성 ---
     function populateStarSelector() {
-    	$starSelector.empty();
+        $starSelector.empty();
         STAR_DESIGNS.forEach((star, index) => {
-            const $option = $(`<span class="ch5-star-option" data-star-design="${star}"></span>`);
-            $option.text(star);
+            // [수정] data-star-index를 사용하고 index를 저장
+            const $option = $(`<span class="ch5-star-option" data-star-index="${index}"></span>`); 
+            
+            // 이미지/텍스트 조건부 처리 (이전 수정 로직 유지)
+            if (star.startsWith('http')) {
+                $option.empty().append($('<img>', { src: star, alt: 'star image' }));
+            } else {
+                $option.text(star);
+            }
+            
             if (index === 0) $option.addClass('selected');
             $starSelector.append($option);
         });
@@ -342,17 +356,30 @@ $(document).ready(function() {
     function loadMessagesFromFirebase() {
         console.log("Firebase 'getDocs' Placeholder: 로딩 시작...");
         
-        // --- 시뮬레이션을 위한 더미 데이터 (오래된 순) ---
-        const dummyMessages = [
-            { id: '1', name: '첫 번째 여행자', message: '이곳이 우주라니, 정말 아름답네요!', star: '✨', x: '10%', y: '15%' },
-            { id: '2', name: '지환', message: '10년 동안 함께해줘서 고마워요. 이 우주에서 우리의 추억을 계속 쌓아가요. 항상 응원하고 사랑합니다.', star: '🌟', x: '50%', y: '50%' },
-            { id: '3', name: '팬', message: '우리의 우주에서 항상 빛나주세요.', star: '💜', x: '80%', y: '30%' },
-            { id: '4', name: '항해사', message: '마지막 항해까지 무사히 완료! 모두 고생하셨습니다. 다음 여정에서 또 만나요!', star: '🪐', x: '25%', y: '70%' },
-            { id: '5', name: '익명', message: '모든 챕터 클리어! 재밌었어요~', star: '★', x: '60%', y: '80%' },
-        ];
+        // --- [수정] 시뮬레이션을 위한 20개의 메시지 생성 (X 좌표 고정) ---
+        const LATEST_TIMESTAMP = Date.now(); 
+        const dummyMessages = [];
+        
+        // X 좌표 계산 범위 (5% ~ 90%)
+        const X_RANGE = 85; 
+        
+        for (let i = 0; i < 20; i++) {
+            // [수정] X 좌표를 여기서 한 번만 무작위로 생성하여 저장합니다.
+            const randomX = Math.random() * X_RANGE + 5; 
+
+            dummyMessages.push({
+                id: `msg${20 - i}`, 
+                name: `Traveler_${20 - i}`, 
+                message: `Message #${20 - i} in the chronological path.`, 
+                star: i % 5, 
+                x: `${randomX}%`, // [핵심] X 좌표 저장 (고정)
+                // Y 좌표는 저장하지 않습니다!
+                timestamp: LATEST_TIMESTAMP - (i * 10000) 
+            });
+        }
+        // -----------------------------------------------------
 
         // [수정] 최신순(timestamp 내림차순)으로 정렬합니다.
-        // (Firebase query 'orderBy("timestamp", "desc")'를 사용하면 이 .sort()가 필요 없습니다.)
         ch5MessageList = dummyMessages.sort((a, b) => b.timestamp - a.timestamp);
         
         displayMessages(ch5MessageList);
@@ -366,12 +393,10 @@ $(document).ready(function() {
         const newStarData = {
             name: $inputName.val().trim(),
             message: $inputMessage.val().trim(),
-            star: $selectedStarInput.val(),
-            x: `${Math.random() * 90 + 5}%`,
-            y: `${Math.random() * 90 + 5}%`,
-            timestamp: Date.now() // [신규] 최신순 정렬을 위해 현재 시간 추가
+            star: $selectedStarInput.val(), 
+            timestamp: Date.now() 
         };
-
+        
         if (!newStarData.name || !newStarData.message) {
             alert("별 이름과 메시지를 모두 입력해주세요.");
             return;
@@ -383,13 +408,15 @@ $(document).ready(function() {
         // --- 시뮬레이션: 0.5초 후 성공 ---
         setTimeout(() => {
             const simulatedId = `dummy-${Date.now()}`;
+            const tempRandomX = Math.random() * 85 + 5; 
+            newStarData.x = `${tempRandomX}%`;
             
             // [수정] 새 데이터를 데이터 배열 *맨 앞(최신)*에 추가
             ch5MessageList.unshift(newStarData);
             
             // [수정] displayMessages를 다시 호출하여 양쪽 뷰를 '새로고침'합니다.
-            // (prepend/append 대신 전체를 다시 그리는 게 정렬에 안전합니다)
             displayMessages(ch5MessageList);
+            
             
             $formModal.fadeOut(300);
             $submitBtn.prop('disabled', false).text('우주로 띄우기');
@@ -402,24 +429,66 @@ $(document).ready(function() {
 
 
     // --- 9. UI 표시 로직 ---
-
     /**
      * (DB에서) 불러온 모든 메시지를 양쪽 뷰에 표시합니다.
      */
     function displayMessages(messages) {
         $ch5Constellation.empty();
-        $ch5ListTrack.empty(); // [수정] 트랙을 비웁니다.
+        $ch5ListTrack.empty();
         
-        messages.forEach(msg => {
-            const data = msg; 
+        // [신규] 별을 묶는 그룹 크기 (한 수직 슬롯에 3개의 별 배치)
+        const GROUP_SIZE = 3; 
+        const total = messages.length;
+        const totalSlots = Math.ceil(total / GROUP_SIZE); // 총 수직 슬롯 개수
+        
+        const padding = 5; // Y좌표 상하 여백 (5% ~ 95% 범위 사용)
+        const availableRange = 90; // 95 - 5 = 90%
+
+        messages.forEach((msg, i) => {
+            
+            let messageY;
+            
+            // 1. [그룹 로직] 메시지가 적을 때와 많을 때를 분리 처리
+            if (total <= GROUP_SIZE) { 
+                // 별이 3개 이하일 때는 넓게 펼치기 (기존 로직 사용)
+                messageY = padding + (i / (total - 1)) * availableRange;
+            } else {
+                // 별이 4개 이상일 때 그룹화 시작
+                const slotIndex = Math.floor(i / GROUP_SIZE);
+                
+                // Base Y: 그룹의 기준선 Y 좌표 (그룹 인덱스 기반)
+                const baseY = padding + (slotIndex / (totalSlots - 1)) * availableRange;
+                
+                // Slot Height: 한 그룹이 차지하는 수직 공간
+                const slotHeight = availableRange / totalSlots;
+
+                // Y Noise: 슬롯 내에서 무작위로 분산 (슬롯 높이의 80% 내에서 무작위 값 추가)
+                const yNoise = Math.random() * slotHeight * 0.8;
+                
+                messageY = baseY + yNoise; // Base Y + 무작위 노이즈
+            }
+            
+            // 2. X 좌표는 저장된 값(msg.x)을 사용합니다.
+            const savedX = msg.x || `${Math.random() * 85 + 5}%`;
+            
+            // 3. 메시지 데이터 변환 및 할당
+            const designIndex = parseInt(msg.star);
+            const designString = STAR_DESIGNS[designIndex] || STAR_DESIGNS[0];
+            
+            const data = { 
+                ...msg, 
+                star: designString,
+                x: savedX,   // [핵심] 저장된 X 좌표 사용
+                y: `${messageY}%`  // [핵심] 그룹화된 Y 좌표 사용
+            }; 
             const id = msg.id;
             
             addStarToUniverse(id, data);
-            addMessageToCarousel(id, data, false); // [수정] 캐러셀에 추가 (append)
+            addMessageToCarousel(id, data, false);
         });
         
         // [신규] 모든 메시지 로드 후, 캐러셀 상태 최종 업데이트
-        goToSlide(0); // 1페이지(인덱스 0)에서 시작
+        goToSlide(0);
     }
     
     /**
@@ -430,13 +499,28 @@ $(document).ready(function() {
     function addStarToUniverse(id, data) {
         const $star = $(`<div class="ch5-star" id="star-${id}"></div>`);
         
-        $star.text(data.star); // 별 디자인
+        // --- [수정] 이미지일 경우 <img> 태그 삽입 ---
+        if (data.star.startsWith('http')) {
+            $star.empty().append($('<img>', { src: data.star, alt: 'star image' }));
+            $star.css('font-size', '0'); // 이미지이므로 이모지 텍스트 폰트 크기는 0으로 설정
+        } else {
+            $star.text(data.star); // 이모지일 경우 텍스트 사용
+            $star.css({
+                 'background-image': 'none', 
+                 'font-size': '2.5em' // [수정] 이모지 폰트 크기 명확히 복원
+            });
+        }
+        // --- [수정] 끝 ---
+
+        // 닉네임 라벨 (절대 크기로 설정했으므로 font-size:0에 영향을 받지 않음)
+        $star.append(`<span class="ch5-star-name">${data.name}</span>`); 
+        
         $star.css({
-            top: data.y,  // DB에 저장된 % 값
-            left: data.x, // DB에 저장된 % 값
+            top: data.y,  
+            left: data.x, 
             'animation-delay': `${Math.random() * -3}s`
         });
-        $star.data('messageData', data); // [핵심] 팝업용 데이터 저장
+        $star.data('messageData', data);
         $ch5Constellation.append($star);
     }
 
@@ -445,24 +529,32 @@ $(document).ready(function() {
      */
     function addMessageToCarousel(id, data, atTop = false) {
         const messageHtml = data.message.replace(/\n/g, '<br>');
+        const $slide = $(`<div class="ch5-list-slide" data-message-id="${id}"></div>`); 
         
-        // [수정] .ch5-list-slide > .ch5-list-slide-content 구조로 생성
-        const $slide = $(`<div class="ch5-list-slide" data-message-id="${id}"></div>`);
+        let iconHtml;
+        // --- [수정] 이미지일 경우 <img> 태그 삽입 ---
+        if (data.star.startsWith('http')) {
+            iconHtml = `<span class="ch5-list-item-icon image-icon"><img src="${data.star}" alt="star icon"></span>`;
+        } else {
+            iconHtml = `<span class="ch5-list-item-icon">${data.star}</span>`;
+        }
+        // --- [수정] 끝 ---
+        
         const $content = $(`
             <div class="ch5-list-slide-content">
-                <span class="ch5-list-item-icon">${data.star}</span>
+                ${iconHtml}
                 <span class="ch5-list-item-name">${data.name}</span>
                 <p class="ch5-list-item-message">${messageHtml}</p>
             </div>
         `);
         
-        $content.data('messageData', data); // [핵심] 팝업용 데이터 저장
-        $slide.append($content); // 슬라이드에 콘텐츠 삽입
+        $content.data('messageData', data);
+        $slide.append($content);
         
         if (atTop) {
-            $ch5ListTrack.prepend($slide); // 새 글은 맨 앞에 추가
+            $ch5ListTrack.prepend($slide);
         } else {
-            $ch5ListTrack.append($slide); // 기존 글은 순서대로 추가
+            $ch5ListTrack.append($slide);
         }
     }
     
@@ -547,14 +639,28 @@ $(document).ready(function() {
         const data = $element.data('messageData');
         if (!data) return;
 
-        // 1. 모달 내용 채우기
-        $messageIcon.text(data.star);
-        // [수정] 목록 뷰의 이름과 동일하게
+        // --- [수정] 이미지일 경우 <img> 태그 삽입 ---
+        if (data.star.startsWith('http')) {
+            $messageIcon.empty().append($('<img>', { src: data.star, alt: 'star icon' }));
+            $messageIcon.css({
+                'font-size': '0',
+                'width': '40px', // 이미지 크기 지정 (컨테이너 크기)
+                'height': '40px',
+                'background-image': 'none' // 이전 CSS 스타일 초기화
+            });
+        } else {
+            $messageIcon.text(data.star).empty().css({
+                'font-size': '2.5em', 
+                'width': 'auto',
+                'height': 'auto',
+                'background-image': 'none' // 이전 CSS 스타일 초기화
+            });
+        }
+        // --- [수정] 끝 ---
+
         $messageAuthor.text(`- ${data.name} -`);
-        // [수정] 목록 뷰의 메시지와 동일하게 (줄바꿈 처리)
         $messageText.html(data.message.replace(/\n/g, '<br>'));
 
-        // 2. 모달 보이기
         $messageModal.css('display', 'flex').hide().fadeIn(300);
     }
 });
