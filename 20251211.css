@@ -1647,7 +1647,7 @@ body, html {
     width: 100%; /* [핵심] 래퍼 크기와 동일하게 */
     flex-shrink: 0; /* [핵심] 줄어들지 않게 */
     box-sizing: border-box;
-    padding: 0 10px; 
+    padding: 10; 
     user-select: none; /* 스와이프 시 텍스트 선택 방지 */
 
     /* [추가] 컨테이너가 늘어났을 때 카드를 중앙 정렬 */
@@ -1664,8 +1664,9 @@ body, html {
     padding: 20px;
     cursor: pointer;
     transition: all 0.2s ease;
-    /* [수정] 목록 뷰 스크롤 대신 카드 높이 제한 */
-    min-height: 200px; /* 최소 높이 보장 */
+    width: 80%; 
+    
+    min-height: 200px;
     display: flex;
     flex-direction: column;
     align-items: center; /* 카드 내용 중앙 정렬 */
@@ -1707,8 +1708,7 @@ body, html {
     font-size: 0.95em;
     line-height: 1.7; /* 줄 간격 */
     margin-top: 15px;
-    word-break: keep-all;
-    /* [수정] 여러 줄 말줄임 대신 스크롤 */
+    word-break: break-word;
     max-height: 250px; /* 너무 길어질 경우 스크롤 */
     overflow-y: auto;
     padding-right: 5px; /* 스크롤바 공간 */

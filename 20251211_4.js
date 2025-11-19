@@ -857,11 +857,7 @@ $(document).ready(function() {
         
         const chapter4Reward = {
             title: "🌌",
-            content: `“10년의 기억이 모여 빛이되었습니다.
-            
-이 빛은 우리가 함께 만든 은하.
-
-이제 마지막 항해를 시작합니다.”`
+            content: `“뭐쓰냐”`
         };
         
         if (typeof showModal === 'function' && typeof showFragmentModal === 'function') {
@@ -882,11 +878,7 @@ $(document).ready(function() {
         
         const chapter4Reward = {
             title: "🌌",
-            content: `“10년의 기억이 모여 빛이되었습니다.
-                
-이 빛은 우리가 함께 만든 은하.
-
-이제 마지막 항해를 시작합니다.”`
+            content: `“뭐라쓰냐.”`
         };
 
         function showChapter4ClearPopup() {

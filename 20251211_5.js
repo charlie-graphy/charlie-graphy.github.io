@@ -125,8 +125,7 @@ $(document).ready(function() {
         loadMessagesFromFirebase();
 
         // 9. 화면 중앙에서 시작
-        $ch5Container.scrollLeft((UNIVERSE_SIZE - $ch5Container.width()) / 2);
-        $ch5Container.scrollTop((UNIVERSE_SIZE - $ch5Container.height()) / 2);
+        $ch5Container.scrollTop(0);
     };
 
     // --- 4. 챕터 5 게임 중지 함수 (전역 할당) ---
@@ -260,8 +259,6 @@ $(document).ready(function() {
             ch5DragStartPos.y = e.clientY;
             $ch5Container.css('cursor', 'grabbing');
         }).on('pointermove.ch5game', function(e) {
-        	$ch5Scanner.css({ display: 'block', left: `${e.clientX}px`, top: `${e.clientY}px` });
-            
             if (isCh5Dragging) {
                 // [수정] 가로 이동(deltaX) 계산 및 적용 로직 모두 제거
                 const deltaY = e.clientY - ch5DragStartPos.y;
@@ -331,10 +328,10 @@ $(document).ready(function() {
     function populateStarSelector() {
         $starSelector.empty();
         STAR_DESIGNS.forEach((star, index) => {
-            // [수정] data-star-index를 사용하고 index를 저장
+            // [핵심] data-star-index에 ID(index)를 명확히 저장합니다.
             const $option = $(`<span class="ch5-star-option" data-star-index="${index}"></span>`); 
             
-            // 이미지/텍스트 조건부 처리 (이전 수정 로직 유지)
+            // 이미지/텍스트 조건부 처리 (이전 로직 유지)
             if (star.startsWith('http')) {
                 $option.empty().append($('<img>', { src: star, alt: 'star image' }));
             } else {
@@ -348,7 +345,6 @@ $(document).ready(function() {
 
 
     // --- 8. [PLACEHOLDER] 파이어베이스 연동 로직 ---
-
     /**
      * [FIREBASE PLACEHOLDER]
      * 파이어베이스에서 메시지(별) 목록을 불러옵니다.
@@ -356,33 +352,39 @@ $(document).ready(function() {
     function loadMessagesFromFirebase() {
         console.log("Firebase 'getDocs' Placeholder: 로딩 시작...");
         
-        // --- [수정] 시뮬레이션을 위한 20개의 메시지 생성 (X 좌표 고정) ---
-        const LATEST_TIMESTAMP = Date.now(); 
-        const dummyMessages = [];
+        if(!isConnected) {
+			firebase.database().goOnline();
+			isConnected = true;
+		}
+    	if(messageRef) messageRef.off(); // 이전 리스너 해제
+    	messageRef = database.ref('10thDebutAnniversary'); // 새로운 리스너 추가
         
-        // X 좌표 계산 범위 (5% ~ 90%)
-        const X_RANGE = 85; 
-        
-        for (let i = 0; i < 20; i++) {
-            // [수정] X 좌표를 여기서 한 번만 무작위로 생성하여 저장합니다.
-            const randomX = Math.random() * X_RANGE + 5; 
-
-            dummyMessages.push({
-                id: `msg${20 - i}`, 
-                name: `Traveler_${20 - i}`, 
-                message: `Message #${20 - i} in the chronological path.`, 
-                star: i % 5, 
-                x: `${randomX}%`, // [핵심] X 좌표 저장 (고정)
-                // Y 좌표는 저장하지 않습니다!
-                timestamp: LATEST_TIMESTAMP - (i * 10000) 
-            });
-        }
-        // -----------------------------------------------------
-
-        // [수정] 최신순(timestamp 내림차순)으로 정렬합니다.
-        ch5MessageList = dummyMessages.sort((a, b) => b.timestamp - a.timestamp);
-        
-        displayMessages(ch5MessageList);
+    	messageRef.on('value', function(snapshot) {
+			const posts = snapshot.val();
+	    	const X_RANGE = 85; // X 좌표 계산 범위 (5% ~ 90%) 
+	        let dummyMessages = [];
+	    	
+	        if(posts){
+	        	Object.keys(posts).forEach(function(key, index){
+	        		const post = posts[key];
+	    	    	const randomX = Math.random() * X_RANGE + 5; //X 좌표를 여기서 한 번만 무작위로 생성하여 저장합니다.
+	        		
+	        		dummyMessages.push({
+	                    id: index, 
+	                    name: post.name, 
+	                    message: post.message, 
+	                    star: post.star, 
+	                    x: `${randomX}%`, 
+	                    timestamp: post.timestamp 
+	                });
+	        		
+	        	});
+	        }
+	        
+	        ch5MessageList = dummyMessages.sort((a, b) => b.timestamp - a.timestamp); //내림차순 정렬
+	        displayMessages(ch5MessageList);
+			disconnect();
+	    });
     }
 
     /**
@@ -393,38 +395,82 @@ $(document).ready(function() {
         const newStarData = {
             name: $inputName.val().trim(),
             message: $inputMessage.val().trim(),
-            star: $selectedStarInput.val(), 
-            timestamp: Date.now() 
+            star: $selectedStarInput.val()
         };
         
         if (!newStarData.name || !newStarData.message) {
             alert("별 이름과 메시지를 모두 입력해주세요.");
             return;
         }
+        
+        // 1. 데이터 준비 및 timestamp 확정
+        const currentTime = Date.now();
+        newStarData.timestamp = currentTime;
+        
+        // X 좌표는 현재 세션에서만 사용할 임시 값으로 생성 (DB에 저장하지 않음)
+        const tempRandomX = Math.random() * 85 + 5; 
+        newStarData.x = `${tempRandomX}%`;
 
         console.log("Firebase 'addDoc' Placeholder: 저장 데이터", newStarData);
         $submitBtn.prop('disabled', true).text('전송 중...');
 
-        // --- 시뮬레이션: 0.5초 후 성공 ---
-        setTimeout(() => {
-            const simulatedId = `dummy-${Date.now()}`;
-            const tempRandomX = Math.random() * 85 + 5; 
-            newStarData.x = `${tempRandomX}%`;
+        if(!isConnected) {
+    		firebase.database().goOnline();
+    		isConnected = true;
+    	}
+    	if(messageRef) messageRef.off(); // 이전 리스너 해제
+    	else messageRef = database.ref('10thDebutAnniversary'); // 새로운 리스너 추가
+    	
+    	const newPostRef = database.ref('10thDebutAnniversary').push();
+        
+        newPostRef.set(newStarData)
+        .then(() => {
+            console.log("메시지 전송 완료");
+
+            // [통합] 성공 후 1초 뒤 연결 종료 호출
+            setTimeout(disconnect, 1000);
+
+            // 1. 로컬 데이터 준비 및 ID 할당
+            newStarData.id = newPostRef.key; // DB가 생성한 고유 ID를 사용
+            ch5MessageList.unshift(newStarData); // 로컬 배열에 추가
             
-            // [수정] 새 데이터를 데이터 배열 *맨 앞(최신)*에 추가
-            ch5MessageList.unshift(newStarData);
-            
-            // [수정] displayMessages를 다시 호출하여 양쪽 뷰를 '새로고침'합니다.
-            displayMessages(ch5MessageList);
-            
+            // 2. UI 업데이트
+            $submitBtn.prop('disabled', false).text('우주로 띄우기'); 
+            $formModal.fadeOut(300);
+            displayMessages(ch5MessageList); // 전체 목록 새로고침
+            goToSlide(0); // 목록 뷰 1페이지로 이동
+
+            // 3. 스크롤 및 강조 (별자리 뷰일 때만)
+            if (!$ch5Container.hasClass('list-view-active') && typeof $ch5Container !== 'undefined') {
+            	const containerW = $ch5Container.width();
+                // X 좌표는 중앙에 배치하기 위해 컨테이너 폭의 절반을 는 로직은 유지
+                const scrollLeftTarget = (tempRandomX / 100) * UNIVERSE_SIZE - (containerW / 2);
+                
+                $ch5Container.animate({
+                    scrollLeft: scrollLeftTarget,
+                    scrollTop: 0
+                }, 1200, 'swing', function() {
+                    const $newStar = $(`#star-${newStarData.id}`);
+                    $newStar.addClass('new-star-highlight');
+                    setTimeout(() => $newStar.removeClass('new-star-highlight'), 4000);
+                });
+            }
+        }).catch(error => {
+            console.error("메시지 전송 오류:", error);
+            $submitBtn.prop('disabled', false).text('우주로 띄우기'); // 버튼 재활성화
             
             $formModal.fadeOut(300);
-            $submitBtn.prop('disabled', false).text('우주로 띄우기');
-            
-            // [수정] 새 글을 썼으니 1페이지(인덱스 0)로 이동
-            goToSlide(0);
-        }, 500);
-        // --- 시뮬레이션 끝 ---
+            if (typeof showModal === 'function') {
+                 showModal(`⚠️ 전송 실패: 서버 연결 오류 [${error.code || 'UNKNOWN'}]`, {
+                     showStart: true, startText: '다시 시도', onStart: () => {
+                         // 모달 닫고 폼을 다시 띄웁니다.
+                         $formModal.css('display', 'flex').hide().fadeIn(300);
+                     },
+                     hideClose: false,
+                     skipText: '취소', showSkip: true 
+                 });
+             }
+        });
     }
 
 
@@ -436,36 +482,20 @@ $(document).ready(function() {
         $ch5Constellation.empty();
         $ch5ListTrack.empty();
         
-        // [신규] 별을 묶는 그룹 크기 (한 수직 슬롯에 3개의 별 배치)
-        const GROUP_SIZE = 3; 
         const total = messages.length;
-        const totalSlots = Math.ceil(total / GROUP_SIZE); // 총 수직 슬롯 개수
+        const padding = 5; // Y좌표 상단 여백 (5%)
         
-        const padding = 5; // Y좌표 상하 여백 (5% ~ 95% 범위 사용)
-        const availableRange = 90; // 95 - 5 = 90%
+        // [수정] 90% -> 85%로 축소하여 하단 5% 추가 마진 확보 (최대 Y 배치를 90%로 설정)
+        const availableRange = 85; 
 
         messages.forEach((msg, i) => {
-            
+            // 1. Y 좌표 계산 (시간순)
             let messageY;
-            
-            // 1. [그룹 로직] 메시지가 적을 때와 많을 때를 분리 처리
-            if (total <= GROUP_SIZE) { 
-                // 별이 3개 이하일 때는 넓게 펼치기 (기존 로직 사용)
-                messageY = padding + (i / (total - 1)) * availableRange;
+            if (total === 1) {
+                messageY = 5; 
             } else {
-                // 별이 4개 이상일 때 그룹화 시작
-                const slotIndex = Math.floor(i / GROUP_SIZE);
-                
-                // Base Y: 그룹의 기준선 Y 좌표 (그룹 인덱스 기반)
-                const baseY = padding + (slotIndex / (totalSlots - 1)) * availableRange;
-                
-                // Slot Height: 한 그룹이 차지하는 수직 공간
-                const slotHeight = availableRange / totalSlots;
-
-                // Y Noise: 슬롯 내에서 무작위로 분산 (슬롯 높이의 80% 내에서 무작위 값 추가)
-                const yNoise = Math.random() * slotHeight * 0.8;
-                
-                messageY = baseY + yNoise; // Base Y + 무작위 노이즈
+                // Y 좌표 = 시작점(5%) + (목록 인덱스 / 총 개수-1) * 총 범위(85%)
+                messageY = padding + (i / (total - 1)) * availableRange;
             }
             
             // 2. X 좌표는 저장된 값(msg.x)을 사용합니다.
@@ -478,8 +508,8 @@ $(document).ready(function() {
             const data = { 
                 ...msg, 
                 star: designString,
-                x: savedX,   // [핵심] 저장된 X 좌표 사용
-                y: `${messageY}%`  // [핵심] 그룹화된 Y 좌표 사용
+                x: savedX,       
+                y: `${messageY}%`  
             }; 
             const id = msg.id;
             
@@ -644,8 +674,8 @@ $(document).ready(function() {
             $messageIcon.empty().append($('<img>', { src: data.star, alt: 'star icon' }));
             $messageIcon.css({
                 'font-size': '0',
-                'width': '40px', // 이미지 크기 지정 (컨테이너 크기)
-                'height': '40px',
+                'width': '35px', // 이미지 크기 지정 (컨테이너 크기)
+                'height': '35px',
                 'background-image': 'none' // 이전 CSS 스타일 초기화
             });
         } else {
@@ -658,9 +688,17 @@ $(document).ready(function() {
         }
         // --- [수정] 끝 ---
 
-        $messageAuthor.text(`- ${data.name} -`);
+        $messageAuthor.text(`${data.name}`);
         $messageText.html(data.message.replace(/\n/g, '<br>'));
 
         $messageModal.css('display', 'flex').hide().fadeIn(300);
     }
+
+  //연결을 종료하고 Firebase 오프라인 처리하는 함수
+  function disconnect(){
+  	if(messageRef) messageRef.off(); // 리스너 해제
+  	firebase.database().goOffline(); // Firebase 연결 끊기
+  	isConnected = false;
+  	console.log('Firebase 연결 종료됨');
+  }
 });
