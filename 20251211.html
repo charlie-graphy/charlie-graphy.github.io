@@ -164,7 +164,10 @@
             <p class="alert-text warning">충돌 경로 확인! 즉시 회피 기동 실시!</p>
             <p class="alert-text objective">목표 :: 15초간 생존하여 안전 궤도 진입.</p>
             <div id="intro-buttons">
-                 <p class="intro-instruction">키보드 방향키로 우주선을 조종하세요.<br>(모바일: 화면 좌우 터치)</p>
+                 <p class="intro-instruction">
+    				<strong>[ 조작법 ]</strong><br>
+    				<strong>키보드 방향키로 우주선을 조종하세요.<br>모바일: 화면 좌우 터치</strong>
+    			</p>
                  <button class="modal-action-btn modal-start-btn" id="start-game-btn">게임 시작</button>
                  <button class="modal-action-btn modal-skip-btn" id="skip-game-btn">넘어가기</button>
             </div>
@@ -230,7 +233,10 @@
     		<p class="alert-text objective" style="color: #80d8ff; animation-delay: 1.5s;">목표 :: 4개의 신호를 찾아, 다음 경로를 확장하세요.</p>
     		
     		<div id="ch3-intro-buttons" style="animation-delay: 2.0s;"> 
-    			<p class="intro-instruction">화면을 드래그(터치)하여 탐색하세요.</p>
+    			<p class="intro-instruction">
+    				<strong>[ 조작법 ]</strong><br>
+    				<strong>화면을 드래그(터치)하여<br>해당하는 신호를 선택하세요.</strong>
+    			</p>
     			<div class="ch3-button-wrapper">
     				<button class="modal-action-btn modal-start-btn" id="ch3-start-btn" style="border-color: #80d8ff; color: #80d8ff;">탐색 시작</button>
     				<button class="modal-action-btn modal-skip-btn" id="ch3-intro-skip-btn">넘어가기</button>
@@ -261,7 +267,7 @@
     		<p class="alert-text warning-title" style="color: #90caf9;">ALERT</p>
     		<p class="alert-text system" style="animation-delay: 0.5s;">'기억 단층' 접근 중!</p>
     		<p class="alert-text warning" style="animation-delay: 1.0s;">기억 조각들이 쏟아져 내립니다.</p>
-    		<p class="alert-text objective" style="color: #90caf9; animation-delay: 1.5s;">목표 :: 3개를 연결하여  <strong>1000점</strong> 달성.</p>
+    		<p class="alert-text objective" style="color: #90caf9; animation-delay: 1.5s;">목표 :: 3개를 연결하여  <strong>500점</strong> 달성.</p>
 
 			<div id="ch4-intro-buttons" style="animation-delay: 2.0s;"> 
 				<p class="intro-instruction" style="line-height: 1.7;">
@@ -297,6 +303,8 @@
     <!-- ===== [신규] 챕터 5: 우주 (방명록) ===== -->
     <div id="chapter5-container" class="chapter-container">
     
+    	<button id="ch5-back-btn" style="display: none;">‹</button>
+    	
         <!-- [신규] 0. 뷰 전환 토글 -->
         <div id="ch5-view-toggle">
             <button class="ch5-toggle-btn active" data-view="universe" title="별자리 뷰">

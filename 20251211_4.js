@@ -22,7 +22,7 @@ $(document).ready(function() {
     const COLS = 6;
     const ROWS = 12;
     let BLOCK_SIZE = 50; // 화면 크기에 따라 변경됩니다.
-    const WIN_SCORE = 1000; // 1000점
+    const WIN_SCORE = 500; // 500점
     const CONNECT_COUNT = 3; 
     
     let NEXT_BLOCK_SIZE = 40; 
@@ -846,7 +846,8 @@ $(document).ready(function() {
             showModal("GAME OVER<br>기억 연결에 실패했습니다...", {
                 showStart: true, startText: '재시도', onStart: startChapter4Game,
                 showSkip: true, skipText: '넘어가기', onSkip: skipChapter4,
-                hideClose: true
+                hideClose: true,
+                onClose: () => {}
             });
         }
     }
@@ -862,7 +863,7 @@ $(document).ready(function() {
         
         if (typeof showModal === 'function' && typeof showFragmentModal === 'function') {
              showFragmentModal(chapter4Reward.title, chapter4Reward.content, () => {
-                showModal("챕터 4 '연결' 클리어!<br>마지막 여정을 준비하세요.", {
+                showModal("챕터 4 '연결' 클리어!<br>우리의 우주를 확인하세요.", {
                      showNext: true, nextChapterNum: 5,
                      showMap: true, hideClose: false, onClose: hideModal
                  });
@@ -882,9 +883,9 @@ $(document).ready(function() {
         };
 
         function showChapter4ClearPopup() {
-            showModal("챕터 4 '연결' 클리어!<br>마지막 여정을 준비하세요.", {
+            showModal("챕터 4 '연결' 클리어!<br>우리의 우주를 확인하세요.", {
                  showNext: true, nextChapterNum: 5,
-                 showMap: true, hideClose: false, onClose: hideModal
+                 showMap: true, hideClose: true, onClose: hideModal
              });
         }
         
@@ -900,7 +901,7 @@ $(document).ready(function() {
                 onSkip: () => {
                     showChapter4ClearPopup();
                 },
-                hideClose: false,
+                hideClose: true,
                 onClose: hideModal 
             });
         }

@@ -306,9 +306,12 @@ $(window).on('load', function() {
         $modalText.html(message);
         $modalButtonContainer.empty();
         const defaultOnClose = buttons.onClose !== undefined ? buttons.onClose : hideModal;
-
+        
+        // [FIX] 모든 이전 모달 닫기 핸들러를 강제로 제거합니다.
+        $modal.off('click');
+        
         if (buttons.hideClose) {
-            $modal.off('click');
+            //$modal.off('click');
         } else {
             $modal.off('click').on('click', function(event) {
                 if ($(event.target).is($modal)) {

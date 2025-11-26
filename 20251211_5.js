@@ -33,6 +33,8 @@ $(document).ready(function() {
     const $ch5ListCounter = $('#ch5-list-counter');
 
     const $ch5WriteBtn = $('#ch5-write-btn');
+    // [신규] 뒤로가기 버튼 캐싱
+    const $ch5BackBtn = $('#ch5-back-btn');
 
     let ctx = null;
     let stars = []; // 배경 별 배열
@@ -53,7 +55,7 @@ $(document).ready(function() {
     const $messageIcon = $('#ch5-message-modal-icon');
     const $messageAuthor = $('#ch5-message-modal-author');
     const $messageText = $('#ch5-message-modal-text');
-
+    
     // --- 2. 챕터 5 설정 및 상태 변수 ---
     const STAR_DESIGNS = [
         'https://lh3.googleusercontent.com/d/1jeWf4rvz31POee3PRhbXvKoCBSx26ICD', // 이미지 1
@@ -92,7 +94,7 @@ $(document).ready(function() {
         $ch5UniverseWrapper.css('display', ''); // CSS의 기본값(block)으로 복원
         $ch5ListViewWrapper.css('display', '');  // CSS의 기본값(none)으로 복원
         
-        // $ch5UniverseWrapper.show(); // [버그 수정] 삭제! (CSS가 제어하도록)
+        $ch5BackBtn.fadeIn(300);
         $ch5WriteBtn.fadeIn(300);
         $ch5ViewToggle.fadeIn(300);
         
@@ -121,6 +123,9 @@ $(document).ready(function() {
         // 7. 이벤트 리스너 설정
         setupChapter5Listeners();
 
+        // [신규] 뒤로가기 버튼 리스너 설정 (goToMap 호출)
+        $ch5BackBtn.off('click').on('click', goToMap);
+        
         // 8. [PLACEHOLDER] 파이어베이스에서 메시지 로드
         loadMessagesFromFirebase();
 
@@ -139,6 +144,10 @@ $(document).ready(function() {
         $ch5WriteBtn.hide();
         $ch5ViewToggle.hide(); // [신규] 뷰 토글 숨기기
         $ch5ListViewWrapper.hide(); // [수정]
+        
+        // [신규] 뒤로가기 버튼 숨김 및 리스너 제거
+        $ch5BackBtn.hide();
+        $ch5BackBtn.off('click');
         
         $formModal.fadeOut(300);
         $messageModal.fadeOut(300);
@@ -482,24 +491,34 @@ $(document).ready(function() {
         $ch5Constellation.empty();
         $ch5ListTrack.empty();
         
+        // [수정] 4개의 수평 레인(Lane) 정의 (비밀 규칙 - 중앙 집중형)
+        const HORIZONTAL_LANES = [
+            { minX: 5, maxX: 20 },  // Lane 0: 15% width (Outer Left)
+            { minX: 20, maxX: 45 }, // Lane 1: 25% width (Inner Left, Wider)
+            { minX: 45, maxX: 70 }, // Lane 2: 25% width (Inner Right, Wider)
+            { minX: 70, maxX: 85 }  // Lane 3: 15% width (Outer Right)
+        ];
+        
         const total = messages.length;
         const padding = 5; // Y좌표 상단 여백 (5%)
-        
-        // [수정] 90% -> 85%로 축소하여 하단 5% 추가 마진 확보 (최대 Y 배치를 90%로 설정)
-        const availableRange = 85; 
+        const availableRange = 8; // 밀도 유지 (8%)
 
         messages.forEach((msg, i) => {
             // 1. Y 좌표 계산 (시간순)
             let messageY;
             if (total === 1) {
-                messageY = 5; 
+                messageY = padding; 
             } else {
-                // Y 좌표 = 시작점(5%) + (목록 인덱스 / 총 개수-1) * 총 범위(85%)
                 messageY = padding + (i / (total - 1)) * availableRange;
             }
             
-            // 2. X 좌표는 저장된 값(msg.x)을 사용합니다.
-            const savedX = msg.x || `${Math.random() * 85 + 5}%`;
+            // 2. [신규] X 좌표는 비밀 규칙(i % 4) 기반으로 위치 할당
+            const laneIndex = i % 4; // 0, 1, 2, 3 순서로 레인 인덱스 할당
+            const lane = HORIZONTAL_LANES[laneIndex];
+            const xRange = lane.maxX - lane.minX;
+            
+            // 레인 내에서 무작위로 X 좌표 생성 
+            const newX = Math.random() * xRange + lane.minX; 
             
             // 3. 메시지 데이터 변환 및 할당
             const designIndex = parseInt(msg.star);
@@ -508,7 +527,7 @@ $(document).ready(function() {
             const data = { 
                 ...msg, 
                 star: designString,
-                x: savedX,       
+                x: `${newX}%`,       // 규칙 기반 X 좌표 사용
                 y: `${messageY}%`  
             }; 
             const id = msg.id;
@@ -669,7 +688,7 @@ $(document).ready(function() {
         const data = $element.data('messageData');
         if (!data) return;
 
-        // --- [수정] 이미지일 경우 <img> 태그 삽입 ---
+        // 이미지일 경우 <img> 태그 삽입 
         if (data.star.startsWith('http')) {
             $messageIcon.empty().append($('<img>', { src: data.star, alt: 'star icon' }));
             $messageIcon.css({
@@ -686,7 +705,6 @@ $(document).ready(function() {
                 'background-image': 'none' // 이전 CSS 스타일 초기화
             });
         }
-        // --- [수정] 끝 ---
 
         $messageAuthor.text(`${data.name}`);
         $messageText.html(data.message.replace(/\n/g, '<br>'));

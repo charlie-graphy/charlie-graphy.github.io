@@ -1577,6 +1577,15 @@ body, html {
     position: relative;
     display: block; 
     flex-shrink: 0; 
+    
+    /* [신규] 배경 이미지 추가 (Nebula) */
+    /* **[필수] 여기에 사용하고 싶은 고화질 우주 배경 이미지 URL을 넣어주세요.** */
+    background-image: url('YOUR_NEBULA_IMAGE_URL'); 
+    background-size: cover; /* 맵 전체를 커버하도록 설정 */
+    background-position: center center;
+    background-repeat: no-repeat;
+    /* [선택] 배경 이미지에 짙은 필터를 입혀 별들이 잘 보이게 할 수도 있습니다. */
+    filter: brightness(0.8);
 }
 #ch5-starfield-canvas {
     position: absolute;
@@ -1700,8 +1709,8 @@ body, html {
     font-family: 'Galmuri11', monospace;
     font-weight: 700;
     /* [선택] 카드 제목을 흰색으로 변경 */
-    color: #fff;
-    font-size: 1.1em; /* 좀 더 크게 */
+    color: #9ab;
+    font-size: 0.85em;
 }
 .ch5-list-item-message {
     color: #E0E1DD;
@@ -1750,11 +1759,6 @@ body, html {
     justify-content: center;
     align-items: center;
 }
-.ch5-list-nav-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* 호버 시 연한 배경 */
-    opacity: 1;
-}
-
 /* [추가] 버튼 안의 SVG 스타일 */
 .ch5-list-nav-btn svg {
     width: 24px;
@@ -2052,4 +2056,49 @@ body, html {
     display: flex; /* 이미지 중앙 정렬 */
     justify-content: center;
     align-items: center;
+}
+/* --- 챕터 5: 뒤로가기 버튼 (ch4-pause-btn 스타일 복사) --- */
+
+#ch5-back-btn {
+    position: fixed; /* 뷰 토글과 마찬가지로 fixed로 변경 */
+    top: 20px;
+    left: 20px;
+    z-index: 10; 
+
+    /* [디자인] 반투명 원형 버튼 */
+    width: 26px;
+    height: 26px; 
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    
+    /* [화살표 스타일] */
+    font-size: 1.2em;
+    color: #fff; 
+    line-height: 1;
+    
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+/* [수정] 웜톤 호버/액티브 효과 적용 */
+#ch5-back-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.7);
+    transform: scale(1.1);
+    /* 호버 시 웜톤 그림자 추가 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4), 0 0 10px var(--ch5-warm-color, #ffd54f); 
+}
+
+#ch5-back-btn:active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(0.95);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
