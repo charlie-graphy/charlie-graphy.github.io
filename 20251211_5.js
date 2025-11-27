@@ -77,61 +77,166 @@ $(document).ready(function() {
     let ch5TouchStartX = 0; // 스와이프 시작 X좌표
 
 
-    // --- 3. [핵심] 챕터 5 게임 초기화 함수 (전역 할당) ---
+	// --- 3. [핵심] 챕터 5 게임 초기화 함수 (전역 할당) ---
+    // 20251211_5.js 파일 내 (L365 근처)
     initChapter5Game = function() {
-    	// 1. 캔버스 설정
-        if ($canvas.length > 0) {
-            ctx = $canvas.get(0).getContext('2d');
-            $canvas.get(0).width = UNIVERSE_SIZE;
-            $canvas.get(0).height = UNIVERSE_SIZE;
-        } else {
-            console.error("챕터 5 캔버스를 찾을 수 없습니다.");
+        
+        // --- 1. 시네마틱 종료 후, 실제 맵을 로드하는 함수 정의 ---
+        function startChapter5Archive() {
+            // (startChapter5Archive 함수 로직 유지)
+            if ($canvas.length > 0) {
+                ctx = $canvas.get(0).getContext('2d');
+                $canvas.get(0).width = UNIVERSE_SIZE;
+                $canvas.get(0).height = UNIVERSE_SIZE;
+            } else {
+                console.error("챕터 5 캔버스를 찾을 수 없습니다.");
+            }
+
+            $ch5Container.addClass('game-started');
+            $ch5UniverseWrapper.css('display', '');
+            $ch5ListViewWrapper.css('display', '');
+            $ch5WriteBtn.fadeIn(300);
+            $ch5ViewToggle.fadeIn(300);
+            $ch5BackBtn.fadeIn(300); 
+            
+            $ch5Constellation.empty();
+            $ch5ListTrack.empty();
+
+            createStarfield();
+            drawStarfield();
+
+            if ($starSelector.children().length === 0) {
+                populateStarSelector();
+            }
+            
+            $ch5Container.removeClass('list-view-active');
+            $ch5ViewToggle.find('.ch5-toggle-btn').removeClass('active');
+            $ch5ViewToggle.find('[data-view="universe"]').addClass('active');
+
+            ch5MessageList = [];
+            ch5CurrentIndex = 0;
+            updateCarouselState();
+
+            setupChapter5Listeners();
+            $ch5BackBtn.off('click').on('click', goToMap);
+
+            loadMessagesFromFirebase();
+
+            $ch5Container.scrollLeft((UNIVERSE_SIZE - $ch5Container.width()) / 2);
+            $ch5Container.scrollTop(0); 
+        } 
+        
+        
+        // --- 2. 시네마틱 연출 로직 (정적 배경 이미지 활용) ---
+
+        const $storyOverlay = $('#story-overlay');
+        const $storyTextContainer = $('#story-text-container');
+        const cinematicText = [
+            "10년의 여정, 우리의 우주를 만들고 있습니다.",
+            "함께 보낸 모든 기억들이 가장 소중한 별이 되어 이 은하를 채우고 있습니다.",
+            "이 소중한 은하에 별을 띄워주세요."
+        ];
+        
+        $storyTextContainer.empty();
+        
+        // [FIX 1] #story-overlay에 고유 클래스 추가
+        $storyOverlay.addClass('ch5-cinematic-active').css({
+            'display': 'flex',
+            'color': '#FFFFFF', 
+            'opacity': 0 
+        }).animate({opacity: 1}, 800); 
+
+        // [FIX 2] 임시 스타일링 로직 제거 (CSS 클래스로 이동)
+        $storyTextContainer.css({
+            'z-index': '10' // 텍스트가 배경 이미지 위로 오도록만 설정
+        });
+        
+        // --- 타이핑 관련 변수 정의 ---
+        let lineIndex = 0;
+        let charIndex = 0;
+        let typingTimeout;
+        
+     // 타이핑 완료 후 최종 상태 (커서 표시, 클릭 대기)
+        function showFinalState() {
+            $('.story-cursor').css({'display': 'inline-block', 'opacity': '1'}).removeClass('blinking'); 
+            
+            $storyOverlay.off('click').on('click', function() {
+                // 최종 클릭 시 애니메이션 시작
+                $('.story-cursor').hide().removeClass('blinking'); 
+                
+                $storyOverlay.animate({opacity: 0}, 2000, function() {
+                    $(this).hide();
+                    
+                    $storyTextContainer.css({
+                        'background': '', 'padding': '', 'border-radius': '', 'z-index': ''
+                    });
+                    
+                    startChapter5Archive(); 
+                });
+            });
         }
 
-        // 2. 우주 공간 보이기
-        $ch5Container.addClass('game-started');
-        
-        $ch5UniverseWrapper.css('display', ''); // CSS의 기본값(block)으로 복원
-        $ch5ListViewWrapper.css('display', '');  // CSS의 기본값(none)으로 복원
-        
-        $ch5BackBtn.fadeIn(300);
-        $ch5WriteBtn.fadeIn(300);
-        $ch5ViewToggle.fadeIn(300);
-        
-        $ch5Constellation.empty();
-        $ch5ListTrack.empty();
-
-        // 3. 배경 별 생성 및 그리기
-        createStarfield();
-        drawStarfield();
-
-        // 4. 별 디자인 선택 UI 생성 (한 번만)
-        if ($starSelector.children().length === 0) {
-            populateStarSelector();
+        // 타이핑 중단 및 전체 텍스트 표시
+        function finishTyping() {
+            if (typingTimeout) clearTimeout(typingTimeout);
+            // 이미 나온 텍스트 + 남은 텍스트를 즉시 표시
+            
+            // 1. 현재 라인의 남은 텍스트 표시
+            const currentLine = cinematicText[lineIndex];
+            $storyTextContainer.find('p').last().append(currentLine.substring(charIndex));
+            
+            // 2. 남은 모든 줄 즉시 표시
+            for (let i = lineIndex + 1; i < cinematicText.length; i++) {
+                 $storyTextContainer.append(`<p style="color: #FFFFFF;">${cinematicText[i]}</p>`);
+            }
+            
+            // 3. 타이핑 로직을 건너뛰고 최종 상태로 전환
+            lineIndex = cinematicText.length; 
+            showFinalState();
         }
         
-        // 5. 뷰 토글 상태 초기화
-        $ch5Container.removeClass('list-view-active');
-        $ch5ViewToggle.find('.ch5-toggle-btn').removeClass('active');
-        $ch5ViewToggle.find('[data-view="universe"]').addClass('active');
-
-        // 6. 캐러셀 상태 초기화
-        ch5MessageList = [];
-        ch5CurrentIndex = 0;
-        updateCarouselState(); // 카운터, 버튼 숨기기
-
-        // 7. 이벤트 리스너 설정
-        setupChapter5Listeners();
-
-        // [신규] 뒤로가기 버튼 리스너 설정 (goToMap 호출)
-        $ch5BackBtn.off('click').on('click', goToMap);
+        // 실제 한 글자씩 출력하는 함수
+        function typeChar() {
+            if (lineIndex < cinematicText.length) {
+                const currentLine = cinematicText[lineIndex];
+                
+                // 새 문단 시작 시 <p> 태그 추가
+                if (charIndex === 0) {
+                     // 폰트 스타일 유지를 위해 직접 스타일 적용
+                    $storyTextContainer.append('<p style="color: #FFFFFF;"></p>'); 
+                }
+                
+                if (charIndex < currentLine.length) {
+                    // 한 글자씩 출력
+                    $storyTextContainer.find('p').last().append(currentLine.charAt(charIndex));
+                    charIndex++;
+                    typingTimeout = setTimeout(typeChar, 40); // 40ms 타이핑 속도
+                } else {
+                    // 줄 완료 후 잠시 멈춤
+                    lineIndex++;
+                    charIndex = 0;
+                    typingTimeout = setTimeout(typeChar, 1000); // 1초 정지 후 다음 줄
+                }
+            } else {
+                // 모든 줄 완료
+                showFinalState();
+            }
+        }
         
-        // 8. [PLACEHOLDER] 파이어베이스에서 메시지 로드
-        loadMessagesFromFirebase();
+        // --- Start Click Handler (Skip/Proceed) ---
+        $storyOverlay.off('click').on('click', function() {
+            if (lineIndex < cinematicText.length) { 
+                // 1. 타이핑 중이면 즉시 완료
+                finishTyping();
+            } else { 
+                // 2. 타이핑 완료 후면 최종 상태로 전환 (이벤트 제거 후 재실행)
+                $storyOverlay.off('click').trigger('click'); 
+            }
+        });
 
-        // 9. 화면 중앙에서 시작
-        $ch5Container.scrollTop(0);
-    };
+        // 3. 시퀀스 시작
+        typeChar();
+    }; 
 
     // --- 4. 챕터 5 게임 중지 함수 (전역 할당) ---
     stopChapter5Game = function() {
@@ -149,6 +254,7 @@ $(document).ready(function() {
         $ch5BackBtn.hide();
         $ch5BackBtn.off('click');
         
+        stopStarlight(); // [신규] 챕터 5 종료 시 불꽃놀이 중지
         $formModal.fadeOut(300);
         $messageModal.fadeOut(300);
 
@@ -719,4 +825,6 @@ $(document).ready(function() {
   	isConnected = false;
   	console.log('Firebase 연결 종료됨');
   }
+	//20251211_5.js 파일 하단에 추가
+	
 });
