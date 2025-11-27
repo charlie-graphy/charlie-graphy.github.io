@@ -134,7 +134,7 @@ $(document).ready(function() {
         const cinematicText = [
             "10년의 여정, 우리의 우주를 만들고 있습니다.",
             "함께 보낸 모든 기억들이 가장 소중한 별이 되어 이 은하를 채우고 있습니다.",
-            "이 소중한 은하에 별을 띄워주세요."
+            "우리의 우주에 많은 순간의 별을 띄워주세요."
         ];
         
         $storyTextContainer.empty();

@@ -117,13 +117,6 @@ body, html {
     0% { background-position: 0% 0%; }
     100% { background-position: 200% 200%; } /* 대각선 방향으로 흐르도록 */
 }
-/* 커서 스타일 (기존 유지) */
-.story-cursor {
-    margin-left: 5px;
-    width: 3px;
-    height: 1.2em; 
-    display: none; 
-}
 
 /* 커서 깜빡임 애니메이션 정의 확인 */
 @keyframes blink-cursor {
@@ -131,7 +124,14 @@ body, html {
     50% { opacity: 0; }
 }
 
-
+/* 커서 스타일 (기존 유지) */
+.story-cursor {
+    margin-left: 5px;
+    width: 3px;
+    height: 1.2em; 
+    display: none;
+    animation: animation: blink-cursor 0.8s infinite steps(1); /* 애니메이션 적용 확인 */
+}
 /* --- 항해 지도 & 챕터 공통 배경 --- */
 .galaxy-map-container, .chapter-container {
     background: #00000c;
@@ -2127,77 +2127,12 @@ body, html {
     /* 텍스트 컨테이너 스타일은 JS에서 적용되므로 여기서는 최소화 */
 }
 
-/* 깜빡이는 커서 (JS에서 display: inline-block으로 제어) */
-.story-cursor {
-    margin-left: 5px;
-    width: 3px;
-    height: 1.2em; /* p 태그의 글자 높이에 맞춤 */
-    display: none; /* 기본 숨김 */
-    animation: animation: blink-cursor 0.8s infinite steps(1); /* 애니메이션 적용 확인 */
-}
-
-@keyframes blinkCursor {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-/* 20251211.css 파일 하단에 추가 */
-
 /* --- 은하수 축제 시네마틱 효과 --- */
-
-/* Pseudo-element: 은하수 입자를 생성하는 박스 섀도우 트릭 */
-.cinematic-starlight::before,
-.cinematic-starlight::after {
-    content: '';
-    position: absolute;
-    top: 100%; /* 화면 아래에서 시작 */
-    left: 0;
-    width: 100%;
-    height: 100%; /* 화면 전체를 덮도록 */
-    background: transparent;
-    
-    /* [핵심] 수많은 작은 점을 생성하기 위한 박스 섀도우 (무작위 X, Y 위치에 흰색/푸른빛 입자 생성) */
-    box-shadow: 
-        100px 500px 1px #E0FFFF, 200px 300px 2px #ADD8E6,
-        300px 800px 1px #FFFFFF, 400px 100px 2px #E0FFFF,
-        500px 600px 1px #ADD8E6, 600px 200px 2px #FFFFFF,
-        700px 900px 1px #E0FFFF, 800px 400px 2px #ADD8E6,
-        900px 700px 1px #FFFFFF, 1000px 50px 2px #E0FFFF,
-        1100px 350px 1px #ADD8E6, 1200px 750px 2px #FFFFFF,
-        1300px 150px 1px #E0FFFF, 1400px 650px 2px #ADD8E6,
-        1500px 250px 1px #FFFFFF, 1600px 800px 2px #E0FFFF,
-        1700px 400px 1px #ADD8E6, 1800px 950px 2px #FFFFFF,
-        50px 200px 1px #E0FFFF, 250px 700px 2px #ADD8E6; 
-
-    /* 애니메이션 적용 */
-    animation: starlight-drift 25s linear infinite, /* 25초 동안 느리게 상승/이동 */
-               starlight-twinkle 3s ease-in-out infinite alternate; /* 3초마다 반짝임 */
-}
-
-/* 두 번째 입자 세트를 추가하여 밀도를 높이고 애니메이션 타이밍을 다르게 함 */
-.cinematic-starlight::after {
-    box-shadow: 
-        50px 700px 1px #FFFFFF, 150px 100px 2px #E0FFFF,
-        250px 500px 1px #ADD8E6, 350px 200px 2px #FFFFFF,
-        450px 900px 1px #E0FFFF, 550px 300px 2px #ADD8E6,
-        650px 800px 1px #FFFFFF, 750px 150px 2px #E0FFFF,
-        850px 600px 1px #ADD8E6, 950px 400px 2px #FFFFFF,
-        1050px 850px 1px #E0FFFF, 1150px 250px 2px #ADD8E6,
-        1250px 700px 1px #FFFFFF, 1350px 50px 2px #E0FFFF,
-        1450px 300px 1px #ADD8E6, 1550px 900px 2px #FFFFFF,
-        1650px 550px 1px #E0FFFF, 1750px 200px 2px #ADD8E6;
-        
-    animation: starlight-drift 30s linear infinite reverse, /* 반대 방향으로 더 느리게 이동 */
-               starlight-twinkle 2.5s ease-in-out infinite alternate 0.5s; /* 0.5초 딜레이로 반짝임 */
-}
-/* 20251211.css 파일 하단에 추가 */
-
-/* [FIX] 챕터 5 시네마틱 고유 스타일 (오프닝 충돌 방지) */
-
 /* 1. 텍스트 컨테이너의 배경 및 패딩 */
 .ch5-cinematic-active #story-text-container {
     background: rgba(0, 0, 0, 0.4); 
     padding: 30px; 
+    padding-bottom: 0px;
     border-radius: 15px;
     max-width: 80%; /* 중앙에 텍스트 블록 고정 */
     text-align: center;
@@ -2206,13 +2141,15 @@ body, html {
 /* 2. 텍스트 문단의 크기 및 발광 효과 */
 .ch5-cinematic-active #story-text-container p {
     font-family: 'Galmuri11', monospace;
-    font-size: 1em; /* [FIX] 챕터 5에서만 큰 글꼴 사용 */
+    font-size: 1em;
     margin: 8px 0; 
     color: #FFFFFF; 
-    text-shadow: 0 0 8px rgba(255,255,255,0.7), 0 0 15px rgba(255,255,255,0.5); /* 발광 효과 */
+    text-shadow: 
+        0 0 10px #E0FFFF,   /* 약한 푸른빛 (base) */
+        0 0 20px #FFFFFF,   /* 중간 강도 흰색 (core) */
+        0 0 35px rgba(50, 150, 255, 0.8); /* 확산되는 푸른빛 (glow) */
     background-color: rgb(0, 0, 0, 0.7);
 }
-
 /* 글자 주변에 흐르는 별빛 가상 요소 */
 .ch5-cinematic-active #story-text-container p::before {
     content: '';
@@ -2223,18 +2160,17 @@ body, html {
     height: 200%; /* 글자 영역의 두 배 크기 */
     pointer-events: none; /* 클릭 이벤트 방해하지 않도록 */
     opacity: 0.8; /* 은은한 투명도 */
-    
-    /* [핵심] 작은 별점들을 배경 이미지처럼 반복하여 흐르게 함 */
-    background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.8) 1px, transparent 1px),
-                radial-gradient(circle at 30% 70%, rgba(255,255,255,0.6) 1px, transparent 1px),
-                radial-gradient(circle at 60% 40%, rgba(200,220,255,0.7) 1px, transparent 1px),
-                radial-gradient(circle at 80% 90%, rgba(255,255,255,0.9) 1px, transparent 1px),
-                radial-gradient(circle at 45% 10%, rgba(230,240,255,0.5) 1px, transparent 1px),
-                radial-gradient(circle at 20% 50%, rgba(200,220,255,0.8) 1px, transparent 1px);
-    background-size: 50px 50px; /* 별점 패턴의 크기 */
+	/* [핵심] 작은 별점들을 배경 이미지처럼 반복하여 흐르게 함 */
+	background:radial-gradient(circle at 10% 20%, rgba(255,240,220,0.8) 1px, transparent 1px), /* Pale Gold */
+                radial-gradient(circle at 30% 70%, rgba(255,220,180,0.6) 1px, transparent 1px), /* Soft Peach */
+                radial-gradient(circle at 60% 40%, rgba(255,245,210,0.7) 1px, transparent 1px), /* Light Yellow */
+                radial-gradient(circle at 80% 90%, rgba(255,235,200,0.9) 1px, transparent 1px), /* Warm White */
+                radial-gradient(circle at 45% 10%, rgba(255,240,220,0.5) 1px, transparent 1px), /* Pale Gold */
+                radial-gradient(circle at 20% 50%, rgba(255,225,190,0.8) 1px, transparent 1px); /* Soft Yellow */;
+	background-size: 50px 50px; /* 별점 패턴의 크기 */
     background-repeat: repeat; /* 패턴 반복 */
     
     /* 애니메이션 적용 */
-    animation: text-starlight-flow 60s linear infinite; /* 60초 동안 천천히 흐르도록 */
+    animation: text-starlight-flow 80s linear infinite; /* 80초 동안 천천히 흐르도록 */
     z-index: -1; /* 글자 뒤에 위치 */
 }
