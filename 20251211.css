@@ -130,7 +130,7 @@ body, html {
     width: 3px;
     height: 1.2em; 
     display: none;
-    animation: animation: blink-cursor 0.8s infinite steps(1); /* 애니메이션 적용 확인 */
+    animation: blink-cursor 0.8s infinite steps(1);
 }
 /* --- 항해 지도 & 챕터 공통 배경 --- */
 .galaxy-map-container, .chapter-container {
