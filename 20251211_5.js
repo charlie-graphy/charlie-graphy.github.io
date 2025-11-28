@@ -78,7 +78,6 @@ $(document).ready(function() {
 
 
 	// --- 3. [핵심] 챕터 5 게임 초기화 함수 (전역 할당) ---
-    // 20251211_5.js 파일 내 (L365 근처)
     initChapter5Game = function() {
         
         // --- 1. 시네마틱 종료 후, 실제 맵을 로드하는 함수 정의 ---
@@ -128,7 +127,6 @@ $(document).ready(function() {
         
         
         // --- 2. 시네마틱 연출 로직 (정적 배경 이미지 활용) ---
-
         const $storyOverlay = $('#story-overlay');
         const $storyTextContainer = $('#story-text-container');
         const cinematicText = [
@@ -156,7 +154,7 @@ $(document).ready(function() {
         let charIndex = 0;
         let typingTimeout;
         
-     // 타이핑 완료 후 최종 상태 (커서 표시, 클릭 대기)
+        // 타이핑 완료 후 최종 상태 (커서 표시, 클릭 대기)
         function showFinalState() {
             $('.story-cursor').css({'display': 'inline-block', 'opacity': '1'}).removeClass('blinking'); 
             
@@ -164,13 +162,9 @@ $(document).ready(function() {
                 // 최종 클릭 시 애니메이션 시작
                 $('.story-cursor').hide().removeClass('blinking'); 
                 
-                $storyOverlay.animate({opacity: 0}, 2000, function() {
+                $storyOverlay.animate({opacity: 0}, 1000, function() {
                     $(this).hide();
-                    
-                    $storyTextContainer.css({
-                        'background': '', 'padding': '', 'border-radius': '', 'z-index': ''
-                    });
-                    
+                    $storyTextContainer.css({'background': '', 'padding': '', 'border-radius': '', 'z-index': ''}).hide().fadeIn(1000);
                     startChapter5Archive(); 
                 });
             });
@@ -187,7 +181,7 @@ $(document).ready(function() {
             
             // 2. 남은 모든 줄 즉시 표시
             for (let i = lineIndex + 1; i < cinematicText.length; i++) {
-                 $storyTextContainer.append(`<p style="color: #FFFFFF;">${cinematicText[i]}</p>`);
+                 $storyTextContainer.append(`<p>${cinematicText[i]}</p>`);
             }
             
             // 3. 타이핑 로직을 건너뛰고 최종 상태로 전환
@@ -201,10 +195,7 @@ $(document).ready(function() {
                 const currentLine = cinematicText[lineIndex];
                 
                 // 새 문단 시작 시 <p> 태그 추가
-                if (charIndex === 0) {
-                     // 폰트 스타일 유지를 위해 직접 스타일 적용
-                    $storyTextContainer.append('<p style="color: #FFFFFF;"></p>'); 
-                }
+                if (charIndex === 0)  $storyTextContainer.append('<p></p>'); 
                 
                 if (charIndex < currentLine.length) {
                     // 한 글자씩 출력
@@ -215,12 +206,9 @@ $(document).ready(function() {
                     // 줄 완료 후 잠시 멈춤
                     lineIndex++;
                     charIndex = 0;
-                    typingTimeout = setTimeout(typeChar, 1000); // 1초 정지 후 다음 줄
+                    typingTimeout = setTimeout(typeChar, 500);
                 }
-            } else {
-                // 모든 줄 완료
-                showFinalState();
-            }
+            } else showFinalState();
         }
         
         // --- Start Click Handler (Skip/Proceed) ---
@@ -254,7 +242,6 @@ $(document).ready(function() {
         $ch5BackBtn.hide();
         $ch5BackBtn.off('click');
         
-        stopStarlight(); // [신규] 챕터 5 종료 시 불꽃놀이 중지
         $formModal.fadeOut(300);
         $messageModal.fadeOut(300);
 
@@ -270,6 +257,8 @@ $(document).ready(function() {
         $ch5ListPrev.off('click'); // [신규]
         $ch5ListNext.off('click'); // [신규]
         $ch5ViewToggle.off('click');
+        
+        disconnect();
     };
 
     // --- 5. 배경 별 캔버스 로직 ---
@@ -824,7 +813,5 @@ $(document).ready(function() {
   	firebase.database().goOffline(); // Firebase 연결 끊기
   	isConnected = false;
   	console.log('Firebase 연결 종료됨');
-  }
-	//20251211_5.js 파일 하단에 추가
-	
+  }	
 });

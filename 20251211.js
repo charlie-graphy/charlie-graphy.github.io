@@ -91,10 +91,55 @@ $(window).on('load', function() {
     function showStoryOverlay() { // [유지] function (지역 함수)
         const storyLines = ["시간여행자님, 우주선 탑승을 환영합니다.", "이제부터 10년의 시간을 거슬러 올라가,", "흩어진 기억의 조각들을 모으는 탐사를 시작합니다.", "모든 조각을 찾아 최종 목적지 '우주'에 도달하는 것이 우리의 임무입니다.", "준비되셨다면, 화면을 터치하여 항해를 시작해주십시오."];
         let lineIndex = 0, charIndex = 0, typingTimeout, isTyping = true, typingFinished = false;
-        $storyTextContainer.empty(); $storyCursor.hide().css('opacity', '0').removeClass('blinking'); $storyOverlay.css('display', 'flex').animate({opacity: 1}, 1000);
-        function typeWriter() { if (lineIndex < storyLines.length && isTyping) { const currentLine = storyLines[lineIndex]; if (charIndex === 0) { $storyTextContainer.append('<p></p>'); } if (charIndex < currentLine.length) { $storyTextContainer.find('p').last().append(currentLine.charAt(charIndex)); charIndex++; typingTimeout = setTimeout(typeWriter, 50); } else { lineIndex++; charIndex = 0; typingTimeout = setTimeout(typeWriter, 500); } } else if (!isTyping) { clearTimeout(typingTimeout); $storyTextContainer.empty(); storyLines.forEach(line => $storyTextContainer.append(`<p>${line}</p>`)); lineIndex = storyLines.length; finishTyping(); } else { finishTyping(); } }
-        function finishTyping() { isTyping = false; typingFinished = true; clearTimeout(typingTimeout); $storyCursor.css({'display': 'inline-block', 'opacity': '1'}).addClass('blinking'); $storyOverlay.off('click').on('click', function() { $(this).off('click'); $storyOverlay.animate({opacity: 0}, 1000, function() { $(this).hide(); $galaxyMap.css('display', 'flex').hide().fadeIn(1000); }); }); }
-        $storyOverlay.off('click').on('click', function() { if (isTyping) { isTyping = false; typeWriter(); } }); typeWriter();
+        $storyTextContainer.empty(); 
+        $storyCursor.hide().css('opacity', '0').removeClass('blinking'); 
+        $storyOverlay.css('display', 'flex').animate({opacity: 1}, 1000);
+        
+        function typeWriter() { 
+        	if (lineIndex < storyLines.length && isTyping) {
+        		const currentLine = storyLines[lineIndex]; 
+        		
+        		if (charIndex === 0) $storyTextContainer.append('<p></p>');
+        		
+        		if (charIndex < currentLine.length) { 
+        			$storyTextContainer.find('p').last().append(currentLine.charAt(charIndex)); 
+        			charIndex++; 
+        			typingTimeout = setTimeout(typeWriter, 40); 
+        		} else { 
+        			lineIndex++; 
+        			charIndex = 0; 
+        			typingTimeout = setTimeout(typeWriter, 500); 
+        		} 
+        	} else if (!isTyping) { 
+        		clearTimeout(typingTimeout); 
+        		$storyTextContainer.empty(); 
+        		storyLines.forEach(line => $storyTextContainer.append(`<p>${line}</p>`)); 
+        		lineIndex = storyLines.length; 
+        		finishTyping(); 
+        	} else finishTyping();
+        }
+        
+        function finishTyping() { 
+        	isTyping = false; 
+        	typingFinished = true; 
+        	
+        	clearTimeout(typingTimeout); 
+        	$storyCursor.css({'display': 'inline-block', 'opacity': '1'}).addClass('blinking'); 
+        	
+        	$storyOverlay.off('click').on('click', function() { 
+        		$(this).off('click'); 
+        		$storyOverlay.animate({opacity: 0}, 1000, function() { 
+        			$(this).hide(); 
+        			$galaxyMap.css('display', 'flex').hide().fadeIn(1000); 
+        		});
+        	}); 
+        }
+        
+        $storyOverlay.off('click').on('click', function() { 
+        	if (isTyping) { isTyping = false; typeWriter(); } 
+        }); 
+        
+        typeWriter();
     }
 
 
@@ -152,13 +197,13 @@ $(window).on('load', function() {
         stopChapter3Game();
         stopChapter4Game();
         stopChapter5Game();
+        
         $('.chapter-container').fadeOut(500);
         $poemModal.fadeOut(300);
         $fragmentModal.fadeOut(300);
         $selectFragmentModal.fadeOut(300);
         
         // [버그 수정] 맵이 사라진 상태에서 위치 계산이 안되는 버그 수정
-        // 1. $targetPlanet 변수만 미리 찾아둠
         const $targetPlanet = $(`#planet${currentChapterNum}`);
         
         // 2. 맵을 먼저 화면에 띄우고(fadeIn)
