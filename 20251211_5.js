@@ -79,12 +79,9 @@ $(document).ready(function() {
 
 	// --- 3. [핵심] 챕터 5 게임 초기화 함수 (전역 할당) ---
     initChapter5Game = function() {
-    	
-    	loadMessagesFromFirebase();
-    	
+        
         // --- 1. 시네마틱 종료 후, 실제 맵을 로드하는 함수 정의 ---
         function startChapter5Archive() {
-            // (startChapter5Archive 함수 로직 유지)
             if ($canvas.length > 0) {
                 ctx = $canvas.get(0).getContext('2d');
                 $canvas.get(0).width = UNIVERSE_SIZE;
@@ -120,6 +117,8 @@ $(document).ready(function() {
 
             setupChapter5Listeners();
             $ch5BackBtn.off('click').on('click', goToMap);
+
+            loadMessagesFromFirebase();
 
             $ch5Container.scrollLeft((UNIVERSE_SIZE - $ch5Container.width()) / 2);
             $ch5Container.scrollTop(0); 
@@ -159,9 +158,7 @@ $(document).ready(function() {
             $('.story-cursor').css({'display': 'inline-block', 'opacity': '1'}).removeClass('blinking'); 
             
             $storyOverlay.off('click').on('click', function() {
-                // 최종 클릭 시 애니메이션 시작
-                $('.story-cursor').hide().removeClass('blinking'); 
-                
+        		$(this).off('click');
                 $storyOverlay.animate({opacity: 0}, 1000, function() {
                     $(this).hide();
                     $storyTextContainer.css({'background': '', 'padding': '', 'border-radius': '', 'z-index': ''}).hide().fadeIn(1000);
@@ -173,7 +170,6 @@ $(document).ready(function() {
         // 타이핑 중단 및 전체 텍스트 표시
         function finishTyping() {
             if (typingTimeout) clearTimeout(typingTimeout);
-            // 이미 나온 텍스트 + 남은 텍스트를 즉시 표시
             
             // 1. 현재 라인의 남은 텍스트 표시
             const currentLine = cinematicText[lineIndex];

@@ -130,7 +130,8 @@ $(window).on('load', function() {
         		$(this).off('click'); 
         		$storyOverlay.animate({opacity: 0}, 1000, function() { 
         			$(this).hide(); 
-        			$galaxyMap.css('display', 'flex').hide().fadeIn(1000); 
+        			$galaxyMap.css('display', 'flex').hide().fadeIn(1000);
+                	$storyCursor.css({'display': 'none', 'opacity': '0'}).removeClass('blinking'); 
         		});
         	}); 
         }
