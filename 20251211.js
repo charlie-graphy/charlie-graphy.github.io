@@ -89,7 +89,7 @@ $(window).on('load', function() {
 
     // --- 스토리 오버레이 로직 ---
     function showStoryOverlay() { // [유지] function (지역 함수)
-        const storyLines = ["시간여행자님, 우주선 탑승을 환영합니다.", "이제부터 10년의 시간을 거슬러 올라가,", "흩어진 기억의 조각들을 모으는 탐사를 시작합니다.", "모든 조각을 찾아 최종 목적지 '우주'에 도달하는 것이 우리의 임무입니다.", "준비되셨다면, 화면을 터치하여 항해를 시작해주십시오."];
+        const storyLines = ["안녕하세요.", "우주선 탑승을 환영합니다.", "이제부터 10년의 시간을 거슬러 올라가,", "흩어진 기억의 조각들을 모으는 탐사를 시작합니다.", "모든 조각을 찾아 최종 목적지 '우주'에 도달하는 것이 우리의 임무입니다.", "준비되셨다면, 화면을 터치하여", "항해를 시작해주십시오."];
         let lineIndex = 0, charIndex = 0, typingTimeout, isTyping = true, typingFinished = false;
         $storyTextContainer.empty(); 
         $storyCursor.hide().css('opacity', '0').removeClass('blinking'); 

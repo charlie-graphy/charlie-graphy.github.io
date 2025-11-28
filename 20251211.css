@@ -104,7 +104,7 @@ body, html {
     /* 타이핑 효과를 위해 빈 공간으로 시작 */
 }
 #story-text-container p {
-    margin: 8px 0; /* 줄 간격 조정 */
+    margin: 7px 0; /* 줄 간격 조정 */
     /* 개별 라인 애니메이션 제거 */
     display: block; /* 줄바꿈 적용 */
     word-break: keep-all; /* 단어 단위 줄바꿈 추가 */
@@ -2138,7 +2138,7 @@ body, html {
 .ch5-cinematic-active #story-text-container p {
     font-family: 'Galmuri11', monospace;
     font-size: 1em;
-    margin: 8px 0; 
+    margin: 7px 0; 
     color: #FFFFFF; 
     text-shadow: 
         0 0 10px #E0FFFF,   /* 약한 푸른빛 (base) */
