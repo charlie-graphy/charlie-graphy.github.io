@@ -79,7 +79,9 @@ $(document).ready(function() {
 
 	// --- 3. [핵심] 챕터 5 게임 초기화 함수 (전역 할당) ---
     initChapter5Game = function() {
-        
+    	
+    	loadMessagesFromFirebase();
+    	
         // --- 1. 시네마틱 종료 후, 실제 맵을 로드하는 함수 정의 ---
         function startChapter5Archive() {
             // (startChapter5Archive 함수 로직 유지)
@@ -118,8 +120,6 @@ $(document).ready(function() {
 
             setupChapter5Listeners();
             $ch5BackBtn.off('click').on('click', goToMap);
-
-            loadMessagesFromFirebase();
 
             $ch5Container.scrollLeft((UNIVERSE_SIZE - $ch5Container.width()) / 2);
             $ch5Container.scrollTop(0); 
@@ -253,9 +253,9 @@ $(document).ready(function() {
         $formModal.find('.ch5-close-btn').off('click');
         $messageModal.find('.ch5-close-btn').off('click');
         $ch5Constellation.off('click.ch5game');
-        $ch5ListTrack.off('.ch5game'); // [수정]
-        $ch5ListPrev.off('click'); // [신규]
-        $ch5ListNext.off('click'); // [신규]
+        $ch5ListTrack.off('.ch5game');
+        $ch5ListPrev.off('click');
+        $ch5ListNext.off('click');
         $ch5ViewToggle.off('click');
         
         disconnect();
