@@ -347,7 +347,7 @@ body, html {
 .modal-content {
     width: 100%; max-width: 400px;
     /* [수정] 팝업 내부 여백 조정 (30px -> 25px) */
-    padding: 25px; 
+    padding: 25px 20px; 
     border: 3px solid #40c4ff; background-color: rgba(0, 10, 20, 0.95);
     text-align: center; box-shadow: 0 0 25px #40c4ff;
     color: #fff; position: relative; border-radius: 5px;

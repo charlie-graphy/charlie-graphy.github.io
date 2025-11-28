@@ -367,10 +367,44 @@ $(window).on('load', function() {
             });
         }
 
-        if (buttons.showStart) { const btnText = buttons.startText || '게임 시작'; const $startButton = $(`<button class="modal-action-btn modal-start-btn">${btnText}</button>`); $modalButtonContainer.append($startButton); $startButton.on('click', function() { hideModal(); if(buttons.onStart) buttons.onStart(); else startCountdown(); }); }
-        if (buttons.showNext) { const nextChapter = buttons.nextChapterNum || 2; const $nextButton = $(`<button class="modal-action-btn modal-next-btn">다음 챕터로</button>`); $modalButtonContainer.append($nextButton); $nextButton.on('click', function() { hideModal(); transitionToChapter(nextChapter); }); }
-        if (buttons.showMap) { const $mapButton = $(`<button class="modal-action-btn modal-map-btn">지도 보기</button>`); $modalButtonContainer.append($mapButton); $mapButton.on('click', function() { hideModal(); goToMap(); }); }
-        if (buttons.showSkip) { const skipBtnText = buttons.skipText || '넘어가기'; const $skipButton = $(`<button class="modal-action-btn modal-skip-btn">${skipBtnText}</button>`); $modalButtonContainer.append($skipButton); $skipButton.on('click', function() { hideModal(); if(buttons.onSkip) buttons.onSkip(); }); }
+        if (buttons.showStart) { 
+        	const btnText = buttons.startText || '게임 시작'; 
+        	const $startButton = $(`<button class="modal-action-btn modal-start-btn">${btnText}</button>`); 
+        	$modalButtonContainer.append($startButton); 
+        	$startButton.on('click', function() { 
+        		hideModal(); 
+        		if(buttons.onStart) buttons.onStart(); 
+        		else startCountdown(); 
+        	}); 
+        }
+        if (buttons.showNext) { 
+        	const nextChapter = buttons.nextChapterNum || 2; 
+        	let $nextButton;
+        	if(buttons.nextChapterNum == 5) $nextButton = $(`<button class="modal-action-btn modal-next-btn">우주로</button>`);
+        	else $nextButton = $(`<button class="modal-action-btn modal-next-btn">다음 챕터로</button>`); 
+        	$modalButtonContainer.append($nextButton); 
+        	$nextButton.on('click', function() { 
+        		hideModal(); 
+        		transitionToChapter(nextChapter); 
+        	}); 
+        }
+        if (buttons.showMap) { 
+        	const $mapButton = $(`<button class="modal-action-btn modal-map-btn">지도 보기</button>`); 
+        	$modalButtonContainer.append($mapButton); 
+        	$mapButton.on('click', function() { 
+        		hideModal(); 
+        		goToMap(); 
+        	}); 
+        }
+        if (buttons.showSkip) { 
+        	const skipBtnText = buttons.skipText || '넘어가기'; 
+        	const $skipButton = $(`<button class="modal-action-btn modal-skip-btn">${skipBtnText}</button>`); 
+        	$modalButtonContainer.append($skipButton); 
+        	$skipButton.on('click', function() { 
+        		hideModal(); 
+        		if(buttons.onSkip) buttons.onSkip(); 
+        	}); 
+        }
         if (buttons.showSkipThemed) {
             const skipBtnText = buttons.skipText || '더 탐색하기';
             const puzzleId = buttons.puzzleId || 1; 

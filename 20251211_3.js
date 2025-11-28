@@ -201,7 +201,7 @@ $(document).ready(function() {
                  });
             },
             hideClose: false,
-            onClose: hideModal
+            onClose: () => { /* No action */ }
         });
     }
 
@@ -228,7 +228,7 @@ $(document).ready(function() {
                      showNext: true, nextChapterNum: 4,
                      showMap: true,
                      hideClose: false,
-                     onClose: hideModal
+                     onClose: () => { }
                  });
              },
              hideClose: false,

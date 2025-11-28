@@ -483,7 +483,7 @@ $(document).ready(function() {
 	        
 	        ch5MessageList = dummyMessages.sort((a, b) => b.timestamp - a.timestamp); //내림차순 정렬
 	        displayMessages(ch5MessageList);
-			disconnect();
+			setTimeout(disconnect, 1000);
 	    });
     }
 
