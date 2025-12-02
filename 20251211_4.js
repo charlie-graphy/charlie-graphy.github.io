@@ -857,8 +857,14 @@ $(document).ready(function() {
         stopChapter4Game(); 
         
         const chapter4Reward = {
-            title: "🌌",
-            content: `“뭐쓰냐”`
+            title: "🌿",
+            content: `“나의 매일을 그대와 나누고
+나의 영원은 그대가 되리라”
+.
+.
+“우리의 시간이 쉼없이 흘러가
+우리의 시간은 영원히 기억되도록
+영원히 잊지 않도록”`
         };
         
         if (typeof showModal === 'function' && typeof showFragmentModal === 'function') {
@@ -878,8 +884,13 @@ $(document).ready(function() {
         stopChapter4Game();
         
         const chapter4Reward = {
-            title: "🌌",
-            content: `“뭐라쓰냐.”`
+            title: "🌿",
+            content: `“나의 매일을 그대와 나누고
+나의 영원은 그대가 되리라”
+.
+“우리의 시간이 쉼없이 흘러가
+우리의 시간은 영원히 기억되도록
+영원히 잊지 않도록”`
         };
 
         function showChapter4ClearPopup() {
