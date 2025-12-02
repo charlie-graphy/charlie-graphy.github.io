@@ -1,4 +1,3 @@
-// [수정] HTML이 모두 로드된 후 스크립트가 실행되도록 $(document).ready로 감쌉니다.
 const firebaseConfig = {
 	    apiKey: "AIzaSyCmF81jQ27FLmyb1zZgT6pEboTpeFUUt-k",
 	    authDomain: "ahnjeehwany.firebaseapp.com",
@@ -25,7 +24,7 @@ $(document).ready(function() {
     const $ch5Constellation = $('#ch5-constellation');
     const $canvas = $('#ch5-starfield-canvas');
     
-    // [수정] 목록 뷰 (캐러셀)
+    // 목록 뷰 (캐러셀)
     const $ch5ListViewWrapper = $('#ch5-list-view-wrapper');
     const $ch5ListTrack = $('#ch5-list-track');
     const $ch5ListPrev = $('#ch5-list-prev');
@@ -33,7 +32,6 @@ $(document).ready(function() {
     const $ch5ListCounter = $('#ch5-list-counter');
 
     const $ch5WriteBtn = $('#ch5-write-btn');
-    // [신규] 뒤로가기 버튼 캐싱
     const $ch5BackBtn = $('#ch5-back-btn');
 
     let ctx = null;
@@ -71,13 +69,13 @@ $(document).ready(function() {
     let isCh5Dragging = false;
     let ch5DragStartPos = { x: 0, y: 0 };
     
-    // [신규] 캐러셀(목록 뷰) 상태
+    // 캐러셀(목록 뷰) 상태
     let ch5MessageList = []; // 모든 메시지 데이터 (최신순)
     let ch5CurrentIndex = 0; // 현재 보고있는 슬라이드 인덱
     let ch5TouchStartX = 0; // 스와이프 시작 X좌표
 
 
-	// --- 3. [핵심] 챕터 5 게임 초기화 함수 (전역 할당) ---
+	// --- 3. 챕터 5 게임 초기화 함수 (전역 할당) ---
     initChapter5Game = function() {
         
         // --- 1. 시네마틱 종료 후, 실제 맵을 로드하는 함수 정의 ---
@@ -86,9 +84,7 @@ $(document).ready(function() {
                 ctx = $canvas.get(0).getContext('2d');
                 $canvas.get(0).width = UNIVERSE_SIZE;
                 $canvas.get(0).height = UNIVERSE_SIZE;
-            } else {
-                console.error("챕터 5 캔버스를 찾을 수 없습니다.");
-            }
+            } else console.error("챕터 5 캔버스를 찾을 수 없습니다.");
 
             loadMessagesFromFirebase();
 
@@ -105,9 +101,7 @@ $(document).ready(function() {
             createStarfield();
             drawStarfield();
 
-            if ($starSelector.children().length === 0) {
-                populateStarSelector();
-            }
+            if ($starSelector.children().length === 0) populateStarSelector();
             
             $ch5Container.removeClass('list-view-active');
             $ch5ViewToggle.find('.ch5-toggle-btn').removeClass('active');
@@ -229,13 +223,12 @@ $(document).ready(function() {
             cancelAnimationFrame(ch5AnimationId);
             ch5AnimationId = null;
         }
-        $ch5Container.removeClass('game-started list-view-active'); // [수정]
+        $ch5Container.removeClass('game-started list-view-active');
         $ch5UniverseWrapper.hide();
         $ch5WriteBtn.hide();
-        $ch5ViewToggle.hide(); // [신규] 뷰 토글 숨기기
-        $ch5ListViewWrapper.hide(); // [수정]
+        $ch5ViewToggle.hide();
+        $ch5ListViewWrapper.hide();
         
-        // [신규] 뒤로가기 버튼 숨김 및 리스너 제거
         $ch5BackBtn.hide();
         $ch5BackBtn.off('click');
         
@@ -291,12 +284,9 @@ $(document).ready(function() {
             ctx.fill();
         });
         
-        // [수정] ch5AnimationId가 null이 아닐 때만 (즉, 목록 뷰가 아닐 때만) 재귀 호출
-        if (!$ch5Container.hasClass('list-view-active')) {
-            ch5AnimationId = requestAnimationFrame(drawStarfield);
-        } else {
-            ch5AnimationId = null;
-        }
+        // ch5AnimationId가 null이 아닐 때만 (즉, 목록 뷰가 아닐 때만) 재귀 호출
+        if (!$ch5Container.hasClass('list-view-active')) ch5AnimationId = requestAnimationFrame(drawStarfield);
+        else ch5AnimationId = null;
     }
     
     // --- 6. 챕터 5 이벤트 리스너 설정 ---
@@ -325,7 +315,6 @@ $(document).ready(function() {
 	         const $this = $(this);
 	         $starSelector.children().removeClass('selected');
 	         $this.addClass('selected');
-	         // [수정] data-star-index 값을 저장
 	         $selectedStarInput.val($this.data('star-index'));
 	     });
 
@@ -340,7 +329,7 @@ $(document).ready(function() {
             showMessageDetail($(this));
         });
 
-        // [수정] 7. 목록 뷰 (캐러셀) - 카드 클릭
+        // 7. 목록 뷰 (캐러셀) - 카드 클릭
         $ch5ListTrack.off('click.ch5game').on('click.ch5game', '.ch5-list-slide-content', function() {
             showMessageDetail($(this));
         });
@@ -348,7 +337,7 @@ $(document).ready(function() {
         // 8. 별자리 뷰 - 드래그-스크롤
         $ch5Container.off('.ch5game');
         $ch5Container.on('pointerdown.ch5game', function(e) {
-            // [수정] 목록 뷰일 때는 드래그-스크롤 방지
+            // 목록 뷰일 때는 드래그-스크롤 방지
             if ($ch5Container.hasClass('list-view-active')) return;
             
             // 버튼이나 모달 클릭 시 드래그 방지
@@ -361,7 +350,6 @@ $(document).ready(function() {
             $ch5Container.css('cursor', 'grabbing');
         }).on('pointermove.ch5game', function(e) {
             if (isCh5Dragging) {
-                // [수정] 가로 이동(deltaX) 계산 및 적용 로직 모두 제거
                 const deltaY = e.clientY - ch5DragStartPos.y;
                 
                 $ch5Container.scrollTop($ch5Container.scrollTop() - deltaY);
@@ -376,7 +364,6 @@ $(document).ready(function() {
 
      // 9. 뷰 토글 버튼 클릭
         $ch5ViewToggle.off('click').on('click', '.ch5-toggle-btn', function() {
-            // ... (기존 뷰 토글 로직) ...
             const $this = $(this);
             if ($this.hasClass('active')) return;
             const view = $this.data('view');
@@ -387,7 +374,7 @@ $(document).ready(function() {
                 $ch5Container.addClass('list-view-active');
                 if (ch5AnimationId) cancelAnimationFrame(ch5AnimationId);
                 ch5AnimationId = null;
-                updateCarouselState(); // [신규] 목록 뷰 상태 업데이트
+                updateCarouselState(); // 목록 뷰 상태 업데이트
             } else {
                 $ch5Container.removeClass('list-view-active');
                 if (!ch5AnimationId) {
@@ -396,17 +383,17 @@ $(document).ready(function() {
             }
         });
         
-        // [신규] 10. 캐러셀 버튼 클릭
+        // 10. 캐러셀 버튼 클릭
         $ch5ListPrev.off('click').on('click', () => goToSlide(ch5CurrentIndex - 1));
         $ch5ListNext.off('click').on('click', () => goToSlide(ch5CurrentIndex + 1));
 
-        // [신규] 11. 캐러셀 터치 스와이프
+        // 11. 캐러셀 터치 스와이프
         $ch5ListTrack.off('.ch5game')
             .on('touchstart.ch5game', handleTouchStart)
             .on('touchend.ch5game', handleTouchEnd);
     }
     
-    // [신규] 12. 캐러셀 스와이프 핸들러
+    // 12. 캐러셀 스와이프 핸들러
     function handleTouchStart(e) {
         ch5TouchStartX = e.touches[0].clientX;
     }
@@ -429,7 +416,6 @@ $(document).ready(function() {
     function populateStarSelector() {
         $starSelector.empty();
         STAR_DESIGNS.forEach((star, index) => {
-            // [핵심] data-star-index에 ID(index)를 명확히 저장합니다.
             const $option = $(`<span class="ch5-star-option" data-star-index="${index}"></span>`); 
             
             // 이미지/텍스트 조건부 처리 (이전 로직 유지)
@@ -528,7 +514,7 @@ $(document).ready(function() {
         .then(() => {
             console.log("메시지 전송 완료");
 
-            // [통합] 성공 후 1초 뒤 연결 종료 호출
+            // 성공 후 1초 뒤 연결 종료 호출
             setTimeout(disconnect, 1000);
 
             // 1. 로컬 데이터 준비 및 ID 할당
@@ -564,8 +550,7 @@ $(document).ready(function() {
             if (typeof showModal === 'function') {
                  showModal(`⚠️ 전송 실패: 서버 연결 오류 [${error.code || 'UNKNOWN'}]`, {
                      showStart: true, startText: '다시 시도', onStart: () => {
-                         // 모달 닫고 폼을 다시 띄웁니다.
-                         $formModal.css('display', 'flex').hide().fadeIn(300);
+                         $formModal.css('display', 'flex').hide().fadeIn(300); // 모달 닫고 폼을 다시 띄웁니다.
                      },
                      hideClose: false,
                      skipText: '취소', showSkip: true 
@@ -583,7 +568,7 @@ $(document).ready(function() {
         $ch5Constellation.empty();
         $ch5ListTrack.empty();
         
-        // [수정] 4개의 수평 레인(Lane) 정의 (비밀 규칙 - 중앙 집중형)
+        // 4개의 수평 레인(Lane) 정의 (비밀 규칙 - 중앙 집중형)
         const HORIZONTAL_LANES = [
             { minX: 5, maxX: 20 },  // Lane 0: 15% width (Outer Left)
             { minX: 20, maxX: 45 }, // Lane 1: 25% width (Inner Left, Wider)
@@ -604,7 +589,7 @@ $(document).ready(function() {
                 messageY = padding + (i / (total - 1)) * availableRange;
             }
             
-            // 2. [신규] X 좌표는 비밀 규칙(i % 4) 기반으로 위치 할당
+            // 2. X 좌표는 비밀 규칙(i % 4) 기반으로 위치 할당
             const laneIndex = i % 4; // 0, 1, 2, 3 순서로 레인 인덱스 할당
             const lane = HORIZONTAL_LANES[laneIndex];
             const xRange = lane.maxX - lane.minX;
@@ -628,7 +613,7 @@ $(document).ready(function() {
             addMessageToCarousel(id, data, false);
         });
         
-        // [신규] 모든 메시지 로드 후, 캐러셀 상태 최종 업데이트
+        // 모든 메시지 로드 후, 캐러셀 상태 최종 업데이트
         goToSlide(0);
     }
     
@@ -640,7 +625,7 @@ $(document).ready(function() {
     function addStarToUniverse(id, data) {
         const $star = $(`<div class="ch5-star" id="star-${id}"></div>`);
         
-        // --- [수정] 이미지일 경우 <img> 태그 삽입 ---
+        // 이미지일 경우 <img> 태그 삽입
         if (data.star.startsWith('http')) {
             $star.empty().append($('<img>', { src: data.star, alt: 'star image' }));
             $star.css('font-size', '0'); // 이미지이므로 이모지 텍스트 폰트 크기는 0으로 설정
@@ -648,10 +633,9 @@ $(document).ready(function() {
             $star.text(data.star); // 이모지일 경우 텍스트 사용
             $star.css({
                  'background-image': 'none', 
-                 'font-size': '2.5em' // [수정] 이모지 폰트 크기 명확히 복원
+                 'font-size': '2.5em' // 이모지 폰트 크기 명확히 복원
             });
         }
-        // --- [수정] 끝 ---
 
         // 닉네임 라벨 (절대 크기로 설정했으므로 font-size:0에 영향을 받지 않음)
         $star.append(`<span class="ch5-star-name">${data.name}</span>`); 
@@ -666,7 +650,7 @@ $(document).ready(function() {
     }
 
     /**
-     * [수정] 메시지 1개를 캐러셀 목록 뷰에 추가합니다.
+     * 메시지 1개를 캐러셀 목록 뷰에 추가합니다.
      */
     function addMessageToCarousel(id, data, atTop = false) {
         const messageHtml = data.message.replace(/\n/g, '<br>');
@@ -674,11 +658,8 @@ $(document).ready(function() {
         const writeDt = new Date(+new Date(data.timestamp) + 3240 * 10000).toISOString().replace("T", " ").replace(/\..*/, '');
         
         let iconHtml;
-        if (data.star.startsWith('http')) {
-            iconHtml = `<span class="ch5-list-item-icon image-icon"><img src="${data.star}" alt="star icon"></span>`;
-        } else {
-            iconHtml = `<span class="ch5-list-item-icon">${data.star}</span>`;
-        }
+        if (data.star.startsWith('http')) iconHtml = `<span class="ch5-list-item-icon image-icon"><img src="${data.star}" alt="star icon"></span>`;
+        else iconHtml = `<span class="ch5-list-item-icon">${data.star}</span>`;
         
         const $content = $(`
             <div class="ch5-list-slide-content" data-date="${writeDt}">
@@ -691,11 +672,8 @@ $(document).ready(function() {
         $content.data('messageData', data);
         $slide.append($content);
         
-        if (atTop) {
-            $ch5ListTrack.prepend($slide);
-        } else {
-            $ch5ListTrack.append($slide);
-        }
+        if (atTop) $ch5ListTrack.prepend($slide);
+        else $ch5ListTrack.append($slide);
     }
     
     /**
@@ -708,10 +686,10 @@ $(document).ready(function() {
             return;
         }
         
-        // [신규] 1. 래핑(wrap-around)이 발생하는지 체크
+        // 1. 래핑(wrap-around)이 발생하는지 체크
         let isWrapping = false;
 
-        // [수정] 무한 순환(Loop) 로직
+        // 무한 순환(Loop) 로직
         if (index < 0) { 
             index = total - 1; // 0 -> total - 1
             isWrapping = true; // 래핑 발생!
@@ -722,7 +700,6 @@ $(document).ready(function() {
 
         ch5CurrentIndex = index;
         
-        // ... (이전의 너비 계산 로직은 그대로 둡니다) ...
         const slideWidth = $ch5ListViewWrapper.width();
         const containerWidth = $ch5Container.width() > 0 ? $ch5Container.width() : $(window).width();
         const calculatedWidth = Math.min(containerWidth, 400);
@@ -730,7 +707,7 @@ $(document).ready(function() {
         const offset = -ch5CurrentIndex * validSlideWidth;
         
         
-        // [신규] 2. 래핑(isWrapping=true)일 경우, CSS transition을 'none'으로 설정
+        // 2. 래핑(isWrapping=true)일 경우, CSS transition을 'none'으로 설정
         if (isWrapping) {
             $ch5ListTrack.css('transition', 'none'); // '휘리릭' 애니메이션 끔
         }
@@ -738,7 +715,7 @@ $(document).ready(function() {
         // 3. (애니메이션이 꺼졌든 켜졌든) 즉시 위치 이동
         $ch5ListTrack.css('transform', `translateX(${offset}px)`);
         
-        // [신규] 4. 래핑이었을 경우, 아주 잠깐(0초) 뒤에 transition을 다시 켬
+        // 4. 래핑이었을 경우, 아주 잠깐(0초) 뒤에 transition을 다시 켬
         // (이래야 다음 '일반' 이동(예: 2->3) 시 애니메이션이 다시 작동합니다)
         if (isWrapping) {
             setTimeout(function() {
@@ -751,7 +728,7 @@ $(document).ready(function() {
     }
     
     /**
-     * [신규] 캐러셀의 현재 상태 (버튼, 카운터)를 업데이트합니다.
+     * 캐러셀의 현재 상태 (버튼, 카운터)를 업데이트합니다.
      */
     function updateCarouselState() {
         const total = ch5MessageList.length;
@@ -761,10 +738,9 @@ $(document).ready(function() {
             $ch5ListPrev.hide();
             $ch5ListNext.hide();
         } else {
-            // [요청] (현재 / 총 개수) 표시
-            $ch5ListCounter.text(`(${ch5CurrentIndex + 1} / ${total})`).show();
+            $ch5ListCounter.text(`(${ch5CurrentIndex + 1} / ${total})`).show(); // (현재 / 총 개수) 표시
             
-            // [수정] 1개 '초과'일 때 항상 버튼 표시 (무한 캐러셀)
+            // 1개 '초과'일 때 항상 버튼 표시 (무한 캐러셀)
             const showButtons = total > 1;
             $ch5ListPrev.toggle(showButtons);
             $ch5ListNext.toggle(showButtons);
