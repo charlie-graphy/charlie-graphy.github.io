@@ -1,4 +1,3 @@
-// [수정] HTML이 모두 로드된 후 스크립트가 실행되도록 $(document).ready로 감쌉니다.
 $(document).ready(function() {
 
     // --- 1. DOM 요소 캐싱 ---
@@ -8,15 +7,14 @@ $(document).ready(function() {
     const $canvas = $('#memory-drop-canvas');
     let ctx = null; 
     
-    // [수정] 터치 이벤트의 기준이 될 컨테이너 캐싱
+    // 터치 이벤트의 기준이 될 컨테이너 캐싱
     const $ch4Container = $('#chapter4-container'); 
     
     const $hud = $('#ch4-hud');
     const $scoreEl = $('#ch4-score');
     const $nextPreviewCanvas = $('<canvas id="ch4-next-canvas"></canvas>');
     const $nextPreviewContainer = $('#ch4-next-preview');
-    // const $skipBtn = $('#ch4-skip-btn'); // [삭제]
-    const $ch4PauseBtn = $('#ch4-pause-btn'); // [신규] 일시정지 버튼
+    const $ch4PauseBtn = $('#ch4-pause-btn');
 
     // --- 2. 게임 설정 ---
     const COLS = 6;
@@ -34,10 +32,10 @@ $(document).ready(function() {
     const LONG_PRESS_DURATION = 300; 
     const SOFT_DROP_SPEED = 60; 
 
-    // [수정] 이미지 리소스 (새 URL 적용)
+    // 이미지 리소스 (새 URL 적용)
     const iconImages = {};
     
-    // [신규] 1단계 아이템 목록 (6개)
+    // 1단계 아이템 목록 (6개)
     const level1Items = [
         { id: 1, src: "https://lh3.googleusercontent.com/d/1puP6vCGR6hOr-16YXD6_AH36mw0bNi_-" }, // 1. 라디오
         { id: 2, src: "https://lh3.googleusercontent.com/d/1mSsn1P22ZaczrdwiIfm4GTdZ0hocQVmF" }, // 2. 자전거
@@ -47,13 +45,13 @@ $(document).ready(function() {
         { id: 6, src: "https://lh3.googleusercontent.com/d/12elMJDIyD3E9JlmMnZAR06OoA-VB4O8f" }  // 6. 물고기모양 돌
     ];
     
-    // [신규] 2단계 아이템 목록 (7개) - 1단계 목록 + 7번째 아이템
+    // 2단계 아이템 목록 (7개) - 1단계 목록 + 7번째 아이템
     const level2Items = [
         ...level1Items,
         { id: 7, src: "https://lh3.googleusercontent.com/d/18pxFW7L7LnmWdJ_VArV9BlnevX4yTUmR" } // 7. 원고
     ];
     
-    // [신규] 이미지 로드 함수 (개별 로드)
+    // 이미지 로드 함수 (개별 로드)
     function loadIconImage(icon) {
         if (!iconImages[icon.id]) {
             iconImages[icon.id] = new Image();
@@ -61,7 +59,7 @@ $(document).ready(function() {
         }
     }
     
-    // [수정] 2단계 목록(7개)에 있는 모든 이미지를 미리 로드
+    // 2단계 목록(7개)에 있는 모든 이미지를 미리 로드
     level2Items.forEach(icon => loadIconImage(icon));
 
 
@@ -82,16 +80,15 @@ $(document).ready(function() {
     let softDropInterval = null; 
     let winConfirmationShown = false; 
     
-    // [신규] 현재 게임에서 사용할 아이템 목록 (기본값: 1단계)
+    // 현재 게임에서 사용할 아이템 목록 (기본값: 1단계)
     let currentItemSet = level1Items;
     
-    // [신규] Puyo Puyo 스타일 "흔들림" 효과를 위한 프레임 카운터
+    // Puyo Puyo 스타일 "흔들림" 효과를 위한 프레임 카운터
     let animationFrameCounter = 0;
 
     // --- 4. 메인 함수 (초기화, 중지) ---
-
     initChapter4Game = function() {
-        // [수정] 챕터 4 진입 시, 팝업이 잘 보이도록 패딩 0 클래스(ch4-intro-visible)를 붙입니다.
+        // 챕터 4 진입 시, 팝업이 잘 보이도록 패딩 0 클래스(ch4-intro-visible)를 붙입니다.
         $ch4Container.addClass('ch4-intro-visible');
 
         if ($canvas.length === 0) {
@@ -124,7 +121,7 @@ $(document).ready(function() {
     function startChapter4Game() {
         $ch4StoryIntro.fadeOut(300, function() {
             
-            // [수정] 게임이 '진짜' 시작되면, 패딩 0 클래스를 제거해서 캔버스가 중앙에 오도록 합니다.
+            // 게임이 '진짜' 시작되면, 패딩 0 클래스를 제거해서 캔버스가 중앙에 오도록 합니다.
             $ch4Container.removeClass('ch4-intro-visible');
 
             // 1. 캔버스 크기를 화면에 맞게 계산하고 설정
@@ -146,10 +143,10 @@ $(document).ready(function() {
                 dropInterval = 1000;
                 particles = [];
                 winConfirmationShown = false; 
-                animationFrameCounter = 0; // [신규] 애니메이션 카운터 리셋
+                animationFrameCounter = 0; // 애니메이션 카운터 리셋
                 $scoreEl.text(score); 
 
-                // [수정] 게임 시작 시 항상 1단계(6개) 아이템으로 리셋
+                // 게임 시작 시 항상 1단계(6개) 아이템으로 리셋
                 currentItemSet = level1Items;
                 
                 nextPiece = createNewPiece();
@@ -158,7 +155,7 @@ $(document).ready(function() {
                 
                 $(document).off('.memorydrop').on('keydown.memorydrop', handleInput);
 
-                // [수정] 터치 리스너를 $canvas가 아닌 $ch4Container에 등록
+                // 터치 리스너를 $canvas가 아닌 $ch4Container에 등록
                 $ch4Container.off('.memorydrop');
                 $ch4Container.on('touchstart.memorydrop', handleTouchStart);
                 $ch4Container.on('touchend.memorydrop', handleTouchEnd);
@@ -194,11 +191,9 @@ $(document).ready(function() {
     };
 
     // --- 4.5 캔버스 크기 계산 함수 ---
-    
     function calculateAndSetCanvasSize() {
         const $container = $canvas.parent(); // #chapter4-container
         const $hud = $('#ch4-hud');
-        // [삭제] $skipBtn은 이제 레이아웃에 영향을 주지 않음
 
         // 다른 UI 요소가 보여야 정확한 높이 계산 가능
         $hud.show(); 
@@ -206,15 +201,15 @@ $(document).ready(function() {
         const containerWidth = $container.width();
         const containerHeight = $container.height();
         
-        // [수정] $hud.outerHeight(true)가 버튼 높이까지 포함하여 계산함
+        // $hud.outerHeight(true)가 버튼 높이까지 포함하여 계산함
         const hudHeight = $hud.outerHeight(true) || 60; 
         
-        // [수정] 캔버스 크기를 키우기 위해 상하 여백을 10px로 최소화
+        // 캔버스 크기를 키우기 위해 상하 여백을 10px로 최소화
         const topPadding = ($container.css('padding-top') ? parseInt($container.css('padding-top'), 10) : 10);
         const bottomMargin = 10; 
         
         const availableWidth = containerWidth;
-        // [수정] 사용 가능한 높이 재계산 (skipBtn 관련 변수 제거)
+        // 사용 가능한 높이 재계산 (skipBtn 관련 변수 제거)
         const availableHeight = containerHeight - topPadding - hudHeight - bottomMargin;
 
         const sizeFromWidth = Math.floor(availableWidth / COLS);
@@ -229,8 +224,8 @@ $(document).ready(function() {
         $canvas.attr('width', canvasWidth);
         $canvas.attr('height', canvasHeight);
         
-        // [수정] 캔버스 크기를 CSS 박스(60px)에 맞추고
-        // NEXT_BLOCK_SIZE를 캔버스 크기에 맞춰 역산합니다. (유저 요청)
+        // 캔버스 크기를 CSS 박스(60px)에 맞추고
+        // NEXT_BLOCK_SIZE를 캔버스 크기에 맞춰 역산합니다.
         const nextCanvasSize = 60; // CSS와 동일하게 60px
         $nextPreviewCanvas.attr('width', nextCanvasSize);
         $nextPreviewCanvas.attr('height', nextCanvasSize);
@@ -240,8 +235,7 @@ $(document).ready(function() {
         NEXT_BLOCK_SIZE = Math.floor(nextCanvasSize / 2.5); // 24px
     }
 
-    // --- [신규] 4.6 일시정지/재개 로직 ---
-    
+    // --- 4.6 일시정지/재개 로직 ---
     function pauseGame() {
         isPaused = true;
         
@@ -254,16 +248,16 @@ $(document).ready(function() {
 
     function resumeGame() {
         isPaused = false;
-        gameOver = false; // [오류 수정] gameOver 상태도 함께 해제
+        gameOver = false; // gameOver 상태도 함께 해제
         
-        // [수정] 터치 리스너를 $ch4Container에 다시 등록
+        // 터치 리스너를 $ch4Container에 다시 등록
         $(document).off('.memorydrop').on('keydown.memorydrop', handleInput);
         $ch4Container.off('.memorydrop');
         $ch4Container.on('touchstart.memorydrop', handleTouchStart);
         $ch4Container.on('touchend.memorydrop', handleTouchEnd);
         $ch4Container.on('touchcancel.memorydrop', handleTouchEnd);
 
-        lastDropTime = Date.now(); // [중요] 멈춘 시간만큼 블록이 떨어지지 않도록 시간 초기화
+        lastDropTime = Date.now(); // 멈춘 시간만큼 블록이 떨어지지 않도록 시간 초기화
         gameLoop(); // 게임 루프 재시작
     }
 
@@ -289,18 +283,16 @@ $(document).ready(function() {
         }
     }
 
-
     // --- 5. 게임 루프 및 핵심 로직 ---
-
     function gameLoop() {
-        // [수정] isPaused가 true이거나 gameOver가 true이면 루프 중단
+        // isPaused가 true이거나 gameOver가 true이면 루프 중단
         if (isPaused || gameOver) {
             if (gameLoopId) cancelAnimationFrame(gameLoopId);
             gameLoopId = null;
             return;
         }
         
-        // [신규] 애니메이션 카운터 업데이트
+        // 애니메이션 카운터 업데이트
         animationFrameCounter = (animationFrameCounter + 1) % 360; // 360 프레임마다 반복
         
         const now = Date.now();
@@ -330,7 +322,7 @@ $(document).ready(function() {
     async function placePieceOnBoard() {
         if (!currentPiece) return;
 
-        // [버그 수정] 조각이 착지하는 순간, 진행 중이던 모든 롱프레스/소프트드롭 타이머를 강제 종료
+        // 조각이 착지하는 순간, 진행 중이던 모든 롱프레스/소프트드롭 타이머를 강제 종료
         if (longPressTimer) clearTimeout(longPressTimer);
         if (softDropInterval) clearInterval(softDropInterval);
         longPressTimer = null;
@@ -402,7 +394,7 @@ $(document).ready(function() {
         nextPiece = createNewPiece();
         drawNextPiece();
         
-        // [수정] 게임 오버 로직 변경
+        // 게임 오버 로직 변경
         if (checkCollision(currentPiece)) {
             gameOver = true;
             stopChapter4Game();
@@ -417,7 +409,6 @@ $(document).ready(function() {
         }
     }
 
-    
     function findConnections() {
         const connectedGroups = [];
         const visited = Array.from({ length: ROWS }, () => Array(COLS).fill(false));
@@ -492,18 +483,18 @@ $(document).ready(function() {
     function drawGame() {
         if (!ctx) return; 
         
-        // 1. 픽셀 아트 뭉개짐 방지 (기존 코드)
+        // 1. 픽셀 아트 뭉개짐 방지
         ctx.imageSmoothingEnabled = false;
         ctx.imageSmoothingQuality = 'high';
         
-        // 2. 캔버스 전체 지우기 (기존 코드)
+        // 2. 캔버스 전체 지우기
         ctx.clearRect(0, 0, $canvas.attr('width'), $canvas.attr('height'));
         
-        // 3. 캔버스 배경색 칠하기 (기존 코드)
+        // 3. 캔버스 배경색 칠하기
         ctx.fillStyle = 'rgba(0, 5, 20, 0.7)';
         ctx.fillRect(0, 0, $canvas.attr('width'), $canvas.attr('height'));
 
-        // --- [핵심 수정] 배경 점선 그리드 그리기 ---
+        // 배경 점선 그리드 그리기
         const canvasWidth = $canvas.attr('width');
         const canvasHeight = $canvas.attr('height');
 
@@ -531,12 +522,9 @@ $(document).ready(function() {
         }
         
         ctx.stroke(); // 9. 모든 점선 한번에 그리기
-        
         ctx.restore(); // 10. 저장했던 스타일 복원 (점선 끄기)
-        // --- [핵심 수정] 끝 ---
-
         
-        // 11. 보드 위의 블록들 그리기 (기존 코드)
+        // 11. 보드 위의 블록들 그리기
         for (let y = 0; y < ROWS; y++) {
             for (let x = 0; x < COLS; x++) {
                 const id = board[y][x];
@@ -546,21 +534,21 @@ $(document).ready(function() {
             }
         }
         
-        // 12. 현재 조작 중인 블록 그리기 (기존 코드)
+        // 12. 현재 조작 중인 블록 그리기
         if (currentPiece) {
             currentPiece.pieces.forEach(p => {
                 drawBlock(ctx, currentPiece.x + p.x, currentPiece.y + p.y, p.id, BLOCK_SIZE, 0, 0, true);
             });
         }
         
-        // 13. 파티클 그리기 (기존 코드)
+        // 13. 파티클 그리기
         drawParticles();
     }
 
     function drawNextPiece() {
         if (!nextCtx || !nextPiece) return;
         
-        // [수정] "NEXT" 박스도 픽셀 아트가 뭉개지지 않도록 비활성화
+        // "NEXT" 박스도 픽셀 아트가 뭉개지지 않도록 비활성화
         nextCtx.imageSmoothingEnabled = false;
         nextCtx.imageSmoothingQuality = 'high';
         
@@ -569,21 +557,19 @@ $(document).ready(function() {
         
         nextCtx.clearRect(0, 0, canvasWidth, canvasHeight);
         
-        // [수정] 60px 캔버스에 24px 블록 2개를 중앙 정렬
+        // 60px 캔버스에 24px 블록 2개를 중앙 정렬
         const startX = (canvasWidth / 2) - NEXT_BLOCK_SIZE; // (60 / 2) - 24 = 6
         const startY = (canvasHeight / 2) - (NEXT_BLOCK_SIZE / 2); // (60 / 2) - (24 / 2) = 18
         
-        // [수정] 흔들림 효과(false)를 끈 상태(기본값)로 drawBlock 호출
+        // 흔들림 효과(false)를 끈 상태(기본값)로 drawBlock 호출
         drawBlock(nextCtx, 0, 0, nextPiece.pieces[0].id, NEXT_BLOCK_SIZE, startX, startY);
         drawBlock(nextCtx, 1, 0, nextPiece.pieces[1].id, NEXT_BLOCK_SIZE, startX, startY);
     }
 
- // [수정] 둥근 사각형 클리핑 + 비율 유지 + 'Math.floor'로 반올림 오류 방지
+    // 둥근 사각형 클리핑 + 비율 유지 + 'Math.floor'로 반올림 오류 방지
     function drawBlock(targetCtx, x, y, id, size, offsetX = 0, offsetY = 0, enableBobbing = false) {
         let drawX = (x * size) + offsetX;
         let drawY = (y * size) + offsetY;
-
-        // [삭제] 흔들림 로직은 제거된 상태입니다.
         
         targetCtx.save(); // 1. 캔버스 상태 저장
 
@@ -606,7 +592,7 @@ $(document).ready(function() {
         
         targetCtx.clip(); // 3. 클리핑 마스크 적용
 
-        // --- [핵심 수정] 이미지 찌그러짐 방지 (기존과 동일) ---
+        // 이미지 찌그러짐 방지 (기존과 동일)
         const img = iconImages[id];
         
         if (img && img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
@@ -618,7 +604,7 @@ $(document).ready(function() {
             const renderWidth = imgWidth * ratio;
             const renderHeight = imgHeight * ratio;
             
-            // [수정] 소수점 좌표를 방지하기 위해 Math.floor() 적용
+            // 소수점 좌표를 방지하기 위해 Math.floor() 적용
             const renderX = Math.floor(drawX + (size - renderWidth) / 2);
             const renderY = Math.floor(drawY + (size - renderHeight) / 2);
 
@@ -638,7 +624,6 @@ $(document).ready(function() {
             targetCtx.fillStyle = colors[id - 1] || 'grey';
             targetCtx.fillRect(drawX, drawY, size, size);
         }
-        // --- [핵심 수정] 끝 ---
 
         targetCtx.restore(); // 9. 클리핑 해제
     }
@@ -646,7 +631,7 @@ $(document).ready(function() {
     function createExplosion(x, y, id) {
         const centerX = (x + 0.5) * BLOCK_SIZE;
         const centerY = (y + 0.5) * BLOCK_SIZE;
-        // [수정] 7가지 아이템 색상 팔레트 적용
+        // 7가지 아이템 색상 팔레트 적용
         const colors = [
             '#7ECFFF', // 1. 라디오 (하늘 파랑)
             '#9FFFD9', // 2. 자전거 (라임 민트)
@@ -658,7 +643,7 @@ $(document).ready(function() {
         ];
         const color = colors[id - 1] || 'white';
 
-        // [수정] Puyo Puyo 스타일로 "팡!" 터지는 느낌
+        // Puyo Puyo 스타일로 "팡!" 터지는 느낌
         for (let i = 0; i < 25; i++) { // 15 -> 25개 (더 풍성하게)
             particles.push({
                 x: centerX, y: centerY,
@@ -669,7 +654,7 @@ $(document).ready(function() {
                 life: 40 // 30 -> 40 (더 오래 남음)
             });
             
-            // [추가] 5개의 '섬광' 입자를 추가해서 "팡!"하는 느낌 강조
+            // 5개의 '섬광' 입자를 추가해서 "팡!"하는 느낌 강조
             if (i < 5) {
                 particles.push({
                     x: centerX, y: centerY,
@@ -711,7 +696,6 @@ $(document).ready(function() {
     }
 
     function createNewPiece() {
-        // [수정] iconSources 대신 currentItemSet을 사용
         const id1 = currentItemSet[Math.floor(Math.random() * currentItemSet.length)].id;
         const id2 = currentItemSet[Math.floor(Math.random() * currentItemSet.length)].id;
         return {
@@ -755,9 +739,7 @@ $(document).ready(function() {
         placePieceOnBoard();
     }
 
-
     // --- 5.5 키보드/터치 입력 핸들러 ---
-    
     function handleInput(e) {
         if (isPaused || gameOver || !currentPiece || isCheckingConnections) return;
         
@@ -774,38 +756,31 @@ $(document).ready(function() {
                 moved = true;
                 break;
             case "ArrowDown":
-                // 롱 프레스(Soft Drop)를 위한 로직
-                dropPiece();
+                dropPiece(); //롱 프레스(Soft Drop)를 위한 로직
                 lastDropTime = Date.now();
-                // drawGame(); // [오류 수정] 불필요한 중복 호출 제거
                 return;
             case "ArrowUp":
                 rotatePiece(testPiece);
                 moved = true;
                 break;
             case " ":
-                // 하드 드롭(Hard Drop)을 위한 로직
-                hardDrop();
-                // drawGame(); // [오류 수정] 불필요한 중복 호출 제거
+                hardDrop(); // 하드 드롭(Hard Drop)을 위한 로직
                 return;
         }
 
         if (moved) {
-            if (!checkCollision(testPiece)) {
-                currentPiece = testPiece;
-            }
+            if (!checkCollision(testPiece)) currentPiece = testPiece;
             drawGame();
         }
     }
-
 
     function updateScoreAndEnergy(points, chain) {
         score += points;
         $scoreEl.text(score);
         
-        // [수정] winConfirmationShown 플래그를 추가하여 팝업이 한 번만 뜨도록 함
+        // winConfirmationShown 플래그를 추가하여 팝업이 한 번만 뜨도록 함
         if (score >= WIN_SCORE && !gameOver && !winConfirmationShown) {
-            winConfirmationShown = true; // [신규] 팝업을 띄웠다고 체크
+            winConfirmationShown = true; // 팝업을 띄웠다고 체크
             showWinConfirmation();
         }
 
@@ -814,13 +789,13 @@ $(document).ready(function() {
     }
 
     function showWinConfirmation() {
-        gameOver = true; // [수정] pause가 아니라 gameOver 플래그를 세움
+        gameOver = true; // pause가 아니라 gameOver 플래그를 세움
         
         // 롱 프레스/터치 입력을 막음
         if (longPressTimer) clearTimeout(longPressTimer);
         if (softDropInterval) clearInterval(softDropInterval);
-        $(document).off('.memorydrop'); // [오류 수정] 리스너를 팝업 전에 제거
-        $ch4Container.off('.memorydrop'); // [수정] $canvas -> $ch4Container
+        $(document).off('.memorydrop'); // 리스너를 팝업 전에 제거
+        $ch4Container.off('.memorydrop');
 
         if (typeof showModal === 'function') {
             showModal("목표 점수 달성!<br>어떻게 하시겠습니까?", {
@@ -830,10 +805,8 @@ $(document).ready(function() {
                 showSkip: true, skipText: '계속 하기', 
                 onSkip: () => {
                     hideModal(); 
-
-                    // [수정] 2단계(7개) 아이템 목록으로 변경
+                    // 2단계(7개) 아이템 목록으로 변경
                     currentItemSet = level2Items;
-                    
                     resumeGame(); // 수정된 resumeGame이 게임을 재개시킴
                 },
                 hideClose: true
@@ -878,7 +851,7 @@ $(document).ready(function() {
     }
 
     function skipChapter4() {
-        // [수정] 스킵할 때도 패딩 0 클래스를 제거합니다.
+        // 스킵할 때도 패딩 0 클래스를 제거합니다.
         $ch4Container.removeClass('ch4-intro-visible');
 
         stopChapter4Game();
@@ -910,9 +883,7 @@ $(document).ready(function() {
                     });
                 },
                 showSkip: true, skipText: '넘어가기',
-                onSkip: () => {
-                    showChapter4ClearPopup();
-                },
+                onSkip: () => { showChapter4ClearPopup(); },
                 hideClose: true,
                 onClose: hideModal 
             });
@@ -925,13 +896,10 @@ $(document).ready(function() {
     }
 
     // --- 6. 터치 핸들러 로직 (롱 프레스 / 탭) ---
-
     function handleTouchStart(e) {
-        // [수정] 팝업이나 버튼을 눌렀을 때는 게임 조작이 안 되도록 막음
+        // 팝업이나 버튼을 눌렀을 때는 게임 조작이 안 되도록 막음
         const $target = $(e.target);
-        if ($target.is('button') || $target.closest('.modal-overlay').length > 0 || $target.is('#ch4-pause-btn')) {
-            return;
-        }
+        if ($target.is('button') || $target.closest('.modal-overlay').length > 0 || $target.is('#ch4-pause-btn')) return;
 
         if (isPaused || gameOver || isCheckingConnections) return;
         e.preventDefault(); 
@@ -954,11 +922,9 @@ $(document).ready(function() {
     }
 
     function handleTouchEnd(e) {
-        // [수정] 팝업이나 버튼을 눌렀을 때는 게임 조작이 안 되도록 막음
+        // 팝업이나 버튼을 눌렀을 때는 게임 조작이 안 되도록 막음
         const $target = $(e.target) || $(e.srcElement);
-         if ($target.is('button') || $target.closest('.modal-overlay').length > 0 || $target.is('#ch4-pause-btn')) {
-            return;
-        }
+        if ($target.is('button') || $target.closest('.modal-overlay').length > 0 || $target.is('#ch4-pause-btn')) return;
 
         if (isPaused || gameOver || isCheckingConnections || touchStartX === 0) return;
         e.preventDefault();
@@ -977,25 +943,14 @@ $(document).ready(function() {
         const duration = Date.now() - touchStartTime;
 
         if (duration < LONG_PRESS_DURATION) {
-            
-            if (duration < TAP_MAX_DURATION && 
-                Math.abs(deltaX) < TAP_MAX_TRAVEL && 
-                Math.abs(deltaY) < TAP_MAX_TRAVEL) {
-                
-                // [수정] 캔버스 기준이 아닌, '전체 화면' 기준으로 터치 영역을 계산
+            if (duration < TAP_MAX_DURATION && Math.abs(deltaX) < TAP_MAX_TRAVEL && Math.abs(deltaY) < TAP_MAX_TRAVEL) {
+                // 캔버스 기준이 아닌, '전체 화면' 기준으로 터치 영역을 계산
                 const screenWidth = $(window).width();
                 const tapX = touchEndX; 
 
-                if (tapX < screenWidth * 0.4) {
-                    // 왼쪽 40% 탭 = 왼쪽 이동
-                    handleInput({ key: "ArrowLeft" });
-                } else if (tapX > screenWidth * 0.6) {
-                    // 오른쪽 40% 탭 = 오른쪽 이동
-                    handleInput({ key: "ArrowRight" });
-                } else {
-                    // 중앙 20% 탭 = 회전 (유지)
-                    handleInput({ key: "ArrowUp" });
-                }
+                if (tapX < screenWidth * 0.4) handleInput({ key: "ArrowLeft" }); // 왼쪽 40% 탭 = 왼쪽 이동
+                else if (tapX > screenWidth * 0.6) handleInput({ key: "ArrowRight" }); // 오른쪽 40% 탭 = 오른쪽 이동
+                else handleInput({ key: "ArrowUp" }); // 중앙 20% 탭 = 회전
             }
         }
 
@@ -1004,17 +959,16 @@ $(document).ready(function() {
     }
     
     // --- 7. 화면 크기 변경 핸들러 ---
-    
     function handleResize() {
         if (gameOver || !ctx) return; 
 
-        pauseGame(); // [수정] 게임 정지
+        pauseGame(); // 게임 정지
         
         if (typeof showModal === 'function' && typeof goToMap === 'function') {
             showModal("화면 크기가 변경되었습니다.<br>게임을 다시 시작해야 합니다.", {
                 showStart: true, startText: '재시작', 
                 onStart: () => {
-                    // [수정] stop/start 대신 init/start를 호출하여 완전히 리셋
+                    // stop/start 대신 init/start를 호출하여 완전히 리셋
                     stopChapter4Game(); // 리스너 등 완전 정리
                     initChapter4Game(); // 재 초기화
                     startChapter4Game(); // 게임 시작
@@ -1025,5 +979,5 @@ $(document).ready(function() {
             });
         }
     }
-
-}); // $(document).ready 래퍼 닫기
+    
+});
