@@ -2157,16 +2157,15 @@ body, html {
     pointer-events: none; /* 클릭 이벤트 방해하지 않도록 */
     opacity: 0.8; /* 은은한 투명도 */
 	/* [핵심] 작은 별점들을 배경 이미지처럼 반복하여 흐르게 함 */
-	background:radial-gradient(circle at 10% 20%, rgba(255,240,220,0.8) 1px, transparent 1px), /* Pale Gold */
-                radial-gradient(circle at 30% 70%, rgba(255,220,180,0.6) 1px, transparent 1px), /* Soft Peach */
-                radial-gradient(circle at 60% 40%, rgba(255,245,210,0.7) 1px, transparent 1px), /* Light Yellow */
-                radial-gradient(circle at 80% 90%, rgba(255,235,200,0.9) 1px, transparent 1px), /* Warm White */
-                radial-gradient(circle at 45% 10%, rgba(255,240,220,0.5) 1px, transparent 1px), /* Pale Gold */
-                radial-gradient(circle at 20% 50%, rgba(255,225,190,0.8) 1px, transparent 1px); /* Soft Yellow */;
+	background: radial-gradient(circle at 10% 20%, rgb(255 240 220 / 69%) 1px, transparent 1px), /* Pale Gold */ 
+				radial-gradient(circle at 30% 70%, rgb(255 220 180 / 64%) 1px, transparent 1px), /* Soft Peach */ 
+				radial-gradient(circle at 60% 40%, rgba(255, 245, 210, 0.7) 1px, transparent 1px), /* Light Yellow */ 
+				radial-gradient(circle at 80% 90%, rgb(255 235 200 / 60%) 1px, transparent 1px), /* Warm White */ 
+				radial-gradient(circle at 45% 10%, rgba(255, 240, 220, 0.5) 1px, transparent 1px), /* Pale Gold */ 
+				radial-gradient(circle at 20% 50%, rgb(255 225 190 / 55%) 1px, transparent 1px);
 	background-size: 50px 50px; /* 별점 패턴의 크기 */
     background-repeat: repeat; /* 패턴 반복 */
-    
     /* 애니메이션 적용 */
-    animation: text-starlight-flow 80s linear infinite; /* 80초 동안 천천히 흐르도록 */
+    animation: text-starlight-flow 90s linear infinite; /* 80초 동안 천천히 흐르도록 */
     z-index: -1; /* 글자 뒤에 위치 */
 }

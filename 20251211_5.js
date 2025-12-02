@@ -129,9 +129,10 @@ $(document).ready(function() {
         const $storyOverlay = $('#story-overlay');
         const $storyTextContainer = $('#story-text-container');
         const cinematicText = [
-            "10년의 여정, 우리의 우주를 만들고 있습니다.",
-            "함께 보낸 모든 기억들이 가장 소중한 별이 되어 이 은하를 채우고 있습니다.",
-            "우리의 우주에 많은 순간의 별을 띄워주세요."
+        	"시간 여행을 함께 해주셔서 감사합니다. ",
+            "10년의 여정, 여전히 우리는", "우리의 우주를 만들고 있습니다.",
+            "함께 보낸 모든 기억들이 가장 소중한 별이 되어 이 은하를 채웁니다.",
+            "우리의 우주에 당신의 순간들을", "별로 띄워주세요."
         ];
         
         $storyTextContainer.empty();
