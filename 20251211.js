@@ -1,4 +1,4 @@
-// [수정] 챕터 3,4,5에서 호출할 함수들을 전역 변수로 미리 선언
+// 호출할 함수들을 전역 변수로 미리 선언
 let showModal, hideModal, showFragmentModal, hideFragmentModal, transitionToChapter, goToMap, showPoem, showClearConfirmationPopup, stopAsteroidGame, initChapter3Game, stopChapter3Game, initChapter4Game, stopChapter4Game, initChapter5Game, stopChapter5Game;
 
 // 창의 모든 리소스(이미지 포함)가 로드되면 스크립트를 실행합니다.
@@ -69,7 +69,7 @@ $(window).on('load', function() {
     
     // --- 오프닝 화면 기능 ---
     const correctPassword = "1211";
-    function boardSpaceship() { // [유지] function (지역 함수)
+    function boardSpaceship() {
         const inputValue = $passwordInput.val();
         if (inputValue === correctPassword) {
             $statusMessage.css('color', '#55efc4').text('SYSTEM :: 승인 코드 확인. 곧 이륙합니다...');
@@ -88,7 +88,7 @@ $(window).on('load', function() {
     $passwordInput.on('keyup', function(event) { if (event.key === 'Enter') { boardSpaceship(); } });
 
     // --- 스토리 오버레이 로직 ---
-    function showStoryOverlay() { // [유지] function (지역 함수)
+    function showStoryOverlay() { // function (지역 함수)
         const storyLines = ["안녕하세요.", "우주선 탑승을 환영합니다.", "이제부터 10년의 시간을 거슬러 올라가,", "흩어진 기억의 조각들을 모으는 탐사를 시작합니다.", "모든 조각을 찾아 최종 목적지 '우주'에 도달하는 것이 우리의 임무입니다.", "준비되셨다면, 화면을 터치하여", "항해를 시작해주십시오."];
         let lineIndex = 0, charIndex = 0, typingTimeout, isTyping = true, typingFinished = false;
         $storyTextContainer.empty(); 
@@ -143,18 +143,17 @@ $(window).on('load', function() {
         typeWriter();
     }
 
-
     // --- 챕터 전환 및 시작 로직 ---
     function showChapter(chapterNum, chapterTitle, planetImgSrc) { // [유지] function (지역 함수)
     	currentChapterNum = chapterNum;
         $galaxyMap.fadeOut(500);
         
-        // [수정] 1. 챕터 제목을 0.5초 동안 띄웁니다.
+        // 1. 챕터 제목을 0.5초 동안 띄웁니다.
         $transitionTitle.text(chapterTitle); 
         $transitionImage.attr('src', planetImgSrc).css('color', $(`#planet${chapterNum} img`).css('color')); 
         $chapterTransition.css('display', 'flex').animate({opacity: 1}, 500, function() {
             
-            // [수정] 2. 챕터 제목이 '다 뜬 직후' (0.5초 뒤)에 검은 화면 대기 없이 '바로' 다음 로직을 실행합니다.
+            // 2. 챕터 제목이 '다 뜬 직후' (0.5초 뒤)에 검은 화면 대기 없이 '바로' 다음 로직을 실행합니다.
             
             // 2a. 챕터 컨테이너를 미리 찾고 게임 로직 초기화
             const $targetChapter = $(`#chapter${chapterNum}-container`);
@@ -188,11 +187,10 @@ $(window).on('load', function() {
             // 2c. '동시에' 챕터 제목이 0.5초에 걸쳐 '서서히' 사라지게 합니다. (Cross-fade Out)
             $chapterTransition.animate({opacity: 0}, 500, function() { $(this).hide(); });
 
-        }); // [수정] setTimeout을 .animate()의 콜백 함수로 변경
+        });
     }
 
     // --- 항해 지도로 돌아가는 함수 ---
-    // [수정] 전역 변수에 할당
     goToMap = function() {
         stopAsteroidGame();
         stopChapter3Game();
@@ -204,7 +202,7 @@ $(window).on('load', function() {
         $fragmentModal.fadeOut(300);
         $selectFragmentModal.fadeOut(300);
         
-        // [버그 수정] 맵이 사라진 상태에서 위치 계산이 안되는 버그 수정
+        // 맵이 사라진 상태에서 위치 계산이 안되는 버그 수정
         const $targetPlanet = $(`#planet${currentChapterNum}`);
         
         // 2. 맵을 먼저 화면에 띄우고(fadeIn)
@@ -237,7 +235,6 @@ $(window).on('load', function() {
     }
 
     // --- 클리어 확인 팝업 함수 (챕터 1) ---
-    // [수정] 전역 변수에 할당
     showClearConfirmationPopup = function() {
         $exitPortal.hide();
         showModal("챕터 1 '이륙' 클리어!<br>다음 여정을 준비하세요.", {
@@ -282,7 +279,7 @@ $(window).on('load', function() {
         asteroidGameLoop();
     }
     
-    // [수정] 전역 변수에 할당
+    // 전역 변수에 할당
     stopAsteroidGame = function() {
         if (animationFrameId) { cancelAnimationFrame(animationFrameId); animationFrameId = null; }
         gameOver = true;
@@ -347,13 +344,13 @@ $(window).on('load', function() {
     $('head').append(`<style> @keyframes shake { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); } 20%, 40%, 60%, 80% { transform: translateX(5px); } } </style>`);
 
 
-    // --- [수정] 공통 모달 기능 (전역 변수에 할당) ---
+    // --- 공통 모달 기능 (전역 변수에 할당) ---
     showModal = function(message, buttons = {}) {
         $modalText.html(message);
         $modalButtonContainer.empty();
         const defaultOnClose = buttons.onClose !== undefined ? buttons.onClose : hideModal;
         
-        // [FIX] 모든 이전 모달 닫기 핸들러를 강제로 제거합니다.
+        // 모든 이전 모달 닫기 핸들러를 강제로 제거합니다.
         $modal.off('click');
         
         if (buttons.hideClose) {
@@ -420,10 +417,10 @@ $(window).on('load', function() {
         $modal.css('display', 'flex').hide().fadeIn(300);
     }
     
-    // [수정] 전역 변수에 할당
+    // 전역 변수에 할당
     hideModal = function() { $modal.fadeOut(300); }
 
-    // --- [수정] 시 모달 기능 (전역 변수에 할당) ---
+    // 시 모달 기능 (전역 변수에 할당)
     showPoem = function() {
         $poemModal.css('display', 'flex').hide().fadeIn(300);
         $poemCloseBtn.off().on('click', function() {
@@ -437,18 +434,16 @@ $(window).on('load', function() {
     function hidePoem() { $poemModal.fadeOut(300); }
 
     // --- 챕터 2 모달 함수 ---
-
-    // [수정] 전역 변수에 할당
     showFragmentModal = function(title, content, onCloseCallback) {
         $fragmentTitle.text(title); $fragmentText.html(content.replace(/\n/g, '<br>')); $fragmentModal.css('display', 'flex').hide().fadeIn(300);
         $fragmentCloseBtn.off().on('click', function() { hideFragmentModal(); if (onCloseCallback) onCloseCallback(); });
         $fragmentModal.off('click').on('click', function(event) { if ($(event.target).is($fragmentModal)) { hideFragmentModal(); if (onCloseCallback) onCloseCallback(); } });
     }
     
-    // [수정] 전역 변수에 할당
+    // 역 변수에 할당
     hideFragmentModal = function() { $fragmentModal.fadeOut(300); }
 
-    // [수정] (내부 호출용)
+    // (내부 호출용)
     function showSelectFragmentPopup() {
         $selectFragmentList.empty(); $selectedFragmentText.empty().hide();
         for (let i = 1; i <= 6; i++) {
@@ -474,7 +469,7 @@ $(window).on('load', function() {
     }
     function hideSelectFragmentPopup() { $selectFragmentModal.fadeOut(300); }
 
-     // [수정] (내부 호출용)
+     // (내부 호출용)
      function showChapter2IndividualClearPopup(puzzleData, puzzleId) {
          showModal(`'${puzzleData.title}' 탐색 완료!`, {
         	 showSkipThemed: true, skipText: '더 탐색하기', onSkip: showPuzzleHub, puzzleId: puzzleId,
@@ -484,7 +479,7 @@ $(window).on('load', function() {
          });
      }
 
-     // [수정] (내부 호출용)
+     // (내부 호출용)
      function showChapter2AllClearPopup() {
          let clearMessage = "챕터 2 '탐색' 클리어!<br>다음 여정을 준비하세요.";
          let clearPopupButtons = {
@@ -498,7 +493,6 @@ $(window).on('load', function() {
 
 
     // --- 챕터 2: 십자말풀이 로직 ---
-
     let currentPuzzleId = null;
     let puzzleCompletionStatus = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false };
 
@@ -800,7 +794,7 @@ $(window).on('load', function() {
         });
     }
 
-    // "다음 칸으로 이동" 로직 (재사용)
+    // "다음 칸으로 이동" 로직
     function moveToNextCell($currentInput) {
         let currentCellIndex = $crosswordGrid.find('.cell-input').index($currentInput);
         let $nextInput = $crosswordGrid.find('.cell-input').eq(currentCellIndex + 1);
@@ -835,7 +829,7 @@ $(window).on('load', function() {
         }
     });
     
-    // [수정] 정답 확인 버튼 (오류 수정 및 줄 바꿈)
+    // 정답 확인 버튼
     $crosswordCheckBtn.on('click', function() {
         if (!currentPuzzleId) return;
         const puzzleData = puzzleDataStore[currentPuzzleId];
