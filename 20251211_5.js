@@ -90,6 +90,8 @@ $(document).ready(function() {
                 console.error("챕터 5 캔버스를 찾을 수 없습니다.");
             }
 
+            loadMessagesFromFirebase();
+
             $ch5Container.addClass('game-started');
             $ch5UniverseWrapper.css('display', '');
             $ch5ListViewWrapper.css('display', '');
@@ -117,8 +119,6 @@ $(document).ready(function() {
 
             setupChapter5Listeners();
             $ch5BackBtn.off('click').on('click', goToMap);
-
-            loadMessagesFromFirebase();
 
             $ch5Container.scrollLeft((UNIVERSE_SIZE - $ch5Container.width()) / 2);
             $ch5Container.scrollTop(0); 
@@ -671,18 +671,17 @@ $(document).ready(function() {
     function addMessageToCarousel(id, data, atTop = false) {
         const messageHtml = data.message.replace(/\n/g, '<br>');
         const $slide = $(`<div class="ch5-list-slide" data-message-id="${id}"></div>`); 
+        const writeDt = new Date(+new Date(data.timestamp) + 3240 * 10000).toISOString().replace("T", " ").replace(/\..*/, '');
         
         let iconHtml;
-        // --- [수정] 이미지일 경우 <img> 태그 삽입 ---
         if (data.star.startsWith('http')) {
             iconHtml = `<span class="ch5-list-item-icon image-icon"><img src="${data.star}" alt="star icon"></span>`;
         } else {
             iconHtml = `<span class="ch5-list-item-icon">${data.star}</span>`;
         }
-        // --- [수정] 끝 ---
         
         const $content = $(`
-            <div class="ch5-list-slide-content">
+            <div class="ch5-list-slide-content" data-date="${writeDt}">
                 ${iconHtml}
                 <span class="ch5-list-item-name">${data.name}</span>
                 <p class="ch5-list-item-message">${messageHtml}</p>

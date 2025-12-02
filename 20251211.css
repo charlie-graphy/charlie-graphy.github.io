@@ -1724,10 +1724,11 @@ body, html {
     font-size: 0.95em;
     line-height: 1.7; /* 줄 간격 */
     margin-top: 15px;
-    word-break: break-word;
+    word-break: keep-all;
     max-height: 250px; /* 너무 길어질 경우 스크롤 */
     overflow-y: auto;
     padding-right: 5px; /* 스크롤바 공간 */
+    font-family: 'Galmuri11', monospace;
 }
 /* 스크롤바 웜톤 적용 */
 .ch5-list-item-message::-webkit-scrollbar { width: 4px; }
