@@ -1,8 +1,6 @@
-// [수정] HTML이 모두 로드된 후 스크립트가 실행되도록 $(document).ready로 감쌉니다.
 $(document).ready(function() {
 
     // --- 1. 챕터 3 내부에서 사용할 DOM 요소 캐싱 ---
-    // (이제 이 시점에는 HTML 요소들이 모두 로드되어 있습니다!)
     const $ch3Container = $('#chapter3-container');
     const $ch3StoryIntro = $('#ch3-story-intro');
     const $ch3StartBtn = $('#ch3-start-btn');
@@ -57,7 +55,7 @@ $(document).ready(function() {
     let ch3MapSize = { w: 2400, h: 2500 };
     let ch3MiniMapSize = { w: 80, h: 80 };
 
-    // 5. [핵심] 챕터 3 게임 초기화 함수 (전역 할당)
+    // 5. 챕터 3 게임 초기화 함수 (전역 할당)
     initChapter3Game = function() {
      ch3FoundItemsCount = 0;
      
@@ -110,7 +108,7 @@ $(document).ready(function() {
      $ch3MiniMap.hide(); 
      $ch3StoryIntro.hide().fadeIn(500);
 
-     // [핵심] 이제 $ch3StartBtn이 정상적으로 찾아집니다.
+     // 이제 $ch3StartBtn이 정상적으로 찾아집니다.
      $ch3StartBtn.off().on('click', startChapter3Game);
      $ch3IntroSkipBtn.off().on('click', skipChapter3);
      $ch3SkipBtn.off().on('click', skipChapter3);
@@ -139,7 +137,7 @@ $(document).ready(function() {
         });
     }
 
-    // 7. 챕터 3 게임 중지 함수 (전역 할당)
+    // 7. 챕터 3 게임 중지 함수
     stopChapter3Game = function() {
         $ch3Container.off('.ch3game');
         $ch3MapArea.off('.ch3game');
@@ -207,7 +205,7 @@ $(document).ready(function() {
 
     // 10. 챕터 3 스킵 함수
     function skipChapter3() {
-        // [수정] 스킵 시에도 stopChapter3Game()을 호출해서 이벤트 리스너를 제거
+        // 스킵 시에도 stopChapter3Game()을 호출해서 이벤트 리스너를 제거
         stopChapter3Game(); 
         
         showModal("기억 조각 발견!<br>확인하시겠습니까?", {
@@ -347,7 +345,7 @@ $(document).ready(function() {
         $ch3MiniMap.append($dot);
     }
 
-    // 14. [신규] 남은 아이템 위치 셔플 함수
+    // 14. 남은 아이템 위치 셔플 함수
     function shuffleRemainingItems() {
         console.log('Shuffling remaining items... (Avoiding found items)'); 
         
@@ -421,4 +419,4 @@ $(document).ready(function() {
         });
     }
 
-}); // [수정] document.ready 래퍼 닫기
+});

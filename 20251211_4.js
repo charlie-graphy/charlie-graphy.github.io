@@ -177,7 +177,7 @@ $(document).ready(function() {
         if (gameLoopId) cancelAnimationFrame(gameLoopId);
         gameLoopId = null;
         $(document).off('.memorydrop');
-        $ch4Container.off('.memorydrop'); // [수정] $canvas -> $ch4Container
+        $ch4Container.off('.memorydrop');
         $(window).off('.memorydrop-resize'); 
         
         $ch4PauseBtn.off('click', showPauseModal); 
