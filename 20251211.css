@@ -2138,12 +2138,11 @@ body, html {
 .ch5-cinematic-active #story-text-container p {
     font-family: 'Galmuri11', monospace;
     font-size: 1em;
-    margin: 7px 0; 
     color: #FFFFFF; 
     text-shadow: 
         0 0 10px #E0FFFF,   /* 약한 푸른빛 (base) */
         0 0 20px #FFFFFF,   /* 중간 강도 흰색 (core) */
-        0 0 35px rgba(50, 150, 255, 0.8); /* 확산되는 푸른빛 (glow) */
+        0 0 35px rgba(50, 150, 255, 0.7); /* 확산되는 푸른빛 (glow) */
     background-color: rgb(0, 0, 0, 0.7);
 }
 /* 글자 주변에 흐르는 별빛 가상 요소 */
