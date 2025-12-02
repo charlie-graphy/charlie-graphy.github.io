@@ -202,7 +202,6 @@ $(window).on('load', function() {
         $fragmentModal.fadeOut(300);
         $selectFragmentModal.fadeOut(300);
         
-        // 맵이 사라진 상태에서 위치 계산이 안되는 버그 수정
         const $targetPlanet = $(`#planet${currentChapterNum}`);
         
         // 2. 맵을 먼저 화면에 띄우고(fadeIn)
