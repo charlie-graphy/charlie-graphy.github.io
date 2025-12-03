@@ -646,7 +646,7 @@ $(window).on('load', function() {
 			answers: [ 
 				[null, '빗', null, '정', null, null], 
 				[null, '방', null, '비', '극', null], 
-				['거', '울' ,null, '공', null, '원'], 
+				['거', '울' ,null, '공', null, '초'], 
 				[null, null, '프', null, null, '고'], 
 				[null, '낙', '랑', '파', '라', null], 
 				[null, null, '스', null, null, null] ],
