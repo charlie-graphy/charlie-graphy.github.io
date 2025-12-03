@@ -577,8 +577,8 @@ $(document).ready(function() {
         ];
         
         const total = messages.length;
-        const padding = 5; // Y좌표 상단 여백 (5%)
-        const availableRange = 8; // 밀도 유지 (8%)
+        const padding = 4; // Y좌표 상단 여백 (5%)
+        const availableRange = 18; // 밀도 유지 (8%)
 
         messages.forEach((msg, i) => {
             // 1. Y 좌표 계산 (시간순)
