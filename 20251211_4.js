@@ -20,7 +20,7 @@ $(document).ready(function() {
     const COLS = 6;
     const ROWS = 12;
     let BLOCK_SIZE = 50; // 화면 크기에 따라 변경됩니다.
-    const WIN_SCORE = 500; // 500점
+    const WIN_SCORE = 400; // 400점
     const CONNECT_COUNT = 3; 
     
     let NEXT_BLOCK_SIZE = 40; 

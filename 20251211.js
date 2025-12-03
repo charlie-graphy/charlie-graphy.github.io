@@ -302,14 +302,48 @@ $(window).on('load', function() {
             return;
         }
         
-        let moveX = 0, moveY = 0; if (keys['arrowleft']) moveX = -1; if (keys['arrowright']) moveX = 1; if (keys['arrowup']) moveY = -1; if (keys['arrowdown']) moveY = 1; if (touchLeft) moveX = -1; if (touchRight) moveX = 1; const length = Math.hypot(moveX, moveY); if (length > 0) { player.dx = (moveX / length) * player.speed; player.dy = (moveY / length) * player.speed; } else { player.dx = 0; player.dy = 0; } player.x += player.dx; player.y += player.dy;
-        if (player.x < (-player.width / 2)) player.x = (-player.width / 2); if (player.y < 0) player.y = 0; if (player.x > canvas.width - (player.width / 2)) player.x = canvas.width - (player.width / 2); if (player.y + player.height > canvas.height) player.y = canvas.height - player.height;
+        let moveX = 0, moveY = 0; 
+        
+        if (keys['arrowleft']) moveX = -1; 
+        if (keys['arrowright']) moveX = 1; 
+        if (keys['arrowup']) moveY = -1; 
+        if (keys['arrowdown']) moveY = 1; 
+        if (touchLeft) moveX = -1; 
+        if (touchRight) moveX = 1; 
+        
+        const length = Math.hypot(moveX, moveY); 
+        
+        if (length > 0) { player.dx = (moveX / length) * player.speed; player.dy = (moveY / length) * player.speed; } 
+        else { player.dx = 0; player.dy = 0; } player.x += player.dx; player.y += player.dy;
+        
+        if (player.x < (-player.width / 2)) player.x = (-player.width / 2); 
+        if (player.y < 0) player.y = 0; 
+        if (player.x > canvas.width - (player.width / 2)) player.x = canvas.width - (player.width / 2); 
+        if (player.y + player.height > canvas.height) player.y = canvas.height - player.height;
         
         if (asteroids.length < 15 && Math.random() < 0.06 + elapsedTime * 0.005) {
             if (totalAsteroidImages > 0 && allAsteroidImagesLoaded) {
-                const randomImageIndex = Math.floor(Math.random() * totalAsteroidImages); const randomImage = asteroidImages[randomImageIndex]; let randomWidth, randomHeight; if (randomImage.naturalWidth > 0 && randomImage.naturalHeight > 0) { const baseSize = 35 + Math.random() * 20; const aspectRatio = randomImage.naturalWidth / randomImage.naturalHeight; if(aspectRatio > 1) { randomWidth = baseSize; randomHeight = baseSize / aspectRatio; } else { randomHeight = baseSize; randomWidth = baseSize * aspectRatio; } } else { randomWidth = 30 + Math.random() * 15; randomHeight = 30 + Math.random() * 15; } asteroids.push({ x: Math.random() * (canvas.width - randomWidth), y: -randomHeight, width: randomWidth, height: randomHeight, speed: Math.random() * 4 + 3 + elapsedTime * 0.08, image: randomImage });
+                const randomImageIndex = Math.floor(Math.random() * totalAsteroidImages); 
+                const randomImage = asteroidImages[randomImageIndex]; 
+                let randomWidth, randomHeight; 
+                
+                if (randomImage.naturalWidth > 0 && randomImage.naturalHeight > 0) { 
+                	const baseSize = 35 + Math.random() * 20; 
+                	const aspectRatio = randomImage.naturalWidth / randomImage.naturalHeight; 
+                	if(aspectRatio > 1) { 
+                		randomWidth = baseSize; 
+                		randomHeight = baseSize / aspectRatio; 
+                	} else { 
+                		randomHeight = baseSize; 
+                		randomWidth = baseSize * aspectRatio; 
+                	} 
+                } else { 
+                	randomWidth = 30 + Math.random() * 15; 
+                	randomHeight = 30 + Math.random() * 15; 
+                } 
+                asteroids.push({ x: Math.random() * (canvas.width - randomWidth), y: -randomHeight, width: randomWidth, height: randomHeight, speed: Math.random() * 3.5 + 3 + elapsedTime * 0.08, image: randomImage });
             } else {
-                asteroids.push({ x: Math.random() * (canvas.width - 20), y: -20, width: 25 + Math.random() * 10, height: 25 + Math.random() * 10, speed: Math.random() * 4 + 3 + elapsedTime * 0.08 });
+                asteroids.push({ x: Math.random() * (canvas.width - 20), y: -20, width: 25 + Math.random() * 10, height: 25 + Math.random() * 10, speed: Math.random() * 3.5 + 3 + elapsedTime * 0.08 });
             }
         }
         
