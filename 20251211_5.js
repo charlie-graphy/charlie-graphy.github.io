@@ -446,7 +446,7 @@ $(document).ready(function() {
     	if(messageRef) messageRef.off(); // 이전 리스너 해제
     	messageRef = database.ref('10thDebutAnniversary'); // 새로운 리스너 추가
         
-    	messageRef.on('value', function(snapshot) {
+    	messageRef.once('value', function(snapshot) {
 			const posts = snapshot.val();
 	    	const X_RANGE = 85; // X 좌표 계산 범위 (5% ~ 90%) 
 	        let dummyMessages = [];
@@ -470,7 +470,6 @@ $(document).ready(function() {
 	        
 	        ch5MessageList = dummyMessages.sort((a, b) => b.timestamp - a.timestamp); //내림차순 정렬
 	        displayMessages(ch5MessageList);
-			setTimeout(disconnect, 1000);
 	    });
     }
 
