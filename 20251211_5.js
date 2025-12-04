@@ -443,6 +443,7 @@ $(document).ready(function() {
 			firebase.database().goOnline();
 			isConnected = true;
 		}
+        
     	if(messageRef) messageRef.off(); // 이전 리스너 해제
     	messageRef = database.ref('10thDebutAnniversary'); // 새로운 리스너 추가
         
@@ -785,4 +786,7 @@ $(document).ready(function() {
   	isConnected = false;
   	console.log('Firebase 연결 종료됨');
   }	
+});
+$(window).on('beforeunload', function(){
+	firebase.database().goOffline();
 });

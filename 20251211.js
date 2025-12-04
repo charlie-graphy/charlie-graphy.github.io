@@ -70,6 +70,7 @@ $(window).on('load', function() {
     // --- 오프닝 화면 기능 ---
     const correctPassword = "1211";
     function boardSpaceship() {
+    	$passwordInput.blur();
         const inputValue = $passwordInput.val();
         if (inputValue === correctPassword) {
             $statusMessage.css('color', '#55efc4').text('SYSTEM :: 승인 코드 확인. 곧 이륙합니다...');
@@ -88,7 +89,7 @@ $(window).on('load', function() {
     $passwordInput.on('keyup', function(event) { if (event.key === 'Enter') { boardSpaceship(); } });
 
     // --- 스토리 오버레이 로직 ---
-    function showStoryOverlay() { // function (지역 함수)
+    function showStoryOverlay() {
         const storyLines = ["안녕하세요.", "우주선 탑승을 환영합니다.", "이제부터 10년의 시간을 거슬러 올라가,", "흩어진 기억의 조각들을 모으는 탐사를 시작합니다.", "모든 조각을 찾아 최종 목적지 '우주'에 도달하는 것이 우리의 임무입니다.", "준비되셨다면, 화면을 터치하여", "항해를 시작해주십시오."];
         let lineIndex = 0, charIndex = 0, typingTimeout, isTyping = true, typingFinished = false;
         $storyTextContainer.empty(); 
@@ -154,7 +155,6 @@ $(window).on('load', function() {
         $chapterTransition.css('display', 'flex').animate({opacity: 1}, 500, function() {
             
             // 2. 챕터 제목이 '다 뜬 직후' (0.5초 뒤)에 검은 화면 대기 없이 '바로' 다음 로직을 실행합니다.
-            
             // 2a. 챕터 컨테이너를 미리 찾고 게임 로직 초기화
             const $targetChapter = $(`#chapter${chapterNum}-container`);
             if (chapterNum === 1) { $storyIntro.hide(); $asteroidGame.hide(); $exitPortal.hide(); }
@@ -243,7 +243,6 @@ $(window).on('load', function() {
             onClose: hideModal
         });
     }
-
 
     // --- 항해 지도 버튼 ---
     $exploreBtn.on('click', function() { const $firstPlanet = $('#planet1'); showChapter($firstPlanet.data('chapter'), $firstPlanet.data('title'), $firstPlanet.find('img').attr('src')); });
@@ -680,22 +679,22 @@ $(window).on('load', function() {
 내가 결코 닿을 수 없는 곳으로.”`,
 			gridSize: { rows: 6, cols: 6 },
 			grid: [ 
-				[0, 0, 0, 0, 1, 1], 
-				[0, 0, 1, 1, 0, 1], 
-				[1, 0, 0, 0, 0, 1], 
+				[0, 0, 0, 1, 1, 1], 
+				[0, 1, 1, 0, 1, 0], 
+				[1, 0, 0, 0, 1, 0], 
 				[1, 1, 1, 1, 0, 0], 
 				[1, 0, 0, 0, 0, 1], 
 				[0, 0, 0, 1, 1, 1] ],
 			answers: [ 
-				[null, null, null, null, '상', '소'], 
-				[null, null, '안', '녕', null, '시'], 
-				['장', null ,null, null, null, '지'], 
+				[null, null, null, '상', '소', '문'], 
+				[null, '안', '녕', null, '시', null], 
+				['장', null ,null, null, '지', null], 
 				['기', '축', '사', '화', null, null], 
 				['준', null, null, null, null, '과'], 
 				[null, null, null, '자', '전', '거'] ],
 			labels: [ 
-				[0, 0, 0, 0, 1, 2], 
-				[0, 0, 3, 0, 0, 0], 
+				[0, 0, 0, 1, 2, 0], 
+				[0, 3, 0, 0, 0, 0], 
 				[4, 0, 0, 4, 0, 0], 
 				[5, 0, 0, 0, 0, 0], 
 				[0, 0, 0, 0, 0, 6], 
