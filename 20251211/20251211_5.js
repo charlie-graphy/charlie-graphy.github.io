@@ -91,8 +91,9 @@ $(document).ready(function() {
     	ch5DataLoaded = false;
         ch5CinematicDone = false;
         
-        // 1. 👇 [핵심] 데이터 로딩을 즉시 시작합니다.
-        // 데이터 로딩 완료 시 onDataLoaded 함수가 호출됩니다.
+        setupChapter5Listeners();
+        
+        // 데이터 로딩을 즉시 시작
         loadMessagesFromFirebase(onDataLoaded);
         
         // --- 1. 시네마틱 종료 후, 실제 맵을 로드하는 함수 정의 ---
@@ -119,17 +120,14 @@ $(document).ready(function() {
             $ch5ViewToggle.find('.ch5-toggle-btn').removeClass('active');
             $ch5ViewToggle.find('[data-view="universe"]').addClass('active');
 
-            ch5MessageList = [];
             ch5CurrentIndex = 0;
             updateCarouselState();
 
-            setupChapter5Listeners();
             $ch5BackBtn.off('click').on('click', goToMap);
 
             $ch5Container.scrollLeft((UNIVERSE_SIZE - $ch5Container.width()) / 2);
             $ch5Container.scrollTop(0); 
         } 
-        
         
         // --- 2. 시네마틱 연출 로직 (정적 배경 이미지 활용) ---
         const $storyOverlay = $('#story-overlay');
@@ -201,12 +199,10 @@ $(document).ready(function() {
                 if (charIndex === 0)  $storyTextContainer.append('<p></p>'); 
                 
                 if (charIndex < currentLine.length) {
-                    // 한 글자씩 출력
                     $storyTextContainer.find('p').last().append(currentLine.charAt(charIndex));
                     charIndex++;
-                    typingTimeout = setTimeout(typeChar, 40); // 40ms 타이핑 속도
+                    typingTimeout = setTimeout(typeChar, 40);
                 } else {
-                    // 줄 완료 후 잠시 멈춤
                     lineIndex++;
                     charIndex = 0;
                     typingTimeout = setTimeout(typeChar, 500);
@@ -379,6 +375,7 @@ $(document).ready(function() {
             const $this = $(this);
             if ($this.hasClass('active')) return;
             const view = $this.data('view');
+            
             $ch5ViewToggle.find('.ch5-toggle-btn').removeClass('active');
             $this.addClass('active');
 
@@ -483,10 +480,6 @@ $(document).ready(function() {
     }
     
     // --- 8. [PLACEHOLDER] 파이어베이스 연동 로직 ---
-    /**
-     * [FIREBASE PLACEHOLDER]
-     * 파이어베이스에서 메시지(별) 목록을 불러옵니다.
-     */
     function loadMessagesFromFirebase() {
         console.log("Firebase 'getDocs' Placeholder: 로딩 시작...");
         
@@ -759,14 +752,15 @@ $(document).ready(function() {
         
         // 1. 래핑(wrap-around)이 발생하는지 체크
         let isWrapping = false;
+        let targetIndex = index;
 
         // 무한 순환(Loop) 로직
         if (index < 0) { 
-            index = total - 1; // 0 -> total - 1
-            isWrapping = true; // 래핑 발생!
+            index = total - 1;
+            isWrapping = true;
         } else if (index >= total) { 
-            index = 0; // total - 1 -> 0
-            isWrapping = true; // 래핑 발생!
+            index = 0;
+            isWrapping = true;
         }
 
         ch5CurrentIndex = index;
@@ -777,26 +771,20 @@ $(document).ready(function() {
         const validSlideWidth = (slideWidth > 0) ? slideWidth : calculatedWidth;
         const offset = -ch5CurrentIndex * validSlideWidth;
         
-        
-        // 2. 래핑(isWrapping=true)일 경우, CSS transition을 'none'으로 설정
+        // 4. 래핑이었을 경우, 아주 잠깐(0초) 뒤에 transition을 다시 켬
         if (isWrapping) {
             $ch5ListTrack.css('transition', 'none'); // '휘리릭' 애니메이션 끔
-        }
-        
-        // 3. (애니메이션이 꺼졌든 켜졌든) 즉시 위치 이동
-        $ch5ListTrack.css('transform', `translateX(${offset}px)`);
-        
-        // 4. 래핑이었을 경우, 아주 잠깐(0초) 뒤에 transition을 다시 켬
-        // (이래야 다음 '일반' 이동(예: 2->3) 시 애니메이션이 다시 작동합니다)
-        if (isWrapping) {
+            $ch5ListTrack.css('transform', `translateX(${offset}px)`);
+            
             setTimeout(function() {
-                $ch5ListTrack.css('transition', ''); 
-
+                $ch5ListTrack.css('transition', '');
                 checkCurrentSlideFadeState();
-            }, 0); // 0초 뒤에 바로 실행
+            }, 10);
         }else {
-            // 👇 [수정/추가]: 일반 이동(애니메이션) 후 상태 체크
-            // '300ms'는 CSS에서 transition 속성으로 설정된 시간과 일치해야 합니다.
+        	$ch5ListTrack.css('transition', '');
+            $ch5ListTrack.css('transform', `translateX(${offset}px)`);
+
+            // 일반 이동(애니메이션) 후 상태 체크
             setTimeout(checkCurrentSlideFadeState, 350); 
         }
         
@@ -805,7 +793,6 @@ $(document).ready(function() {
     
     // 현재 보이는 슬라이드 메시지 내용만 페이드 상태 체크
     function checkCurrentSlideFadeState() {
-        // 현재 보이는 슬라이드 내의 .ch5-list-item-message 요소만 찾습니다.
         const $currentSlide = $ch5ListTrack.find('.ch5-list-slide').eq(ch5CurrentIndex);
         const $messageEl = $currentSlide.find('.ch5-list-item-message');
         
@@ -828,10 +815,14 @@ $(document).ready(function() {
         } else {
             $ch5ListCounter.text(`(${ch5CurrentIndex + 1} / ${total})`).show(); // (현재 / 총 개수) 표시
             
-            // 1개 '초과'일 때 항상 버튼 표시 (무한 캐러셀)
             const showButtons = total > 1;
-            $ch5ListPrev.toggle(showButtons);
-            $ch5ListNext.toggle(showButtons);
+            if(showButtons) {
+                $ch5ListPrev.show();
+                $ch5ListNext.show();
+           } else {
+                $ch5ListPrev.hide();
+                $ch5ListNext.hide();
+           }
         }
     }
 
@@ -865,7 +856,7 @@ $(document).ready(function() {
         $messageAuthor.text(`${data.name}`);
         $messageText.html(data.message.replace(/\n/g, '<br>'));
         
-        $messageModal.css('display', 'flex').hide().fadeIn(300, function() { // 300ms 애니메이션 완료 후 실행
+        $messageModal.css('display', 'flex').hide().fadeIn(300, function() {
             $messageText.scrollTop(0);
             handleFadeToggle($messageText[0]);
         });
