@@ -17,7 +17,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io_new/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io_new/favicon-16x16.png">
     
-    <link rel="stylesheet" href="20251211.css">
+    <link rel="stylesheet" href="20251211/20251211.css">
     <link rel="preload" href="https://lh3.googleusercontent.com/d/1sIpbZzBC_roHnDF3dliaUTsGtHVuAgwv" as="image">
     <link rel="preload" href="https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt" as="image">
     <link rel="preload" href="https://lh3.googleusercontent.com/d/1pnDZFfBczAJKGdcjDj9VLQVs_6uWK8HF" as="image">
@@ -299,12 +299,12 @@
         <canvas id="memory-drop-canvas"></canvas>
     </div>
     
-    <!-- ===== [신규] 챕터 5: 우주 (방명록) ===== -->
+    <!-- ===== 챕터 5: 우주 (방명록) ===== -->
     <div id="chapter5-container" class="chapter-container">
     
     	<button id="ch5-back-btn" style="display: none;">‹</button>
     	
-        <!-- [신규] 0. 뷰 전환 토글 -->
+        <!-- 0. 뷰 전환 토글 -->
         <div id="ch5-view-toggle">
             <button class="ch5-toggle-btn active" data-view="universe" title="별자리 뷰">
                 <!-- "별자리 뷰" 아이콘 (2x2 격자) -->
@@ -330,17 +330,13 @@
             <!-- 1a. 배경 별 캔버스 -->
             <canvas id="ch5-starfield-canvas"></canvas>
             <!-- 1b. 메시지 별(방명록)이 표시될 공간 -->
-            <div id="ch5-constellation">
-                <!-- (JS가 이 안에 .ch5-star div들을 추가합니다) -->
-            </div>
+            <div id="ch5-constellation"></div>
         </div>
 
         <!-- [수정] 2. 목록 뷰 -> '캐러셀' 래퍼로 변경 -->
         <div id="ch5-list-view-wrapper">
             <!-- 2a. 실제 움직이는 트랙 -->
-            <div id="ch5-list-track">
-                <!-- (JS가 이 안에 .ch5-list-slide div들을 추가합니다) -->
-            </div>
+            <div id="ch5-list-track"></div>
             <!-- 2b. 탐색 버튼 -->
             <button id="ch5-list-prev" class="ch5-list-nav-btn">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -359,7 +355,7 @@
         <button id="ch5-write-btn" class="modal-action-btn">별 띄우기 ✨</button>
     </div>
     
-    <!-- [신규] 챕터 5-1: '별 남기기' 작성 폼 모달 -->
+    <!-- 챕터 5-1: '별 남기기' 작성 폼 모달 -->
     <div id="ch5-form-modal" class="modal-overlay">
         <div class="modal-content ch5-modal-content">
             <span class="modal-close-btn ch5-close-btn">×</span>
@@ -391,12 +387,11 @@
         </div>
     </div>
     
-    <!-- [신규] 챕터 5-2: '메시지 상세' 보기 모달 -->
+    <!-- 챕터 5-2: '메시지 상세' 보기 모달 -->
     <div id="ch5-message-modal" class="modal-overlay">
         <div class="modal-content ch5-modal-content">
             <span class="modal-close-btn ch5-close-btn">×</span>
             
-            <!-- (JS가 내용을 채웁니다) -->
             <div id="ch5-message-modal-icon">✨</div>
             <h3 id="ch5-message-modal-author">...</h3>
             <div id="ch5-message-modal-text" class="modal-text poem-text">
@@ -410,7 +405,6 @@
         <h2 id="transition-title"></h2>
     </div>
 
-
 	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
@@ -418,9 +412,9 @@
 	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <script src="20251211.js"></script>
-    <script src="20251211_3.js"></script>
-    <script src="20251211_4.js"></script>
-    <script src="20251211_5.js"></script>
+    <script src="20251211/20251211.js?"></script>
+    <script src="20251211/20251211_3.js?"></script>
+    <script src="20251211/20251211_4.js?"></script>
+    <script src="20251211/20251211_5.js?"></script>
 </body>
 </html>
