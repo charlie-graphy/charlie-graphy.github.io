@@ -1613,7 +1613,13 @@ body, html {
     padding-right: 5px; /* 스크롤바 공간 */
     font-family: 'Galmuri11', monospace;
     -webkit-overflow-scrolling: touch; 
-    overflow-y: auto;
+    
+    mask-image: linear-gradient(
+        to bottom, 
+        black 0%,      /* 상단부터 */
+        black 85%,     /* 85% 지점까지는 완전히 불투명 */
+        transparent 100% /* 하단 15% 지점에서 완전히 투명하게 페이드 아웃 */
+    );
 }
 /* 스크롤바  */
 .ch5-list-item-message::-webkit-scrollbar {
@@ -1630,6 +1636,14 @@ body, html {
     border-radius: 4px;
 }
 
+.ch5-list-item-message, 
+#ch5-message-modal-text {
+    transition: mask-image 0.3s ease-out; /* 부드러운 전환 효과 추가 */
+}
+/* 스크롤이 바닥에 닿았을 때  */
+.at-bottom {
+    mask-image: none !important; 
+}
 /* 2d. 캐러셀 탐색 버튼 (< >) -  */
 .ch5-list-nav-btn {
     position: absolute;
@@ -1856,7 +1870,14 @@ body, html {
     margin-top: 18px;
     padding-left: 0;
     -webkit-overflow-scrolling: touch; 
-    overflow-y: auto;
+    
+    /* [스크롤 페이드 속성] */
+    mask-image: linear-gradient(
+        to bottom, 
+        black 0%, 
+        black 90%,     /* 90% 지점까지 불투명하게 유지 (모달은 조금 더 길게) */
+        transparent 100%
+    );
 }
 #ch5-message-modal-text::-webkit-scrollbar {
     width: 4px; /* 스크롤바 너비 */

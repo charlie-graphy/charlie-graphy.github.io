@@ -399,13 +399,17 @@ $(document).ready(function() {
         $ch5ListTrack.off('.ch5game')
             .on('touchstart.ch5game', handleTouchStart)
             .on('touchend.ch5game', handleTouchEnd);
+
+        // 12. 메시지 상세 모달 텍스트 스크롤 감지 리스너
+        $messageText.off('scroll.ch5fade').on('scroll.ch5fade', function() {
+            handleFadeToggle(this);
+        });
     }
     
-    // 12. 캐러셀 스와이프 핸들러
+    // 11. 캐러셀 스와이프 핸들러
     function handleTouchStart(e) {
         ch5TouchStartX = e.touches[0].clientX;
     }
-    
     function handleTouchEnd(e) {
         if (ch5TouchStartX === 0) return;
         
@@ -420,6 +424,21 @@ $(document).ready(function() {
         ch5TouchStartX = 0; // 리셋
     }
 
+    function handleFadeToggle(element) {
+        const $el = $(element);
+        const sh = $el.prop('scrollHeight'); // 요소의 전체 높이 (scrollHeight)
+        const ch = $el.innerHeight(); // 현재 보이는 높이 (clientHeight)
+        const st = $el.scrollTop(); // 현재 스크롤 위치 (scrollTop)
+        
+        // 스크롤 위치 + 보이는 높이 >= 전체 높이 (오차 1px 허용)
+        const isAtBottom = (st + ch >= sh - 1); 
+
+        if (isAtBottom) {
+            $el.addClass('at-bottom');
+        } else {
+            $el.removeClass('at-bottom');
+        }
+    }
     // --- 7. 별 디자인 선택 UI 생성 ---
     function populateStarSelector() {
         $starSelector.empty();
@@ -620,10 +639,27 @@ $(document).ready(function() {
             addMessageToCarousel(id, data, false);
         });
         
+        $ch5ListTrack.find('.ch5-list-item-message').each(function() {
+            const $this = $(this);
+            
+            // 스크롤 리스너 직접 바인딩
+            $this.off('scroll.ch5fade').on('scroll.ch5fade', function() {
+                handleFadeToggle(this);
+            });
+        });
+        
         // 모든 메시지 로드 후, 캐러셀 상태 최종 업데이트
         goToSlide(0);
     }
     
+    function recheckAllFadeStates() {
+        $ch5ListTrack.find('.ch5-list-item-message').each(function() {
+            handleFadeToggle(this);
+        });
+        
+        // 모달 텍스트도 혹시 열려있다면 재확인
+        handleFadeToggle($('#ch5-message-modal-text')[0]);
+    }
     /**
      * 메시지(별) 1개를 우주 공간에 추가합니다.
      * @param {string} id - 문서 ID
@@ -726,12 +762,29 @@ $(document).ready(function() {
         // (이래야 다음 '일반' 이동(예: 2->3) 시 애니메이션이 다시 작동합니다)
         if (isWrapping) {
             setTimeout(function() {
-                // ''(빈 값)으로 설정하면 20251211.css 파일의 원래 transition 값으로 복구됨
                 $ch5ListTrack.css('transition', ''); 
+
+                checkCurrentSlideFadeState();
             }, 0); // 0초 뒤에 바로 실행
+        }else {
+            // 👇 [수정/추가]: 일반 이동(애니메이션) 후 상태 체크
+            // '300ms'는 CSS에서 transition 속성으로 설정된 시간과 일치해야 합니다.
+            setTimeout(checkCurrentSlideFadeState, 350); 
         }
         
         updateCarouselState(); // 버튼 및 카운터 업데이트
+    }
+    
+    // 현재 보이는 슬라이드 메시지 내용만 페이드 상태 체크
+    function checkCurrentSlideFadeState() {
+        // 현재 보이는 슬라이드 내의 .ch5-list-item-message 요소만 찾습니다.
+        const $currentSlide = $ch5ListTrack.find('.ch5-list-slide').eq(ch5CurrentIndex);
+        const $messageEl = $currentSlide.find('.ch5-list-item-message');
+        
+        if ($messageEl.length) {
+        	$messageEl.scrollTop(0);
+            handleFadeToggle($messageEl[0]);
+        }
     }
     
     /**
@@ -760,6 +813,7 @@ $(document).ready(function() {
      */
     function showMessageDetail($element) {
         const data = $element.data('messageData');
+        const $messageText = $('#ch5-message-modal-text'); // 모달 텍스트 요소
         if (!data) return;
 
         // 이미지일 경우 <img> 태그 삽입 
@@ -782,8 +836,18 @@ $(document).ready(function() {
 
         $messageAuthor.text(`${data.name}`);
         $messageText.html(data.message.replace(/\n/g, '<br>'));
-
-        $messageModal.css('display', 'flex').hide().fadeIn(300);
+        
+        $messageModal.css('display', 'flex').hide().fadeIn(300, function() { // 300ms 애니메이션 완료 후 실행
+            $messageText.scrollTop(0);
+            handleFadeToggle($messageText[0]);
+        });
+        
+        // 1. 스크롤 리스너 바인딩
+        $messageText.off('scroll.ch5fade').on('scroll.ch5fade', function() {
+        	handleFadeToggle(this);
+        });
+        
+        handleFadeToggle($messageText[0]);
     }
 
   //연결을 종료하고 Firebase 오프라인 처리하는 함수
