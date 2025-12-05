@@ -384,6 +384,8 @@ $(document).ready(function() {
                 if (ch5AnimationId) cancelAnimationFrame(ch5AnimationId);
                 ch5AnimationId = null;
                 updateCarouselState(); // 목록 뷰 상태 업데이트
+                
+                setTimeout(checkCurrentSlideFadeState, 100);
             } else {
                 $ch5Container.removeClass('list-view-active');
                 if (!ch5AnimationId) {
@@ -397,9 +399,7 @@ $(document).ready(function() {
         $ch5ListNext.off('click').on('click', () => goToSlide(ch5CurrentIndex + 1));
 
         // 11. 캐러셀 터치 스와이프
-        $ch5ListTrack.off('.ch5game')
-            .on('touchstart.ch5game', handleTouchStart)
-            .on('touchend.ch5game', handleTouchEnd);
+        $ch5ListTrack.off('.ch5game').on('touchstart.ch5game', handleTouchStart).on('touchend.ch5game', handleTouchEnd);
 
         // 12. 메시지 상세 모달 텍스트 스크롤 감지 리스너
         $messageText.off('scroll.ch5fade').on('scroll.ch5fade', function() {
@@ -446,7 +446,7 @@ $(document).ready(function() {
         STAR_DESIGNS.forEach((star, index) => {
             const $option = $(`<span class="ch5-star-option" data-star-index="${index}"></span>`); 
             
-            // 이미지/텍스트 조건부 처리 (이전 로직 유지)
+            // 이미지/텍스트 조건부 처리
             if (star.startsWith('http')) {
                 $option.empty().append($('<img>', { src: star, alt: 'star image' }));
             } else {
