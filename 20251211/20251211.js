@@ -145,7 +145,7 @@ $(window).on('load', function() {
     }
 
     // --- 챕터 전환 및 시작 로직 ---
-    function showChapter(chapterNum, chapterTitle, planetImgSrc) { // [유지] function (지역 함수)
+    function showChapter(chapterNum, chapterTitle, planetImgSrc) {
     	currentChapterNum = chapterNum;
         $galaxyMap.fadeOut(500);
         
@@ -244,6 +244,33 @@ $(window).on('load', function() {
         });
     }
 
+    // --- 항해 지도 마우스 드래그 기능 추가 (PC UX 개선) ---
+    let isMapDragging = false;
+    let mapDragStartPos = 0;
+    let mapScrollStart = 0;
+
+    $mapArea.on('mousedown', function(e) {
+        if (e.button !== 0) return; //마우스 왼쪽 버튼 (e.button === 0)만 허용
+        
+        e.preventDefault(); 
+        
+        isMapDragging = true;
+        mapDragStartPos = e.clientX;
+        mapScrollStart = $mapArea.scrollLeft();
+    });
+
+    $(document).on('mousemove', function(e) {
+        if (!isMapDragging) return;
+        
+        // 마우스 이동 거리를 계산하여 스크롤 위치 업데이트
+        const deltaX = e.clientX - mapDragStartPos;
+        $mapArea.scrollLeft(mapScrollStart - deltaX);
+    });
+
+    $(document).on('mouseup', function() {
+        isMapDragging = false; // 마우스 버튼이 놓였을 때 드래그 종료
+    });
+    
     // --- 항해 지도 버튼 ---
     $exploreBtn.on('click', function() { const $firstPlanet = $('#planet1'); showChapter($firstPlanet.data('chapter'), $firstPlanet.data('title'), $firstPlanet.find('img').attr('src')); });
     $planets.on('click', function() { 

@@ -62,7 +62,6 @@ $(document).ready(function() {
     // 2단계 목록(7개)에 있는 모든 이미지를 미리 로드
     level2Items.forEach(icon => loadIconImage(icon));
 
-
     // --- 3. 게임 상태 변수 ---
     let board = [];
     let currentPiece = null; 
@@ -120,7 +119,6 @@ $(document).ready(function() {
     
     function startChapter4Game() {
         $ch4StoryIntro.fadeOut(300, function() {
-            
             // 게임이 '진짜' 시작되면, 패딩 0 클래스를 제거해서 캔버스가 중앙에 오도록 합니다.
             $ch4Container.removeClass('ch4-intro-visible');
 
@@ -276,9 +274,7 @@ $(document).ready(function() {
                 showSkip: true, skipText: '그만하기', 
                 onSkip: skipChapter4, // '넘어가기' 함수 호출
                 hideClose: false, // 바깥 클릭 시 닫기
-                onClose: () => {
-                    resumeGame(); // 바깥 클릭해도 게임 재개
-                }
+                onClose: () => {}
             });
         }
     }

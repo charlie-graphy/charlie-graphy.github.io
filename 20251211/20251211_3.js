@@ -55,11 +55,19 @@ $(document).ready(function() {
     let ch3MapSize = { w: 2400, h: 2500 };
     let ch3MiniMapSize = { w: 80, h: 80 };
 
+    function preloadChapter3Items() {
+        chapter3AllItems.forEach(item => {
+            const img = new Image(); //이미지를 생성만 해도 브라우저는 로드를 시작
+            img.src = item.img; 
+        });
+    }
+    
     // 5. 챕터 3 게임 초기화 함수 (전역 할당)
     initChapter3Game = function() {
-     ch3FoundItemsCount = 0;
-     
-     $ch3Container.removeClass('game-started');
+    	preloadChapter3Items();
+    	ch3FoundItemsCount = 0;
+    	
+    	$ch3Container.removeClass('game-started');
 
      const bgImgUrl = $ch3MapArea.data('background-img');
      const mapElement = $ch3MapArea.get(0);

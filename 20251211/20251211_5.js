@@ -54,6 +54,16 @@ $(document).ready(function() {
     const $messageAuthor = $('#ch5-message-modal-author');
     const $messageText = $('#ch5-message-modal-text');
     
+	// 1. 별도 함수 정의
+	function preloadChapter5Stars() {
+		STAR_DESIGNS.forEach(url => {
+			if (url.startsWith('http')) {
+				const img = new Image();
+				img.src = url;
+			}
+		});
+	}
+	
     // --- 2. 챕터 5 설정 및 상태 변수 ---
     const STAR_DESIGNS = [
         'https://lh3.googleusercontent.com/d/1jeWf4rvz31POee3PRhbXvKoCBSx26ICD', // 이미지 1
@@ -74,10 +84,8 @@ $(document).ready(function() {
     let ch5CurrentIndex = 0; // 현재 보고있는 슬라이드 인덱
     let ch5TouchStartX = 0; // 스와이프 시작 X좌표
 
-
 	// --- 3. 챕터 5 게임 초기화 함수 (전역 할당) ---
     initChapter5Game = function() {
-        
         // --- 1. 시네마틱 종료 후, 실제 맵을 로드하는 함수 정의 ---
         function startChapter5Archive() {
             if ($canvas.length > 0) {
@@ -559,7 +567,6 @@ $(document).ready(function() {
         });
     }
 
-
     // --- 9. UI 표시 로직 ---
     /**
      * (DB에서) 불러온 모든 메시지를 양쪽 뷰에 표시합니다.
@@ -762,14 +769,14 @@ $(document).ready(function() {
                 'font-size': '0',
                 'width': '35px', // 이미지 크기 지정 (컨테이너 크기)
                 'height': '35px',
-                'background-image': 'none' // 이전 CSS 스타일 초기화
+                'background-image': 'none'
             });
         } else {
             $messageIcon.text(data.star).empty().css({
                 'font-size': '2.5em', 
                 'width': 'auto',
                 'height': 'auto',
-                'background-image': 'none' // 이전 CSS 스타일 초기화
+                'background-image': 'none'
             });
         }
 
@@ -786,6 +793,8 @@ $(document).ready(function() {
   	isConnected = false;
   	console.log('Firebase 연결 종료됨');
   }	
+  
+  preloadChapter5Stars();
 });
 $(window).on('beforeunload', function(){
 	firebase.database().goOffline();

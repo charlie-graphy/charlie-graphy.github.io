@@ -191,9 +191,10 @@ body, html {
     scrollbar-width: none;
     -ms-overflow-style: none;
     z-index: 3;
+    cursor: grab;
 }
 .map-area::-webkit-scrollbar { display: none; }
-
+.map-area:active {cursor: grabbing;}
 @media (min-width: 950px) {
   .map-area {
     display: flex;
