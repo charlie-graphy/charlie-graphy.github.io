@@ -80,12 +80,21 @@ $(document).ready(function() {
     let ch5DragStartPos = { x: 0, y: 0 };
     
     // 캐러셀(목록 뷰) 상태
+    let ch5DataLoaded = false;
+    let ch5CinematicDone = false;
     let ch5MessageList = []; // 모든 메시지 데이터 (최신순)
     let ch5CurrentIndex = 0; // 현재 보고있는 슬라이드 인덱
     let ch5TouchStartX = 0; // 스와이프 시작 X좌표
 
 	// --- 3. 챕터 5 게임 초기화 함수 (전역 할당) ---
     initChapter5Game = function() {
+    	ch5DataLoaded = false;
+        ch5CinematicDone = false;
+        
+        // 1. 👇 [핵심] 데이터 로딩을 즉시 시작합니다.
+        // 데이터 로딩 완료 시 onDataLoaded 함수가 호출됩니다.
+        loadMessagesFromFirebase(onDataLoaded);
+        
         // --- 1. 시네마틱 종료 후, 실제 맵을 로드하는 함수 정의 ---
         function startChapter5Archive() {
             if ($canvas.length > 0) {
@@ -94,17 +103,12 @@ $(document).ready(function() {
                 $canvas.get(0).height = UNIVERSE_SIZE;
             } else console.error("챕터 5 캔버스를 찾을 수 없습니다.");
 
-            loadMessagesFromFirebase();
-
             $ch5Container.addClass('game-started');
             $ch5UniverseWrapper.css('display', '');
             $ch5ListViewWrapper.css('display', '');
             $ch5WriteBtn.fadeIn(300);
             $ch5ViewToggle.fadeIn(300);
-            $ch5BackBtn.fadeIn(300); 
-            
-            $ch5Constellation.empty();
-            $ch5ListTrack.empty();
+            $ch5BackBtn.fadeIn(300);
 
             createStarfield();
             drawStarfield();
@@ -457,7 +461,27 @@ $(document).ready(function() {
         });
     }
 
+	// 데이터 로드가 완료되었을 때 호출
+    function onDataLoaded() {
+        ch5DataLoaded = true;
+        checkAndFinalizeChapter5();
+    }
 
+    // 시네마틱 재생이 완료되었을 때 호출
+    function onCinematicDone() {
+        ch5CinematicDone = true;
+        checkAndFinalizeChapter5();
+    }
+
+    // 최종 화면 렌더링 함수 (두 플래그가 모두 true일 때만 실행)
+    function checkAndFinalizeChapter5() {
+        if (ch5DataLoaded && ch5CinematicDone) {
+            $ch5Constellation.empty(); 
+            $ch5ListTrack.empty(); 
+            displayMessages(ch5MessageList);
+        }
+    }
+    
     // --- 8. [PLACEHOLDER] 파이어베이스 연동 로직 ---
     /**
      * [FIREBASE PLACEHOLDER]
@@ -498,6 +522,10 @@ $(document).ready(function() {
 	        
 	        ch5MessageList = dummyMessages.sort((a, b) => b.timestamp - a.timestamp); //내림차순 정렬
 	        displayMessages(ch5MessageList);
+	        
+	        if (typeof onComplete === 'function') {
+	            onComplete(); 
+	        }
 	    });
     }
 
