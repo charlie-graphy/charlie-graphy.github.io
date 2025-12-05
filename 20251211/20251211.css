@@ -1612,12 +1612,21 @@ body, html {
     overflow-y: auto;
     padding-right: 5px; /* 스크롤바 공간 */
     font-family: 'Galmuri11', monospace;
+    -webkit-overflow-scrolling: touch; 
+    overflow-y: auto;
 }
-/* 스크롤바 웜톤 적용 */
-.ch5-list-item-message::-webkit-scrollbar { width: 4px; }
-.ch5-list-item-message::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+/* 스크롤바  */
+.ch5-list-item-message::-webkit-scrollbar {
+    width: 4px; /* 스크롤바 너비 */
+    height: 4px;
+    background: transparent; /* 트랙 배경색 투명 설정 */
+}
+.ch5-list-item-message::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1); /* 트랙 배경 (연하게) */
+    border-radius: 4px;
+}
 .ch5-list-item-message::-webkit-scrollbar-thumb {
-    background: #fff;
+    background: #fff; /* 엄지 부분 색상 (웜톤 테마이므로 흰색을 추천) */
     border-radius: 4px;
 }
 
@@ -1845,7 +1854,22 @@ body, html {
     overflow-y: auto;
     text-align: left;
     margin-top: 18px;
-    padding-left: 0; 
+    padding-left: 0;
+    -webkit-overflow-scrolling: touch; 
+    overflow-y: auto;
+}
+#ch5-message-modal-text::-webkit-scrollbar {
+    width: 4px; /* 스크롤바 너비 */
+    height: 4px;
+    background: transparent; /* 트랙 배경색 투명 설정 */
+}
+#ch5-message-modal-text::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1); /* 트랙 배경 (연하게) */
+    border-radius: 4px;
+}
+#ch5-message-modal-text::-webkit-scrollbar-thumb {
+    background: #fff; /* 엄지 부분 색상 */
+    border-radius: 4px;
 }
 #ch5-message-modal-author {
     margin-top: 15px;
