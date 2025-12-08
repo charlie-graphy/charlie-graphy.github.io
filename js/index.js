@@ -4,7 +4,7 @@ $(window).on("load", function() {
 		$(".main-content").addClass("show");
 	});
 	
-	if(new Date().getFullYear() >= 2025 && new Date().getDate() >= 8){
+	if(new Date().getFullYear() >= 2025 && new Date().getDate() >= 11){
 		let targetWindow = $("#templete").clone();
 		targetWindow.css({'width':'250px','height':'auto','color':'white','text-shadow':'#2c7b24 1px 1px 12px','-webkit-text-stroke':'1px #95c194'});
 		$(".main-content").append(targetWindow);
