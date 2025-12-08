@@ -9,7 +9,7 @@ $(window).on('load', function() {
         // 로딩 화면이 사라진 후, 조종석을 서서히 나타나게 합니다.
         $('.cockpit-container').fadeIn(500);
         // 오프닝 화면 로딩 후 상태 메시지 초기화
-        $('#status-message').empty();
+        //$('#status-message').empty();
     });
 
     // --- DOM 요소 캐싱 ---
