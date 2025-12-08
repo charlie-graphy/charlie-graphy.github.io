@@ -1,15 +1,22 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!DOCTYPE html><html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="description" content="배우 안지환 아카이브 사이트">
+    <meta name="description" content="배우 안지환 데뷔 10주년">
     <meta name="keywords" content="안지환">
     <meta property="og:image" content="https://blog.kakaocdn.net/dn/bpb0mG/btsMKDW3how/eF5FV41D8WPY4JtRAzrfrk/img.jpg">
     <meta property="og:title" content="JEEHWANY DIVE">
-    <meta property="og:description" content="배우 안지환 데뷔 10주년">
+    <meta property="og:description" content="JEEHWANY DIVE">
     <title>JEEHWANY DIVE</title>
     
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@jeehwany_com">
+	<meta name="twitter:creator" content="@jeehwany_com">
+	<meta name="twitter:url" content="https://jeehwany.com/20251211">
+	<meta name="twitter:image" content="https://lh3.googleusercontent.com/d/1UVLK2jqOVByfLSvmtdM76Epudf92Z1LW">
+	<meta name="twitter:title" content="AHNJEEHWANY">
+	<meta name="twitter:description" content="JEEHWANY DIVE">	
     
     <!-- 파비콘 -->
     <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io_new/apple-icon-180x180.png">
@@ -17,7 +24,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io_new/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io_new/favicon-16x16.png">
     
-    <link rel="stylesheet" href="20251211/20251211.css">
+    <link rel="stylesheet" href="20251211/20251211.css?">
     <link rel="preload" href="https://lh3.googleusercontent.com/d/1sIpbZzBC_roHnDF3dliaUTsGtHVuAgwv" as="image">
     <link rel="preload" href="https://lh3.googleusercontent.com/d/1YGU4_zTLVyxGukLOLIaw1vgU03lmIoUt" as="image">
     <link rel="preload" href="https://lh3.googleusercontent.com/d/1pnDZFfBczAJKGdcjDj9VLQVs_6uWK8HF" as="image">
@@ -154,7 +161,6 @@
         </div>
     </div>
 
-
     <div id="chapter1-container" class="chapter-container">
         <div id="story-intro" style="display: none;">
             <p class="alert-text warning-title">WARNING!</p>
@@ -180,7 +186,6 @@
     </div>
 
     <div id="chapter2-container" class="chapter-container">
-
         <div class="puzzle-hub">
             <h2 class="map-title" style="color: #ffd180; text-shadow: 0 0 10px #ffd180;">CH.2 탐색</h2>
             <p class="map-hint" style="color: #ccc;">흩어진 기억의 조각 중에 하나를<br>선택하여 탐색을 시작하세요.</p>
@@ -220,7 +225,6 @@
                 <button class="modal-action-btn modal-map-btn" id="crossword-back-btn">목록으로</button>
             </div>
         </div>
-
     </div>
 
     <div id="chapter3-container" class="chapter-container">
@@ -298,9 +302,7 @@
         <canvas id="memory-drop-canvas"></canvas>
     </div>
     
-    <!-- ===== 챕터 5: 우주 (방명록) ===== -->
     <div id="chapter5-container" class="chapter-container">
-    
     	<button id="ch5-back-btn" style="display: none;">‹</button>
     	
         <!-- 0. 뷰 전환 토글 -->
@@ -331,8 +333,8 @@
             <!-- 1b. 메시지 별(방명록)이 표시될 공간 -->
             <div id="ch5-constellation"></div>
         </div>
-
-        <!-- [수정] 2. 목록 뷰 -> '캐러셀' 래퍼로 변경 -->
+        
+        <!-- 2. 목록 뷰 -->
         <div id="ch5-list-view-wrapper">
             <!-- 2a. 실제 움직이는 트랙 -->
             <div id="ch5-list-track"></div>
@@ -349,8 +351,7 @@
             </button>
             <div id="ch5-list-counter"></div>
         </div>
-
-        <!-- 3. '별 띄우기' 고정 버튼 -->
+        
         <button id="ch5-write-btn" class="modal-action-btn">별 띄우기 ✨</button>
     </div>
     
@@ -363,22 +364,16 @@
             <p class="modal-text" style="font-size: 0.9em; margin-bottom: 20px; color: #ccc;">별을 띄어주세요🌌</p>
 
             <form id="ch5-guestbook-form">
-                <!-- 1. 별 디자인 선택 -->
                 <label for="ch5-star-selector">디자인</label>
-                <div id="ch5-star-selector">
-                    <!-- (JS가 이 안에 .ch5-star-option span들을 추가합니다) -->
-                </div>
+                <div id="ch5-star-selector"></div>
                 <input type="hidden" id="ch5-selected-star" value="✨">
-
-                <!-- 2. 닉네임 -->
+                
                 <label for="ch5-input-name">이름 (닉네임)</label>
                 <input type="text" id="ch5-input-name" placeholder="최대 8자" maxlength="8" required>
                 
-                <!-- 3. 메시지 -->
                 <label for="ch5-input-message">메시지</label>
                 <textarea id="ch5-input-message" rows="4" placeholder="" required></textarea>
-
-                <!-- 4. 제출 버튼 -->
+                
                 <div id="modal-button-container">
                     <button type="submit" id="ch5-form-submit-btn" class="modal-action-btn">우주로 띄우기</button>
                 </div>
