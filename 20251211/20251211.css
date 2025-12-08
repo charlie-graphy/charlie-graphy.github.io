@@ -1575,11 +1575,6 @@ body, html {
     align-items: center;
     text-align: center;
 }
-.ch5-list-slide-content:hover {
-    background-color: rgba(255, 213, 79, 0.25);
-    border-color: rgba(255, 255, 255, 0.7);
-    transform: scale(1.02);
-}
 /* 카드 내부 아이콘, 이름, 메시지 */
 .ch5-list-item-icon {
     font-size: 2em;
