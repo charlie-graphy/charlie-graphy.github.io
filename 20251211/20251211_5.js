@@ -625,7 +625,7 @@ $(document).ready(function() {
         
         const total = messages.length;
         const padding = 4; // Y좌표 상단 여백 (4%)
-        const availableRange = 40; // 밀도 유지 (30%)
+        const availableRange = 70; // 밀도 유지 (80%)
 
         messages.forEach((msg, i) => {
             // 1. Y 좌표 계산 (시간순)

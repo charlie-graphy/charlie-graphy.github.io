@@ -1481,7 +1481,7 @@ body, html {
 /* 1. 우주 공간 래퍼 (기존과 동일) */
 #ch5-universe-wrapper {
     width: 100%; 
-    height: 3000px; 
+    height: 2000px; 
     position: relative;
     display: block; 
     flex-shrink: 0; 
