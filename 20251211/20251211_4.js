@@ -249,12 +249,14 @@ $(document).ready(function() {
         gameOver = false; // gameOver 상태도 함께 해제
         
         // 터치 리스너를 $ch4Container에 다시 등록
-        $(document).off('.memorydrop').on('keydown.memorydrop', handleInput);
+        /*$(document).off('.memorydrop').on('keydown.memorydrop', handleInput);
         $ch4Container.off('.memorydrop');
         $ch4Container.on('touchstart.memorydrop', handleTouchStart);
         $ch4Container.on('touchend.memorydrop', handleTouchEnd);
-        $ch4Container.on('touchcancel.memorydrop', handleTouchEnd);
+        $ch4Container.on('touchcancel.memorydrop', handleTouchEnd);*/
 
+        $(document).off('keydown.memorydrop').on('keydown.memorydrop', handleInput);
+        
         lastDropTime = Date.now(); // 멈춘 시간만큼 블록이 떨어지지 않도록 시간 초기화
         gameLoop(); // 게임 루프 재시작
     }
@@ -718,9 +720,13 @@ $(document).ready(function() {
             if (!checkCollision(piece)) return;
             piece.x++;
             
-            rotatePiece(piece);
-            rotatePiece(piece);
-            rotatePiece(piece);
+            piece.rotation = originalRotation;
+            piece.x = originalX;
+            piece.pieces[1].x = originalP2X;
+            piece.pieces[1].y = originalP2Y;
+            //rotatePiece(piece);
+            //rotatePiece(piece);
+            //rotatePiece(piece);
         }
     }
 
