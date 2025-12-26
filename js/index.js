@@ -4,23 +4,21 @@ $(window).on("load", function() {
 		$(".main-content").addClass("show");
 	});
 	
-	if(new Date().getFullYear() >= 2025 && new Date().getDate() >= 11){
-		let targetWindow = $("#templete").clone();
-		targetWindow.css({'width':'250px','height':'auto','color':'white','text-shadow':'#2c7b24 1px 1px 12px','-webkit-text-stroke':'1px #95c194'});
-		$(".main-content").append(targetWindow);
-		
-		targetWindow.attr("data-id", "banner");
-		targetWindow.find(".title-bar span").text("▶ 10TH DEBUT ANNIVERSARY");
-		targetWindow.find(".content").remove();
-	    //targetWindow.find(".content").append('<video class="banner" src="img/2025-HBD.mp4" alt="배너" style="width:100%;" autoplay loop muted playsinline>');
-		
-		targetWindow.fadeIn().css({top: '42px', left: "1%"});
-		targetWindow.find('.resize-handle, .max-btn, .close-btn').remove();
-		
-		$(".main-content .window[data-id=banner]").click(function(e){
-			window.location = "https://www.jeehwany.com/20251211";
-		});
-	}
+	/*let targetWindow = $("#templete").clone();
+	targetWindow.css({'width':'250px','height':'auto','color':'white','text-shadow':'#2c7b24 1px 1px 12px','-webkit-text-stroke':'1px #95c194'});
+	$(".main-content").append(targetWindow);
+	
+	targetWindow.attr("data-id", "banner");
+	targetWindow.find(".title-bar span").text("▶ 10TH DEBUT ANNIVERSARY");
+	targetWindow.find(".content").remove();
+	   //targetWindow.find(".content").append('<video class="banner" src="img/2025-HBD.mp4" alt="배너" style="width:100%;" autoplay loop muted playsinline>');
+	
+	targetWindow.fadeIn().css({top: '42px', left: "1%"});
+	targetWindow.find('.resize-handle, .max-btn, .close-btn').remove();
+	
+	$(".main-content .window[data-id=banner]").click(function(e){
+		window.location = "https://www.jeehwany.com/20251211";
+	});*/
 });
 
 var size = 5;
