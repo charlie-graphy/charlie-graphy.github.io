@@ -138,6 +138,9 @@ $(document).ready(function() {
             }else if(target == '깨비연구소'){
             	window.open("20250725", "_self");
         		return false;
+            }else if(target == '20251211'){
+            	window.open("20251211", "_self");
+        		return false;
             }
             $(".main-content").append(targetWindow);
             

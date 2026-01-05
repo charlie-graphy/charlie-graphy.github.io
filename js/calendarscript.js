@@ -1828,63 +1828,63 @@
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					description: '<p class="event">스페셜 커튼콜 위크 : M10. 어이, 해달가죽</p>조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
 					start: '2026-01-14 20:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					description: '<p class="event">스페셜 커튼콜 위크 : M2. 우리가 사는 세상</p>조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
 					start: '2026-01-17 15:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
+					description: '<p class="event">스페셜 커튼콜 위크 : M3. 켄타우루스 축제의 밤</p>조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
 					start: '2026-01-18 18:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					description: '<p class="event">스페셜 티켓 증정</p>조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
 					start: '2026-01-20 20:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					description: '<p class="event">스페셜 티켓 증정</p>조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
 					start: '2026-01-22 20:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					description: '<p class="event">스페셜 티켓 증정</p>조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
 					start: '2026-01-25 18:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					description: '<p class="event">네컷 사진 증정</p>조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
 					start: '2026-01-28 20:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					description: '<p class="event">네컷 사진 증정</p>조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
 					start: '2026-01-31 19:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
+					description: '<p class="event">네컷 사진 증정</p>조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
 					start: '2026-02-01 14:00',
 					className: 'bg-purple',
 					allDay: false
