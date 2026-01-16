@@ -1888,6 +1888,69 @@
 					start: '2026-02-01 14:00',
 					className: 'bg-purple',
 					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					start: '2026-02-04 16:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					start: '2026-02-07 19:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
+					start: '2026-02-08 18:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					start: '2026-02-10 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					start: '2026-02-11 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
+					start: '2026-02-15 14:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					start: '2026-02-16 18:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					start: '2026-02-18 14:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					start: '2026-02-21 19:00',
+					className: 'bg-purple',
+					allDay: false
 				}
 			],
 			eventClick: function(event, jsEvent, view) {
