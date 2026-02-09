@@ -1891,64 +1891,127 @@
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					description: '<p class="event">지침서 증정</p>조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
 					start: '2026-02-04 16:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					description: '<p class="event">지침서 증정</p>조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
 					start: '2026-02-07 19:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
+					description: '<p class="event">지침서 증정</p>조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
 					start: '2026-02-08 18:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					description: '<p class="event">스페셜 커튼콜 : M2. 은하철도에 몸을 싣고서</p>조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
 					start: '2026-02-10 20:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					description: '<p class="event">스페셜 커튼콜 : M7. 시그너스와 페이튼</p>조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
 					start: '2026-02-11 20:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
+					description: '<p class="event">대본집 증정</p>조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
 					start: '2026-02-15 14:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					description: '<p class="event">대본집 증정</p>조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
 					start: '2026-02-16 18:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					description: '<p class="event">폴라로이드 증정</p>조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
 					start: '2026-02-18 14:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					description: '<p class="event">대본집 증정</p>조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
 					start: '2026-02-21 19:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					start: '2026-02-26 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					start: '2026-03-01 14:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
+					start: '2026-03-01 18:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					start: '2026-03-04 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
+					start: '2026-03-06 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					start: '2026-03-08 14:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					start: '2026-03-11 20:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
+					start: '2026-03-14 15:00',
+					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '은하철도의 밤',
+					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					start: '2026-03-15 18:00',
 					className: 'bg-purple',
 					allDay: false
 				}
