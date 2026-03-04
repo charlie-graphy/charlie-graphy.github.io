@@ -1954,65 +1954,121 @@
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					description: '<p class="event">더블 적립</p>조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
 					start: '2026-02-26 20:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					description: '<p class="event">더블 적립</p>조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
 					start: '2026-03-01 14:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
+					description: '<p class="event">더블 적립</p>조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
 					start: '2026-03-01 18:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					description: '<p class="event">포토카드 증정 + 커튼콜 데이</p>조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
 					start: '2026-03-04 20:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
+					description: '<p class="event">피쳐링 데이 전관</p>조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
 					start: '2026-03-06 20:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					description: '<p class="event">포토카드 증정 + 커튼콜 데이</p>조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
 					start: '2026-03-08 14:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
+					description: '<p class="event">메모리북 증정</p>조반니 役 | 안지환<br>캄파넬라 役 | 박좌헌',
 					start: '2026-03-11 20:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
+					description: '<p class="event">메모리북 증정</p>조반니 役 | 안지환<br>캄파넬라 役 | 윤승우',
 					start: '2026-03-14 15:00',
 					className: 'bg-purple',
 					allDay: false
 				},
 				{
 					title: '은하철도의 밤',
-					description: '조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
+					description: '<p class="event">마지막 공연(무대 인사)</p>조반니 役 | 안지환<br>캄파넬라 役 | 주민진',
 					start: '2026-03-15 18:00',
 					className: 'bg-purple',
+					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '<p class="event">첫 공연</p>헥터 役 | 오대석<br>어윈 役 | 박정복<br>린톳 役 | 송희정<br>교장 役 | 김수환<br>데이킨 役 | 박은석<br>포스너 役 | 안지환<br>스크립스 役 | 진태화<br>럿지 役 | 김주헌<br>락우드 役 | 차현성<br>악타 役 | 신은호<br>팀스 役 | 민현기<br>크라우더 役 | 김보근',
+					start: '2026-03-19 19:30',
+					className: 'bg-beige',
+					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '헥터 役 | 견민성<br>어윈 役 | 오정택<br>린톳 役 | 송희정<br>교장 役 | 김수환<br>데이킨 役 | 강영석<br>포스너 役 | 안지환<br>스크립스 役 | 진태화<br>럿지 役 | 김주헌<br>락우드 役 | 박상혁<br>악타 役 | 신은호<br>팀스 役 | 민현기<br>크라우더 役 | 김보근',
+					start: '2026-03-22 14:00',
+					className: 'bg-beige',
+					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '헥터 役 | 견민성<br>어윈 役 | 박정복<br>린톳 役 | 송희정<br>교장 役 | 김평조<br>데이킨 役 | 박은석<br>포스너 役 | 안지환<br>스크립스 役 | 진태화<br>럿지 役 | 김주헌<br>락우드 役 | 박상혁<br>악타 役 | 장원혁<br>팀스 役 | 민현기<br>크라우더 役 | 김보근',
+					start: '2026-03-25 15:00',
+					className: 'bg-beige',
+					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '헥터 役 | 정청민<br>어윈 役 | 오정택<br>린톳 役 | 송희정<br>교장 役 | 김수환<br>데이킨 役 | 강영석<br>포스너 役 | 안지환<br>스크립스 役 | 김한빈<br>럿지 役 | 홍순기<br>락우드 役 | 박상혁<br>악타 役 | 장원혁<br>팀스 役 | 신준석<br>크라우더 役 | 김보근',
+					start: '2026-03-28 14:00',
+					className: 'bg-beige',
+					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '헥터 役 | 오대석<br>어윈 役 | 박정복<br>린톳 役 | 윤진성<br>교장 役 | 김평조<br>데이킨 役 | 윤승우<br>포스너 役 | 안지환<br>스크립스 役 | 송광일<br>럿지 役 | 김주헌<br>락우드 役 | 차현성<br>악타 役 | 신은호<br>팀스 役 | 민현기<br>크라우더 役 | 조원준',
+					start: '2026-03-29 18:30',
+					className: 'bg-beige',
+					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '헥터 役 | 정청민<br>어윈 役 | 오정택<br>린톳 役 | 송희정<br>교장 役 | 김수환<br>데이킨 役 | 박은석<br>포스너 役 | 안지환<br>스크립스 役 | 송광일<br>럿지 役 | 홍순기<br>락우드 役 | 차현성<br>악타 役 | 신은호<br>팀스 役 | 신준석<br>크라우더 役 | 조원준',
+					start: '2026-04-01 19:30',
+					className: 'bg-beige',
+					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '헥터 役 | 정청민<br>어윈 役 | 손유동<br>린톳 役 | 윤진성<br>교장 役 | 김평조<br>데이킨 役 | 최정우<br>포스너 役 | 안지환<br>스크립스 役 | 김한빈<br>럿지 役 | 홍순기<br>락우드 役 | 차현성<br>악타 役 | 장원혁<br>팀스 役 | 신준석<br>크라우더 役 | 조원준',
+					start: '2026-04-03 19:30',
+					className: 'bg-beige',
+					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '헥터 役 | 견민성<br>어윈 役 | 박정복<br>린톳 役 | 윤진성<br>교장 役 | 김수환<br>데이킨 役 | 강영석<br>포스너 役 | 안지환<br>스크립스 役 | 진태화<br>럿지 役 | 홍순기<br>락우드 役 | 차현성<br>악타 役 | 장원혁<br>팀스 役 | 민현기<br>크라우더 役 | 조원준',
+					start: '2026-04-05 14:00',
+					className: 'bg-beige',
 					allDay: false
 				}
 			],
