@@ -170,6 +170,9 @@ td.fc-sat, th.fc-sat {
 .bg-yellow{
 	background-color: rgb(252 255 134) !important;
 }
+.bg-beige{
+	background-color: #dcd3c4 !important;
+}
 .event-title{
 	font-size: 19px;
 }
