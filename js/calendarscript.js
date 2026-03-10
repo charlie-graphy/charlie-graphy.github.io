@@ -2070,6 +2070,69 @@
 					start: '2026-04-05 14:00',
 					className: 'bg-beige',
 					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '헥터 役 | 오대석<br>어윈 役 | 오정택<br>린톳 役 | 송희정<br>교장 役 | 김평조<br>데이킨 役 | 강영석<br>포스너 役 | 안지환<br>스크립스 役 | 진태화<br>럿지 役 | 홍순기<br>락우드 役 | 차현성<br>악타 役 | 장원혁<br>팀스 役 | 민현기<br>크라우더 役 | 조원준',
+					start: '2026-04-08 19:30',
+					className: 'bg-beige',
+					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '헥터 役 | 견민성<br>어윈 役 | 박정복<br>린톳 役 | 송희정<br>교장 役 | 김평조<br>데이킨 役 | 윤승우<br>포스너 役 | 안지환<br>스크립스 役 | 진태화<br>럿지 役 | 홍순기<br>락우드 役 | 차현성<br>악타 役 | 신은호<br>팀스 役 | 민현기<br>크라우더 役 | 조원준',
+					start: '2026-04-11 18:30',
+					className: 'bg-beige',
+					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '헥터 役 | 정청민<br>어윈 役 | 오정택<br>린톳 役 | 윤진성<br>교장 役 | 김수환<br>데이킨 役 | 박은석<br>포스너 役 | 안지환<br>스크립스 役 | 송광일<br>럿지 役 | 김주헌<br>락우드 役 | 박상혁<br>악타 役 | 장원혁<br>팀스 役 | 신준석<br>크라우더 役 | 김보근',
+					start: '2026-04-12 18:30',
+					className: 'bg-beige',
+					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '헥터 役 | 견민성<br>어윈 役 | 오정택<br>린톳 役 | 송희정<br>교장 役 | 김수환<br>데이킨 役 | 윤승우<br>포스너 役 | 안지환<br>스크립스 役 | 송광일<br>럿지 役 | 김주헌<br>락우드 役 | 박상혁<br>악타 役 | 장원혁<br>팀스 役 | 신준석<br>크라우더 役 | 김보근',
+					start: '2026-04-15 19:30',
+					className: 'bg-beige',
+					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '헥터 役 | 오대석<br>어윈 役 | 손유동<br>린톳 役 | 송희정<br>교장 役 | 김평조<br>데이킨 役 | 강영석<br>포스너 役 | 안지환<br>스크립스 役 | 김한빈<br>럿지 役 | 홍순기<br>락우드 役 | 차현성<br>악타 役 | 신은호<br>팀스 役 | 민현기<br>크라우더 役 | 조원준',
+					start: '2026-04-16 19:30',
+					className: 'bg-beige',
+					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '헥터 役 | 오대석<br>어윈 役 | 손유동<br>린톳 役 | 송희정<br>교장 役 | 김평조<br>데이킨 役 | 최정우<br>포스너 役 | 안지환<br>스크립스 役 | 송광일<br>럿지 役 | 김주헌<br>락우드 役 | 차현성<br>악타 役 | 신은호<br>팀스 役 | 민현기<br>크라우더 役 | 조원준',
+					start: '2026-04-18 18:30',
+					className: 'bg-beige',
+					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '헥터 役 | 정청민<br>어윈 役 | 박정복<br>린톳 役 | 윤진성<br>교장 役 | 김수환<br>데이킨 役 | 윤승우<br>포스너 役 | 안지환<br>스크립스 役 | 진태화<br>럿지 役 | 홍순기<br>락우드 役 | 차현성<br>악타 役 | 신은호<br>팀스 役 | 민현기<br>크라우더 役 | 김보근',
+					start: '2026-04-22 19:30',
+					className: 'bg-beige',
+					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '헥터 役 | 오대석<br>어윈 役 | 박정복<br>린톳 役 | 윤진성<br>교장 役 | 김평조<br>데이킨 役 | 최정우<br>포스너 役 | 안지환<br>스크립스 役 | 진태화<br>럿지 役 | 김주헌<br>락우드 役 | 박상혁<br>악타 役 | 신은호<br>팀스 役 | 민현기<br>크라우더 役 | 김보근',
+					start: '2026-04-25 14:00',
+					className: 'bg-beige',
+					allDay: false
+				},
+				{
+					title: '히스토리 보이즈',
+					description: '헥터 役 | 오대석<br>어윈 役 | 오정택<br>린톳 役 | 윤진성<br>교장 役 | 김평조<br>데이킨 役 | 강영석<br>포스너 役 | 안지환<br>스크립스 役 | 진태화<br>럿지 役 | 김주헌<br>락우드 役 | 박상혁<br>악타 役 | 신은호<br>팀스 役 | 민현기<br>크라우더 役 | 김보근',
+					start: '2026-04-25 18:30',
+					className: 'bg-beige',
+					allDay: false
 				}
 			],
 			eventClick: function(event, jsEvent, view) {
