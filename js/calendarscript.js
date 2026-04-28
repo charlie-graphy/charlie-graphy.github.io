@@ -2252,7 +2252,7 @@
 					start: '2026-06-03 18:30',
 					className: 'bg-beige',
 					allDay: false
-				},,
+				},
 				{
 					title: '시데레우스',
 					description: '<p class="event">첫 공연(프리뷰)</p>갈릴레오 役 | 안재영<br>포스너 役 | 안지환<br>마리아 役 | 이상아',
