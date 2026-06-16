@@ -1,0 +1,368 @@
+:root {
+    --bg-main: #FDFDFB;      /* 깔끔하고 맑은 웜 화이트 */
+    --bg-white: #FFFFFF;
+    --brand-dark: #222222;   /* 완전히 세련된 매트 블랙 */
+    --brand-pink: #FFECEC;   /* 은은한 딸기우유빛 핑크 */
+    --brand-yellow: #FFF7DB; /* 부드러운 파스텔 버터 크림 */
+    --text-muted: #888888;   /* 미니멀 숍 느낌의 소프트 그레이 */
+    --border-soft: rgba(0, 0, 0, 0.06);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    letter-spacing: -0.3px; /* 자간을 좁혀 모던한 감성 연출 */
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: #F0F0EC;
+    color: var(--brand-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* 모바일 프레임 - 선을 얇고 깨끗하게 빼서 미니멀하게 조율 */
+.app-container {
+    background-color: var(--bg-main);
+    width: 100%;
+    max-width: 440px;
+    height: 100vh;
+    min-height: 650px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
+}
+
+/* 상단 헤더 - 모던한 자간 및 레이아웃 */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--bg-white);
+    border-bottom: 1px solid var(--border-soft);
+    z-index: 10;
+}
+.main-header .logo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: lowercase; /* 세련된 소문자 로고 타입 */
+    color: var(--brand-dark);
+}
+.icon-btn {
+    background: var(--brand-pink);
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    color: var(--brand-dark);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.icon-btn:active {
+    transform: scale(0.97);
+}
+
+/* 섹션 라인 */
+.app-section {
+    display: none;
+    flex: 1;
+    flex-direction: column;
+    padding: 28px 24px;
+    overflow-y: auto;
+}
+.app-section.active {
+    display: flex;
+}
+.survey-step {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+}
+.survey-step.active {
+    display: flex;
+}
+
+/* 둥글뚱뚱 모던 버튼 컴포넌트 */
+.btn-primary, .btn-secondary, .btn-text {
+    padding: 18px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 14px;
+    text-align: center;
+    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.btn-primary {
+    background-color: var(--brand-dark);
+    color: #fff;
+}
+.btn-primary:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+}
+.btn-secondary {
+    background-color: var(--brand-pink);
+    color: var(--brand-dark);
+}
+.btn-secondary:active {
+    transform: scale(0.98);
+}
+.btn-text {
+    background-color: var(--brand-yellow);
+    color: var(--brand-dark);
+}
+.btn-text:active {
+    transform: scale(0.98);
+}
+
+/* 인트로 브랜딩 */
+.intro-content {
+    text-align: center;
+    margin: auto 0;
+}
+.bakery-character {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    animation: floating 3s ease-in-out infinite;
+}
+.intro-content h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--brand-dark);
+    margin-bottom: 16px;
+    line-height: 1.45;
+}
+.intro-content h2 .highlight {
+    background: linear-gradient(to top, var(--brand-yellow) 40%, transparent 40%); /* 요즘 유행하는 밑줄 형광펜 연출 */
+    padding: 0 2px;
+}
+.intro-content p {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 44px;
+}
+
+/* 로딩 프로그레스 가이드 */
+.progress-container {
+    background: #F4F4F0;
+    border-radius: 20px;
+    padding: 3px;
+    margin-bottom: 36px;
+}
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.progress-fill {
+    height: 100%;
+    background-color: var(--brand-dark);
+    width: 25%;
+    border-radius: 20px;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 설문 컨텐츠 구조 */
+.step-badge {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.question-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    margin-bottom: 28px;
+    line-height: 1.4;
+}
+.option-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.option-btn {
+    background-color: var(--bg-white);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 18px 20px;
+    border-radius: 14px; 
+    text-align: left;
+    font-size: 0.98rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--brand-dark);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+    transition: all 0.2s ease;
+}
+.option-btn.selected {
+    background-color: var(--brand-yellow);
+    border-color: rgba(0, 0, 0, 0.15);
+    font-weight: 600;
+}
+.input-area textarea {
+    width: 100%;
+    height: 150px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    padding: 18px;
+    font-size: 0.98rem;
+    resize: none;
+    outline: none;
+    margin-bottom: 28px;
+    background: var(--bg-white);
+    transition: border 0.2s;
+}
+.input-area textarea:focus {
+    border-color: var(--brand-dark);
+}
+
+/* 🧾 [완전 변경] 세련되고 예쁜 핀터레스트 무드의 미니멀 영수증 패널 */
+.receipt-paper {
+    background-color: var(--bg-white);
+    width: 100%;
+    max-width: 355px;
+    padding: 32px 26px;
+    border-radius: 16px; /* 완벽히 둥글고 모던한 카드형 설계 */
+    position: relative;
+    color: var(--brand-dark);
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.02);
+}
+.receipt-header {
+    text-align: center;
+    margin-bottom: 16px;
+}
+.receipt-header h4 { font-weight: 700; font-size: 0.95rem; color: var(--brand-dark); letter-spacing: 0.5px; }
+.receipt-date { font-size: 0.78rem; color: var(--text-muted); margin-top: 8px; }
+.divider { text-align: center; font-size: 0.75rem; color: #DDD; margin: 8px 0; overflow: hidden; white-space: nowrap; }
+.receipt-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0;
+    font-size: 0.88rem;
+}
+.receipt-row span:first-child { color: #555; }
+.receipt-row span:last-child { font-weight: 600; }
+.header-row { font-weight: 700; }
+.header-row span:first-child { color: var(--brand-dark) !important; }
+.receipt-message-box {
+    margin-top: 18px;
+    padding: 14px;
+    background-color: #FAFAFA;
+    border-radius: 10px;
+}
+.msg-title { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; }
+.msg-content { font-size: 0.88rem; margin-top: 6px; word-break: break-all; line-height: 1.6; color: #333; }
+.barcode-area {
+    text-align: center;
+    margin-top: 16px;
+}
+.barcode {
+    font-size: 1.2rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+    opacity: 0.8;
+}
+.barcode-area p { font-size: 0.72rem; color: var(--text-muted); font-weight: 500; }
+
+/* 배열 가이드 */
+.result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.action-buttons {
+    width: 100%;
+    max-width: 355px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+/* 보관함 리드 보드 */
+#sec-archive { background-color: #F6F6F2; }
+.archive-header { text-align: center; margin-bottom: 28px; }
+.archive-header h2 { font-size: 1.35rem; font-weight: 800; color: var(--brand-dark); }
+.archive-header p { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
+.archive-list {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    align-items: center;
+    padding-bottom: 40px;
+}
+.archive-receipt-card {
+    background-color: var(--bg-white);
+    width: 100%;
+    max-width: 355px;
+    padding: 30px 26px;
+    border-radius: 16px;
+    position: relative;
+    color: var(--brand-dark);
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.01);
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+/* 모바일 이미지 꾹 누르기 저장 모달 스타일 */
+.image-modal-overlay {
+    display: none;
+    position: absolute; /* .app-container 내부에서 뜨도록 세팅 */
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* 뒷배경 어둡게 */
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.image-modal-content {
+    background-color: var(--bg-white);
+    width: 100%;
+    max-width: 360px;
+    padding: 24px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    animation: fadeInModal 0.25s ease-out;
+}
+.modal-guide-text {
+    font-size: 0.9rem;
+    color: var(--brand-dark);
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+.modal-guide-text b {
+    color: var(--brand-orange, #FF763B);
+}
+#captured-image-container img {
+    width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
