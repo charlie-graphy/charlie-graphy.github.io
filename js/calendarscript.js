@@ -2318,21 +2318,21 @@
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
+					description: '<p class="event">셀카 포토카드 증정 </p>갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
 					start: '2026-06-23 20:00',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
+					description: '<p class="event">셀카 포토카드 증정 </p>갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
 					start: '2026-06-27 15:00',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					description: '<p class="event">셀카 포토카드 증정 </p>갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
 					start: '2026-06-28 18:30',
 					className: 'bg-blue',
 					allDay: false
