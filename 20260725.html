@@ -4,176 +4,175 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>오늘의 빵 영수증</title>
-    
-    <!-- 모던 가독성 스탠다드 프리텐다드 폰트 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
     <link rel="stylesheet" href="./20260725.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="./20260725.js"></script>
 </head>
 <body>
 
     <div class="app-container">
-        <!-- 상단 고정 헤더 -->
+        <!-- [키치 고정 헤더] -->
         <header class="main-header">
-            <h1 class="logo">오늘의 빵 영수증</h1>
-            <button id="btn-archive-toggle" class="icon-btn">📋 보관함</button>
+            <h1 class="logo">BREAD <span>RECEIPT</span></h1>
+            <button id="btn-archive-toggle" class="icon-btn-kitsch">📋 보관함</button>
         </header>
 
-        <!-- 1. 인트로 섹션 -->
+        <!-- 1. 키치 & 모던 뉴 인트로 섹션 -->
         <section id="sec-intro" class="app-section active">
-            <div class="intro-minimal-layout">
-                <div class="title-zone">
-                    <h2>내가 좋아하는<br>빵 취향을 담은<br><strong>나만의 영수증</strong></h2>
-                    <p class="sub-desc">식감과 굽기, 맛을 선택하고<br>하나뿐인 웜톤 영수증을 발행해 보세요.</p>
+            <div class="intro-kitsch-layout">
+                
+                <div class="title-zone-kitsch">
+                    <span class="badge-mini">MY OWN 2026</span>
+                    <h2>내가 좋아하는<br><span class="highlight-text">빵 취향</span>을 담은<br><strong>나만의 영수증</strong></h2>
+                    <p class="sub-desc-kitsch">나만의 식감, 굽기, 비밀 메시지까지 고증하여<br>도트 프린터 감성의 영수증으로 사출해 보세요.</p>
                 </div>
                 
-                <div class="center-icon">🍞</div>
-
-                <div class="action-zone">
-                    <button id="btn-start" class="btn-primary">시작하기</button>
+                <!-- 브랜드 엠블럼 로고처럼 개조된 빵 구역 -->
+                <div class="center-emblem-zone">
+                    <div class="kitsch-circle-emblem">
+                        <span class="bread-main-emoji">🍞</span>
+                    </div>
+                </div>
+                
+                <!-- 90s 입체 푸시 버튼 스타일의 액션 존 -->
+                <div class="action-zone-kitsch">
+                    <button id="btn-start" class="btn-push-kitsch">영수증 구우러 가기 ⚡</button>
                 </div>
             </div>
         </section>
 
-        <!-- 2. 설문/주문서 작성 섹션 -->
-        <section id="sec-survey" class="app-section">
-            <div class="progress-container">
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
-            </div>
+        <!-- 2. 영수증 내부 일체형 설문 섹션 -->
+        <section id="sec-survey" class="app-section standard-flow-mode">
+            <div class="receipt-scroll-container">
+                
+                <div id="live-receipt-box" class="receipt-shadow-wrapper">
+                    <div id="interactive-receipt-paper" class="receipt-paper">
+                        <div class="receipt-header">
+                            <h4>—— BREAD RECEIPT ——</h4>
+                            <div class="pos-meta-info">
+                                <span>[정상] 실시간 인쇄</span>
+                                <span>POS: 01-0024</span>
+                            </div>
+                            <div class="divider"></div>
+                        </div>
+                        
+                        <div class="receipt-body">
+                            <!-- Q1. 식감 -->
+                            <div class="receipt-survey-block active" data-step="1">
+                                <div class="receipt-row header-row">
+                                    <span>01 TEXTURE // 식감</span>
+                                </div>
+                                <div class="inner-option-grid">
+                                    <button class="receipt-opt-btn" data-value="부드러움">부드러움 (soft)</button>
+                                    <button class="receipt-opt-btn" data-value="바삭함">바삭함 (crispy)</button>
+                                    <button class="receipt-opt-btn" data-value="겉바속촉">겉바속촉 (crusty)</button>
+                                    <button class="receipt-opt-btn" data-value="쫀득함">쫀득함 (chewy)</button>
+                                </div>
+                            </div>
 
-            <!-- Q1. 식감 -->
-            <div class="survey-step" data-step="1">
-                <h3 class="question-title">원하는 빵의 식감은?</h3>
-                <div class="option-grid">
-                    <button class="option-btn" data-value="부드러움">부드러움 (soft)</button>
-                    <button class="option-btn" data-value="바삭함">바삭함 (crispy)</button>
-                    <button class="option-btn" data-value="겉바속촉">겉바속촉 (crusty)</button>
-                    <button class="option-btn" data-value="쫀득함">쫀득함 (chewy)</button>
-                </div>
-            </div>
+                            <!-- Q2. 굽기 -->
+                            <div class="receipt-survey-block" data-step="2">
+                                <div class="divider"></div>
+                                <div class="receipt-row header-row">
+                                    <span>02 BAKING // 굽기 정도</span>
+                                </div>
+                                <div class="inner-option-grid">
+                                    <button class="receipt-opt-btn" data-value="묵직함">묵직함 (heavy)</button>
+                                    <button class="receipt-opt-btn" data-value="말랑함">말랑함 (moist)</button>
+                                    <button class="receipt-opt-btn" data-value="폭신함">폭신함 (fluffy)</button>
+                                    <button class="receipt-opt-btn" data-value="바삭함">바삭함 (well-done)</button>
+                                    <button class="receipt-opt-btn" data-value="버석함">버석함 (dry)</button>
+                                </div>
+                            </div>
 
-            <!-- Q2. 굽기 -->
-            <div class="survey-step" data-step="2">
-                <h3 class="question-title">굽기 정도와 무게감은?</h3>
-                <div class="option-grid">
-                    <button class="option-btn" data-value="묵직함">묵직함 (heavy)</button>
-                    <button class="option-btn" data-value="말랑함">말랑함 (moist)</button>
-                    <button class="option-btn" data-value="폭신함">폭신함 (fluffy)</button>
-                    <button class="option-btn" data-value="바삭함">바삭함 (well-done)</button>
-                    <button class="option-btn" data-value="버석함">버석함 (dry)</button>
-                </div>
-            </div>
+                            <!-- Q3. 맛 -->
+                            <div class="receipt-survey-block" data-step="3">
+                                <div class="divider"></div>
+                                <div class="receipt-row header-row">
+                                    <span>03 FLAVOR // 핵심 맛</span>
+                                </div>
+                                <div class="inner-option-grid">
+                                    <button class="receipt-opt-btn" data-value="담백함">담백함 (plain)</button>
+                                    <button class="receipt-opt-btn" data-value="달콤함">달콤함 (sweet)</button>
+                                    <button class="receipt-opt-btn" data-value="매콤함">매콤함 (spicy)</button>
+                                    <button class="receipt-opt-btn" data-value="고소함">고소함 (nutty)</button>
+                                    <button class="receipt-opt-btn" data-value="감칠맛">감칠맛 (savory)</button>
+                                </div>
+                            </div>
 
-            <!-- Q3. 맛 -->
-            <div class="survey-step" data-step="3">
-                <h3 class="question-title">입안에 맴돌았으면 하는 맛은?</h3>
-                <div class="option-grid">
-                    <button class="option-btn" data-value="담백함">담백함 (plain)</button>
-                    <button class="option-btn" data-value="달콤함">달콤함 (sweet)</button>
-                    <button class="option-btn" data-value="매콤함">매콤함 (spicy)</button>
-                    <button class="option-btn" data-value="고소함">고소함 (nutty)</button>
-                    <button class="option-btn" data-value="감칠맛">감칠맛 (savory)</button>
-                </div>
-            </div>
+                            <!-- Q4. 정보 입력 -->
+                            <div class="receipt-survey-block" data-step="4">
+                                <div class="divider"></div>
+                                <div class="receipt-row header-row">
+                                    <span>04 USER INFO // 주문서 메모</span>
+                                </div>
+                                <div class="inner-input-area">
+                                    <input type="text" id="input-name" placeholder="NICKNAME (최대 8자)" maxlength="8">
+                                    <textarea id="input-message" placeholder="특별 요청사항이나 메모를 입력해 주세요.."></textarea>
+                                </div>
+                                <button id="btn-submit" class="btn-primary-mini">주문 영수증 확정하기</button>
+                            </div>
+                        </div>
 
-            <!-- Q4. 닉네임 & 메시지 주관식 -->
-            <div class="survey-step" data-step="4">
-                <h3 class="question-title">마지막으로 주문자 정보를 적어주세요.</h3>
-                <div class="input-area">
-                    <input type="text" id="input-name" placeholder="닉네임을 입력해 주세요. (최대 8자)" maxlength="8">
-                    <textarea id="input-message" placeholder="추가로 전하고 싶은 특별 메모를 남겨주세요."></textarea>
-                </div>
-                <button id="btn-submit" class="btn-primary">영수증 발행하기</button>
+                        <div class="receipt-footer-fallback">
+                            <div class="divider"></div>
+                            <div class="barcode-area">
+                                <div class="barcode">||||| | ||||| | |||| ||| |||||</div>
+                                <p class="thank-you-msg">THANK YOU FOR YOUR TASTE</p>
+                            </div>
+                        </div>
+                    </div> 
+                </div> 
+
             </div>
         </section>
 
-        <!-- 3. 결과 (영수증) 섹션 -->
+        <!-- 3. 인쇄 모션 감성 로딩 섹션 -->
+        <section id="sec-loading" class="app-section">
+            <div class="loading-minimal-layout">
+                <div class="loading-box">
+                    <div class="loading-printer-icon">📠</div>
+                    <h3 id="loading-text">취향을 맛있게 반죽하는 중...</h3>
+                    <div class="loading-progress-container">
+                        <div class="loading-progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 최종 결과 섹션 -->
         <section id="sec-result" class="app-section">
             <div class="result-container">
-                <!-- 고증 디테일이 집약된 리얼 사출 영수증 -->
-                <div id="receipt-paper" class="receipt-paper">
-                    <div class="receipt-header">
-                        <h4>—— BREAD RECEIPT ——</h4>
-                        <div class="pos-meta-info">
-                            <span>[정상] 매출영수증</span>
-                            <span>POS: 01-0024</span>
-                        </div>
-                        <p class="receipt-user-name">NAME : <span id="res-name">-</span></p>
-                        <p class="receipt-date">DATE : <span id="current-date">0000.00.00 00:00:00</span></p>
-                        <div class="divider">-----------------------------------------</div>
-                    </div>
-                    
-                    <div class="receipt-body">
-                        <div class="receipt-row header-row">
-                            <span>ITEM</span>
-                            <span>QTY</span>
-                        </div>
-                        <div class="divider">-----------------------------------------</div>
-                        
-                        <div class="receipt-row">
-                            <span>01 TEXTURE // <span id="res-q1">-</span></span>
-                            <span>1</span>
-                        </div>
-                        <div class="receipt-row">
-                            <span>02 BAKING  // <span id="res-q2">-</span></span>
-                            <span>1</span>
-                        </div>
-                        <div class="receipt-row">
-                            <span>03 FLAVOR  // <span id="res-q3">-</span></span>
-                            <span>1</span>
-                        </div>
-                        
-                        <div class="divider">-----------------------------------------</div>
-                        <div class="receipt-message-box">
-                            <p class="msg-title">[ MEMO ]</p>
-                            <p id="res-message" class="msg-content">"</p>
-                        </div>
-                    </div>
-
-                    <div class="receipt-footer">
-                        <div class="divider">-----------------------------------------</div>
-                        <div class="barcode-area">
-                            <!-- 바코드 룩 가공 및 하단 연번 텍스트 소거 -->
-                            <div class="barcode">||||| | ||||| | |||| ||| |||||</div>
-                            <p class="thank-you-msg">THANK YOU FOR YOUR TASTE</p>
-                        </div>
-                    </div>
-                </div>
-
+                <div id="final-receipt-target"></div>
                 <div class="action-buttons">
-                    <button id="btn-save-img" class="btn-secondary">✨ 이미지 저장하기</button>
-                    <button id="btn-restart" class="btn-text">다시 만들기 🔄</button>
+                    <button id="btn-save-img" class="btn-secondary-push-kitsch">✨ 이미지 저장하기</button>
+                    <button id="btn-restart" class="btn-text-kitsch">다시 만들기 🔄</button>
                 </div>
             </div>
         </section>
 
-        <!-- 4. 모아보기 아카이브 섹션 -->
+        <!-- 5. 보관함 피드 리스트 섹션 -->
         <section id="sec-archive" class="app-section">
             <div class="archive-header">
                 <h2>보관함</h2>
                 <p>실시간으로 기록되는 취향 영수증 피드 (최근 15개)</p>
             </div>
-            <div id="archive-list" class="archive-list">
-                <!-- 동적 렌더 피드 영역 -->
-            </div>
+            <div id="archive-list" class="archive-list"></div>
         </section>
 
-        <!-- 모바일 꾹 누르기 저장 모달 -->
+        <!-- 이미지 다운로드용 모달 팝업 -->
         <div id="image-save-modal" class="image-modal-overlay">
             <div class="image-modal-content">
                 <p class="modal-guide-text">💡 이미지를 <b>길게 꾹 누르면</b><br>사진첩에 바로 저장할 수 있어요!</p>
-                <div id="captured-image-container"></div>
-                <button id="btn-close-modal" class="btn-primary" style="margin-top: 20px; padding: 14px;">닫기</button>
+                <div id="captured-image-container" class="modal-receipt-frame"></div>
+                <button id="btn-close-modal" class="btn-primary-mini" style="margin-top: 24px; padding: 14px;">닫기</button>
             </div>
         </div>
     </div>
 
-    <!-- 라이브러리 및 스크립트 실행 제어 -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-    <script src="./20260725.js"></script>
 </body>
 </html>

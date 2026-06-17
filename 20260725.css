@@ -1,11 +1,15 @@
 :root {
-    --bg-main: #FBF9F4;      /* 부드럽고 따뜻한 밀크 버터 베이지 */
+    --bg-main: #FBF9F4;      /* 부드러운 버터 베이지 밀크 바탕 */
     --bg-white: #FFFFFF;
-    --brand-dark: #2E2016;   /* 깊고 무드 있는 다크 에스프레소 브라운 */
-    --brand-yellow: #FFF2CC; /* 부드러운 커스터드 버터 옐로우 */
+    --brand-dark: #2E2016;   /* 다크 딥 브라운 에스프레소 */
+    --brand-yellow: #FFF2CC; /* 버터 옐로우 */
     --brand-gray: #FAF8F2;   
-    --text-muted: #A39485;   /* 감성 코코아 브라운 그레이 */
-    --border-light: rgba(46, 32, 22, 0.08); /* 얇고 소프트한 웜톤 경계선 */
+    --text-muted: #A39485;   
+    --border-light: rgba(46, 32, 22, 0.08); 
+    
+    /* ⚡ 키치 & 모던 포인트 컬러 에센스 */
+    --kitsch-black: #1E120A;
+    --kitsch-accent: #FFF2CC; /* 힙한 커스터드 크림 */
 }
 
 * {
@@ -35,34 +39,49 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    border-left: 1px solid var(--border-light);
-    border-right: 1px solid var(--border-light);
+    border: 2px solid var(--kitsch-black); /* 모던 그래픽 프레임 마감 */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+    overflow: hidden;
 }
 
+/* 💡 [대수리] 힙한 모던 그래픽 헤더 컴포넌트 */
 .main-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 20px;
-    border-bottom: 1px solid var(--border-light);
-    background-color: var(--bg-main);
+    padding: 16px 20px;
+    border-bottom: 2px solid var(--kitsch-black);
+    background-color: var(--bg-white);
     z-index: 10;
 }
 .main-header .logo {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--brand-dark);
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--kitsch-black);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
-.icon-btn {
-    background: none;
-    border: 1px solid var(--brand-dark);
+.main-header .logo span {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* 💡 [대수리] 상단 토글식 키치 버튼 스펙 */
+.icon-btn-kitsch {
+    background-color: var(--brand-yellow);
+    border: 2px solid var(--kitsch-black);
     padding: 6px 14px;
     font-size: 0.8rem;
-    font-weight: 600;
-    border-radius: 4px;
-    color: var(--brand-dark);
+    font-weight: 700;
+    border-radius: 6px;
+    color: var(--kitsch-black);
     cursor: pointer;
-    transition: background-color 0.15s;
+    box-shadow: 2px 2px 0px var(--kitsch-black);
+    transition: all 0.1s ease;
+}
+.icon-btn-kitsch:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px var(--kitsch-black);
 }
 
 .app-section {
@@ -71,328 +90,316 @@ body {
     flex-direction: column;
     padding: 24px 20px;
     overflow-y: auto;
+    position: relative;
 }
 .app-section.active {
     display: flex;
 }
-.survey-step {
-    display: none;
-    flex-direction: column;
-    height: 100%;
-}
-.survey-step.active {
-    display: flex;
-}
 
-.intro-minimal-layout {
+/* 💡 [대수리] 모던 키치 전용 인트로 아키텍처 디자인 */
+.intro-kitsch-layout {
     display: flex;
     flex-direction: column;
     height: 100%;
     justify-content: space-between;
-    padding: 20px 0;
+    padding: 15px 0;
+    position: relative;
 }
-.title-zone h2 {
-    font-size: 1.7rem;
-    font-weight: 400;
-    line-height: 1.45;
-    color: var(--brand-dark);
+.title-zone-kitsch {
+    text-align: left;
+    margin-top: 10px;
+    z-index: 2;
 }
-.title-zone h2 strong {
-    font-weight: 700;
+.badge-mini {
+    display: inline-block;
+    background-color: var(--kitsch-black);
+    color: var(--bg-white);
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
 }
-.sub-desc {
+.title-zone-kitsch h2 {
+    font-size: 1.9rem;
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--kitsch-black);
+}
+.title-zone-kitsch h2 strong {
+    font-weight: 800;
+}
+.highlight-text {
+    font-weight: 800;
+    background: linear-gradient(to top, var(--brand-yellow) 40%, transparent 40%);
+    padding: 0 2px;
+}
+.sub-desc-kitsch {
     font-size: 0.88rem;
     color: var(--text-muted);
     line-height: 1.6;
-    margin-top: 12px;
-}
-.center-icon {
-    font-size: 3.2rem;
-    text-align: center;
-    margin: 40px 0;
+    margin-top: 14px;
+    font-weight: 500;
 }
 
-.btn-primary {
-    padding: 16px;
-    border: none;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    width: 100%;
-    border-radius: 10px;
-    text-align: center;
-    transition: all 0.15s ease;
-    background-color: var(--brand-dark);
-    color: #fff;
+/* 💡 중앙 로고 이모지 비주얼 그래픽 개조 */
+.center-emblem-zone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+    z-index: 2;
 }
-.btn-primary:active {
-    background-color: #473223;
+.kitsch-circle-emblem {
+    width: 120px;
+    height: 120px;
+    background-color: var(--bg-white);
+    border: 3px solid var(--kitsch-black);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 6px 0px rgba(46, 32, 22, 0.1);
+    position: relative;
+    background-image: radial-gradient(rgba(46, 32, 22, 0.1) 1.5px, transparent 1.5px);
+    background-size: 12px 12px;
 }
-
-.btn-secondary {
-    padding: 16px;
-    border: none;
-    font-size: 0.98rem;
-    font-weight: 600;
-    cursor: pointer;
-    width: 100%;
-    border-radius: 14px; 
-    text-align: center;
-    background-color: var(--brand-dark);
-    color: #FFFFFF;
-    box-shadow: 0 4px 14px rgba(46, 32, 22, 0.12); 
-    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.btn-secondary:active {
-    transform: scale(0.98);
-    opacity: 0.9;
+.bread-main-emoji {
+    font-size: 4rem;
+    animation: kitschWobble 3s infinite ease-in-out;
 }
 
-.btn-text {
-    padding: 16px;
-    border: 1px solid rgba(46, 32, 22, 0.12);
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
+/* 💡 90년대 무드의 통통 튀는 입체 입사식 푸시 버튼 구조 */
+.btn-push-kitsch {
     width: 100%;
+    padding: 18px;
+    background-color: var(--kitsch-black);
+    color: var(--bg-white);
+    border: 2px solid var(--kitsch-black);
+    font-size: 1rem;
+    font-weight: 700;
     border-radius: 14px;
-    text-align: center;
-    background-color: var(--brand-yellow);
-    color: var(--brand-dark);
-    box-shadow: 0 4px 12px rgba(255, 242, 204, 0.2);
-    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 0px 5px 0px #473223;
+    transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 2;
 }
-.btn-text:active {
-    transform: scale(0.98);
-    background-color: #F5E4B5;
+.btn-push-kitsch:active {
+    transform: translateY(4px);
+    box-shadow: 0px 1px 0px #473223;
 }
 
-.progress-container {
-    background: #EFECE3;
-    border-radius: 10px;
-    padding: 2px;
-    margin-bottom: 36px;
-}
-.progress-bar {
-    width: 100%;
-    height: 3px;
-    border-radius: 10px;
+.standard-flow-mode {
+    padding: 16px 12px !important;
     overflow: hidden;
 }
-.progress-fill {
+.receipt-scroll-container {
+    width: 100%;
     height: 100%;
-    background-color: var(--brand-dark);
-    width: 25%;
-    transition: width 0.25s ease;
+    overflow-y: auto; 
+    padding: 10px 0 40px 0;
+    scroll-behavior: smooth;
 }
 
-.question-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--brand-dark);
-    margin-bottom: 24px;
+.receipt-survey-block {
+    display: none; 
+    flex-direction: column;
+    margin-top: 8px;
+    width: 100%;
 }
-.option-grid {
+.receipt-survey-block.active {
+    display: flex;
+}
+.receipt-survey-block.active .header-row {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: inkScanPrint 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.inner-option-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 12px 0 6px 0;
+    width: 100%;
+}
+.receipt-opt-btn {
+    background-color: var(--brand-gray);
+    border: 1px dashed rgba(46, 32, 22, 0.15); 
+    padding: 14px 16px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #6E5C4E; 
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease;
+}
+.receipt-opt-btn.selected {
+    background-color: var(--brand-dark);
+    border-color: var(--brand-dark);
+    color: #FFFFFF;
+    font-weight: 600;
+    transform: translateX(2px);
+}
+.receipt-opt-btn.disabled-fade {
+    opacity: 0.4;
+    pointer-events: auto !important; 
+    cursor: pointer;
+}
+
+.inner-input-area {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-top: 14px;
+    width: 100%;
 }
-.option-btn {
-    background-color: var(--bg-white);
-    border: 1px solid var(--border-light);
-    padding: 18px 16px;
-    border-radius: 10px; 
-    text-align: left;
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    color: var(--brand-dark);
-    transition: all 0.15s ease;
-}
-.option-btn.selected {
-    background-color: var(--brand-yellow);
-    border-color: rgba(46, 32, 22, 0.3);
-    font-weight: 600;
-}
-
-.input-area input {
+.inner-input-area input {
     width: 100%;
     border: 1px solid var(--border-light);
-    border-radius: 10px;
-    padding: 14px;
-    font-size: 0.95rem;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.9rem;
     outline: none;
-    margin-bottom: 12px;
-    background: var(--bg-white);
-    font-weight: 600;
+    background: rgba(0, 0, 0, 0.02);
     color: var(--brand-dark);
+    font-family: inherit;
 }
-.input-area textarea {
+.inner-input-area textarea {
     width: 100%;
-    height: 120px;
+    height: 90px;
     border: 1px solid var(--border-light);
-    border-radius: 10px;
-    padding: 14px;
-    font-size: 0.95rem;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.9rem;
     resize: none;
     outline: none;
-    margin-bottom: 24px;
-    background: var(--bg-white);
+    background: rgba(0, 0, 0, 0.02);
+    color: var(--brand-dark);
+    font-family: inherit;
+}
+.btn-primary-mini {
+    background-color: var(--brand-dark);
+    color: #FFFFFF;
+    padding: 14px;
+    border: none;
+    font-weight: 600;
+    border-radius: 8px;
+    margin-top: 14px;
+    cursor: pointer;
+    font-family: inherit;
 }
 
-/* 🧾 결과형 실물 영수증 컴포넌트 */
-.receipt-paper, .archive-receipt-card {
-    background-color: var(--bg-white);
+/* 그림자 래퍼 방 단 */
+.receipt-shadow-wrapper {
     width: 100%;
     max-width: 350px;
-    min-width: 280px; 
-    padding: 30px 24px;
+    margin: 20px auto 35px auto;
+    padding: 5px; 
+    position: relative;
+    background: transparent;
+    filter: drop-shadow(0 14px 28px rgba(46, 32, 22, 0.09)) 
+            drop-shadow(0 3px 10px rgba(46, 32, 22, 0.04));
+}
+
+/* 🧾 결과형 실물 영수증 규격 (순백 고정) */
+.receipt-paper, .archive-receipt-card {
+    background-color: var(--bg-white) !important;
+    width: 100%;
+    padding: 30px 24px 35px 24px; 
     border-radius: 12px 12px 0 0;
     color: var(--brand-dark);
-    border: 1px solid var(--border-light);
-    border-bottom: none;
     position: relative;
-    box-shadow: 0 10px 30px rgba(46, 32, 22, 0.02);
     font-family: "Courier New", Courier, monospace, sans-serif;
-}
-.receipt-paper::after, .archive-receipt-card::after {
-    content: "";
-    position: absolute;
-    left: -1px;
-    bottom: -8px;
-    width: calc(100% + 2px);
-    height: 8px;
-    background-image: linear-gradient(-45deg, transparent 4px, var(--border-light) 0), 
-                      linear-gradient(45deg, transparent 4px, var(--border-light) 0),
-                      linear-gradient(-45deg, var(--bg-white) 4px, transparent 0), 
-                      linear-gradient(45deg, var(--bg-white) 4px, transparent 0);
-    background-position: left bottom;
-    background-size: 8px 8px;
-    background-repeat: repeat-x;
+    
+    clip-path: polygon(
+        0% 0%, 100% 0%, 
+        100% calc(100% - 12px), 97.5% 100%, 95% calc(100% - 12px), 92.5% 100%, 90% calc(100% - 12px), 87.5% 100%, 85% calc(100% - 12px), 82.5% 100%, 80% calc(100% - 12px), 77.5% 100%, 75% calc(100% - 12px), 72.5% 100%, 70% calc(100% - 12px), 67.5% 100%, 65% calc(100% - 12px), 62.5% 100%, 60% calc(100% - 12px), 57.5% 100%, 55% calc(100% - 12px), 52.5% 100%, 50% calc(100% - 12px), 47.5% 100%, 45% calc(100% - 12px), 42.5% 100%, 40% calc(100% - 12px), 37.5% 100%, 35% calc(100% - 12px), 32.5% 100%, 30% calc(100% - 12px), 27.5% 100%, 25% calc(100% - 12px), 22.5% 100%, 20% calc(100% - 12px), 17.5% 100%, 15% calc(100% - 12px), 12.5% 100%, 10% calc(100% - 12px), 7.5% 100%, 5% calc(100% - 12px), 2.5% 100%, 0% calc(100% - 12px)
+    );
 }
 
 .receipt-header h4 { font-weight: 700; font-size: 0.95rem; letter-spacing: 0px; text-align: center; }
-
-.pos-meta-info {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    margin-top: 10px;
-    font-weight: 600;
-}
-
+.pos-meta-info { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-top: 10px; font-weight: 600; }
 .receipt-user-name { font-size: 0.82rem; font-weight: 700; text-align: left; margin-top: 8px; color: var(--brand-dark); }
 .receipt-date { font-size: 0.78rem; color: var(--text-muted); text-align: left; margin-top: 3px; }
 
-/* 💡 [전면 교정] 텍스트 문자 방식을 폐기하고, 양 끝까지 시원하게 뚫리는 1px 슬림 점선 절취선 구현 */
-.divider { 
-    height: 1px;
-    border-top: 1px dashed #C0B4AC; /* 정밀한 대시형 타공선 고증 */
-    width: 100%;
-    margin: 12px 0;
-    font-size: 0; /* 기존 텍스트 데이터 숨김 */
-    color: transparent;
-    overflow: hidden;
-}
+.divider { height: 1px; border-top: 1px dashed #C0B4AC; width: 100%; margin: 12px 0; font-size: 0; color: transparent; overflow: hidden; }
 
-.receipt-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 8px 0;
-    font-size: 0.85rem;
-    width: 100%;
-}
+.receipt-row { display: flex; justify-content: space-between; align-items: center; margin: 8px 0; font-size: 0.85rem; width: 100%; }
 .receipt-row span { white-space: nowrap; }
 .header-row { font-weight: 700; font-size: 0.88rem; }
 
-.receipt-message-box {
-    margin-top: 12px;
-    padding: 12px;
-    background-color: var(--brand-gray);
-    border-radius: 6px;
-    border: 1px dashed rgba(46, 32, 22, 0.12);
-    width: 100%;
-}
+.receipt-message-box { margin-top: 12px; padding: 12px; background-color: rgba(0,0,0,0.02); border-radius: 6px; border: 1px dashed rgba(46, 32, 22, 0.12); width: 100%; }
 .msg-title { font-size: 0.72rem; color: var(--text-muted); font-weight: 700; }
 .msg-content { font-size: 0.82rem; margin-top: 4px; word-break: break-all; line-height: 1.5; color: #47372D; font-family: inherit;}
 
-/* 수직 라인 바코드 */
-.barcode-area {
-    text-align: center;
-    margin-top: 16px;
-}
-.barcode {
-    font-size: 1.4rem; 
-    letter-spacing: -0.5px; 
-    margin-bottom: 2px;
-    font-weight: 900;
-    color: #111;
-}
+.barcode-area { text-align: center; margin-top: 16px; padding-bottom: 12px;}
+.barcode { font-size: 1.4rem; letter-spacing: -0.5px; font-weight: 900; color: #111; }
 .thank-you-msg { font-size: 0.72rem; color: var(--brand-dark); font-weight: 600; text-transform: uppercase; letter-spacing: 0px; margin-top: 8px;}
 
-.result-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+.result-container { display: flex; flex-direction: column; align-items: center; width: 100%; padding: 10px 0;}
+
+/* 💡 결과페이지 키치 버튼 스펙 조율 */
+.btn-secondary-push-kitsch {
+    width: 100%; padding: 16px;
+    background-color: var(--kitsch-black); color: var(--bg-white);
+    border: 2px solid var(--kitsch-black); font-size: 0.95rem; font-weight: 700;
+    border-radius: 12px; cursor: pointer;
+    box-shadow: 0px 4px 0px #473223;
+    transition: all 0.1s ease;
 }
-.action-buttons {
-    width: 100%;
-    max-width: 350px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px; 
-    margin-top: 20px;
+.btn-secondary-push-kitsch:active {
+    transform: translateY(3px); box-shadow: 0px 1px 0px #473223;
 }
+.btn-text-kitsch {
+    width: 100%; padding: 15px; background: none;
+    border: 2px dashed var(--kitsch-black); font-size: 0.95rem; font-weight: 700;
+    color: var(--kitsch-black); border-radius: 12px; cursor: pointer; text-align: center;
+}
+
+.action-buttons { width: 100%; max-width: 350px; display: flex; flex-direction: column; gap: 12px; margin-top: 25px; }
 
 #sec-archive { background-color: var(--bg-main); }
 .archive-header { margin-bottom: 24px; text-align: center; }
 .archive-header h2 { font-size: 1.2rem; font-weight: 700; color: var(--brand-dark); }
 .archive-header p { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
 
-.archive-list {
-    display: flex;
-    flex-direction: column;
-    gap: 32px; 
-    align-items: center;
-    width: 100%;
-    padding-bottom: 40px;
-}
-
-.archive-receipt-card {
-    background-color: var(--bg-white);
+.archive-list { display: flex; flex-direction: column; gap: 10px; align-items: center; width: 100%; padding: 10px 20px 50px 20px; }
+.archive-receipt-card-wrapper {
     width: 100%;
     max-width: 350px;
-    min-width: 280px;
-    padding: 28px 22px;
-    border-radius: 12px 12px 0 0;
-    color: var(--brand-dark);
-    border: 1px solid var(--border-light);
-    border-bottom: none;
     position: relative;
+    filter: drop-shadow(0 10px 22px rgba(46, 32, 22, 0.08));
 }
 
-.image-modal-overlay {
-    display: none;
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(46, 32, 22, 0.4);
-    z-index: 999;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+/* 로딩 아키텍처 */
+.loading-minimal-layout { display: flex; justify-content: center; align-items: center; height: 100%; }
+.loading-box { text-align: center; width: 100%; max-width: 280px; }
+.loading-printer-icon { font-size: 3rem; margin-bottom: 16px; animation: bounce 0.6s infinite alternate; }
+#loading-text { font-size: 0.95rem; font-weight: 600; color: var(--brand-dark); margin-bottom: 20px; }
+.loading-progress-container { width: 100%; height: 6px; background-color: #EFECE3; border-radius: 10px; overflow: hidden; }
+.loading-progress-bar { width: 0%; height: 100%; background-color: var(--brand-dark); border-radius: 10px; transition: width 0.1s linear; }
+
+/* 모달 레이어 프레임 */
+.image-modal-overlay { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(46, 32, 22, 0.6); z-index: 999; justify-content: center; align-items: center; padding: 24px; }
+.image-modal-content { background-color: #EFECE3; width: 100%; max-width: 360px; padding: 24px; border-radius: 20px; text-align: center; box-shadow: 0 20px 50px rgba(46, 32, 22, 0.25); }
+.modal-guide-text { font-size: 0.88rem; font-weight: 600; color: var(--brand-dark); line-height: 1.5; margin-bottom: 18px; }
+.modal-receipt-frame img { width: 100%; max-height: 52vh; object-fit: contain; filter: drop-shadow(0 14px 28px rgba(46, 32, 22, 0.16)) drop-shadow(0 3px 8px rgba(46, 32, 22, 0.06)); }
+
+/* 🎨 모던 키치 애니메이션 드로잉 */
+@keyframes inkScanPrint {
+    from { width: 0%; opacity: 0; }
+    to { width: 100%; opacity: 1; }
 }
-.image-modal-content {
-    background-color: var(--bg-white);
-    width: 100%;
-    max-width: 360px;
-    padding: 20px;
-    border-radius: 14px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(46, 32, 22, 0.08);
+@keyframes kitschWobble {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(-5deg) scale(1.05); }
+    75% { transform: rotate(5deg) scale(0.98); }
 }
-.modal-guide-text { font-size: 0.88rem; color: var(--brand-dark); line-height: 1.5; margin-bottom: 14px; }
-.modal-guide-text b { color: var(--brand-dark); text-decoration: underline; }
-#captured-image-container img { width: 100%; max-height: 55vh; object-fit: contain; border-radius: 6px; }
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-8px); }
+}
