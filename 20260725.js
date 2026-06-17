@@ -27,7 +27,41 @@ function get24HourDateTime(timestamp) {
 }
 
 $(document).ready(function() {
-    let orderData = { name: '', q1: '', q2: '', q3: '', message: '' };
+    let orderData = { name: '', q1: '', q2: '', q3: '', message: '', signature: '' };
+    
+    const canvas = document.getElementById('signature-canvas');
+    const ctx = canvas ? canvas.getContext('2d') : null;
+    let isDrawing = false;
+
+    if (ctx) {
+        ctx.strokeStyle = "#2E2016"; 
+        ctx.lineWidth = 2.5;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+    }
+
+    function getPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return { x: clientX - rect.left, y: clientY - rect.top };
+    }
+
+    if (canvas) {
+        canvas.addEventListener('mousedown', (e) => { isDrawing = true; const pos = getPos(e); ctx.beginPath(); ctx.moveTo(pos.x, pos.y); });
+        canvas.addEventListener('mousemove', (e) => { if (!isDrawing) return; e.preventDefault(); const pos = getPos(e); ctx.lineTo(pos.x, pos.y); ctx.stroke(); });
+        canvas.addEventListener('mouseup', () => isDrawing = false);
+        canvas.addEventListener('mouseleave', () => isDrawing = false);
+
+        canvas.addEventListener('touchstart', (e) => { isDrawing = true; const pos = getPos(e); ctx.beginPath(); ctx.moveTo(pos.x, pos.y); }, {passive: true});
+        canvas.addEventListener('touchmove', (e) => { if (!isDrawing) return; e.preventDefault(); const pos = getPos(e); ctx.lineTo(pos.x, pos.y); ctx.stroke(); }, {passive: false});
+        canvas.addEventListener('touchend', () => isDrawing = false);
+    }
+    
+    $(document).on('click', '#btn-clear-sig', function(e) {
+        e.preventDefault();
+        if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
 
     $(document).on('click', '#btn-start', function(e) {
         e.preventDefault();
@@ -35,8 +69,10 @@ $(document).ready(function() {
         $('.receipt-scroll-container').scrollTop(0);
         
         orderData = { name: '', q1: '', q2: '', q3: '', message: '' };
-        $('#input-name').val(''); 
-        $('#input-message').val('');
+        $('#input-name').removeClass('input-error').val(''); 
+        $('#input-message').removeClass('input-error').val('');
+        $('.error-text').hide(); // 💡 에러 메시지 초기 은닉
+        if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
         $('.receipt-opt-btn').removeClass('selected disabled-fade');
         
         $('.receipt-survey-block').not('[data-step="1"]').removeClass('active');
@@ -57,19 +93,18 @@ $(document).ready(function() {
 
     $(document).on('click', '#btn-restart', function(e) {
         e.preventDefault();
-        orderData = { name: '', q1: '', q2: '', q3: '', message: '' };
+        orderData = { name: '', q1: '', q2: '', q3: '', message: '', signature: '' };
         $('.receipt-opt-btn').removeClass('selected disabled-fade');
         $('.receipt-survey-block').not('[data-step="1"]').removeClass('active'); 
         $('.receipt-survey-block[data-step="1"]').addClass('active');
-        $('#input-name').val(''); 
-        $('#input-message').val('');
+        $('#input-name').removeClass('input-error').val(''); 
+        $('#input-message').removeClass('input-error').val('');
+        $('.error-text').hide(); // 💡 에러 메시지 리셋 클리어
+        if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
         $('#btn-archive-toggle').text('📋 보관함');
         switchSection('#sec-intro');
     });
 
-    /* ==========================================
-       실시간 설문 선택 흐름 모션 (진동 제거 버전)
-    ========================================== */
     $(document).on('click', '.receipt-survey-block .receipt-opt-btn', function(e) {
         e.preventDefault(); e.stopPropagation();
         const $currentBlock = $(this).closest('.receipt-survey-block');
@@ -90,31 +125,61 @@ $(document).ready(function() {
             if ($nextBlock.length > 0 && !$nextBlock.hasClass('active')) {
                 setTimeout(() => { 
                     $nextBlock.addClass('active'); 
-                    setTimeout(() => {
-                        scrollToBottomSmooth(); 
-                    }, 50);
+                    setTimeout(() => { scrollToBottomSmooth(); }, 50);
                 }, 350);
             }
         }
     });
 
-    /* ==========================================
-       모바일 키보드 가림 차단용 입력창 스크롤 포커스
-    ========================================== */
     $(document).on('focus', '#input-name, #input-message', function() {
-        setTimeout(() => {
-            scrollToBottomSmooth();
-        }, 300);
+        $(this).removeClass('input-error');
+        // 💡 타이핑 치려고 창을 클릭하는 순간 매칭되는 아래 에러 메시지를 자연스럽게 소멸시킴
+        if ($(this).attr('id') === 'input-name') $('#error-name').hide();
+        if ($(this).attr('id') === 'input-message') $('#error-message').hide();
+        setTimeout(() => { scrollToBottomSmooth(); }, 300);
     });
 
     /* ==========================================
-       최종 제출 및 로딩 카운트다운
+       💡 [수정] 빈 필드 발견 시 실시간 에러 메시지 팝업 트리거
     ========================================== */
     $(document).on('click', '#btn-submit', function(e) {
         e.preventDefault();
-        orderData.name = $('#input-name').val().trim() || "빵순이";
-        orderData.message = $('#input-message').val().trim() || "맛있게 구워주세요!";
-        if (!orderData.q1 || !orderData.q2 || !orderData.q3) { alert("취향을 모두 선택해 주세요!"); return; }
+        
+        $('#input-name').removeClass('input-error');
+        $('#input-message').removeClass('input-error');
+        $('.error-text').hide(); // 이전 경고 초기화
+
+        const typedName = $('#input-name').val().trim();
+        const typedMessage = $('#input-message').val().trim();
+
+        // 닉네임 누락 검사 가드
+        if (!typedName) {
+            $('#input-name').addClass('input-error').focus();
+            $('#error-name').show(); // 💡 닉네임 아래에 메시지 슬라이드 온!
+            scrollToBottomSmooth();
+            return;
+        }
+
+        // 메모 누락 검사 가드
+        if (!typedMessage) {
+            $('#input-message').addClass('input-error').focus();
+            $('#error-message').show(); // 💡 메모 아래에 메시지 슬라이드 온!
+            scrollToBottomSmooth();
+            return;
+        }
+
+        if (!orderData.q1 || !orderData.q2 || !orderData.q3) { alert("취향 선택이 빠져있습니다!"); return; }
+
+        orderData.name = typedName;
+        orderData.message = typedMessage;
+
+        let isBlank = true;
+        if (canvas) {
+            const buffer = document.createElement('canvas');
+            buffer.width = canvas.width; buffer.height = canvas.height;
+            if (canvas.toDataURL() !== buffer.toDataURL()) { isBlank = false; }
+        }
+        orderData.signature = isBlank ? "" : canvas.toDataURL("image/png");
 
         switchSection('#sec-loading');
         runFakeLoading(function() {
@@ -126,24 +191,12 @@ $(document).ready(function() {
         let progress = 0;
         const $progressBar = $('.loading-progress-bar');
         const $loadingText = $('#loading-text');
-        
-        const textPhrases = [
-            "취향을 맛있게 반죽하는 중...",
-            "오븐 온도를 감성 온도로 올리는 중...",
-            "갓 구워진 취향 영수증 사출 중..."
-        ];
-
+        const textPhrases = ["취향을 맛있게 반죽하는 중...", "오븐 온도를 감성 온도로 올리는 중...", "갓 구워진 취향 영수증 사출 중..."];
         const interval = setInterval(function() {
-            progress += 4;
-            $progressBar.css('width', progress + '%');
-            
+            progress += 4; $progressBar.css('width', progress + '%');
             if (progress === 32) $loadingText.text(textPhrases[1]);
             if (progress === 68) $loadingText.text(textPhrases[2]);
-
-            if (progress >= 100) {
-                clearInterval(interval);
-                callback();
-            }
+            if (progress >= 100) { clearInterval(interval); callback(); }
         }, 100);
     }
 
@@ -151,6 +204,13 @@ $(document).ready(function() {
         const exactTimeStr = get24HourDateTime();
         const formattedMessage = orderData.message.replace(/\n/g, '<br>');
         const randomOrderNum = "ORD-" + new Date().toISOString().slice(0,10).replace(/-/g,"") + "-" + Math.floor(1000 + Math.random() * 9000);
+
+        const sigSectionHtml = orderData.signature ? `
+            <div class="divider"></div>
+            <div style="margin: 5px 0;">
+                <p style="font-size:0.7rem; font-weight:700; color:#A39485; text-align:left;">CUSTOMER SIGNATURE :</p>
+                <img src="${orderData.signature}" class="receipt-signature-img" alt="친필서명">
+            </div>` : "";
 
         const cleanReceiptHtml = `
             <div class="receipt-shadow-wrapper">
@@ -176,13 +236,12 @@ $(document).ready(function() {
                         </div>
                     </div>
                     <div class="receipt-footer">
+                        ${sigSectionHtml}
                         <div class="divider"></div>
-                        
                         <div style="font-size:0.7rem; text-align:left; color:#A39485; line-height:1.4; margin-bottom:10px; font-family:inherit;">
                             <p>* 교환/환불: 마음이 변하기 전까지 가능</p>
                             <p>* 내 취향 칼로리: 맛있으면 0 kcal</p>
                         </div>
-                        
                         <div class="barcode-area">
                             <div class="barcode">||||| | ||||| | |||| ||| |||||</div>
                             <p class="thank-you-msg">THANK YOU FOR YOUR TASTE</p>
@@ -197,7 +256,7 @@ $(document).ready(function() {
 
     function saveReceiptToFirebase() {
         const currentTime = Date.now();
-        const newReceiptData = { name: orderData.name, q1: orderData.q1, q2: orderData.q2, q3: orderData.q3, message: orderData.message, timestamp: currentTime };
+        const newReceiptData = { name: orderData.name, q1: orderData.q1, q2: orderData.q2, q3: orderData.q3, message: orderData.message, signature: orderData.signature, timestamp: currentTime };
         if (!isConnected) { firebase.database().goOnline(); isConnected = true; }
         if (messageRef) messageRef.off(); messageRef = database.ref('BTH2026');
         const newPostRef = messageRef.push();
@@ -210,8 +269,8 @@ $(document).ready(function() {
         $('#archive-list').html('<p style="text-align:center; color:#A39485; padding:30px;">보관함을 열어보는 중...</p>');
         messageRef.once('value', function(snapshot) {
             const posts = snapshot.val(); let loadedMessages = [];
-            if (posts) { Object.keys(posts).forEach(function(key) { const post = posts[key]; loadedMessages.push({ name: post.name || "빵순이", q1: post.q1, q2: post.q2, q3: post.q3, message: post.message, date: get24HourDateTime(post.timestamp), timestamp: post.timestamp }); }); }
-            receiptList = loadedMessages.sort((a, b) => b.timestamp - a.timestamp); displayArchiveList(receiptList);
+            if (posts) { Object.keys(posts).forEach(function(key) { const post = posts[key]; loadedMessages.push({ name: post.name || "빵순이", q1: post.q1, q2: post.q2, q3: post.q3, message: post.message, signature: post.signature || "", date: get24HourDateTime(post.timestamp), timestamp: post.timestamp }); }); }
+            receiptList = loadedMessages.sort((a, b) => b.timestamp - a.timestamp); displayArchiveList(loadedMessages);
         });
     }
 
@@ -220,8 +279,14 @@ $(document).ready(function() {
         if (list.length === 0) { $archiveList.append('<p style="text-align:center; color:#aaa; padding:20px;">보관된 주문서가 없습니다.</p>'); return; }
         list.forEach(function(item) {
             const messageHtml = item.message.replace(/\n/g, '<br>');
+            const archiveSigHtml = item.signature ? `
+                <div class="divider"></div>
+                <div style="margin: 5px 0;">
+                    <p style="font-size:0.7rem; font-weight:700; color:#A39485; text-align:left;">CUSTOMER SIGNATURE :</p>
+                    <img src="${item.signature}" class="receipt-signature-img" alt="보관서명">
+                </div>` : "";
+            
             const receiptCardHtml = `
-                <!-- 💡 UX 패치: 클릭이 가능한 카드임을 유저에게 알리기 위해 마우스 포인터 속성 유도 스타일 가미 -->
                 <div class="archive-receipt-card-wrapper" style="cursor: pointer; width: 100%; max-width: 350px;">
                     <div class="archive-receipt-card">
                         <div class="receipt-header">
@@ -243,7 +308,9 @@ $(document).ready(function() {
                                 <p class="msg-content">"${messageHtml}"</p>
                             </div>
                         </div>
+                        <div class="archive-receipt-card-wrapper"></div>
                         <div class="receipt-footer">
+                            ${archiveSigHtml}
                             <div class="divider"></div>
                             <div style="font-size:0.7rem; text-align:left; color:#A39485; line-height:1.4; margin-bottom:10px; font-family:inherit;">
                                 <p>* 교환/환불: 마음이 변하기 전까지 가능</p>
@@ -260,39 +327,22 @@ $(document).ready(function() {
         });
     }
 
-    /* ==========================================
-       💡 [대수리 핵심] 보관함 리스트 영수증 클릭 시 모달창 자동 사출 연동
-    ========================================== */
     $(document).on('click', '.archive-receipt-card-wrapper', function(e) {
         e.preventDefault();
-        
-        // 클릭한 카드 노드 내부의 진짜 타겟인 '.archive-receipt-card' 포착
         const targetCard = $(this).find('.archive-receipt-card')[0];
-        
-        // 상단 가이드 텍스트 및 로딩 가이드 일시 전환
-        $('#captured-image-container').html('<p style="font-size:0.85rem; color:#A39485; padding:20px;">보관된 취향 스캔 중...</p>');
+        if (!targetCard) return;
+        $('#captured-image-container').html('<p style="font-size:0.85rem; color:#A39485; padding:20px;">보관된 친필 영수증 채취 중...</p>');
         $('#image-save-modal').css('display', 'flex');
 
-        // 가상 카메라 작동 (투명 크롭 유지 필수 캡처 규칙 적용)
-        html2canvas(targetCard, { 
-            scale: 3, 
-            backgroundColor: null, 
-            useCORS: true 
-        }).then(function(canvas) {
+        html2canvas(targetCard, { scale: 3, backgroundColor: null, useCORS: true }).then(function(canvas) {
             const imageURL = canvas.toDataURL("image/png");
             const $imgTag = $('<img>').attr({ 'src': imageURL, 'alt': '보관함 백업 영수증' });
-            
-            // 기존 가이드 문구를 지우고 완벽히 사출된 톱니 결 이미지를 렌더링
             $('#captured-image-container').html($imgTag);
-        }).catch(function() { 
-            alert("이미지 로드 중 오류가 발생했습니다."); 
-            $('#image-save-modal').hide();
-        });
+        }).catch(function() { alert("이미지 로드 오류"); $('#image-save-modal').hide(); });
     });
 
     function disconnect() { if (messageRef) messageRef.off(); firebase.database().goOffline(); isConnected = false; }
 
-    /* 결과화면 이미지 저장 버튼 구문 */
     $(document).on('click', '#btn-save-img', function() {
         const receiptElement = document.getElementById('receipt-paper');
         const originalBtnText = $(this).text(); $(this).prop('disabled', true).text('생성 중...');
@@ -305,12 +355,7 @@ $(document).ready(function() {
 
     $(document).on('click', '#btn-close-modal', function() { $('#image-save-modal').hide(); $('#captured-image-container').empty(); });
     function switchSection(targetSectionId) { $('.app-section').removeClass('active'); $(targetSectionId).addClass('active'); }
-    
-    function scrollToBottomSmooth() { 
-        const $container = $('.receipt-scroll-container'); 
-        const scrollH = $container()[0].scrollHeight; 
-        $container.animate({ scrollTop: scrollH }, 750); 
-    }
+    function scrollToBottomSmooth() { const $container = $('.receipt-scroll-container'); const scrollH = $container()[0].scrollHeight; $container.animate({ scrollTop: scrollH }, 750); }
 });
 
 $(window).on('beforeunload', function(){ firebase.database().goOffline(); });

@@ -15,37 +15,31 @@
 <body>
 
     <div class="app-container">
-        <!-- [키치 고정 헤더] -->
         <header class="main-header">
-            <h1 class="logo">깨비 <span>베이커리</span></h1>
+            <h1 class="logo">BREAD <span>RECEIPT</span></h1>
             <button id="btn-archive-toggle" class="icon-btn-kitsch">📋 보관함</button>
         </header>
 
-        <!-- 1. 키치 & 모던 뉴 인트로 섹션 -->
         <section id="sec-intro" class="app-section active">
             <div class="intro-kitsch-layout">
-                
                 <div class="title-zone-kitsch">
                     <span class="badge-mini">MY OWN 2026</span>
                     <h2>내가 좋아하는<br><span class="highlight-text">빵 취향</span>을 담은<br><strong>나만의 영수증</strong></h2>
-                    <p class="sub-desc-kitsch">나만의 식감, 굽기, 비밀 메시지까지 고증하여<br>도트 프린터 감성의 영수증으로 사출해 보세요.</p>
+                    <p class="sub-desc-kitsch">나만의 식감, 굽기, 비밀 서명까지 고증하여<br>도트 프린터 감성의 영수증으로 사출해 보세요.</p>
                 </div>
                 
-                <!-- 브랜드 엠블럼 로고처럼 개조된 빵 구역 -->
                 <div class="center-emblem-zone">
                     <div class="kitsch-circle-emblem">
                         <span class="bread-main-emoji">🍞</span>
                     </div>
                 </div>
                 
-                <!-- 90s 입체 푸시 버튼 스타일의 액션 존 -->
                 <div class="action-zone-kitsch">
                     <button id="btn-start" class="btn-push-kitsch">영수증 구우러 가기 ⚡</button>
                 </div>
             </div>
         </section>
 
-        <!-- 2. 영수증 내부 일체형 설문 섹션 -->
         <section id="sec-survey" class="app-section standard-flow-mode">
             <div class="receipt-scroll-container">
                 
@@ -61,7 +55,6 @@
                         </div>
                         
                         <div class="receipt-body">
-                            <!-- Q1. 식감 -->
                             <div class="receipt-survey-block active" data-step="1">
                                 <div class="receipt-row header-row">
                                     <span>01 TEXTURE // 식감</span>
@@ -74,7 +67,6 @@
                                 </div>
                             </div>
 
-                            <!-- Q2. 굽기 -->
                             <div class="receipt-survey-block" data-step="2">
                                 <div class="divider"></div>
                                 <div class="receipt-row header-row">
@@ -89,7 +81,6 @@
                                 </div>
                             </div>
 
-                            <!-- Q3. 맛 -->
                             <div class="receipt-survey-block" data-step="3">
                                 <div class="divider"></div>
                                 <div class="receipt-row header-row">
@@ -104,15 +95,27 @@
                                 </div>
                             </div>
 
-                            <!-- Q4. 정보 입력 -->
                             <div class="receipt-survey-block" data-step="4">
                                 <div class="divider"></div>
                                 <div class="receipt-row header-row">
-                                    <span>04 USER INFO // 주문서 메모</span>
+                                    <span>04 USER INFO // 주문서 및 서명</span>
                                 </div>
                                 <div class="inner-input-area">
-                                    <input type="text" id="input-name" placeholder="NICKNAME (최대 8자)" maxlength="8">
-                                    <textarea id="input-message" placeholder="특별 요청사항이나 메모를 입력해 주세요.."></textarea>
+                                    <div class="input-field-group">
+                                        <input type="text" id="input-name" placeholder="NICKNAME (최대 8자)" maxlength="8">
+                                        <p id="error-name" class="error-text">⚠️ 닉네임을 입력해 주세요!</p>
+                                    </div>
+                                    
+                                    <div class="input-field-group">
+                                        <textarea id="input-message" placeholder="특별 요청사항이나 메모를 입력해 주세요.."></textarea>
+                                        <p id="error-message" class="error-text">⚠️ 메모 내용을 입력해 주세요!</p>
+                                    </div>
+                                    
+                                    <div class="signature-pad-container">
+                                        <p class="sig-guide-text">✍️ 아래에 서명이나 그림을 그려주세요 (SIGN)</p>
+                                        <canvas id="signature-canvas" width="300" height="110"></canvas>
+                                        <button id="btn-clear-sig" class="btn-clear-mini">다시 그리기 📋</button>
+                                    </div>
                                 </div>
                                 <button id="btn-submit" class="btn-primary-mini">주문 영수증 확정하기</button>
                             </div>
@@ -131,7 +134,6 @@
             </div>
         </section>
 
-        <!-- 3. 인쇄 모션 감성 로딩 섹션 -->
         <section id="sec-loading" class="app-section">
             <div class="loading-minimal-layout">
                 <div class="loading-box">
@@ -144,7 +146,6 @@
             </div>
         </section>
 
-        <!-- 4. 최종 결과 섹션 -->
         <section id="sec-result" class="app-section">
             <div class="result-container">
                 <div id="final-receipt-target"></div>
@@ -155,7 +156,6 @@
             </div>
         </section>
 
-        <!-- 5. 보관함 피드 리스트 섹션 -->
         <section id="sec-archive" class="app-section">
             <div class="archive-header">
                 <h2>보관함</h2>
@@ -164,7 +164,6 @@
             <div id="archive-list" class="archive-list"></div>
         </section>
 
-        <!-- 이미지 다운로드용 모달 팝업 -->
         <div id="image-save-modal" class="image-modal-overlay">
             <div class="image-modal-content">
                 <p class="modal-guide-text">💡 이미지를 <b>길게 꾹 누르면</b><br>사진첩에 바로 저장할 수 있어요!</p>

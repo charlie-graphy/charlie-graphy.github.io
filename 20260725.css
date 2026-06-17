@@ -6,10 +6,7 @@
     --brand-gray: #FAF8F2;   
     --text-muted: #A39485;   
     --border-light: rgba(46, 32, 22, 0.08); 
-    
-    /* ⚡ 키치 & 모던 포인트 컬러 에센스 */
     --kitsch-black: #1E120A;
-    --kitsch-accent: #FFF2CC; /* 힙한 커스터드 크림 */
 }
 
 * {
@@ -39,12 +36,12 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    border: 2px solid var(--kitsch-black); /* 모던 그래픽 프레임 마감 */
+    border: 2px solid var(--kitsch-black); 
     box-shadow: 0 15px 40px rgba(0,0,0,0.05);
     overflow: hidden;
 }
 
-/* 💡 [대수리] 힙한 모던 그래픽 헤더 컴포넌트 */
+/* 상단 고정 헤더 */
 .main-header {
     display: flex;
     justify-content: space-between;
@@ -61,12 +58,8 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
-.main-header .logo span {
-    color: var(--text-muted);
-    font-weight: 500;
-}
+.main-header .logo span { color: var(--text-muted); font-weight: 500; }
 
-/* 💡 [대수리] 상단 토글식 키치 버튼 스펙 */
 .icon-btn-kitsch {
     background-color: var(--brand-yellow);
     border: 2px solid var(--kitsch-black);
@@ -79,242 +72,103 @@ body {
     box-shadow: 2px 2px 0px var(--kitsch-black);
     transition: all 0.1s ease;
 }
-.icon-btn-kitsch:active {
-    transform: translate(1px, 1px);
-    box-shadow: 1px 1px 0px var(--kitsch-black);
-}
+.icon-btn-kitsch:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0px var(--kitsch-black); }
 
-.app-section {
-    display: none;
-    flex: 1;
-    flex-direction: column;
-    padding: 24px 20px;
-    overflow-y: auto;
-    position: relative;
-}
-.app-section.active {
-    display: flex;
-}
+.app-section { display: none; flex: 1; flex-direction: column; padding: 24px 20px; overflow-y: auto; position: relative; }
+.app-section.active { display: flex; }
 
-/* 💡 [대수리] 모던 키치 전용 인트로 아키텍처 디자인 */
-.intro-kitsch-layout {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-between;
-    padding: 15px 0;
-    position: relative;
-}
-.title-zone-kitsch {
-    text-align: left;
-    margin-top: 10px;
-    z-index: 2;
-}
-.badge-mini {
-    display: inline-block;
-    background-color: var(--kitsch-black);
-    color: var(--bg-white);
-    font-size: 0.65rem;
-    font-weight: 800;
-    padding: 3px 8px;
-    border-radius: 4px;
-    margin-bottom: 14px;
-    letter-spacing: 0.5px;
-}
-.title-zone-kitsch h2 {
-    font-size: 1.9rem;
-    font-weight: 300;
-    line-height: 1.4;
-    color: var(--kitsch-black);
-}
-.title-zone-kitsch h2 strong {
-    font-weight: 800;
-}
-.highlight-text {
-    font-weight: 800;
-    background: linear-gradient(to top, var(--brand-yellow) 40%, transparent 40%);
-    padding: 0 2px;
-}
-.sub-desc-kitsch {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-top: 14px;
-    font-weight: 500;
-}
+/* 인트로 레이아웃 */
+.intro-kitsch-layout { display: flex; flex-direction: column; height: 100%; justify-content: space-between; padding: 15px 0; position: relative; }
+.title-zone-kitsch { text-align: left; margin-top: 10px; z-index: 2; }
+.badge-mini { display: inline-block; background-color: var(--kitsch-black); color: var(--bg-white); font-size: 0.65rem; font-weight: 800; padding: 3px 8px; border-radius: 4px; margin-bottom: 14px; letter-spacing: 0.5px; }
+.title-zone-kitsch h2 { font-size: 1.9rem; font-weight: 300; line-height: 1.4; color: var(--kitsch-black); }
+.title-zone-kitsch h2 strong { font-weight: 800; }
+.highlight-text { font-weight: 800; background: linear-gradient(to top, var(--brand-yellow) 40%, transparent 40%); padding: 0 2px; }
+.sub-desc-kitsch { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-top: 14px; font-weight: 500; }
 
-/* 💡 중앙 로고 이모지 비주얼 그래픽 개조 */
-.center-emblem-zone {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 30px 0;
-    z-index: 2;
-}
-.kitsch-circle-emblem {
-    width: 120px;
-    height: 120px;
-    background-color: var(--bg-white);
-    border: 3px solid var(--kitsch-black);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 4px 6px 0px rgba(46, 32, 22, 0.1);
-    position: relative;
-    background-image: radial-gradient(rgba(46, 32, 22, 0.1) 1.5px, transparent 1.5px);
-    background-size: 12px 12px;
-}
-.bread-main-emoji {
-    font-size: 4rem;
-    animation: kitschWobble 3s infinite ease-in-out;
-}
+.center-emblem-zone { display: flex; justify-content: center; align-items: center; margin: 30px 0; z-index: 2; }
+.kitsch-circle-emblem { width: 120px; height: 120px; background-color: var(--bg-white); border: 3px solid var(--kitsch-black); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 4px 6px 0px rgba(46, 32, 22, 0.1); position: relative; background-image: radial-gradient(rgba(46, 32, 22, 0.1) 1.5px, transparent 1.5px); background-size: 12px 12px; }
+.bread-main-emoji { font-size: 4rem; animation: kitschWobble 3s infinite ease-in-out; }
 
-/* 💡 90년대 무드의 통통 튀는 입체 입사식 푸시 버튼 구조 */
-.btn-push-kitsch {
-    width: 100%;
-    padding: 18px;
-    background-color: var(--kitsch-black);
-    color: var(--bg-white);
-    border: 2px solid var(--kitsch-black);
-    font-size: 1rem;
-    font-weight: 700;
-    border-radius: 14px;
-    cursor: pointer;
-    box-shadow: 0px 5px 0px #473223;
-    transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 2;
-}
-.btn-push-kitsch:active {
-    transform: translateY(4px);
-    box-shadow: 0px 1px 0px #473223;
-}
+.btn-push-kitsch { width: 100%; padding: 18px; background-color: var(--kitsch-black); color: var(--bg-white); border: 2px solid var(--kitsch-black); font-size: 1rem; font-weight: 700; border-radius: 14px; cursor: pointer; box-shadow: 0px 5px 0px #473223; transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 2; }
+.btn-push-kitsch:active { transform: translateY(4px); box-shadow: 0px 1px 0px #473223; }
 
-.standard-flow-mode {
-    padding: 16px 12px !important;
-    overflow: hidden;
-}
-.receipt-scroll-container {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto; 
-    padding: 10px 0 40px 0;
-    scroll-behavior: smooth;
-}
+/* 🛠️ [정밀 교정] 설문조사 스크롤 컨테이너 패딩 최적화 */
+.standard-flow-mode { padding: 16px 8px !important; overflow: hidden; }
+.receipt-scroll-container { width: 100%; height: 100%; overflow-y: auto; padding: 10px 4px 40px 4px; scroll-behavior: smooth; }
 
-.receipt-survey-block {
-    display: none; 
-    flex-direction: column;
-    margin-top: 8px;
-    width: 100%;
-}
-.receipt-survey-block.active {
-    display: flex;
-}
-.receipt-survey-block.active .header-row {
-    overflow: hidden;
-    white-space: nowrap;
-    animation: inkScanPrint 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
+/* 설문조사 블록 애니메이션 */
+.receipt-survey-block { display: none; flex-direction: column; margin-top: 4px; width: 100%; }
+.receipt-survey-block.active { display: flex; }
+.receipt-survey-block.active .header-row { overflow: hidden; white-space: nowrap; animation: inkScanPrint 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
 
-.inner-option-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin: 12px 0 6px 0;
-    width: 100%;
+/* 🛠️ [정밀 교정] 버튼 그리드 간격 및 높이 보정 (밀림 현상 방지) */
+.inner-option-grid { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 8px; 
+    margin: 12px 0; 
+    width: 100%; 
 }
-.receipt-opt-btn {
-    background-color: var(--brand-gray);
-    border: 1px dashed rgba(46, 32, 22, 0.15); 
-    padding: 14px 16px;
-    border-radius: 8px;
-    text-align: left;
-    font-size: 0.9rem;
-    font-weight: 500;
+.receipt-opt-btn { 
+    background-color: var(--brand-gray); 
+    border: 1px dashed rgba(46, 32, 22, 0.18); 
+    padding: 13px 16px; 
+    border-radius: 8px; 
+    text-align: left; 
+    font-size: 0.9rem; 
+    font-weight: 600; 
     color: #6E5C4E; 
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.15s ease;
+    cursor: pointer; 
+    font-family: inherit; 
+    width: 100%;
+    display: block;
+    transition: all 0.15s ease; 
 }
-.receipt-opt-btn.selected {
-    background-color: var(--brand-dark);
-    border-color: var(--brand-dark);
-    color: #FFFFFF;
-    font-weight: 600;
-    transform: translateX(2px);
-}
-.receipt-opt-btn.disabled-fade {
-    opacity: 0.4;
-    pointer-events: auto !important; 
-    cursor: pointer;
+.receipt-opt-btn.selected { background-color: var(--brand-dark); border-color: var(--brand-dark); color: #FFFFFF; font-weight: 700; transform: translateX(2px); }
+.receipt-opt-btn.disabled-fade { opacity: 0.35; pointer-events: auto !important; cursor: pointer; }
+
+/* 🛠️ [정밀 교정] 입력 폼 그룹 및 마진 간격 조율 */
+.inner-input-area { display: flex; flex-direction: column; gap: 14px; margin-top: 12px; width: 100%; }
+.input-field-group { width: 100%; display: flex; flex-direction: column; margin-bottom: 2px; }
+.inner-input-area input, .inner-input-area textarea { width: 100%; border: 1px solid rgba(46, 32, 22, 0.15); border-radius: 8px; padding: 12px; font-size: 0.9rem; outline: none; background: rgba(0, 0, 0, 0.02); color: var(--brand-dark); font-family: inherit; transition: all 0.15s ease; display: block; }
+.inner-input-area textarea { height: 85px; resize: none; }
+
+.inner-input-area input.input-error, .inner-input-area textarea.input-error {
+    border: 2px solid #C84B31 !important; 
+    background-color: #FFF6F6 !important;
+    animation: inputShaking 0.3s ease-in-out;
 }
 
-.inner-input-area {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 14px;
-    width: 100%;
-}
-.inner-input-area input {
-    width: 100%;
-    border: 1px solid var(--border-light);
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 0.9rem;
-    outline: none;
-    background: rgba(0, 0, 0, 0.02);
-    color: var(--brand-dark);
+/* 에러 안내 텍스트 */
+.error-text {
+    display: none;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #C84B31;
+    margin-top: 5px;
+    text-align: left;
+    padding-left: 2px;
     font-family: inherit;
+    animation: errorFadeIn 0.2s ease-out forwards;
 }
-.inner-input-area textarea {
-    width: 100%;
-    height: 90px;
-    border: 1px solid var(--border-light);
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 0.9rem;
-    resize: none;
-    outline: none;
-    background: rgba(0, 0, 0, 0.02);
-    color: var(--brand-dark);
-    font-family: inherit;
-}
-.btn-primary-mini {
-    background-color: var(--brand-dark);
-    color: #FFFFFF;
-    padding: 14px;
-    border: none;
-    font-weight: 600;
-    border-radius: 8px;
-    margin-top: 14px;
-    cursor: pointer;
-    font-family: inherit;
-}
+
+/* 🛠️ [정밀 교정] 서명 패드 컨테이너 핏 규격화 */
+.signature-pad-container { margin-top: 4px; width: 100%; display: flex; flex-direction: column; }
+.sig-guide-text { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0px; }
+#signature-canvas { background-color: var(--brand-gray); border: 2px dashed var(--kitsch-black); border-radius: 10px; width: 100%; height: 110px; cursor: crosshair; touch-action: none; display: block; }
+.btn-clear-mini { background: none; border: none; color: var(--text-muted); font-size: 0.72rem; font-weight: 600; margin-top: 6px; align-self: flex-end; cursor: pointer; }
+
+.receipt-signature-img { display: block; max-height: 45px; object-fit: contain; margin: 8px auto 0 auto; filter: contrast(1.5) brightness(0.8); }
+
+.btn-primary-mini { background-color: var(--brand-dark); color: #FFFFFF; padding: 15px; border: none; font-weight: 700; font-size: 0.95rem; border-radius: 8px; margin-top: 10px; cursor: pointer; font-family: inherit; width: 100%; display: block; }
 
 /* 그림자 래퍼 방 단 */
-.receipt-shadow-wrapper {
-    width: 100%;
-    max-width: 350px;
-    margin: 20px auto 35px auto;
-    padding: 5px; 
-    position: relative;
-    background: transparent;
-    filter: drop-shadow(0 14px 28px rgba(46, 32, 22, 0.09)) 
-            drop-shadow(0 3px 10px rgba(46, 32, 22, 0.04));
-}
+.receipt-shadow-wrapper { width: 100%; max-width: 350px; margin: 15px auto 35px auto; padding: 5px; position: relative; background: transparent; filter: drop-shadow(0 14px 28px rgba(46, 32, 22, 0.09)) drop-shadow(0 3px 10px rgba(46, 32, 22, 0.04)); }
 
-/* 🧾 결과형 실물 영수증 규격 (순백 고정) */
+/* 🧾 결과형 실물 영수증 본체 규격 (안정화) */
 .receipt-paper, .archive-receipt-card {
-    background-color: var(--bg-white) !important;
-    width: 100%;
-    padding: 30px 24px 35px 24px; 
-    border-radius: 12px 12px 0 0;
-    color: var(--brand-dark);
-    position: relative;
-    font-family: "Courier New", Courier, monospace, sans-serif;
-    
+    background-color: var(--bg-white) !important; width: 100%; padding: 30px 22px 35px 22px; border-radius: 12px 12px 0 0; color: var(--brand-dark); position: relative; font-family: "Courier New", Courier, monospace, sans-serif;
     clip-path: polygon(
         0% 0%, 100% 0%, 
         100% calc(100% - 12px), 97.5% 100%, 95% calc(100% - 12px), 92.5% 100%, 90% calc(100% - 12px), 87.5% 100%, 85% calc(100% - 12px), 82.5% 100%, 80% calc(100% - 12px), 77.5% 100%, 75% calc(100% - 12px), 72.5% 100%, 70% calc(100% - 12px), 67.5% 100%, 65% calc(100% - 12px), 62.5% 100%, 60% calc(100% - 12px), 57.5% 100%, 55% calc(100% - 12px), 52.5% 100%, 50% calc(100% - 12px), 47.5% 100%, 45% calc(100% - 12px), 42.5% 100%, 40% calc(100% - 12px), 37.5% 100%, 35% calc(100% - 12px), 32.5% 100%, 30% calc(100% - 12px), 27.5% 100%, 25% calc(100% - 12px), 22.5% 100%, 20% calc(100% - 12px), 17.5% 100%, 15% calc(100% - 12px), 12.5% 100%, 10% calc(100% - 12px), 7.5% 100%, 5% calc(100% - 12px), 2.5% 100%, 0% calc(100% - 12px)
@@ -327,7 +181,6 @@ body {
 .receipt-date { font-size: 0.78rem; color: var(--text-muted); text-align: left; margin-top: 3px; }
 
 .divider { height: 1px; border-top: 1px dashed #C0B4AC; width: 100%; margin: 12px 0; font-size: 0; color: transparent; overflow: hidden; }
-
 .receipt-row { display: flex; justify-content: space-between; align-items: center; margin: 8px 0; font-size: 0.85rem; width: 100%; }
 .receipt-row span { white-space: nowrap; }
 .header-row { font-weight: 700; font-size: 0.88rem; }
@@ -341,24 +194,9 @@ body {
 .thank-you-msg { font-size: 0.72rem; color: var(--brand-dark); font-weight: 600; text-transform: uppercase; letter-spacing: 0px; margin-top: 8px;}
 
 .result-container { display: flex; flex-direction: column; align-items: center; width: 100%; padding: 10px 0;}
-
-/* 💡 결과페이지 키치 버튼 스펙 조율 */
-.btn-secondary-push-kitsch {
-    width: 100%; padding: 16px;
-    background-color: var(--kitsch-black); color: var(--bg-white);
-    border: 2px solid var(--kitsch-black); font-size: 0.95rem; font-weight: 700;
-    border-radius: 12px; cursor: pointer;
-    box-shadow: 0px 4px 0px #473223;
-    transition: all 0.1s ease;
-}
-.btn-secondary-push-kitsch:active {
-    transform: translateY(3px); box-shadow: 0px 1px 0px #473223;
-}
-.btn-text-kitsch {
-    width: 100%; padding: 15px; background: none;
-    border: 2px dashed var(--kitsch-black); font-size: 0.95rem; font-weight: 700;
-    color: var(--kitsch-black); border-radius: 12px; cursor: pointer; text-align: center;
-}
+.btn-secondary-push-kitsch { width: 100%; padding: 16px; background-color: var(--kitsch-black); color: var(--bg-white); border: 2px solid var(--kitsch-black); font-size: 0.95rem; font-weight: 700; border-radius: 12px; cursor: pointer; box-shadow: 0px 4px 0px #473223; transition: all 0.1s ease; }
+.btn-secondary-push-kitsch:active { transform: translateY(3px); box-shadow: 0px 1px 0px #473223; }
+.btn-text-kitsch { width: 100%; padding: 15px; background: none; border: 2px dashed var(--kitsch-black); font-size: 0.95rem; font-weight: 700; color: var(--kitsch-black); border-radius: 12px; cursor: pointer; text-align: center; }
 
 .action-buttons { width: 100%; max-width: 350px; display: flex; flex-direction: column; gap: 12px; margin-top: 25px; }
 
@@ -368,14 +206,8 @@ body {
 .archive-header p { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
 
 .archive-list { display: flex; flex-direction: column; gap: 10px; align-items: center; width: 100%; padding: 10px 20px 50px 20px; }
-.archive-receipt-card-wrapper {
-    width: 100%;
-    max-width: 350px;
-    position: relative;
-    filter: drop-shadow(0 10px 22px rgba(46, 32, 22, 0.08));
-}
+.archive-receipt-card-wrapper { width: 100%; max-width: 350px; position: relative; filter: drop-shadow(0 10px 22px rgba(46, 32, 22, 0.08)); }
 
-/* 로딩 아키텍처 */
 .loading-minimal-layout { display: flex; justify-content: center; align-items: center; height: 100%; }
 .loading-box { text-align: center; width: 100%; max-width: 280px; }
 .loading-printer-icon { font-size: 3rem; margin-bottom: 16px; animation: bounce 0.6s infinite alternate; }
@@ -383,23 +215,13 @@ body {
 .loading-progress-container { width: 100%; height: 6px; background-color: #EFECE3; border-radius: 10px; overflow: hidden; }
 .loading-progress-bar { width: 0%; height: 100%; background-color: var(--brand-dark); border-radius: 10px; transition: width 0.1s linear; }
 
-/* 모달 레이어 프레임 */
 .image-modal-overlay { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(46, 32, 22, 0.6); z-index: 999; justify-content: center; align-items: center; padding: 24px; }
 .image-modal-content { background-color: #EFECE3; width: 100%; max-width: 360px; padding: 24px; border-radius: 20px; text-align: center; box-shadow: 0 20px 50px rgba(46, 32, 22, 0.25); }
 .modal-guide-text { font-size: 0.88rem; font-weight: 600; color: var(--brand-dark); line-height: 1.5; margin-bottom: 18px; }
 .modal-receipt-frame img { width: 100%; max-height: 52vh; object-fit: contain; filter: drop-shadow(0 14px 28px rgba(46, 32, 22, 0.16)) drop-shadow(0 3px 8px rgba(46, 32, 22, 0.06)); }
 
-/* 🎨 모던 키치 애니메이션 드로잉 */
-@keyframes inkScanPrint {
-    from { width: 0%; opacity: 0; }
-    to { width: 100%; opacity: 1; }
-}
-@keyframes kitschWobble {
-    0%, 100% { transform: rotate(0deg) scale(1); }
-    25% { transform: rotate(-5deg) scale(1.05); }
-    75% { transform: rotate(5deg) scale(0.98); }
-}
-@keyframes bounce {
-    from { transform: translateY(0); }
-    to { transform: translateY(-8px); }
-}
+@keyframes inkScanPrint { from { width: 0%; opacity: 0; } to { width: 100%; opacity: 1; } }
+@keyframes kitschWobble { 0%, 100% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(-5deg) scale(1.05); } 75% { transform: rotate(5deg) scale(0.98); } }
+@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+@keyframes inputShaking { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-4px); } 40%, 80% { transform: translateX(4px); } }
+@keyframes errorFadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
