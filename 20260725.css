@@ -1,8 +1,8 @@
 :root {
-    --bg-main: #FBF9F4;      /* 부드러운 버터 베이지 밀크 바탕 */
+    --bg-main: #FBF9F4;      
     --bg-white: #FFFFFF;
-    --brand-dark: #2E2016;   /* 다크 딥 브라운 에스프레소 */
-    --brand-yellow: #FFF2CC; /* 버터 옐로우 */
+    --brand-dark: #2E2016;   
+    --brand-yellow: #FFF2CC; 
     --brand-gray: #FAF8F2;   
     --text-muted: #A39485;   
     --border-light: rgba(46, 32, 22, 0.08); 
@@ -93,42 +93,20 @@ body {
 .btn-push-kitsch { width: 100%; padding: 18px; background-color: var(--kitsch-black); color: var(--bg-white); border: 2px solid var(--kitsch-black); font-size: 1rem; font-weight: 700; border-radius: 14px; cursor: pointer; box-shadow: 0px 5px 0px #473223; transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 2; }
 .btn-push-kitsch:active { transform: translateY(4px); box-shadow: 0px 1px 0px #473223; }
 
-/* 🛠️ [정밀 교정] 설문조사 스크롤 컨테이너 패딩 최적화 */
+/* 설문조사 스크롤 컨테이너 */
 .standard-flow-mode { padding: 16px 8px !important; overflow: hidden; }
 .receipt-scroll-container { width: 100%; height: 100%; overflow-y: auto; padding: 10px 4px 40px 4px; scroll-behavior: smooth; }
 
-/* 설문조사 블록 애니메이션 */
+/* 설문조사 블록 */
 .receipt-survey-block { display: none; flex-direction: column; margin-top: 4px; width: 100%; }
 .receipt-survey-block.active { display: flex; }
 .receipt-survey-block.active .header-row { overflow: hidden; white-space: nowrap; animation: inkScanPrint 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
 
-/* 🛠️ [정밀 교정] 버튼 그리드 간격 및 높이 보정 (밀림 현상 방지) */
-.inner-option-grid { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 8px; 
-    margin: 12px 0; 
-    width: 100%; 
-}
-.receipt-opt-btn { 
-    background-color: var(--brand-gray); 
-    border: 1px dashed rgba(46, 32, 22, 0.18); 
-    padding: 13px 16px; 
-    border-radius: 8px; 
-    text-align: left; 
-    font-size: 0.9rem; 
-    font-weight: 600; 
-    color: #6E5C4E; 
-    cursor: pointer; 
-    font-family: inherit; 
-    width: 100%;
-    display: block;
-    transition: all 0.15s ease; 
-}
+.inner-option-grid { display: flex; flex-direction: column; gap: 8px; margin: 12px 0; width: 100%; }
+.receipt-opt-btn { background-color: var(--brand-gray); border: 1px dashed rgba(46, 32, 22, 0.18); padding: 13px 16px; border-radius: 8px; text-align: left; font-size: 0.9rem; font-weight: 600; color: #6E5C4E; cursor: pointer; font-family: inherit; width: 100%; display: block; transition: all 0.15s ease; }
 .receipt-opt-btn.selected { background-color: var(--brand-dark); border-color: var(--brand-dark); color: #FFFFFF; font-weight: 700; transform: translateX(2px); }
 .receipt-opt-btn.disabled-fade { opacity: 0.35; pointer-events: auto !important; cursor: pointer; }
 
-/* 🛠️ [정밀 교정] 입력 폼 그룹 및 마진 간격 조율 */
 .inner-input-area { display: flex; flex-direction: column; gap: 14px; margin-top: 12px; width: 100%; }
 .input-field-group { width: 100%; display: flex; flex-direction: column; margin-bottom: 2px; }
 .inner-input-area input, .inner-input-area textarea { width: 100%; border: 1px solid rgba(46, 32, 22, 0.15); border-radius: 8px; padding: 12px; font-size: 0.9rem; outline: none; background: rgba(0, 0, 0, 0.02); color: var(--brand-dark); font-family: inherit; transition: all 0.15s ease; display: block; }
@@ -140,20 +118,8 @@ body {
     animation: inputShaking 0.3s ease-in-out;
 }
 
-/* 에러 안내 텍스트 */
-.error-text {
-    display: none;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #C84B31;
-    margin-top: 5px;
-    text-align: left;
-    padding-left: 2px;
-    font-family: inherit;
-    animation: errorFadeIn 0.2s ease-out forwards;
-}
+.error-text { display: none; font-size: 0.75rem; font-weight: 700; color: #C84B31; margin-top: 5px; text-align: left; padding-left: 2px; font-family: inherit; animation: errorFadeIn 0.2s ease-out forwards; }
 
-/* 🛠️ [정밀 교정] 서명 패드 컨테이너 핏 규격화 */
 .signature-pad-container { margin-top: 4px; width: 100%; display: flex; flex-direction: column; }
 .sig-guide-text { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0px; }
 #signature-canvas { background-color: var(--brand-gray); border: 2px dashed var(--kitsch-black); border-radius: 10px; width: 100%; height: 110px; cursor: crosshair; touch-action: none; display: block; }
@@ -166,9 +132,19 @@ body {
 /* 그림자 래퍼 방 단 */
 .receipt-shadow-wrapper { width: 100%; max-width: 350px; margin: 15px auto 35px auto; padding: 5px; position: relative; background: transparent; filter: drop-shadow(0 14px 28px rgba(46, 32, 22, 0.09)) drop-shadow(0 3px 10px rgba(46, 32, 22, 0.04)); }
 
-/* 🧾 결과형 실물 영수증 본체 규격 (안정화) */
+/* 🧾 [정밀 교정] 실물 영수증 본체 규격 (유저님 아이디어 - 얇은 외곽 테두리 선 주입 완료) */
 .receipt-paper, .archive-receipt-card {
-    background-color: var(--bg-white) !important; width: 100%; padding: 30px 22px 35px 22px; border-radius: 12px 12px 0 0; color: var(--brand-dark); position: relative; font-family: "Courier New", Courier, monospace, sans-serif;
+    background-color: var(--bg-white) !important; 
+    width: 100%; 
+    padding: 28px 22px 35px 22px; 
+    border-radius: 12px 12px 0 0; 
+    color: var(--brand-dark); 
+    position: relative; 
+    font-family: "Courier New", Courier, monospace, sans-serif;
+    
+    /* 🎨 톱니바퀴 굴곡을 따라 칼같이 흐르는 1px짜리 감성 그레이 테두리 선 추가 */
+    border: 1px solid rgba(46, 32, 22, 0.14);
+    
     clip-path: polygon(
         0% 0%, 100% 0%, 
         100% calc(100% - 12px), 97.5% 100%, 95% calc(100% - 12px), 92.5% 100%, 90% calc(100% - 12px), 87.5% 100%, 85% calc(100% - 12px), 82.5% 100%, 80% calc(100% - 12px), 77.5% 100%, 75% calc(100% - 12px), 72.5% 100%, 70% calc(100% - 12px), 67.5% 100%, 65% calc(100% - 12px), 62.5% 100%, 60% calc(100% - 12px), 57.5% 100%, 55% calc(100% - 12px), 52.5% 100%, 50% calc(100% - 12px), 47.5% 100%, 45% calc(100% - 12px), 42.5% 100%, 40% calc(100% - 12px), 37.5% 100%, 35% calc(100% - 12px), 32.5% 100%, 30% calc(100% - 12px), 27.5% 100%, 25% calc(100% - 12px), 22.5% 100%, 20% calc(100% - 12px), 17.5% 100%, 15% calc(100% - 12px), 12.5% 100%, 10% calc(100% - 12px), 7.5% 100%, 5% calc(100% - 12px), 2.5% 100%, 0% calc(100% - 12px)
@@ -176,12 +152,13 @@ body {
 }
 
 .receipt-header h4 { font-weight: 700; font-size: 0.95rem; letter-spacing: 0px; text-align: center; }
-.pos-meta-info { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-top: 10px; font-weight: 600; }
+.pos-meta-info { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-top: 15px; font-weight: 600; }
+.receipt-user-name { font-size: 0.82rem; font-weight: 700; text-align: left; margin-top: 8px; color: var(--brand-dark); }
 .receipt-user-name { font-size: 0.82rem; font-weight: 700; text-align: left; margin-top: 8px; color: var(--brand-dark); }
 .receipt-date { font-size: 0.78rem; color: var(--text-muted); text-align: left; margin-top: 3px; }
 
-.divider { height: 1px; border-top: 1px dashed #C0B4AC; width: 100%; margin: 12px 0; font-size: 0; color: transparent; overflow: hidden; }
-.receipt-row { display: flex; justify-content: space-between; align-items: center; margin: 8px 0; font-size: 0.85rem; width: 100%; }
+.divider { height: 1px; border-top: 1px dashed #C0B4AC; width: 100%; margin: 11px 0; font-size: 0; color: transparent; overflow: hidden; }
+.receipt-row { display: flex; justify-content: space-between; align-items: center; margin: 7px 0; font-size: 0.85rem; width: 100%; }
 .receipt-row span { white-space: nowrap; }
 .header-row { font-weight: 700; font-size: 0.88rem; }
 
@@ -201,9 +178,9 @@ body {
 .action-buttons { width: 100%; max-width: 350px; display: flex; flex-direction: column; gap: 12px; margin-top: 25px; }
 
 #sec-archive { background-color: var(--bg-main); }
-.archive-header { margin-bottom: 24px; text-align: center; }
+.archive-header { margin-bottom: 11px; text-align: center; }
 .archive-header h2 { font-size: 1.2rem; font-weight: 700; color: var(--brand-dark); }
-.archive-header p { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
+.archive-header p { font-size: 0.82rem; color: var(--text-muted); margin-top: 5px; }
 
 .archive-list { display: flex; flex-direction: column; gap: 10px; align-items: center; width: 100%; padding: 10px 20px 50px 20px; }
 .archive-receipt-card-wrapper { width: 100%; max-width: 350px; position: relative; filter: drop-shadow(0 10px 22px rgba(46, 32, 22, 0.08)); }

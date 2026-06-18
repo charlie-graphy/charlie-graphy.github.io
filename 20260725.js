@@ -31,8 +31,17 @@ $(document).ready(function() {
     
     const canvas = document.getElementById('signature-canvas');
     const ctx = canvas ? canvas.getContext('2d') : null;
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
+    const day = String(date.getDate()).padStart(2, '0');
+
+    // 화면에 출력할 형식 설정
+    const today = `${year}${month}${day}`;
     let isDrawing = false;
 
+    $('#live-receipt-box .pos-meta-info span:eq(0)').text('ORD-'+today+'-');
+    
     if (ctx) {
         ctx.strokeStyle = "#2E2016"; 
         ctx.lineWidth = 2.5;
@@ -71,7 +80,7 @@ $(document).ready(function() {
         orderData = { name: '', q1: '', q2: '', q3: '', message: '' };
         $('#input-name').removeClass('input-error').val(''); 
         $('#input-message').removeClass('input-error').val('');
-        $('.error-text').hide(); // 💡 에러 메시지 초기 은닉
+        $('.error-text').hide(); 
         if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
         $('.receipt-opt-btn').removeClass('selected disabled-fade');
         
@@ -83,10 +92,10 @@ $(document).ready(function() {
         e.preventDefault();
         if ($('#sec-archive').is(':visible')) {
             switchSection('#sec-intro');
-            $(this).text('📋 보관함');
+            $(this).text('보관함');
         } else {
             switchSection('#sec-archive');
-            $(this).text('🏠 홈으로');
+            $(this).text('홈으로');
             loadReceiptsFromFirebase(); 
         }
     });
@@ -99,9 +108,9 @@ $(document).ready(function() {
         $('.receipt-survey-block[data-step="1"]').addClass('active');
         $('#input-name').removeClass('input-error').val(''); 
         $('#input-message').removeClass('input-error').val('');
-        $('.error-text').hide(); // 💡 에러 메시지 리셋 클리어
+        $('.error-text').hide(); 
         if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
-        $('#btn-archive-toggle').text('📋 보관함');
+        $('#btn-archive-toggle').text('보관함');
         switchSection('#sec-intro');
     });
 
@@ -133,37 +142,31 @@ $(document).ready(function() {
 
     $(document).on('focus', '#input-name, #input-message', function() {
         $(this).removeClass('input-error');
-        // 💡 타이핑 치려고 창을 클릭하는 순간 매칭되는 아래 에러 메시지를 자연스럽게 소멸시킴
         if ($(this).attr('id') === 'input-name') $('#error-name').hide();
         if ($(this).attr('id') === 'input-message') $('#error-message').hide();
         setTimeout(() => { scrollToBottomSmooth(); }, 300);
     });
 
-    /* ==========================================
-       💡 [수정] 빈 필드 발견 시 실시간 에러 메시지 팝업 트리거
-    ========================================== */
     $(document).on('click', '#btn-submit', function(e) {
         e.preventDefault();
         
         $('#input-name').removeClass('input-error');
         $('#input-message').removeClass('input-error');
-        $('.error-text').hide(); // 이전 경고 초기화
+        $('.error-text').hide(); 
 
         const typedName = $('#input-name').val().trim();
         const typedMessage = $('#input-message').val().trim();
 
-        // 닉네임 누락 검사 가드
         if (!typedName) {
             $('#input-name').addClass('input-error').focus();
-            $('#error-name').show(); // 💡 닉네임 아래에 메시지 슬라이드 온!
+            $('#error-name').show(); 
             scrollToBottomSmooth();
             return;
         }
 
-        // 메모 누락 검사 가드
         if (!typedMessage) {
             $('#input-message').addClass('input-error').focus();
-            $('#error-message').show(); // 💡 메모 아래에 메시지 슬라이드 온!
+            $('#error-message').show(); 
             scrollToBottomSmooth();
             return;
         }
@@ -182,8 +185,15 @@ $(document).ready(function() {
         orderData.signature = isBlank ? "" : canvas.toDataURL("image/png");
 
         switchSection('#sec-loading');
-        runFakeLoading(function() {
-            renderFinalReceipt();
+        
+        if (!isConnected) { firebase.database().goOnline(); isConnected = true; }
+        database.ref('BTH2026').once('value', function(snapshot) {
+            const totalCount = snapshot.numChildren();
+            const currentOrderNum = totalCount + 1; 
+            
+            runFakeLoading(function() {
+                renderFinalReceipt(currentOrderNum); 
+            });
         });
     });
 
@@ -200,10 +210,12 @@ $(document).ready(function() {
         }, 100);
     }
 
-    function renderFinalReceipt() {
+    function renderFinalReceipt(currentOrderNum) {
         const exactTimeStr = get24HourDateTime();
         const formattedMessage = orderData.message.replace(/\n/g, '<br>');
-        const randomOrderNum = "ORD-" + new Date().toISOString().slice(0,10).replace(/-/g,"") + "-" + Math.floor(1000 + Math.random() * 9000);
+        
+        const paddedOrderStr = String(currentOrderNum).padStart(4, '0');
+        const serialStr = "ORD-" + new Date().toISOString().slice(0,10).replace(/-/g,"") + "-" + paddedOrderStr;
 
         const sigSectionHtml = orderData.signature ? `
             <div class="divider"></div>
@@ -217,30 +229,29 @@ $(document).ready(function() {
                 <div id="receipt-paper" class="receipt-paper">
                     <div class="receipt-header">
                         <h4>— BREAD RECEIPT —</h4>
-                        <div class="pos-meta-info"><span>[정상] 매출영수증</span><span>POS: 01-0024</span></div>
-                        <p style="font-size:0.75rem; font-weight:700; color:#A39485; margin-top:4px;">${randomOrderNum}</p>
+                        <div class="pos-meta-info"><span style="font-weight:700;">${serialStr}</span><span>POS: 92-0725</span></div>
                         <p class="receipt-user-name">NAME : ${orderData.name}</p>
                         <p class="receipt-date">DATE : ${exactTimeStr}</p>
                         <div class="divider"></div>
                     </div>
                     <div class="receipt-body">
-                        <div class="receipt-row header-row"><span>ITEM</span><span>QTY</span></div>
+                        <div class="receipt-row header-row"><span>MENU</span></div>
                         <div class="divider"></div>
-                        <div class="receipt-row"><span>01 TEXTURE // ${orderData.q1}</span><span>1</span></div>
-                        <div class="receipt-row"><span>02 BAKING  // ${orderData.q2}</span><span>1</span></div>
-                        <div class="receipt-row"><span>03 FLAVOR  // ${orderData.q3}</span><span>1</span></div>
+                        <div class="receipt-row"><span>01 TEXTURE // ${orderData.q1}</span></div>
+                        <div class="receipt-row"><span>02 BAKING  // ${orderData.q2}</span></div>
+                        <div class="receipt-row"><span>03 FLAVOR  // ${orderData.q3}</span></div>
                         <div class="divider"></div>
                         <div class="receipt-message-box">
                             <p class="msg-title">[ MEMO ]</p>
-                            <p class="msg-content">"${formattedMessage}"</p>
+                            <p class="msg-content">${formattedMessage}</p>
                         </div>
                     </div>
                     <div class="receipt-footer">
                         ${sigSectionHtml}
                         <div class="divider"></div>
                         <div style="font-size:0.7rem; text-align:left; color:#A39485; line-height:1.4; margin-bottom:10px; font-family:inherit;">
-                            <p>* 교환/환불: 마음이 변하기 전까지 가능</p>
-                            <p>* 내 취향 칼로리: 맛있으면 0 kcal</p>
+                        	<p>* CASHIER : 깨비사랑단</p>
+                        	<p>* 교환/환불 : 불가능(평쟌해야함)</p>
                         </div>
                         <div class="barcode-area">
                             <div class="barcode">||||| | ||||| | |||| ||| |||||</div>
@@ -251,15 +262,24 @@ $(document).ready(function() {
             </div>`;
 
         $('#final-receipt-target').html(cleanReceiptHtml);
+        
+        orderData.orderNo = currentOrderNum;
         saveReceiptToFirebase();
     }
 
     function saveReceiptToFirebase() {
         const currentTime = Date.now();
-        const newReceiptData = { name: orderData.name, q1: orderData.q1, q2: orderData.q2, q3: orderData.q3, message: orderData.message, signature: orderData.signature, timestamp: currentTime };
-        if (!isConnected) { firebase.database().goOnline(); isConnected = true; }
-        if (messageRef) messageRef.off(); messageRef = database.ref('BTH2026');
-        const newPostRef = messageRef.push();
+        const newReceiptData = { 
+            name: orderData.name, 
+            q1: orderData.q1, 
+            q2: orderData.q2, 
+            q3: orderData.q3, 
+            message: orderData.message, 
+            signature: orderData.signature, 
+            orderNo: orderData.orderNo, 
+            timestamp: currentTime 
+        };
+        const newPostRef = database.ref('BTH2026').push();
         newPostRef.set(newReceiptData).then(() => { setTimeout(disconnect, 1000); switchSection('#sec-result'); }).catch(() => { alert(`⚠️ 발행 오류`); });
     }
 
@@ -269,15 +289,15 @@ $(document).ready(function() {
         $('#archive-list').html('<p style="text-align:center; color:#A39485; padding:30px;">보관함을 열어보는 중...</p>');
         messageRef.once('value', function(snapshot) {
             const posts = snapshot.val(); let loadedMessages = [];
-            if (posts) { Object.keys(posts).forEach(function(key) { const post = posts[key]; loadedMessages.push({ name: post.name || "빵순이", q1: post.q1, q2: post.q2, q3: post.q3, message: post.message, signature: post.signature || "", date: get24HourDateTime(post.timestamp), timestamp: post.timestamp }); }); }
-            receiptList = loadedMessages.sort((a, b) => b.timestamp - a.timestamp); displayArchiveList(loadedMessages);
+            if (posts) { Object.keys(posts).forEach(function(key) { const post = posts[key]; loadedMessages.push({ name: post.name || "빵순이", q1: post.q1, q2: post.q2, q3: post.q3, message: post.message, signature: post.signature || "", orderNo: post.orderNo || 0, date: get24HourDateTime(post.timestamp), timestamp: post.timestamp }); }); }
+            receiptList = loadedMessages.sort((a, b) => b.timestamp - a.timestamp); displayArchiveList(receiptList);
         });
     }
 
     function displayArchiveList(list) {
         const $archiveList = $('#archive-list'); $archiveList.empty();
         if (list.length === 0) { $archiveList.append('<p style="text-align:center; color:#aaa; padding:20px;">보관된 주문서가 없습니다.</p>'); return; }
-        list.forEach(function(item) {
+        list.forEach(function(item, index) {
             const messageHtml = item.message.replace(/\n/g, '<br>');
             const archiveSigHtml = item.signature ? `
                 <div class="divider"></div>
@@ -286,35 +306,38 @@ $(document).ready(function() {
                     <img src="${item.signature}" class="receipt-signature-img" alt="보관서명">
                 </div>` : "";
             
+            const calculatedNo = list.length - index;
+            const paddedArchiveNo = String(calculatedNo).padStart(4, '0');
+            const archiveSerialStr = "ORD-" + item.date.split(' ')[0].replace(/\./g,"") + "-" + paddedArchiveNo;
+
             const receiptCardHtml = `
                 <div class="archive-receipt-card-wrapper" style="cursor: pointer; width: 100%; max-width: 350px;">
                     <div class="archive-receipt-card">
                         <div class="receipt-header">
                             <h4>— BREAD RECEIPT —</h4>
-                            <div class="pos-meta-info"><span>[정상] 매출영수증</span><span>POS: 01-0024</span></div>
+                            <div class="pos-meta-info"><span style="font-weight:700;">${archiveSerialStr}</span><span>POS: 92-0725</span></div>
                             <p class="receipt-user-name">NAME : ${item.name}</p>
                             <p class="receipt-date">DATE : ${item.date}</p>
                             <div class="divider"></div>
                         </div>
                         <div class="receipt-body">
-                            <div class="receipt-row header-row"><span>ITEM</span><span>QTY</span></div>
+                            <div class="receipt-row header-row"><span>MENU</span></div>
                             <div class="divider"></div>
-                            <div class="receipt-row"><span>01 TEXTURE // ${item.q1}</span><span>1</span></div>
-                            <div class="receipt-row"><span>02 BAKING  // ${item.q2}</span><span>1</span></div>
-                            <div class="receipt-row"><span>03 FLAVOR  // ${item.q3}</span><span>1</span></div>
+                            <div class="receipt-row"><span>01 TEXTURE // ${item.q1}</span></div>
+                            <div class="receipt-row"><span>02 BAKING  // ${item.q2}</span></div>
+                            <div class="receipt-row"><span>03 FLAVOR  // ${item.q3}</span></div>
                             <div class="divider"></div>
                             <div class="receipt-message-box">
                                 <p class="msg-title">[ MEMO ]</p>
-                                <p class="msg-content">"${messageHtml}"</p>
+                                <p class="msg-content">${messageHtml}</p>
                             </div>
                         </div>
-                        <div class="archive-receipt-card-wrapper"></div>
                         <div class="receipt-footer">
                             ${archiveSigHtml}
                             <div class="divider"></div>
                             <div style="font-size:0.7rem; text-align:left; color:#A39485; line-height:1.4; margin-bottom:10px; font-family:inherit;">
-                                <p>* 교환/환불: 마음이 변하기 전까지 가능</p>
-                                <p>* 내 취향 칼로리: 맛있으면 0 kcal</p>
+                                <p>* CASHIER : 깨비사랑단</p>
+                                <p>* 교환/환불 : 불가능(평쟌해야함)</p>
                             </div>
                             <div class="barcode-area">
                                 <div class="barcode">||||| | ||||| | |||| ||| |||||</div>
