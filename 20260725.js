@@ -201,7 +201,7 @@ $(document).ready(function() {
         let progress = 0;
         const $progressBar = $('.loading-progress-bar');
         const $loadingText = $('#loading-text');
-        const textPhrases = ["취향을 맛있게 반죽하는 중...", "오븐 온도를 감성 온도로 올리는 중...", "갓 구워진 취향 영수증 사출 중..."];
+        const textPhrases = ["취향을 맛있게 반죽하는 중...", "오븐 온도를 감성 온도로 올리는 중...", "갓 구워진 취향 영수증 출력 중..."];
         const interval = setInterval(function() {
             progress += 4; $progressBar.css('width', progress + '%');
             if (progress === 32) $loadingText.text(textPhrases[1]);
@@ -369,6 +369,7 @@ $(document).ready(function() {
     $(document).on('click', '#btn-save-img', function() {
         const receiptElement = document.getElementById('receipt-paper');
         const originalBtnText = $(this).text(); $(this).prop('disabled', true).text('생성 중...');
+        
         html2canvas(receiptElement, { scale: 3, backgroundColor: null, useCORS: true }).then(function(canvas) {
             const imageURL = canvas.toDataURL("image/png");
             const $imgTag = $('<img>').attr({ 'src': imageURL, 'alt': '빵 주문 영수증' });
