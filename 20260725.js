@@ -33,10 +33,9 @@ $(document).ready(function() {
     const ctx = canvas ? canvas.getContext('2d') : null;
     const date = new Date();
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
+    const month = String(date.getMonth() + 1).padStart(2, '0'); 
     const day = String(date.getDate()).padStart(2, '0');
 
-    // 화면에 출력할 형식 설정
     const today = `${year}${month}${day}`;
     let isDrawing = false;
 
@@ -134,7 +133,7 @@ $(document).ready(function() {
             if ($nextBlock.length > 0 && !$nextBlock.hasClass('active')) {
                 setTimeout(() => { 
                     $nextBlock.addClass('active'); 
-                    setTimeout(() => { scrollToBottomSmooth(); }, 50);
+                    setTimeout(() => { scrollToBottomSmooth(); }, 80); 
                 }, 350);
             }
         }
@@ -144,7 +143,7 @@ $(document).ready(function() {
         $(this).removeClass('input-error');
         if ($(this).attr('id') === 'input-name') $('#error-name').hide();
         if ($(this).attr('id') === 'input-message') $('#error-message').hide();
-        setTimeout(() => { scrollToBottomSmooth(); }, 300);
+        setTimeout(() => { scrollToBottomSmooth(); }, 350); 
     });
 
     $(document).on('click', '#btn-submit', function(e) {
@@ -160,14 +159,14 @@ $(document).ready(function() {
         if (!typedName) {
             $('#input-name').addClass('input-error').focus();
             $('#error-name').show(); 
-            scrollToBottomSmooth();
+            setTimeout(() => { scrollToBottomSmooth(); }, 50);
             return;
         }
 
         if (!typedMessage) {
             $('#input-message').addClass('input-error').focus();
             $('#error-message').show(); 
-            scrollToBottomSmooth();
+            setTimeout(() => { scrollToBottomSmooth(); }, 50);
             return;
         }
 
@@ -226,7 +225,7 @@ $(document).ready(function() {
 
         const cleanReceiptHtml = `
             <div class="receipt-shadow-wrapper">
-                <div id="receipt-paper" class="receipt-paper">
+                <div id="receipt-paper" class="receipt-paper" style="opacity:0;">
                     <div class="receipt-header">
                         <h4>— BREAD RECEIPT —</h4>
                         <div class="pos-meta-info"><span style="font-weight:700;">${serialStr}</span><span>POS: 92-0725</span></div>
@@ -265,6 +264,10 @@ $(document).ready(function() {
         
         orderData.orderNo = currentOrderNum;
         saveReceiptToFirebase();
+        
+        setTimeout(() => {
+            $('#receipt-paper').addClass('print-active');
+        }, 50);
     }
 
     function saveReceiptToFirebase() {
@@ -311,7 +314,7 @@ $(document).ready(function() {
             const archiveSerialStr = "ORD-" + item.date.split(' ')[0].replace(/\./g,"") + "-" + paddedArchiveNo;
 
             const receiptCardHtml = `
-                <div class="archive-receipt-card-wrapper" style="cursor: pointer; width: 100%; max-width: 350px;">
+                <div class="archive-receipt-card-wrapper" style="cursor: pointer;">
                     <div class="archive-receipt-card">
                         <div class="receipt-header">
                             <h4>— BREAD RECEIPT —</h4>
@@ -350,36 +353,77 @@ $(document).ready(function() {
         });
     }
 
+    /* ==========================================
+       💡 [대수리] 보관함 클릭 시 유령 빈 상자가 뜨는 깜빡임 현상 완벽 박멸
+    ========================================== */
     $(document).on('click', '.archive-receipt-card-wrapper', function(e) {
         e.preventDefault();
         const targetCard = $(this).find('.archive-receipt-card')[0];
         if (!targetCard) return;
-        $('#captured-image-container').html('<p style="font-size:0.85rem; color:#A39485; padding:20px;">보관된 친필 영수증 채취 중...</p>');
-        $('#image-save-modal').css('display', 'flex');
 
-        html2canvas(targetCard, { scale: 3, backgroundColor: null, useCORS: true }).then(function(canvas) {
+        // 1. 모달창을 미리 열지 않고, 백그라운드 캔버스 처리가 완벽히 끝난 후 스왑되도록 유도
+        html2canvas(targetCard, { 
+            scale: 3, 
+            backgroundColor: "#FFFFFF", 
+            useCORS: true,
+            logging: false
+        }).then(function(canvas) {
             const imageURL = canvas.toDataURL("image/png");
             const $imgTag = $('<img>').attr({ 'src': imageURL, 'alt': '보관함 백업 영수증' });
+            
+            // 2. 캡처된 이미지가 안전하게 삽입 완료된 "순간"에 모달을 한방에 오픈!
             $('#captured-image-container').html($imgTag);
-        }).catch(function() { alert("이미지 로드 오류"); $('#image-save-modal').hide(); });
+            $('#image-save-modal').css('display', 'flex'); // 👈 여기로 오픈 순서를 이동하여 깜빡임을 차단했습니다.
+        }).catch(function() { 
+            alert("이미지 로드 오류"); 
+            $('#image-save-modal').hide(); 
+        });
     });
 
     function disconnect() { if (messageRef) messageRef.off(); firebase.database().goOffline(); isConnected = false; }
 
+    /* ==========================================
+       💡 [대수리] 결과 창 저장 버튼 클릭 시에도 동일하게 깜빡임 공백 차단
+    ========================================== */
     $(document).on('click', '#btn-save-img', function() {
         const receiptElement = document.getElementById('receipt-paper');
         const originalBtnText = $(this).text(); $(this).prop('disabled', true).text('생성 중...');
         
-        html2canvas(receiptElement, { scale: 3, backgroundColor: null, useCORS: true }).then(function(canvas) {
+        const originalInlineStyle = receiptElement.style.cssText;
+        receiptElement.style.opacity = "1";
+        receiptElement.style.transform = "none";
+        receiptElement.style.animation = "none";
+
+        html2canvas(receiptElement, { 
+            scale: 3, 
+            backgroundColor: "#FFFFFF", 
+            useCORS: true,
+            logging: false
+        }).then(function(canvas) {
             const imageURL = canvas.toDataURL("image/png");
             const $imgTag = $('<img>').attr({ 'src': imageURL, 'alt': '빵 주문 영수증' });
-            $('#captured-image-container').html($imgTag); $('#image-save-modal').css('display', 'flex'); $('#btn-save-img').prop('disabled', false).text(originalBtnText);
-        }).catch(function() { alert("오류가 발생했습니다."); $('#btn-save-img').prop('disabled', false).text(originalBtnText); });
+            
+            // 파일 복제가 끝난 즉시 돔에 주입하고 모달을 캭 노출!
+            $('#captured-image-container').html($imgTag); 
+            $('#image-save-modal').css('display', 'flex'); // 👈 공백 연산 없이 즉시 완성형으로 오픈!
+            
+            receiptElement.style.cssText = originalInlineStyle;
+            $('#btn-save-img').prop('disabled', false).text(originalBtnText);
+        }).catch(function() { 
+            alert("오류가 발생했습니다."); 
+            receiptElement.style.cssText = originalInlineStyle;
+            $('#btn-save-img').prop('disabled', false).text(originalBtnText); 
+        });
     });
 
     $(document).on('click', '#btn-close-modal', function() { $('#image-save-modal').hide(); $('#captured-image-container').empty(); });
     function switchSection(targetSectionId) { $('.app-section').removeClass('active'); $(targetSectionId).addClass('active'); }
-    function scrollToBottomSmooth() { const $container = $('.receipt-scroll-container'); const scrollH = $container()[0].scrollHeight; $container.animate({ scrollTop: scrollH }, 750); }
+    
+    function scrollToBottomSmooth() { 
+        const $container = $('.receipt-scroll-container'); 
+        const scrollH = $container[0].scrollHeight; 
+        $container.animate({ scrollTop: scrollH }, 750); 
+    }
 });
 
 $(window).on('beforeunload', function(){ firebase.database().goOffline(); });
