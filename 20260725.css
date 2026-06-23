@@ -1,14 +1,21 @@
 :root {
-    --bg-main: #FBF9F4;      
-    --bg-white: #FFFFFF;
-    --brand-dark: #2E2016;   
+	--bg-main: #FBF9F4;      
+	--bg-white: #FFFFFF;
+	--brand-dark: #2E2016;   
     --brand-yellow: #FFF2CC; 
     --brand-gray: #FAF8F2;   
     --text-muted: #A39485;   
     --border-light: rgba(46, 32, 22, 0.08); 
     --kitsch-black: #1E120A;
 }
-
+html {
+    opacity: 0;
+    overflow: hidden;
+}
+html.loaded {
+    overflow: visible;
+    animation: softSmoke 0.6s ease-in forwards;
+}
 * {
     box-sizing: border-box;
     margin: 0;
@@ -57,6 +64,7 @@ body {
     color: var(--kitsch-black);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    cursor: pointer;
 }
 .main-header .logo span { color: var(--text-muted); font-weight: 500; }
 
@@ -715,3 +723,12 @@ body {
 .archive-receipt-card-wrapper:nth-child(3) { animation-delay: 0.32s; }
 .archive-receipt-card-wrapper:nth-child(4) { animation-delay: 0.44s; }
 .archive-receipt-card-wrapper:nth-child(5) { animation-delay: 0.56s; }
+
+@keyframes softSmoke {
+  0% {
+    opacity: 0; /* 처음엔 투명 */
+  }
+  100% {
+    opacity: 1; /* 부드럽게 꽉 채워짐 */
+  }
+}

@@ -27,6 +27,11 @@ function get24HourDateTime(timestamp) {
 }
 
 $(document).ready(function() {
+	// 브라우저가 모든 폰트 로딩을 끝내면 
+    document.fonts.ready.then(function () {
+        $('html').addClass('loaded');
+    });
+    
     let orderData = { name: '', q1: '', q2: '', q3: '', message: '', signature: '' };
     
     const canvas = document.getElementById('signature-canvas');
@@ -131,10 +136,12 @@ $(document).ready(function() {
             const $nextBlock = $(`.receipt-survey-block[data-step="${nextStep}"]`);
             
             if ($nextBlock.length > 0 && !$nextBlock.hasClass('active')) {
+                $('.receipt-scroll-container').stop(); 
+                
                 setTimeout(() => { 
-                    $nextBlock.addClass('active'); 
-                    setTimeout(() => { scrollToBottomSmooth(); }, 80); 
-                }, 350);
+                    $nextBlock.addClass('active');
+                    setTimeout(() => {  scrollToBottomSmooth();  }, 100); 
+                }, 200);
             }
         }
     });
@@ -200,7 +207,7 @@ $(document).ready(function() {
         let progress = 0;
         const $progressBar = $('.loading-progress-bar');
         const $loadingText = $('#loading-text');
-        const textPhrases = ["취향을 맛있게 반죽하는 중...", "오븐 온도를 감성 온도로 올리는 중...", "갓 구워진 취향 영수증 출력 중..."];
+        const textPhrases = ["취향을 맛있게 반죽하는 중...", "오븐 온도를 풍미 가득히 올리는 중...", "갓 구워진 취향 주문서 출력 중..."];
         const interval = setInterval(function() {
             progress += 4; $progressBar.css('width', progress + '%');
             if (progress === 32) $loadingText.text(textPhrases[1]);
@@ -228,33 +235,52 @@ $(document).ready(function() {
                 <div id="receipt-paper" class="receipt-paper" style="opacity:0;">
                     <div class="receipt-header">
                         <h4>— BREAD RECEIPT —</h4>
-                        <div class="pos-meta-info"><span style="font-weight:700;">${serialStr}</span><span>POS: 92-0725</span></div>
-                        <p class="receipt-user-name">NAME : ${orderData.name}</p>
-                        <p class="receipt-date">DATE : ${exactTimeStr}</p>
-                        <div class="divider"></div>
+                        
+                        <!-- 💡 1층: STORE / POS 간격을 촘촘하게 8px로 조율 -->
+                        <div class="pos-meta-info" style="margin-top: 8px; display: flex; justify-content: space-between;">
+                            <span>STORE: 깨비 베이커리</span>
+                            <span>POS: 92-0725</span>
+                        </div>
+                        
+                        <!-- 💡 2층: DATE / NO. 라인도 동일한 4px 간격으로 촘촘하게 배치 -->
+                        <div class="pos-meta-info" style="margin-top: 4px; display: flex; justify-content: space-between; font-size: 0.78rem;">
+                            <span>DATE : ${exactTimeStr}</span>
+                            <span>NO. ${paddedOrderStr}</span>
+                        </div>
+                        
+                        <div class="divider" style="margin: 8px 0;"></div>
+                        
+                        <div class="receipt-row header-row">
+                            <span>NICKNAME</span>
+                            <span style="font-weight: normal;">${orderData.name}</span>
+                        </div>
+                        
+                        <div class="divider" style="margin: 8px 0;"></div>
                     </div>
+                    
                     <div class="receipt-body">
                         <div class="receipt-row header-row"><span>MENU</span></div>
-                        <div class="divider"></div>
-                        <div class="receipt-row"><span>01 TEXTURE // ${orderData.q1}</span></div>
-                        <div class="receipt-row"><span>02 BAKING  // ${orderData.q2}</span></div>
-                        <div class="receipt-row"><span>03 FLAVOR  // ${orderData.q3}</span></div>
-                        <div class="divider"></div>
+                        <div class="divider" style="margin: 8px 0;"></div>
+                        <div class="receipt-row"><span>01. 반죽 ${orderData.q1}</span></div>
+                        <div class="receipt-row"><span>02. 굽기 ${orderData.q2}</span></div>
+                        <div class="receipt-row"><span>03. 풍미 ${orderData.q3}</span></div>
+                        <div class="divider" style="margin: 8px 0;"></div>
                         <div class="receipt-message-box">
                             <p class="msg-title">[ MEMO ]</p>
                             <p class="msg-content">${formattedMessage}</p>
                         </div>
                     </div>
+                    
                     <div class="receipt-footer">
                         ${sigSectionHtml}
-                        <div class="divider"></div>
-                        <div style="font-size:0.7rem; text-align:left; color:#A39485; line-height:1.4; margin-bottom:10px; font-family:inherit;">
-                        	<p>* CASHIER : 깨비사랑단</p>
-                        	<p>* 교환/환불 : 불가능(평쟌해야함)</p>
+                        <div class="divider" style="margin: 8px 0;"></div>
+                        <div style="font-size:0.7rem; text-align:left; color:#A39485; line-height:1.5; margin-bottom:12px; font-family:inherit;">
+                            <p>* CASHIER : 깨비사랑단</p>
+                            <p>* REGRET  : 교환/환불 불가능(평쟌해야함)</p>
                         </div>
                         <div class="barcode-area">
                             <div class="barcode">||||| | ||||| | |||| ||| |||||</div>
-                            <p class="thank-you-msg">THANK YOU FOR YOUR TASTE</p>
+                            <p class="thank-you-msg">HAPPY JEEHWANY DAY ♥</p>
                         </div>
                     </div>
                 </div>
@@ -318,18 +344,33 @@ $(document).ready(function() {
                     <div class="archive-receipt-card">
                         <div class="receipt-header">
                             <h4>— BREAD RECEIPT —</h4>
-                            <div class="pos-meta-info"><span style="font-weight:700;">${archiveSerialStr}</span><span>POS: 92-0725</span></div>
-                            <p class="receipt-user-name">NAME : ${item.name}</p>
-                            <p class="receipt-date">DATE : ${item.date}</p>
-                            <div class="divider"></div>
+                            
+                            <div class="pos-meta-info" style="margin-top: 8px; display: flex; justify-content: space-between;">
+                                <span>STORE: 깨비 베이커리</span>
+                                <span>POS: 92-0725</span>
+                            </div>
+                            
+                            <div class="pos-meta-info" style="margin-top: 4px; display: flex; justify-content: space-between; font-size: 0.78rem;">
+                                <span>DATE : ${item.date}</span>
+                                <span>NO. ${paddedArchiveNo}</span>
+                            </div>
+                            
+                            <div class="divider" style="margin: 8px 0;"></div>
+                            
+                            <div class="receipt-row header-row">
+                                <span>NICKNAME</span>
+                                <span style="font-weight: normal;">${item.name}</span>
+                            </div>
+                            
+                            <div class="divider" style="margin: 8px 0;"></div>
                         </div>
                         <div class="receipt-body">
                             <div class="receipt-row header-row"><span>MENU</span></div>
-                            <div class="divider"></div>
-                            <div class="receipt-row"><span>01 TEXTURE // ${item.q1}</span></div>
-                            <div class="receipt-row"><span>02 BAKING  // ${item.q2}</span></div>
-                            <div class="receipt-row"><span>03 FLAVOR  // ${item.q3}</span></div>
-                            <div class="divider"></div>
+                            <div class="divider" style="margin: 8px 0;"></div>
+                            <div class="receipt-row"><span>01. 반죽 ${item.q1}</span></div>
+                            <div class="receipt-row"><span>02. 굽기 ${item.q2}</span></div>
+                            <div class="receipt-row"><span>03. 풍미 ${item.q3}</span></div>
+                            <div class="divider" style="margin: 8px 0;"></div>
                             <div class="receipt-message-box">
                                 <p class="msg-title">[ MEMO ]</p>
                                 <p class="msg-content">${messageHtml}</p>
@@ -337,14 +378,14 @@ $(document).ready(function() {
                         </div>
                         <div class="receipt-footer">
                             ${archiveSigHtml}
-                            <div class="divider"></div>
-                            <div style="font-size:0.7rem; text-align:left; color:#A39485; line-height:1.4; margin-bottom:10px; font-family:inherit;">
+                            <div class="divider" style="margin: 8px 0;"></div>
+                            <div style="font-size:0.7rem; text-align:left; color:#A39485; line-height:1.5; margin-bottom:12px; font-family:inherit;">
                                 <p>* CASHIER : 깨비사랑단</p>
-                                <p>* 교환/환불 : 불가능(평쟌해야함)</p>
+                                <p>* REGRET  : 교환/환불 불가능(평쟌해야함)</p>
                             </div>
                             <div class="barcode-area">
                                 <div class="barcode">||||| | ||||| | |||| ||| |||||</div>
-                                <p class="thank-you-msg">THANK YOU FOR YOUR TASTE</p>
+                                <p class="thank-you-msg">HAPPY JEEHWANY DAY ♥</p>
                             </div>
                         </div>
                     </div>
@@ -383,7 +424,7 @@ $(document).ready(function() {
     function disconnect() { if (messageRef) messageRef.off(); firebase.database().goOffline(); isConnected = false; }
 
     /* ==========================================
-       💡 [대수리] 결과 창 저장 버튼 클릭 시에도 동일하게 깜빡임 공백 차단
+     * 결과 창 저장 버튼 클릭 시에도 동일하게 깜빡임 공백 차단
     ========================================== */
     $(document).on('click', '#btn-save-img', function() {
         const receiptElement = document.getElementById('receipt-paper');
@@ -416,14 +457,24 @@ $(document).ready(function() {
         });
     });
 
-    $(document).on('click', '#btn-close-modal', function() { $('#image-save-modal').hide(); $('#captured-image-container').empty(); });
+    $(document).on('click', '#btn-close-modal', function() { 
+    	$('#image-save-modal').hide(); 
+    	$('#captured-image-container').empty(); 
+    });
+    
     function switchSection(targetSectionId) { $('.app-section').removeClass('active'); $(targetSectionId).addClass('active'); }
     
     function scrollToBottomSmooth() { 
         const $container = $('.receipt-scroll-container'); 
         const scrollH = $container[0].scrollHeight; 
-        $container.animate({ scrollTop: scrollH }, 750); 
+        
+        $container.stop().animate({ scrollTop: scrollH }, 400); 
     }
+    
+    // 로고 클릭 시 인트로 메인 화면으로 리셋/이동
+    $(document).on('click', '.logo', function() {
+    	location.reload();
+    });
 });
 
 $(window).on('beforeunload', function(){ firebase.database().goOffline(); });

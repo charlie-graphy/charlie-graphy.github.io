@@ -46,8 +46,8 @@
             <div class="intro-kitsch-layout">
                 <div class="title-zone-kitsch">
                     <span class="badge-mini">JEEHWNAY HBD♥</span>
-                    <h2>내가 좋아하는<br><span class="highlight-text">취향</span>을 담은<br><strong>나만의 영수증</strong></h2>
-                    <p class="sub-desc-kitsch">식감, 굽기, 맛까지 선택하여<br>나만의 영수증으로 만들어 보세요.</p>
+                    <h2>내가 좋아하는<br><span class="highlight-text">취향</span>을 담은<br><strong>나만의 주문서</strong></h2>
+                    <p class="sub-desc-kitsch">2026.07.21 ~ 26<br>서울 종로구 동숭4가길 2, 1층 청킹</p>
                 </div>
                 
                 <div class="center-emblem-zone">
@@ -57,7 +57,7 @@
                 </div>
                 
                 <div class="action-zone-kitsch">
-                    <button id="btn-start" class="btn-push-kitsch">주문하러 가기 🥖</button>
+                    <button id="btn-start" class="btn-push-kitsch">주문서 작성하기</button>
                 </div>
             </div>
         </section>
@@ -67,60 +67,71 @@
                 
                 <div id="live-receipt-box" class="receipt-shadow-wrapper">
                     <div id="interactive-receipt-paper" class="receipt-paper">
-                        <div class="receipt-header">
-                            <h4>— BREAD RECEIPT —</h4>
-                            <div class="pos-meta-info">
-                                <span>ORD-</span>
-                                <span>POS: 92-0725</span>
-                            </div>
-                            <div class="divider"></div>
-                        </div>
+						<div class="receipt-header">
+						    <h4>— BREAD RECEIPT —</h4>
+						    <div class="pos-meta-info" style="display: flex; justify-content: space-between; margin-top: 8px;">
+						        <span>STORE: 깨비 베이커리</span>
+						        <span>POS: 92-0725</span>
+						    </div>
+						    <div class="pos-meta-info" style="display: flex; justify-content: space-between; margin-top: 4px; font-size: 0.78rem;">
+						        <span>DATE : 2026.07.25 // LIVE</span>
+						        <span>NO. 0000</span>
+						    </div>
+						    <div class="divider" style="margin: 8px 0;"></div>
+						    
+						    <div class="receipt-row header-row">
+						        <span>NICKNAME</span>
+						        <span style="font-weight: normal;">-</span>
+						    </div>
+						    <div class="divider" style="margin: 8px 0;"></div>
+						</div>
                         
                         <div class="receipt-body">
                             <div class="receipt-survey-block active" data-step="1">
                                 <div class="receipt-row header-row">
-                                    <span>01 TEXTURE // 식감</span>
+                                    <span>01. 반죽</span>
                                 </div>
                                 <div class="inner-option-grid">
-                                    <button class="receipt-opt-btn" data-value="부드러움">부드러움 (soft)</button>
-                                    <button class="receipt-opt-btn" data-value="바삭함">바삭함 (crispy)</button>
-                                    <button class="receipt-opt-btn" data-value="겉바속촉">겉바속촉 (crusty)</button>
-                                    <button class="receipt-opt-btn" data-value="쫀득함">쫀득함 (chewy)</button>
+                                    <button class="receipt-opt-btn" data-value="말랑">말랑</button>
+                                    <button class="receipt-opt-btn" data-value="쫀득">쫀득</button>
+                                    <button class="receipt-opt-btn" data-value="꾸덕">꾸덕</button>
+                                    <button class="receipt-opt-btn" data-value="단단">단단</button>
                                 </div>
                             </div>
 
                             <div class="receipt-survey-block" data-step="2">
                                 <div class="divider"></div>
                                 <div class="receipt-row header-row">
-                                    <span>02 BAKING // 굽기 정도</span>
+                                    <span>02. 굽기</span>
                                 </div>
                                 <div class="inner-option-grid">
-                                    <button class="receipt-opt-btn" data-value="묵직함">묵직함 (heavy)</button>
-                                    <button class="receipt-opt-btn" data-value="말랑함">말랑함 (moist)</button>
-                                    <button class="receipt-opt-btn" data-value="폭신함">폭신함 (fluffy)</button>
-                                    <button class="receipt-opt-btn" data-value="바삭함">바삭함 (well-done)</button>
-                                    <button class="receipt-opt-btn" data-value="버석함">버석함 (dry)</button>
+                                    <button class="receipt-opt-btn" data-value="폭신">폭신</button>
+                                    <button class="receipt-opt-btn" data-value="노릇">노릇</button>
+                                    <button class="receipt-opt-btn" data-value="겉바속촉">겉바속촉</button>
+                                    <button class="receipt-opt-btn" data-value="버석">버석</button>
+                                    <button class="receipt-opt-btn" data-value="탄">탄</button>
                                 </div>
                             </div>
 
                             <div class="receipt-survey-block" data-step="3">
                                 <div class="divider"></div>
                                 <div class="receipt-row header-row">
-                                    <span>03 FLAVOR // 핵심 맛</span>
+                                    <span>03. 풍미</span>
                                 </div>
                                 <div class="inner-option-grid">
-                                    <button class="receipt-opt-btn" data-value="담백함">담백함 (plain)</button>
-                                    <button class="receipt-opt-btn" data-value="달콤함">달콤함 (sweet)</button>
-                                    <button class="receipt-opt-btn" data-value="매콤함">매콤함 (spicy)</button>
-                                    <button class="receipt-opt-btn" data-value="고소함">고소함 (nutty)</button>
-                                    <button class="receipt-opt-btn" data-value="감칠맛">감칠맛 (savory)</button>
+                                    <button class="receipt-opt-btn" data-value="담백">담백</button>
+                                    <button class="receipt-opt-btn" data-value="달콤">달콤</button>
+                                    <button class="receipt-opt-btn" data-value="새콤">새콤</button>
+                                    <button class="receipt-opt-btn" data-value="단짠">단짠</button>
+                                    <button class="receipt-opt-btn" data-value="매콤">매콤</button>
+                                    <button class="receipt-opt-btn" data-value="쌉쌀">쌉쌀</button>
                                 </div>
                             </div>
 
                             <div class="receipt-survey-block" data-step="4">
                                 <div class="divider"></div>
                                 <div class="receipt-row header-row">
-                                    <span>04 USER INFO // 주문서 및 서명</span>
+                                    <span>04. 주문 정보 및 서명</span>
                                 </div>
                                 <div class="inner-input-area">
                                     <div class="input-field-group">
@@ -129,7 +140,7 @@
                                     </div>
                                     
                                     <div class="input-field-group">
-                                        <textarea id="input-message" placeholder="특별 요청사항이나 메모를 입력해 주세요.."></textarea>
+                                        <textarea id="input-message" placeholder="전하고 싶은 말을 입력해 주세요."></textarea>
                                         <p id="error-message" class="error-text">⚠️ 메모 내용을 입력해 주세요!</p>
                                     </div>
                                     
@@ -147,7 +158,7 @@
                             <div class="divider"></div>
                             <div class="barcode-area">
                                 <div class="barcode">||||| | ||||| | |||| ||| |||||</div>
-                                <p class="thank-you-msg">THANK YOU FOR YOUR TASTE</p>
+                                <p class="thank-you-msg">HAPPY JEEHWANY DAY ♥</p>
                             </div>
                         </div>
                     </div> 
