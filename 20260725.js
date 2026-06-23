@@ -237,7 +237,7 @@ $(document).ready(function() {
                         <h4>— BREAD RECEIPT —</h4>
                         
                         <!-- 💡 1층: STORE / POS 간격을 촘촘하게 8px로 조율 -->
-                        <div class="pos-meta-info" style="margin-top: 8px; display: flex; justify-content: space-between;">
+                        <div class="pos-meta-info" style="margin-top: 14px; display: flex; justify-content: space-between;">
                             <span>STORE: 깨비 베이커리</span>
                             <span>POS: 92-0725</span>
                         </div>
@@ -345,7 +345,7 @@ $(document).ready(function() {
                         <div class="receipt-header">
                             <h4>— BREAD RECEIPT —</h4>
                             
-                            <div class="pos-meta-info" style="margin-top: 8px; display: flex; justify-content: space-between;">
+                            <div class="pos-meta-info" style="margin-top: 14px; display: flex; justify-content: space-between;">
                                 <span>STORE: 깨비 베이커리</span>
                                 <span>POS: 92-0725</span>
                             </div>
