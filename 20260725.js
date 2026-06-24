@@ -237,14 +237,14 @@ $(document).ready(function() {
                         <h4>— BREAD RECEIPT —</h4>
                         
                         <!-- 💡 1층: STORE / POS 간격을 촘촘하게 8px로 조율 -->
-                        <div class="pos-meta-info" style="margin-top: 14px; display: flex; justify-content: space-between;">
-                            <span>STORE: 깨비 베이커리</span>
+                        <div class="pos-meta-info" style="margin-top: 20px; display: flex; justify-content: space-between;">
+                            <span>깨비 베이커리</span>
                             <span>POS: 92-0725</span>
                         </div>
                         
                         <!-- 💡 2층: DATE / NO. 라인도 동일한 4px 간격으로 촘촘하게 배치 -->
                         <div class="pos-meta-info" style="margin-top: 4px; display: flex; justify-content: space-between; font-size: 0.78rem;">
-                            <span>DATE : ${exactTimeStr}</span>
+                            <span>${exactTimeStr}</span>
                             <span>NO. ${paddedOrderStr}</span>
                         </div>
                         
@@ -260,10 +260,18 @@ $(document).ready(function() {
                     
                     <div class="receipt-body">
                         <div class="receipt-row header-row"><span>MENU</span></div>
-                        <div class="divider" style="margin: 8px 0;"></div>
-                        <div class="receipt-row"><span>01. 반죽 ${orderData.q1}</span></div>
-                        <div class="receipt-row"><span>02. 굽기 ${orderData.q2}</span></div>
-                        <div class="receipt-row"><span>03. 풍미 ${orderData.q3}</span></div>
+                        <div class="receipt-row" style="display: flex; justify-content: space-between;">
+						    <span>01. 반죽</span>
+						    <span>${orderData.q1}</span>
+						</div>
+						<div class="receipt-row" style="display: flex; justify-content: space-between;">
+						    <span>02. 굽기</span>
+						    <span>${orderData.q2}</span>
+						</div>
+						<div class="receipt-row" style="display: flex; justify-content: space-between;">
+						    <span>03. 풍미</span>
+						    <span>${orderData.q3}</span>
+						</div>
                         <div class="divider" style="margin: 8px 0;"></div>
                         <div class="receipt-message-box">
                             <p class="msg-title">[ MEMO ]</p>
@@ -276,7 +284,7 @@ $(document).ready(function() {
                         <div class="divider" style="margin: 8px 0;"></div>
                         <div style="font-size:0.7rem; text-align:left; color:#A39485; line-height:1.5; margin-bottom:12px; font-family:inherit;">
                             <p>* CASHIER : 깨비사랑단</p>
-                            <p>* REGRET  : 교환/환불 불가능(평쟌해야함)</p>
+                            <p>* 교환/환불 불가능(평쟌해야함)</p>
                         </div>
                         <div class="barcode-area">
                             <div class="barcode">||||| | ||||| | |||| ||| |||||</div>
@@ -345,13 +353,13 @@ $(document).ready(function() {
                         <div class="receipt-header">
                             <h4>— BREAD RECEIPT —</h4>
                             
-                            <div class="pos-meta-info" style="margin-top: 14px; display: flex; justify-content: space-between;">
-                                <span>STORE: 깨비 베이커리</span>
+                            <div class="pos-meta-info" style="margin-top: 20px; display: flex; justify-content: space-between;">
+                                <span>깨비 베이커리</span>
                                 <span>POS: 92-0725</span>
                             </div>
                             
                             <div class="pos-meta-info" style="margin-top: 4px; display: flex; justify-content: space-between; font-size: 0.78rem;">
-                                <span>DATE : ${item.date}</span>
+                                <span>${item.date}</span>
                                 <span>NO. ${paddedArchiveNo}</span>
                             </div>
                             
@@ -366,10 +374,18 @@ $(document).ready(function() {
                         </div>
                         <div class="receipt-body">
                             <div class="receipt-row header-row"><span>MENU</span></div>
-                            <div class="divider" style="margin: 8px 0;"></div>
-                            <div class="receipt-row"><span>01. 반죽 ${item.q1}</span></div>
-                            <div class="receipt-row"><span>02. 굽기 ${item.q2}</span></div>
-                            <div class="receipt-row"><span>03. 풍미 ${item.q3}</span></div>
+                            <div class="receipt-row" style="display: flex; justify-content: space-between;">
+							    <span>01. 반죽</span>
+							    <span>${item.q1}</span>
+							</div>
+							<div class="receipt-row" style="display: flex; justify-content: space-between;">
+							    <span>02. 굽기</span>
+							    <span>${item.q2}</span>
+							</div>
+							<div class="receipt-row" style="display: flex; justify-content: space-between;">
+							    <span>03. 풍미</span>
+							    <span>${item.q3}</span>
+							</div>
                             <div class="divider" style="margin: 8px 0;"></div>
                             <div class="receipt-message-box">
                                 <p class="msg-title">[ MEMO ]</p>
@@ -381,7 +397,7 @@ $(document).ready(function() {
                             <div class="divider" style="margin: 8px 0;"></div>
                             <div style="font-size:0.7rem; text-align:left; color:#A39485; line-height:1.5; margin-bottom:12px; font-family:inherit;">
                                 <p>* CASHIER : 깨비사랑단</p>
-                                <p>* REGRET  : 교환/환불 불가능(평쟌해야함)</p>
+                                <p>* 교환/환불 불가능(평쟌해야함)</p>
                             </div>
                             <div class="barcode-area">
                                 <div class="barcode">||||| | ||||| | |||| ||| |||||</div>
