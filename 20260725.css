@@ -9,9 +9,16 @@
     --kitsch-black: #1E120A;
 }
 @font-face {
-    font-family: 'OngleipEunbyeol';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_eunbyul21-Rg.woff2') format('woff2');
-    font-weight: normal;
+    font-family: 'KerisKedyuche';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-3@1.0/KERISKEDU_R.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KerisKedyuche';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-3@1.0/KERISKEDU_B.woff2') format('woff2');
+    font-weight: 700;
     font-display: swap;
 }
 html {
@@ -431,7 +438,7 @@ body {
 }
 
 .receipt-header h4 {
-    font-family: 'OngleipEunbyeol', sans-serif;
+    font-family: 'KerisKedyuche', sans-serif;
     font-size: 1.8rem;       /* 손글씨 폰트는 살짝 커야 가독성과 볼륨감이 삽니다 */
     color: #222;             /* 진한 검은 별(✦)과 색감 맞추기 */
     margin: 0 0 12px 0;

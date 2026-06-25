@@ -233,15 +233,13 @@ $(document).ready(function() {
             <div class="receipt-shadow-wrapper">
                 <div id="receipt-paper" class="receipt-paper" style="opacity:0;">
                     <div class="receipt-header">
-                        <h4>- 깨비 베이커리 -</h4>
+                        <h4>깨비 베이커리</h4>
                         
-                        <!-- 💡 1층: STORE / POS 간격을 촘촘하게 8px로 조율 -->
                         <div class="pos-meta-info" style="margin-top: 20px; display: flex; justify-content: space-between;">
-                            <span>깨비 베이커리</span>
+                            <span>카페 청킹</span>
                             <span>POS: 92-0725</span>
                         </div>
                         
-                        <!-- 💡 2층: DATE / NO. 라인도 동일한 4px 간격으로 촘촘하게 배치 -->
                         <div class="pos-meta-info" style="margin-top: 4px; display: flex; justify-content: space-between; font-size: 0.78rem;">
                             <span>${exactTimeStr}</span>
                             <span>NO. ${paddedOrderStr}</span>
@@ -350,10 +348,10 @@ $(document).ready(function() {
                 <div class="archive-receipt-card-wrapper" style="cursor: pointer;">
                     <div class="archive-receipt-card">
                         <div class="receipt-header">
-                            <h4>- 깨비 베이커리 -</h4>
+                            <h4>깨비 베이커리</h4>
                             
                             <div class="pos-meta-info" style="margin-top: 20px; display: flex; justify-content: space-between;">
-                                <span>깨비 베이커리</span>
+                                <span>카페 청킹</span>
                                 <span>POS: 92-0725</span>
                             </div>
                             
