@@ -411,7 +411,7 @@ body {
 .receipt-shadow-wrapper { 
     width: 350px !important; /* 👈 부모 래퍼 가로폭을 무조건 350px로 강제 수립 */
     max-width: 100% !important; 
-    margin: 15px auto 35px auto; 
+    margin: 0px auto 25px auto; 
     padding: 5px; 
     position: relative; 
     background: transparent; 
@@ -549,7 +549,6 @@ body {
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
-	padding: 10px 0;
 }
 
 .btn-secondary-push-kitsch {
@@ -590,7 +589,6 @@ body {
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
-	margin-top: 25px;
 }
 
 #sec-archive {

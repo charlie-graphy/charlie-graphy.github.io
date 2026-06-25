@@ -40,10 +40,10 @@ $(document).ready(function() {
     const month = String(date.getMonth() + 1).padStart(2, '0'); 
     const day = String(date.getDate()).padStart(2, '0');
 
-    const today = `${year}${month}${day}`;
+    const today = `${year}.${month}.${day}`;
     let isDrawing = false;
 
-    $('#live-receipt-box .pos-meta-info span:eq(0)').text('ORD-'+today+'-');
+    $('#live-receipt-box .pos-meta-info span:eq(2)').text(today);
     
     if (ctx) {
         ctx.strokeStyle = "#2E2016"; 
@@ -206,7 +206,7 @@ $(document).ready(function() {
         let progress = 0;
         const $progressBar = $('.loading-progress-bar');
         const $loadingText = $('#loading-text');
-        const textPhrases = ["취향을 맛있게 반죽하는 중...", "오븐 온도를 풍미 가득히 올리는 중...", "갓 구워진 취향 주문서 출력 중..."];
+        const textPhrases = ["맛있게 반죽하는 중...", "오븐 온도를 풍미 가득히 올리는 중...", "갓 구워진 취향 주문서 출력 중..."];
         const interval = setInterval(function() {
             progress += 4; $progressBar.css('width', progress + '%');
             if (progress === 32) $loadingText.text(textPhrases[1]);
