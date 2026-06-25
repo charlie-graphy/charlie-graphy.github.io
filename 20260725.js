@@ -27,7 +27,6 @@ function get24HourDateTime(timestamp) {
 }
 
 $(document).ready(function() {
-	// 브라우저가 모든 폰트 로딩을 끝내면 
     document.fonts.ready.then(function () {
         $('html').addClass('loaded');
     });
@@ -234,7 +233,7 @@ $(document).ready(function() {
             <div class="receipt-shadow-wrapper">
                 <div id="receipt-paper" class="receipt-paper" style="opacity:0;">
                     <div class="receipt-header">
-                        <h4>— BREAD RECEIPT —</h4>
+                        <h4>- 깨비 베이커리 -</h4>
                         
                         <!-- 💡 1층: STORE / POS 간격을 촘촘하게 8px로 조율 -->
                         <div class="pos-meta-info" style="margin-top: 20px; display: flex; justify-content: space-between;">
@@ -284,7 +283,7 @@ $(document).ready(function() {
                         <div class="divider" style="margin: 8px 0;"></div>
                         <div style="font-size:0.7rem; text-align:left; color:#A39485; line-height:1.5; margin-bottom:12px; font-family:inherit;">
                             <p>* CASHIER : 깨비사랑단</p>
-                            <p>* 교환/환불 불가능(평쟌해야함)</p>
+                            <p>* 교환/환불 불가능(평쟌해야 함)</p>
                         </div>
                         <div class="barcode-area">
                             <div class="barcode">||||| | ||||| | |||| ||| |||||</div>
@@ -351,7 +350,7 @@ $(document).ready(function() {
                 <div class="archive-receipt-card-wrapper" style="cursor: pointer;">
                     <div class="archive-receipt-card">
                         <div class="receipt-header">
-                            <h4>— BREAD RECEIPT —</h4>
+                            <h4>- 깨비 베이커리 -</h4>
                             
                             <div class="pos-meta-info" style="margin-top: 20px; display: flex; justify-content: space-between;">
                                 <span>깨비 베이커리</span>
@@ -397,7 +396,7 @@ $(document).ready(function() {
                             <div class="divider" style="margin: 8px 0;"></div>
                             <div style="font-size:0.7rem; text-align:left; color:#A39485; line-height:1.5; margin-bottom:12px; font-family:inherit;">
                                 <p>* CASHIER : 깨비사랑단</p>
-                                <p>* 교환/환불 불가능(평쟌해야함)</p>
+                                <p>* 교환/환불 불가능(평쟌해야 함)</p>
                             </div>
                             <div class="barcode-area">
                                 <div class="barcode">||||| | ||||| | |||| ||| |||||</div>
@@ -411,14 +410,13 @@ $(document).ready(function() {
     }
 
     /* ==========================================
-       💡 [대수리] 보관함 클릭 시 유령 빈 상자가 뜨는 깜빡임 현상 완벽 박멸
+     * 보관함 클릭 시 유령 빈 상자가 뜨는 깜빡임 현상 완벽 박멸
     ========================================== */
     $(document).on('click', '.archive-receipt-card-wrapper', function(e) {
         e.preventDefault();
         const targetCard = $(this).find('.archive-receipt-card')[0];
         if (!targetCard) return;
 
-        // 1. 모달창을 미리 열지 않고, 백그라운드 캔버스 처리가 완벽히 끝난 후 스왑되도록 유도
         html2canvas(targetCard, { 
             scale: 3, 
             backgroundColor: "#FFFFFF", 
@@ -428,9 +426,8 @@ $(document).ready(function() {
             const imageURL = canvas.toDataURL("image/png");
             const $imgTag = $('<img>').attr({ 'src': imageURL, 'alt': '보관함 백업 영수증' });
             
-            // 2. 캡처된 이미지가 안전하게 삽입 완료된 "순간"에 모달을 한방에 오픈!
             $('#captured-image-container').html($imgTag);
-            $('#image-save-modal').css('display', 'flex'); // 👈 여기로 오픈 순서를 이동하여 깜빡임을 차단했습니다.
+            $('#image-save-modal').css('display', 'flex'); 
         }).catch(function() { 
             alert("이미지 로드 오류"); 
             $('#image-save-modal').hide(); 

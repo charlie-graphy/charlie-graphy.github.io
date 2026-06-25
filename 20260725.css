@@ -8,6 +8,12 @@
     --border-light: rgba(46, 32, 22, 0.08); 
     --kitsch-black: #1E120A;
 }
+@font-face {
+    font-family: 'OngleipEunbyeol';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_eunbyul21-Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
 html {
     opacity: 0;
     overflow: hidden;
@@ -32,6 +38,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .app-container {
@@ -210,11 +217,20 @@ body {
 .receipt-scroll-container {
 	width: 100%;
 	height: 100%;
-	overflow-y: auto;
+	overflow-y: auto;        /* 💡 아래로 항목이 늘어날 때 세로 스크롤은 정상 작동! */
+	overflow-x: hidden;      /* 💡 가로로 스크롤 터지는 것만 방지 */
 	padding: 10px 4px 40px 4px;
 	scroll-behavior: smooth;
+	
+	/* 🚨 [핵심 추가] 순정 상태에서 안쪽 패딩(4px) 때문에 가로가 미세하게 늘어나는 것 방지 */
+	box-sizing: border-box; 
 }
 
+/* 🚨 [진짜 원인 제거] 안에 담기는 영수증 카드들이 컨테이너보다 커지지 않게 브레이크 */
+.receipt-scroll-container > * {
+	max-width: 100% !important;   /* 💡 어떤 카드가 들어와도 가로 폭 100%를 안 넘게 고정 */
+	box-sizing: border-box !important;
+}
 /* 설문조사 블록 */
 .receipt-survey-block {
 	display: none;
@@ -387,7 +403,7 @@ body {
 /* 🧾 그림자 래퍼 방단 규격 통일 수립 */
 .receipt-shadow-wrapper { 
     width: 350px !important; /* 👈 부모 래퍼 가로폭을 무조건 350px로 강제 수립 */
-    max-width: 350px !important; 
+    max-width: 100% !important; 
     margin: 15px auto 35px auto; 
     padding: 5px; 
     position: relative; 
@@ -401,7 +417,7 @@ body {
 .receipt-paper, .archive-receipt-card {
     background-color: var(--bg-white) !important; 
     width: 350px !important; /* 👈 100% 비율형을 폐기하고 350px 실정값으로 박제! */
-    max-width: 350px !important;
+    max-width: 100% !important;
     padding: 28px 22px 35px 22px; 
     border-radius: 12px 12px 0 0; 
     color: var(--brand-dark); 
@@ -415,10 +431,12 @@ body {
 }
 
 .receipt-header h4 {
-	font-weight: 700;
-	font-size: 0.95rem;
-	letter-spacing: 0px;
-	text-align: center;
+    font-family: 'OngleipEunbyeol', sans-serif;
+    font-size: 1.8rem;       /* 손글씨 폰트는 살짝 커야 가독성과 볼륨감이 삽니다 */
+    color: #222;             /* 진한 검은 별(✦)과 색감 맞추기 */
+    margin: 0 0 12px 0;
+    text-align: center;
+    letter-spacing: 0.5px;
 }
 
 .pos-meta-info {
