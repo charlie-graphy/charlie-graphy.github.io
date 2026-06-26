@@ -1,0 +1,757 @@
+:root {
+	--bg-main: #FBF9F4;      
+	--bg-white: #FFFFFF;
+	--brand-dark: #2E2016;   
+    --brand-yellow: #FFF2CC; 
+    --brand-gray: #FAF8F2;   
+    --text-muted: #A39485;   
+    --border-light: rgba(46, 32, 22, 0.08); 
+    --kitsch-black: #1E120A;
+}
+@font-face {
+    font-family: 'KerisKedyuche';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-3@1.0/KERISKEDU_R.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KerisKedyuche';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-3@1.0/KERISKEDU_B.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+html {
+    opacity: 0;
+    overflow: hidden;
+}
+html.loaded {
+    overflow: visible;
+    animation: softSmoke 0.6s ease-in forwards;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    letter-spacing: -0.4px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: #EFECE3;
+    color: var(--brand-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.app-container {
+    background-color: var(--bg-main);
+    width: 100%;
+    max-width: 420px;
+    height: 100vh;
+    min-height: 600px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--kitsch-black); 
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+/* 상단 고정 헤더 */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 2px solid var(--kitsch-black);
+    background-color: var(--bg-white);
+    z-index: 10;
+}
+.main-header .logo {
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--kitsch-black);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+.main-header .logo span { color: var(--text-muted); font-weight: 500; }
+
+.icon-btn-kitsch {
+    background-color: var(--brand-yellow);
+    border: 2px solid var(--kitsch-black);
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 6px;
+    color: var(--kitsch-black);
+    cursor: pointer;
+    box-shadow: 2px 2px 0px var(--kitsch-black);
+    transition: all 0.1s ease;
+}
+.icon-btn-kitsch:active {
+	transform: translate(1px, 1px);
+	box-shadow: 1px 1px 0px var(--kitsch-black);
+}
+
+.app-section {
+	display: none;
+	flex: 1;
+	flex-direction: column;
+	padding: 24px 20px;
+	overflow-y: auto;
+	position: relative;
+}
+
+.app-section.active {
+	display: flex;
+}
+
+/* 인트로 레이아웃 */
+.intro-kitsch-layout {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: space-between;
+	padding: 15px 0;
+	position: relative;
+}
+
+.title-zone-kitsch {
+	text-align: left;
+	margin-top: 10px;
+	z-index: 2;
+}
+
+.badge-mini {
+	display: inline-block;
+	background-color: var(--kitsch-black);
+	color: var(--bg-white);
+	font-size: 0.65rem;
+	font-weight: 800;
+	padding: 3px 8px;
+	border-radius: 4px;
+	margin-bottom: 14px;
+	letter-spacing: 0.5px;
+}
+
+.title-zone-kitsch h2 {
+	font-size: 1.9rem;
+	font-weight: 300;
+	line-height: 1.4;
+	color: var(--kitsch-black);
+}
+
+.title-zone-kitsch h2 strong {
+	font-weight: 800;
+}
+
+.highlight-text {
+	font-weight: 800;
+	background: linear-gradient(to top, var(--brand-yellow) 40%,
+		transparent 40%);
+	padding: 0 2px;
+}
+
+.sub-desc-kitsch {
+	font-size: 0.88rem;
+	color: var(--text-muted);
+	line-height: 1.6;
+	margin-top: 14px;
+	font-weight: 500;
+}
+
+.center-emblem-zone {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 30px 0;
+	z-index: 2;
+}
+
+.kitsch-circle-emblem {
+	width: 120px;
+	height: 120px;
+	background-color: var(--bg-white);
+	border: 3px solid var(--kitsch-black);
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 4px 6px 0px rgba(46, 32, 22, 0.1);
+	position: relative;
+	background-image: radial-gradient(rgba(46, 32, 22, 0.1) 1.5px,
+		transparent 1.5px);
+	background-size: 12px 12px;
+}
+
+.bread-main-emoji {
+	font-size: 4rem;
+	animation: kitschWobble 3s infinite ease-in-out;
+}
+
+.btn-push-kitsch {
+	width: 100%;
+	padding: 18px;
+	background-color: var(--kitsch-black);
+	color: var(--bg-white);
+	border: 2px solid var(--kitsch-black);
+	font-size: 1rem;
+	font-weight: 700;
+	border-radius: 14px;
+	cursor: pointer;
+	box-shadow: 0px 5px 0px #473223;
+	transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	z-index: 2;
+}
+
+.btn-push-kitsch:active {
+	transform: translateY(4px);
+	box-shadow: 0px 1px 0px #473223;
+}
+
+/* 설문조사 스크롤 컨테이너 */
+.standard-flow-mode {
+	padding: 16px 8px !important;
+	overflow: hidden;
+}
+
+.receipt-scroll-container {
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;        /* 💡 아래로 항목이 늘어날 때 세로 스크롤은 정상 작동! */
+	overflow-x: hidden;      /* 💡 가로로 스크롤 터지는 것만 방지 */
+	padding: 10px 4px 40px 4px;
+	scroll-behavior: smooth;
+	
+	/* 🚨 [핵심 추가] 순정 상태에서 안쪽 패딩(4px) 때문에 가로가 미세하게 늘어나는 것 방지 */
+	box-sizing: border-box; 
+}
+
+/* 🚨 [진짜 원인 제거] 안에 담기는 영수증 카드들이 컨테이너보다 커지지 않게 브레이크 */
+.receipt-scroll-container > * {
+	max-width: 100% !important;   /* 💡 어떤 카드가 들어와도 가로 폭 100%를 안 넘게 고정 */
+	box-sizing: border-box !important;
+}
+/* 설문조사 블록 */
+.receipt-survey-block {
+	display: none;
+	flex-direction: column;
+	margin-top: 4px;
+	width: 100%;
+}
+
+.receipt-survey-block.active {
+	display: flex;
+}
+
+.receipt-survey-block.active .header-row {
+	overflow: hidden;
+	white-space: nowrap;
+	animation: inkScanPrint 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.inner-option-grid {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin: 12px 0;
+	width: 100%;
+}
+
+.receipt-opt-btn {
+	background-color: var(--brand-gray);
+	border: 1px dashed rgba(46, 32, 22, 0.18);
+	padding: 13px 16px;
+	border-radius: 8px;
+	text-align: left;
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: #6E5C4E;
+	cursor: pointer;
+	font-family: inherit;
+	width: 100%;
+	display: block;
+	transition: all 0.15s ease;
+}
+
+.receipt-opt-btn.selected {
+	background-color: var(--brand-dark);
+	border-color: var(--brand-dark);
+	color: #FFFFFF;
+	font-weight: 700;
+	transform: translateX(2px);
+}
+
+.receipt-opt-btn.disabled-fade {
+	opacity: 0.35;
+	pointer-events: auto !important;
+	cursor: pointer;
+}
+
+.inner-input-area {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	margin-top: 12px;
+	width: 100%;
+}
+
+.input-field-group {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 2px;
+}
+
+.inner-input-area input, .inner-input-area textarea {
+	width: 100%;
+	border: 1px solid rgba(46, 32, 22, 0.15);
+	border-radius: 8px;
+	padding: 12px;
+	font-size: 0.9rem;
+	outline: none;
+	background: rgba(0, 0, 0, 0.02);
+	color: var(--brand-dark);
+	font-family: inherit;
+	transition: all 0.15s ease;
+	display: block;
+}
+
+.inner-input-area textarea {
+	height: 85px;
+	resize: none;
+}
+
+.inner-input-area input.input-error, .inner-input-area textarea.input-error {
+	border: 2px solid #C84B31 !important;
+	background-color: #FFF6F6 !important;
+	animation: inputShaking 0.3s ease-in-out;
+}
+
+.error-text {
+	display: none;
+	font-size: 0.75rem;
+	font-weight: 700;
+	color: #C84B31;
+	margin-top: 5px;
+	text-align: left;
+	padding-left: 2px;
+	font-family: inherit;
+	animation: errorFadeIn 0.2s ease-out forwards;
+}
+
+.signature-pad-container {
+	margin-top: 4px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.sig-guide-text {
+	font-size: 0.72rem;
+	font-weight: 700;
+	color: var(--text-muted);
+	margin-bottom: 6px;
+	text-transform: uppercase;
+	letter-spacing: 0px;
+}
+
+#signature-canvas {
+	background-color: var(--brand-gray);
+	border: 2px dashed var(--kitsch-black);
+	border-radius: 10px;
+	width: 100%;
+	height: 110px;
+	cursor: crosshair;
+	touch-action: none;
+	display: block;
+}
+
+.btn-clear-mini {
+	background: none;
+	border: none;
+	color: var(--text-muted);
+	font-size: 0.72rem;
+	font-weight: 600;
+	margin-top: 6px;
+	align-self: flex-end;
+	cursor: pointer;
+}
+
+.receipt-signature-img {
+	display: block;
+	max-height: 45px;
+	object-fit: contain;
+	margin: 8px auto 0 auto;
+	filter: contrast(1.5) brightness(0.8);
+}
+
+.btn-primary-mini {
+	background-color: var(--brand-dark);
+	color: #FFFFFF;
+	padding: 15px;
+	border: none;
+	font-weight: 700;
+	font-size: 0.95rem;
+	border-radius: 8px;
+	margin-top: 10px;
+	cursor: pointer;
+	font-family: inherit;
+	width: 100%;
+	display: block;
+}
+
+/* 🧾 그림자 래퍼 방단 규격 통일 수립 */
+.receipt-shadow-wrapper { 
+    width: 350px !important; /* 👈 부모 래퍼 가로폭을 무조건 350px로 강제 수립 */
+    max-width: 100% !important; 
+    margin: 0px auto 25px auto; 
+    padding: 5px; 
+    position: relative; 
+    background: transparent; 
+    filter: drop-shadow(0 14px 28px rgba(46, 32, 22, 0.09)) drop-shadow(0 3px 10px rgba(46, 32, 22, 0.04)); 
+    overflow: hidden; 
+    padding-top: 10px; 
+}
+
+/* 🧾 [핵심 대수술] 두 실물 영수증의 가로 지면 넓이를 350px 고정값으로 일치 */
+.receipt-paper, .archive-receipt-card {
+    background-color: var(--bg-white) !important; 
+    width: 350px !important; /* 👈 100% 비율형을 폐기하고 350px 실정값으로 박제! */
+    max-width: 100% !important;
+    padding: 28px 22px 35px 22px; 
+    border-radius: 12px 12px 0 0; 
+    color: var(--brand-dark); 
+    position: relative; 
+    font-family: "Courier New", Courier, monospace, sans-serif;
+    border: 1px solid rgba(46, 32, 22, 0.14);
+    clip-path: polygon(
+        0% 0%, 100% 0%, 
+        100% calc(100% - 12px), 97.5% 100%, 95% calc(100% - 12px), 92.5% 100%, 90% calc(100% - 12px), 87.5% 100%, 85% calc(100% - 12px), 82.5% 100%, 80% calc(100% - 12px), 77.5% 100%, 75% calc(100% - 12px), 72.5% 100%, 70% calc(100% - 12px), 67.5% 100%, 65% calc(100% - 12px), 62.5% 100%, 60% calc(100% - 12px), 57.5% 100%, 55% calc(100% - 12px), 52.5% 100%, 50% calc(100% - 12px), 47.5% 100%, 45% calc(100% - 12px), 42.5% 100%, 40% calc(100% - 12px), 37.5% 100%, 35% calc(100% - 12px), 32.5% 100%, 30% calc(100% - 12px), 27.5% 100%, 25% calc(100% - 12px), 22.5% 100%, 20% calc(100% - 12px), 17.5% 100%, 15% calc(100% - 12px), 12.5% 100%, 10% calc(100% - 12px), 7.5% 100%, 5% calc(100% - 12px), 2.5% 100%, 0% calc(100% - 12px)
+    );
+}
+
+.receipt-header h4 {
+    font-family: 'KerisKedyuche', sans-serif;
+    font-size: 1.8rem;       /* 손글씨 폰트는 살짝 커야 가독성과 볼륨감이 삽니다 */
+    color: #222;             /* 진한 검은 별(✦)과 색감 맞추기 */
+    margin: 0 0 12px 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.pos-meta-info {
+	display: flex;
+	justify-content: space-between;
+	font-size: 0.75rem;
+	color: var(--text-muted);
+	margin-top: 15px;
+	font-weight: 600;
+}
+
+.receipt-user-name {
+	font-size: 0.82rem;
+	font-weight: 700;
+	text-align: left;
+	margin-top: 8px;
+	color: var(--brand-dark);
+}
+
+.receipt-date {
+	font-size: 0.78rem;
+	color: var(--text-muted);
+	text-align: left;
+	margin-top: 3px;
+}
+
+.divider {
+	height: 1px;
+	border-top: 1px dashed #C0B4AC;
+	width: 100%;
+	margin: 11px 0;
+	font-size: 0;
+	color: transparent;
+	overflow: hidden;
+}
+
+.receipt-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 7px 0;
+	font-size: 0.85rem;
+	width: 100%;
+}
+
+.receipt-row span {
+	white-space: nowrap;
+}
+
+.header-row {
+	font-weight: 700;
+	font-size: 0.88rem;
+}
+
+.receipt-message-box {
+	margin-top: 12px;
+	padding: 12px;
+	background-color: rgba(0, 0, 0, 0.02);
+	border-radius: 6px;
+	border: 1px dashed rgba(46, 32, 22, 0.12);
+	width: 100%;
+}
+
+.msg-title {
+	font-size: 0.72rem;
+	color: var(--text-muted);
+	font-weight: 700;
+}
+
+.msg-content {
+	font-size: 0.82rem;
+	margin-top: 4px;
+	word-break: break-all;
+	line-height: 1.5;
+	color: #47372D;
+	font-family: inherit;
+}
+
+.barcode-area {
+	text-align: center;
+	margin-top: 16px;
+	padding-bottom: 12px;
+}
+
+.barcode {
+	font-size: 1.4rem;
+	letter-spacing: -0.5px;
+	font-weight: 900;
+	color: #111;
+}
+
+.thank-you-msg {
+	font-size: 0.72rem;
+	color: var(--brand-dark);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0px;
+	margin-top: 8px;
+}
+
+.result-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+.btn-secondary-push-kitsch {
+	width: 100%;
+	padding: 16px;
+	background-color: var(--kitsch-black);
+	color: var(--bg-white);
+	border: 2px solid var(--kitsch-black);
+	font-size: 0.95rem;
+	font-weight: 700;
+	border-radius: 12px;
+	cursor: pointer;
+	box-shadow: 0px 4px 0px #473223;
+	transition: all 0.1s ease;
+}
+
+.btn-secondary-push-kitsch:active {
+	transform: translateY(3px);
+	box-shadow: 0px 1px 0px #473223;
+}
+
+.btn-text-kitsch {
+	width: 100%;
+	padding: 15px;
+	background: none;
+	border: 2px dashed var(--kitsch-black);
+	font-size: 0.95rem;
+	font-weight: 700;
+	color: var(--kitsch-black);
+	border-radius: 12px;
+	cursor: pointer;
+	text-align: center;
+}
+
+.action-buttons {
+	width: 100%;
+	max-width: 350px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+#sec-archive {
+	background-color: var(--bg-main);
+}
+
+.archive-header {
+	margin-bottom: 11px;
+	text-align: center;
+}
+
+.archive-header h2 {
+	font-size: 1.2rem;
+	font-weight: 700;
+	color: var(--brand-dark);
+}
+
+.archive-header p {
+	font-size: 0.82rem;
+	color: var(--text-muted);
+	margin-top: 5px;
+}
+
+.archive-list {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	align-items: center;
+	width: 100%;
+	padding: 10px 20px 50px 20px;
+}
+
+/* 🧾 보관함 리스트를 지탱하는 래퍼 가로 규격 강제 고정 */
+.archive-receipt-card-wrapper {
+	width: 350px !important; /* 👈 결과창과 똑같이 350px 지지선 락 수립 */
+	max-width: 350px !important;
+	position: relative;
+	filter: drop-shadow(0 10px 22px rgba(46, 32, 22, 0.08));
+    animation: archivePrintSlide 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.loading-minimal-layout {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.loading-box {
+	text-align: center;
+	width: 100%;
+	max-width: 280px;
+}
+
+.loading-printer-icon {
+	font-size: 3rem;
+	margin-bottom: 16px;
+	animation: bounce 0.6s infinite alternate;
+}
+
+#loading-text {
+	font-size: 0.95rem;
+	font-weight: 600;
+	color: var(--brand-dark);
+	margin-bottom: 20px;
+}
+
+.loading-progress-container {
+	width: 100%;
+	height: 6px;
+	background-color: #EFECE3;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.loading-progress-bar {
+	width: 0%;
+	height: 100%;
+	background-color: var(--brand-dark);
+	border-radius: 10px;
+	transition: width 0.1s linear;
+}
+
+.image-modal-overlay {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(46, 32, 22, 0.6);
+	z-index: 999;
+	justify-content: center;
+	align-items: center;
+	padding: 24px;
+}
+
+.image-modal-content {
+	background-color: #EFECE3;
+	width: 100%;
+	max-width: 380px;
+	padding: 24px;
+	border-radius: 20px;
+	text-align: center;
+	box-shadow: 0 20px 50px rgba(46, 32, 22, 0.25);
+}
+
+.modal-guide-text {
+	font-size: 0.88rem;
+	font-weight: 600;
+	color: var(--brand-dark);
+	line-height: 1.5;
+	margin-bottom: 18px;
+}
+
+/* 🖼️ 모달 팝업으로 뜨는 채취 복제본 이미지 규격 디스플레이 조율 수립 */
+.modal-receipt-frame {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-receipt-frame img {
+	width: 350px !important; /* 👈 이미지 크기도 강제로 350px 고정 박제! */
+	max-width: 350px !important;
+	max-height: 55vh;
+	object-fit: contain;
+	filter: drop-shadow(0 14px 28px rgba(46, 32, 22, 0.16)) drop-shadow(0 3px 8px rgba(46, 32, 22, 0.06));
+}
+
+@keyframes inkScanPrint { from { width: 0%; opacity: 0; } to { width: 100%; opacity: 1; } }
+@keyframes kitschWobble { 0%, 100% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(-5deg) scale(1.05); } 75% { transform: rotate(5deg) scale(0.98); } }
+@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+@keyframes inputShaking { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-4px); } 40%, 80% { transform: translateX(4px); } }
+@keyframes errorFadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+/* 💡 결과창 영수증 종이 위에서 슬라이드 사출 애니메이션 엔진 */
+@keyframes receiptPrintSlide {
+    0% { transform: translateY(-100%); opacity: 0; }
+    60% { opacity: 1; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+.receipt-paper.print-active {
+    animation: receiptPrintSlide 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    transform-origin: top center;
+}
+
+/* 💡 보관함 리스트 차례대로(Staggered) 쏟아지는 애니메이션 엔진 */
+@keyframes archivePrintSlide {
+    0% { transform: translateY(-30px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+.archive-receipt-card-wrapper:nth-child(1) { animation-delay: 0.08s; }
+.archive-receipt-card-wrapper:nth-child(2) { animation-delay: 0.20s; }
+.archive-receipt-card-wrapper:nth-child(3) { animation-delay: 0.32s; }
+.archive-receipt-card-wrapper:nth-child(4) { animation-delay: 0.44s; }
+.archive-receipt-card-wrapper:nth-child(5) { animation-delay: 0.56s; }
+
+@keyframes softSmoke {
+  0% {
+    opacity: 0; /* 처음엔 투명 */
+  }
+  100% {
+    opacity: 1; /* 부드럽게 꽉 채워짐 */
+  }
+}
