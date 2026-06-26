@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="깨비 베이커리">
-    <meta name="keywords" content="안지환">
-    <meta property="og:image" content="https://lh3.googleusercontent.com/d/142yXJl-1YxOGyOjgbyt6ZQCeO6gnPXHn">
-    <meta property="og:title" content="AHNJEEHWANY">
-    <meta property="og:description" content="깨비 베이커리">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="깨비 베이커리">
+	<meta name="keywords" content="안지환">
+	<meta property="og:image" content="https://lh3.googleusercontent.com/d/142yXJl-1YxOGyOjgbyt6ZQCeO6gnPXHn">
+	<meta property="og:title" content="AHNJEEHWANY">
+	<meta property="og:description" content="깨비 베이커리">
+
+	<title>깨비 베이커리</title>
     
-    <title>깨비 베이커리</title>
-    
-    <!-- Twitter -->
+	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@jeehwany_com">
 	<meta name="twitter:creator" content="@jeehwany_com">
@@ -19,192 +19,189 @@
 	<meta name="twitter:image" content="https://lh3.googleusercontent.com/d/142yXJl-1YxOGyOjgbyt6ZQCeO6gnPXHn">
 	<meta name="twitter:title" content="AHNJEEHWANY">
 	<meta name="twitter:description" content="깨비 베이커리">	
-    
-    <!-- 파비콘 -->
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io_new/apple-icon-180x180.png">
-    <link rel="icon" type="image/x-icon" href="img/favicon_io_new/ms-icon-310x310.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io_new/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io_new/favicon-16x16.png">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-    <link rel="stylesheet" href="20260725/20260725.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    <script src="20260725/20260725.js"></script>
+
+	<!-- 파비콘 -->
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io_new/apple-icon-180x180.png">
+	<link rel="icon" type="image/x-icon" href="img/favicon_io_new/ms-icon-310x310.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io_new/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io_new/favicon-16x16.png">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+	<link rel="stylesheet" href="20260725/20260725.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+	<script src="20260725/20260725.js"></script>
 </head>
 <body>
+	<div class="app-container">
+		<header class="main-header">
+			<h1 class="logo">깨비 <span>베이커리</span></h1>
+			<button id="btn-archive-toggle" class="icon-btn-kitsch">보관함</button>
+		</header>
 
-    <div class="app-container">
-        <header class="main-header">
-            <h1 class="logo">깨비 <span>베이커리</span></h1>
-            <button id="btn-archive-toggle" class="icon-btn-kitsch">보관함</button>
-        </header>
+		<section id="sec-intro" class="app-section active">
+			<div class="intro-kitsch-layout">
+				<div class="title-zone-kitsch">
+					<span class="badge-mini">JEEHWANY HBD♥</span>
+					<h2>내가 좋아하는<br><span class="highlight-text">취향</span>을 담은<br><strong>나만의 주문서</strong></h2>
+					<p class="sub-desc-kitsch">2026.07.21 ~ 07.26<br>서울 종로구 동숭4가길 2, 1층 청킹</p>
+				</div>
 
-        <section id="sec-intro" class="app-section active">
-            <div class="intro-kitsch-layout">
-                <div class="title-zone-kitsch">
-                    <span class="badge-mini">JEEHWANY HBD♥</span>
-                    <h2>내가 좋아하는<br><span class="highlight-text">취향</span>을 담은<br><strong>나만의 주문서</strong></h2>
-                    <p class="sub-desc-kitsch">2026.07.21 ~ 07.26<br>서울 종로구 동숭4가길 2, 1층 청킹</p>
-                </div>
-                
-                <div class="center-emblem-zone">
-                    <div class="kitsch-circle-emblem">
-                        <span class="bread-main-emoji">😈</span>
-                    </div>
-                </div>
-                
-                <div class="action-zone-kitsch">
-                    <button id="btn-start" class="btn-push-kitsch">주문서 작성하기</button>
-                </div>
-            </div>
-        </section>
+				<div class="center-emblem-zone">
+					<div class="kitsch-circle-emblem">
+						<span class="bread-main-emoji">😈</span>
+					</div>
+				</div>
 
-        <section id="sec-survey" class="app-section standard-flow-mode">
-            <div class="receipt-scroll-container">
-                
-                <div id="live-receipt-box" class="receipt-shadow-wrapper">
-                    <div id="interactive-receipt-paper" class="receipt-paper">
+				<div class="action-zone-kitsch">
+					<button id="btn-start" class="btn-push-kitsch">주문서 작성하기</button>
+				</div>
+			</div>
+		</section>
+
+		<section id="sec-survey" class="app-section standard-flow-mode">
+			<div class="receipt-scroll-container">
+				<div id="live-receipt-box" class="receipt-shadow-wrapper">
+					<div id="interactive-receipt-paper" class="receipt-paper">
 						<div class="receipt-header">
-						    <h4>깨비 베이커리</h4>
-						    <div class="pos-meta-info" style="display: flex; justify-content: space-between; margin-top: 20px;">
-						        <span>카페 청킹</span>
-						        <span>POS: 92-0725</span>
-						    </div>
-						    <div class="pos-meta-info" style="display: flex; justify-content: space-between; margin-top: 4px; font-size: 0.78rem;">
-						        <span>2026.07.25</span>
-						        <span>NO. 0000</span>
-						    </div>
-						    <div class="divider" style="margin: 8px 0;"></div>
-						    
-						    <div class="receipt-row header-row">
-						        <span>NICKNAME</span>
-						        <span style="font-weight: normal;">-</span>
-						    </div>
-						    <div class="divider" style="margin: 8px 0;"></div>
+							<h4>깨비 베이커리</h4>
+							<div class="pos-meta-info" style="display: flex; justify-content: space-between; margin-top: 20px;">
+								<span>카페 청킹</span>
+								<span>POS: 92-0725</span>
+							</div>
+							<div class="pos-meta-info" style="display: flex; justify-content: space-between; margin-top: 4px; font-size: 0.78rem;">
+								<span>2026.07.25</span>
+								<span>NO. 0000</span>
+							</div>
+							<div class="divider" style="margin: 8px 0;"></div>
+							<div class="receipt-row header-row">
+								<span>NICKNAME</span>
+								<span style="font-weight: normal;">-</span>
+							</div>
+							<div class="divider" style="margin: 8px 0;"></div>
 						</div>
-                        
-                        <div class="receipt-body">
-                            <div class="receipt-survey-block active" data-step="1">
-                                <div class="receipt-row header-row">
-                                    <span>01. 반죽</span>
-                                </div>
-                                <div class="inner-option-grid">
-                                    <button class="receipt-opt-btn" data-value="말랑">말랑</button>
-                                    <button class="receipt-opt-btn" data-value="쫀득">쫀득</button>
-                                    <button class="receipt-opt-btn" data-value="꾸덕">꾸덕</button>
-                                    <button class="receipt-opt-btn" data-value="단단">단단</button>
-                                </div>
-                            </div>
 
-                            <div class="receipt-survey-block" data-step="2">
-                                <div class="divider"></div>
-                                <div class="receipt-row header-row">
-                                    <span>02. 굽기</span>
-                                </div>
-                                <div class="inner-option-grid">
-                                    <button class="receipt-opt-btn" data-value="폭신">폭신</button>
-                                    <button class="receipt-opt-btn" data-value="노릇">노릇</button>
-                                    <button class="receipt-opt-btn" data-value="겉바속촉">겉바속촉</button>
-                                    <button class="receipt-opt-btn" data-value="버석">버석</button>
-                                    <button class="receipt-opt-btn" data-value="탄">탄</button>
-                                </div>
-                            </div>
+						<div class="receipt-body">
+							<div class="receipt-survey-block active" data-step="1">
+								<div class="receipt-row header-row">
+									<span>01. 반죽</span>
+								</div>
+								<div class="inner-option-grid">
+									<button class="receipt-opt-btn" data-value="말랑">말랑</button>
+									<button class="receipt-opt-btn" data-value="쫀득">쫀득</button>
+									<button class="receipt-opt-btn" data-value="꾸덕">꾸덕</button>
+									<button class="receipt-opt-btn" data-value="단단">단단</button>
+								</div>
+							</div>
 
-                            <div class="receipt-survey-block" data-step="3">
-                                <div class="divider"></div>
-                                <div class="receipt-row header-row">
-                                    <span>03. 풍미</span>
-                                </div>
-                                <div class="inner-option-grid">
-                                    <button class="receipt-opt-btn" data-value="담백">담백</button>
-                                    <button class="receipt-opt-btn" data-value="달콤">달콤</button>
-                                    <button class="receipt-opt-btn" data-value="새콤">새콤</button>
-                                    <button class="receipt-opt-btn" data-value="단짠">단짠</button>
-                                    <button class="receipt-opt-btn" data-value="매콤">매콤</button>
-                                    <button class="receipt-opt-btn" data-value="쌉쌀">쌉쌀</button>
-                                </div>
-                            </div>
+							<div class="receipt-survey-block" data-step="2">
+								<div class="divider"></div>
+								<div class="receipt-row header-row">
+									<span>02. 굽기</span>
+								</div>
+								<div class="inner-option-grid">
+									<button class="receipt-opt-btn" data-value="폭신">폭신</button>
+									<button class="receipt-opt-btn" data-value="노릇">노릇</button>
+									<button class="receipt-opt-btn" data-value="겉바속촉">겉바속촉</button>
+									<button class="receipt-opt-btn" data-value="버석">버석</button>
+									<button class="receipt-opt-btn" data-value="탄">탄</button>
+								</div>
+							</div>
 
-                            <div class="receipt-survey-block" data-step="4">
-                                <div class="divider"></div>
-                                <div class="receipt-row header-row">
-                                    <span>04. 주문 정보 및 서명</span>
-                                </div>
-                                <div class="inner-input-area">
-                                    <div class="input-field-group">
-                                        <input type="text" id="input-name" placeholder="닉네임 (최대 8자)" maxlength="8">
-                                        <p id="error-name" class="error-text">⚠️ 닉네임을 입력해 주세요!</p>
-                                    </div>
-                                    
-                                    <div class="input-field-group">
-                                        <textarea id="input-message" placeholder="전하고 싶은 말을 입력해 주세요."></textarea>
-                                        <p id="error-message" class="error-text">⚠️ 메모 내용을 입력해 주세요!</p>
-                                    </div>
-                                    
-                                    <div class="signature-pad-container">
-                                        <p class="sig-guide-text">✍️ 아래에 서명이나 그림을 그려주세요 (SIGN)</p>
-                                        <canvas id="signature-canvas" width="300" height="110"></canvas>
-                                        <button id="btn-clear-sig" class="btn-clear-mini">다시 그리기</button>
-                                    </div>
-                                </div>
-                                <button id="btn-submit" class="btn-primary-mini">영수증 출력하기</button>
-                            </div>
-                        </div>
+							<div class="receipt-survey-block" data-step="3">
+								<div class="divider"></div>
+								<div class="receipt-row header-row">
+									<span>03. 풍미</span>
+								</div>
+								<div class="inner-option-grid">
+									<button class="receipt-opt-btn" data-value="담백">담백</button>
+									<button class="receipt-opt-btn" data-value="달콤">달콤</button>
+									<button class="receipt-opt-btn" data-value="새콤">새콤</button>
+									<button class="receipt-opt-btn" data-value="단짠">단짠</button>
+									<button class="receipt-opt-btn" data-value="매콤">매콤</button>
+									<button class="receipt-opt-btn" data-value="쌉쌀">쌉쌀</button>
+								</div>
+							</div>
 
-                        <div class="receipt-footer-fallback">
-                            <div class="divider"></div>
-                            <div class="barcode-area">
-                                <div class="barcode">||||| | ||||| | |||| ||| |||||</div>
-                                <p class="thank-you-msg">HAPPY JEEHWANY DAY ♥</p>
-                            </div>
-                        </div>
-                    </div> 
-                </div> 
+							<div class="receipt-survey-block" data-step="4">
+								<div class="divider"></div>
+								<div class="receipt-row header-row">
+									<span>04. 주문 정보 및 서명</span>
+								</div>
+								<div class="inner-input-area">
+									<div class="input-field-group">
+										<input type="text" id="input-name" placeholder="닉네임 (최대 8자)" maxlength="8">
+										<p id="error-name" class="error-text">⚠️ 닉네임을 입력해 주세요!</p>
+									</div>
 
-            </div>
-        </section>
+									<div class="input-field-group">
+										<textarea id="input-message" placeholder="전하고 싶은 말을 입력해 주세요."></textarea>
+										<p id="error-message" class="error-text">⚠️ 메모 내용을 입력해 주세요!</p>
+									</div>
 
-        <section id="sec-loading" class="app-section">
-            <div class="loading-minimal-layout">
-                <div class="loading-box">
-                    <div class="loading-printer-icon">🥖</div>
-                    <h3 id="loading-text">맛있게 반죽하는 중...</h3>
-                    <div class="loading-progress-container">
-                        <div class="loading-progress-bar"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+									<div class="signature-pad-container">
+										<p class="sig-guide-text">✍️ 아래에 서명이나 그림을 그려주세요.(SIGN)</p>
+										<canvas id="signature-canvas" width="300" height="110"></canvas>
+										<button id="btn-clear-sig" class="btn-clear-mini">다시 그리기 🔄️</button>
+									</div>
+								</div>
+								<button id="btn-submit" class="btn-primary-mini">영수증 출력하기</button>
+							</div>
+						</div>
 
-        <section id="sec-result" class="app-section">
-            <div class="result-container">
-                <div id="final-receipt-target"></div>
-                <div class="action-buttons">
-                    <button id="btn-save-img" class="btn-secondary-push-kitsch">영수증 저장하기</button>
-                    <button id="btn-restart" class="btn-text-kitsch">다시 만들기</button>
-                </div>
-            </div>
-        </section>
+						<div class="receipt-footer-fallback">
+							<div class="divider"></div>
+							<div class="barcode-area">
+								<div class="barcode">||||| | ||||| | |||| ||| |||||</div>
+								<p class="thank-you-msg">HAPPY JEEHWANY DAY ♥</p>
+							</div>
+						</div>
+					</div> 
+				</div> 
 
-        <section id="sec-archive" class="app-section">
-            <div class="archive-header">
-                <h2>보관함</h2>
-                <p>깨비 베이커리 단골들의 영수증</p>
-            </div>
-            <div id="archive-list" class="archive-list"></div>
-        </section>
+			</div>
+		</section>
 
-        <div id="image-save-modal" class="image-modal-overlay">
-            <div class="image-modal-content">
-                <p class="modal-guide-text">💡 이미지를 <b>길게 꾹 누르면</b><br>사진첩에 바로 저장할 수 있어요!</p>
-                <div id="captured-image-container" class="modal-receipt-frame"></div>
-                <button id="btn-close-modal" class="btn-primary-mini" style="margin-top: 24px; padding: 14px;">닫기</button>
-            </div>
-        </div>
-    </div>
+		<section id="sec-loading" class="app-section">
+			<div class="loading-minimal-layout">
+				<div class="loading-box">
+					<div class="loading-printer-icon">🥖</div>
+					<h3 id="loading-text">맛있게 반죽하는 중...</h3>
+					<div class="loading-progress-container">
+						<div class="loading-progress-bar"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="sec-result" class="app-section">
+			<div class="result-container">
+				<div id="final-receipt-target"></div>
+				<div class="action-buttons">
+					<button id="btn-save-img" class="btn-secondary-push-kitsch">영수증 저장하기</button>
+					<button id="btn-restart" class="btn-text-kitsch">다시 만들기</button>
+				</div>
+			</div>
+		</section>
+
+		<section id="sec-archive" class="app-section">
+			<div class="archive-header">
+				<h2>보관함</h2>
+				<p>깨비 베이커리 단골들의 영수증</p>
+			</div>
+			<div id="archive-list" class="archive-list"></div>
+		</section>
+
+		<div id="image-save-modal" class="image-modal-overlay">
+			<div class="image-modal-content">
+				<p class="modal-guide-text">💡 이미지를 <b>길게 꾹 누르면</b><br>사진첩에 바로 저장할 수 있어요!</p>
+				<div id="captured-image-container" class="modal-receipt-frame"></div>
+				<button id="btn-close-modal" class="btn-primary-mini" style="margin-top: 24px; padding: 14px;">닫기</button>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>
