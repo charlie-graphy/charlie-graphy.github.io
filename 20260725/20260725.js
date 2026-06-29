@@ -225,7 +225,7 @@ $(document).ready(function() {
         const sigSectionHtml = orderData.signature ? `
             <div class="divider"></div>
             <div style="margin: 5px 0;">
-                <p style="font-size:0.7rem; font-weight:700; color:#A39485; text-align:left;">CUSTOMER SIGNATURE :</p>
+                <p style="font-size:0.7rem; font-weight:700; color:#A39485; text-align:left;">SIGNATURE :</p>
                 <img src="${orderData.signature}" class="receipt-signature-img" alt="친필서명">
             </div>` : "";
 
@@ -336,7 +336,7 @@ $(document).ready(function() {
             const archiveSigHtml = item.signature ? `
                 <div class="divider"></div>
                 <div style="margin: 5px 0;">
-                    <p style="font-size:0.7rem; font-weight:700; color:#A39485; text-align:left;">CUSTOMER SIGNATURE :</p>
+                    <p style="font-size:0.7rem; font-weight:700; color:#A39485; text-align:left;">SIGNATURE :</p>
                     <img src="${item.signature}" class="receipt-signature-img" alt="보관서명">
                 </div>` : "";
             
