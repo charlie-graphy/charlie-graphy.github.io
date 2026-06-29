@@ -2374,7 +2374,7 @@
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 박민성<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
+					description: '<p class="event">하이파이브회</p>갈릴레오 役 | 박민성<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
 					start: '2026-07-15 20:00',
 					className: 'bg-blue',
 					allDay: false
@@ -2437,7 +2437,7 @@
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					description: '<p class="event">관객과의 대화 with 우주먼지</p>갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
 					start: '2026-07-29 19:30',
 					className: 'bg-blue',
 					allDay: false
