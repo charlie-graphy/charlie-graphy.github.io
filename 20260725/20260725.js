@@ -237,7 +237,7 @@ $(document).ready(function() {
                         <h4>✦ 깨비 베이커리 ✦</h4>
                         
                         <div class="pos-meta-info" style="margin-top: 20px; display: flex; justify-content: space-between;">
-                            <span>STORE: 홍대 생카점</span>
+                            <span>카페 청킹</span>
                             <span>POS: 92-0725</span>
                         </div>
                         
@@ -391,7 +391,7 @@ $(document).ready(function() {
                         <div class="receipt-header">
                             <h4>✦ 깨비 베이커리 ✦</h4>
                             <div class="pos-meta-info" style="margin-top: 20px; display: flex; justify-content: space-between;">
-                                <span>STORE: 홍대 생카점</span> <span>POS: 92-0725</span>
+                                <span>카페 청킹</span> <span>POS: 92-0725</span>
                             </div>
                             <div class="pos-meta-info" style="margin-top: 4px; display: flex; justify-content: space-between; font-size: 0.78rem;">
                                 <span>${item.date}</span>
