@@ -226,7 +226,7 @@ $(document).ready(function() {
         const sigSectionHtml = orderData.signature ? `
             <div class="divider"></div>
             <div style="margin: 5px 0;">
-                <p style="font-size:0.7rem; font-weight:700; color:#A39485; text-align:left;">------ SIGNATURE ------</p>
+                <p style="font-size:0.7rem; font-weight:700; color:#A39485; text-align:left;">SIGNATURE :</p>
                 <img src="${orderData.signature}" class="receipt-signature-img" alt="친필서명">
             </div>` : "";
 
@@ -234,7 +234,7 @@ $(document).ready(function() {
             <div class="receipt-shadow-wrapper">
                 <div id="receipt-paper" class="receipt-paper" style="opacity:0;">
                     <div class="receipt-header">
-                        <h4>✦ 깨비 베이커리 ✦</h4>
+                        <h4>깨비 베이커리</h4>
                         
                         <div class="pos-meta-info" style="margin-top: 20px; display: flex; justify-content: space-between;">
                             <span>카페 청킹</span>
@@ -377,7 +377,7 @@ $(document).ready(function() {
             const archiveSigHtml = item.signature ? `
                 <div class="divider"></div>
                 <div style="margin: 5px 0;">
-                    <p style="font-size:0.7rem; font-weight:700; color:#A39485; text-align:left;">------ SIGNATURE ------</p>
+                    <p style="font-size:0.7rem; font-weight:700; color:#A39485; text-align:left;">SIGNATURE :</p>
                     <img src="${item.signature}" class="receipt-signature-img" alt="보관서명">
                 </div>` : "";
             
@@ -389,7 +389,7 @@ $(document).ready(function() {
                 <div class="archive-receipt-card-wrapper" style="cursor: pointer;">
                     <div class="archive-receipt-card">
                         <div class="receipt-header">
-                            <h4>✦ 깨비 베이커리 ✦</h4>
+                            <h4>깨비 베이커리</h4>
                             <div class="pos-meta-info" style="margin-top: 20px; display: flex; justify-content: space-between;">
                                 <span>카페 청킹</span> <span>POS: 92-0725</span>
                             </div>
