@@ -222,10 +222,11 @@ $(document).ready(function() {
         const paddedOrderStr = String(currentOrderNum).padStart(4, '0');
         const serialStr = "ORD-" + new Date().toISOString().slice(0,10).replace(/-/g,"") + "-" + paddedOrderStr;
 
+        // 🎨 결과창 서명 영역 정석 핏 매칭
         const sigSectionHtml = orderData.signature ? `
             <div class="divider"></div>
             <div style="margin: 5px 0;">
-                <p style="font-size:0.7rem; font-weight:700; color:#A39485; text-align:left;">SIGNATURE :</p>
+                <p style="font-size:0.7rem; font-weight:700; color:#A39485; text-align:left;">------ SIGNATURE ------</p>
                 <img src="${orderData.signature}" class="receipt-signature-img" alt="친필서명">
             </div>` : "";
 
@@ -233,10 +234,10 @@ $(document).ready(function() {
             <div class="receipt-shadow-wrapper">
                 <div id="receipt-paper" class="receipt-paper" style="opacity:0;">
                     <div class="receipt-header">
-                        <h4>깨비 베이커리</h4>
+                        <h4>✦ 깨비 베이커리 ✦</h4>
                         
                         <div class="pos-meta-info" style="margin-top: 20px; display: flex; justify-content: space-between;">
-                            <span>카페 청킹</span>
+                            <span>STORE: 홍대 생카점</span>
                             <span>POS: 92-0725</span>
                         </div>
                         
@@ -317,72 +318,103 @@ $(document).ready(function() {
         newPostRef.set(newReceiptData).then(() => { setTimeout(disconnect, 1000); switchSection('#sec-result'); }).catch(() => { alert(`⚠️ 발행 오류`); });
     }
 
+    // 💡 글로벌 변수들 유지
+    let currentLoadedCount = 0;
+    let globalTotalCount = 0;
+
     function loadReceiptsFromFirebase() {
         if (!isConnected) { firebase.database().goOnline(); isConnected = true; }
-        if (messageRef) messageRef.off(); messageRef = database.ref('BTH2026').orderByChild('timestamp').limitToLast(15);
+        if (messageRef) messageRef.off(); 
+        
+        messageRef = database.ref('BTH2026');
         $('#archive-list').html('<p style="text-align:center; color:#A39485; padding:30px;">보관함을 열어보는 중...</p>');
+        
         messageRef.once('value', function(snapshot) {
-            const posts = snapshot.val(); let loadedMessages = [];
-            if (posts) { Object.keys(posts).forEach(function(key) { const post = posts[key]; loadedMessages.push({ name: post.name || "빵순이", q1: post.q1, q2: post.q2, q3: post.q3, message: post.message, signature: post.signature || "", orderNo: post.orderNo || 0, date: get24HourDateTime(post.timestamp), timestamp: post.timestamp }); }); }
-            receiptList = loadedMessages.sort((a, b) => b.timestamp - a.timestamp); displayArchiveList(receiptList);
+            const posts = snapshot.val(); 
+            let loadedMessages = [];
+            
+            globalTotalCount = snapshot.numChildren(); 
+            currentLoadedCount = 0; 
+            
+            if (posts) { 
+                Object.keys(posts).forEach(function(key) { 
+                    const post = posts[key]; 
+                    loadedMessages.push({ 
+                        name: post.name || "빵순이", 
+                        q1: post.q1, 
+                        q2: post.q2, 
+                        q3: post.q3, 
+                        message: post.message, 
+                        signature: post.signature || "", 
+                        orderNo: post.orderNo || 0, 
+                        date: get24HourDateTime(post.timestamp), 
+                        timestamp: post.timestamp 
+                    }); 
+                }); 
+            }
+            
+            receiptList = loadedMessages.sort((a, b) => b.timestamp - a.timestamp); 
+            
+            const $archiveList = $('#archive-list'); 
+            $archiveList.empty(); 
+            
+            displayArchiveList();
         });
     }
 
-    function displayArchiveList(list) {
-        const $archiveList = $('#archive-list'); $archiveList.empty();
-        if (list.length === 0) { $archiveList.append('<p style="text-align:center; color:#aaa; padding:20px;">보관된 주문서가 없습니다.</p>'); return; }
-        list.forEach(function(item, index) {
+    function displayArchiveList() {
+        const $archiveList = $('#archive-list'); 
+        
+        if (receiptList.length === 0) { 
+            $archiveList.append('<p style="text-align:center; color:#aaa; padding:20px;">보관된 주문서가 없습니다.</p>'); 
+            return; 
+        }
+        
+        const nextItems = receiptList.slice(currentLoadedCount, currentLoadedCount + 15);
+        
+        nextItems.forEach(function(item, index) {
             const messageHtml = item.message.replace(/\n/g, '<br>');
             const archiveSigHtml = item.signature ? `
                 <div class="divider"></div>
                 <div style="margin: 5px 0;">
-                    <p style="font-size:0.7rem; font-weight:700; color:#A39485; text-align:left;">SIGNATURE :</p>
+                    <p style="font-size:0.7rem; font-weight:700; color:#A39485; text-align:left;">------ SIGNATURE ------</p>
                     <img src="${item.signature}" class="receipt-signature-img" alt="보관서명">
                 </div>` : "";
             
-            const calculatedNo = list.length - index;
-            const paddedArchiveNo = String(calculatedNo).padStart(4, '0');
-            const archiveSerialStr = "ORD-" + item.date.split(' ')[0].replace(/\./g,"") + "-" + paddedArchiveNo;
-
+            const absoluteIndex = currentLoadedCount + index;
+            const realOrderNo = globalTotalCount - absoluteIndex;
+            const paddedArchiveNo = String(realOrderNo).padStart(4, '0');
+            
             const receiptCardHtml = `
                 <div class="archive-receipt-card-wrapper" style="cursor: pointer;">
                     <div class="archive-receipt-card">
                         <div class="receipt-header">
-                            <h4>깨비 베이커리</h4>
-                            
+                            <h4>✦ 깨비 베이커리 ✦</h4>
                             <div class="pos-meta-info" style="margin-top: 20px; display: flex; justify-content: space-between;">
-                                <span>카페 청킹</span>
-                                <span>POS: 92-0725</span>
+                                <span>STORE: 홍대 생카점</span> <span>POS: 92-0725</span>
                             </div>
-                            
                             <div class="pos-meta-info" style="margin-top: 4px; display: flex; justify-content: space-between; font-size: 0.78rem;">
                                 <span>${item.date}</span>
-                                <span>NO. ${paddedArchiveNo}</span>
+                                <span>NO. ${paddedArchiveNo}</span> 
                             </div>
-                            
                             <div class="divider" style="margin: 8px 0;"></div>
-                            
                             <div class="receipt-row header-row">
                                 <span>NICKNAME</span>
                                 <span style="font-weight: normal;">${item.name}</span>
                             </div>
-                            
                             <div class="divider" style="margin: 8px 0;"></div>
                         </div>
                         <div class="receipt-body">
                             <div class="receipt-row header-row"><span>MENU</span></div>
                             <div class="receipt-row" style="display: flex; justify-content: space-between;">
-							    <span>01. 반죽</span>
-							    <span>${item.q1}</span>
-							</div>
-							<div class="receipt-row" style="display: flex; justify-content: space-between;">
-							    <span>02. 굽기</span>
-							    <span>${item.q2}</span>
-							</div>
-							<div class="receipt-row" style="display: flex; justify-content: space-between;">
-							    <span>03. 풍미</span>
-							    <span>${item.q3}</span>
-							</div>
+                                <span>01. 반죽</span> <span>${item.q1}</span>
+                            </div>
+                            <div class="receipt-row" style="display: flex; justify-content: space-between;">
+                                <span>02. 굽기</span> <span>${item.q2}</span>
+                            </div>
+                            <div class="receipt-row" style="display: flex; justify-content: space-between;">
+                                <span>03. 풍미</span> <span>${item.q3}</span>
+                            </div>
                             <div class="divider" style="margin: 8px 0;"></div>
                             <div class="receipt-message-box">
                                 <p class="msg-title">[ MEMO ]</p>
@@ -405,11 +437,30 @@ $(document).ready(function() {
                 </div>`;
             $archiveList.append(receiptCardHtml);
         });
+        
+        currentLoadedCount += nextItems.length;
     }
 
-    /* ==========================================
-     * 보관함 클릭 시 유령 빈 상자가 뜨는 깜빡임 현상 완벽 박멸
-    ========================================== */
+    /* ==========================================================================
+     * 🚨 [버그 원인 전격 박멸 및 대수술] 
+     * 보관함 스크롤바가 실제 상주하여 움직이는 대상은 클래스가 아니라 
+     * 바로 최상위 스크롤 부모인 '#sec-archive' 영역이었습니다!
+     * ========================================================================== */
+    $('#sec-archive').on('scroll', function() {
+        if (!$('#sec-archive').is(':visible')) return;
+
+        const scrollTop = $(this).scrollTop();
+        const containerHeight = $(this).innerHeight();
+        const scrollHeight = $(this)[0].scrollHeight;
+
+        // 바닥 근처(50px)선 도달 시 데이터 이어서 추가 사출 연출
+        if (scrollTop + containerHeight >= scrollHeight - 50) {
+            if (currentLoadedCount < receiptList.length) {
+                displayArchiveList();
+            }
+        }
+    });
+    
     $(document).on('click', '.archive-receipt-card-wrapper', function(e) {
         e.preventDefault();
         const targetCard = $(this).find('.archive-receipt-card')[0];
@@ -434,9 +485,6 @@ $(document).ready(function() {
 
     function disconnect() { if (messageRef) messageRef.off(); firebase.database().goOffline(); isConnected = false; }
 
-    /* ==========================================
-     * 결과 창 저장 버튼 클릭 시에도 동일하게 깜빡임 공백 차단
-    ========================================== */
     $(document).on('click', '#btn-save-img', function() {
         const receiptElement = document.getElementById('receipt-paper');
         const originalBtnText = $(this).text(); $(this).prop('disabled', true).text('생성 중...');
@@ -455,9 +503,8 @@ $(document).ready(function() {
             const imageURL = canvas.toDataURL("image/png");
             const $imgTag = $('<img>').attr({ 'src': imageURL, 'alt': '빵 주문 영수증' });
             
-            // 파일 복제가 끝난 즉시 돔에 주입하고 모달을 캭 노출!
             $('#captured-image-container').html($imgTag); 
-            $('#image-save-modal').css('display', 'flex'); // 👈 공백 연산 없이 즉시 완성형으로 오픈!
+            $('#image-save-modal').css('display', 'flex'); 
             
             receiptElement.style.cssText = originalInlineStyle;
             $('#btn-save-img').prop('disabled', false).text(originalBtnText);
@@ -482,7 +529,6 @@ $(document).ready(function() {
         $container.stop().animate({ scrollTop: scrollH }, 400); 
     }
     
-    // 로고 클릭 시 인트로 메인 화면으로 리셋/이동
     $(document).on('click', '.logo', function() {
     	location.reload();
     });
