@@ -2408,6 +2408,13 @@
 					allDay: false
 				},
 				{
+					title: '🎉생일',
+					description: '안지환 배우님 생일🥳',
+					start: '2026-07-25',
+					className: 'bg-white',
+					allDay: false
+				},
+				{
 					title: '시데레우스',
 					description: '<p class="event">커튼콜 위크</p>갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
 					start: '2026-07-25 18:30',
@@ -2423,28 +2430,28 @@
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
+					description: '<p class="event">스페셜 커튼콜 : M12. 난 떠나</p>갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
 					start: '2026-07-31 20:00',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					description: '<p class="event">스페셜 커튼콜 : M7. 시데레우스 눈치우스</p>갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
 					start: '2026-08-01 18:30',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 박민성<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
+					description: '<p class="event">스페셜 커튼콜 : M11. 얼룩</p>갈릴레오 役 | 박민성<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
 					start: '2026-08-04 20:00',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: '시데레우스',
-					description: '<p class="event">전관</p>갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					description: '<p class="event">혜화로운공연생활 전관</p>갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
 					start: '2026-08-06 20:00',
 					className: 'bg-blue',
 					allDay: false
@@ -2453,6 +2460,76 @@
 					title: '시데레우스',
 					description: '갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
 					start: '2026-08-09 15:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '시데레우스',
+					description: '갈릴레오 役 | 박민성<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					start: '2026-08-12 20:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '시데레우스',
+					description: '갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
+					start: '2026-08-13 20:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '시데레우스',
+					description: '갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					start: '2026-08-16 15:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '시데레우스',
+					description: '갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					start: '2026-08-16 18:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '시데레우스',
+					description: '<p class="event">피쳐링 데이 전관</p>갈릴레오 役 | 박민성<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
+					start: '2026-08-19 20:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '시데레우스',
+					description: '갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					start: '2026-08-22 15:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '시데레우스',
+					description: '갈릴레오 役 | 박민성<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
+					start: '2026-08-23 18:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '시데레우스',
+					description: '갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					start: '2026-08-26 20:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '시데레우스',
+					description: '갈릴레오 役 | 박민성<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					start: '2026-08-27 20:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '시데레우스',
+					description: '갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
+					start: '2026-08-31 18:30',
 					className: 'bg-blue',
 					allDay: false
 				}
