@@ -237,9 +237,12 @@ function timeFormat(){
 		$(this).text(time);
 	});
 	
-	if($('.fc-week').last().find('.fc-other-month').length > 7){
-		$('.fc-week').last().remove();
-	}
+	/* if($('.fc-week').last().find('.fc-other-month').length > 7){
+		$('.fc-other-month.fc-future').remove();
+	} */
+	$('.fc-week.table-bordered').each(function(i, v) {
+		if($(this).find('.fc-other-month').length == 14) $(this).remove();
+	});
 	
 	$('.fc-day-top.fc-other-month').each(function(i, v) {
 		if($(this).parents('thead').next().find('tr:eq(0) td').eq($(this).index()).hasClass('fc-event-container')){
