@@ -242,6 +242,15 @@ function timeFormat(){
 	} */
 	$('.fc-week.table-bordered').each(function(i, v) {
 		if($(this).find('.fc-other-month').length == 14) $(this).remove();
+		else if($(this).find('.fc-other-month').length > 0){
+			$(this).find('.fc-other-month').each(function(i, v) {
+				const num = $(this).index();
+				$(this).parents('.fc-bg').siblings().find('tbody td').eq(num).find('a').remove();
+				if($(this).parents('.fc-bg').siblings().find('tbody td').length > num){
+					$(this).parents('.fc-bg').siblings().find('tbody td:gt('+num+')').find('a').remove();
+				}
+			});
+		}
 	});
 	
 	$('.fc-day-top.fc-other-month').each(function(i, v) {
