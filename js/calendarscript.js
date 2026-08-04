@@ -2532,6 +2532,48 @@
 					start: '2026-08-31 18:30',
 					className: 'bg-blue',
 					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '맥스 役 | 임태현<br>스티비 役 | 안지환',
+					start: '2026-09-01 20:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '맥스 役 | 홍성원<br>스티비 役 | 안지환',
+					start: '2026-09-04 20:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '맥스 役 | 임태현<br>스티비 役 | 안지환',
+					start: '2026-09-05 15:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '맥스 役 | 임태현<br>스티비 役 | 안지환',
+					start: '2026-09-10 20:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '맥스 役 | 허영손<br>스티비 役 | 안지환',
+					start: '2026-09-11 20:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '맥스 役 | 홍성원<br>스티비 役 | 안지환',
+					start: '2026-09-12 18:30',
+					className: 'bg-yellow',
+					allDay: false
 				}
 			],
 			eventClick: function(event, jsEvent, view) {
