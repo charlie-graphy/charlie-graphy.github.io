@@ -2458,35 +2458,35 @@
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					description: '<p class="event">공연 사진 엽서 증정</p>갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
 					start: '2026-08-09 15:00',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 박민성<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					description: '<p class="event">공연 사진 엽서 증정</p>갈릴레오 役 | 박민성<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
 					start: '2026-08-12 20:00',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
+					description: '<p class="event">폴라로이드 증정</p>갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
 					start: '2026-08-13 20:00',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					description: '<p class="event">셀카 포토카드 증정</p>갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
 					start: '2026-08-16 15:00',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					description: '<p class="event">셀카 포토카드 증정</p>갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
 					start: '2026-08-16 18:30',
 					className: 'bg-blue',
 					allDay: false
@@ -2500,79 +2500,198 @@
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					description: '<p class="event">셀카 포토카드 증정</p>갈릴레오 役 | 김지철<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
 					start: '2026-08-22 15:00',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 박민성<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
+					description: '<p class="event">셀카 포토카드 증정</p>갈릴레오 役 | 박민성<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
 					start: '2026-08-23 18:30',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					description: '<p class="event">굿바이 메시지 증정</p>갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
 					start: '2026-08-26 20:00',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 박민성<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
+					description: '<p class="event">굿바이 메시지 증정</p>갈릴레오 役 | 박민성<br>케플러 役 | 안지환<br>마리아 役 | 유낙원',
 					start: '2026-08-27 20:00',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: '시데레우스',
-					description: '갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
+					description: '<p class="event">마지막 공연(무대 인사), 굿바이 메시지 증정</p>갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
 					start: '2026-08-31 18:30',
 					className: 'bg-blue',
 					allDay: false
 				},
 				{
 					title: 'VL',
-					description: '맥스 役 | 임태현<br>스티비 役 | 안지환',
+					description: '<p class="event">첫 공연 무대인사, 프리쇼(프리뷰), 쿠폰팩 증정</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
 					start: '2026-09-01 20:00',
 					className: 'bg-yellow',
 					allDay: false
 				},
 				{
 					title: 'VL',
-					description: '맥스 役 | 홍성원<br>스티비 役 | 안지환',
+					description: '<p class="event">첫 공연 무대인사, 프리쇼(프리뷰), 쿠폰팩 증정</p>맥스 役 | 홍성원<br>스티비 役 | 안지환',
 					start: '2026-09-04 20:00',
 					className: 'bg-yellow',
 					allDay: false
 				},
 				{
 					title: 'VL',
-					description: '맥스 役 | 임태현<br>스티비 役 | 안지환',
+					description: '<p class="event">프리쇼(프리뷰), 쿠폰팩 증정</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
 					start: '2026-09-05 15:00',
 					className: 'bg-yellow',
 					allDay: false
 				},
 				{
 					title: 'VL',
-					description: '맥스 役 | 임태현<br>스티비 役 | 안지환',
+					description: '<p class="event">프리쇼(프리뷰), 쿠폰팩 증정</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
 					start: '2026-09-10 20:00',
 					className: 'bg-yellow',
 					allDay: false
 				},
 				{
 					title: 'VL',
-					description: '맥스 役 | 허영손<br>스티비 役 | 안지환',
+					description: '<p class="event">프리쇼(프리뷰), 쿠폰팩 증정</p>맥스 役 | 허영손<br>스티비 役 | 안지환',
 					start: '2026-09-11 20:00',
 					className: 'bg-yellow',
 					allDay: false
 				},
 				{
 					title: 'VL',
-					description: '맥스 役 | 홍성원<br>스티비 役 | 안지환',
+					description: '<p class="event">프리쇼(프리뷰), 쿠폰팩 증정</p>맥스 役 | 홍성원<br>스티비 役 | 안지환',
 					start: '2026-09-12 18:30',
 					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">커튼콜 데이, 네컷 사진 증정</p>맥스 役 | 허영손<br>스티비 役 | 안지환',
+					start: '2026-09-16 20:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">커튼콜 데이, 네컷 사진 증정</p>맥스 役 | 홍성원<br>스티비 役 | 안지환',
+					start: '2026-09-19 15:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">커튼콜 데이, 네컷 사진 증정</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
+					start: '2026-09-19 18:30',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">더블 적립, 엽서 증정</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
+					start: '2026-09-25 15:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">더블 적립, 엽서 증정</p>맥스 役 | 홍성원<br>스티비 役 | 안지환',
+					start: '2026-09-27 15:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">포토카드 증정, 스페셜 커튼콜(디스코 파티 설명하기: 맥스의 마지막 기회)</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
+					start: '2026-09-30 20:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">포토카드 증정, 스페셜 커튼콜(맥스와 릴 코자의 랩 배틀)</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
+					start: '2026-10-02 16:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">포토카드 증정, 스페셜 커튼콜(실라와 마초맨 랜디 새비지 스티커북)</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
+					start: '2026-10-03 15:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '<p class="event">첫 공연(프리뷰), 미래탐사 꾸러미 증정</p>노인 남원 役 | 오의식<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 나하나',
+					start: '2026-10-06 19:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '<p class="event">미래탐사 꾸러미 증정(프리뷰)</p>노인 남원 役 | 이형훈<br>선희 役 | 배해선<br>청년 남원 役 | 안지환<br>정분 役 | 박슬기',
+					start: '2026-10-09 14:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '<p class="event">미래탐사 꾸러미 증정(프리뷰)</p>노인 남원 役 | 이형훈<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 박슬기',
+					start: '2026-10-10 19:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 이희준<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 이수빈',
+					start: '2026-10-14 15:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 안재욱<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 홍지희',
+					start: '2026-10-15 19:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 오의식<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 박슬기',
+					start: '2026-10-17 19:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '<p class="event">전관</p>노인 남원 役 | 오의식<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 나하나',
+					start: '2026-10-20 19:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 안재욱<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 홍지희',
+					start: '2026-10-23 19:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 이형훈<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 나하나',
+					start: '2026-10-25 18:00',
+					className: 'bg-blue',
 					allDay: false
 				}
 			],
