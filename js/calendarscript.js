@@ -2535,42 +2535,42 @@
 				},
 				{
 					title: 'VL',
-					description: '<p class="event">첫 공연 무대인사, 프리쇼(프리뷰), 쿠폰팩 증정</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
+					description: '<p class="event">첫 공연 무대인사(프리뷰), 쿠폰팩 증정</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
 					start: '2026-09-01 20:00',
 					className: 'bg-yellow',
 					allDay: false
 				},
 				{
 					title: 'VL',
-					description: '<p class="event">첫 공연 무대인사, 프리쇼(프리뷰), 쿠폰팩 증정</p>맥스 役 | 홍성원<br>스티비 役 | 안지환',
+					description: '<p class="event">첫 공연 무대인사(프리뷰), 쿠폰팩 증정</p>맥스 役 | 홍성원<br>스티비 役 | 안지환',
 					start: '2026-09-04 20:00',
 					className: 'bg-yellow',
 					allDay: false
 				},
 				{
 					title: 'VL',
-					description: '<p class="event">프리쇼(프리뷰), 쿠폰팩 증정</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
+					description: '<p class="event">쿠폰팩 증정</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
 					start: '2026-09-05 15:00',
 					className: 'bg-yellow',
 					allDay: false
 				},
 				{
 					title: 'VL',
-					description: '<p class="event">프리쇼(프리뷰), 쿠폰팩 증정</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
+					description: '<p class="event">쿠폰팩 증정</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
 					start: '2026-09-10 20:00',
 					className: 'bg-yellow',
 					allDay: false
 				},
 				{
 					title: 'VL',
-					description: '<p class="event">프리쇼(프리뷰), 쿠폰팩 증정</p>맥스 役 | 허영손<br>스티비 役 | 안지환',
+					description: '<p class="event">쿠폰팩 증정</p>맥스 役 | 허영손<br>스티비 役 | 안지환',
 					start: '2026-09-11 20:00',
 					className: 'bg-yellow',
 					allDay: false
 				},
 				{
 					title: 'VL',
-					description: '<p class="event">프리쇼(프리뷰), 쿠폰팩 증정</p>맥스 役 | 홍성원<br>스티비 役 | 안지환',
+					description: '<p class="event">쿠폰팩 증정</p>맥스 役 | 홍성원<br>스티비 役 | 안지환',
 					start: '2026-09-12 18:30',
 					className: 'bg-yellow',
 					allDay: false
@@ -2639,6 +2639,13 @@
 					allDay: false
 				},
 				{
+					title: 'VL',
+					description: '<p class="event">전관</p>맥스 役 | 허영손<br>스티비 役 | 안지환',
+					start: '2026-10-06 20:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
 					title: '렛미플라이',
 					description: '<p class="event">미래탐사 꾸러미 증정(프리뷰)</p>노인 남원 役 | 이형훈<br>선희 役 | 배해선<br>청년 남원 役 | 안지환<br>정분 役 | 박슬기',
 					start: '2026-10-09 14:00',
@@ -2650,6 +2657,20 @@
 					description: '<p class="event">미래탐사 꾸러미 증정(프리뷰)</p>노인 남원 役 | 이형훈<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 박슬기',
 					start: '2026-10-10 19:00',
 					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '맥스 役 | 임태현<br>스티비 役 | 안지환',
+					start: '2026-10-11 15:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '맥스 役 | 임태현<br>스티비 役 | 안지환',
+					start: '2026-10-11 18:30',
+					className: 'bg-yellow',
 					allDay: false
 				},
 				{
@@ -2667,10 +2688,24 @@
 					allDay: false
 				},
 				{
+					title: 'VL',
+					description: '맥스 役 | 임태현<br>스티비 役 | 안지환',
+					start: '2026-10-16 16:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
 					title: '렛미플라이',
 					description: '노인 남원 役 | 오의식<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 박슬기',
 					start: '2026-10-17 19:00',
 					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '맥스 役 | 홍성원<br>스티비 役 | 안지환',
+					start: '2026-10-18 18:30',
+					className: 'bg-yellow',
 					allDay: false
 				},
 				{
@@ -2681,10 +2716,24 @@
 					allDay: false
 				},
 				{
+					title: 'VL',
+					description: '맥스 役 | 허영손<br>스티비 役 | 안지환',
+					start: '2026-10-21 20:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
 					title: '렛미플라이',
 					description: '노인 남원 役 | 안재욱<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 홍지희',
 					start: '2026-10-23 19:30',
 					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '맥스 役 | 홍성원<br>스티비 役 | 안지환',
+					start: '2026-10-24 15:00',
+					className: 'bg-yellow',
 					allDay: false
 				},
 				{
