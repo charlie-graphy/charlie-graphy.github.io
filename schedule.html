@@ -246,9 +246,9 @@ function timeFormat(){
 			$(this).find('.fc-other-month').not('.fc-day-top').each(function(i, v) {
 				const num = $(this).index();
 				$(this).parents('.fc-bg').siblings().find('tbody td').eq(num).find('a').remove();
-				if($(this).parents('.fc-bg').siblings().find('tbody td').length > num){
+				/* if($(this).parents('.fc-bg').siblings().find('tbody td').length > num){
 					$(this).parents('.fc-bg').siblings().find('tbody td:gt('+num+')').find('a').remove();
-				}
+				} */
 			});
 		}
 	});
