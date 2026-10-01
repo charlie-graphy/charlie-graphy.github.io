@@ -2529,7 +2529,7 @@
 				{
 					title: '시데레우스',
 					description: '<p class="event">마지막 공연(무대 인사), 굿바이 메시지 증정</p>갈릴레오 役 | 안재영<br>케플러 役 | 안지환<br>마리아 役 | 이상아',
-					start: '2026-08-31 18:30',
+					start: '2026-08-30 18:30',
 					className: 'bg-blue',
 					allDay: false
 				},
