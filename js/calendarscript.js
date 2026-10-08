@@ -2752,7 +2752,7 @@
 				},
 				{
 					title: 'VL',
-					description: '맥스 役 | 임태현<br>스티비 役 | 안지환',
+					description: '<p class="event">스페셜 커튼콜</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
 					start: '2026-10-30 16:00',
 					className: 'bg-yellow',
 					allDay: false
@@ -2773,7 +2773,7 @@
 				},
 				{
 					title: 'VL',
-					description: '맥스 役 | 허영손<br>스티비 役 | 안지환',
+					description: '<p class="event">스페셜 커튼콜</p>맥스 役 | 허영손<br>스티비 役 | 안지환',
 					start: '2026-11-01 20:00',
 					className: 'bg-yellow',
 					allDay: false
@@ -2787,7 +2787,7 @@
 				},
 				{
 					title: 'VL',
-					description: '맥스 役 | 홍성원<br>스티비 役 | 안지환',
+					description: '<p class="event">사인회</p>맥스 役 | 홍성원<br>스티비 役 | 안지환',
 					start: '2026-11-04 20:00',
 					className: 'bg-yellow',
 					allDay: false
@@ -2801,7 +2801,7 @@
 				},
 				{
 					title: 'VL',
-					description: '맥스 役 | 홍성원<br>스티비 役 | 안지환',
+					description: '<p class="event">오렌지드로우 위크</p>맥스 役 | 홍성원<br>스티비 役 | 안지환',
 					start: '2026-11-06 16:00',
 					className: 'bg-yellow',
 					allDay: false
@@ -2815,28 +2815,28 @@
 				},
 				{
 					title: 'VL',
-					description: '맥스 役 | 허영손<br>스티비 役 | 안지환',
+					description: '<p class="event">오렌지드로우 위크</p>맥스 役 | 허영손<br>스티비 役 | 안지환',
 					start: '2026-11-08 18:30',
 					className: 'bg-yellow',
 					allDay: false
 				},
 				{
 					title: 'VL',
-					description: '맥스 役 | 임태현<br>스티비 役 | 안지환',
+					description: '<p class="event">커튼콜 위크+더블적립</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
 					start: '2026-11-12 20:00',
 					className: 'bg-yellow',
 					allDay: false
 				},
 				{
 					title: 'VL',
-					description: '맥스 役 | 허영손<br>스티비 役 | 안지환',
+					description: '<p class="event">커튼콜 위크+더블적립</p>맥스 役 | 허영손<br>스티비 役 | 안지환',
 					start: '2026-11-14 15:00',
 					className: 'bg-yellow',
 					allDay: false
 				},
 				{
 					title: 'VL',
-					description: '맥스 役 | 허영손<br>스티비 役 | 안지환',
+					description: '<p class="event">커튼콜 위크+더블적립</p>맥스 役 | 허영손<br>스티비 役 | 안지환',
 					start: '2026-11-14 18:30',
 					className: 'bg-yellow',
 					allDay: false
