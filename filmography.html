@@ -65,6 +65,8 @@
 	            <li class="nav-item" data-target="C" data-name="콘서트">콘서트</li>
 	            <li class="nav-item" data-target="D" data-name="드라마">드라마</li>
 	            <li class="nav-item" data-target="MO" data-name="영화">영화</li>
+	            <li class="nav-item" data-target="TV" data-name="방송">방송</li>
+	            <!-- <li class="nav-item" data-target="RA" data-name="라디오">라디오</li> -->
 	        </ul>
 	
 	        <!-- 3번째 줄: 스크롤 가능한 콘텐츠 목록 -->
@@ -75,6 +77,18 @@
 		            <div class="folderTitle"><i class='bx bx-chevron-down yearChoice' style="margin: 0 10px;"></i><span class="selected-title">2026년</span></div>
 		        </div>
 		        <div class="filmo-content">
+		        
+		        	<div class="filmo-item y" data-target="M">
+						<div class="filmoImgDiv y"><img class="filmoImg y" src="https://i.namu.wiki/i/-IVkYsyLnFkhk1zJGsn-uGZptO8OurFs5fFTcX5iVuJuCs8Bck3jdQfsw8InWWjGIF7zD_y2SZodMh41OxU9KL5_1G4Kb5e58c-YLU9dTGZrxaUxTrTepSZlkbnzUI0-ggGW3qxMN4VMDQ4J9f-rMA.webp" data-type="poster" data-idx="46" oncontextmenu="return false"></img></div>
+		            	<div class="desc">
+		            		<p class="key"><span class="keyM">#뮤지컬</span><span class="keyM">#초연</span></p>
+		            		<p><span class="title">리플리</span></p>
+		            		<p>2026.12.23 - 2027.03.01</p>
+		            		<p>홍익대 대학로 아트센터 소극장</p>
+		            		<p>박재이 役</p>
+		            	</div>
+		            </div>
+		        
 		        	<div class="filmo-item y" data-target="M">
 						<div class="filmoImgDiv y"><img class="filmoImg y" src="https://lh3.googleusercontent.com/d/1LnwWlRCbXs3RfxcLpRjsWez_GiFGgWM9" data-type="poster" data-idx="45" oncontextmenu="return false"></img></div>
 		            	<div class="desc">
@@ -99,7 +113,7 @@
 		            	<div class="desc">
 		            		<p class="key"><span class="keyM">#연극</span><span class="keyM">#초연</span></p>
 		            		<p><span class="title">VL</span></p>
-		            		<p>2026.09.01 - 2026.11.29</p>
+		            		<p>2026.09.01 - 2026.12.06</p>
 		            		<p>링크더스페이스 2관</p>
 		            		<p>스티비 役</p>
 		            	</div>
@@ -150,6 +164,27 @@
 		            		<p>청년 남원 役</p>
 		            	</div>
 		            </div>
+		        
+		            <div class="filmo-item" data-target="TV">
+		            	<div class="filmoImgDiv"><img class="filmoImg" src="https://search.pstatic.net/common?type=f&size=176x244&quality=100&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20251106_2%2F1762417784037mPPU0_JPEG%2F9583babf2735f14a7f54a585e19a8980.jpg" data-type="poster" data-idx="" oncontextmenu="return false"></img></div>
+		            	<div class="desc" style="grid-template-rows: repeat(4, 1fr)">
+		            		<p class="key"><span class="keyM">#tvN</span><span class="keyM">#예능</span>	</p>
+		            		<p><span class="title">출장 십오야</span></p>
+		            		<p>2025.11.05, 12, 19</p>
+		            		<p>출장십오야 X 스타쉽 전국체전</p>
+		            	</div>
+		            </div>
+		            
+		            <div class="filmo-item" data-target="TV">
+		            	<div class="filmoImgDiv"><img class="filmoImg" src="https://search.pstatic.net/common?type=f&size=176x244&quality=100&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20250226_176%2F1740533858598N8c4w_JPEG%2F75c625a49f2a53a01750b7b9498cb8c2.jpg" data-type="poster" data-idx="" oncontextmenu="return false"></img></div>
+		            	<div class="desc" style="grid-template-rows: repeat(4, 1fr)">
+		            		<p class="key"><span class="keyM">#KBS</span><span class="keyM">#예능</span>	</p>
+		            		<p><span class="title">박보검의 칸타빌레</span></p>
+		            		<p>2025.08.01</p>
+		            		<p>뮤지컬 친구들</p>
+		            	</div>
+		            </div>
+		            
 		            <div class="filmo-item y" data-target="M">
 						<div class="filmoImgDiv y"><img class="filmoImg y" src="https://lh3.googleusercontent.com/d/1yruUBm7FtfcUmq2whsXemFGFf_s0cHvT" data-type="poster" data-idx="40" oncontextmenu="return false"></img></div>
 		            	<div class="desc">
@@ -1098,7 +1133,8 @@ $(document).ready(function() {
         	else if(idx == '43') $(this).find('img').attr('src','https://lh3.googleusercontent.com/d/1QOgNLjzUBdJOmWBTlXEeTgYxOXdT36_4');
         	else if(idx == '44') $(this).find('img').attr('src','https://lh3.googleusercontent.com/d/1su9j07Au_bWy0M4gQn_oR4Ka-07MJf8P');
         	else if(idx == '45') $(this).find('img').attr('src','https://lh3.googleusercontent.com/d/1OnOTKkaXonEjT9yNWkfi71DEdsJjg5ki');
-        	else if(idx == '46') $(this).find('img').attr('src','');
+        	else if(idx == '46') $(this).find('img').attr('src','https://i.namu.wiki/i/_VQbTv-Aw_IJ2PdWaAX5DP1y7eN33ZR3Yi87sFzS8UoGfWsZKkYAkaWBIXLx27BV4GOqJg-iZnC6ZW9pyWmlQlpe5rFEnvYoIgPvhLKRKU-LDwzsyFYngop6qKgmCHg1KASxBpkdOhAiCvoW4-tJMg.webp');
+            else if(idx == '47') $(this).find('img').attr('src','');
         	
         	
         	
@@ -1149,7 +1185,8 @@ $(document).ready(function() {
         	else if(idx == '43') $(this).find('img').attr('src','https://lh3.googleusercontent.com/d/1mNev2QUXdcnnWL3Uw3pc1_apOrEXFIE4');
         	else if(idx == '44') $(this).find('img').attr('src','https://lh3.googleusercontent.com/d/1e-NITAmV_HkohDtqt4MLrPqaYhy2aguB');
         	else if(idx == '45') $(this).find('img').attr('src','https://lh3.googleusercontent.com/d/1LnwWlRCbXs3RfxcLpRjsWez_GiFGgWM9');
-        	else if(idx == '46') $(this).find('img').attr('src','https://lh3.googleusercontent.com/d/');
+        	else if(idx == '46') $(this).find('img').attr('src','https://i.namu.wiki/i/-IVkYsyLnFkhk1zJGsn-uGZptO8OurFs5fFTcX5iVuJuCs8Bck3jdQfsw8InWWjGIF7zD_y2SZodMh41OxU9KL5_1G4Kb5e58c-YLU9dTGZrxaUxTrTepSZlkbnzUI0-ggGW3qxMN4VMDQ4J9f-rMA.webp');
+        	else if(idx == '47') $(this).find('img').attr('src','https://lh3.googleusercontent.com/d/');
         	
         	
         	
