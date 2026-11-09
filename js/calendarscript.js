@@ -3010,6 +3010,13 @@
 					allDay: false
 				},
 				{
+					title: '🎉데뷔 11주년',
+					description: '안지환 배우님 데뷔 11주년🥳',
+					start: '2026-12-11',
+					className: 'bg-white',
+					allDay: false
+				},
+				{
 					title: '렛미플라이',
 					description: '노인 남원 役 | 이형훈<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 이수빈',
 					start: '2026-12-12 15:00',
