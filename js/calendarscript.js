@@ -2752,7 +2752,7 @@
 				},
 				{
 					title: 'VL',
-					description: '<p class="event">스페셜 커튼콜</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
+					description: '<p class="event">스페셜 커튼콜(실라와 마초맨 랜디 새비지 스티커북)</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
 					start: '2026-10-30 16:00',
 					className: 'bg-yellow',
 					allDay: false
@@ -2773,14 +2773,14 @@
 				},
 				{
 					title: 'VL',
-					description: '<p class="event">스페셜 커튼콜</p>맥스 役 | 허영손<br>스티비 役 | 안지환',
+					description: '<p class="event">스페셜 커튼콜(맥스와 릴 코자의 랩 배틀)</p>맥스 役 | 허영손<br>스티비 役 | 안지환',
 					start: '2026-11-01 20:00',
 					className: 'bg-yellow',
 					allDay: false
 				},
 				{
 					title: '렛미플라이',
-					description: '노인 남원 役 | 오의식<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 나하나',
+					description: '<p class="event">커튼콜 데이</p>노인 남원 役 | 오의식<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 나하나',
 					start: '2026-11-03 19:30',
 					className: 'bg-blue',
 					allDay: false
@@ -2794,7 +2794,7 @@
 				},
 				{
 					title: '렛미플라이',
-					description: '노인 남원 役 | 오의식<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 나하나',
+					description: '<p class="event">커튼콜 데이</p>노인 남원 役 | 오의식<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 나하나',
 					start: '2026-11-05 19:30',
 					className: 'bg-blue',
 					allDay: false
@@ -2808,7 +2808,7 @@
 				},
 				{
 					title: '렛미플라이',
-					description: '노인 남원 役 | 안재욱<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 이수빈',
+					description: '<p class="event">커튼콜 데이</p>노인 남원 役 | 안재욱<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 이수빈',
 					start: '2026-11-07 19:00',
 					className: 'bg-blue',
 					allDay: false
@@ -2821,10 +2821,24 @@
 					allDay: false
 				},
 				{
+					title: '렛미플라이',
+					description: '<p class="event">스페셜 티켓 증정</p>노인 남원 役 | 오의식<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 이수빈',
+					start: '2026-11-10 19:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
 					title: 'VL',
 					description: '<p class="event">커튼콜 위크+더블적립</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
 					start: '2026-11-12 20:00',
 					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '<p class="event">스페셜 티켓 증정</p>노인 남원 役 | 안재욱<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 홍지희',
+					start: '2026-11-13 19:30',
+					className: 'bg-blue',
 					allDay: false
 				},
 				{
@@ -2839,6 +2853,216 @@
 					description: '<p class="event">커튼콜 위크+더블적립</p>맥스 役 | 허영손<br>스티비 役 | 안지환',
 					start: '2026-11-14 18:30',
 					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '<p class="event">스페셜 티켓 증정</p>노인 남원 役 | 안재욱<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 홍지희',
+					start: '2026-11-15 18:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '<p class="event">스페셜 커튼콜 데이(M12.컵케이크)</p>노인 남원 役 | 오의식<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 박슬기',
+					start: '2026-11-17 19:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '<p class="event">스페셜 커튼콜 데이(M10.여행)</p>노인 남원 役 | 이희준<br>선희 役 | 배해선<br>청년 남원 役 | 안지환<br>정분 役 | 홍지희',
+					start: '2026-11-18 19:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">럭키드로우</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
+					start: '2026-11-20 16:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">럭키드로우</p>맥스 役 | 허영손<br>스티비 役 | 안지환',
+					start: '2026-11-20 20:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">럭키드로우</p>맥스 役 | 홍성원<br>스티비 役 | 안지환',
+					start: '2026-11-21 18:30',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '<p class="event">스페셜 커튼콜 데이(M10.여행)</p>노인 남원 役 | 안재욱<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 이수빈',
+					start: '2026-11-22 18:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">사인회</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
+					start: '2026-11-24 20:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 이희준<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 홍지희',
+					start: '2026-11-25 15:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">럭키드로우</p>맥스 役 | 홍성원<br>스티비 役 | 안지환',
+					start: '2026-11-27 16:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">럭키드로우</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
+					start: '2026-11-27 20:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 오의식<br>선희 役 | 배해선<br>청년 남원 役 | 안지환<br>정분 役 | 이수빈',
+					start: '2026-11-28 15:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 이희준<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 박슬기',
+					start: '2026-11-29 18:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 이희준<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 이수빈',
+					start: '2026-12-01 19:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 이희준<br>선희 役 | 배해선<br>청년 남원 役 | 안지환<br>정분 役 | 홍지희',
+					start: '2026-12-02 19:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">굿바이 포토카드 증정</p>맥스 役 | 홍성원<br>스티비 役 | 안지환',
+					start: '2026-12-03 16:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">굿바이 포토카드 증정</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
+					start: '2026-12-04 16:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: 'VL',
+					description: '<p class="event">마지막 공연(무대인사)</p>맥스 役 | 임태현<br>스티비 役 | 안지환',
+					start: '2026-12-05 15:00',
+					className: 'bg-yellow',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 오의식<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 박슬기',
+					start: '2026-12-06 14:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 안재욱<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 홍지희',
+					start: '2026-12-06 18:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 이희준<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 홍지희',
+					start: '2026-12-08 19:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 이희준<br>선희 役 | 배해선<br>청년 남원 役 | 안지환<br>정분 役 | 이수빈',
+					start: '2026-12-09 19:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 이형훈<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 이수빈',
+					start: '2026-12-12 15:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 안재욱<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 이수빈',
+					start: '2026-12-12 19:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 오의식<br>선희 役 | 김지현<br>청년 남원 役 | 안지환<br>정분 役 | 박슬기',
+					start: '2026-12-13 18:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 안재욱<br>선희 役 | 배해선<br>청년 남원 役 | 안지환<br>정분 役 | 홍지희',
+					start: '2026-12-15 19:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 이희준<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 이수빈',
+					start: '2026-12-16 19:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 이형훈<br>선희 役 | 배해선<br>청년 남원 役 | 안지환<br>정분 役 | 박슬기',
+					start: '2026-12-18 19:30',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 안재욱<br>선희 役 | 배해선<br>청년 남원 役 | 안지환<br>정분 役 | 박슬기',
+					start: '2026-12-20 14:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '렛미플라이',
+					description: '노인 남원 役 | 오의식<br>선희 役 | 윤공주<br>청년 남원 役 | 안지환<br>정분 役 | 이수빈',
+					start: '2026-12-20 18:00',
+					className: 'bg-blue',
 					allDay: false
 				}
 			],
