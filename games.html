@@ -55,22 +55,27 @@
         </header>
 
         <!-- 콘텐츠 영역 (헤더 아래 분리) -->
-        <div class="content-section">
+        <div class="content-section" id="cs">
 	        <!-- 2번째 줄: 선택된 항목 표시 + 보기 모드 선택 -->
 	        <div class="game-display">
-	            <div class="folderTitle"><i class='bx bx-chevron-right' style="margin-right: 10px;"></i><span class="selected-title">미니 게임</span></div>
+                <div class="folderTitle">
+                    <span class="back-btn" id="back">‹ 목록</span>
+                    <i class='bx bx-chevron-right' style="margin-right: 10px;"></i>
+                    <span class="selected-title" id="title">미니 게임</span>
+                    <span class="game-count" id="count"></span>
+                </div>
 	            <div class="view-options">
 	                <div class="view-btn" data-view="single"><i class='bx bx-list-ul'></i></div>
-	                <div class="view-btn" data-view="double"><i class='bx bx-grid'></i></div>
+	                <div class="view-btn" data-view="grid"><i class='bx bx-grid'></i></div>
 	            </div>
 	        </div>
 	
 	        <!-- 3번째 줄: 스크롤 가능한 콘텐츠 목록 -->
-	        <div class="game-list">
-	            <div class="game-item" data-idx="1"><i class='bx bx-chevron-right'></i><a href="2048">지화니 2048</a></div>
+	        <div class="game-list" id="list">
+	            <!-- <div class="game-item" data-idx="1"><i class='bx bx-chevron-right'></i><a href="2048">지화니 2048</a></div> -->
 				<!-- <div class="game-item" data-idx="2"><i class='bx bx-chevron-right'></i><a href="clothes">아깨비 날개옷 입히기</a></div> -->
 				<!-- <div class="game-item" data-idx="3"><i class='bx bx-chevron-right'></i><a href="puzzle">지화니 조각 퍼즐</a></div> -->
-				<div class="game-item" data-idx="4"><i class='bx bx-chevron-right'></i><a href="2024exam">2024 지환고사</a></div>
+				<!-- <div class="game-item" data-idx="4"><i class='bx bx-chevron-right'></i><a href="2024exam">2024 지환고사</a></div> -->
 	        </div>
         </div>
         
@@ -78,6 +83,51 @@
 </body>
 </html>
 <script>
+/* ===== 게임 목록 =====
+thumb : 사각형 사진 경로 (없거나 못 찾으면 글자 타일로 표시)
+run   : 같은 페이지 안에서 실행할 게임 함수 / href : 기존처럼 다른 페이지로 이동 */
+var GAMES = [
+	{ title:"지화니 2048", desc:"와앙 지화니 타일을 밀어 합쳐 2048 만들기", emoji:"😮",thumb:"img/games/2048.png", href:"2048.html"},
+	{ title:"2024 지환고사", desc:"안지환 배우님 2024년 필모 퀴즈", emoji:"📝", thumb:"img/games/2024exam.png", href:"2024exam.html" }
+];
+
+var cs = document.getElementById("cs"), 
+	list = document.getElementById("list"), 
+	stage = document.getElementById("stage");
+var titleEl = document.getElementById("title"), cleanup = null;
+document.getElementById("count").textContent = GAMES.length;
+
+const urlParams = new URLSearchParams(window.location.search);
+
+GAMES.forEach(function(g, i){
+	var a = document.createElement("a");
+	
+	a.className = "game-item";
+	
+	 if (urlParams.get("only") === "content-section") {
+		$(".top-bar").hide(); // 헤더 숨기기
+		$("body#game").css("padding", "0"); // 여백 제거
+		$("#game .content-section").css({"margin-top":"0","height":"calc(100vh - 2px)"});
+		
+		$(a).attr("href",g.href+"?only=content-section");
+		
+	 }else a.href = g.href || "#";
+	
+	var t = document.createElement("div"); t.className = "thumb"; t.textContent = g.emoji;
+  
+	if (g.thumb) { var im = new Image(); im.alt = ""; im.onload = function(){ t.textContent = ""; t.appendChild(im); }; im.src = g.thumb; }
+
+	var x = document.createElement("div"); x.className = "txt";
+  
+	x.innerHTML = '<span class="game-name"></span><span class="game-desc"></span>';
+  
+	x.children[0].textContent = g.title; x.children[1].textContent = g.desc;
+  
+	a.appendChild(t); a.appendChild(x);
+  
+  	list.appendChild(a);
+});
+	
 $(document).ready(function() {
 	const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get("only") === "content-section") {
@@ -88,14 +138,6 @@ $(document).ready(function() {
         	$(this).attr("href",$(this).attr("href")+"?only=content-section");
         });
 	}
-
-    // 보기 모드 변경
-    $(".view-btn").click(function() {
-        let mode = $(this).data("view");
-        $(".game-list").toggleClass("double", mode === "double");
-        if(mode === "double" && urlParams.get("only") === "content-section"){
-        	$(".game-list.double").css({"grid-template-columns":"repeat(2, 1fr)"});
-        }else if(mode === "single" && urlParams.get("only") === "content-section")$(".game-list").css({"grid-template-columns":"repeat(1, 1fr)"});
-    });
+    $(".view-btn").click(function(){ $(".game-list").toggleClass("single", $(this).data("view") === "single"); });
 });
 </script>
