@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#0a1226">
+<title>달이 점점 커져</title>
+<link rel="stylesheet" href="moon.css">
+</head>
+<body>
+<main id="game">
+  <div id="sky"><div id="stars"></div></div>
+  <header id="hud"><b class="ttl">달이 점점 커져</b><span id="time">00:00.0</span></header>
+
+  <div id="moonBox">
+    <div id="glow"></div>
+    <div id="moon"><div id="pop"><img src="assets/moon.svg" alt="" draggable="false"></div></div>
+    <div id="moonHit" role="button" aria-label="달 키우기"></div>
+  </div>
+  <div id="wash"></div>
+
+  <div id="char">
+    <div id="rig">
+      <img class="part" id="p-legs" src="assets/char-legs.svg" alt="" draggable="false">
+      <div id="upper">
+        <img class="part" id="p-torso" src="assets/char-torso.svg" alt="" draggable="false">
+        <img class="part" id="p-armdown" src="assets/char-arm-down.svg" alt="" draggable="false">
+        <img class="part" id="p-head" src="assets/char-head.svg" alt="" draggable="false">
+        <img class="part" id="p-armup" src="assets/char-arm-up.svg" alt="" draggable="false">
+      </div>
+    </div>
+    <div id="fallenWrap">
+      <img id="fallenImg" src="assets/char-fallen.svg" alt="" draggable="false">
+      <i class="puff" style="left:4%"></i><i class="puff p2" style="left:26%"></i><i class="puff p2" style="left:56%"></i><i class="puff" style="left:76%"></i>
+    </div>
+    <div id="bubble" class="show"></div>
+  </div>
+
+  <div id="hint" class="off">달을 터치하면 게임이 시작돼요 <em>PC: 클릭 · 스페이스바</em></div>
+
+  <section id="start" class="panel">
+    <!-- <h1>달이 점점<br>커져</h1> -->
+    <div class="card">
+      <p><b>달을 터치</b>해서 크게 만들어보세요.</p>
+      <p>가만히 있으면 달이 <b>작아져요.</b></p>
+      <button id="startBtn">시작하기</button>
+    </div>
+  </section>
+
+  <section id="result" class="panel hidden"></section>
+  <div id="flash"></div><div id="dark"></div>
+</main>
+<script src="moon.js"></script>
+</body>
+</html>
