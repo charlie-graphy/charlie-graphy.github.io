@@ -3071,6 +3071,20 @@
 					start: '2026-12-20 18:00',
 					className: 'bg-blue',
 					allDay: false
+				},
+				{
+					title: '<p class="event">첫 공연(프리뷰)</p>리플리',
+					description: '박재이 役 | 안지환<br>강우영 役 | 한상훈',
+					start: '2026-12-23 20:00',
+					className: 'bg-gray',
+					allDay: false
+				},
+				{
+					title: '<p class="event">프리뷰</p>리플리',
+					description: '박재이 役 | 안지환<br>강우영 役 | 황휘',
+					start: '2026-12-26 15:00',
+					className: 'bg-gray',
+					allDay: false
 				}
 			],
 			eventClick: function(event, jsEvent, view) {
