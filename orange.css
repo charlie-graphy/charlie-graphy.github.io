@@ -1,0 +1,117 @@
+:root {
+  --ink: #6b3510;
+  --ink-soft: #a0642c;
+  --orange: #ff9a24;
+  --orange-d: #e5700a;
+  font-family: "Jua", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0; height: 100%; overflow: hidden;
+  background: #f3d9ad; color: var(--ink);
+  overscroll-behavior: none; touch-action: none;
+  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+}
+
+#app {
+  position: relative; margin: 0 auto;
+  height: 100vh; height: 100dvh;
+  max-width: 640px; overflow: hidden;
+  background: radial-gradient(120% 80% at 50% 30%, #fffaf0 0%, #ffefd0 58%, #ffe0b0 100%);
+  box-shadow: 0 0 50px rgba(120, 70, 20, .22);
+  touch-action: none;
+}
+canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
+canvas.grab { cursor: grabbing; }
+
+#danger {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  box-shadow: inset 0 0 90px 24px rgba(255, 70, 40, .55);
+}
+
+/* ---- HUD ---- */
+#hud {
+  position: absolute; left: 0; right: 0; top: 0;
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: calc(env(safe-area-inset-top, 0px) + 12px) 14px 0 18px;
+  pointer-events: none;
+}
+.stat { display: flex; flex-direction: column; line-height: 1.15; }
+.stat.best { margin-left: auto; text-align: right; }
+.label { font-size: 12px; color: var(--ink-soft); }
+.value { font-size: 30px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.value.small { font-size: 19px; padding-top: 6px; }
+.icon-btn {
+  pointer-events: auto; flex: none; width: 42px; height: 42px; border-radius: 50%;
+  border: 0; background: rgba(255, 255, 255, .8);
+  box-shadow: 0 2px 8px rgba(150, 90, 30, .25);
+  font-size: 20px; cursor: pointer; line-height: 1;
+}
+.icon-btn:active { transform: scale(.94); }
+.icon-btn.off { opacity: .55; }
+
+#hint {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 0 22px calc(env(safe-area-inset-bottom, 0px) + 14px);
+  text-align: center; pointer-events: none;
+}
+#tip { margin: 0; font-size: 15px; font-weight: 700; min-height: 22px; transition: color .2s, opacity .4s; }
+#tip.warn { color: #e0381f; }
+
+/* ---- 오버레이 / 카드 ---- */
+.overlay {
+  position: absolute; inset: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: center; padding: 22px;
+  background: rgba(255, 244, 222, .9);
+  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+  transition: opacity .35s ease, visibility .35s;
+}
+#result { background: rgba(255, 244, 222, .55); }
+.overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.card {
+  width: min(360px, 100%); text-align: center;
+  background: #fffaf0; border-radius: 28px; padding: 24px 22px 20px;
+  box-shadow: 0 10px 34px rgba(150, 90, 30, .28);
+  animation: pop .45s cubic-bezier(.2, 1.4, .4, 1) both;
+}
+@keyframes pop { from { transform: scale(.82); opacity: 0; } to { transform: none; opacity: 1; } }
+.mascot { width: 140px; height: auto; animation: bob 2.2s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(-7px) rotate(2deg); } }
+.card h1 { margin: 6px 0 4px; font-size: 30px; }
+.card h2 { margin: 0 0 8px; font-size: 30px; letter-spacing: .02em; }
+.lead { margin: 0 0 18px; font-size: 16px; color: var(--ink-soft); line-height: 1.45; }
+.note { margin: 14px 0 0; font-size: 11px; color: var(--ink-soft); }
+.btn {
+  display: inline-block; min-width: 190px; padding: 14px 28px;
+  font: inherit; font-size: 19px; font-weight: 800; color: #fff; cursor: pointer;
+  border: 0; border-radius: 999px;
+  background: linear-gradient(#ffae42, var(--orange-d));
+  box-shadow: 0 5px 0 #b95206, 0 10px 18px rgba(150, 80, 10, .3);
+  transition: transform .08s, box-shadow .08s;
+}
+.btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #b95206, 0 4px 10px rgba(150, 80, 10, .3); }
+.big { margin: 0; font-size: 44px; font-weight: 900; font-variant-numeric: tabular-nums; }
+#r-best { margin: 4px 0 6px; font-size: 14px; }
+.reason { min-height: 20px; margin: 0 0 14px; font-size: 14px; color: #c0391e; }
+.badge {
+  display: inline-block; margin: 0 0 8px; padding: 4px 14px; border-radius: 999px;
+  background: #ffdf4a; color: #8a4b00; font-weight: 900; font-size: 14px; letter-spacing: .06em;
+  animation: wob .8s ease-in-out infinite;
+}
+@keyframes wob { 50% { transform: rotate(-4deg) scale(1.08); } }
+.badge.hidden { display: none; }
+#nogl { display: none; margin: 10px 0 0; color: #c0391e; font-size: 13px; }
+@media (max-height: 560px) {
+  .mascot { width: 90px; }
+  .card h1 { font-size: 24px; }
+  .big { font-size: 34px; }
+}
+
+#fing { display: none; position: absolute; z-index: 6; font-size: 38px; line-height: 1; margin: 0 0 0 -19px; pointer-events: none; animation: tap 1s ease-in-out infinite; filter: drop-shadow(0 3px 3px rgba(120,70,20,.35)); }
+@keyframes tap { 50% { transform: translateY(-10px); } }
+/* 결과 화면: 오렌지와 길게 만든 껍질이 보이도록 카드를 아래쪽에 작게 */
+#result { align-items: flex-end; background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 18px); }
+#result .card { padding: 16px 20px 16px; border-radius: 24px; }
+#result .big { font-size: 36px; }
+#result .reason { margin-bottom: 10px; }

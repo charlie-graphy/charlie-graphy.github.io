@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta name="description" content="배우 안지환 아카이브 사이트">
+    <meta name="keywords" content="안지환">
+    <meta property="og:image" content="https://blog.kakaocdn.net/dn/bpb0mG/btsMKDW3how/eF5FV41D8WPY4JtRAzrfrk/img.jpg">
+    <meta property="og:title" content="AHNJEEHWANY">
+    <meta property="og:description" content="배우 안지환 아카이브 사이트 - 달이 점점 커져">
+	<meta name="theme-color" content="#0a1226">
+	<title>달이 점점 커져</title>
+    
+    <!-- 파비콘 -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon_io_new/apple-icon-180x180.png">
+    <link rel="icon" type="image/x-icon" href="../img/favicon_io_new/ms-icon-310x310.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon_io_new/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon_io_new/favicon-16x16.png">
+    <link rel="stylesheet" href="moon.css">
+</head>
+<body>
+<main id="game">
+  <div id="sky"><div id="stars"></div></div>
+  <header id="hud">
+  	<a href="https://www.jeehwany.com/games" class="game-nav-btn" aria-label="게임 목록으로 돌아가기" title="게임 목록">
+	  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+	    <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+	    <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+	    <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+	    <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+	  </svg>
+	</a>
+  	<b class="ttl">달이 점점 커져</b><span id="time">00:00.0</span>
+  </header>
+
+  <div id="moonBox">
+    <div id="glow"></div>
+    <div id="moon"><div id="pop"><img src="assets/moon.svg" alt="" draggable="false"></div></div>
+    <div id="moonHit" role="button" aria-label="달 키우기"></div>
+  </div>
+  <div id="wash"></div>
+
+  <div id="char">
+    <div id="rig">
+      <img class="part" id="p-legs" src="assets/char-legs.svg" alt="" draggable="false">
+      <div id="upper">
+        <img class="part" id="p-torso" src="assets/char-torso.svg" alt="" draggable="false">
+        <img class="part" id="p-armdown" src="assets/char-arm-down.svg" alt="" draggable="false">
+        <img class="part" id="p-head" src="assets/char-head.svg" alt="" draggable="false">
+        <img class="part" id="p-armup" src="assets/char-arm-up.svg" alt="" draggable="false">
+      </div>
+    </div>
+    <div id="fallenWrap">
+      <img id="fallenImg" src="assets/char-fallen.svg" alt="" draggable="false">
+      <i class="puff" style="left:4%"></i><i class="puff p2" style="left:26%"></i><i class="puff p2" style="left:56%"></i><i class="puff" style="left:76%"></i>
+    </div>
+    <div id="bubble" class="show"></div>
+  </div>
+
+  <div id="hint" class="off">달을 터치하면 게임이 시작돼요 <em>PC: 클릭 · 스페이스바</em></div>
+
+  <!-- <section id="start" class="panel">
+    <h1>달이 점점<br>커져</h1>
+    <div class="card">
+      <p><b>달을 터치</b>해서 크게 만들어보세요.</p>
+      <p>가만히 있으면 달이 <b>작아져요.</b></p>
+      <button id="startBtn">시작하기</button>
+    </div>
+  </section> -->
+
+  <section id="result" class="panel hidden"></section>
+  <div id="flash"></div><div id="dark"></div>
+</main>
+<script src="moon.js"></script>
+</body>
+</html>
