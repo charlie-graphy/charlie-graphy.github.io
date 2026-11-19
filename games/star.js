@@ -18,7 +18,7 @@ const CFG = {
   goldPal: { t: '255,200,95' },
   zoneWeight: { A: 1, B: 1, C: 1 },        // A 상단 / B 중앙 / C 낮게(호수 위까지)
   // 클릭 판정: r = 머리 중심 반경(px), tail = 머리 뒤쪽으로 판정에 포함하는 꼬리 길이(px). 입력 방식(마우스/터치)에 따라 적용
-  hit: { desktop: { r: 24, tail: 32 }, mobile: { r: 26, tail: 0 } },
+  hit: { desktop: { r: 24, tail: 32 }, mobile: { r: 26, tail: 8 } },
   particleCap: 200, finaleAt: 25,
   pal: [ { t: '255,238,205' }, { t: '175,215,255' }, { t: '255,205,228' } ],   // 크림 / 연하늘 / 연분홍
   storeKey: 'lalala-stars-best',
