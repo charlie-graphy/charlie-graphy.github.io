@@ -8,12 +8,12 @@ const CFG = {
   // 총 50개 = 15 + 18 + 17 (황금 5개 포함). from~to 는 "생성 시각"이며, 화면 진입은 생성 후 약 0.1~0.4초.
   // 마지막 별의 화면 진입은 약 27초, 노출이 끝나는 시점은 29.5초 안팎. 후반(ramp)은 간격이 점점 짧아져 피날레에 별이 이어짐
   phases: [
-    { from: 0.6,  to: 9.6,  n: 15 },
-    { from: 9.9,  to: 18.7, n: 18, pairs: 1 },
-    { from: 19.0, to: 26.7, n: 17, ramp: .35 }
-  ],
+	  { from: 0.6,  to: 9.6,  n: 15, pairs: 1 },
+	  { from: 9.9,  to: 18.7, n: 18, pairs: 3 },
+	  { from: 19.0, to: 26.7, n: 17, pairs: 4, ramp: .5 }
+	],
   // 별이 "화면 안에서 보이는" 시간(초): 단계별, PC / 모바일 분리 (화면 밖 이동 시간은 포함하지 않음)
-  dur: { desktop: [2.7, 2.1, 1.9], mobile: [2.7, 2.2, 1.9] },
+  dur: { desktop: [2.7, 2.1, 1.9], mobile: [2.1, 1.6, 1.3] },
   golden: { count: 5, slow: 1.25, size: 1.25 },    // 황금 소원별: 50개 중 5개, 일반보다 25% 느리고 조금 큼
   goldPal: { t: '255,200,95' },
   zoneWeight: { A: 1, B: 1, C: 1 },        // A 상단 / B 중앙 / C 낮게(호수 위까지)
@@ -76,7 +76,12 @@ function chime() {
     });
   } catch (e) {}
 }
-function paintMute() { el.mute.textContent = muted ? '🔇' : '🔊'; el.mute.setAttribute('aria-pressed', muted); el.mute.setAttribute('aria-label', muted ? '효과음 켜기' : '효과음 끄기'); }
+
+function paintMute() {
+  el.mute.classList.toggle('off', muted);
+  el.mute.setAttribute('aria-pressed', String(muted));
+  el.mute.setAttribute('aria-label', muted ? '효과음 켜기' : '효과음 끄기');
+}
 
 /* ================= 배경: 어두운 밤의 호숫가 마을(원경) + 언덕 위 테라스(전경) ================= */
 function buildScene() {
@@ -173,7 +178,7 @@ function createMeteorPath(zone, dur) {
   const ang = { A: P ? [48, 64] : [38, 58], B: P ? [28, 42] : [20, 34], C: P ? [40, 58] : [32, 50] }[zone];
   const yEnd = { A: .55, B: .85, C: 1.1 }[zone], need = P ? .34 * H : .28 * W;
   // 공정성 검사(모바일만): 판정 원(지름 2r)이 한 점을 지나는 시간이 최소 약 0.12초는 되도록, 지나치게 빠른 경로만 제외. 속도를 늦추거나 보정하지는 않음
-  const cap = profile === 'mobile' ? 2 * CFG.hit.mobile.r / .12 : Infinity, score = c => profile === 'mobile' ? Math.max(0, c.vis - cap * dur) - c.vis * 1e-4 : -c.vis;
+  const cap = profile === 'mobile' ? 2 * CFG.hit.mobile.r / .09 : Infinity, score = c => profile === 'mobile' ? Math.max(0, c.vis - cap * dur) - c.vis * 1e-4 : -c.vis;
   const build = (dir, a, px, py, ye) => {
     const cs = Math.cos(a), sn = Math.sin(a), ux = dir * cs, uy = sn;
     const sBack = Math.min((py + mg) / sn, dir > 0 ? (px + mg) / cs : (W + mg - px) / cs);

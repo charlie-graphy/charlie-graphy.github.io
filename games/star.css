@@ -42,11 +42,28 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 @keyframes bump{40%{transform:scale(1.12);border-color:var(--star)}}
 @keyframes pulse{to{transform:scale(1.1)}}
 
-/* ===== 효과음 버튼: 보이는 원은 작게, 터치 영역은 44px ===== */
-#mute{position:absolute;z-index:7;right:calc(6px + var(--sl));bottom:calc(6px + var(--sb));width:44px;height:44px;border:0;background:none;
-  display:grid;place-items:center;font-size:17px;line-height:1;cursor:pointer;isolation:isolate}
-#mute::before{content:'';position:absolute;z-index:-1;width:38px;height:38px;border-radius:50%;
-  background:rgba(17,27,56,.7);border:1px solid rgba(246,199,133,.45)}
+/* 볼륨 버튼 */
+#mute {
+  position:absolute;
+  z-index:7;
+  right:calc(10px + var(--sr));
+  bottom:calc(10px + var(--sb));
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  padding:0;
+  border-radius:50%;
+  color:var(--star);
+  background:rgba(17,27,56,.7);
+  border:1px solid rgba(246,199,133,.45);
+  cursor:pointer;
+}
+
+#mute svg { width:20px; height:20px; }
+#mute.off .waves { display:none; }
+#mute:not(.off) .mute { display:none; }
+#mute:active { transform:scale(.94); }
 
 /* ===== 패널 (시작 / 결과): 화면 중앙 ===== */
 .panel{position:absolute;inset:0;z-index:8;display:flex;align-items:center;justify-content:center;text-align:center;
