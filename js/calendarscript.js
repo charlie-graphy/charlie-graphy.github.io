@@ -2919,6 +2919,20 @@
 					allDay: false
 				},
 				{
+					title: '충주 THE NEXT SHOW II [탄금풍류 - 우륵의 길 2]',
+					description: '특별출연',
+					start: '2026-11-26 15:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
+					title: '충주 THE NEXT SHOW II [탄금풍류 - 우륵의 길 2]',
+					description: '특별출연',
+					start: '2026-11-26 19:00',
+					className: 'bg-blue',
+					allDay: false
+				},
+				{
 					title: 'VL',
 					description: '<p class="event">럭키드로우</p>맥스 役 | 홍성원<br>스티비 役 | 안지환',
 					start: '2026-11-27 16:00',
