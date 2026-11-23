@@ -57,14 +57,14 @@ const CFG = {
   WGROW: 22,           // 바로잡았을 때 폭이 회복되는 속도(1/rad)
   ST: 0.01,            // 칼날 이동 단위 (rad)
   PROBE: 0.005, RECENT: 45,
-  HSMOOTH: 0.02,       // 진행 방향 평활 길이 (rad): 손떨림이 폭에 영향을 주지 않게
+  HSMOOTH: 0.006,       // 진행 방향 평활 길이 (rad): 손떨림이 폭에 영향을 주지 않게
   KSMOOTH: 0.05,       // 곡률 평활 길이
   KCAP: 1.3,           // 왼쪽으로 꺾는 곡률반경보다 띠가 넓을 수 없다 (폭 <= KCAP / 곡률)
   ARRIVE: 0.012,       // 지정 경로 점에 이만큼 가까워지면 도착으로 본다
   FLAP: 0.25,          // 처음 들려 있는 껍질 끝 길이
   START_LAT: 50 * PI / 180,
   CLEAR_TOTAL: 0.03,   // 남은 껍질이 표면의 3% 이하이면 클리어
-  CLEAR_LEFT: 0.10,    // 남은 껍질이 15% 이하이고
+  CLEAR_LEFT: 0.07,    // 남은 껍질이 7% 이하이고
   CLEAR_REACH: 0.015,  // 칼날에서 이어서 닿는 부분이 1.5% 이하이면(나머지는 고립 조각) 클리어
   CM_PER_R: 2.6,
   BACKLASH: 5, PULL_CAP: 0.9, PULL_QUEUE: 4, PULL_GAIN: 1, GRAZE: 0.28
@@ -120,7 +120,7 @@ class PeelSim {
     const P = fromLatLon(lat, lon), east = tangentAt(P, [-Math.sin(lon), 0, Math.cos(lon)]);
     this.P = P; this.T = east; this.initP = P; this.initT = east;
     this.w = CFG.WSTART; this.wFree = CFG.WSTART; this.wr = 0; this.q = 1; this.kap = 0;
-    this.status = 'run'; this.reason = null; this.fail = null; this.tgtSteps = 0; this.length = 0; this.steps = 0; this.started = false;
+    this.status = 'run'; this.reason = null; this.fail = null; this.tgtSteps = 0; this.tgtBest = 9; this.tgtMax = 60; this.tgtStall = 0; this.length = 0; this.steps = 0; this.started = false;
     this.C = this.center(); this.Cprev = this.C; this.prevLine = { P, L: this.L, w: this.w };
   }
   get L() { return cross(this.P, this.T); }
@@ -144,7 +144,7 @@ class PeelSim {
      폭 = 지나간 경계까지의 실제 거리(경로를 경계에 붙이면 좁게, 떨어지면 넓게). 급한 왼쪽 꺾임은 안쪽 가장자리가 접혀 폭이 줄어든다. */
   stepToward(tgt, ds = CFG.ST) {
     const P0 = this.P, D = tangentAt(P0, tgt);
-    if (!this.started) { this.T = D; this.started = true; this.prevLine = { P: P0, L: cross(P0, D), w: this.w }; }
+    if (!this.started) { this.T = D; this.started = true; this.prevLine = { P: P0, L: cross(P0, D), w: this.w }; this.C = this.Cprev = this.center(P0, D, this.w); }   // 첫 방향이 정해지면 껍질 중심점 기준도 같은 방향으로 다시 잡는다(안 그러면 초기 방향과의 차이가 길이로 더해진다)
     const a = 1 - Math.exp(-ds / CFG.HSMOOTH), Told = this.T, T1 = tangentAt(P0, comb(Told, 1 - a, D, a));
     const kapI = signedAngle(P0, Told, T1) / ds;                                   // 왼쪽 + / 오른쪽 -
     this.kap += (kapI - this.kap) * (1 - Math.exp(-ds / CFG.KSMOOTH));
@@ -183,7 +183,11 @@ class PeelSim {
       if (canGo && !canGo()) { queue.length = 0; blocked = true; break; }
       const tgt = queue[0], dist = Math.acos(clamp(dot(this.P, tgt), -1, 1));
       // 도착했거나 이미 지나쳤으면 다음 점으로 (방향 평활 때문에 가까운 점 주위를 맴돌지 않게)
-      if (dist < CFG.ARRIVE || (this.started && dist < 0.06 && dot(this.T, tangentAt(this.P, tgt)) < 0) || ++this.tgtSteps > 60) { queue.shift(); this.tgtSteps = 0; continue; }
+      // 목표마다 스텝 상한을 '거리에 비례'해 잡는다(먼 점이 60스텝(0.6rad) 만에 버려져 경로가 끊기는 것 방지).
+      // 곡률/방향 평활 때문에 가까워지지 못하는(도달 불가) 점은 일정 스텝 동안 거리가 줄지 않으면 안전하게 건너뛴다.
+      if (this.tgtSteps === 0) { this.tgtBest = dist; this.tgtStall = 0; this.tgtMax = Math.ceil(dist / CFG.ST) * 2 + 30; }
+      else if (dist < this.tgtBest - 0.002) { this.tgtBest = dist; this.tgtStall = 0; } else this.tgtStall++;
+      if (dist < CFG.ARRIVE || (this.started && dist < 0.06 && dot(this.T, tangentAt(this.P, tgt)) < 0) || ++this.tgtSteps > this.tgtMax || this.tgtStall > 25) { queue.shift(); this.tgtSteps = 0; continue; }
       const ds = Math.min(CFG.ST, Math.max(dist, 0.004)), b = this.length; this.stepToward(tgt, ds);
       used += ds; if (onStep) onStep(this.length - b);
     }
@@ -232,7 +236,8 @@ class PeelSim {
 /* ---------- 4. 화면 ↔ 표면 ---------- */
 /* 시작 자세: 칼날 위치가 화면 앞쪽 위에 오게 */
 function initialQuat(sim) {
-  const Pl = sim.initP, Tl = sim.initT, Ll = cross(Pl, Tl), Pw = norm([0.08, 0.12, 0.98]), Tw = tangentAt(Pw, [1, 0, 0]);
+  //const Pl = sim.initP, Tl = sim.initT, Ll = cross(Pl, Tl), Pw = norm([0.08, 0.12, 0.98]), Tw = tangentAt(Pw, [1, 0, 0]);
+  const Pl = sim.initP, Tl = sim.initT, Ll = cross(Pl, Tl), Pw = norm([0.08, 0.12, 0.98]), Tw = tangentAt(Pw, [-1, 0, 0]);
   return qFromBasis([Pl, Tl, Ll], [Pw, Tw, cross(Pw, Tw)]);
 }
 

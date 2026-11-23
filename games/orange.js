@@ -12,49 +12,52 @@ const $ = (id) => document.getElementById(id);
 const app = $('app'), canvas = $('game');
 
 /* ---------- 저장 / 사운드 ---------- */
-const store = { get() { try { return parseFloat(localStorage.getItem('orangePeel3dBest')) || 0; } catch (e) { return 0; } },
-                set(v) { try { localStorage.setItem('orangePeel3dBest', String(v)); } catch (e) {} },
-                snd() { try { return localStorage.getItem('orangePeel3dSnd') !== '0'; } catch (e) { return true; } },
+try { localStorage.removeItem('orangePeel3dBest'); } catch (e) {}   // 삭제된 '최고 기록' 기능이 남긴 저장값 정리
+const store = { snd() { try { return localStorage.getItem('orangePeel3dSnd') !== '0'; } catch (e) { return true; } },
                 setSnd(v) { try { localStorage.setItem('orangePeel3dSnd', v ? '1' : '0'); } catch (e) {} } };
+/* 사운드: Web Audio 합성만 사용 (외부 음원 없음 → 라이선스/경로 문제 없음).
+   껍질 소리는 '실제로 벗겨진 길이'가 쌓일 때만 짧은 알갱이(rustle)로 난다: 멈추면 즉시 무음, 빠를수록 촘촘하고 조금 커진다. */
 const Snd = {
-  ctx: null, on: store.snd(),
+  ctx: null, on: store.snd(), lastR: 0,
   init() {
-    if (this.ctx) { if (this.ctx.state === 'suspended') this.ctx.resume(); return; }
+    if (this.ctx) { this.wake(); return; }
     const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
     const c = this.ctx = new AC(), n = c.sampleRate * 2, buf = c.createBuffer(1, n, c.sampleRate), d = buf.getChannelData(0);
-    for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
-    this.buf = buf;
-    this.src = c.createBufferSource(); this.src.buffer = buf; this.src.loop = true;
-    const bp = c.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 3200; bp.Q.value = 0.8;
-    this.sg = c.createGain(); this.sg.gain.value = 0; this.bp = bp;
-    this.src.connect(bp); bp.connect(this.sg); this.sg.connect(c.destination); this.src.start();
-    this.osc = c.createOscillator(); this.osc.type = 'sine'; this.osc.frequency.value = 600;
-    this.tg = c.createGain(); this.tg.gain.value = 0; this.osc.connect(this.tg); this.tg.connect(c.destination); this.osc.start();
+    let b0 = 0, b1 = 0, b2 = 0;                                   // 분홍 잡음(부드러운 결): 거친 고주파를 줄인다
+    for (let i = 0; i < n; i++) { const w = Math.random() * 2 - 1; b0 = 0.997 * b0 + w * 0.0555; b1 = 0.985 * b1 + w * 0.0750; b2 = 0.950 * b2 + w * 0.1538; d[i] = b0 + b1 + b2 + w * 0.18; }
+    let pk = 0; for (let i = 0; i < n; i++) pk = Math.max(pk, Math.abs(d[i])); for (let i = 0; i < n; i++) d[i] /= pk;     // 잡음을 최대치 1로 정규화(필터를 거치며 너무 작아지지 않게)
+    this.buf = buf; this.out = c.createGain(); this.out.gain.value = 1;
+    const comp = c.createDynamicsCompressor(); comp.threshold.value = -14; comp.knee.value = 18; comp.ratio.value = 4; comp.attack.value = 0.004; comp.release.value = 0.12;   // 겹쳐도 깨지지 않게 부드럽게 눌러 준다
+    this.out.connect(comp); comp.connect(c.destination);
+    const u = c.createBufferSource(); u.buffer = c.createBuffer(1, 1, c.sampleRate); u.connect(c.destination); u.start(0);      // 모바일 브라우저 오디오 잠금 해제용 무음
+    this.wake();
   },
-  /* speed: 실제로 벗겨진 길이/초 (R 단위), danger 0..1 */
-  loop(speed, danger) {
-    if (!this.ctx) return; const t = this.ctx.currentTime;
-    const g = this.on ? clamp(speed / 3, 0, 1) * 0.22 : 0;
-    this.sg.gain.setTargetAtTime(g, t, 0.025);
-    this.bp.frequency.setTargetAtTime(2400 + clamp(speed, 0, 4) * 700, t, 0.05);
-    this.tg.gain.setTargetAtTime(this.on ? danger * danger * 0.04 : 0, t, 0.05);
-    this.osc.frequency.setTargetAtTime(500 + danger * 900, t, 0.05);
+  wake() { const c = this.ctx; if (c && c.state !== 'running') { try { const p = c.resume(); if (p && p.catch) p.catch(() => {}); } catch (e) {} } },
+  noise(t, dur, freq, q, vol, lp) {
+    const c = this.ctx, s = c.createBufferSource(); s.buffer = this.buf;
+    const f = c.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = freq; f.Q.value = q;
+    const l = c.createBiquadFilter(); l.type = 'lowpass'; l.frequency.value = lp || 5200;
+    const g = c.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vol, t + 0.006); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    s.connect(f); f.connect(l); l.connect(g); g.connect(this.out); s.start(t, Math.random() * 1.5, dur + 0.02);
   },
-  burst(dur, freq, vol) {
-    if (!this.ctx || !this.on) return; const c = this.ctx, s = c.createBufferSource(); s.buffer = this.buf;
-    const f = c.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = freq; const g = c.createGain();
-    g.gain.setValueAtTime(vol, c.currentTime); g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + dur);
-    s.connect(f); f.connect(g); g.connect(c.destination); s.start(); s.stop(c.currentTime + dur);
+  /* speed: 지금 벗겨지는 속도(R/s). 한 번 호출 = 알갱이 하나 */
+  rustle(speed) {
+    if (!this.ctx || !this.on) return; if (this.ctx.state !== 'running') this.wake(); const t = this.ctx.currentTime; if (t - this.lastR < 0.022) return; this.lastR = t;
+    const k = clamp(speed / 3, 0, 1), r = () => Math.random(), V = 2.2;   // V: 껍질 소리 음량 보정(잡기·끊어짐·성공음과 비슷한 체감 크기로 맞춘 값)
+    // 사각사각: 중고역 대역 잡음 알갱이(Q 낮게=넓은 대역, 로우패스 6.5k로 날카로움 제거). 빠를수록 조금 크고 밝게
+    this.noise(t, 0.035 + r() * 0.05, 1700 + r() * 1500 + k * 700, 0.5 + r() * 0.4, V * (0.34 + 0.2 * k) * (0.6 + r() * 0.4), 6500);
+    this.noise(t, 0.05 + r() * 0.04, 650 + r() * 350, 0.6, V * 0.16 * (0.6 + r() * 0.4), 2200);               // 촉촉한 낮은 결
+    if (r() < 0.2) this.noise(t + 0.012, 0.014, 3000 + r() * 800, 1.0, V * (0.14 + 0.08 * k), 5200);      // 가끔 나는 섬유 '톡'
   },
-  tone(f, t0, dur, vol) {
-    if (!this.ctx || !this.on) return; const c = this.ctx, o = c.createOscillator(), g = c.createGain();
-    o.type = 'triangle'; o.frequency.value = f; g.gain.setValueAtTime(0, c.currentTime + t0);
-    g.gain.linearRampToValueAtTime(vol, c.currentTime + t0 + 0.02); g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + t0 + dur);
-    o.connect(g); g.connect(c.destination); o.start(c.currentTime + t0); o.stop(c.currentTime + t0 + dur + 0.05);
+  tone(f, t0, dur, vol, type, f1) {
+    if (!this.ctx || !this.on) return; const c = this.ctx, t = c.currentTime + t0, o = c.createOscillator(), g = c.createGain();
+    o.type = type || 'sine'; o.frequency.setValueAtTime(f, t); if (f1) o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vol, t + 0.015); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(this.out); o.start(t); o.stop(t + dur + 0.05);
   },
-  grab() { this.burst(0.08, 900, 0.18); this.tone(520, 0, 0.1, 0.05); },
-  snap() { this.burst(0.25, 1400, 0.5); this.tone(110, 0, 0.3, 0.12); },
-  win() { [523, 659, 784, 1047].forEach((f, i) => this.tone(f, i * 0.12, 0.35, 0.09)); }
+  grab() { if (!this.ctx || !this.on) return; this.tone(250, 0, 0.09, 0.13, 'sine', 165); this.noise(this.ctx.currentTime, 0.05, 1100, 0.7, 0.3, 3000); },
+  snap() { if (!this.ctx || !this.on) return; this.noise(this.ctx.currentTime, 0.14, 1800, 0.6, 0.38, 4200); this.tone(330, 0.02, 0.16, 0.11, 'triangle', 262); this.tone(262, 0.17, 0.22, 0.1, 'triangle', 196); },
+  win() { [523, 659, 784].forEach((f, i) => this.tone(f, i * 0.11, 0.4, 0.1, 'triangle')); this.tone(1047, 0.36, 0.5, 0.075, 'sine'); }
 };
 
 /* ---------- Three.js 장면 ---------- */
@@ -250,7 +253,7 @@ maskTex.generateMipmaps = false; maskTex.unpackAlignment = 1; maskTex.needsUpdat
 let maskVer = sim.mask.version;
 
 let q = [0, 0, 0, 1];                 // 오렌지 회전 (로컬 → 월드). 화면에 보이는 시점과 동일한 값
-let state = 'ready', best = store.get(), danger = 0, endT = 0, timeNow = 0, firstGrab = false;
+let state = 'ready', danger = 0, endT = 0, timeNow = 0, firstGrab = false;
 let spinAxis = [0, 1, 0], spinSpeed = 0;       // 놓은 뒤 관성
 let layoutInfo = { floorY: -1.6, bx: 3, scale: 100, w: 1, h: 1, zg: 0.5 };
 let pullSpeed = 0, shakeAmt = 0;
@@ -287,53 +290,67 @@ function resetGame() {
   const nw = nW(), pts = sim.flapPoints(4).map((c, i) => { const lift = 0.012 + 0.08 * (i / 3) * (i / 3); return add(surf(qRot(q, c), 1.045), mul(norm(qRot(q, c)), lift)); });
   rib.begin(pts, CFG.WSTART); rib.bx = layoutInfo.bx; rib.setFloor(layoutInfo.floorY, [0, layoutInfo.floorY, 0.6]);
   rib.anchor = (p) => (p.cl ? mul(qRot(q, p.cl), 1.045) : null);
-  state = 'play'; firstGrab = false; clearT = 0;
-  setTip('반짝이는 껍질 끝을 잡고, 점선을 따라 오렌지 위를 문질러 보세요');
-  $('start').classList.add('hidden'); $('result').classList.add('hidden'); hud();
+  state = 'play'; firstGrab = false; clearT = 0; lastCheckW = -1;
+  $('start').classList.add('hidden'); $('result').classList.add('hidden'); $('result').classList.remove('show'); hud();
 }
-function setTip(t, warn) { const e = $('tip'); e.textContent = t; e.classList.toggle('warn', !!warn); }
+const pct = () => Math.round(sim.peelFrac * 100);          // 플레이 화면과 결과 화면이 같은 값·같은 반올림을 쓴다 (성공 판정과 무관)
 function hud() {
   const cm = sim.length * CFG.CM_PER_R;
-  $('len').textContent = cm.toFixed(1) + ' cm'; $('area').textContent = Math.round(sim.peelFrac * 100) + '%'; $('best').textContent = best.toFixed(1) + ' cm';
+  $('len').textContent = cm.toFixed(1) + ' cm'; $('area').textContent = pct() + '%';
 }
-const REASONS = { self: '이미 벗긴 곳을 다시 지나가서 껍질이 끊어졌어요', turn: '너무 급하게 꺾어서 껍질이 접혀 끊어졌어요', edge: '이전 경계에 너무 붙어서 껍질이 가늘어져 끊어졌어요' };
 function finish(kind) {
-  if (state !== 'play') return; state = 'over'; endT = timeNow; endPointer(); rib.detach(); setTip('');
-  const cm = sim.length * CFG.CM_PER_R, nb = cm > best + 1e-6; if (nb) { best = cm; store.set(best); }
-  $('r-title').textContent = kind === 'clear' ? 'CLEAR! 🍊' : 'GAME OVER';
-  $('r-len').textContent = cm.toFixed(1) + ' cm'; $('r-best').textContent = '최고 기록 ' + best.toFixed(1) + ' cm';
-  $('r-reason').textContent = kind === 'clear' ? '오렌지를 끝까지 벗겼어요!' : (REASONS[sim.reason] || '껍질이 끊어졌어요');
-  $('badge').classList.toggle('hidden', !nb);
+  if (state !== 'play') return; state = 'over'; endT = timeNow; endPointer(); rib.detach();
+  const cm = sim.length * CFG.CM_PER_R;
+  $('r-len').textContent = '오렌지를 ' + pct() + '% 깠어요'; $('r-cm').textContent = '깐 껍질 길이 ' + cm.toFixed(1) + ' cm';
   if (kind === 'clear') Snd.win(); else Snd.snap();
-  hud(); $('danger').style.opacity = 0; setTimeout(() => { if (state === 'over') $('result').classList.remove('hidden'); }, kind === 'clear' ? 900 : 1100);
+  hud(); $('danger').style.opacity = 0;
+  const R = $('result'); R.classList.remove('show', 'win', 'lose'); R.classList.add(kind === 'clear' ? 'win' : 'lose');
+  $('b-text').textContent = kind === 'clear' ? '그걸 왜 까!' : '입술로 부드럽게!!';        // 문구는 정확히 이대로 유지
+  setTimeout(() => { if (state === 'over') { R.classList.remove('hidden'); void R.offsetWidth; R.classList.add('show'); } }, kind === 'clear' ? 900 : 1000);
 }
 
 /* ---------- 입력 상태 머신 (포인터 하나) ----------
    idle ──(빈 곳을 누름)──▶ look : 레이캐스트로 잡은 표면 점이 손을 따라 회전. 껍질·점수·위험도 불변. 놓으면 관성 감속.
    idle ──(보이는 껍질을 누름)──▶ peel : Ribbon.grabNode 로 껍질을 실제로 잡는다. 오렌지는 절대 회전하지 않는다.
-        peel/surface : 손 위치(눈에 보이는 잡은 지점)의 레이캐스트 표면점이 움직인 만큼 지정 경로(queue)가 늘고, 칼날이 그 경로를 따라간다.
-        peel/off     : 손이 구 밖이면 방향을 새로 만들지 않고 마지막 진행 방향으로, 손이 멀어진 거리만큼만 이어서 벗긴다(Ribbon.moveFinger).
+        peel/surface : 포인터 이벤트마다 raw 좌표(+잡을 때의 손↔칼날 간격) 아래의 표면점을 구해 지정 경로(queue)에 즉시 쌓고, 칼날이 그 경로를 그대로 따라간다.
+        peel/off     : 그 점이 구 밖이면 아무것도 하지 않고 정지(자동 직진 없음). 표면으로 돌아오면 현재 분리 지점에 간격을 다시 맞춰 이어서 깐다.
         껍질 메시는 항상 손(grip)에 붙어 따라온다(Ribbon.easeGrip / fitGrip).
    손을 떼면 queue·당김 누적을 비우고 즉시 정지 → idle. 끊어짐/클리어 후에는 입력이 무시된다. */
 const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
 const queue = [], pathHist = [];
-const ptr = { id: null, mode: 'idle', x: 0, y: 0, hPrev: null, tgtW: [0, 0, 1], lastT: 0, vel: null, h0: null, onSurf: false, flash: 0 };
+const ptr = { lastMoveT: 0, id: null, mode: 'idle', x: 0, y: 0, hPrev: null, tgtW: [0, 0, 1], lastT: 0, vel: null, h0: null, onSurf: false, flash: 0 };
 const gripS = [0, 0, 1.2];
-const dbg = { on: /[?&]debug/.test(location.search), hit: null, autoRot: false, px: 0, py: 0 };
+const dbg = { on: /[?&]debug/.test(location.search), hit: null, autoRot: false, px: 0, py: 0, intent: [], trail: [], devSum: 0, devN: 0, devMax: 0, dev: 0 };
 function rayDir(x, y) { ndc.set((x / layoutInfo.w) * 2 - 1, -(y / layoutInfo.h) * 2 + 1); ray.setFromCamera(ndc, camera); return ray.ray; }
-function surfaceDir(x, y) {
-  applyQuat(); const r = rayDir(x, y), hit = ray.intersectObject(peelMesh, false);
-  if (hit.length) return { d: norm([hit[0].point.x, hit[0].point.y, hit[0].point.z]), on: true };
-  const o = [r.origin.x, r.origin.y, r.origin.z], dd = [r.direction.x, r.direction.y, r.direction.z], t = -dot(o, dd);
-  return { d: norm(add(o, mul(dd, t))), on: false };
+/* 포인터 → 오렌지 표면. 셰이더가 discard 한 '이미 벗겨진 곳'은 메시에는 남아 있으므로, 마스크를 확인해서
+   벗겨진 곳이면 속껍질 면(반지름 1.0)과의 교점으로 바꾼다. 구를 벗어나면 광선이 구에 가장 가까이 지나는 점의 방향(on:false). */
+function surfaceHit(x, y) {
+  applyQuat(); const r = rayDir(x, y), o = [r.origin.x, r.origin.y, r.origin.z], dd = [r.direction.x, r.direction.y, r.direction.z];
+  const hit = ray.intersectObject(peelMesh, false);
+  if (hit.length) {
+    const p = hit[0].point; let d = norm([p.x, p.y, p.z]), dist = hit[0].distance, peeled = false;
+    if (sim.mask.get(qRot(S.qConj(q), d))) {
+      peeled = true; const b = dot(o, dd), c = dot(o, o) - 1, disc = b * b - c;
+      if (disc > 0) { const t = -b - Math.sqrt(disc); if (t > 0) { d = norm(add(o, mul(dd, t))); dist = t; } }
+    }
+    return { d, on: true, dist, peeled };
+  }
+  const t = -dot(o, dd); return { d: norm(add(o, mul(dd, t))), on: false, dist: t, peeled: false };
 }
+const surfaceDir = surfaceHit;
 /* 눈에 보이는 껍질 메시를 레이캐스트해 가장 가까운 노드 번호를 돌려준다 (없으면 -1). 오렌지 뒤에 가려진 껍질은 잡히지 않는다. */
 function pickPeel(x, y, touch) {
-  applyQuat(); const tol = touch ? 26 : 8, offs = [[0, 0], [tol, 0], [-tol, 0], [0, tol], [0, -tol]]; if (touch) offs.push([tol * .7, tol * .7], [-tol * .7, tol * .7], [tol * .7, -tol * .7], [-tol * .7, -tol * .7]);
+  applyQuat();
+  /* 잡기 허용 오차(px). 오렌지 몸통을 누르면 회전 의도로 보고 아주 작게, 오렌지 바깥(늘어진 껍질)이나 분리 지점(칼날 끝) 근처에선 넉넉하게. */
+  const body = surfaceHit(x, y).on, kk = pxOf(surf(qRot(q, sim.P), 1.04)), nearKnife = qRot(q, sim.P)[2] > 0.05 && Math.hypot(x - kk.x, y - kk.y) < (touch ? 46 : 26);
+  let tol = body ? (touch ? 10 : 4) : (touch ? 34 : 12);
+  if (nearKnife) tol = Math.max(tol, touch ? 30 : 14);
+  const offs = [[0, 0]];
+  for (const f of [0.5, 1]) for (let a = 0; a < 8; a++) { const r = tol * f; offs.push([Math.cos(a * Math.PI / 4) * r, Math.sin(a * Math.PI / 4) * r]); }   // 가까운 고리부터 → 가장 가까운 껍질이 이긴다
   const nodes = rib.nodes, n = nodes.length;
   for (const o of offs) {
     rayDir(x + o[0], y + o[1]); const hs = ray.intersectObject(strip.mesh, false); if (!hs.length) continue;
-    const sp = ray.intersectObject(peelMesh, false); if (sp.length && sp[0].distance < hs[0].distance - 0.015) continue;   // 오렌지 뒤에 가림
+    const sh = surfaceHit(x + o[0], y + o[1]); if (sh.on && sh.dist < hs[0].distance - 0.015) continue;   // 오렌지(벗겨진 곳은 속껍질 면) 뒤에 가림
     const p = hs[0].point; let best = -1, bd = 1e9;
     for (let i = Math.max(0, n - 60); i < n - 1; i++) { const d = Math.hypot(nodes[i].x - p.x, nodes[i].y - p.y, nodes[i].z - p.z); if (d < bd) { bd = d; best = i; } }
     if (best >= 0 && bd < 0.4) return best;
@@ -352,17 +369,20 @@ canvas.addEventListener('pointerdown', (e) => {
   ptr.id = e.pointerId; ptr.x = x; ptr.y = y; spinSpeed = 0; applyQuat();
   const idx = sim.status === 'run' && rib.attached ? pickPeel(x, y, touch) : -1;
   if (idx >= 0 && rib.grabNode(idx, x, y, touch, pxOf)) {
-    ptr.mode = 'peel'; canvas.classList.add('grab'); Snd.grab(); ptr.flash = 1; if (navigator.vibrate) { try { navigator.vibrate(12); } catch (er) {} }
-    queue.length = 0; ptr.hPrev = null; ptr.onSurf = false; ptr.tgtW = knifeDirW(); rib.tension = 0.4;
+    ptr.mode = 'peel'; canvas.classList.add('grab'); Snd.grab(); grainAcc = grainGap; ptr.flash = 1; if (navigator.vibrate) { try { navigator.vibrate(12); } catch (er) {} }
+    queue.length = 0; ptr.pLoc = null; ptr.onSurf = false; ptr.tgtW = knifeDirW(); rib.tension = 0.4;
+    { const kp = pxOf(surf(qRot(q, sim.P), 1.04)); ptr.offx = kp.x - x; ptr.offy = kp.y - y; }     // 잡는 순간의 손↔칼날 화면 간격(이후 유지)
+    dbg.intent.length = 0; dbg.trail.length = 0; dbg.devSum = 0; dbg.devN = 0; dbg.devMax = 0;
+    collectPath(x, y);
     const g = rib.grip; gripS[0] = g[0]; gripS[1] = g[1]; gripS[2] = g[2];
-    if (!firstGrab) { firstGrab = true; setTip('오렌지 위에서 손가락을 움직이면 그 길을 따라 벗겨져요'); }
+    firstGrab = true;
   } else { ptr.mode = 'look'; ptr.h0 = surfaceDir(x, y).d; ptr.lastT = performance.now(); ptr.vel = null; }
 });
 function onMove(x, y) {
   ptr.x = x; ptr.y = y; dbg.px = x; dbg.py = y;
   if (ptr.mode === 'peel') {
-    const k = pxOf(knifeW());
-    if (ptr.onSurf) rib.rebase(x, y); else rib.moveFinger(x, y, k.x, k.y, layoutInfo.scale);   // 구 밖에서만 '당긴 거리'를 모은다
+    rib.fx = x; rib.fy = y; ptr.lastMoveT = performance.now();   // 시각용 손 위치(부드럽게 따라옴)
+    collectPath(x, y);                      // 실제 제거 경로는 지연 없이 raw 포인터로
   } else if (ptr.mode === 'look') {
     const h1 = surfaceDir(x, y).d, now = performance.now(), dt = Math.max(1, now - ptr.lastT) / 1000, ax = cross(ptr.h0, h1), ang = rotateBetween(ptr.h0, h1);
     if (ang > 0) { const k = Math.min(1, dt / 0.05), sp = ang / dt; spinAxis = norm(ax); spinSpeed = ptr.vel === null ? sp : spinSpeed + (sp - spinSpeed) * k; ptr.vel = 1; }
@@ -374,7 +394,7 @@ canvas.addEventListener('pointermove', (e) => {
   const list = e.getCoalescedEvents ? e.getCoalescedEvents() : null;
   if (list && list.length) for (const c of list) onMove(c.clientX - r.left, c.clientY - r.top); else onMove(e.clientX - r.left, e.clientY - r.top);
 });
-function endPointer() { if (ptr.mode === 'peel') { rib.release(); queue.length = 0; rib.pending = 0; canvas.classList.remove('grab'); } ptr.id = null; ptr.mode = 'idle'; ptr.hPrev = null; ptr.onSurf = false; }
+function endPointer() { if (ptr.mode === 'peel') { rib.release(); queue.length = 0; rib.pending = 0; canvas.classList.remove('grab'); } ptr.id = null; ptr.mode = 'idle'; ptr.pLoc = null; ptr.onSurf = false; queue.length = 0; }
 function up(e) {
   if (e.pointerId !== ptr.id) return;
   if (ptr.mode === 'look') { if (performance.now() - ptr.lastT > 90) spinSpeed = 0; spinSpeed = Math.min(spinSpeed, 9); }
@@ -385,36 +405,53 @@ canvas.addEventListener('contextmenu', (e) => e.preventDefault());
 window.addEventListener('keydown', (e) => { if (e.key === 'd' || e.key === 'D') dbg.on = !dbg.on; });
 
 /* ---------- 프레임 ---------- */
-let clearT = 0;
+let clearT = 0, grainAcc = 0, grainGap = 0.05, lastCheckW = -1;
+/* 손(포인터)이 지나간 경로 → 오렌지 표면 경로. 포인터 이벤트마다 즉시 호출 (보정·지연 없음).
+   칼날이 가려는 점 = '포인터 + 잡을 때의 손↔칼날 화면 간격' 아래의 표면점. */
+function collectPath(x, y) {
+  if (state !== 'play' || sim.status !== 'run') return;
+  const sdp = surfaceDir(x + ptr.offx, y + ptr.offy), front = sdp.on && sdp.d[2] > CFG.GRAZE;
+  dbg.hit = sdp.on ? sdp.d : null;
+  if (!front) { ptr.onSurf = false; ptr.pLoc = null; queue.length = 0; ptr.why = '표면 밖: 정지'; return; }
+  const loc = qRot(S.qConj(q), sdp.d);
+  if (!ptr.onSurf || !ptr.pLoc) {
+    // 표면에 (다시) 들어옴: ① 지금 분리 지점(칼날 끝)에 손↔칼날 간격을 다시 맞추고 ② 목표 표면점도 '새 간격' 기준으로 다시 구한다.
+    // (옛 간격으로 구한 loc 를 그대로 쓰면 첫 구간이 옛 목표→새 목표로 꺾이거나 점프한다)
+    if (qRot(q, sim.P)[2] > 0.1) {
+      const kp = pxOf(surf(qRot(q, sim.P), 1.04)); ptr.offx = kp.x - x; ptr.offy = kp.y - y;
+      const s2 = surfaceDir(x + ptr.offx, y + ptr.offy);
+      ptr.pLoc = s2.on && s2.d[2] > CFG.GRAZE ? qRot(S.qConj(q), s2.d) : sim.P.slice();
+    } else ptr.pLoc = loc;                       // 칼날이 오렌지 뒤쪽이면 간격을 맞출 수 없다 → 기준점만 잡고(진행은 followQueue 가 막는다)
+    ptr.onSurf = true; ptr.why = ''; return;
+  }
+  const ang = Math.acos(clamp(dot(ptr.pLoc, loc), -1, 1));
+  if (ang < 1e-5) return;
+  if (ang < 1.0) {
+    const n = Math.ceil(ang / 0.03), ax = norm(cross(ptr.pLoc, loc));   // 큰 드래그는 작은 표면 경로 여러 개로 쪼갠다
+    for (let k = 1; k <= n; k++) { const pt = norm(S.rodrigues(ptr.pLoc, ax, ang * k / n)); queue.push(pt); dbg.intent.push(pt); }
+    if (queue.length > 600) queue.splice(0, queue.length - 600);   // 안전 한도(18rad): 정상 입력으로는 닿지 않는다
+    if (dbg.intent.length > 800) dbg.intent.splice(0, 200);
+    ptr.tgtW = qRot(q, loc);
+  }
+  dbg.trail.push([x + ptr.offx, y + ptr.offy]); if (dbg.trail.length > 600) dbg.trail.splice(0, 150);
+  ptr.pLoc = loc; ptr.lastMoveT = performance.now();
+}
 function slerpDir(a, b, ang, t) { return norm(S.rodrigues(a, norm(cross(a, b)), ang * t)); }
 function peelFrame(dt) {
   const qb = q.slice(); let emitted = 0; rib.easeGrip(dt);
-  const onStep = (dl) => { if (dl > 0) { emitted += dl; rib.feed(dl, sim.w, sim.q, knifeW(), sim.C.slice()); } };
+  const onStep = (dl) => { if (dl > 0) { emitted += dl; rib.feed(dl, sim.w, sim.q, knifeW(), sim.C.slice()); grainAcc += dl; if (grainAcc >= grainGap) { grainAcc = 0; grainGap = (0.016 + Math.random() * 0.022) / (1 + Math.min(pullSpeed, 4) * 0.2); Snd.rustle(Math.max(pullSpeed, emitted / Math.max(dt, 0.001))); } } };
   const visible = () => qRot(q, sim.P)[2] > 0.04;
-  /* 1) 손(눈에 보이는 잡은 지점)이 가리키는 표면점 → 지정 경로 */
-  const sd = surfaceDir(rib.tx, rib.ty), front = sd.on && sd.d[2] > CFG.GRAZE;   // sd.d 는 이미 월드 방향
-  dbg.hit = sd.on ? sd.d : null;
-  if (front) {
-    if (!ptr.onSurf) { ptr.tgtW = queue.length ? ptr.tgtW : knifeDirW(); ptr.hPrev = sd.d; rib.rebase(ptr.x, ptr.y); }   // 표면에 (다시) 들어올 때 기준만 새로 잡는다: 순간이동 없음
-    else if (ptr.hPrev) {
-      const ang = Math.acos(clamp(dot(ptr.hPrev, sd.d), -1, 1));
-      if (ang > 1e-5 && ang < 0.6) {
-        if (!queue.length) ptr.tgtW = knifeDirW();            // 목표점은 항상 칼날에서 이어진다
-        const n = Math.ceil(ang / 0.04), ax = norm(cross(ptr.hPrev, sd.d));
-        for (let k = 1; k <= n; k++) { ptr.tgtW = norm(S.rodrigues(ptr.tgtW, ax, ang / n)); queue.push(qRot(S.qConj(q), ptr.tgtW)); }
-      }
-      ptr.hPrev = sd.d;
-    }
-    ptr.onSurf = true;
-  } else { ptr.onSurf = false; ptr.hPrev = null; }
-  /* 2) 경로를 따라 칼날 이동 (큐가 비면 즉시 정지) */
+  /* 1) 손의 실제 경로는 포인터 이벤트(onMove)에서 지연 없이 queue 에 쌓였다. 여기서는 그 경로를 따라 칼날만 움직인다.
+        큐가 비면 칼날은 즉시 멈추고, 표면 밖으로 나가면 자동 직진 없이 정지한다. */
+  const sd = surfaceDir(rib.tx, rib.ty);                                           // (표시 전용) 눈에 보이는 손 아래 표면
   const res = sim.followQueue(queue, CFG.PULL_CAP, onStep, visible);
-  /* 3) 구 밖에서 당기면: 마지막 진행 방향으로 당긴 거리만큼 */
-  if (!ptr.onSurf && rib.pending > 0 && sim.status === 'run') {
-    let want = Math.min(rib.pending / layoutInfo.scale * CFG.PULL_GAIN, 0.5); rib.pending = 0;
-    while (want > 0 && sim.status === 'run') { if (!visible()) { res.blocked = true; break; } const ds = Math.min(0.01, want); sim.straight(ds, onStep); want -= ds; }
+  // 못 간 경로는 버리지 않는다(빠른 드래그 보존). 다만 손이 70ms(또는 프레임 1.5개) 이상 안 움직였으면(멈춤) 남은 입력은 비운다 → 혼자 계속 까지지 않음
+  if (performance.now() - ptr.lastMoveT > Math.max(70, dt * 1500)) queue.length = 0;     // 느린 프레임(dt 큼)에서는 기준도 늘려 정상 입력을 버리지 않는다
+  if (res.blocked) ptr.blockedT = 1;                                  // 분리 지점이 오렌지 뒤쪽: 화면 가장자리가 잠깐 깜빡인다
+  if (emitted > 0 && dbg.intent.length) {                                          // (검증용) 손이 지정한 경로 ↔ 실제 제거(칼날) 위치의 어긋남
+    let m = 9; for (let i = dbg.intent.length - 1, c = 0; i >= 0 && c < 300; i--, c++) { const a = Math.acos(clamp(dot(sim.P, dbg.intent[i]), -1, 1)); if (a < m) m = a; }
+    dbg.dev = m; dbg.devSum += m; dbg.devN++; if (m > dbg.devMax) dbg.devMax = m;
   }
-  if (res.blocked) setTip('분리 지점이 오렌지 뒤쪽이에요. 손을 놓고 오렌지를 돌려 이어서 벗기세요', true);
   if (emitted > 0) { pathHist.push(sim.P.slice()); if (pathHist.length > 400) pathHist.shift(); hud(); }
   pullSpeed += (emitted / Math.max(dt, 1e-3) - pullSpeed) * (1 - Math.exp(-18 * dt));
   danger = 1 - sim.q; rib.tension = clamp(0.3 + 0.7 * danger + pullSpeed * 0.2, 0, 1);
@@ -434,14 +471,16 @@ function drawDebug() {
   const g = c.getContext('2d'); g.clearRect(0, 0, c.width, c.height); applyQuat();
   g.strokeStyle = '#ffd400'; g.lineWidth = 2; g.beginPath();
   pathHist.forEach((p, i) => { const a = pxOf(mul(qRot(q, p), 1.05)); i ? g.lineTo(a.x, a.y) : g.moveTo(a.x, a.y); }); g.stroke();      // 실제로 껍질이 제거된 경로(칼날 궤적)
+  g.strokeStyle = '#ff2d2d'; g.lineWidth = 2; g.beginPath();                                                    // 손이 지정한 경로(포인터 + 간격)
+  dbg.trail.forEach((p, i) => { i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1]); }); g.stroke();
   const dot_ = (x, y, col, r = 6) => { g.fillStyle = col; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); };
   if (ptr.mode === 'peel') dot_(dbg.px, dbg.py, '#ff2d2d');                                                      // 실제 포인터
   if (dbg.hit) { const a = pxOf(mul(dbg.hit, 1.04)); dot_(a.x, a.y, '#2d7dff', 5); }                              // 레이캐스트 표면 좌표
   if (ptr.mode === 'peel') { const a = pxOf(mul(ptr.tgtW, 1.04)); dot_(a.x, a.y, '#22c55e', 5); }                // 현재 표면 진행 목표점
   const k = pxOf(knifeW()); dot_(k.x, k.y, '#ff00ff', 4);
   g.fillStyle = '#000'; g.font = '12px monospace';
-  [`mode:${ptr.mode} queue:${queue.length} surf:${ptr.onSurf}`, `폭 w=${sim.w.toFixed(3)} (최근 경계거리 ${sim.lastD == null ? '-' : sim.lastD.toFixed(3)}, 곡률한계 ${isFinite(sim.lastCap) ? sim.lastCap.toFixed(2) : '∞'})`, `자동 회전: ${dbg.autoRot ? '발생!' : '없음'}  길이 ${(sim.length * CFG.CM_PER_R).toFixed(1)}cm`, '빨강=포인터 파랑=표면좌표 초록=목표점 노랑=제거경로 분홍=칼날']
-    .forEach((t, i) => g.fillText(t, 8, layoutInfo.h - 130 + i * 14));
+  [`mode:${ptr.mode} queue:${queue.length} surf:${ptr.onSurf}`, `폭 w=${sim.w.toFixed(3)} (최근 경계거리 ${sim.lastD == null ? '-' : sim.lastD.toFixed(3)}, 곡률한계 ${isFinite(sim.lastCap) ? sim.lastCap.toFixed(2) : '∞'})`, `자동 회전: ${dbg.autoRot ? '발생!' : '없음'}  길이 ${(sim.length * CFG.CM_PER_R).toFixed(1)}cm`, `어긋남(손경로↔제거위치) 지금 ${(dbg.dev * 57.3).toFixed(1)}° 평균 ${(dbg.devN ? dbg.devSum / dbg.devN * 57.3 : 0).toFixed(1)}° 최대 ${(dbg.devMax * 57.3).toFixed(1)}°`, '빨간선=손이 지정한 경로 / 노란선=실제 제거 경로', '빨강점=포인터 파랑=표면좌표 분홍=칼날 ' + (ptr.why || '')]
+    .forEach((t, i) => g.fillText(t, 8, layoutInfo.h - 160 + i * 14));
 }
 let last = performance.now();
 function frame(now) {
@@ -456,7 +495,7 @@ function frame(now) {
     }
     if (state === 'play') {
       if (sim.status === 'broken') finish('over');
-      else { clearT += dt; if (clearT > 0.35 && sim.peelFrac > 0.6) { clearT = 0; sim.clearCheck(); } if (sim.status === 'clear') finish('clear'); }
+      else { clearT += dt; if (clearT > 0.35 && sim.peelFrac > 0.6) { clearT = 0; if (sim.mask.peeledW !== lastCheckW) { lastCheckW = sim.mask.peeledW; sim.clearCheck(); } }   if (sim.status === 'clear') finish('clear'); }   // 새로 벗겨진 게 있을 때만 remain() 실행(반복 계산 방지)
     }
     const kw = knifeW(), nw = nW(), trail = qRot(q, mul(sim.T, -1));
     rib.update(dt, kw, nw, trail, pullSpeed);
@@ -477,27 +516,23 @@ function frame(now) {
       pileStrip.update(nodes, [0, 1, 0], 0, 0, 0);
     }
     if (sim.mask.version !== maskVer) { maskVer = sim.mask.version; maskTex.needsUpdate = true; }
-    $('danger').style.opacity = state === 'play' ? clamp(danger * 0.9, 0, 0.85) : 0;
-    if (state === 'play') {
-      const CAUSE = { self: '이미 벗긴 곳이에요! 아직 남은 껍질 쪽으로 가요', turn: '너무 급하게 꺾으면 껍질이 가늘어져요. 완만하게!', edge: '벗긴 가장자리에 너무 붙었어요. 조금 떨어져 가 보세요' };
-      if (danger > 0.35 && ptr.mode === 'peel' && sim.cause) setTip(CAUSE[sim.cause], true);
-      else if ($('tip').classList.contains('warn') && danger < 0.2 && ptr.mode === 'peel') setTip('좁게 붙어 갈수록 껍질이 길어져요. 넓게 가면 안전해요');
-    }
+    $('danger').style.opacity = state === 'play' ? clamp(Math.max(danger * 0.9, (ptr.blockedT || 0) * 0.5), 0, 0.85) : 0;
+    ptr.blockedT = Math.max(0, (ptr.blockedT || 0) - dt * 2.5);
   }
-  Snd.loop(state === 'play' && ptr.mode === 'peel' ? pullSpeed : 0, state === 'play' && ptr.mode === 'peel' ? danger : 0);
   renderer.render(scene, camera); drawDebug();
 }
 
 /* ---------- 버튼 ---------- */
 $('go').addEventListener('click', () => { Snd.init(); resetGame(); });
 $('retry').addEventListener('click', () => { Snd.init(); resetGame(); });
-const sb = $('snd'); function sndUi() { sb.textContent = Snd.on ? '🔊' : '🔇'; sb.classList.toggle('off', !Snd.on); }
+const sb = $('snd'); function sndUi() { sb.classList.toggle('off', !Snd.on); }
 sb.addEventListener('click', () => { Snd.on = !Snd.on; store.setSnd(Snd.on); sndUi(); Snd.init(); });
+document.addEventListener('visibilitychange', () => { if (!document.hidden) Snd.wake(); });
 sndUi();
 window.addEventListener('resize', layout);
 layout(); resetGame(); state = 'ready'; $('start').classList.remove('hidden'); hud();
 requestAnimationFrame(frame);
 
 /* 검증/디버그용 (게임 동작에는 쓰이지 않음) */
-window.PEEL_DEBUG = { sim, rib, get q() { return q; }, set q(v) { q = v; applyQuat(); }, camera, pxOf, knifeW, layoutInfo, get state() { return state; }, get danger() { return danger; }, strip, applyQuat, renderer, scene, peelMesh, surfaceDir, get spinSpeed() { return spinSpeed; }, ptr, queue, dbg, pickPeel, S };
+window.PEEL_DEBUG = { Snd, sim, rib, get q() { return q; }, set q(v) { q = v; applyQuat(); }, camera, pxOf, knifeW, layoutInfo, get state() { return state; }, get danger() { return danger; }, strip, applyQuat, renderer, scene, peelMesh, surfaceDir, get spinSpeed() { return spinSpeed; }, ptr, queue, dbg, pickPeel, S, pathHist };
 })();

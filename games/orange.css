@@ -33,31 +33,25 @@ canvas.grab { cursor: grabbing; }
 /* ---- HUD ---- */
 #hud {
   position: absolute; left: 0; right: 0; top: 0;
-  display: flex; align-items: flex-start; gap: 16px;
-  padding: calc(env(safe-area-inset-top, 0px) + 12px) 14px 0 18px;
+  display: flex; align-items: flex-start; justify-content: flex-end; gap: 18px;
+  padding: calc(env(safe-area-inset-top, 0px) + 12px) 18px 0 18px;
   pointer-events: none;
 }
 .stat { display: flex; flex-direction: column; line-height: 1.15; }
-.stat.best { margin-left: auto; text-align: right; }
+.stat { text-align: right; }
 .label { font-size: 12px; color: var(--ink-soft); }
-.value { font-size: 30px; font-weight: 800; font-variant-numeric: tabular-nums; }
-.value.small { font-size: 19px; padding-top: 6px; }
+.value { font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
+/* 소리 버튼: 눈에 보이는 원은 26px, 터치 영역은 44px */
 .icon-btn {
-  pointer-events: auto; flex: none; width: 42px; height: 42px; border-radius: 50%;
-  border: 0; background: rgba(255, 255, 255, .8);
-  box-shadow: 0 2px 8px rgba(150, 90, 30, .25);
-  font-size: 20px; cursor: pointer; line-height: 1;
+  pointer-events: auto; flex: none; position: absolute; z-index: 8; right: calc(env(safe-area-inset-right, 0px) + 6px); bottom: calc(env(safe-area-inset-bottom, 0px) + 6px); width: 44px; height: 44px; margin: 0; padding: 0;
+  border: 0; background: none; color: var(--ink-soft); cursor: pointer; display: grid; place-items: center;
 }
-.icon-btn:active { transform: scale(.94); }
-.icon-btn.off { opacity: .55; }
-
-#hint {
-  position: absolute; left: 0; right: 0; bottom: 0;
-  padding: 0 22px calc(env(safe-area-inset-bottom, 0px) + 14px);
-  text-align: center; pointer-events: none;
-}
-#tip { margin: 0; font-size: 15px; font-weight: 700; min-height: 22px; transition: color .2s, opacity .4s; }
-#tip.warn { color: #e0381f; }
+.icon-btn::before { content: ''; position: absolute; width: 26px; height: 26px; border-radius: 50%; background: rgba(255, 255, 255, .62); }
+.icon-btn svg { position: relative; display: block; }
+.icon-btn:active::before { background: rgba(255, 255, 255, .9); }
+.icon-btn .offx { display: none; }
+.icon-btn.off .on { display: none; }
+.icon-btn.off .offx { display: inline; }
 
 /* ---- 오버레이 / 카드 ---- */
 .overlay {
@@ -80,7 +74,7 @@ canvas.grab { cursor: grabbing; }
 @keyframes bob { 50% { transform: translateY(-7px) rotate(2deg); } }
 .card h1 { margin: 6px 0 4px; font-size: 30px; }
 .card h2 { margin: 0 0 8px; font-size: 30px; letter-spacing: .02em; }
-.lead { margin: 0 0 18px; font-size: 16px; color: var(--ink-soft); line-height: 1.45; }
+.lead { margin: 10px 0 10px; font-size: 16px; color: var(--ink-soft); line-height: 1.45; }
 .note { margin: 14px 0 0; font-size: 11px; color: var(--ink-soft); }
 .btn {
   display: inline-block; min-width: 190px; padding: 14px 28px;
@@ -92,15 +86,6 @@ canvas.grab { cursor: grabbing; }
 }
 .btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #b95206, 0 4px 10px rgba(150, 80, 10, .3); }
 .big { margin: 0; font-size: 44px; font-weight: 900; font-variant-numeric: tabular-nums; }
-#r-best { margin: 4px 0 6px; font-size: 14px; }
-.reason { min-height: 20px; margin: 0 0 14px; font-size: 14px; color: #c0391e; }
-.badge {
-  display: inline-block; margin: 0 0 8px; padding: 4px 14px; border-radius: 999px;
-  background: #ffdf4a; color: #8a4b00; font-weight: 900; font-size: 14px; letter-spacing: .06em;
-  animation: wob .8s ease-in-out infinite;
-}
-@keyframes wob { 50% { transform: rotate(-4deg) scale(1.08); } }
-.badge.hidden { display: none; }
 #nogl { display: none; margin: 10px 0 0; color: #c0391e; font-size: 13px; }
 @media (max-height: 560px) {
   .mascot { width: 90px; }
@@ -110,8 +95,94 @@ canvas.grab { cursor: grabbing; }
 
 #fing { display: none; position: absolute; z-index: 6; font-size: 38px; line-height: 1; margin: 0 0 0 -19px; pointer-events: none; animation: tap 1s ease-in-out infinite; filter: drop-shadow(0 3px 3px rgba(120,70,20,.35)); }
 @keyframes tap { 50% { transform: translateY(-10px); } }
-/* 결과 화면: 오렌지와 길게 만든 껍질이 보이도록 카드를 아래쪽에 작게 */
-#result { align-items: flex-end; background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 18px); }
-#result .card { padding: 16px 20px 16px; border-radius: 24px; }
-#result .big { font-size: 36px; }
-#result .reason { margin-bottom: 10px; }
+/* ---- 결과 화면: 캐릭터 중심. 뒤의 오렌지와 껍질이 비쳐 보이도록 가벼운 베일만 씌운다 ---- */
+#result { background: radial-gradient(ellipse 90% 70% at 50% 46%, rgba(255,244,222,.78), rgba(255,244,222,.5) 70%, rgba(255,244,222,.34)); backdrop-filter: none; -webkit-backdrop-filter: none; padding: 14px 18px calc(env(safe-area-inset-bottom, 0px) + 16px); }
+.res { display: flex; flex-direction: column; align-items: center; width: min(360px, 100%); max-height: 100%; text-align: center; }
+.bubble { position: relative; max-width: 100%; padding: 11px 20px 12px; border-radius: 22px; background: #fff; color: var(--ink); font-size: clamp(20px, 6vw, 26px); font-weight: 900; letter-spacing: -.01em; box-shadow: 0 4px 14px rgba(120,70,20,.2); opacity: 0; transform: scale(.88) translateY(6px); }
+.bubble::after { content: ''; position: absolute; left: 50%; bottom: -11px; width: 22px; height: 22px; background: #fff; transform: translateX(-50%) rotate(45deg) skew(8deg, 8deg); border-radius: 0 0 6px 0; }
+#chrbox { margin-top: 10px; width: clamp(150px, 38vh, 250px); opacity: 0; transform: translateY(14px); }
+#chr { display: block; width: 100%; height: auto; overflow: visible; }
+.ex { display: none; }
+#result.win .ex-win, #result.lose .ex-lose { display: inline; }
+.kicker { margin: 8px 0 0; font-size: 15px; font-weight: 800; letter-spacing: .02em; color: var(--ink-soft); }
+#result .big { font-size: clamp(24px, 7.2vw, 32px); margin: 5px 0 5px; line-height: 1.1; text-shadow: 0 1px 0 rgba(255,255,255,.7); }
+#result .note { margin: 2px 0 0; max-width: 100%; font-size: clamp(12px, 3.9vw, 15px); font-weight: 700; letter-spacing: -.01em; color: var(--ink-soft); text-align: center; white-space: nowrap; }
+#result.show .bubble { animation: bin .38s cubic-bezier(.2, .9, .3, 1) .05s both; }
+#result.show #chrbox { animation: cin .5s ease-out .3s both; }
+#result.show #chr-in { animation: sway 3.4s ease-in-out .9s infinite; transform-origin: 120px 200px; }
+#result.show .note, #result.show .big, #result.show .cmline, #result.show .btn { animation: fin .4s ease-out .55s both; }
+@keyframes bin { to { opacity: 1; transform: none; } }
+@keyframes cin { to { opacity: 1; transform: none; } }
+@keyframes fin { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes sway { 50% { transform: rotate(1.4deg); } }
+@media (max-height: 640px) { #chrbox { width: clamp(110px, 30vh, 190px); } .btn { padding: 11px 24px; font-size: 17px; } }
+@media (prefers-reduced-motion: reduce) { #result.show * { animation-duration: .01s !important; animation-delay: 0s !important; } }
+
+.mouth { transform-box: fill-box; transform-origin: 50% 20%; }
+#result.show .mouth { animation: talk .42s ease-in-out .5s 6; }
+@keyframes talk { 0%,100% { transform: scale(1, 1); } 50% { transform: scale(.92, .55); } }
+.cmline { margin: 0 0 14px; font-size: 16px; font-weight: 800; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+
+
+
+#hud {
+  align-items: center;
+  justify-content: space-between;
+  padding-left: calc(10px + env(safe-area-inset-left, 0px));
+  gap: 6px;
+}
+
+#hud .title {
+  flex: 1;
+  min-width: 0;
+  font-family: 'Gowun Dodum', 'Noto Sans KR', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* 좌측 상단 게임 목록 버튼 */
+.game-nav-btn {
+	--nav-accent: var(--ink);
+	--nav-bg: rgba(255,255,255,.3);
+	--nav-border: rgba(107,53,16,.25);
+
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  flex: 0 0 34px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--nav-accent);
+  background: var(--nav-bg);
+  border: 1px solid var(--nav-border);
+  border-radius: 50%;
+
+  box-shadow: none;
+  text-decoration: none;
+  cursor: pointer;
+  pointer-events: auto;
+
+  transition: transform .15s ease;
+}
+
+.game-nav-btn svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.game-nav-btn:active {
+  transform: scale(.94);
+}
