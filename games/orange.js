@@ -33,21 +33,29 @@ const Snd = {
     this.wake();
   },
   wake() { const c = this.ctx; if (c && c.state !== 'running') { try { const p = c.resume(); if (p && p.catch) p.catch(() => {}); } catch (e) {} } },
-  noise(t, dur, freq, q, vol, lp) {
+  noise(t, dur, freq, q, vol, lp, att) {
     const c = this.ctx, s = c.createBufferSource(); s.buffer = this.buf;
     const f = c.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = freq; f.Q.value = q;
     const l = c.createBiquadFilter(); l.type = 'lowpass'; l.frequency.value = lp || 5200;
-    const g = c.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vol, t + 0.006); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    const g = c.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vol, t + (att || 0.006)); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
     s.connect(f); f.connect(l); l.connect(g); g.connect(this.out); s.start(t, Math.random() * 1.5, dur + 0.02);
   },
-  /* speed: 지금 벗겨지는 속도(R/s). 한 번 호출 = 알갱이 하나 */
+  /* 과즙 방울: 짧게 올라가는 사인파 '뽁' (물방울이 터지는 느낌) */
+  bubble(t, f, vol) {
+    const c = this.ctx, o = c.createOscillator(), g = c.createGain(); o.type = 'sine';
+    o.frequency.setValueAtTime(f, t); o.frequency.exponentialRampToValueAtTime(f * 1.9, t + 0.02);
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vol, t + 0.004); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.028);
+    o.connect(g); g.connect(this.out); o.start(t); o.stop(t + 0.04);
+  },
+  /* 가볍게: 소리 조각 수를 줄이고(초당 약 4~12번), 부드러운 숨결 한 겹 + 아주 가끔 작은 '뽁'만 낸다 */
+  mix: { body: 0.05, mist: 0.17, bub: 0.1, bubV: 0.1 },
+  /* speed: 지금 벗겨지는 속도(R/s). 한 번 호출 = 한 조각. 시작 시점을 조금 흩어서 규칙적인 반복음이 되지 않게 한다 */
   rustle(speed) {
-    if (!this.ctx || !this.on) return; if (this.ctx.state !== 'running') this.wake(); const t = this.ctx.currentTime; if (t - this.lastR < 0.022) return; this.lastR = t;
-    const k = clamp(speed / 3, 0, 1), r = () => Math.random(), V = 2.2;   // V: 껍질 소리 음량 보정(잡기·끊어짐·성공음과 비슷한 체감 크기로 맞춘 값)
-    // 사각사각: 중고역 대역 잡음 알갱이(Q 낮게=넓은 대역, 로우패스 6.5k로 날카로움 제거). 빠를수록 조금 크고 밝게
-    this.noise(t, 0.035 + r() * 0.05, 1700 + r() * 1500 + k * 700, 0.5 + r() * 0.4, V * (0.34 + 0.2 * k) * (0.6 + r() * 0.4), 6500);
-    this.noise(t, 0.05 + r() * 0.04, 650 + r() * 350, 0.6, V * 0.16 * (0.6 + r() * 0.4), 2200);               // 촉촉한 낮은 결
-    if (r() < 0.2) this.noise(t + 0.012, 0.014, 3000 + r() * 800, 1.0, V * (0.14 + 0.08 * k), 5200);      // 가끔 나는 섬유 '톡'
+    if (!this.ctx || !this.on) return; if (this.ctx.state !== 'running') this.wake(); const now = this.ctx.currentTime; if (now - this.lastR < 0.075) return; this.lastR = now;
+    const k = clamp(speed / 3, 0, 1), r = () => Math.random(), V = 3.6, M = this.mix, t = now + r() * 0.02, v = 0.65 + r() * 0.35;
+    this.noise(t, 0.12 + r() * 0.08, 700 + r() * 400, 0.45, V * M.body * v, 2400, 0.03);                                        // 부드러운 숨결(낮은 결)
+    this.noise(t, 0.14 + r() * 0.08, 4800 + r() * 2200 + k * 600, 0.5, V * M.mist * v * (0.8 + 0.4 * k), 9000, 0.04);          // 상큼한 공기감(천천히 켜졌다 사라짐)
+    if (r() < M.bub) this.bubble(t + r() * 0.03, 560 + r() * 500, V * M.bubV * v);                                             // 아주 가끔 과즙 '뽁'
   },
   tone(f, t0, dur, vol, type, f1) {
     if (!this.ctx || !this.on) return; const c = this.ctx, t = c.currentTime + t0, o = c.createOscillator(), g = c.createGain();
@@ -55,8 +63,8 @@ const Snd = {
     g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vol, t + 0.015); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
     o.connect(g); g.connect(this.out); o.start(t); o.stop(t + dur + 0.05);
   },
-  grab() { if (!this.ctx || !this.on) return; this.tone(250, 0, 0.09, 0.13, 'sine', 165); this.noise(this.ctx.currentTime, 0.05, 1100, 0.7, 0.3, 3000); },
-  snap() { if (!this.ctx || !this.on) return; this.noise(this.ctx.currentTime, 0.14, 1800, 0.6, 0.38, 4200); this.tone(330, 0.02, 0.16, 0.11, 'triangle', 262); this.tone(262, 0.17, 0.22, 0.1, 'triangle', 196); },
+  grab() { if (!this.ctx || !this.on) return; this.tone(250, 0, 0.09, 0.13, 'sine', 165); this.noise(this.ctx.currentTime, 0.07, 700, 0.8, 0.3, 1800, 0.012); },
+  snap() { if (!this.ctx || !this.on) return; this.noise(this.ctx.currentTime, 0.16, 900, 0.6, 0.38, 2400, 0.015); this.tone(330, 0.02, 0.16, 0.11, 'triangle', 262); this.tone(262, 0.17, 0.22, 0.1, 'triangle', 196); },
   win() { [523, 659, 784].forEach((f, i) => this.tone(f, i * 0.11, 0.4, 0.1, 'triangle')); this.tone(1047, 0.36, 0.5, 0.075, 'sine'); }
 };
 
@@ -439,7 +447,7 @@ function collectPath(x, y) {
 function slerpDir(a, b, ang, t) { return norm(S.rodrigues(a, norm(cross(a, b)), ang * t)); }
 function peelFrame(dt) {
   const qb = q.slice(); let emitted = 0; rib.easeGrip(dt);
-  const onStep = (dl) => { if (dl > 0) { emitted += dl; rib.feed(dl, sim.w, sim.q, knifeW(), sim.C.slice()); grainAcc += dl; if (grainAcc >= grainGap) { grainAcc = 0; grainGap = (0.016 + Math.random() * 0.022) / (1 + Math.min(pullSpeed, 4) * 0.2); Snd.rustle(Math.max(pullSpeed, emitted / Math.max(dt, 0.001))); } } };
+  const onStep = (dl) => { if (dl > 0) { emitted += dl; rib.feed(dl, sim.w, sim.q, knifeW(), sim.C.slice()); grainAcc += dl; if (grainAcc >= grainGap) { grainAcc = 0; grainGap = (0.04 + Math.random() * 0.04) / (1 + Math.min(pullSpeed, 4) * 0.1); Snd.rustle(Math.max(pullSpeed, emitted / Math.max(dt, 0.001))); } } };
   const visible = () => qRot(q, sim.P)[2] > 0.04;
   /* 1) 손의 실제 경로는 포인터 이벤트(onMove)에서 지연 없이 queue 에 쌓였다. 여기서는 그 경로를 따라 칼날만 움직인다.
         큐가 비면 칼날은 즉시 멈추고, 표면 밖으로 나가면 자동 직진 없이 정지한다. */
